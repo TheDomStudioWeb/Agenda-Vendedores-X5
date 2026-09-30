@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Agenda Comercial | X5 Argentina</title>
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #f8f9fa;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --text: #333;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            color: var(--text);
+            margin: 0;
+            padding: 15px; /* Margen un poco más chico para celulares */
+        }
+        
+        /* DISEÑO MOBILE-FIRST (Por defecto todo apilado) */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .panel {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Si la pantalla es ancha (Tablets horizontales o PC), se pone lado a lado */
+        @media (min-width: 800px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            .panel-form { flex: 1; position: sticky; top: 20px;}
+            .panel-agenda { flex: 2; }
+        }
+
+        h1, h2 { color: var(--primary); margin-top: 0; font-size: 22px;}
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
+        
+        /* Inputs a 16px previenen el auto-zoom molesto en celulares Android/iOS */
+        input, select, textarea {
+            width: 100%; padding: 12px; border: 1px solid #ced4da;
+            border-radius: 5px; box-sizing: border-box; font-family: inherit;
+            font-size: 16px; 
+        }
+        
+        button {
+            background-color: var(--primary); color: white; border: none;
+            padding: 14px 20px; border-radius: 5px; cursor: pointer;
+            width: 100%; font-weight: bold; font-size: 16px; transition: background 0.3s;
+        }
+        button:hover { background-color: #004494; }
+        
+        .meeting-card {
+            background: var(--secondary); border-left: 5px solid var(--warning);
+            padding: 15px; margin-bottom: 15px; border-radius: 6px;
+        }
+        .meeting-card.realizado { border-left-color: var(--success); }
+        .meeting-card.cancelado { border-left-color: var(--danger); }
+        
+        .meeting-header { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 10px; flex-wrap: wrap; gap: 5px;}
+        .badge { background: #e2e3e5; padding: 4px 8px; border-radius: 12px; font-size: 13px; white-space: nowrap;}
+        .meeting-body { font-size: 15px; margin-bottom: 15px; line-height: 1.4;}
+        
+        .controls-row { display: flex; flex-direction: column; gap: 10px;}
+        @media (min-width: 500px) {
+            .controls-row { flex-direction: row; }
+            .controls-row select { flex-grow: 1; }
+        }
+        
+        .result-box {
+            background: #fff; padding: 15px; border-radius: 5px;
+            border: 1px dashed #ccc; margin-top: 15px; display: none;
+        }
+        .result-box.active { display: block; }
+        
+        textarea { height: 90px; resize: vertical; margin-top: 10px; }
+        
+        .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;}
+        .btn-sync { background-color: #28a745; width: auto; padding: 10px 15px; font-size: 14px; }
+        .btn-calendar { background-color: white; color: #4285F4; border: 1px solid #4285F4; padding: 10px 12px; font-size: 14px; text-decoration: none; border-radius: 5px; text-align: center; display: block;}
+        
+        #loading { color: #666; font-style: italic; font-size: 14px;}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Panel Izquierdo: Formulario -->
+        <div class="panel panel-form">
+            <h2>Nueva Entrevista</h2>
+            <form id="agenda-form">
+                <div class="form-group">
+                    <label>Cliente</label>
+                    <input type="text" id="cliente" required placeholder="Nombre del prospecto">
+                </div>
+                <div class="form-group">
+                    <label>Vehículo / Interés</label>
+                    <input type="text" id="vehiculo" required placeholder="Ej: Toyota Corolla Cross">
+                </div>
+                <div class="form-group">
+                    <label>Asesor / Vendedor</label>
+                    <input type="text" id="asesor" required placeholder="Nombre del vendedor">
+                </div>
+                <div class="form-group">
+                    <label>Fecha</label>
+                    <input type="date" id="fecha" required>
+                </div>
+                <div class="form-group">
+                    <label>Hora</label>
+                    <input type="time" id="hora" required>
+                </div>
+                <button type="submit" id="btn-submit">Agendar Entrevista</button>
+            </form>
+        </div>
+
+        <!-- Panel Derecho: Agenda -->
+        <div class="panel panel-agenda">
+            <div class="header-actions">
+                <h2 style="margin: 0;">Agenda del Equipo</h2>
+                <button class="btn-sync" onclick="cargarAgenda()">🔄 Sincronizar</button>
+            </div>
+            <p id="loading">Conectando con la base de datos...</p>
+            <div id="agenda-list"></div>
+        </div>
+    </div>
+
+    <script>
+        // PEGA TU URL DE APPS SCRIPT AQUÍ:
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
+        
+        let reuniones = [];
+        const agendaList = document.getElementById('agenda-list');
+        const loading = document.getElementById('loading');
+
+        const generarLinkCalendario = (reunion) => {
+            const titulo = encodeURIComponent(`Entrevista X5: ${reunion.cliente} con ${reunion.asesor}`);
+            const detalles = encodeURIComponent(`Asesor: ${reunion.asesor}\nVehículo: ${reunion.vehiculo}`);
+            const ubicacion = encodeURIComponent('X5 Argentina, San Martín 2417, Mendoza');
+            
+            const fechaStr = reunion.fecha.replace(/-/g, '');
+            const horaInicio = reunion.hora.replace(':', '') + '00';
+            
+            let [h, m] = reunion.hora.split(':');
+            let hFin = (parseInt(h) + 1).toString().padStart(2, '0');
+            const horaFin = hFin + m + '00';
+
+            return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${fechaStr}T${horaInicio}/${fechaStr}T${horaFin}&details=${detalles}&location=${ubicacion}`;
+        };
+
+        const cargarAgenda = async () => {
+            loading.style.display = 'block';
+            try {
+                const res = await fetch(SCRIPT_URL);
+                reuniones = await res.json();
+                renderizarAgenda();
+            } catch (error) {
+                console.error("Error cargando agenda:", error);
+                loading.innerText = "Error al cargar los datos. Revisa tu conexión.";
+            } finally {
+                loading.style.display = 'none';
+            }
+        };
+
+        const syncUpdate = async (reunionData, isNew = false) => {
+            const payload = { ...reunionData, action: isNew ? 'add' : 'update' };
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(payload)
+            });
+        };
+
+        const renderizarAgenda = () => {
+            agendaList.innerHTML = '';
+            
+            if (reuniones.length === 0) {
+                agendaList.innerHTML = '<p style="color: #666;">No hay entrevistas agendadas.</p>';
+                return;
+            }
+
+            reuniones.sort((a, b) => new Date(`${a.fecha}T${a.hora}`) - new Date(`${b.fecha}T${b.hora}`));
+
+            reuniones.forEach((reunion) => {
+                const card = document.createElement('div');
+                card.className = `meeting-card ${reunion.estado || 'pendiente'}`;
+                
+                // Extraer solo la fecha de forma segura (por si Sheets manda un formato extraño)
+                let fechaLimpia = reunion.fecha.includes('T') ? reunion.fecha.split('T')[0] : reunion.fecha;
+                let fechaLegible = fechaLimpia.split('-').reverse().join('/');
+                
+                const calLink = generarLinkCalendario(reunion);
+
+                const mostrarResultados = reunion.estado === 'realizado';
+                const mostrarNotas = reunion.resultado === 'seguimiento' || reunion.notas?.trim() !== '';
+
+                card.innerHTML = `
+                    <div class="meeting-header">
+                        <span>${reunion.hora}hs - ${reunion.cliente}</span>
+                        <span class="badge">${fechaLegible}</span>
+                    </div>
+                    <div class="meeting-body">
+                        <strong>Vehículo:</strong> ${reunion.vehiculo}<br>
+                        <strong>Asesor:</strong> ${reunion.asesor}
+                    </div>
+                    
+                    <div class="controls-row">
+                        <select onchange="cambiarEstado('${reunion.id}', this.value)" style="font-weight: bold;">
+                            <option value="pendiente" ${reunion.estado === 'pendiente' ? 'selected' : ''}>⏳ Estado: Pendiente</option>
+                            <option value="realizado" ${reunion.estado === 'realizado' ? 'selected' : ''}>🤝 Estado: Realizado / Cerrado</option>
+                            <option value="cancelado" ${reunion.estado === 'cancelado' ? 'selected' : ''}>❌ Estado: Cancelado</option>
+                        </select>
+                        <a href="${calLink}" target="_blank" class="btn-calendar">📅 Agendar</a>
+                    </div>
+                    
+                    <div class="result-box ${mostrarResultados ? 'active' : ''}">
+                        <label>Resultado de la gestión:</label>
+                        <select onchange="cambiarResultado('${reunion.id}', this.value)">
+                            <option value="">-- Seleccionar --</option>
+                            <option value="venta" ${reunion.resultado === 'venta' ? 'selected' : ''}>🎉 Venta / Boleto</option>
+                            <option value="seña" ${reunion.resultado === 'seña' ? 'selected' : ''}>💰 Seña</option>
+                            <option value="seguimiento" ${reunion.resultado === 'seguimiento' ? 'selected' : ''}>🔄 En seguimiento (Visitas futuras)</option>
+                            <option value="descartado" ${reunion.resultado === 'descartado' ? 'selected' : ''}>📉 Descartado</option>
+                        </select>
+                        
+                        <div style="display: ${mostrarNotas ? 'block' : 'none'};">
+                            <textarea placeholder="Añade notas del seguimiento aquí..." 
+                                      onblur="guardarNotas('${reunion.id}', this.value)">${reunion.notas || ''}</textarea>
+                            <small style="color: #666; font-size: 12px;">*Los cambios en notas se guardan al tocar fuera del cuadro.</small>
+                        </div>
+                    </div>
+                `;
+                agendaList.appendChild(card);
+            });
+        };
+
+        window.cambiarEstado = (id, nuevoEstado) => {
+            const index = reuniones.findIndex(r => String(r.id) === String(id));
+            reuniones[index].estado = nuevoEstado;
+            if (nuevoEstado !== 'realizado') reuniones[index].resultado = '';
+            renderizarAgenda();
+            syncUpdate(reuniones[index]);
+        };
+
+        window.cambiarResultado = (id, nuevoResultado) => {
+            const index = reuniones.findIndex(r => String(r.id) === String(id));
+            reuniones[index].resultado = nuevoResultado;
+            renderizarAgenda();
+            syncUpdate(reuniones[index]);
+        };
+
+        window.guardarNotas = (id, notas) => {
+            const index = reuniones.findIndex(r => String(r.id) === String(id));
+            if (reuniones[index].notas !== notas) { 
+                reuniones[index].notas = notas;
+                syncUpdate(reuniones[index]);
+            }
+        };
+
+        document.getElementById('agenda-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btnSubmit = document.getElementById('btn-submit');
+            btnSubmit.disabled = true;
+            btnSubmit.innerText = 'Guardando...';
+
+            const nuevaReunion = {
+                id: Date.now().toString(),
+                cliente: document.getElementById('cliente').value,
+                vehiculo: document.getElementById('vehiculo').value,
+                asesor: document.getElementById('asesor').value,
+                fecha: document.getElementById('fecha').value,
+                hora: document.getElementById('hora').value,
+                estado: 'pendiente',
+                resultado: '',
+                notas: ''
+            };
+
+            reuniones.push(nuevaReunion);
+            renderizarAgenda();
+            await syncUpdate(nuevaReunion, true); 
+            
+            document.getElementById('agenda-form').reset();
+            btnSubmit.disabled = false;
+            btnSubmit.innerText = 'Agendar Entrevista';
+        });
+
+        cargarAgenda();
+        setInterval(cargarAgenda, 30000); 
+    </script>
+</body>
+</html>
