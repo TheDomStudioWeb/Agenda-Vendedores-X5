@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CRM | X5 Argentina</title>
-    <!-- Librería para generar PDF localmente -->
+    <!-- Librerías de PDF y Gráficos -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <style>
         :root { --primary: #0056b3; --secondary: #f8f9fa; --success: #28a745; --warning: #ffc107; --danger: #dc3545; --text: #333; --bg: #e9ecef; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 0; padding-bottom: 70px; }
@@ -14,9 +16,6 @@
         .logo-txt { font-size: 32px; font-weight: bold; color: var(--primary); margin-bottom: 30px;}
         .login-box { background: var(--secondary); padding: 30px; border-radius: 10px; width: 80%; max-width: 350px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);}
         
-        .loader-mini { border: 3px solid #f3f3f3; border-top: 3px solid var(--primary); border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-left: 10px; display:none;}
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
         .app-container { padding: 15px; max-width: 1000px; margin: 0 auto; display: none; }
         .panel { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; }
         h2 { color: var(--primary); margin-top: 0; font-size: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;}
@@ -44,6 +43,11 @@
         .btn-sync { background-color: #28a745; color: white; border: none; padding: 8px 12px; border-radius: 5px; font-size: 14px;}
         .btn-logout { background-color: #6c757d; color: white; border: none; padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer;}
         
+        /* Pestañas (Hoy vs Historial) */
+        .filter-tabs { display: flex; margin-bottom: 15px; background: #e9ecef; border-radius: 8px; overflow: hidden; }
+        .filter-tab { flex: 1; text-align: center; padding: 10px; font-weight: bold; cursor: pointer; color: #666; font-size: 14px; }
+        .filter-tab.active { background: var(--primary); color: white; }
+
         .result-box { background: #fff; padding: 15px; border-radius: 5px; border: 1px dashed #ccc; margin-top: 15px; display: none; }
         .result-box.active { display: block; }
         
@@ -54,16 +58,18 @@
         .nav-item.active { color: var(--primary); border-top-color: var(--primary); background: #f8f9fa;}
         .nav-icon { font-size: 20px; display: block; margin-bottom: 2px; }
 
-        .metric-box { background: #eef2f5; padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 10px;}
-        .metric-number { font-size: 28px; font-weight: bold; color: var(--primary);}
+        /* Estilos Tablero Gerencial */
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 20px; }
+        .metric-box { background: #fff; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.02);}
+        .metric-number { font-size: 24px; font-weight: bold; color: var(--primary); margin-bottom: 5px;}
+        .metric-title { font-size: 12px; color: #666; font-weight: bold; text-transform: uppercase;}
+        .chart-container { background: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #dee2e6; }
         
-        /* Input oculto para cargar fotos al PDF */
         #pdf-upload { display: none; }
     </style>
 </head>
 <body>
 
-    <!-- PANTALLA DE INGRESO -->
     <div id="login-screen">
         <div class="logo-txt">X5 ARGENTINA</div>
         <div class="login-box" id="login-box" style="display:none;">
@@ -71,46 +77,39 @@
             <select id="user-select" style="margin-bottom: 15px;">
                 <option value="">Selecciona tu usuario...</option>
             </select>
+
+            <!-- NUEVO: CAMPO DE CONTRASEÑA -->
+            <input type="password" id="user-pass" placeholder="Tu clave de acceso" style="margin-bottom: 15px;">
+            
             <button class="btn-main" onclick="iniciarSesion()">Ingresar</button>
         </div>
-        <div id="loading-initial">
-            <p>Sincronizando Base de Datos...</p>
-            <div class="loader-mini" style="display:inline-block;"></div>
+        
+            <button class="btn-main" onclick="iniciarSesion()">Ingresar</button>
         </div>
+        <div id="loading-initial"><p>Sincronizando Base de Datos...</p></div>
     </div>
 
-    <!-- Input invisible para generar PDF -->
     <input type="file" id="pdf-upload" accept="image/*" multiple onchange="procesarYDescargarPDF(event)">
 
-    <!-- APLICACIÓN PRINCIPAL -->
     <div class="app-container" id="main-app">
         
         <!-- PESTAÑA: AGENDA -->
         <div id="tab-agenda" class="tab-content active">
             <div class="panel">
                 <h2>Nueva Entrevista 
-                    <div>
-                        <span id="user-greeting" style="font-size:14px; color:#666; margin-right: 10px;"></span>
-                        <button class="btn-logout" onclick="cerrarSesion()">🚪 Salir</button>
-                    </div>
+                    <div><span id="user-greeting" style="font-size:14px; color:#666; margin-right: 10px;"></span><button class="btn-logout" onclick="cerrarSesion()">🚪 Salir</button></div>
                 </h2>
                 <form id="form-agenda">
                     <div class="form-group"><input type="text" id="ag-cliente" required placeholder="Nombre del prospecto"></div>
-                    <div class="form-group"><input type="text" id="ag-vehiculo" required placeholder="Vehículo de interés"></div>
-                    
                     <div class="controls-row form-group">
+                        <input type="text" id="ag-vehiculo" required placeholder="Vehículo de interés">
                         <select id="ag-lugar" required onchange="toggleFlota()">
                             <option value="Agencia">En Agencia</option>
                             <option value="Domicilio">En Domicilio</option>
                         </select>
-                        <select id="ag-auto" style="display:none;">
-                            <option value="">-- Vehículo de Flota --</option>
-                        </select>
                     </div>
-
-                    <div class="form-group">
-                        <select id="ag-asesor" required><option value="">-- Asesor --</option></select>
-                    </div>
+                    <div class="form-group"><select id="ag-auto" style="display:none;"><option value="">-- Vehículo de Flota --</option></select></div>
+                    <div class="form-group"><select id="ag-asesor" required><option value="">-- Asesor --</option></select></div>
                     <div class="controls-row form-group">
                         <input type="date" id="ag-fecha" required>
                         <input type="time" id="ag-hora" required>
@@ -120,7 +119,14 @@
             </div>
 
             <div class="panel">
-                <h2>Mi Agenda <button class="btn-sync" onclick="sincronizarFondo(true)">🔄</button></h2>
+                <h2>Agenda <button class="btn-sync" onclick="sincronizarFondo(true)">🔄</button></h2>
+                
+                <!-- Filtro de Hoy -->
+                <div class="filter-tabs">
+                    <div class="filter-tab active" id="btn-hoy-agenda" onclick="setFiltro('agenda', 'hoy')">🔥 Foco de Hoy</div>
+                    <div class="filter-tab" id="btn-todo-agenda" onclick="setFiltro('agenda', 'todo')">🗓️ Historial Completo</div>
+                </div>
+
                 <div id="lista-agenda"></div>
             </div>
         </div>
@@ -144,9 +150,7 @@
                             <option value="Redes Asesor">Redes Asesor</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <select id="ld-asignado" required><option value="">-- Asignar a --</option></select>
-                    </div>
+                    <div class="form-group"><select id="ld-asignado" required><option value="">-- Asignar a --</option></select></div>
                     <div class="controls-row form-group">
                         <input type="date" id="ld-fecha-limite" required>
                         <input type="time" id="ld-hora-limite" required>
@@ -157,21 +161,51 @@
 
             <div class="panel">
                 <h2>Seguimiento de Leads</h2>
+                <div class="filter-tabs">
+                    <div class="filter-tab active" id="btn-hoy-leads" onclick="setFiltro('leads', 'hoy')">🔥 Para Hoy</div>
+                    <div class="filter-tab" id="btn-todo-leads" onclick="setFiltro('leads', 'todo')">🗓️ Todos los Leads</div>
+                </div>
                 <div id="lista-leads"></div>
             </div>
         </div>
 
-        <!-- PESTAÑA: MÉTRICAS -->
+        <!-- PESTAÑA: MÉTRICAS GERENCIALES -->
         <div id="tab-dashboard" class="tab-content">
             <div class="panel">
-                <h2>Tablero Regional Cuyo</h2>
-                <div class="metric-box">
-                    <div class="metric-number" id="dash-leads">0</div>
-                    <div>Leads Activos</div>
+                <h2 style="margin-bottom: 20px;">📊 Dashboard Regional Cuyo</h2>
+                
+                <div class="dashboard-grid">
+                    <div class="metric-box">
+                        <div class="metric-number" id="dash-facturacion">$0</div>
+                        <div class="metric-title">Facturación Mensual</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number" id="dash-ventas">0</div>
+                        <div class="metric-title">Cierres Realizados</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number" id="dash-leads-activos">0</div>
+                        <div class="metric-title">Leads Atendidos</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number" id="dash-conversion">0%</div>
+                        <div class="metric-title">Tasa de Conversión</div>
+                    </div>
                 </div>
-                <div class="metric-box">
-                    <div class="metric-number" id="dash-ventas">0</div>
-                    <div>Ventas Registradas</div>
+
+                <div class="chart-container">
+                    <h3 style="font-size: 14px; margin-top: 0;">Rendimiento por Asesor (Facturación)</h3>
+                    <canvas id="chartAsesores" height="200"></canvas>
+                </div>
+
+                <div class="chart-container">
+                    <h3 style="font-size: 14px; margin-top: 0;">Origen de las Ventas (ROI)</h3>
+                    <canvas id="chartOrigenes" height="200"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h3 style="font-size: 14px; margin-top: 0;">Uso de Flota vs Ventas</h3>
+                    <canvas id="chartFlota" height="200"></canvas>
                 </div>
             </div>
         </div>
@@ -185,15 +219,18 @@
     </div>
 
     <script>
-        // PEGA TU URL DE APPS SCRIPT AQUÍ
+        // PEGA TU URL DE APPS SCRIPT AQUÍ:
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
         
         let db = { agenda: [], leads: [], personal: [], flota: [] };
         let currentUser = null;
-        let nombreClientePDF = "Cliente"; // Variable para el nombre del archivo PDF
-
+        let nombreClientePDF = "Cliente"; 
+        let vistaFiltro = { agenda: 'hoy', leads: 'hoy' }; // Estado inicial de los filtros
+        
+        let chart1, chart2, chart3; // Variables para los gráficos
         const { PDFDocument } = PDFLib;
 
+        // INICIALIZACIÓN
         window.onload = () => {
             const cache = localStorage.getItem('x5_db');
             if (cache) {
@@ -213,18 +250,15 @@
                 localStorage.setItem('x5_db', JSON.stringify(db)); 
                 if (!currentUser) prepararPantallaLogin();
                 else cargarVistas(); 
-            } catch (error) {
-                console.error("Error sincronizando:", error);
-            } finally {
-                document.getElementById('loading-initial').style.display = 'none';
-            }
+            } catch (error) { console.error("Error sincronizando:", error); } 
+            finally { document.getElementById('loading-initial').style.display = 'none'; }
         };
 
+        // LOGIN Y PERMISOS
         const prepararPantallaLogin = () => {
             const guardado = localStorage.getItem('x5_user');
             if (guardado) {
-                currentUser = JSON.parse(guardado);
-                iniciarApp();
+                currentUser = JSON.parse(guardado); iniciarApp();
             } else {
                 const select = document.getElementById('user-select');
                 select.innerHTML = '<option value="">Selecciona tu usuario...</option>';
@@ -237,16 +271,26 @@
 
         const iniciarSesion = () => {
             const nombre = document.getElementById('user-select').value;
-            if(!nombre) return alert('Selecciona tu usuario');
-            currentUser = db.personal.find(p => p.nombre === nombre);
+            const claveIngresada = document.getElementById('user-pass').value;
+
+            if(!nombre) return alert('⚠️ Selecciona tu usuario');
+            if(!claveIngresada) return alert('⚠️ Ingresa tu clave de acceso');
+
+            // Buscamos todos los datos del usuario seleccionado
+            const usuarioEncontrado = db.personal.find(p => p.nombre === nombre);
+
+            // Validamos que la clave coincida (lo pasamos a texto por si usan números)
+            if (String(usuarioEncontrado.clave) !== String(claveIngresada)) {
+                return alert('❌ Clave incorrecta. Acceso denegado.');
+            }
+
+            // Si todo está bien, lo dejamos pasar
+            currentUser = usuarioEncontrado;
             localStorage.setItem('x5_user', JSON.stringify(currentUser));
             iniciarApp();
         };
 
-        window.cerrarSesion = () => {
-            localStorage.removeItem('x5_user');
-            location.reload(); // Recarga la página y vuelve a la pantalla de login
-        };
+        window.cerrarSesion = () => { localStorage.removeItem('x5_user'); location.reload(); };
 
         const iniciarApp = () => {
             document.getElementById('login-screen').style.display = 'none';
@@ -259,8 +303,7 @@
                 document.getElementById('nav-dashboard').style.display = 'block';
             }
             
-            llenarDesplegables();
-            cargarVistas();
+            llenarDesplegables(); cargarVistas();
         };
 
         const puedeVer = (asesorName) => {
@@ -271,21 +314,14 @@
         };
 
         const llenarDesplegables = () => {
-            const selAsesor = document.getElementById('ag-asesor');
-            const selLeadAsig = document.getElementById('ld-asignado');
-            const selAuto = document.getElementById('ag-auto');
-            
+            const selAsesor = document.getElementById('ag-asesor'); const selLeadAsig = document.getElementById('ld-asignado'); const selAuto = document.getElementById('ag-auto');
             let asesoresHTML = '<option value="">-- Asesor --</option>';
             db.personal.filter(p => p.estado === 'Activo').forEach(p => {
                 if (puedeVer(p.nombre)) asesoresHTML += `<option value="${p.nombre}">${p.nombre}</option>`;
             });
-            selAsesor.innerHTML = asesoresHTML;
-            selLeadAsig.innerHTML = asesoresHTML;
-
+            selAsesor.innerHTML = asesoresHTML; selLeadAsig.innerHTML = asesoresHTML;
             let autosHTML = '<option value="">-- Vehículo de Flota --</option>';
-            db.flota.filter(f => f.estado === 'Activo').forEach(f => {
-                autosHTML += `<option value="${f.vehiculo} (${f.patente})">${f.vehiculo}</option>`;
-            });
+            db.flota.filter(f => f.estado === 'Activo').forEach(f => { autosHTML += `<option value="${f.vehiculo} (${f.patente})">${f.vehiculo}</option>`; });
             selAuto.innerHTML = autosHTML;
         };
 
@@ -295,76 +331,71 @@
             document.getElementById('ag-auto').required = lugar === 'Domicilio';
         };
 
-        // --- SISTEMA DE PDF PARA LEGAJOS ---
-        window.abrirGeneradorPDF = (nombreCliente) => {
-            nombreClientePDF = nombreCliente.replace(/\s+/g, '_'); // Prepara el nombre del archivo
-            document.getElementById('pdf-upload').click(); // Abre la cámara/galería
-        };
-
+        // --- SISTEMA PDF ---
+        window.abrirGeneradorPDF = (nombreCliente) => { nombreClientePDF = nombreCliente.replace(/\s+/g, '_'); document.getElementById('pdf-upload').click(); };
         window.procesarYDescargarPDF = async (event) => {
             const archivos = Array.from(event.target.files);
             if (archivos.length === 0) return;
-
-            alert("Procesando las fotos. Por favor espera unos segundos mientras se arma el PDF...");
-
+            alert("Procesando fotos. Espera mientras se arma el PDF...");
             try {
                 const mergedPdf = await PDFDocument.create();
-
                 for (let file of archivos) {
                     const arrayBuffer = await file.arrayBuffer();
-                    const fileType = file.type;
-
-                    if (fileType === 'image/jpeg' || fileType === 'image/jpg') {
-                        const image = await mergedPdf.embedJpg(arrayBuffer);
-                        const page = mergedPdf.addPage([image.width, image.height]);
-                        page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
-                    } else if (fileType === 'image/png') {
-                        const image = await mergedPdf.embedPng(arrayBuffer);
-                        const page = mergedPdf.addPage([image.width, image.height]);
-                        page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+                    if (file.type.includes('image/jpeg')) {
+                        const img = await mergedPdf.embedJpg(arrayBuffer);
+                        const page = mergedPdf.addPage([img.width, img.height]);
+                        page.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
+                    } else if (file.type.includes('image/png')) {
+                        const img = await mergedPdf.embedPng(arrayBuffer);
+                        const page = mergedPdf.addPage([img.width, img.height]);
+                        page.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
                     }
                 }
-
                 const pdfBytes = await mergedPdf.save();
                 const blob = new Blob([pdfBytes], { type: 'application/pdf' });
                 const url = URL.createObjectURL(blob);
-                
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `Legajo_${nombreClientePDF}.pdf`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-                
-                alert("✅ ¡PDF descargado con éxito en tu teléfono! Ahora toca el botón de avisar por WhatsApp y envíaselo a tu jefe adjuntando el archivo.");
-            } catch (error) {
-                console.error(error);
-                alert("Hubo un error al crear el PDF. Intenta con fotos más livianas.");
-            }
-            
-            event.target.value = ''; // Limpia el input
+                const a = document.createElement('a'); a.href = url; a.download = `Legajo_${nombreClientePDF}.pdf`;
+                document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+                alert("✅ ¡PDF descargado con éxito!");
+            } catch (error) { console.error(error); alert("Hubo un error al crear el PDF."); }
+            event.target.value = ''; 
         };
 
-        // RENDERIZADO
-        const cargarVistas = () => {
-            renderizarAgenda();
-            renderizarLeads();
-            renderizarDashboard();
+        // --- LÓGICA DE FILTROS "FOCO DE HOY" ---
+        window.setFiltro = (tabla, tipo) => {
+            vistaFiltro[tabla] = tipo;
+            document.getElementById(`btn-hoy-${tabla}`).classList.remove('active');
+            document.getElementById(`btn-todo-${tabla}`).classList.remove('active');
+            document.getElementById(`btn-${tipo}-${tabla}`).classList.add('active');
+            if(tabla === 'agenda') renderizarAgenda(); else renderizarLeads();
         };
+
+        const obtenerFechaHoy = () => new Date().toISOString().split('T')[0]; // Ej: "2026-10-05"
+
+        // RENDERIZADO DE VISTAS
+        const cargarVistas = () => { renderizarAgenda(); renderizarLeads(); if(currentUser.rol !== 'Vendedor') renderizarDashboard(); };
 
         const renderizarAgenda = () => {
-            const list = document.getElementById('lista-agenda');
-            list.innerHTML = '';
-            const data = db.agenda.filter(a => puedeVer(a.asesor)).sort((a, b) => new Date(`${a.fecha}T${a.hora}`) - new Date(`${b.fecha}T${b.hora}`));
+            const list = document.getElementById('lista-agenda'); list.innerHTML = '';
+            let data = db.agenda.filter(a => puedeVer(a.asesor));
             
+            // APLICAR FILTRO DE HOY
+            if (vistaFiltro.agenda === 'hoy') {
+                const hoy = obtenerFechaHoy();
+                data = data.filter(item => {
+                    let fechaItem = item.fecha.includes('T') ? item.fecha.split('T')[0] : item.fecha;
+                    // Muestra: si es para hoy, o si quedó pendiente en el pasado (atrasado)
+                    return fechaItem === hoy || (item.estado === 'pendiente' && fechaItem < hoy);
+                });
+            }
+
+            data.sort((a, b) => new Date(`${a.fecha}T${a.hora}`) - new Date(`${b.fecha}T${b.hora}`));
+            if (data.length === 0) list.innerHTML = '<p style="text-align:center; color:#666;">No hay tareas para esta vista.</p>';
+
             data.forEach(item => {
-                const isRealizado = item.estado === 'realizado';
-                const isVenta = item.resultado === 'venta';
+                const isRealizado = item.estado === 'realizado'; const isVenta = item.resultado === 'venta';
                 let fechaLimpia = item.fecha.includes('T') ? item.fecha.split('T')[0] : item.fecha;
-                
-                const msgLegajo = encodeURIComponent(`Hola, te adjunto el legajo PDF de la venta de ${item.cliente} (N° Contrato: ${item.nro_contrato || 'A confirmar'}).`);
-                const linkLegajo = `https://wa.me/?text=${msgLegajo}`;
+                const linkLegajo = `https://wa.me/?text=${encodeURIComponent(`Hola, te adjunto legajo de ${item.cliente} (Contrato:${item.nro_contrato}).`)}`;
 
                 list.innerHTML += `
                     <div class="card ${item.estado || 'pendiente'}">
@@ -373,9 +404,8 @@
                             <span class="badge">${fechaLimpia.split('-').reverse().join('/')}</span>
                         </div>
                         <div class="card-body">
-                            <strong>Asesor:</strong> ${item.asesor}<br>
-                            <strong>Vehículo:</strong> ${item.vehiculo}<br>
-                            ${item.lugar === 'Domicilio' ? `📍 <strong>Visita en Domicilio</strong> (${item.auto_usado})` : '🏢 En Agencia'}
+                            <strong>Asesor:</strong> ${item.asesor}<br> <strong>Vehículo:</strong> ${item.vehiculo}<br>
+                            ${item.lugar === 'Domicilio' ? `📍 <strong>Domicilio</strong> (${item.auto_usado})` : '🏢 En Agencia'}
                         </div>
                         <div class="controls-row">
                             <select onchange="actualizar('agenda', '${item.id}', 'estado', this.value)">
@@ -391,14 +421,11 @@
                                 <option value="seguimiento" ${item.resultado === 'seguimiento' ? 'selected' : ''}>🔄 En seguimiento</option>
                                 <option value="descartado" ${item.resultado === 'descartado' ? 'selected' : ''}>📉 Descartado</option>
                             </select>
-                            
                             <div id="venta-campos-${item.id}" style="display: ${isVenta ? 'block' : 'none'}; margin-top:10px; background:#e8f5e9; padding:10px; border-radius:5px;">
-                                <input type="text" placeholder="N° de Contrato Obligatorio" value="${item.nro_contrato || ''}" onblur="actualizar('agenda', '${item.id}', 'nro_contrato', this.value)" style="margin-bottom:5px;">
-                                <input type="number" placeholder="Monto / Código" value="${item.monto || ''}" onblur="actualizar('agenda', '${item.id}', 'monto', this.value)" style="margin-bottom:15px;">
-                                
-                                <p style="font-size:13px; font-weight:bold; margin:0 0 5px 0;">Envío de Legajo:</p>
-                                <button type="button" class="btn-action btn-pdf" style="width:100%; margin-bottom:10px;" onclick="abrirGeneradorPDF('${item.cliente}')">📸 1. Armar PDF de Legajo</button>
-                                <a href="${linkLegajo}" target="_blank" class="btn-action btn-wsp">💬 2. Avisar al Jefe por WhatsApp</a>
+                                <input type="text" placeholder="N° Contrato" value="${item.nro_contrato || ''}" onblur="actualizar('agenda', '${item.id}', 'nro_contrato', this.value)" style="margin-bottom:5px;">
+                                <input type="number" placeholder="Monto Total $" value="${item.monto || ''}" onblur="actualizar('agenda', '${item.id}', 'monto', this.value)" style="margin-bottom:15px;">
+                                <button type="button" class="btn-action btn-pdf" style="width:100%; margin-bottom:10px;" onclick="abrirGeneradorPDF('${item.cliente}')">📸 1. Armar PDF Legajo</button>
+                                <a href="${linkLegajo}" target="_blank" class="btn-action btn-wsp">💬 2. Avisar al Jefe</a>
                             </div>
                         </div>
                     </div>`;
@@ -406,15 +433,22 @@
         };
 
         const renderizarLeads = () => {
-            const list = document.getElementById('lista-leads');
-            list.innerHTML = '';
-            const data = db.leads.filter(l => puedeVer(l.asignado_a));
+            const list = document.getElementById('lista-leads'); list.innerHTML = '';
+            let data = db.leads.filter(l => puedeVer(l.asignado_a));
             
-            data.forEach(lead => {
-                // Recuperamos el formato clásico del mensaje de WhatsApp
-                const msgWsp = encodeURIComponent(`Hola ${lead.asignado_a}, tenés un nuevo Lead asignado: ${lead.cliente}. Vehículo de interés: ${lead.interes}. Tenés tiempo hasta las ${lead.hora_limite}hs para contactarlo y cargar el resultado en la app. Tel: ${lead.telefono}`);
-                const linkWsp = `https://wa.me/?text=${msgWsp}`;
+            // APLICAR FILTRO DE HOY
+            if (vistaFiltro.leads === 'hoy') {
+                const hoy = obtenerFechaHoy();
+                data = data.filter(item => {
+                    let fechaAsig = item.fecha_asignacion.includes('T') ? item.fecha_asignacion.split('T')[0] : item.fecha_asignacion;
+                    return fechaAsig === hoy || (item.estado === 'pendiente' && fechaAsig < hoy);
+                });
+            }
+            
+            if (data.length === 0) list.innerHTML = '<p style="text-align:center; color:#666;">Sin leads pendientes para hoy.</p>';
 
+            data.forEach(lead => {
+                const linkWsp = `https://wa.me/?text=${encodeURIComponent(`Hola ${lead.asignado_a}, tenés un nuevo Lead asignado: ${lead.cliente}. Vehículo: ${lead.interes}. Tel: ${lead.telefono}`)}`;
                 list.innerHTML += `
                     <div class="card ${lead.estado || 'pendiente'}">
                         <div class="card-header">
@@ -422,33 +456,116 @@
                             <span class="badge">Límite: ${lead.hora_limite}hs</span>
                         </div>
                         <div class="card-body">
-                            <strong>Asignado:</strong> ${lead.asignado_a}<br>
-                            <strong>Interés:</strong> ${lead.interes} (${lead.origen})<br>
+                            <strong>Asignado:</strong> ${lead.asignado_a}<br> <strong>Interés:</strong> ${lead.interes} (${lead.origen})<br>
                             <strong>Tel:</strong> <a href="tel:${lead.telefono}">${lead.telefono}</a>
                         </div>
                         <div class="controls-row">
-                            <select onchange="actualizar('leads', '${lead.id}', 'estado', this.value)">
+                            <select onchange="actualizarLeadStatus('${lead.id}', this.value)">
                                 <option value="pendiente" ${lead.estado === 'pendiente' ? 'selected' : ''}>⏳ Pendiente</option>
                                 <option value="realizado" ${lead.estado === 'realizado' ? 'selected' : ''}>📞 Contactado</option>
                             </select>
-                            <a href="${linkWsp}" target="_blank" class="btn-action btn-wsp">💬 Notificar por WhatsApp</a>
+                            <a href="${linkWsp}" target="_blank" class="btn-action btn-wsp">💬 Notificar WhatsApp</a>
                         </div>
                     </div>`;
             });
         };
 
-        const renderizarDashboard = () => {
-            if(currentUser.rol === 'Vendedor') return;
-            document.getElementById('dash-leads').innerText = db.leads.filter(l => puedeVer(l.asignado_a)).length;
-            const ventas = db.agenda.filter(a => a.resultado === 'venta' && puedeVer(a.asesor));
-            document.getElementById('dash-ventas').innerText = ventas.length;
+        window.actualizarLeadStatus = (id, valor) => {
+            const index = db.leads.findIndex(r => String(r.id) === String(id));
+            if(index > -1) {
+                db.leads[index].estado = valor;
+                // Si lo contactó recién, guardamos la hora para medir el KPI de Velocidad
+                if (valor === 'realizado' && !db.leads[index].hora_contacto) {
+                    let now = new Date();
+                    db.leads[index].hora_contacto = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+                }
+                syncUpdate(db.leads[index], 'Leads');
+                cargarVistas();
+            }
         };
 
+        // --- DASHBOARD GERENCIAL CON CHART.JS ---
+        const renderizarDashboard = () => {
+            // Cálculos básicos
+            const ventasData = db.agenda.filter(a => a.resultado === 'venta' && puedeVer(a.asesor));
+            const leadsAsignados = db.leads.filter(l => puedeVer(l.asignado_a));
+            
+            let facturacion = 0;
+            let ventasPorAsesor = {};
+            let origenVentas = {};
+            let usoFlota = {};
+
+            ventasData.forEach(v => {
+                let monto = parseFloat(v.monto) || 0;
+                facturacion += monto;
+                
+                // Agrupar por Asesor
+                ventasPorAsesor[v.asesor] = (ventasPorAsesor[v.asesor] || 0) + monto;
+                
+                // Cruzar Venta con Origen (Buscamos si el cliente estaba en Leads)
+                let leadAsociado = db.leads.find(l => l.cliente.toLowerCase() === v.cliente.toLowerCase());
+                let origen = leadAsociado ? leadAsociado.origen : 'Salón / Espontáneo';
+                origenVentas[origen] = (origenVentas[origen] || 0) + 1;
+
+                // Agrupar Flota
+                if (v.lugar === 'Domicilio' && v.auto_usado) {
+                    usoFlota[v.auto_usado] = (usoFlota[v.auto_usado] || 0) + 1;
+                }
+            });
+
+            // Actualizar Tarjetas
+            document.getElementById('dash-facturacion').innerText = '$' + facturacion.toLocaleString('es-AR');
+            document.getElementById('dash-ventas').innerText = ventasData.length;
+            document.getElementById('dash-leads-activos').innerText = leadsAsignados.length;
+            
+            let conversion = leadsAsignados.length > 0 ? (ventasData.length / leadsAsignados.length * 100).toFixed(1) : 0;
+            document.getElementById('dash-conversion').innerText = conversion + '%';
+
+            // Dibujar Gráficos (Evitar duplicados destruyendo los anteriores)
+            if(chart1) chart1.destroy(); if(chart2) chart2.destroy(); if(chart3) chart3.destroy();
+
+            // Gráfico 1: Asesores
+            const ctxAsesores = document.getElementById('chartAsesores').getContext('2d');
+            chart1 = new Chart(ctxAsesores, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(ventasPorAsesor),
+                    datasets: [{ label: 'Facturación ($)', data: Object.values(ventasPorAsesor), backgroundColor: '#0056b3' }]
+                },
+                options: { responsive: true, scales: { y: { beginAtZero: true } } }
+            });
+
+            // Gráfico 2: Orígenes
+            const ctxOrigenes = document.getElementById('chartOrigenes').getContext('2d');
+            chart2 = new Chart(ctxOrigenes, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(origenVentas),
+                    datasets: [{ data: Object.values(origenVentas), backgroundColor: ['#28a745', '#ffc107', '#dc3545', '#17a2b8', '#6c757d'] }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            // Gráfico 3: Flota
+            const ctxFlota = document.getElementById('chartFlota').getContext('2d');
+            chart3 = new Chart(ctxFlota, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(usoFlota),
+                    datasets: [{ label: 'Ventas cerradas usando este auto', data: Object.values(usoFlota), backgroundColor: '#17a2b8' }]
+                },
+                options: { indexAxis: 'y', responsive: true, scales: { x: { beginAtZero: true, ticks: { stepSize: 1 } } } }
+            });
+        };
+
+        // --- NAVEGACIÓN Y ACTUALIZACIÓN GENERAL ---
         window.switchTab = (tabId, el) => {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             document.getElementById(`tab-${tabId}`).classList.add('active');
             el.classList.add('active');
+            // Redibujar gráficos si se abre el dashboard para que se ajusten bien
+            if (tabId === 'dashboard') renderizarDashboard();
         };
 
         window.toggleVentaCampos = (id, valor) => {
@@ -465,40 +582,18 @@
             }
         };
 
-        const syncUpdate = (data, tabla, isNew = false) => {
-            fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ ...data, tabla: tabla, action: isNew ? 'add' : 'update' }) });
-        };
+        const syncUpdate = (data, tabla, isNew = false) => { fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ ...data, tabla: tabla, action: isNew ? 'add' : 'update' }) }); };
 
         document.getElementById('form-agenda').addEventListener('submit', (e) => {
             e.preventDefault();
-            const fecha = document.getElementById('ag-fecha').value;
-            const hora = document.getElementById('ag-hora').value;
             const autoUsado = document.getElementById('ag-lugar').value === 'Domicilio' ? document.getElementById('ag-auto').value : '';
-            
-            if(autoUsado) {
-                const choque = db.agenda.find(a => a.fecha === fecha && a.hora === hora && a.auto_usado === autoUsado);
-                if(choque) return alert(`⚠️ ALERTA: El ${autoUsado} ya está reservado por ${choque.asesor} a esa hora.`);
-            }
-
-            const item = {
-                id: Date.now().toString(), cliente: document.getElementById('ag-cliente').value,
-                vehiculo: document.getElementById('ag-vehiculo').value, lugar: document.getElementById('ag-lugar').value,
-                auto_usado: autoUsado, asesor: document.getElementById('ag-asesor').value,
-                fecha: fecha, hora: hora, estado: 'pendiente', resultado: '', notas: '', nro_contrato: '', monto: ''
-            };
-            db.agenda.push(item); cargarVistas(); syncUpdate(item, 'Hoja 1', true);
-            e.target.reset(); document.getElementById('ag-auto').style.display = 'none';
+            const item = { id: Date.now().toString(), cliente: document.getElementById('ag-cliente').value, vehiculo: document.getElementById('ag-vehiculo').value, lugar: document.getElementById('ag-lugar').value, auto_usado: autoUsado, asesor: document.getElementById('ag-asesor').value, fecha: document.getElementById('ag-fecha').value, hora: document.getElementById('ag-hora').value, estado: 'pendiente', resultado: '', notas: '', nro_contrato: '', monto: '' };
+            db.agenda.push(item); cargarVistas(); syncUpdate(item, 'Hoja 1', true); e.target.reset(); document.getElementById('ag-auto').style.display = 'none';
         });
 
         document.getElementById('form-leads').addEventListener('submit', (e) => {
             e.preventDefault();
-            const item = {
-                id: Date.now().toString(), cliente: document.getElementById('ld-cliente').value,
-                telefono: document.getElementById('ld-telefono').value, interes: document.getElementById('ld-interes').value,
-                origen: document.getElementById('ld-origen').value, asignado_a: document.getElementById('ld-asignado').value,
-                fecha_asignacion: document.getElementById('ld-fecha-limite').value, hora_limite: document.getElementById('ld-hora-limite').value,
-                estado: 'pendiente', resultado: ''
-            };
+            const item = { id: Date.now().toString(), cliente: document.getElementById('ld-cliente').value, telefono: document.getElementById('ld-telefono').value, interes: document.getElementById('ld-interes').value, origen: document.getElementById('ld-origen').value, asignado_a: document.getElementById('ld-asignado').value, fecha_asignacion: document.getElementById('ld-fecha-limite').value, hora_limite: document.getElementById('ld-hora-limite').value, estado: 'pendiente', resultado: '', hora_contacto: '' };
             db.leads.push(item); cargarVistas(); syncUpdate(item, 'Leads', true); e.target.reset();
         });
     </script>
