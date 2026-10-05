@@ -202,6 +202,11 @@
                     <h3 style="font-size: 14px; margin-top: 0;">Origen de las Ventas (ROI)</h3>
                     <canvas id="chartOrigenes" height="200"></canvas>
                 </div>
+
+            <div class="chart-container">
+                    <h3 style="font-size: 14px; margin-top: 0;">Tiempo promedio de Respuesta (Minutos)</h3>
+                    <canvas id="chartTiempos" height="200"></canvas>
+                </div>
                 
                 <div class="chart-container">
                     <h3 style="font-size: 14px; margin-top: 0;">Uso de Flota vs Ventas</h3>
@@ -474,10 +479,12 @@
             const index = db.leads.findIndex(r => String(r.id) === String(id));
             if(index > -1) {
                 db.leads[index].estado = valor;
-                // Si lo contactó recién, guardamos la hora para medir el KPI de Velocidad
+                // Si lo contactó recién, calculamos los minutos exactos de demora
                 if (valor === 'realizado' && !db.leads[index].hora_contacto) {
-                    let now = new Date();
-                    db.leads[index].hora_contacto = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+                    let tiempoAsignado = parseInt(id); //El ID es la estampa de tiempo de creación
+                    let tiempoAhora = Date.now();
+                    let demoraMinutos = Math.round((tiempoAhora - tiempoAsignado) / 6000);
+                    db.leads[index].hora_contacto = demoraMinutos;
                 }
                 syncUpdate(db.leads[index], 'Leads');
                 cargarVistas();
@@ -494,6 +501,8 @@
             let ventasPorAsesor = {};
             let origenVentas = {};
             let usoFlota = {};
+            let tiemposPorAsesor = {};
+            let cantidadLeadsAsesor = {};
 
             ventasData.forEach(v => {
                 let monto = parseFloat(v.monto) || 0;
@@ -560,7 +569,36 @@
                 },
                 options: { indexAxis: 'y', responsive: true, scales: { x: { beginAtZero: true, ticks: { stepSize: 1 } } } }
             });
-        };
+
+            //Procesamiento de Tiempos de Respuesta
+            db.leads.filter(l => l.estado === 'realizado' && l.hora_contacto && puedeVer(l.asignado_a)).forEach(l => {
+                tiemposPorAsesor[l.asignado_a] = (tiemposPorAsesor[l.asignado_a] || 0) + parseInt(l.hora_contacto);
+                cantidadLeadsAsesor[l.asignado_a] = (cantidadLeadsAsesor[l.Asignado_a] || 0) + 1;
+            });
+
+            //Si ya existe el gráfico lo destruimos para actualizarlo
+            if(window.chart4) window.chart4.destroy();
+
+            //Gráfico 4: Tiempos de respuesta
+            const ctxTiempos = document.getElementById('chartTiempos').getContext('2d');
+            window.chart4 = new Chart(ctxTiempos, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(promediosTiempo),
+                    datasets: [{
+                        label: 'Minutos promedio en contactar',
+                        data: Objects.values(promediosTiempo),
+                        backgroundColor: '#ffc107'
+                    }]
+                };
+                options: {
+                    indexAxis: 'y', //Lo hacemos horizontal para que se lea mejor
+                    responsive: true,
+                    mantainAspectRatio: true,
+                    aspectRatio: 1.2,
+                    scales: { x: { beginAtZero: true }}
+                }
+        });
 
         // --- NAVEGACIÓN Y ACTUALIZACIÓN GENERAL ---
         window.switchTab = (tabId, el) => {
