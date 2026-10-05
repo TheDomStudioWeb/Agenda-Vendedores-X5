@@ -543,7 +543,11 @@
                     labels: Object.keys(origenVentas),
                     datasets: [{ data: Object.values(origenVentas), backgroundColor: ['#28a745', '#ffc107', '#dc3545', '#17a2b8', '#6c757d'] }]
                 },
-                options: { responsive: true, maintainAspectRatio: false }
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: true,
+                    aspectRatio: 1.2
+                }
             });
 
             // Gráfico 3: Flota
