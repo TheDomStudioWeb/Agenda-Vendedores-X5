@@ -77,13 +77,7 @@
             <select id="user-select" style="margin-bottom: 15px;">
                 <option value="">Selecciona tu usuario...</option>
             </select>
-
-            <!-- NUEVO: CAMPO DE CONTRASEÑA -->
             <input type="password" id="user-pass" placeholder="Tu clave de acceso" style="margin-bottom: 15px;">
-            
-            <button class="btn-main" onclick="iniciarSesion()">Ingresar</button>
-        </div>
-        
             <button class="btn-main" onclick="iniciarSesion()">Ingresar</button>
         </div>
         <div id="loading-initial"><p>Sincronizando Base de Datos...</p></div>
@@ -121,10 +115,9 @@
             <div class="panel">
                 <h2>Agenda <button class="btn-sync" onclick="sincronizarFondo(true)">🔄</button></h2>
                 
-                <!-- Filtro de Hoy -->
                 <div class="filter-tabs">
                     <div class="filter-tab active" id="btn-hoy-agenda" onclick="setFiltro('agenda', 'hoy')">🔥 Foco de Hoy</div>
-                    <div class="filter-tab" id="btn-todo-agenda" onclick="setFiltro('agenda', 'todo')">🗓️ Historial Completo</div>
+                    <div class="filter-tab" id="btn-todo-agenda" onclick="setFiltro('agenda', 'todo')">🗓️️ Historial Completo</div>
                 </div>
 
                 <div id="lista-agenda"></div>
@@ -203,7 +196,7 @@
                     <canvas id="chartOrigenes" height="200"></canvas>
                 </div>
 
-            <div class="chart-container">
+                <div class="chart-container">
                     <h3 style="font-size: 14px; margin-top: 0;">Tiempo promedio de Respuesta (Minutos)</h3>
                     <canvas id="chartTiempos" height="200"></canvas>
                 </div>
@@ -224,18 +217,16 @@
     </div>
 
     <script>
-        // PEGA TU URL DE APPS SCRIPT AQUÍ:
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
         
         let db = { agenda: [], leads: [], personal: [], flota: [] };
         let currentUser = null;
         let nombreClientePDF = "Cliente"; 
-        let vistaFiltro = { agenda: 'hoy', leads: 'hoy' }; // Estado inicial de los filtros
+        let vistaFiltro = { agenda: 'hoy', leads: 'hoy' }; 
         
-        let chart1, chart2, chart3; // Variables para los gráficos
+        let chart1, chart2, chart3, chart4; 
         const { PDFDocument } = PDFLib;
 
-        // INICIALIZACIÓN
         window.onload = () => {
             const cache = localStorage.getItem('x5_db');
             if (cache) {
@@ -259,7 +250,6 @@
             finally { document.getElementById('loading-initial').style.display = 'none'; }
         };
 
-        // LOGIN Y PERMISOS
         const prepararPantallaLogin = () => {
             const guardado = localStorage.getItem('x5_user');
             if (guardado) {
@@ -278,18 +268,15 @@
             const nombre = document.getElementById('user-select').value;
             const claveIngresada = document.getElementById('user-pass').value;
 
-            if(!nombre) return alert('⚠️ Selecciona tu usuario');
+            if(!nombre) return alert('⚠️️ Selecciona tu usuario');
             if(!claveIngresada) return alert('⚠️ Ingresa tu clave de acceso');
 
-            // Buscamos todos los datos del usuario seleccionado
             const usuarioEncontrado = db.personal.find(p => p.nombre === nombre);
 
-            // Validamos que la clave coincida (lo pasamos a texto por si usan números)
             if (String(usuarioEncontrado.clave) !== String(claveIngresada)) {
                 return alert('❌ Clave incorrecta. Acceso denegado.');
             }
 
-            // Si todo está bien, lo dejamos pasar
             currentUser = usuarioEncontrado;
             localStorage.setItem('x5_user', JSON.stringify(currentUser));
             iniciarApp();
@@ -336,7 +323,6 @@
             document.getElementById('ag-auto').required = lugar === 'Domicilio';
         };
 
-        // --- SISTEMA PDF ---
         window.abrirGeneradorPDF = (nombreCliente) => { nombreClientePDF = nombreCliente.replace(/\s+/g, '_'); document.getElementById('pdf-upload').click(); };
         window.procesarYDescargarPDF = async (event) => {
             const archivos = Array.from(event.target.files);
@@ -366,7 +352,6 @@
             event.target.value = ''; 
         };
 
-        // --- LÓGICA DE FILTROS "FOCO DE HOY" ---
         window.setFiltro = (tabla, tipo) => {
             vistaFiltro[tabla] = tipo;
             document.getElementById(`btn-hoy-${tabla}`).classList.remove('active');
@@ -375,21 +360,18 @@
             if(tabla === 'agenda') renderizarAgenda(); else renderizarLeads();
         };
 
-        const obtenerFechaHoy = () => new Date().toISOString().split('T')[0]; // Ej: "2026-10-05"
+        const obtenerFechaHoy = () => new Date().toISOString().split('T')[0];
 
-        // RENDERIZADO DE VISTAS
         const cargarVistas = () => { renderizarAgenda(); renderizarLeads(); if(currentUser.rol !== 'Vendedor') renderizarDashboard(); };
 
         const renderizarAgenda = () => {
             const list = document.getElementById('lista-agenda'); list.innerHTML = '';
             let data = db.agenda.filter(a => puedeVer(a.asesor));
             
-            // APLICAR FILTRO DE HOY
             if (vistaFiltro.agenda === 'hoy') {
                 const hoy = obtenerFechaHoy();
                 data = data.filter(item => {
                     let fechaItem = item.fecha.includes('T') ? item.fecha.split('T')[0] : item.fecha;
-                    // Muestra: si es para hoy, o si quedó pendiente en el pasado (atrasado)
                     return fechaItem === hoy || (item.estado === 'pendiente' && fechaItem < hoy);
                 });
             }
@@ -441,7 +423,6 @@
             const list = document.getElementById('lista-leads'); list.innerHTML = '';
             let data = db.leads.filter(l => puedeVer(l.asignado_a));
             
-            // APLICAR FILTRO DE HOY
             if (vistaFiltro.leads === 'hoy') {
                 const hoy = obtenerFechaHoy();
                 data = data.filter(item => {
@@ -479,11 +460,10 @@
             const index = db.leads.findIndex(r => String(r.id) === String(id));
             if(index > -1) {
                 db.leads[index].estado = valor;
-                // Si lo contactó recién, calculamos los minutos exactos de demora
                 if (valor === 'realizado' && !db.leads[index].hora_contacto) {
-                    let tiempoAsignado = parseInt(id); //El ID es la estampa de tiempo de creación
+                    let tiempoAsignado = parseInt(id); 
                     let tiempoAhora = Date.now();
-                    let demoraMinutos = Math.round((tiempoAhora - tiempoAsignado) / 6000);
+                    let demoraMinutos = Math.round((tiempoAhora - tiempoAsignado) / 60000);
                     db.leads[index].hora_contacto = demoraMinutos;
                 }
                 syncUpdate(db.leads[index], 'Leads');
@@ -491,9 +471,7 @@
             }
         };
 
-        // --- DASHBOARD GERENCIAL CON CHART.JS ---
         const renderizarDashboard = () => {
-            // Cálculos básicos
             const ventasData = db.agenda.filter(a => a.resultado === 'venta' && puedeVer(a.asesor));
             const leadsAsignados = db.leads.filter(l => puedeVer(l.asignado_a));
             
@@ -508,21 +486,17 @@
                 let monto = parseFloat(v.monto) || 0;
                 facturacion += monto;
                 
-                // Agrupar por Asesor
                 ventasPorAsesor[v.asesor] = (ventasPorAsesor[v.asesor] || 0) + monto;
                 
-                // Cruzar Venta con Origen (Buscamos si el cliente estaba en Leads)
                 let leadAsociado = db.leads.find(l => l.cliente.toLowerCase() === v.cliente.toLowerCase());
                 let origen = leadAsociado ? leadAsociado.origen : 'Salón / Espontáneo';
                 origenVentas[origen] = (origenVentas[origen] || 0) + 1;
 
-                // Agrupar Flota
                 if (v.lugar === 'Domicilio' && v.auto_usado) {
                     usoFlota[v.auto_usado] = (usoFlota[v.auto_usado] || 0) + 1;
                 }
             });
 
-            // Actualizar Tarjetas
             document.getElementById('dash-facturacion').innerText = '$' + facturacion.toLocaleString('es-AR');
             document.getElementById('dash-ventas').innerText = ventasData.length;
             document.getElementById('dash-leads-activos').innerText = leadsAsignados.length;
@@ -530,10 +504,8 @@
             let conversion = leadsAsignados.length > 0 ? (ventasData.length / leadsAsignados.length * 100).toFixed(1) : 0;
             document.getElementById('dash-conversion').innerText = conversion + '%';
 
-            // Dibujar Gráficos (Evitar duplicados destruyendo los anteriores)
-            if(chart1) chart1.destroy(); if(chart2) chart2.destroy(); if(chart3) chart3.destroy();
+            if(chart1) chart1.destroy(); if(chart2) chart2.destroy(); if(chart3) chart3.destroy(); if(chart4) chart4.destroy();
 
-            // Gráfico 1: Asesores
             const ctxAsesores = document.getElementById('chartAsesores').getContext('2d');
             chart1 = new Chart(ctxAsesores, {
                 type: 'bar',
@@ -544,7 +516,6 @@
                 options: { responsive: true, scales: { y: { beginAtZero: true } } }
             });
 
-            // Gráfico 2: Orígenes
             const ctxOrigenes = document.getElementById('chartOrigenes').getContext('2d');
             chart2 = new Chart(ctxOrigenes, {
                 type: 'doughnut',
@@ -559,7 +530,6 @@
                 }
             });
 
-            // Gráfico 3: Flota
             const ctxFlota = document.getElementById('chartFlota').getContext('2d');
             chart3 = new Chart(ctxFlota, {
                 type: 'bar',
@@ -570,43 +540,42 @@
                 options: { indexAxis: 'y', responsive: true, scales: { x: { beginAtZero: true, ticks: { stepSize: 1 } } } }
             });
 
-            //Procesamiento de Tiempos de Respuesta
             db.leads.filter(l => l.estado === 'realizado' && l.hora_contacto && puedeVer(l.asignado_a)).forEach(l => {
                 tiemposPorAsesor[l.asignado_a] = (tiemposPorAsesor[l.asignado_a] || 0) + parseInt(l.hora_contacto);
-                cantidadLeadsAsesor[l.asignado_a] = (cantidadLeadsAsesor[l.Asignado_a] || 0) + 1;
+                cantidadLeadsAsesor[l.asignado_a] = (cantidadLeadsAsesor[l.asignado_a] || 0) + 1;
             });
 
-            //Si ya existe el gráfico lo destruimos para actualizarlo
-            if(window.chart4) window.chart4.destroy();
+            let promediosTiempo = {};
+            Object.keys(tiemposPorAsesor).forEach(asesor => {
+                promediosTiempo[asesor] = Math.round(tiemposPorAsesor[asesor] / cantidadLeadsAsesor[asesor]);
+            });
 
-            //Gráfico 4: Tiempos de respuesta
             const ctxTiempos = document.getElementById('chartTiempos').getContext('2d');
-            window.chart4 = new Chart(ctxTiempos, {
+            chart4 = new Chart(ctxTiempos, {
                 type: 'bar',
                 data: {
                     labels: Object.keys(promediosTiempo),
                     datasets: [{
                         label: 'Minutos promedio en contactar',
-                        data: Objects.values(promediosTiempo),
+                        data: Object.values(promediosTiempo),
                         backgroundColor: '#ffc107'
                     }]
-                };
+                },
                 options: {
-                    indexAxis: 'y', //Lo hacemos horizontal para que se lea mejor
+                    indexAxis: 'y', 
                     responsive: true,
-                    mantainAspectRatio: true,
+                    maintainAspectRatio: true,
                     aspectRatio: 1.2,
-                    scales: { x: { beginAtZero: true }}
+                    scales: { x: { beginAtZero: true } }
                 }
-        });
+            });
+        };
 
-        // --- NAVEGACIÓN Y ACTUALIZACIÓN GENERAL ---
         window.switchTab = (tabId, el) => {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             document.getElementById(`tab-${tabId}`).classList.add('active');
             el.classList.add('active');
-            // Redibujar gráficos si se abre el dashboard para que se ajusten bien
             if (tabId === 'dashboard') renderizarDashboard();
         };
 
