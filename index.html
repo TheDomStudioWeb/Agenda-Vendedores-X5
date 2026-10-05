@@ -3,423 +3,450 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Agenda & Leads | X5 Argentina</title>
+    <title>CRM | X5 Argentina</title>
     <style>
-        :root {
-            --primary: #0056b3;
-            --secondary: #f8f9fa;
-            --success: #28a745;
-            --warning: #ffc107;
-            --danger: #dc3545;
-            --text: #333;
-            --bg: #e9ecef;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 0;
-            padding-bottom: 70px; /* Espacio para el menú inferior */
-        }
+        :root { --primary: #0056b3; --secondary: #f8f9fa; --success: #28a745; --warning: #ffc107; --danger: #dc3545; --text: #333; --bg: #e9ecef; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 0; padding-bottom: 70px; }
         
-        /* --- SPLASH SCREEN --- */
-        #splash {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: white; display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            z-index: 9999; transition: opacity 0.6s ease, visibility 0.6s;
-        }
-        #splash.hidden { opacity: 0; visibility: hidden; }
-        .logo-placeholder { font-size: 32px; font-weight: bold; color: var(--primary); margin-bottom: 15px;}
-        /* Si tienes un logo en imagen, usa algo como esto en el HTML de abajo en lugar del texto: */
-           <img src="https://www.x5argentina.com/wp-content/uploads/x5-logo-entodoelpais-1.png" width="200" alt="X5 Logo">
-        .loader { border: 4px solid #f3f3f3; border-top: 4px solid var(--primary); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        /* LOGIN & SPLASH */
+        #login-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10000; }
+        .logo-txt { font-size: 32px; font-weight: bold; color: var(--primary); margin-bottom: 30px;}
+        .login-box { background: var(--secondary); padding: 30px; border-radius: 10px; width: 80%; max-width: 350px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);}
+        
+        .loader-mini { border: 3px solid #f3f3f3; border-top: 3px solid var(--primary); border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-left: 10px; display:none;}
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* --- CONTENEDOR Y PANELES --- */
-        .app-container { padding: 15px; max-width: 1000px; margin: 0 auto; }
+        /* UI GENERAL */
+        .app-container { padding: 15px; max-width: 1000px; margin: 0 auto; display: none; }
         .panel { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        
         h2 { color: var(--primary); margin-top: 0; font-size: 20px; display: flex; justify-content: space-between; align-items: center;}
         
-        /* --- FORMULARIOS --- */
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
-        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ced4da; border-radius: 5px; box-sizing: border-box; font-family: inherit; font-size: 16px; }
-        button.btn-main { background-color: var(--primary); color: white; border: none; padding: 14px 20px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; font-size: 16px; transition: background 0.3s; }
-        button.btn-main:hover { background-color: #004494; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ced4da; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
+        .btn-main { background-color: var(--primary); color: white; border: none; padding: 14px 20px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; font-size: 16px; }
         
-        /* --- TARJETAS (CARDS) --- */
         .card { background: var(--secondary); border-left: 5px solid var(--warning); padding: 15px; margin-bottom: 15px; border-radius: 6px; }
         .card.realizado { border-left-color: var(--success); }
         .card.cancelado { border-left-color: var(--danger); }
         .card.vencido { border-left-color: var(--danger); background-color: #fff3f3; }
         
         .card-header { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 10px; flex-wrap: wrap; gap: 5px;}
-        .badge { background: #e2e3e5; padding: 4px 8px; border-radius: 12px; font-size: 13px; white-space: nowrap;}
+        .badge { background: #e2e3e5; padding: 4px 8px; border-radius: 12px; font-size: 13px;}
         .card-body { font-size: 15px; margin-bottom: 15px; line-height: 1.4;}
         
-        .controls-row { display: flex; flex-direction: column; gap: 10px;}
-        @media (min-width: 500px) { .controls-row { flex-direction: row; } .controls-row select { flex-grow: 1; } }
+        .controls-row { display: flex; gap: 10px; flex-wrap: wrap;}
+        .controls-row select, .controls-row input { flex: 1; min-width: 120px;}
         
-        .btn-action { background-color: white; border: 1px solid #ccc; padding: 10px 12px; font-size: 14px; text-decoration: none; border-radius: 5px; text-align: center; color: #333; font-weight: bold; display: block;}
-        .btn-calendar { color: #4285F4; border-color: #4285F4; }
+        .btn-action { background-color: white; border: 1px solid #ccc; padding: 10px; border-radius: 5px; text-align: center; color: #333; font-weight: bold; display: block; text-decoration: none;}
         .btn-wsp { background-color: #25D366; color: white; border: none; }
         .btn-sync { background-color: #28a745; color: white; border: none; padding: 8px 12px; border-radius: 5px; font-size: 14px;}
         
         .result-box { background: #fff; padding: 15px; border-radius: 5px; border: 1px dashed #ccc; margin-top: 15px; display: none; }
         .result-box.active { display: block; }
-        textarea { height: 90px; resize: vertical; margin-top: 10px; }
         
-        /* --- NAVEGACIÓN (TABS) --- */
+        /* TABS */
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        
-        .bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%; background: white;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1); display: flex; z-index: 1000;
-        }
-        .nav-item {
-            flex: 1; text-align: center; padding: 15px 0; color: #666;
-            font-weight: bold; cursor: pointer; border-top: 3px solid transparent;
-        }
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: white; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); display: flex; z-index: 1000; }
+        .nav-item { flex: 1; text-align: center; padding: 12px 0; color: #666; font-weight: bold; cursor: pointer; border-top: 3px solid transparent; font-size: 12px;}
         .nav-item.active { color: var(--primary); border-top-color: var(--primary); background: #f8f9fa;}
-        .nav-icon { font-size: 20px; display: block; margin-bottom: 3px; }
+        .nav-icon { font-size: 20px; display: block; margin-bottom: 2px; }
 
-        #loading-msg { text-align: center; color: #666; font-style: italic; margin-bottom: 10px;}
+        .metric-box { background: #eef2f5; padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 10px;}
+        .metric-number { font-size: 28px; font-weight: bold; color: var(--primary);}
     </style>
 </head>
 <body>
 
-    <!-- Pantalla de Carga (Splash Screen) -->
-    <div id="splash">
-        <!-- Puedes cambiar este div por una etiqueta <img> con tu logo -->
-        <div class="logo-placeholder">X5 ARGENTINA</div> 
-        <div class="loader"></div>
-        <p style="color: #666; margin-top: 15px;">Conectando plataforma...</p>
+    <!-- PANTALLA DE INGRESO Y CARGA -->
+    <div id="login-screen">
+        <div class="logo-txt">X5 ARGENTINA</div>
+        <div class="login-box" id="login-box" style="display:none;">
+            <h3>Ingreso al Sistema</h3>
+            <select id="user-select" style="margin-bottom: 15px;">
+                <option value="">Selecciona tu usuario...</option>
+            </select>
+            <button class="btn-main" onclick="iniciarSesion()">Ingresar</button>
+        </div>
+        <div id="loading-initial">
+            <p>Sincronizando Base de Datos...</p>
+            <div class="loader-mini" style="display:inline-block;"></div>
+        </div>
     </div>
 
-    <div class="app-container">
-        <p id="loading-msg">Cargando datos...</p>
-
-        <!-- ================= PESTAÑA: AGENDA ================= -->
+    <!-- APLICACIÓN PRINCIPAL -->
+    <div class="app-container" id="main-app">
+        
+        <!-- PESTAÑA: AGENDA -->
         <div id="tab-agenda" class="tab-content active">
             <div class="panel">
-                <h2>Nueva Entrevista</h2>
+                <h2>Nueva Entrevista <span id="user-greeting" style="font-size:14px; color:#666;"></span></h2>
                 <form id="form-agenda">
-                    <div class="form-group">
-                        <input type="text" id="ag-cliente" required placeholder="Nombre del prospecto">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="ag-vehiculo" required placeholder="Vehículo de interés">
-                    </div>
-                    <div class="form-group">
-                        <!-- Lista de vendedores para seleccionar -->
-                        <select id="ag-asesor" required>
-                            <option value="">-- Seleccionar Asesor --</option>
-                            <option value="Daniel Arancibia">Daniel Arancibia</option>
-                            <option value="Enzo Pacheco">Enzo Pacheco</option>
-                            <option value="Yamila Bravi">Yamila Bravi</option>
-                            <option value="David Flores">David Flores</option>
+                    <div class="form-group"><input type="text" id="ag-cliente" required placeholder="Nombre del prospecto"></div>
+                    <div class="form-group"><input type="text" id="ag-vehiculo" required placeholder="Vehículo de interés"></div>
+                    
+                    <div class="controls-row form-group">
+                        <select id="ag-lugar" required onchange="toggleFlota()">
+                            <option value="Agencia">En Agencia</option>
+                            <option value="Domicilio">En Domicilio</option>
+                        </select>
+                        <select id="ag-auto" style="display:none;">
+                            <option value="">-- Vehículo de Flota --</option>
                         </select>
                     </div>
-                    <div class="controls-row">
+
+                    <div class="form-group">
+                        <select id="ag-asesor" required><option value="">-- Asesor --</option></select>
+                    </div>
+                    <div class="controls-row form-group">
                         <input type="date" id="ag-fecha" required>
                         <input type="time" id="ag-hora" required>
                     </div>
-                    <button type="submit" class="btn-main" style="margin-top: 15px;">Agendar Entrevista</button>
+                    <button type="submit" class="btn-main">Agendar Entrevista</button>
                 </form>
             </div>
 
             <div class="panel">
-                <h2>Agenda del Equipo <button class="btn-sync" onclick="cargarTodo()">🔄</button></h2>
+                <h2>Mi Agenda <button class="btn-sync" onclick="sincronizarFondo(true)">🔄</button></h2>
                 <div id="lista-agenda"></div>
             </div>
         </div>
 
-        <!-- ================= PESTAÑA: LEADS ================= -->
+        <!-- PESTAÑA: LEADS -->
         <div id="tab-leads" class="tab-content">
-            <div class="panel">
+            <div class="panel" id="panel-asignar-leads" style="display:none;">
                 <h2>Asignar Nuevo Lead</h2>
                 <form id="form-leads">
-                    <div class="form-group">
-                        <input type="text" id="ld-cliente" required placeholder="Nombre del prospecto (Lead)">
+                    <div class="controls-row form-group">
+                        <input type="text" id="ld-cliente" required placeholder="Prospecto">
+                        <input type="tel" id="ld-telefono" required placeholder="Teléfono">
                     </div>
-                    <div class="form-group">
-                        <input type="tel" id="ld-telefono" required placeholder="Teléfono (Ej: +549261...)">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="ld-interes" required placeholder="Medio / Vehículo (Ej: Web - Captur)">
-                    </div>
-                    <div class="form-group">
-                        <select id="ld-asignado" required>
-                            <option value="">-- Asignar a Vendedor --</option>
-                            <option value="Daniel Arancibia">Daniel Arancibia</option>
-                            <option value="Enzo Pacheco">Enzo Pacheco</option>
-                            <option value="Yamila Bravi">Yamila Bravi</option>
-                            <option value="David Flores">David Flores</option>
+                    <div class="controls-row form-group">
+                        <input type="text" id="ld-interes" required placeholder="Interés">
+                        <select id="ld-origen" required>
+                            <option value="">-- Origen --</option>
+                            <option value="Meta Ads">Meta Ads</option>
+                            <option value="Web X5">Web X5</option>
+                            <option value="Referido">Referido</option>
+                            <option value="Redes Asesor">Redes Asesor</option>
                         </select>
                     </div>
-                    <label>Fecha y Hora límite (SLA):</label>
-                    <div class="controls-row">
+                    <div class="form-group">
+                        <select id="ld-asignado" required><option value="">-- Asignar a --</option></select>
+                    </div>
+                    <div class="controls-row form-group">
                         <input type="date" id="ld-fecha-limite" required>
                         <input type="time" id="ld-hora-limite" required>
                     </div>
-                    <button type="submit" class="btn-main" style="margin-top: 15px;">Asignar Lead</button>
+                    <button type="submit" class="btn-main">Asignar Lead</button>
                 </form>
             </div>
 
             <div class="panel">
-                <h2>Seguimiento de Leads <button class="btn-sync" onclick="cargarTodo()">🔄</button></h2>
+                <h2>Seguimiento de Leads</h2>
                 <div id="lista-leads"></div>
             </div>
         </div>
+
+        <!-- PESTAÑA: MÉTRICAS (Solo Jefes y Gerente) -->
+        <div id="tab-dashboard" class="tab-content">
+            <div class="panel">
+                <h2>Tablero Regional Cuyo</h2>
+                <div class="metric-box">
+                    <div class="metric-number" id="dash-leads">0</div>
+                    <div>Leads Activos</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-number" id="dash-ventas">0</div>
+                    <div>Ventas Registradas</div>
+                </div>
+                <div id="ranking-ventas" style="margin-top:20px;"></div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Menú Inferior -->
-    <div class="bottom-nav">
-        <div class="nav-item active" onclick="switchTab('agenda', this)">
-            <span class="nav-icon">📅</span> Agenda
-        </div>
-        <div class="nav-item" onclick="switchTab('leads', this)">
-            <span class="nav-icon">🎯</span> Leads
-        </div>
+    <!-- MENÚ INFERIOR -->
+    <div class="bottom-nav" id="bottom-nav" style="display:none;">
+        <div class="nav-item active" onclick="switchTab('agenda', this)"><span class="nav-icon">📅</span> Agenda</div>
+        <div class="nav-item" onclick="switchTab('leads', this)"><span class="nav-icon">🎯</span> Leads</div>
+        <div class="nav-item" id="nav-dashboard" style="display:none;" onclick="switchTab('dashboard', this)"><span class="nav-icon">📊</span> Métricas</div>
     </div>
 
     <script>
-        // ¡IMPORTANTE! PEGA TU URL DE APPS SCRIPT AQUÍ:
+        // PEGA TU URL DE APPS SCRIPT AQUÍ
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
         
-        let agendaData = [];
-        let leadsData = [];
+        let db = { agenda: [], leads: [], personal: [], flota: [] };
+        let currentUser = null;
 
-        // --- SISTEMA DE PESTAÑAS ---
-        function switchTab(tabId, element) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-            
-            document.getElementById(`tab-${tabId}`).classList.add('active');
-            element.classList.add('active');
-            window.scrollTo(0, 0);
-        }
-
-        // --- CONEXIÓN CON GOOGLE SHEETS ---
-        const cargarTodo = async () => {
-            document.getElementById('loading-msg').style.display = 'block';
-            try {
-                // Pedimos las dos tablas al mismo tiempo
-                const [resAgenda, resLeads] = await Promise.all([
-                    fetch(`${SCRIPT_URL}?tabla=Hoja%201`),
-                    fetch(`${SCRIPT_URL}?tabla=Leads`)
-                ]);
-                agendaData = await resAgenda.json();
-                leadsData = await resLeads.json();
-                
-                renderizarAgenda();
-                renderizarLeads();
-
-                // Ocultar el Splash Screen la primera vez que carga
-                setTimeout(() => {
-                    document.getElementById('splash').classList.add('hidden');
-                }, 500);
-
-            } catch (error) {
-                console.error("Error:", error);
-                document.getElementById('loading-msg').innerText = "Error de conexión.";
-            } finally {
-                document.getElementById('loading-msg').style.display = 'none';
+        // INICIALIZACIÓN Y CACHÉ OFFLINE-FIRST
+        window.onload = () => {
+            const cache = localStorage.getItem('x5_db');
+            if (cache) {
+                db = JSON.parse(cache);
+                prepararPantallaLogin();
+                sincronizarFondo(false); // Sincroniza invisible en segundo plano
+            } else {
+                sincronizarFondo(true); // Primera vez: Obliga a esperar
             }
         };
 
-        const syncUpdate = async (data, tabla, isNew = false) => {
-            const payload = { ...data, tabla: tabla, action: isNew ? 'add' : 'update' };
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify(payload)
-            });
+        const sincronizarFondo = async (mostrarCarga = false) => {
+            if(mostrarCarga) document.getElementById('loading-initial').style.display = 'block';
+            try {
+                const res = await fetch(SCRIPT_URL);
+                db = await res.json();
+                localStorage.setItem('x5_db', JSON.stringify(db)); // Guardar caché
+                
+                if (!currentUser) prepararPantallaLogin();
+                else cargarVistas(); // Si ya está logueado, refresca la pantalla
+            } catch (error) {
+                console.error("Error sincronizando:", error);
+            } finally {
+                document.getElementById('loading-initial').style.display = 'none';
+            }
         };
 
-        // ================= LÓGICA DE AGENDA (Hoja 1) =================
+        const prepararPantallaLogin = () => {
+            const guardado = localStorage.getItem('x5_user');
+            if (guardado) {
+                currentUser = JSON.parse(guardado);
+                iniciarApp();
+            } else {
+                const select = document.getElementById('user-select');
+                select.innerHTML = '<option value="">Selecciona tu usuario...</option>';
+                db.personal.filter(p => p.estado === 'Activo').forEach(p => {
+                    select.innerHTML += `<option value="${p.nombre}">${p.nombre} (${p.rol})</option>`;
+                });
+                document.getElementById('login-box').style.display = 'block';
+            }
+        };
+
+        const iniciarSesion = () => {
+            const nombre = document.getElementById('user-select').value;
+            if(!nombre) return alert('Selecciona tu usuario');
+            currentUser = db.personal.find(p => p.nombre === nombre);
+            localStorage.setItem('x5_user', JSON.stringify(currentUser));
+            iniciarApp();
+        };
+
+        const iniciarApp = () => {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('main-app').style.display = 'block';
+            document.getElementById('bottom-nav').style.display = 'flex';
+            document.getElementById('user-greeting').innerText = `Hola, ${currentUser.nombre.split(' ')[0]}`;
+            
+            // Permisos de Visualización
+            if (['Gerente Comercial', 'Jefe de Ventas', 'Referente'].includes(currentUser.rol)) {
+                document.getElementById('panel-asignar-leads').style.display = 'block';
+                document.getElementById('nav-dashboard').style.display = 'block';
+            }
+            
+            llenarDesplegables();
+            cargarVistas();
+        };
+
+        // LÓGICA DE ROLES (Quién ve qué)
+        const puedeVer = (asesorName) => {
+            if (currentUser.rol === 'Gerente Comercial') return true;
+            if (currentUser.nombre === asesorName) return true;
+            const miEquipo = db.personal.filter(p => p.reporta_a === currentUser.nombre).map(p => p.nombre);
+            return miEquipo.includes(asesorName);
+        };
+
+        const llenarDesplegables = () => {
+            const selAsesor = document.getElementById('ag-asesor');
+            const selLeadAsig = document.getElementById('ld-asignado');
+            const selAuto = document.getElementById('ag-auto');
+            
+            let asesoresHTML = '<option value="">-- Asesor --</option>';
+            db.personal.filter(p => p.estado === 'Activo').forEach(p => {
+                if (puedeVer(p.nombre)) asesoresHTML += `<option value="${p.nombre}">${p.nombre}</option>`;
+            });
+            selAsesor.innerHTML = asesoresHTML;
+            selLeadAsig.innerHTML = asesoresHTML;
+
+            let autosHTML = '<option value="">-- Vehículo de Flota --</option>';
+            db.flota.filter(f => f.estado === 'Activo').forEach(f => {
+                autosHTML += `<option value="${f.vehiculo} (${f.patente})">${f.vehiculo}</option>`;
+            });
+            selAuto.innerHTML = autosHTML;
+        };
+
+        window.toggleFlota = () => {
+            const lugar = document.getElementById('ag-lugar').value;
+            document.getElementById('ag-auto').style.display = lugar === 'Domicilio' ? 'block' : 'none';
+            document.getElementById('ag-auto').required = lugar === 'Domicilio';
+        };
+
+        // RENDERIZADO
+        const cargarVistas = () => {
+            renderizarAgenda();
+            renderizarLeads();
+            renderizarDashboard();
+        };
+
         const renderizarAgenda = () => {
-            const container = document.getElementById('lista-agenda');
-            container.innerHTML = '';
-            if (agendaData.length === 0) return container.innerHTML = '<p>No hay entrevistas agendadas.</p>';
-
-            agendaData.sort((a, b) => new Date(`${a.fecha}T${a.hora}`) - new Date(`${b.fecha}T${b.hora}`));
-
-            agendaData.forEach((item) => {
-                let fechaLimpia = item.fecha.includes('T') ? item.fecha.split('T')[0] : item.fecha;
-                let fechaLegible = fechaLimpia.split('-').reverse().join('/');
-                
-                // Generador de enlace de Calendar (Apunta a San Martín 2417 por defecto)
-                const tituloCal = encodeURIComponent(`Entrevista X5: ${item.cliente} con ${item.asesor}`);
-                const detallesCal = encodeURIComponent(`Asesor: ${item.asesor}\nVehículo: ${item.vehiculo}`);
-                const fechaStr = fechaLimpia.replace(/-/g, '');
-                const horaInicio = item.hora.replace(':', '') + '00';
-                let [h, m] = item.hora.split(':');
-                const horaFin = (parseInt(h) + 1).toString().padStart(2, '0') + m + '00';
-                const calLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${tituloCal}&dates=${fechaStr}T${horaInicio}/${fechaStr}T${horaFin}&details=${detallesCal}&location=X5%20Argentina,%20San%20Martín%202417,%20Mendoza`;
-
+            const list = document.getElementById('lista-agenda');
+            list.innerHTML = '';
+            const data = db.agenda.filter(a => puedeVer(a.asesor)).sort((a, b) => new Date(`${a.fecha}T${a.hora}`) - new Date(`${b.fecha}T${b.hora}`));
+            
+            data.forEach(item => {
                 const isRealizado = item.estado === 'realizado';
-                const isSeguimiento = item.resultado === 'seguimiento' || item.notas?.trim() !== '';
+                const isVenta = item.resultado === 'venta';
+                let fechaLimpia = item.fecha.includes('T') ? item.fecha.split('T')[0] : item.fecha;
+                
+                // Botón Legajo WhatsApp
+                const msgLegajo = encodeURIComponent(`Hola, te envío contrato y DNI de la venta de ${item.cliente}.`);
+                const linkLegajo = `https://wa.me/?text=${msgLegajo}`;
 
-                container.innerHTML += `
+                list.innerHTML += `
                     <div class="card ${item.estado || 'pendiente'}">
                         <div class="card-header">
                             <span>${item.hora}hs - ${item.cliente}</span>
-                            <span class="badge">${fechaLegible}</span>
+                            <span class="badge">${fechaLimpia.split('-').reverse().join('/')}</span>
                         </div>
                         <div class="card-body">
+                            <strong>Asesor:</strong> ${item.asesor}<br>
                             <strong>Vehículo:</strong> ${item.vehiculo}<br>
-                            <strong>Asesor:</strong> ${item.asesor}
+                            ${item.lugar === 'Domicilio' ? `📍 <strong>Visita en Domicilio</strong> (${item.auto_usado})` : '🏢 En Agencia'}
                         </div>
                         <div class="controls-row">
-                            <select onchange="actualizarDato('agenda', '${item.id}', 'estado', this.value)">
+                            <select onchange="actualizar('agenda', '${item.id}', 'estado', this.value)">
                                 <option value="pendiente" ${item.estado === 'pendiente' ? 'selected' : ''}>⏳ Pendiente</option>
-                                <option value="realizado" ${item.estado === 'realizado' ? 'selected' : ''}>🤝 Realizado / Cerrado</option>
+                                <option value="realizado" ${item.estado === 'realizado' ? 'selected' : ''}>🤝 Realizado</option>
                                 <option value="cancelado" ${item.estado === 'cancelado' ? 'selected' : ''}>❌ Cancelado</option>
                             </select>
-                            <a href="${calLink}" target="_blank" class="btn-action btn-calendar">📅 Agendar</a>
                         </div>
                         <div class="result-box ${isRealizado ? 'active' : ''}">
-                            <label>Resultado:</label>
-                            <select onchange="actualizarDato('agenda', '${item.id}', 'resultado', this.value)">
-                                <option value="">-- Seleccionar --</option>
-                                <option value="venta" ${item.resultado === 'venta' ? 'selected' : ''}>🎉 Venta / Boleto</option>
-                                <option value="seña" ${item.resultado === 'seña' ? 'selected' : ''}>💰 Seña</option>
+                            <select onchange="toggleVentaCampos('${item.id}', this.value)">
+                                <option value="">-- Resultado --</option>
+                                <option value="venta" ${item.resultado === 'venta' ? 'selected' : ''}>🎉 VENTA CERRADA</option>
                                 <option value="seguimiento" ${item.resultado === 'seguimiento' ? 'selected' : ''}>🔄 En seguimiento</option>
                                 <option value="descartado" ${item.resultado === 'descartado' ? 'selected' : ''}>📉 Descartado</option>
                             </select>
-                            <div style="display: ${isSeguimiento ? 'block' : 'none'};">
-                                <textarea placeholder="Notas de seguimiento..." onblur="actualizarDato('agenda', '${item.id}', 'notas', this.value)">${item.notas || ''}</textarea>
+                            
+                            <div id="venta-campos-${item.id}" style="display: ${isVenta ? 'block' : 'none'}; margin-top:10px; background:#e8f5e9; padding:10px; border-radius:5px;">
+                                <input type="text" placeholder="N° de Contrato Obligatorio" value="${item.nro_contrato || ''}" onblur="actualizar('agenda', '${item.id}', 'nro_contrato', this.value)" style="margin-bottom:5px;">
+                                <input type="number" placeholder="Monto / Código" value="${item.monto || ''}" onblur="actualizar('agenda', '${item.id}', 'monto', this.value)" style="margin-bottom:10px;">
+                                <a href="${linkLegajo}" target="_blank" class="btn-action btn-wsp">📸 Enviar Legajo/PDF al Jefe</a>
                             </div>
                         </div>
                     </div>`;
             });
         };
 
-        // ================= LÓGICA DE LEADS =================
         const renderizarLeads = () => {
-            const container = document.getElementById('lista-leads');
-            container.innerHTML = '';
-            if (leadsData.length === 0) return container.innerHTML = '<p>No hay leads asignados.</p>';
-
-            const ahora = new Date();
-
-            leadsData.forEach((lead) => {
-                let fechaLimpia = lead.hora_limite.includes('T') ? lead.hora_limite.split('T')[0] : lead.hora_limite; 
-                // En nuestro código el límite viene guardado en 2 campos (fecha_asignacion y hora_limite, o similares). 
-                // Para simplificar, compararemos asumiendo formato ISO si existe.
-                let fechaLimiteObj = new Date(`${fechaLimpia}T${lead.estado === 'pendiente' ? lead.hora_limite : '23:59'}`); // Adaptable
-                
-                // Semáforo: Si está pendiente y pasó la fecha/hora actual = Vencido
-                let estadoCard = lead.estado || 'pendiente';
-                if (estadoCard === 'pendiente' && lead.hora_limite) { // Check temporal simple
-                    let strLimite = `${lead.fecha_asignacion.split('T')[0]}T${lead.hora_limite}`;
-                    if (ahora > new Date(strLimite)) estadoCard = 'vencido';
-                }
-
-                // Generador de Mensaje de WhatsApp
-                const msgWsp = encodeURIComponent(`Hola ${lead.asignado_a}, te asigne un nuevo Lead!\n\n👤 *Cliente:* ${lead.cliente}\n🚗 *Interés:* ${lead.interes}\n📞 *Teléfono:* ${lead.telefono}\n⏳ *Tiempo límite para contacto:* ${lead.hora_limite}hs\n\nPor favor, recordá actualizar el resultado en la aplicación.`);
-                const linkWsp = `https://wa.me/?text=${msgWsp}`;
-
-                container.innerHTML += `
-                    <div class="card ${estadoCard}">
+            const list = document.getElementById('lista-leads');
+            list.innerHTML = '';
+            const data = db.leads.filter(l => puedeVer(l.asignado_a));
+            
+            data.forEach(lead => {
+                const linkWsp = `https://wa.me/?text=${encodeURIComponent(`Hola ${lead.asignado_a}, nuevo Lead: ${lead.cliente}. Tel: ${lead.telefono}.`)}`;
+                list.innerHTML += `
+                    <div class="card ${lead.estado || 'pendiente'}">
                         <div class="card-header">
                             <span>🎯 ${lead.cliente}</span>
-                            <span class="badge" style="background:${estadoCard === 'vencido' ? '#dc3545': '#ffc107'}; color: ${estadoCard === 'vencido' ? 'white': 'black'}">
-                                Límite: ${lead.hora_limite}hs
-                            </span>
+                            <span class="badge">Límite: ${lead.hora_limite}hs</span>
                         </div>
                         <div class="card-body">
-                            <strong>Asignado a:</strong> ${lead.asignado_a}<br>
-                            <strong>Interés:</strong> ${lead.interes}<br>
+                            <strong>Asignado:</strong> ${lead.asignado_a}<br>
+                            <strong>Interés:</strong> ${lead.interes} (${lead.origen})<br>
                             <strong>Tel:</strong> <a href="tel:${lead.telefono}">${lead.telefono}</a>
                         </div>
-                        
                         <div class="controls-row">
-                            <select onchange="actualizarDato('leads', '${lead.id}', 'estado', this.value)">
-                                <option value="pendiente" ${lead.estado === 'pendiente' ? 'selected' : ''}>⏳ Pendiente de contacto</option>
+                            <select onchange="actualizar('leads', '${lead.id}', 'estado', this.value)">
+                                <option value="pendiente" ${lead.estado === 'pendiente' ? 'selected' : ''}>⏳ Pendiente</option>
                                 <option value="realizado" ${lead.estado === 'realizado' ? 'selected' : ''}>📞 Contactado</option>
                             </select>
-                            <a href="${linkWsp}" target="_blank" class="btn-action btn-wsp">💬 Notificar por WhatsApp</a>
-                        </div>
-                        
-                        <div class="result-box ${lead.estado === 'realizado' ? 'active' : ''}" style="margin-top: 10px;">
-                            <label>Resultado del contacto:</label>
-                            <select onchange="actualizarDato('leads', '${lead.id}', 'resultado', this.value)">
-                                <option value="">-- Qué pasó con el lead --</option>
-                                <option value="agendado" ${lead.resultado === 'agendado' ? 'selected' : ''}>📅 Entrevista Agendada</option>
-                                <option value="frio" ${lead.resultado === 'frio' ? 'selected' : ''}>❄️ Frío / No le interesa</option>
-                                <option value="equivocado" ${lead.resultado === 'equivocado' ? 'selected' : ''}>📵 Número equivocado</option>
-                            </select>
+                            <a href="${linkWsp}" target="_blank" class="btn-action btn-wsp">💬 Notificar WSP</a>
                         </div>
                     </div>`;
             });
         };
 
-        // --- FUNCIONES COMUNES DE ACTUALIZACIÓN ---
-        window.actualizarDato = (tipo, id, campo, valor) => {
-            if (tipo === 'agenda') {
-                const index = agendaData.findIndex(r => String(r.id) === String(id));
-                agendaData[index][campo] = valor;
-                if (campo === 'estado' && valor !== 'realizado') agendaData[index].resultado = '';
-                renderizarAgenda();
-                syncUpdate(agendaData[index], 'Hoja 1');
-            } else {
-                const index = leadsData.findIndex(r => String(r.id) === String(id));
-                leadsData[index][campo] = valor;
-                renderizarLeads();
-                syncUpdate(leadsData[index], 'Leads');
+        const renderizarDashboard = () => {
+            if(currentUser.rol === 'Vendedor') return;
+            document.getElementById('dash-leads').innerText = db.leads.filter(l => puedeVer(l.asignado_a)).length;
+            const ventas = db.agenda.filter(a => a.resultado === 'venta' && puedeVer(a.asesor));
+            document.getElementById('dash-ventas').innerText = ventas.length;
+        };
+
+        // EVENTOS INTERACTIVOS
+        window.switchTab = (tabId, el) => {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+            el.classList.add('active');
+        };
+
+        window.toggleVentaCampos = (id, valor) => {
+            actualizar('agenda', id, 'resultado', valor);
+            document.getElementById(`venta-campos-${id}`).style.display = valor === 'venta' ? 'block' : 'none';
+        };
+
+        window.actualizar = (tabla, id, campo, valor) => {
+            const index = db[tabla].findIndex(r => String(r.id) === String(id));
+            if(index > -1) {
+                db[tabla][index][campo] = valor;
+                syncUpdate(db[tabla][index], tabla === 'agenda' ? 'Hoja 1' : 'Leads');
+                if(campo === 'estado' || campo === 'resultado') cargarVistas();
             }
         };
 
-        // --- ENVÍO DE FORMULARIOS ---
-        document.getElementById('form-agenda').addEventListener('submit', async (e) => {
+        const syncUpdate = (data, tabla, isNew = false) => {
+            fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ ...data, tabla: tabla, action: isNew ? 'add' : 'update' }) });
+        };
+
+        // FORMULARIOS DE CARGA (Con alertas de choque de flota)
+        document.getElementById('form-agenda').addEventListener('submit', (e) => {
             e.preventDefault();
-            const btn = e.target.querySelector('button'); btn.disabled = true; btn.innerText = 'Guardando...';
+            const fecha = document.getElementById('ag-fecha').value;
+            const hora = document.getElementById('ag-hora').value;
+            const autoUsado = document.getElementById('ag-lugar').value === 'Domicilio' ? document.getElementById('ag-auto').value : '';
             
+            // Alerta Choque de Flota
+            if(autoUsado) {
+                const choque = db.agenda.find(a => a.fecha === fecha && a.hora === hora && a.auto_usado === autoUsado);
+                if(choque) return alert(`⚠️ ALERTA: El ${autoUsado} ya está reservado por ${choque.asesor} a esa hora.`);
+            }
+
             const item = {
                 id: Date.now().toString(),
                 cliente: document.getElementById('ag-cliente').value,
                 vehiculo: document.getElementById('ag-vehiculo').value,
+                lugar: document.getElementById('ag-lugar').value,
+                auto_usado: autoUsado,
                 asesor: document.getElementById('ag-asesor').value,
-                fecha: document.getElementById('ag-fecha').value,
-                hora: document.getElementById('ag-hora').value,
-                estado: 'pendiente', resultado: '', notas: ''
+                fecha: fecha, hora: hora, estado: 'pendiente', resultado: '', notas: '', nro_contrato: '', monto: ''
             };
-            agendaData.push(item);
-            renderizarAgenda();
-            await syncUpdate(item, 'Hoja 1', true);
-            e.target.reset(); btn.disabled = false; btn.innerText = 'Agendar Entrevista';
+            db.agenda.push(item);
+            cargarVistas();
+            syncUpdate(item, 'Hoja 1', true);
+            e.target.reset(); document.getElementById('ag-auto').style.display = 'none';
         });
 
-        document.getElementById('form-leads').addEventListener('submit', async (e) => {
+        document.getElementById('form-leads').addEventListener('submit', (e) => {
             e.preventDefault();
-            const btn = e.target.querySelector('button'); btn.disabled = true; btn.innerText = 'Asignando...';
-            
             const item = {
                 id: Date.now().toString(),
                 cliente: document.getElementById('ld-cliente').value,
                 telefono: document.getElementById('ld-telefono').value,
                 interes: document.getElementById('ld-interes').value,
+                origen: document.getElementById('ld-origen').value,
                 asignado_a: document.getElementById('ld-asignado').value,
                 fecha_asignacion: document.getElementById('ld-fecha-limite').value,
                 hora_limite: document.getElementById('ld-hora-limite').value,
                 estado: 'pendiente', resultado: ''
             };
-            leadsData.push(item);
-            renderizarLeads();
-            await syncUpdate(item, 'Leads', true);
-            e.target.reset(); btn.disabled = false; btn.innerText = 'Asignar Lead';
+            db.leads.push(item);
+            cargarVistas();
+            syncUpdate(item, 'Leads', true);
+            e.target.reset();
         });
 
-        // Iniciar
-        cargarTodo();
-        // Auto-refresh cada 45 segundos
-        setInterval(cargarTodo, 45000);
     </script>
 </body>
 </html>
