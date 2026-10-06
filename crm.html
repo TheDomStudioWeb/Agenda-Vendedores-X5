@@ -434,7 +434,8 @@
             if (data.length === 0) list.innerHTML = '<p style="text-align:center; color:#666;">Sin leads pendientes para hoy.</p>';
 
             data.forEach(lead => {
-                const linkWsp = `https://wa.me/?text=${encodeURIComponent(`Hola ${lead.asignado_a}, tenés un nuevo Lead asignado: ${lead.cliente}. Vehículo: ${lead.interes}. Tel: ${lead.telefono}`)}`;
+                const linkWsp = `https://wa.me/?text=${encodeURIComponent(`Hola ${lead.asignado_a}, seguimiento de Lead: ${lead.cliente}. Interés: ${lead.interes}.`)}`;
+                
                 list.innerHTML += `
                     <div class="card ${lead.estado || 'pendiente'}">
                         <div class="card-header">
@@ -442,15 +443,28 @@
                             <span class="badge">Límite: ${lead.hora_limite}hs</span>
                         </div>
                         <div class="card-body">
-                            <strong>Asignado:</strong> ${lead.asignado_a}<br> <strong>Interés:</strong> ${lead.interes} (${lead.origen})<br>
+                            <strong>Asignado:</strong> ${lead.asignado_a}<br> 
+                            <strong>Interés:</strong> ${lead.interes} (${lead.origen})<br>
                             <strong>Tel:</strong> <a href="tel:${lead.telefono}">${lead.telefono}</a>
                         </div>
-                        <div class="controls-row">
+                        
+                        <!-- SELECTOR DE ESTADOS AMPLIADO -->
+                        <div class="controls-row" style="margin-bottom: 10px;">
                             <select onchange="actualizarLeadStatus('${lead.id}', this.value)">
                                 <option value="pendiente" ${lead.estado === 'pendiente' ? 'selected' : ''}>⏳ Pendiente</option>
-                                <option value="realizado" ${lead.estado === 'realizado' ? 'selected' : ''}>📞 Contactado</option>
+                                <option value="entrevista_pactada" ${lead.estado === 'entrevista_pactada' ? 'selected' : ''}>📅 Entrevista Pactada</option>
+                                <option value="en_seguimiento" ${lead.estado === 'en_seguimiento' ? 'selected' : ''}>🔄 En Seguimiento</option>
+                                <option value="descartado" ${lead.estado === 'descartado' ? 'selected' : ''}>📉 Descartado / Frío</option>
                             </select>
-                            <a href="${linkWsp}" target="_blank" class="btn-action btn-wsp">💬 Notificar WhatsApp</a>
+                        </div>
+
+                        <!-- CAMPO DE OBSERVACIONES DE LA LLAMADA -->
+                        <div class="form-group" style="margin-bottom: 10px;">
+                            <textarea placeholder="Notas de la llamada o motivo del estado..." rows="2" onblur="actualizarNotaLead('${lead.id}', this.value)">${lead.notas || ''}</textarea>
+                        </div>
+
+                        <div class="controls-row">
+                            <a href="${linkWsp}" target="_blank" class="btn-action btn-wsp" style="width:100%;">💬 Notificar por WhatsApp</a>
                         </div>
                     </div>`;
             });
@@ -463,11 +477,27 @@
                 if (valor === 'realizado' && !db.leads[index].hora_contacto) {
                     let tiempoAsignado = parseInt(id); 
                     let tiempoAhora = Date.now();
-                    let demoraMinutos = Math.round((tiempoAhora - tiempoAsignado) / 60000);
-                    db.leads[index].hora_contacto = demoraMinutos;
+                    
+                    // Si el ID es un timestamp válido en milisegundos
+                    if (!isNaN(tiempoAsignado) && tiempoAsignado > 1000000000000) {
+                        let demoraMinutos = Math.round((tiempoAhora - tiempoAsignado) / 60000);
+                        // Filtro de seguridad: Si da un número absurdo (más de 7 días de atraso), ponemos 0 o un tope lógico
+                        db.leads[index].hora_contacto = (demoraMinutos > 0 && demoraMinutos < 10080) ? demoraMinutos : 15;
+                    } else {
+                        // Si el lead vino de Google Sheets sin timestamp válido, le asignamos un estimado base de prueba (ej: 15 min)
+                        db.leads[index].hora_contacto = 15;
+                    }
                 }
                 syncUpdate(db.leads[index], 'Leads');
                 cargarVistas();
+            }
+        };
+
+        window.actualizarNotaLead = (id, nota) => {
+            const index = db.leads.findIndex(r => String(r.id) === String(id));
+            if(index > -1) {
+                db.leads[index].notas = nota;
+                syncUpdate(db.leads[index], 'Leads');
             }
         };
 
