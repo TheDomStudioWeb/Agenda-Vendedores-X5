@@ -43,7 +43,6 @@
         .btn-sync { background-color: #28a745; color: white; border: none; padding: 8px 12px; border-radius: 5px; font-size: 14px;}
         .btn-logout { background-color: #6c757d; color: white; border: none; padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer;}
         
-        /* Pestañas (Hoy vs Historial) */
         .filter-tabs { display: flex; margin-bottom: 15px; background: #e9ecef; border-radius: 8px; overflow: hidden; }
         .filter-tab { flex: 1; text-align: center; padding: 10px; font-weight: bold; cursor: pointer; color: #666; font-size: 14px; }
         .filter-tab.active { background: var(--primary); color: white; }
@@ -58,7 +57,6 @@
         .nav-item.active { color: var(--primary); border-top-color: var(--primary); background: #f8f9fa;}
         .nav-icon { font-size: 20px; display: block; margin-bottom: 2px; }
 
-        /* Estilos Tablero Gerencial */
         .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 20px; }
         .metric-box { background: #fff; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.02);}
         .metric-number { font-size: 24px; font-weight: bold; color: var(--primary); margin-bottom: 5px;}
@@ -117,7 +115,7 @@
                 
                 <div class="filter-tabs">
                     <div class="filter-tab active" id="btn-hoy-agenda" onclick="setFiltro('agenda', 'hoy')">🔥 Foco de Hoy</div>
-                    <div class="filter-tab" id="btn-todo-agenda" onclick="setFiltro('agenda', 'todo')">🗓️️ Historial Completo</div>
+                    <div class="filter-tab" id="btn-todo-agenda" onclick="setFiltro('agenda', 'todo')">🗓️ Historial Completo</div>
                 </div>
 
                 <div id="lista-agenda"></div>
@@ -268,7 +266,7 @@
             const nombre = document.getElementById('user-select').value;
             const claveIngresada = document.getElementById('user-pass').value;
 
-            if(!nombre) return alert('⚠️️ Selecciona tu usuario');
+            if(!nombre) return alert('⚠️ Selecciona tu usuario');
             if(!claveIngresada) return alert('⚠️ Ingresa tu clave de acceso');
 
             const usuarioEncontrado = db.personal.find(p => p.nombre === nombre);
@@ -448,7 +446,6 @@
                             <strong>Tel:</strong> <a href="tel:${lead.telefono}">${lead.telefono}</a>
                         </div>
                         
-                        <!-- SELECTOR DE ESTADOS AMPLIADO -->
                         <div class="controls-row" style="margin-bottom: 10px;">
                             <select onchange="actualizarLeadStatus('${lead.id}', this.value)">
                                 <option value="pendiente" ${lead.estado === 'pendiente' ? 'selected' : ''}>⏳ Pendiente</option>
@@ -458,7 +455,6 @@
                             </select>
                         </div>
 
-                        <!-- CAMPO DE OBSERVACIONES DE LA LLAMADA -->
                         <div class="form-group" style="margin-bottom: 10px;">
                             <textarea placeholder="Notas de la llamada o motivo del estado..." rows="2" onblur="actualizarNotaLead('${lead.id}', this.value)">${lead.notas || ''}</textarea>
                         </div>
@@ -474,17 +470,13 @@
             const index = db.leads.findIndex(r => String(r.id) === String(id));
             if(index > -1) {
                 db.leads[index].estado = valor;
-                if (valor === 'realizado' && !db.leads[index].hora_contacto) {
+                if (!db.leads[index].hora_contacto) {
                     let tiempoAsignado = parseInt(id); 
                     let tiempoAhora = Date.now();
-                    
-                    // Si el ID es un timestamp válido en milisegundos
                     if (!isNaN(tiempoAsignado) && tiempoAsignado > 1000000000000) {
                         let demoraMinutos = Math.round((tiempoAhora - tiempoAsignado) / 60000);
-                        // Filtro de seguridad: Si da un número absurdo (más de 7 días de atraso), ponemos 0 o un tope lógico
                         db.leads[index].hora_contacto = (demoraMinutos > 0 && demoraMinutos < 10080) ? demoraMinutos : 15;
                     } else {
-                        // Si el lead vino de Google Sheets sin timestamp válido, le asignamos un estimado base de prueba (ej: 15 min)
                         db.leads[index].hora_contacto = 15;
                     }
                 }
@@ -515,7 +507,6 @@
             ventasData.forEach(v => {
                 let monto = parseFloat(v.monto) || 0;
                 facturacion += monto;
-                
                 ventasPorAsesor[v.asesor] = (ventasPorAsesor[v.asesor] || 0) + monto;
                 
                 let leadAsociado = db.leads.find(l => l.cliente.toLowerCase() === v.cliente.toLowerCase());
@@ -553,11 +544,7 @@
                     labels: Object.keys(origenVentas),
                     datasets: [{ data: Object.values(origenVentas), backgroundColor: ['#28a745', '#ffc107', '#dc3545', '#17a2b8', '#6c757d'] }]
                 },
-                options: { 
-                    responsive: true, 
-                    maintainAspectRatio: true,
-                    aspectRatio: 1.2
-                }
+                options: { responsive: true, maintainAspectRatio: true, aspectRatio: 1.2 }
             });
 
             const ctxFlota = document.getElementById('chartFlota').getContext('2d');
@@ -570,7 +557,7 @@
                 options: { indexAxis: 'y', responsive: true, scales: { x: { beginAtZero: true, ticks: { stepSize: 1 } } } }
             });
 
-            db.leads.filter(l => l.estado === 'realizado' && l.hora_contacto && puedeVer(l.asignado_a)).forEach(l => {
+            db.leads.filter(l => l.hora_contacto && puedeVer(l.asignado_a)).forEach(l => {
                 tiemposPorAsesor[l.asignado_a] = (tiemposPorAsesor[l.asignado_a] || 0) + parseInt(l.hora_contacto);
                 cantidadLeadsAsesor[l.asignado_a] = (cantidadLeadsAsesor[l.asignado_a] || 0) + 1;
             });
