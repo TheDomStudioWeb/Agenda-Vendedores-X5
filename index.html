@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>X5 Argentina | Hub Comercial</title>
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
+    <!-- Tipografía -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --surface: rgba(20, 20, 20, 0.7);
+            --surface-hover: rgba(30, 30, 30, 0.9);
+            --cyan: #00d2ff;
+            --gold: #d4af37;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --border-glow: rgba(0, 210, 255, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #050505 70%);
+            color: var(--text-main);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        .hub-container {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* Header Ejecutivo */
+        .hub-header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hub-logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hub-logo span {
+            background: linear-gradient(90deg, var(--cyan), #0088ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hub-subtitle {
+            color: var(--gold);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            padding-top: 10px;
+            width: fit-content;
+        }
+
+        /* Grilla de Herramientas */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            background: var(--surface);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .tool-card:hover, .tool-card:active {
+            background: var(--surface-hover);
+            transform: translateY(-4px);
+            border-color: var(--border-glow);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.05);
+        }
+
+        .tool-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Variante Dorada para Módulos Específicos */
+        .tool-card.gold-accent:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.05);
+        }
+        .tool-card.gold-accent::before {
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .tool-card.gold-accent .icon-wrapper svg {
+            stroke: var(--gold);
+        }
+
+        .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-wrapper svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--cyan);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .tool-info h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .tool-info p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            font-weight: 300;
+        }
+
+        .hub-footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #444;
+            margin-top: auto;
+            padding-top: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Ajustes Mobile */
+        @media (max-width: 600px) {
+            body { padding: 20px 15px; }
+            .hub-container { gap: 30px; }
+            .hub-logo { font-size: 2rem; }
+            .tools-grid { gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hub-container">
+        
+        <header class="hub-header">
+            <div class="hub-logo">X5<span>ARGENTINA</span></div>
+            <div class="hub-subtitle">OS Comercial · Región Cuyo</div>
+        </header>
+
+        <main class="tools-grid">
+            
+            <!-- Auditoría -->
+            <a href="simulador.html" class="tool-card">
+                <div class="icon-wrapper">
+                    <svg viewBox="0 0 24 24"><path d="M21 21H4.6A1.6 1.6 0 0 1 3 19.4V3M7 16l4-4 4 4 6-6M18 10h3v3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="tool-info">
+                    <h3>Auditoría de Inversión</h3>
+                    <p>Dashboard interactivo de brecha financiera y aceleración de capital.</p>
+                </div>
+            </a>
+
+            <!-- X5 Check -->
+            <a href="x5check.html" class="tool-card">
+                <div class="icon-wrapper">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="tool-info">
+                    <h3>X5 Check</h3>
+                    <p>Peritaje digital, checklist vehicular y recepción de unidades.</p>
+                </div>
+            </a>
+
+            <!-- DNI / Doc -->
+            <a href="dni.html" class="tool-card gold-accent">
+                <div class="icon-wrapper">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" stroke-linecap="round"/><path d="M7 8h10M7 12h10M7 16h4" stroke-linecap="round"/></svg>
+                </div>
+                <div class="tool-info">
+                    <h3>Validador Documental</h3>
+                    <p>Escaneo, recorte de DNI y unificación de legajos en A4.</p>
+                </div>
+            </a>
+
+            <!-- CRM -->
+            <a href="crm.html" class="tool-card gold-accent">
+                <div class="icon-wrapper">
+                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="tool-info">
+                    <h3>Mini CRM</h3>
+                    <p>Gestión de leads, entrevistas y seguimiento de sucursal.</p>
+                </div>
+            </a>
+
+        </main>
+
+        <footer class="hub-footer">
+            Core System v1.0 • Mendoza
+        </footer>
+
+    </div>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('X5 OS Service Worker Registrado'))
+                    .catch(err => console.error('Error SW:', err));
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recorte Inteligente DNI - X5</title>
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Cropper.js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <style>
+        :root {
+            --primary: #111827;
+            --accent: #dc2626;
+            --accent-hover: #b91c1c;
+            --bg: #f3f4f6;
+            --text: #111827;
+            --border: #d1d5db;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem 1rem;
+            box-sizing: border-box;
+        }
+        .header { text-align: center; margin-bottom: 2rem; }
+        .header h1 { margin: 0; font-size: 2rem; color: var(--primary); }
+        .header p { color: #4b5563; font-size: 1.1rem; margin-top: 0.5rem; }
+        
+        .app-container {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            background-color: #f9fafb;
+            cursor: pointer;
+        }
+        .upload-area:hover { border-color: var(--accent); background-color: #fef2f2; }
+        .upload-icon { font-size: 3rem; margin-bottom: 1rem; }
+        
+        /* Modal for Cropping */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .modal-content {
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .modal-header {
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-align: center;
+            color: var(--primary);
+        }
+        .img-container {
+            width: 100%;
+            max-height: 60vh;
+            background-color: #f3f4f6;
+            overflow: hidden;
+        }
+        .img-container img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        .btn {
+            padding: 0.875rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: white;
+            background-color: var(--accent);
+            text-align: center;
+            transition: background 0.2s;
+            width: 100%;
+        }
+        .btn:hover { background-color: var(--accent-hover); }
+        .btn:disabled { background-color: #d1d5db; cursor: not-allowed; }
+
+        .preview-wrapper { display: none; margin-top: 2rem; text-align: center; }
+        .preview-wrapper img {
+            max-width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .controls { display: flex; gap: 1rem; margin-top: 1.5rem; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Recorte Inteligente de DNI</h1>
+        <p>Ajusta los bordes para quitar el fondo</p>
+    </div>
+
+    <div class="app-container">
+        <div class="upload-area" onclick="document.getElementById('file-input').click()">
+            <div class="upload-icon">✂️</div>
+            <h3>Toca para seleccionar fotos</h3>
+            <p style="color: #6b7280; font-size: 0.9rem;">Sube el Frente y Dorso (2 archivos)</p>
+            <input type="file" id="file-input" accept="image/*" multiple style="display: none;">
+        </div>
+
+        <div class="preview-wrapper" id="preview-wrapper">
+            <h3 style="margin-bottom: 1rem;">Documento Finalizado</h3>
+            <img id="preview-img" alt="Vista previa">
+            <div class="controls">
+                <button class="btn" style="background-color: #6b7280;" onclick="location.reload()">Empezar de nuevo</button>
+                <button class="btn" id="btn-pdf">Descargar PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Recorte -->
+    <div class="modal-overlay" id="crop-modal">
+        <div class="modal-content">
+            <div class="modal-header" id="crop-title">Recortar FRENTE</div>
+            <div class="img-container">
+                <img id="crop-image" src="" alt="Recortar">
+            </div>
+            <button class="btn" id="btn-confirm-crop">Confirmar Recorte</button>
+        </div>
+    </div>
+
+    <!-- Canvas interno para procesar (A4) -->
+    <canvas id="doc-canvas" width="794" height="1123" style="display:none;"></canvas>
+
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const cropModal = document.getElementById('crop-modal');
+        const cropImage = document.getElementById('crop-image');
+        const cropTitle = document.getElementById('crop-title');
+        const btnConfirmCrop = document.getElementById('btn-confirm-crop');
+        const previewWrapper = document.getElementById('preview-wrapper');
+        const previewImg = document.getElementById('preview-img');
+        const btnPdf = document.getElementById('btn-pdf');
+        const canvas = document.getElementById('doc-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let rawImages = [];
+        let croppedImages = [];
+        let currentStep = 0;
+        let cropper = null;
+
+        fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files).filter(f => f.type.startsWith('image/'));
+            if (files.length !== 2) {
+                alert('Por favor, selecciona exactamente 2 imágenes (Frente y Dorso).');
+                return;
+            }
+
+            rawImages = [];
+            croppedImages = [];
+            currentStep = 0;
+            let loadedCount = 0;
+
+            for (let i = 0; i < 2; i++) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    rawImages[i] = event.target.result;
+                    loadedCount++;
+                    if (loadedCount === 2) {
+                        openCropper(0);
+                    }
+                };
+                reader.readAsDataURL(files[i]);
+            }
+        });
+
+        function openCropper(index) {
+            cropTitle.textContent = index === 0 ? 'Recortar FRENTE del DNI' : 'Recortar DORSO del DNI';
+            cropImage.src = rawImages[index];
+            cropModal.style.display = 'flex';
+
+            if (cropper) { cropper.destroy(); }
+            
+            // Inicializar Cropper
+            cropper = new Cropper(cropImage, {
+                viewMode: 1,
+                autoCropArea: 0.9,
+                background: false,
+                zoomable: false
+            });
+        }
+
+        btnConfirmCrop.addEventListener('click', () => {
+            // Extraer la porción recortada
+            const canvasCropped = cropper.getCroppedCanvas({
+                maxWidth: 1500,
+                maxHeight: 1500
+            });
+            
+            croppedImages.push(canvasCropped.toDataURL('image/jpeg', 0.9));
+
+            if (currentStep === 0) {
+                currentStep = 1;
+                openCropper(1); // Abrir el dorso
+            } else {
+                // Terminamos de recortar ambos
+                cropModal.style.display = 'none';
+                if (cropper) cropper.destroy();
+                renderFinalDocument();
+            }
+        });
+
+        function renderFinalDocument() {
+            // Fondo blanco A4
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            const img1 = new Image();
+            const img2 = new Image();
+            
+            img1.onload = () => {
+                // Frente (mitad superior con más margen para que se vea como tarjeta)
+                drawImageScaled(img1, 0, 100, canvas.width, (canvas.height / 2) - 150);
+                
+                img2.onload = () => {
+                    // Dorso (mitad inferior)
+                    drawImageScaled(img2, 0, (canvas.height / 2) + 50, canvas.width, (canvas.height / 2) - 150);
+                    
+                    // Mostrar preview
+                    previewImg.src = canvas.toDataURL('image/jpeg', 0.9);
+                    previewWrapper.style.display = 'block';
+                    document.querySelector('.upload-area').style.display = 'none';
+                }
+                img2.src = croppedImages[1];
+            }
+            img1.src = croppedImages[0];
+        }
+
+        function drawImageScaled(img, x, y, maxWidth, maxHeight) {
+            const ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
+            const newWidth = img.width * ratio;
+            const newHeight = img.height * ratio;
+            const offsetX = x + (maxWidth - newWidth) / 2;
+            const offsetY = y + (maxHeight - newHeight) / 2;
+            ctx.drawImage(img, offsetX, offsetY, newWidth, newHeight);
+        }
+
+        btnPdf.addEventListener('click', () => {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+            const imgData = canvas.toDataURL('image/jpeg', 0.95);
+            pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297);
+            pdf.save(`DNI_Recortado_${new Date().getTime()}.pdf`);
+        });
+    </script>
+</body>
+</html>

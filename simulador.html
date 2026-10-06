@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X5 Argentina | Auditoría de Inversión</title>
+    <!-- Librerías externas: Chart.js y html2canvas para captura perfecta -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --panel-bg: #141414;
+            --cyan: #00d2ff;
+            --gold: #d4af37;
+            --text-main: #f5f5f5;
+            --text-muted: #888888;
+            --danger: #e74c3c;
+            --success: #2ecc71;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #dashboard-export {
+            max-width: 500px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background-color: var(--bg-dark);
+            padding: 15px;
+            box-sizing: border-box;
+            border-radius: 12px;
+        }
+
+        .header-logo {
+            text-align: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            margin-bottom: 5px;
+        }
+
+        .logo-placeholder {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-main);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .logo-placeholder span {
+            color: var(--cyan);
+        }
+
+        .panel {
+            background-color: var(--panel-bg);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .panel-whatif {
+            border: 1px dashed var(--gold);
+            background: linear-gradient(145deg, #1f1a0a, #141414);
+            position: relative;
+        }
+
+        .panel-whatif::before {
+            content: 'SIMULADOR DE ESCENARIOS';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background-color: var(--gold);
+            color: var(--bg-dark);
+            font-size: 0.65rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 0.95rem;
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 8px;
+        }
+
+        .panel-whatif h2 {
+            color: var(--gold);
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-top: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            background-color: #0f0f0f;
+            color: white;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .panel-whatif input {
+            border-color: rgba(212, 175, 55, 0.5);
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .disclaimer {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.65rem;
+            margin-top: 3px;
+            font-style: italic;
+        }
+
+        /* Gauge Analógico */
+        .gauge-container {
+            position: relative;
+            width: 220px;
+            height: 120px;
+            margin: 0 auto 5px auto;
+            overflow: hidden;
+        }
+
+        .gauge-background {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 220px;
+            height: 110px;
+            border-top-left-radius: 110px;
+            border-top-right-radius: 110px;
+            background: conic-gradient(from 270deg at 50% 100%, var(--danger) 0deg, var(--danger) 70deg, var(--gold) 70deg, var(--gold) 126deg, var(--success) 126deg, var(--success) 180deg);
+            border: 8px solid var(--panel-bg);
+            border-bottom: none;
+            box-sizing: border-box;
+        }
+        
+        .gauge-cover {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px;
+            height: 80px;
+            background-color: var(--panel-bg);
+            border-top-left-radius: 80px;
+            border-top-right-radius: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 8px;
+            box-sizing: border-box;
+        }
+
+        .gauge-needle {
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 3px;
+            height: 95px;
+            background-color: #fff;
+            transform-origin: bottom center;
+            transform: rotate(-90deg);
+            transition: transform 0.8s cubic-bezier(0.4, 2.5, 0.3, 1);
+            border-radius: 3px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .gauge-percentage {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1;
+        }
+
+        .gauge-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin: 3px 0 0 0;
+            text-transform: uppercase;
+        }
+
+        .status-message {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            border: 1px solid transparent;
+            box-sizing: border-box;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .kpi-card {
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            padding: 12px 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .kpi-title {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .kpi-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 220px;
+            margin-top: 15px;
+        }
+
+        .btn-export {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--cyan);
+            color: var(--bg-dark);
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 5px;
+        }
+
+        .btn-export:hover {
+            background-color: #00b8e6;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="dashboard-export">
+        
+        <div class="header-logo">
+            <div class="logo-placeholder">X5<span>ARGENTINA</span></div>
+            <div style="color: var(--gold); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 3px;">Auditoría de Inversión Comercial</div>
+        </div>
+
+        <!-- Panel 1: Parámetros Base -->
+        <div class="panel">
+            <h2>1. Parámetros Base</h2>
+            <div class="form-group">
+                <label>Tipo de Vehículo</label>
+                <select id="tipoVehiculo" onchange="calcular()">
+                    <option value="pequeno">Pequeño (Gol, 208, Yaris)</option>
+                    <option value="familiar">Familiar (Cronos, Corolla)</option>
+                    <option value="utilitario">Utilitario (Kangoo, Partner)</option>
+                    <option value="suv">SUV (Ecosport, Tracker, T-Cross)</option>
+                    <option value="camioneta">Camioneta (Hilux, Amarok)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Rango de Año (Define el Objetivo)</label>
+                <select id="rangoAno" onchange="calcular()">
+                    <option value="2010_2015">Usado: 2010 - 2015 (Requiere 50%)</option>
+                    <option value="2015_2020">Usado: 2015 - 2020 (Requiere 50%)</option>
+                    <option value="2020_2025">Usado: 2020 - 2025 (Requiere 50%)</option>
+                    <option value="0km">0 KM: 2025 en adelante (Requiere 35%)</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 15px;">
+                <label>Suma Total Abonada en Sistema ($)</label>
+                <input type="number" id="totalAbonado" value="3000000" oninput="calcular()">
+            </div>
+            <div class="form-group">
+                <label>Ahorro Base / Efectivo Actual ($)</label>
+                <input type="number" id="ahorroBase" value="0" oninput="calcular()">
+                <span class="disclaimer">Capital disponible e integrado al momento.</span>
+            </div>
+            <div class="form-group">
+                <label>Valor Infoauto Vehículo Usado ($)</label>
+                <input type="number" id="valorUsadoInfoauto" value="0" oninput="calcular()">
+                <span class="disclaimer">Sujeto a peritaje técnico (-10% automático).</span>
+            </div>
+            <div class="form-group">
+                <label>Proyección de Cuota Mensual ($)</label>
+                <input type="number" id="cuotaProyectada" value="250000" oninput="calcular()">
+            </div>
+        </div>
+
+        <!-- Panel 2: Simulador What If -->
+        <div class="panel panel-whatif">
+            <div class="form-group" style="margin-bottom: 0;">
+                <label style="color: var(--gold);">¿Qué pasa si inyecto capital extraordinario?</label>
+                <input type="number" id="capitalWhatIf" value="0" placeholder="Ej: Aguinaldo, venta de activo..." oninput="calcular()">
+                <span class="disclaimer" style="color: #bbb;">Acelera la proyección gráfica de forma inmediata.</span>
+            </div>
+        </div>
+
+        <!-- Panel 3: Resultados -->
+        <div class="panel">
+            <h2>2. Estado de Cuenta y Brecha</h2>
+            
+            <div class="gauge-container">
+                <div class="gauge-background" id="gaugeBg"></div>
+                <div class="gauge-needle" id="gaugeNeedle"></div>
+                <div class="gauge-cover">
+                    <p class="gauge-percentage" id="lblPorcentaje">0%</p>
+                    <p class="gauge-label" id="lblObjetivo">Objetivo: 50%</p>
+                </div>
+            </div>
+
+            <div id="statusMessage" class="status-message">Calculando...</div>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <span class="kpi-title">Valor Vehículo X5</span>
+                    <span class="kpi-value" id="lblValorVehiculo" style="color: var(--text-main);">$0</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-title">Capital Efectivo</span>
+                    <span class="kpi-value" id="lblCapitalTotal" style="color: var(--cyan);">$0</span>
+                </div>
+                <div class="kpi-card" style="border-color: var(--gold);">
+                    <span class="kpi-title">Brecha Restante</span>
+                    <span class="kpi-value" id="lblBrecha" style="color: var(--gold);">$0</span>
+                </div>
+            </div>
+
+            <!-- Gráfico -->
+            <div class="chart-container">
+                <canvas id="projectionChart"></canvas>
+            </div>
+        </div>
+
+        <button class="btn-export" onclick="exportarImagen()">Compartir Auditoría como Imagen (HD)</button>
+
+    </div>
+
+    <script>
+        const basePrecios = {
+            pequeno: { "2010_2015": 9000000, "2015_2020": 13500000, "2020_2025": 18000000, "0km": 23000000 },
+            familiar: { "2010_2015": 10500000, "2015_2020": 15000000, "2020_2025": 21000000, "0km": 27000000 },
+            utilitario: { "2010_2015": 11000000, "2015_2020": 16000000, "2020_2025": 22000000, "0km": 28000000 },
+            suv: { "2010_2015": 13000000, "2015_2020": 19000000, "2020_2025": 28000000, "0km": 35000000 },
+            camioneta: { "2010_2015": 18000000, "2015_2020": 26000000, "2020_2025": 40000000, "0km": 52000000 }
+        };
+
+        const formatearMoneda = (valor) => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(valor);
+        
+        let projectionChartInst = null;
+
+        function calcular() {
+            const tipo = document.getElementById('tipoVehiculo').value;
+            const ano = document.getElementById('rangoAno').value;
+            
+            const totalAbonado = parseFloat(document.getElementById('totalAbonado').value) || 0;
+            const ahorroBase = parseFloat(document.getElementById('ahorroBase').value) || 0;
+            const valorUsado = parseFloat(document.getElementById('valorUsadoInfoauto').value) || 0;
+            const cuotaProyectada = parseFloat(document.getElementById('cuotaProyectada').value) || 0;
+            const capitalWhatIf = parseFloat(document.getElementById('capitalWhatIf').value) || 0;
+
+            const porcentajeObjetivo = (ano === "0km") ? 35 : 50;
+            const precioBase = basePrecios[tipo][ano];
+            const valorVentaX5 = precioBase * 1.32; 
+            
+            const capitalIntegradoPuro = totalAbonado * 0.80; 
+            const valorTomaReal = valorUsado * 0.90; 
+            
+            const capitalTotalCliente = capitalIntegradoPuro + valorTomaReal + ahorroBase + capitalWhatIf;
+            
+            let brecha = valorVentaX5 - capitalTotalCliente;
+            if(brecha < 0) brecha = 0;
+
+            let porcentaje = (capitalTotalCliente / valorVentaX5) * 100;
+            if(porcentaje > 100) porcentaje = 100;
+
+            document.getElementById('lblValorVehiculo').innerText = formatearMoneda(valorVentaX5);
+            document.getElementById('lblCapitalTotal').innerText = formatearMoneda(capitalTotalCliente);
+            document.getElementById('lblBrecha').innerText = formatearMoneda(brecha);
+            document.getElementById('lblPorcentaje').innerText = porcentaje.toFixed(1) + '%';
+            document.getElementById('lblObjetivo').innerText = `Objetivo: ${porcentajeObjetivo}%`;
+
+            const grados = (porcentaje / 100) * 180 - 90;
+            document.getElementById('gaugeNeedle').style.transform = `rotate(${grados > 90 ? 90 : grados}deg)`;
+
+            const statusMsg = document.getElementById('statusMessage');
+            if (porcentaje >= porcentajeObjetivo) {
+                statusMsg.style.borderColor = "var(--success)";
+                statusMsg.style.color = "var(--success)";
+                statusMsg.style.backgroundColor = "rgba(46, 204, 113, 0.1)";
+                statusMsg.innerText = "¡Calificado para programar entrega!";
+            } else {
+                statusMsg.style.borderColor = "var(--gold)";
+                statusMsg.style.color = "var(--gold)";
+                statusMsg.style.backgroundColor = "rgba(212, 175, 55, 0.1)";
+                statusMsg.innerText = "Construyendo capital. Analizá inyectar efectivo.";
+            }
+
+            const bg = document.getElementById('gaugeBg');
+            const anguloObjetivo = (porcentajeObjetivo / 100) * 180;
+            const anguloMedio = anguloObjetivo * 0.6;
+            bg.style.background = `conic-gradient(from 270deg at 50% 100%, 
+                var(--danger) 0deg, 
+                var(--danger) ${anguloMedio}deg, 
+                var(--gold) ${anguloMedio}deg, 
+                var(--gold) ${anguloObjetivo}deg, 
+                var(--success) ${anguloObjetivo}deg, 
+                var(--success) 180deg)`;
+
+            actualizarGrafico(capitalTotalCliente, valorVentaX5, cuotaProyectada, porcentajeObjetivo);
+        }
+
+        function actualizarGrafico(capitalInicial, valorVehiculo, cuotaMensual, objetivo) {
+            const meses = ['Hoy', 'Mes 1', 'Mes 2', 'Mes 3', 'Mes 4', 'Mes 5', 'Mes 6', 'Mes 9', 'Mes 12'];
+            let capitalData = [];
+            let gapData = [];
+            let metaData = []; 
+
+            const valorObjetivoEfectivo = valorVehiculo * (objetivo / 100);
+            const purezaCuota = cuotaMensual * 0.80; 
+
+            meses.forEach((_, index) => {
+                let multiplicador = index;
+                if(index === 7) multiplicador = 9;
+                if(index === 8) multiplicador = 12;
+
+                let capitalFuturo = capitalInicial + (purezaCuota * multiplicador);
+                if (capitalFuturo > valorVehiculo) capitalFuturo = valorVehiculo;
+
+                let brechaFutura = valorVehiculo - capitalFuturo;
+
+                capitalData.push(capitalFuturo);
+                gapData.push(brechaFutura);
+                metaData.push(valorObjetivoEfectivo);
+            });
+
+            const ctx = document.getElementById('projectionChart').getContext('2d');
+            
+            if (projectionChartInst) {
+                projectionChartInst.destroy();
+            }
+
+            projectionChartInst = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: meses,
+                    datasets: [
+                        {
+                            label: 'Evolución del Capital',
+                            data: capitalData,
+                            borderColor: '#00d2ff',
+                            backgroundColor: 'rgba(0, 210, 255, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Proyección del Gap',
+                            data: gapData,
+                            borderColor: '#d4af37',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            tension: 0.3
+                        },
+                        {
+                            label: `Meta (${objetivo}%)`,
+                            data: metaData,
+                            borderColor: '#2ecc71',
+                            borderWidth: 1,
+                            pointRadius: 0,
+                            tension: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#a0a0a0', font: { size: 10 } } }
+                    },
+                    scales: {
+                        y: { ticks: { color: '#888', callback: (value) => '$' + (value/1000000).toFixed(1) + 'M' }, grid: { color: 'rgba(200, 200, 200, 0.15)', lineWidth: 0.5 } },
+                        x: { ticks: { color: '#888' }, grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        // Función optimizada para exportar directamente a Imagen PNG de alta calidad
+        function exportarImagen() {
+            const elemento = document.getElementById('dashboard-export');
+            const boton = document.querySelector('.btn-export');
+            
+            boton.style.display = 'none'; // Ocultar botón durante la captura
+
+            html2canvas(elemento, {
+                scale: 2, // Alta definición para celulares y pantallas Retina
+                useCORS: true,
+                backgroundColor: '#0a0a0a'
+            }).then(canvas => {
+                const enlace = document.createElement('a');
+                enlace.download = 'Auditoria_Inversion_X5.png';
+                enlace.href = canvas.toDataURL('image/png');
+                enlace.click();
+                boton.style.display = 'block'; // Volver a mostrar el botón
+            });
+        }
+
+        window.onload = calcular;
+    </script>
+</body>
+</html>

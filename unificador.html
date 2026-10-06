@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unificador Documentos y Fotos</title>
+    <!-- Importar la librería pdf-lib desde un CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 550px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p.subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .file-input-wrapper {
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            border: 2px dashed #4CAF50;
+            display: inline-block;
+            padding: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            color: #4CAF50;
+            font-weight: bold;
+            width: 80%;
+            transition: background-color 0.3s;
+        }
+        .custom-file-upload:hover {
+            background-color: #f1f8e9;
+        }
+        #file-list {
+            text-align: left;
+            margin: 15px 0;
+            font-size: 14px;
+            color: #555;
+            max-height: 200px;
+            overflow-y: auto;
+            background: #fafafa;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .btn-clear {
+            background-color: #f44336;
+        }
+        .btn-clear:hover {
+            background-color: #d32f2f;
+        }
+        #status {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #2196F3;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Unificador Documentos y Fotos</h1>
+        <p class="subtitle">Selecciona archivos PDF, JPG o PNG. Puedes añadir archivos desde distintas carpetas repitiendo el proceso de selección.</p>
+        
+        <div class="file-input-wrapper">
+            <label class="custom-file-upload">
+                <input type="file" id="file-upload" accept=".pdf, .jpg, .jpeg, .png" multiple>
+                + Añadir PDFs e Imágenes
+            </label>
+        </div>
+
+        <div id="file-list" style="display: none;"></div>
+
+        <button id="merge-btn" disabled>Crear PDF Unificado</button>
+        <button id="clear-btn" class="btn-clear" disabled>Limpiar archivos</button>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file-upload');
+        const fileListDisplay = document.getElementById('file-list');
+        const mergeBtn = document.getElementById('merge-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const statusDisplay = document.getElementById('status');
+
+        const { PDFDocument } = PDFLib;
+        
+        // Nuestro array global que acumulará los archivos
+        let selectedFiles = [];
+
+        // Función centralizada para actualizar la vista de la lista
+        const updateUI = () => {
+            if (selectedFiles.length > 0) {
+                fileListDisplay.style.display = 'block';
+                fileListDisplay.innerHTML = '<strong>Archivos a procesar:</strong><br>' + 
+                    selectedFiles.map((f, i) => {
+                        let typeIcon = f.type.includes('pdf') ? '📄' : '🖼️';
+                        return `${i + 1}. ${typeIcon} ${f.name}`;
+                    }).join('<br>');
+                
+                mergeBtn.disabled = false;
+                clearBtn.disabled = false;
+            } else {
+                fileListDisplay.innerHTML = '';
+                fileListDisplay.style.display = 'none';
+                mergeBtn.disabled = true;
+                clearBtn.disabled = true;
+            }
+        };
+
+        // Función para limpiar todo
+        const clearFiles = () => {
+            selectedFiles = [];
+            fileInput.value = ''; // Resetea el input
+            statusDisplay.innerText = '';
+            updateUI();
+        };
+
+        clearBtn.addEventListener('click', clearFiles);
+
+        // Cuando se seleccionan nuevos archivos
+        fileInput.addEventListener('change', (event) => {
+            const newFiles = Array.from(event.target.files);
+            
+            // CONCATENAMOS los archivos nuevos con los que ya existían
+            selectedFiles = [...selectedFiles, ...newFiles];
+            
+            // Vaciamos el input para que el navegador permita volver a abrirlo y seleccionar más
+            fileInput.value = ''; 
+            statusDisplay.innerText = '';
+            
+            updateUI();
+        });
+
+        // Función principal de unificación
+        mergeBtn.addEventListener('click', async () => {
+            try {
+                mergeBtn.disabled = true;
+                clearBtn.disabled = true;
+                statusDisplay.innerText = 'Procesando documentos y fotos...';
+                statusDisplay.style.color = '#2196F3';
+
+                const mergedPdf = await PDFDocument.create();
+
+                for (let file of selectedFiles) {
+                    const arrayBuffer = await file.arrayBuffer();
+                    const fileType = file.type;
+
+                    if (fileType === 'application/pdf') {
+                        const pdf = await PDFDocument.load(arrayBuffer);
+                        const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+                        copiedPages.forEach((page) => mergedPdf.addPage(page));
+                        
+                    } else if (fileType === 'image/jpeg' || fileType === 'image/jpg') {
+                        const image = await mergedPdf.embedJpg(arrayBuffer);
+                        const page = mergedPdf.addPage([image.width, image.height]);
+                        page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+
+                    } else if (fileType === 'image/png') {
+                        const image = await mergedPdf.embedPng(arrayBuffer);
+                        const page = mergedPdf.addPage([image.width, image.height]);
+                        page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+                    }
+                }
+
+                const mergedPdfBytes = await mergedPdf.save();
+                const blob = new Blob([mergedPdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Documento_Final_Unificado.pdf';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                statusDisplay.innerText = '¡Archivo descargado con éxito!';
+                statusDisplay.style.color = '#4CAF50';
+
+            } catch (error) {
+                console.error(error);
+                statusDisplay.innerText = 'Hubo un error al procesar los archivos.';
+                statusDisplay.style.color = 'red';
+            } finally {
+                clearBtn.disabled = false;
+                mergeBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

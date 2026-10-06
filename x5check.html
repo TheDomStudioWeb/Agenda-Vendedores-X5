@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Checklist Vehicular | X5 Argentina</title>
+    <script src="https://unpkg.com/docx@7.3.0/build/index.js"></script>
+    <style>
+        * { box-sizing: border-box; }
+        :root {
+            --primary-color: #1F4E78;
+            --secondary-color: #D9E1F2;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --error-color: #d9534f;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 15px;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        .header-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        label { font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; }
+        input[type="text"], input[type="date"], select, input[type="file"] {
+            width: 100%; padding: 12px; border: 1px solid #ccc;
+            border-radius: 4px; font-size: 1rem; transition: border-color 0.3s;
+        }
+        input.required-obs {
+            border: 2px solid var(--error-color) !important;
+            background-color: #fdf0ef !important;
+        }
+        .category {
+            background-color: var(--primary-color); color: white;
+            padding: 10px; border-radius: 4px; margin-top: 25px;
+            font-weight: bold; text-align: center;
+        }
+        .checklist-item {
+            display: flex; flex-direction: column; align-items: flex-start;
+            gap: 10px; padding: 15px 0; border-bottom: 1px solid #eee;
+        }
+        .checklist-item span { font-weight: 600; }
+        .options {
+            display: flex; width: 100%; justify-content: space-between;
+            background: var(--bg-color); padding: 10px; border-radius: 6px;
+        }
+        .options label { display: flex; align-items: center; gap: 5px; margin: 0; font-size: 1rem; }
+        .btn-submit {
+            display: block; width: 100%; background-color: var(--primary-color);
+            color: white; border: none; padding: 15px; font-size: 1.1rem;
+            font-weight: bold; border-radius: 4px; margin-top: 30px; cursor: pointer;
+        }
+        .preview-grid {
+            display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;
+        }
+        .preview-grid img {
+            width: 48%; border-radius: 6px; border: 1px solid #ccc; object-fit: cover;
+        }
+        .signature-container {
+            display: flex; flex-direction: column; align-items: center; margin-top: 15px;
+        }
+        canvas {
+            border: 2px dashed #ccc; border-radius: 8px; background-color: #fafafa;
+            touch-action: none;
+        }
+        .btn-clear {
+            margin-top: 10px; padding: 8px 15px; background-color: #eee;
+            border: 1px solid #ccc; border-radius: 4px; cursor: pointer; font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Checklist Vehicular | X5 Argentina</h1>
+    <p style="text-align: center; font-size: 0.85rem; color: #666; margin-top: -5px;">Sucursal Mendoza (San Martín 2417)</p>
+    
+    <form id="checklistForm">
+        <div class="header-info">
+            <div class="form-group">
+                <label for="fecha">Fecha</label>
+                <input type="date" id="fecha" name="fecha" required>
+            </div>
+            <div class="form-group">
+                <label for="tipo">Tipo de Inspección</label>
+                <select id="tipo" name="tipo">
+                    <option value="Control Semanal">Control Semanal</option>
+                    <option value="Recepción Cliente">Recepción Cliente</option>
+                    <option value="Recepción Empresa">Recepción Empresa</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="marca">Marca</label>
+                <input type="text" id="marca" name="marca" placeholder="Ej: Toyota / Volkswagen">
+            </div>
+            <div class="form-group">
+                <label for="modelo">Modelo</label>
+                <input type="text" id="modelo" name="modelo" placeholder="Ej: Corolla Cross / Amarok">
+            </div>
+            <div class="form-group">
+                <label for="color">Color</label>
+                <input type="text" id="color" name="color" placeholder="Ej: Blanco / Gris Plata">
+            </div>
+            <div class="form-group">
+                <label for="dominio">Dominio / Patente</label>
+                <input type="text" id="dominio" name="dominio" placeholder="Ej: AB123CD" required>
+            </div>
+            <div class="form-group">
+                <label for="km">Kilometraje</label>
+                <input type="text" id="km" name="km" placeholder="Ej: 45000">
+            </div>
+            <div class="form-group">
+                <label for="combustible">Nivel de Combustible</label>
+                <select id="combustible" name="combustible">
+                    <option value="Reserva">Reserva</option>
+                    <option value="1/4 Tanque">1/4 Tanque</option>
+                    <option value="1/2 Tanque">1/2 Tanque</option>
+                    <option value="3/4 Tanque">3/4 Tanque</option>
+                    <option value="Full / Lleno">Full / Lleno</option>
+                </select>
+            </div>
+        </div>
+
+        <p style="font-size: 0.85rem; color: #666; text-align: center; margin-bottom: 0;">
+            <em>B = Bueno | R = Regular | M = Malo | N/A = No Aplica</em><br>
+            <span style="color: var(--error-color);">* R y M exigen observación obligatoria.</span>
+        </p>
+
+        <div class="category">1. DOCUMENTACIÓN</div>
+        <div class="checklist-item">
+            <span>Cédula Verde / Azul</span>
+            <div class="options">
+                <label><input type="radio" name="doc_cedula" value="B" checked> B</label>
+                <label><input type="radio" name="doc_cedula" value="R"> R</label>
+                <label><input type="radio" name="doc_cedula" value="M"> M</label>
+                <label><input type="radio" name="doc_cedula" value="NA"> N/A</label>
+            </div>
+            <input type="text" placeholder="Observaciones..." name="obs_doc_cedula">
+        </div>
+        <div class="checklist-item">
+            <span>Seguro / VTV / Manuales</span>
+            <div class="options">
+                <label><input type="radio" name="doc_seguro" value="B" checked> B</label>
+                <label><input type="radio" name="doc_seguro" value="R"> R</label>
+                <label><input type="radio" name="doc_seguro" value="M"> M</label>
+                <label><input type="radio" name="doc_seguro" value="NA"> N/A</label>
+            </div>
+            <input type="text" placeholder="Observaciones..." name="obs_doc_seguro">
+        </div>
+
+        <div class="category">2. EXTERIOR Y CARROCERÍA</div>
+        <div class="checklist-item">
+            <span>Pintura / Rayones / Bollos</span>
+            <div class="options">
+                <label><input type="radio" name="ext_pintura" value="B" checked> B</label>
+                <label><input type="radio" name="ext_pintura" value="R"> R</label>
+                <label><input type="radio" name="ext_pintura" value="M"> M</label>
+                <label><input type="radio" name="ext_pintura" value="NA"> N/A</label>
+            </div>
+            <input type="text" placeholder="Observaciones..." name="obs_ext_pintura">
+        </div>
+        <div class="checklist-item">
+            <span>Cristales y Parabrisas</span>
+            <div class="options">
+                <label><input type="radio" name="ext_cristales" value="B" checked> B</label>
+                <label><input type="radio" name="ext_cristales" value="R"> R</label>
+                <label><input type="radio" name="ext_cristales" value="M"> M</label>
+                <label><input type="radio" name="ext_cristales" value="NA"> N/A</label>
+            </div>
+            <input type="text" placeholder="Observaciones..." name="obs_ext_cristales">
+        </div>
+        <div class="checklist-item">
+            <span>Neumáticos y Llantas</span>
+            <div class="options">
+                <label><input type="radio" name="ext_neumaticos" value="B" checked> B</label>
+                <label><input type="radio" name="ext_neumaticos" value="R"> R</label>
+                <label><input type="radio" name="ext_neumaticos" value="M"> M</label>
+                <label><input type="radio" name="ext_neumaticos" value="NA"> N/A</label>
+            </div>
+            <input type="text" placeholder="Observaciones..." name="obs_ext_neumaticos">
+        </div>
+
+        <div class="category">3. SISTEMA ELÉCTRICO Y LUCES</div>
+        <div class="checklist-item">
+            <span>Luces Altas / Bajas / Posición</span>
+            <div class="options">
+                <label><input type="radio" name="elec_luces" value="B" checked> B</label>
+                <label><input type="radio" name="elec_luces" value="R"> R</label>
+                <label><input type="radio" name="elec_luces" value="M"> M</label>
+                <label><input type="radio" name="elec_luces" value="NA"> N/A</label>
+            </div>
+            <input type="text" placeholder="Observaciones..." name="obs_elec_luces">
+        </div>
+        <div class="checklist-item">
+            <span>Luces de Giro, Stop y Reversa</span>
+            <div class="options">
+                <label><input type="radio" name="elec_giro" value="B" checked> B</label>
+                <label><input type="radio" name="elec_giro" value="R"> R</label>
+                <label><input type="radio" name="elec_giro" value="M"> M</label>
+                <label><input type="radio" name="elec_giro" value="NA"> N/A</label>
+            </div>
+            <input type="text" placeholder="Observaciones..." name="obs_elec_giro">
+        </div>
+
+        <div class="category">4. INTERIOR Y CONFORT</div>
+        <div class="checklist-item">
+            <span>Tapizados y Alfombras</span>
+            <div class="options">
+                <label><input type="radio" name="int_tapizado" value="B" checked> B</label>
+                <label><input type="radio" name="int_tapizado" value="R"> R</label>
+                <label><input type="radio" name="int_tapizado" value="M"> M</label>
+                <label><input type="radio" name="int_tapizado" value="NA"> N/A</label>
+            </div>
+            <input type="text" placeholder="Observaciones..." name="obs_int_tapizado">
+        </div>
+        <div class="checklist-item">
+            <span>Aire Acondicionado / Calefacción</span>
+            <div class="options">
+                <label><input type="radio" name="int_clima" value="B" checked> B</label>
+                <label><input type="radio" name="int_clima" value="R"> R</label>
+                <label><input type="radio" name="int_clima" value="M"> M</label>
+                <label><input type="radio" name="int_clima" value="NA"> N/A</label>
+            </div>
+            <input type="text" placeholder="Observaciones..." name="obs_int_clima">
+        </div>
+        <div class="checklist-item">
+            <span>Radio / Equipo Multimedia / Tablero</span>
+            <div class="options">
+                <label><input type="radio" name="int_multimedia" value="B" checked> B</label>
+                <label><input type="radio" name="int_multimedia" value="R"> R</label>
+                <label><input type="radio" name="int_multimedia" value="M"> M</label>
+                <label><input type="radio" name="int_multimedia" value="NA"> N/A</label>
+            </div>
+            <input type="text" placeholder="Observaciones..." name="obs_int_multimedia">
+        </div>
+
+        <div class="category">5. MECÁNICA Y FLUIDOS</div>
+        <div class="checklist-item">
+            <span>Nivel de Aceite Motor / Fluidos</span>
+            <div class="options">
+                <label><input type="radio" name="mec_aceite" value="B" checked> B</label>
+                <label><input type="radio" name="mec_aceite" value="R"> R</label>
+                <label><input type="radio" name="mec_aceite" value="M"> M</label>
+                <label><input type="radio" name="mec_aceite" value="NA"> N/A</label>
+            </div>
+            <input type="text" placeholder="Observaciones..." name="obs_mec_aceite">
+        </div>
+
+        <div class="category">6. SEGURIDAD Y ACCESORIOS</div>
+        <div class="checklist-item">
+            <span>Rueda de Auxilio / Herramientas</span>
+            <div class="options">
+                <label><input type="radio" name="seg_auxilio" value="B" checked> B</label>
+                <label><input type="radio" name="seg_auxilio" value="R"> R</label>
+                <label><input type="radio" name="seg_auxilio" value="M"> M</label>
+                <label><input type="radio" name="seg_auxilio" value="NA"> N/A</label>
+            </div>
+            <input type="text" placeholder="Observaciones..." name="obs_seg_auxilio">
+        </div>
+        <div class="checklist-item">
+            <span>Matafuegos y Balizas</span>
+            <div class="options">
+                <label><input type="radio" name="seg_matafuegos" value="B" checked> B</label>
+                <label><input type="radio" name="seg_matafuegos" value="R"> R</label>
+                <label><input type="radio" name="seg_matafuegos" value="M"> M</label>
+                <label><input type="radio" name="seg_matafuegos" value="NA"> N/A</label>
+            </div>
+            <input type="text" placeholder="Observaciones..." name="obs_seg_matafuegos">
+        </div>
+
+        <div class="category">7. EVIDENCIA FOTOGRÁFICA</div>
+        <div class="form-group" style="margin-top: 15px;">
+            <label for="fotoEvidencia">Seleccionar Fotos:</label>
+            <input type="file" id="fotoEvidencia" accept="image/*" multiple>
+            <div id="previewContainer" class="preview-grid"></div>
+        </div>
+
+        <div class="category">8. CONFORMIDAD Y FIRMA</div>
+        <div class="signature-container">
+            <label>Firma del Cliente / Entregador:</label>
+            <canvas id="signaturePad" width="320" height="150"></canvas>
+            <button type="button" class="btn-clear" id="clearSignature">Borrar y Firmar de Nuevo</button>
+        </div>
+
+        <button type="submit" class="btn-submit" id="btnGuardar">Generar Documento DOCX</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('fecha').valueAsDate = new Date();
+
+    document.querySelectorAll('input[type="radio"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            var obsInput = document.querySelector('input[name="obs_' + this.name + '"]');
+            if (obsInput) {
+                if (this.value === 'R' || this.value === 'M') {
+                    obsInput.classList.add('required-obs');
+                    obsInput.placeholder = "Escriba el detalle obligatorio aquí...";
+                } else {
+                    obsInput.classList.remove('required-obs');
+                    obsInput.placeholder = "Observaciones...";
+                }
+            }
+        });
+    });
+
+    var fotosData = [];
+    document.getElementById('fotoEvidencia').addEventListener('change', function(e) {
+        var files = e.target.files;
+        var previewContainer = document.getElementById('previewContainer');
+        previewContainer.innerHTML = ''; 
+        fotosData = []; 
+
+        Array.from(files).forEach(function(file) {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var base64 = event.target.result;
+                var imgElement = document.createElement('img');
+                imgElement.src = base64;
+                
+                imgElement.onload = function() {
+                    // CÁLCULO DE CAJA DELIMITADORA (BOUNDING BOX) PARA MANTENER PROPORCIÓN
+                    var maxW = 270;
+                    var maxH = 200;
+                    var ratio = Math.min(maxW / imgElement.naturalWidth, maxH / imgElement.naturalHeight);
+                    var finalW = imgElement.naturalWidth * ratio;
+                    var finalH = imgElement.naturalHeight * ratio;
+
+                    fotosData.push({
+                        base64: base64,
+                        width: finalW,
+                        height: finalH
+                    });
+                };
+                previewContainer.appendChild(imgElement);
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+
+    var canvas = document.getElementById('signaturePad');
+    var ctx = canvas.getContext('2d');
+    var isDrawing = false;
+    var hasSignature = false;
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#000000";
+
+    function getTouchPos(canvasDom, touchEvent) {
+        var rect = canvasDom.getBoundingClientRect();
+        return {
+            x: touchEvent.touches[0].clientX - rect.left,
+            y: touchEvent.touches[0].clientY - rect.top
+        };
+    }
+
+    canvas.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        var pos = getTouchPos(canvas, e);
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y);
+        isDrawing = true;
+        hasSignature = true;
+    }, { passive: false });
+
+    canvas.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+        if (!isDrawing) return;
+        var pos = getTouchPos(canvas, e);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+    }, { passive: false });
+
+    canvas.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        isDrawing = false;
+    }, { passive: false });
+
+    canvas.addEventListener('mousedown', function(e) {
+        var rect = canvas.getBoundingClientRect();
+        isDrawing = true;
+        hasSignature = true;
+        ctx.beginPath();
+        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    });
+    canvas.addEventListener('mousemove', function(e) {
+        if (!isDrawing) return;
+        var rect = canvas.getBoundingClientRect();
+        ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+        ctx.stroke();
+    });
+    canvas.addEventListener('mouseup', function() { isDrawing = false; });
+    
+    document.getElementById('clearSignature').addEventListener('click', function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        hasSignature = false;
+    });
+
+    function base64ToArrayBuffer(dataURL) {
+        var parts = dataURL.split(';base64,');
+        if (parts.length !== 2) return null;
+        var binaryString = window.atob(parts[1]);
+        var bytes = new Uint8Array(binaryString.length);
+        for (var i = 0; i < binaryString.length; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+        return bytes.buffer;
+    }
+
+    document.getElementById('checklistForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        var faltanDatos = false;
+        document.querySelectorAll('input.required-obs').forEach(function(input) {
+            if (input.value.trim() === '') {
+                faltanDatos = true;
+            }
+             });
+
+        if (faltanDatos) {
+            alert("⚠️ Por favor, detalle las observaciones de las fallas marcadas en rojo.");
+            return;
+        }
+        
+        var btn = document.getElementById('btnGuardar');
+        var originalText = btn.innerText;
+        btn.innerText = "Estructurando Tabla DOCX...";
+        btn.disabled = true;
+
+        try {
+            var formData = new FormData(this);
+            var data = Object.fromEntries(formData.entries());
+
+            function createTableSection(title, itemsData) {
+                var elements = [
+                    new docx.Paragraph({
+                        children: [new docx.TextRun({ text: title, bold: true, size: 28, color: "1F4E78" })],
+                        spacing: { before: 300, after: 100 }
+                    })
+                ];
+
+                var rows = [
+                    new docx.TableRow({
+                        tableHeader: true,
+                        children: [
+                            new docx.TableCell({ width: { size: 40, type: docx.WidthType.PERCENTAGE }, shading: { fill: "D9E1F2" }, children: [new docx.Paragraph({ text: "Ítem Evaluado", bold: true, alignment: docx.AlignmentType.CENTER })] }),
+                            new docx.TableCell({ width: { size: 15, type: docx.WidthType.PERCENTAGE }, shading: { fill: "D9E1F2" }, children: [new docx.Paragraph({ text: "Estado", bold: true, alignment: docx.AlignmentType.CENTER })] }),
+                            new docx.TableCell({ width: { size: 45, type: docx.WidthType.PERCENTAGE }, shading: { fill: "D9E1F2" }, children: [new docx.Paragraph({ text: "Observaciones", bold: true, alignment: docx.AlignmentType.CENTER })] })
+                        ]
+                    })
+                ];
+
+                itemsData.forEach(function(row) {
+                    rows.push(new docx.TableRow({
+                        children: [
+                            new docx.TableCell({ children: [new docx.Paragraph({ text: row.item, size: 22 })], margins: { top: 100, bottom: 100, left: 100, right: 100 } }),
+                            new docx.TableCell({ children: [new docx.Paragraph({ text: row.estado, size: 22, bold: true, alignment: docx.AlignmentType.CENTER })], margins: { top: 100, bottom: 100 } }),
+                            new docx.TableCell({ children: [new docx.Paragraph({ text: row.obs || 'N/A', size: 22 })], margins: { top: 100, bottom: 100, left: 100, right: 100 } })
+                        ]
+                    }));
+                });
+
+                elements.push(new docx.Table({
+                    width: { size: 100, type: docx.WidthType.PERCENTAGE },
+                    rows: rows
+                }));
+
+                return elements;
+            }
+
+            var pChildren = [
+                new docx.Paragraph({
+                    children: [new docx.TextRun({ text: "REPORTE DE CHECKLIST VEHICULAR", bold: true, size: 32, color: "1F4E78" })],
+                    spacing: { after: 100 },
+                    alignment: docx.AlignmentType.CENTER
+                }),
+                new docx.Paragraph({
+                    children: [new docx.TextRun({ text: "X5 ARGENTINA - SUCURSAL MENDOZA (San Martín 2417)", bold: true, size: 22 })],
+                    alignment: docx.AlignmentType.CENTER
+                }),
+                new docx.Paragraph({ text: "Fecha: " + data.fecha + " | Tipo: " + data.tipo, spacing: { before: 300 } }),
+                new docx.Paragraph({ text: "Vehículo: " + (data.marca || 'N/D') + " " + (data.modelo || '') + " (" + (data.color || 'N/D') + ")" }),
+                new docx.Paragraph({ text: "Dominio: " + data.dominio.toUpperCase() + " | Km: " + data.km + " | Combustible: " + data.combustible })
+            ];
+
+            pChildren = pChildren.concat(createTableSection("1. Documentación", [
+                { item: "Cédula Verde / Azul", estado: data.doc_cedula, obs: data.obs_doc_cedula },
+                { item: "Seguro / VTV / Manuales", estado: data.doc_seguro, obs: data.obs_doc_seguro }
+            ]));
+
+            pChildren = pChildren.concat(createTableSection("2. Exterior y Carrocería", [
+                { item: "Pintura / Rayones / Bollos", estado: data.ext_pintura, obs: data.obs_ext_pintura },
+                { item: "Cristales y Parabrisas", estado: data.ext_cristales, obs: data.obs_ext_cristales },
+                { item: "Neumáticos y Llantas", estado: data.ext_neumaticos, obs: data.obs_ext_neumaticos }
+            ]));
+
+            pChildren = pChildren.concat(createTableSection("3. Sistema Eléctrico y Luces", [
+                { item: "Luces Altas / Bajas / Pos.", estado: data.elec_luces, obs: data.obs_elec_luces },
+                { item: "Giros / Stop / Reversa", estado: data.elec_giro, obs: data.obs_elec_giro }
+            ]));
+
+            pChildren = pChildren.concat(createTableSection("4. Interior y Confort", [
+                { item: "Tapizados y Alfombras", estado: data.int_tapizado, obs: data.obs_int_tapizado },
+                { item: "Aire Acond. / Calefacción", estado: data.int_clima, obs: data.obs_int_clima },
+                { item: "Radio / Multimedia", estado: data.int_multimedia, obs: data.obs_int_multimedia }
+            ]));
+
+            pChildren = pChildren.concat(createTableSection("5. Mecánica y Fluidos", [
+                { item: "Nivel de Aceite / Fluidos", estado: data.mec_aceite, obs: data.obs_mec_aceite }
+            ]));
+
+            pChildren = pChildren.concat(createTableSection("6. Seguridad y Accesorios", [
+                { item: "Rueda Auxilio / Herramientas", estado: data.seg_auxilio, obs: data.obs_seg_auxilio },
+                { item: "Matafuegos y Balizas", estado: data.seg_matafuegos, obs: data.obs_seg_matafuegos }
+            ]));
+
+            if (fotosData.length > 0) {
+                pChildren.push(new docx.Paragraph({
+                    children: [new docx.TextRun({ text: "7. Evidencia Fotográfica", bold: true, size: 28, color: "1F4E78" })],
+                    spacing: { before: 300, after: 200 }
+                }));
+
+                var photoRows = [];
+                for (var i = 0; i < fotosData.length; i += 2) {
+                    var cell1 = [];
+                    var cell2 = [];
+
+                    var buf1 = base64ToArrayBuffer(fotosData[i].base64);
+                    if (buf1) cell1.push(new docx.Paragraph({ children: [new docx.ImageRun({ data: buf1, transformation: { width: fotosData[i].width, height: fotosData[i].height } })], alignment: docx.AlignmentType.CENTER }));
+                    
+                    if (i + 1 < fotosData.length) {
+                        var buf2 = base64ToArrayBuffer(fotosData[i+1].base64);
+                        if (buf2) cell2.push(new docx.Paragraph({ children: [new docx.ImageRun({ data: buf2, transformation: { width: fotosData[i+1].width, height: fotosData[i+1].height } })], alignment: docx.AlignmentType.CENTER }));
+                    }
+
+                    photoRows.push(new docx.TableRow({
+                        children: [
+                            new docx.TableCell({ children: cell1.length ? cell1 : [new docx.Paragraph("")], margins: { top: 150, bottom: 150, left: 100, right: 100 } }),
+                            new docx.TableCell({ children: cell2.length ? cell2 : [new docx.Paragraph("")], margins: { top: 150, bottom: 150, left: 100, right: 100 } })
+                        ]
+                    }));
+                }
+
+                pChildren.push(new docx.Table({ 
+                    width: { size: 100, type: docx.WidthType.PERCENTAGE }, 
+                    rows: photoRows 
+                }));
+            }
+
+            pChildren.push(new docx.Paragraph({
+                children: [new docx.TextRun({ text: "8. Conformidad", bold: true, size: 28, color: "1F4E78" })],
+                spacing: { before: 400, after: 100 }
+            }));
+
+            if (hasSignature) {
+                var firmaBuffer = base64ToArrayBuffer(canvas.toDataURL('image/png'));
+                pChildren.push(new docx.Paragraph({
+                    children: [new docx.ImageRun({ data: firmaBuffer, transformation: { width: 320, height: 150 } })],
+                    alignment: docx.AlignmentType.CENTER
+                }));
+                pChildren.push(new docx.Paragraph({ text: "Firma Digital Recolectada", alignment: docx.AlignmentType.CENTER }));
+            } else {
+                pChildren.push(new docx.Paragraph({ text: "_______________________________", spacing: { before: 600 } }));
+                pChildren.push(new docx.Paragraph({ text: "Firma Física Pendiente" }));
+            }
+
+            var doc = new docx.Document({
+                sections: [{ properties: {}, children: pChildren }]
+            });
+
+            docx.Packer.toBlob(doc).then(function(blob) {
+                var enlaceDescarga = document.createElement('a');
+                enlaceDescarga.href = URL.createObjectURL(blob);
+                var nombreArchivo = "Checklist_" + data.dominio.toUpperCase().replace(/\s/g, '') + "_" + data.fecha + ".docx";
+                enlaceDescarga.download = nombreArchivo;
+                
+                document.body.appendChild(enlaceDescarga);
+                enlaceDescarga.click();
+                document.body.removeChild(enlaceDescarga);
+                URL.revokeObjectURL(enlaceDescarga.href);
+
+                btn.innerText = originalText;
+                btn.disabled = false;
+                
+                document.getElementById('checklistForm').reset();
+                document.getElementById('fecha').valueAsDate = new Date();
+                document.getElementById('previewContainer').innerHTML = '';
+                fotosData = [];
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                hasSignature = false;
+                document.querySelectorAll('input.required-obs').forEach(function(input) {
+                    input.classList.remove('required-obs');
+                    input.placeholder = "Observaciones...";
+                });
+            }).catch(function(err) {
+                alert("Error al empaquetar el DOCX: " + err.message);
+                btn.innerText = originalText;
+                btn.disabled = false;
+            });
+
+        } catch (errorGeneral) {
+            alert("Error general: " + errorGeneral.message);
+            btn.innerText = originalText;
+            btn.disabled = false;
+        }
+    });
+</script>
+
+</body>
+</html>
