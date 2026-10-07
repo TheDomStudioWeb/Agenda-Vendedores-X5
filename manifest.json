@@ -1,7 +1,7 @@
 {
   "name": "X5 OS Comercial",
   "short_name": "X5 Cuyo",
-  "start_url": "./index.html",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#050505",
   "theme_color": "#0a0a0a",
