@@ -3,123 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unificador Documentos y Fotos</title>
-    <!-- Importar la librería pdf-lib desde un CDN -->
+    <title>Escáner y Unificador X5</title>
+    <!-- Librerías PDF-Lib y Cropper.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 550px;
-            width: 100%;
-        }
-        h1 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        p.subtitle {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 25px;
-        }
-        .file-input-wrapper {
-            margin-bottom: 20px;
-        }
-        input[type="file"] {
-            display: none;
-        }
-        .custom-file-upload {
-            border: 2px dashed #4CAF50;
-            display: inline-block;
-            padding: 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            color: #4CAF50;
-            font-weight: bold;
-            width: 80%;
-            transition: background-color 0.3s;
-        }
-        .custom-file-upload:hover {
-            background-color: #f1f8e9;
-        }
-        #file-list {
-            text-align: left;
-            margin: 15px 0;
-            font-size: 14px;
-            color: #555;
-            max-height: 200px;
-            overflow-y: auto;
-            background: #fafafa;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #eee;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-        .btn-clear {
-            background-color: #f44336;
-        }
-        .btn-clear:hover {
-            background-color: #d32f2f;
-        }
-        #status {
-            margin-top: 15px;
-            font-size: 14px;
-            color: #2196F3;
-            font-weight: bold;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; max-width: 550px; width: 100%; }
+        h1 { color: #0056b3; font-size: 24px; margin-bottom: 10px; }
+        p.subtitle { color: #666; font-size: 14px; margin-bottom: 25px; }
+        .file-input-wrapper { margin-bottom: 20px; }
+        input[type="file"] { display: none; }
+        .custom-file-upload { border: 2px dashed #0056b3; display: inline-block; padding: 20px; cursor: pointer; border-radius: 5px; color: #0056b3; font-weight: bold; width: 80%; transition: background-color 0.3s; }
+        .custom-file-upload:hover { background-color: #e9ecef; }
+        #file-list { text-align: left; margin: 15px 0; font-size: 14px; color: #555; max-height: 150px; overflow-y: auto; background: #fafafa; padding: 10px; border-radius: 5px; border: 1px solid #eee; }
+        button { background-color: #28a745; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 5px; cursor: pointer; width: 100%; margin-bottom: 10px; font-weight: bold;}
+        button:disabled { background-color: #cccccc; cursor: not-allowed; }
+        .btn-clear { background-color: #dc3545; }
+        #status { margin-top: 15px; font-size: 14px; color: #2196F3; font-weight: bold; }
+
+        /* MODAL DE RECORTE TIPO ESCÁNER */
+        #cropper-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center; flex-direction: column; padding: 15px; box-sizing: border-box; }
+        .cropper-container-box { width: 100%; max-width: 500px; height: 60vh; background: #000; margin-bottom: 15px; display: flex; justify-content: center; align-items: center;}
+        #image-to-crop { max-width: 100%; max-height: 100%; display: block; }
+        .cropper-buttons { display: flex; flex-wrap: wrap; gap: 10px; width: 100%; max-width: 500px; justify-content: center;}
+        .btn-crop { background-color: #28a745; flex: 1; min-width: 140px;}
+        .btn-rotate { background-color: #17a2b8; flex: 1; min-width: 140px;}
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Unificador Documentos y Fotos</h1>
-        <p class="subtitle">Selecciona archivos PDF, JPG o PNG. Puedes añadir archivos desde distintas carpetas repitiendo el proceso de selección.</p>
+        <h1>Escáner de Legajos X5</h1>
+        <p class="subtitle">Sube o fotografía documentos. El sistema los adaptará automáticamente a formato A4 sin bordes.</p>
         
         <div class="file-input-wrapper">
             <label class="custom-file-upload">
                 <input type="file" id="file-upload" accept=".pdf, .jpg, .jpeg, .png" multiple>
-                + Añadir PDFs e Imágenes
+                + Añadir Fotos o PDFs
             </label>
         </div>
 
         <div id="file-list" style="display: none;"></div>
 
-        <button id="merge-btn" disabled>Crear PDF Unificado</button>
-        <button id="clear-btn" class="btn-clear" disabled>Limpiar archivos</button>
+        <button id="merge-btn" disabled>Generar Legajo PDF</button>
+        <button id="clear-btn" class="btn-clear" disabled>Limpiar todo</button>
         <div id="status"></div>
+    </div>
+
+    <div id="cropper-modal">
+        <p style="color: white; margin-bottom: 10px; font-weight: bold; text-align: center;">Ajusta las esquinas para eliminar la mesa/fondo</p>
+        <div class="cropper-container-box">
+            <img id="image-to-crop" src="">
+        </div>
+        <div class="cropper-buttons">
+            <button class="btn-rotate" onclick="rotarImagen()">🔄 Girar</button>
+            <button class="btn-crop" onclick="confirmarRecorte()">✅ Confirmar</button>
+        </div>
     </div>
 
     <script>
@@ -128,22 +70,19 @@
         const mergeBtn = document.getElementById('merge-btn');
         const clearBtn = document.getElementById('clear-btn');
         const statusDisplay = document.getElementById('status');
+        const modal = document.getElementById('cropper-modal');
+        const imageToCrop = document.getElementById('image-to-crop');
 
         const { PDFDocument } = PDFLib;
-        
-        // Nuestro array global que acumulará los archivos
         let selectedFiles = [];
+        let queueImages = []; 
+        let cropper = null;
 
-        // Función centralizada para actualizar la vista de la lista
         const updateUI = () => {
             if (selectedFiles.length > 0) {
                 fileListDisplay.style.display = 'block';
-                fileListDisplay.innerHTML = '<strong>Archivos a procesar:</strong><br>' + 
-                    selectedFiles.map((f, i) => {
-                        let typeIcon = f.type.includes('pdf') ? '📄' : '🖼️';
-                        return `${i + 1}. ${typeIcon} ${f.name}`;
-                    }).join('<br>');
-                
+                fileListDisplay.innerHTML = '<strong>Archivos procesados:</strong><br>' + 
+                    selectedFiles.map((f, i) => `✓ ${f.name}`).join('<br>');
                 mergeBtn.disabled = false;
                 clearBtn.disabled = false;
             } else {
@@ -154,58 +93,108 @@
             }
         };
 
-        // Función para limpiar todo
         const clearFiles = () => {
             selectedFiles = [];
-            fileInput.value = ''; // Resetea el input
+            fileInput.value = '';
             statusDisplay.innerText = '';
             updateUI();
         };
 
         clearBtn.addEventListener('click', clearFiles);
 
-        // Cuando se seleccionan nuevos archivos
         fileInput.addEventListener('change', (event) => {
-            const newFiles = Array.from(event.target.files);
-            
-            // CONCATENAMOS los archivos nuevos con los que ya existían
-            selectedFiles = [...selectedFiles, ...newFiles];
-            
-            // Vaciamos el input para que el navegador permita volver a abrirlo y seleccionar más
+            const files = Array.from(event.target.files);
             fileInput.value = ''; 
-            statusDisplay.innerText = '';
             
+            queueImages = [];
+            for (let file of files) {
+                if (file.type === 'application/pdf') {
+                    selectedFiles.push({ data: file, name: file.name, isPdf: true });
+                } else if (file.type.includes('image')) {
+                    queueImages.push(file);
+                }
+            }
             updateUI();
+            processNextImage();
         });
 
-        // Función principal de unificación
+        const processNextImage = () => {
+            if (queueImages.length > 0) {
+                const imgFile = queueImages.shift();
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    imageToCrop.src = e.target.result;
+                    modal.style.display = 'flex';
+                    
+                    // Esperamos un microsegundo a que el modal sea visible para iniciar Cropper correctamente
+                    setTimeout(() => {
+                        if (cropper) cropper.destroy();
+                        cropper = new Cropper(imageToCrop, {
+                            viewMode: 2, // Impide que el cuadro salga de los límites de la imagen
+                            autoCropArea: 0.95,
+                            background: false
+                        });
+                    }, 50);
+                };
+                reader.readAsDataURL(imgFile);
+            }
+        };
+
+        window.rotarImagen = () => {
+            if (cropper) cropper.rotate(90);
+        };
+
+        window.confirmarRecorte = () => {
+            if (!cropper) return;
+            const canvas = cropper.getCroppedCanvas({ fillColor: '#fff' });
+            canvas.toBlob((blob) => {
+                selectedFiles.push({ data: blob, name: 'Documento_Escaneado.jpg', isPdf: false });
+                cerrarModalYContinuar();
+            }, 'image/jpeg', 0.90);
+        };
+
+        const cerrarModalYContinuar = () => {
+            modal.style.display = 'none';
+            if (cropper) { cropper.destroy(); cropper = null; }
+            imageToCrop.src = ""; 
+            updateUI();
+            processNextImage(); 
+        };
+
         mergeBtn.addEventListener('click', async () => {
             try {
-                mergeBtn.disabled = true;
-                clearBtn.disabled = true;
-                statusDisplay.innerText = 'Procesando documentos y fotos...';
-                statusDisplay.style.color = '#2196F3';
+                mergeBtn.disabled = true; clearBtn.disabled = true;
+                statusDisplay.innerText = 'Ensamblando legajo...';
 
                 const mergedPdf = await PDFDocument.create();
 
-                for (let file of selectedFiles) {
-                    const arrayBuffer = await file.arrayBuffer();
-                    const fileType = file.type;
+                for (let item of selectedFiles) {
+                    const arrayBuffer = await item.data.arrayBuffer();
 
-                    if (fileType === 'application/pdf') {
+                    if (item.isPdf) {
                         const pdf = await PDFDocument.load(arrayBuffer);
                         const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
                         copiedPages.forEach((page) => mergedPdf.addPage(page));
-                        
-                    } else if (fileType === 'image/jpeg' || fileType === 'image/jpg') {
+                    } else {
                         const image = await mergedPdf.embedJpg(arrayBuffer);
-                        const page = mergedPdf.addPage([image.width, image.height]);
-                        page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+                        
+                        // LÓGICA DE ESCÁNER: Detectar si es DNI (apaisado) o Título (vertical)
+                        const isLandscape = image.width > image.height;
+                        const pageWidth = isLandscape ? 841.89 : 595.28;  // A4 en puntos
+                        const pageHeight = isLandscape ? 595.28 : 841.89;
 
-                    } else if (fileType === 'image/png') {
-                        const image = await mergedPdf.embedPng(arrayBuffer);
-                        const page = mergedPdf.addPage([image.width, image.height]);
-                        page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+                        const page = mergedPdf.addPage([pageWidth, pageHeight]);
+                        
+                        // Escalar dejando solo 15 puntos de margen para simular hoja completa
+                        const margin = 15;
+                        const imgDims = image.scaleToFit(pageWidth - margin * 2, pageHeight - margin * 2);
+                        
+                        page.drawImage(image, {
+                            x: (pageWidth - imgDims.width) / 2,
+                            y: (pageHeight - imgDims.height) / 2,
+                            width: imgDims.width,
+                            height: imgDims.height,
+                        });
                     }
                 }
 
@@ -214,23 +203,16 @@
                 const url = URL.createObjectURL(blob);
                 
                 const a = document.createElement('a');
-                a.href = url;
-                a.download = 'Documento_Final_Unificado.pdf';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
+                a.href = url; a.download = 'Legajo_Escaneado_X5.pdf';
+                document.body.appendChild(a); a.click(); document.body.removeChild(a);
                 URL.revokeObjectURL(url);
 
-                statusDisplay.innerText = '¡Archivo descargado con éxito!';
-                statusDisplay.style.color = '#4CAF50';
-
+                statusDisplay.innerText = '¡PDF generado con éxito!';
             } catch (error) {
                 console.error(error);
-                statusDisplay.innerText = 'Hubo un error al procesar los archivos.';
-                statusDisplay.style.color = 'red';
+                statusDisplay.innerText = 'Error al procesar el archivo.';
             } finally {
-                clearBtn.disabled = false;
-                mergeBtn.disabled = false;
+                clearBtn.disabled = false; mergeBtn.disabled = false;
             }
         });
     </script>
