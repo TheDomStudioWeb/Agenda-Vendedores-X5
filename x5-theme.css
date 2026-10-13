@@ -9,8 +9,10 @@
   --x5: #00c8f5;            /* acento X5 (acciones, datos, links) */
   --x5-strong: #00a6cc;
   --x5-soft: rgba(0, 200, 245, .12);
-  --dom: #d4af37;           /* acento DOM Studio (premium, destacados, metas) */
+  --dom: #d4af37;           /* oro DOM Studio (thedomstudioweb.github.io) */
   --dom-strong: #b8952a;
+  --dom-light: #e6c855;     /* brillo del oro DOM */
+  --dom-deep: #8a7322;
   --dom-soft: rgba(212, 175, 55, .13);
 
   /* Estados */
@@ -19,7 +21,7 @@
   --bad: #ff5d5d;  --bad-soft: rgba(255, 93, 93, .13);
 
   /* Superficies (modo oscuro por defecto) */
-  --bg: #07080a;
+  --bg: #0a0a0a;           /* negro DOM Studio */
   --bg-glow: radial-gradient(1200px 600px at 50% -10%, rgba(0, 200, 245, .08), transparent 60%),
              radial-gradient(900px 500px at 100% 0%, rgba(212, 175, 55, .06), transparent 60%);
   --surface: #111317;
@@ -35,6 +37,7 @@
 
   --radius: 16px;
   --radius-sm: 10px;
+  --font-display: 'Playfair Display', Georgia, serif; /* tipografía de títulos DOM */
   --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -173,7 +176,7 @@ textarea { resize: vertical; min-height: 70px; }
 }
 .btn:active { transform: scale(.98); }
 .btn:disabled { opacity: .45; cursor: not-allowed; }
-.btn-dom { background: linear-gradient(135deg, var(--dom), var(--dom-strong)); color: #120d02; }
+.btn-dom { background: linear-gradient(135deg, var(--dom-light), var(--dom) 55%, var(--dom-strong)); color: #120d02; }
 .btn-ghost { background: var(--surface-2); color: var(--text); border-color: var(--line-strong); }
 .btn-wsp { background: #1fb855; color: #fff; }
 .btn-danger { background: var(--bad-soft); color: var(--bad); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
@@ -238,3 +241,6 @@ textarea { resize: vertical; min-height: 70px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* Firma DOM Studio */
+.dom-sign { font-family: var(--font-display); font-style: italic; letter-spacing: .3px; color: var(--dom); }
