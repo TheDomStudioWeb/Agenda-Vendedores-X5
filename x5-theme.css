@@ -1,0 +1,248 @@
+/* =====================================================================
+   X5 Cuyo · Hub Comercial — Tema compartido
+   Mezcla X5 Argentina (acento principal) + The DOM Studio Web (acento premium).
+   Para ajustar la identidad, cambiá SOLO las variables de :root.
+   ===================================================================== */
+
+:root {
+  /* Marca */
+  --x5-silver: linear-gradient(160deg, #ffffff 0%, #c9ced4 35%, #8e959d 55%, #e9ecef 75%, #a7adb4 100%); /* cromado del logo X5 */
+  --x5: #00c8f5;            /* cian del ícono X5 OS (acciones, datos, links) */
+  --x5-strong: #00a6cc;
+  --x5-soft: rgba(0, 200, 245, .12);
+  --dom: #d4af37;           /* oro DOM Studio (thedomstudioweb.github.io) */
+  --dom-strong: #b8952a;
+  --dom-light: #e6c855;     /* brillo del oro DOM */
+  --dom-deep: #8a7322;
+  --dom-soft: rgba(212, 175, 55, .13);
+
+  /* Estados */
+  --ok: #2fd18a;   --ok-soft: rgba(47, 209, 138, .13);
+  --warn: #f2b33d; --warn-soft: rgba(242, 179, 61, .14);
+  --bad: #ff5d5d;  --bad-soft: rgba(255, 93, 93, .13);
+
+  /* Superficies (modo oscuro por defecto) */
+  --bg: #0a0a0a;           /* negro DOM Studio */
+  --bg-glow: radial-gradient(1200px 600px at 50% -10%, rgba(0, 200, 245, .08), transparent 60%),
+             radial-gradient(900px 500px at 100% 0%, rgba(212, 175, 55, .06), transparent 60%);
+  --surface: #111317;
+  --surface-2: #171a1f;
+  --surface-3: #1f232a;
+  --line: rgba(255, 255, 255, .08);
+  --line-strong: rgba(255, 255, 255, .16);
+  --text: #f3f5f7;
+  --muted: #8b939e;
+  --faint: #5c636d;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .45);
+  --on-accent: #041015;
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  --font-display: 'Playfair Display', Georgia, serif; /* tipografía de títulos DOM */
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  color-scheme: dark;
+}
+
+/* Modo claro (sigue el ajuste del teléfono; útil a pleno sol) */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f3f5f8;
+    --bg-glow: radial-gradient(1200px 600px at 50% -10%, rgba(0, 166, 204, .10), transparent 60%);
+    --surface: #ffffff;
+    --surface-2: #f6f8fa;
+    --surface-3: #eceff3;
+    --line: rgba(10, 20, 30, .09);
+    --line-strong: rgba(10, 20, 30, .18);
+    --text: #0d1117;
+    --muted: #5b6573;
+    --faint: #8a93a0;
+    --shadow: 0 8px 24px rgba(15, 25, 40, .08);
+    --x5: #0093b8; --x5-strong: #007a99; --x5-soft: rgba(0, 147, 184, .10);
+    --dom: #a8841f; --dom-strong: #8c6d16; --dom-soft: rgba(168, 132, 31, .12);
+    --ok: #12a066; --warn: #c98a0e; --bad: #d93a3a;
+    --on-accent: #ffffff;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f3f5f8; --surface: #fff; --surface-2: #f6f8fa; --surface-3: #eceff3;
+  --line: rgba(10,20,30,.09); --line-strong: rgba(10,20,30,.18);
+  --text: #0d1117; --muted: #5b6573; --faint: #8a93a0; --shadow: 0 8px 24px rgba(15,25,40,.08);
+  --x5: #0093b8; --x5-strong: #007a99; --dom: #a8841f; --on-accent: #fff; color-scheme: light;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg-glow), var(--bg);
+  background-attachment: fixed;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 100vh;
+  line-height: 1.45;
+}
+a { color: var(--x5); }
+button { font-family: inherit; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ── Barra superior común ─────────────────────────────────────────── */
+.x5-top {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; gap: 12px;
+  padding: calc(10px + var(--safe-top)) 16px 10px;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.x5-back {
+  width: 38px; height: 38px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 12px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--text); text-decoration: none;
+}
+.x5-back svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
+.x5-top h1 { margin: 0; font-size: 1rem; font-weight: 700; letter-spacing: .2px; }
+.x5-top .sub { font-size: .72rem; color: var(--muted); letter-spacing: .3px; }
+.x5-top .spacer { flex: 1; }
+
+.brandmark { font-weight: 800; letter-spacing: 1.5px; }
+.brandmark b { font-weight: 800; background: var(--x5-silver); -webkit-background-clip: text; background-clip: text; color: transparent; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .brandmark b { background: linear-gradient(160deg, #3a4048, #8e959d 50%, #2b3036); -webkit-background-clip: text; background-clip: text; } }
+.brandmark i { color: var(--dom); font-style: normal; }
+
+/* ── Contenedores ─────────────────────────────────────────────────── */
+.x5-wrap { max-width: 760px; margin: 0 auto; padding: 16px 16px calc(32px + var(--safe-bottom)); }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+.card + .card { margin-top: 14px; }
+.card-title {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  margin: 0 0 14px; font-size: .78rem; font-weight: 700;
+  letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted);
+}
+.card-title .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--x5); display: inline-block; margin-right: 8px; }
+
+/* ── Formularios ──────────────────────────────────────────────────── */
+.field { margin-bottom: 12px; }
+.field label, .lbl {
+  display: block; margin-bottom: 6px;
+  font-size: .72rem; font-weight: 600; letter-spacing: .6px;
+  text-transform: uppercase; color: var(--muted);
+}
+.hint { display: block; margin-top: 5px; font-size: .72rem; color: var(--faint); }
+input, select, textarea {
+  width: 100%; padding: 12px 14px;
+  font: inherit; font-size: 16px; /* evita zoom en iPhone */
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  transition: border-color .2s, box-shadow .2s;
+  -webkit-appearance: none; appearance: none;
+}
+select {
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+  background-size: 5px 5px; background-repeat: no-repeat; padding-right: 36px;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none; border-color: var(--x5); box-shadow: 0 0 0 3px var(--x5-soft);
+}
+textarea { resize: vertical; min-height: 70px; }
+.row { display: flex; gap: 10px; }
+.row > * { flex: 1; min-width: 0; }
+.money { position: relative; }
+.money::before { content: '$'; position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+.money input { padding-left: 28px; }
+
+/* ── Botones ──────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 14px 18px;
+  font-size: .95rem; font-weight: 700; letter-spacing: .2px;
+  border: 1px solid transparent; border-radius: 12px;
+  background: var(--x5); color: var(--on-accent);
+  cursor: pointer; text-decoration: none;
+  transition: transform .12s, filter .2s, opacity .2s;
+}
+.btn:active { transform: scale(.98); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn-dom { background: linear-gradient(135deg, var(--dom-light), var(--dom) 55%, var(--dom-strong)); color: #120d02; }
+.btn-ghost { background: var(--surface-2); color: var(--text); border-color: var(--line-strong); }
+.btn-wsp { background: #1fb855; color: #fff; }
+.btn-danger { background: var(--bad-soft); color: var(--bad); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.btn-sm { width: auto; padding: 8px 12px; font-size: .8rem; border-radius: 10px; }
+.btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; flex: none; }
+.btn-icon { width: 38px; height: 38px; padding: 0; border-radius: 12px; }
+
+/* ── Chips / badges ───────────────────────────────────────────────── */
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 999px;
+  font-size: .72rem; font-weight: 600;
+  background: var(--surface-3); color: var(--muted);
+}
+.chip.x5 { background: var(--x5-soft); color: var(--x5); }
+.chip.dom { background: var(--dom-soft); color: var(--dom); }
+.chip.ok { background: var(--ok-soft); color: var(--ok); }
+.chip.warn { background: var(--warn-soft); color: var(--warn); }
+.chip.bad { background: var(--bad-soft); color: var(--bad); }
+
+/* ── Segmentado (pestañas de filtro) ──────────────────────────────── */
+.seg { display: flex; padding: 4px; gap: 4px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; }
+.seg button {
+  flex: 1; padding: 9px 8px; border: 0; border-radius: 9px;
+  background: transparent; color: var(--muted); font-weight: 600; font-size: .82rem; cursor: pointer;
+}
+.seg button.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+
+/* ── Toast ────────────────────────────────────────────────────────── */
+.x5-toast-host { position: fixed; left: 0; right: 0; bottom: calc(84px + var(--safe-bottom)); z-index: 9999; display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; padding: 0 16px; }
+.x5-toast {
+  max-width: 420px; padding: 11px 16px; border-radius: 12px;
+  background: var(--surface-3); color: var(--text);
+  border: 1px solid var(--line-strong); box-shadow: var(--shadow);
+  font-size: .86rem; font-weight: 600;
+  animation: x5-in .25s ease-out;
+}
+.x5-toast.ok { border-color: color-mix(in srgb, var(--ok) 45%, transparent); }
+.x5-toast.bad { border-color: color-mix(in srgb, var(--bad) 45%, transparent); }
+@keyframes x5-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ── Hoja modal (bottom sheet) ────────────────────────────────────── */
+.x5-sheet-bg { position: fixed; inset: 0; z-index: 900; background: rgba(0,0,0,.6); display: none; align-items: flex-end; justify-content: center; }
+.x5-sheet-bg.open { display: flex; }
+.x5-sheet {
+  width: 100%; max-width: 560px; max-height: 92vh; overflow: auto;
+  background: var(--surface); border-radius: 20px 20px 0 0;
+  border: 1px solid var(--line); padding: 18px 18px calc(18px + var(--safe-bottom));
+  animation: x5-up .25s ease-out;
+}
+@keyframes x5-up { from { transform: translateY(30px); opacity: .6; } to { transform: none; opacity: 1; } }
+
+/* ── Utilidades ───────────────────────────────────────────────────── */
+.muted { color: var(--muted); }
+.center { text-align: center; }
+.stack { display: flex; flex-direction: column; gap: 10px; }
+.hidden, [hidden] { display: none !important; }
+.empty { text-align: center; padding: 28px 10px; color: var(--muted); font-size: .9rem; }
+.spinner { width: 22px; height: 22px; border-radius: 50%; border: 2.5px solid var(--line-strong); border-top-color: var(--x5); animation: x5-spin .8s linear infinite; display: inline-block; }
+@keyframes x5-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* Firma DOM Studio */
+.dom-sign { font-family: var(--font-display); font-style: italic; letter-spacing: .3px; color: var(--dom); }
