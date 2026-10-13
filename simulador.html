@@ -1,561 +1,497 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X5 Argentina | Auditoría de Inversión</title>
-    <!-- Librerías externas: Chart.js y html2canvas para captura perfecta -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <style>
-        :root {
-            --bg-dark: #0a0a0a;
-            --panel-bg: #141414;
-            --cyan: #00d2ff;
-            --gold: #d4af37;
-            --text-main: #f5f5f5;
-            --text-muted: #888888;
-            --danger: #e74c3c;
-            --success: #2ecc71;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#07080a">
+<title>Auditoría de Inversión · X5 Cuyo</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="x5-theme.css">
+<style>
+  /* Nota: dentro de #reporte no se usa color-mix() para que la exportación a imagen salga perfecta */
+  #reporte { display: flex; flex-direction: column; gap: 14px; background: var(--bg); padding: 2px; border-radius: 18px; }
+  .rep-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; padding: 6px 4px 2px; }
+  .rep-head .brandmark { font-size: 1.25rem; }
+  .rep-head .t { font-size: .68rem; letter-spacing: 1.8px; text-transform: uppercase; color: var(--dom); font-weight: 700; margin-top: 2px; }
+  .rep-head .who { text-align: right; font-size: .72rem; color: var(--muted); line-height: 1.35; }
+  .rep-head .who b { color: var(--text); font-weight: 600; }
 
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            margin: 0;
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-        }
+  details.params summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  details.params summary::-webkit-details-marker { display: none; }
+  details.params summary .chev { width: 28px; height: 28px; border-radius: 9px; display: grid; place-items: center; background: var(--surface-3); transition: transform .2s; }
+  details.params[open] summary .chev { transform: rotate(180deg); }
+  details.params summary .resumen { font-size: .8rem; color: var(--muted); }
+  details.params .grid { margin-top: 14px; }
 
-        #dashboard-export {
-            max-width: 500px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            background-color: var(--bg-dark);
-            padding: 15px;
-            box-sizing: border-box;
-            border-radius: 12px;
-        }
+  .whatif { background: linear-gradient(145deg, rgba(212,175,55,.14), rgba(212,175,55,.02) 60%), var(--surface); border: 1px dashed rgba(212,175,55,.55); }
+  .whatif .lbl { color: var(--dom); }
+  input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 4px; background: var(--surface-3); padding: 0; border: 0; margin: 14px 0 4px; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--dom); border: 3px solid var(--surface); box-shadow: 0 2px 8px rgba(0,0,0,.4); }
+  input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--dom); border: 3px solid var(--surface); }
+  .quick { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .quick button { border: 1px solid rgba(212,175,55,.4); background: transparent; color: var(--dom); border-radius: 999px; padding: 5px 11px; font-size: .74rem; font-weight: 700; cursor: pointer; }
 
-        .header-logo {
-            text-align: center;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            margin-bottom: 5px;
-        }
+  /* Gauge */
+  .gauge { position: relative; max-width: 300px; margin: 0 auto; }
+  .gauge svg { width: 100%; display: block; overflow: visible; }
+  .gauge .center { position: absolute; left: 0; right: 0; bottom: 4px; text-align: center; }
+  .gauge .pct { font-size: 2.6rem; font-weight: 800; letter-spacing: -1px; line-height: 1; }
+  .gauge .pct small { font-size: 1.1rem; font-weight: 700; color: var(--muted); }
+  .gauge .cap { font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .status { margin: 14px auto 4px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 14px; border-radius: 12px; font-weight: 700; font-size: .86rem; text-align: center; }
+  .status.ok { background: var(--ok-soft); color: var(--ok); }
+  .status.go { background: var(--dom-soft); color: var(--dom); }
 
-        .logo-placeholder {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--text-main);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        
-        .logo-placeholder span {
-            color: var(--cyan);
-        }
+  /* KPIs */
+  .kgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .k { background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
+  .k span { display: block; font-size: .64rem; letter-spacing: .9px; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .k b { display: block; font-size: 1.12rem; font-weight: 800; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .k em { display: block; font-style: normal; font-size: .7rem; color: var(--faint); margin-top: 2px; }
+  .k.meta { border-color: rgba(212,175,55,.45); background: linear-gradient(145deg, rgba(212,175,55,.10), transparent 70%), var(--surface-2); }
+  .k.meta b { color: var(--dom); }
+  .k.time b { color: var(--x5); }
 
-        .panel {
-            background-color: var(--panel-bg);
-            border-radius: 12px;
-            padding: 18px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-        }
+  /* Composición */
+  .stack-bar { position: relative; height: 26px; border-radius: 8px; overflow: hidden; background: var(--surface-3); display: flex; }
+  .stack-bar div { height: 100%; transition: width .6s cubic-bezier(.2,.8,.2,1); }
+  .stack-wrap { position: relative; padding-top: 22px; }
+  .meta-mark { position: absolute; top: 0; bottom: -6px; width: 0; border-left: 2px dashed var(--dom); transition: left .6s cubic-bezier(.2,.8,.2,1); }
+  .meta-mark span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; font-size: .66rem; font-weight: 700; color: var(--dom); background: var(--surface); padding: 0 4px; }
+  .comp-legend { display: grid; grid-template-columns: 1fr; gap: 8px 14px; margin-top: 14px; font-size: .78rem; }
+  .comp-legend div { display: flex; align-items: center; gap: 7px; min-width: 0; }
+  .comp-legend i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+  .comp-legend span { color: var(--muted); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .comp-legend b { font-variant-numeric: tabular-nums; font-weight: 700; }
 
-        .panel-whatif {
-            border: 1px dashed var(--gold);
-            background: linear-gradient(145deg, #1f1a0a, #141414);
-            position: relative;
-        }
-
-        .panel-whatif::before {
-            content: 'SIMULADOR DE ESCENARIOS';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background-color: var(--gold);
-            color: var(--bg-dark);
-            font-size: 0.65rem;
-            font-weight: bold;
-            padding: 2px 8px;
-            border-radius: 4px;
-            letter-spacing: 1px;
-        }
-
-        h2 {
-            margin-top: 0;
-            font-size: 0.95rem;
-            color: var(--cyan);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 8px;
-        }
-
-        .panel-whatif h2 {
-            color: var(--gold);
-            border-bottom: none;
-            padding-bottom: 0;
-            margin-top: 5px;
-        }
-
-        .form-group {
-            margin-bottom: 12px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 4px;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        select, input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #333;
-            background-color: #0f0f0f;
-            color: white;
-            font-size: 0.95rem;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease;
-        }
-
-        select:focus, input:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-
-        .panel-whatif input {
-            border-color: rgba(212, 175, 55, 0.5);
-            color: var(--gold);
-            font-weight: bold;
-        }
-
-        .disclaimer {
-            display: block;
-            color: var(--text-muted);
-            font-size: 0.65rem;
-            margin-top: 3px;
-            font-style: italic;
-        }
-
-        /* Gauge Analógico */
-        .gauge-container {
-            position: relative;
-            width: 220px;
-            height: 120px;
-            margin: 0 auto 5px auto;
-            overflow: hidden;
-        }
-
-        .gauge-background {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 220px;
-            height: 110px;
-            border-top-left-radius: 110px;
-            border-top-right-radius: 110px;
-            background: conic-gradient(from 270deg at 50% 100%, var(--danger) 0deg, var(--danger) 70deg, var(--gold) 70deg, var(--gold) 126deg, var(--success) 126deg, var(--success) 180deg);
-            border: 8px solid var(--panel-bg);
-            border-bottom: none;
-            box-sizing: border-box;
-        }
-        
-        .gauge-cover {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 160px;
-            height: 80px;
-            background-color: var(--panel-bg);
-            border-top-left-radius: 80px;
-            border-top-right-radius: 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            padding-bottom: 8px;
-            box-sizing: border-box;
-        }
-
-        .gauge-needle {
-            position: absolute;
-            bottom: 4px;
-            left: 50%;
-            width: 3px;
-            height: 95px;
-            background-color: #fff;
-            transform-origin: bottom center;
-            transform: rotate(-90deg);
-            transition: transform 0.8s cubic-bezier(0.4, 2.5, 0.3, 1);
-            border-radius: 3px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.5);
-        }
-
-        .gauge-percentage {
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: var(--text-main);
-            margin: 0;
-            line-height: 1;
-        }
-
-        .gauge-label {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin: 3px 0 0 0;
-            text-transform: uppercase;
-        }
-
-        .status-message {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 0.85rem;
-            margin-bottom: 15px;
-            border: 1px solid transparent;
-            box-sizing: border-box;
-        }
-
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-        }
-
-        .kpi-card {
-            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-            padding: 12px 15px;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .kpi-title {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        .kpi-value {
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
-
-        .chart-container {
-            width: 100%;
-            height: 220px;
-            margin-top: 15px;
-        }
-
-        .btn-export {
-            width: 100%;
-            padding: 14px;
-            background-color: var(--cyan);
-            color: var(--bg-dark);
-            border: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 5px;
-        }
-
-        .btn-export:hover {
-            background-color: #00b8e6;
-        }
-    </style>
+  /* Proyección */
+  .proj { position: relative; touch-action: pan-y; }
+  .proj svg { width: 100%; display: block; overflow: visible; }
+  .proj-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .74rem; color: var(--muted); margin-top: 10px; }
+  .proj-legend i { display: inline-block; width: 16px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+  .tip { position: absolute; top: 0; pointer-events: none; transform: translateX(-50%); background: var(--surface-3); border: 1px solid var(--line-strong); border-radius: 10px; padding: 7px 10px; font-size: .74rem; white-space: nowrap; box-shadow: var(--shadow); opacity: 0; transition: opacity .15s; z-index: 2; }
+  .tip b { display: block; font-size: .86rem; }
+  .only-export { display: none; }
+  #reporte.exporting .no-export { display: none; }
+  #reporte.exporting .only-export { display: block; }
+  .rx { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; font-size: .8rem; }
+  .rx span { display: block; color: var(--muted); font-size: .64rem; letter-spacing: .8px; text-transform: uppercase; font-weight: 700; }
+  .rx b { font-variant-numeric: tabular-nums; }
+  .foot { font-size: .64rem; color: var(--faint); text-align: center; line-height: 1.5; padding: 0 8px 4px; }
+</style>
 </head>
 <body>
 
-    <div id="dashboard-export">
-        
-        <div class="header-logo">
-            <div class="logo-placeholder">X5<span>ARGENTINA</span></div>
-            <div style="color: var(--gold); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 3px;">Auditoría de Inversión Comercial</div>
-        </div>
+<header class="x5-top">
+  <a class="x5-back" href="index.html" aria-label="Volver al Hub"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a>
+  <div><h1>Auditoría de Inversión</h1><div class="sub">Brecha financiera y aceleración de capital</div></div>
+</header>
 
-        <!-- Panel 1: Parámetros Base -->
-        <div class="panel">
-            <h2>1. Parámetros Base</h2>
-            <div class="form-group">
-                <label>Tipo de Vehículo</label>
-                <select id="tipoVehiculo" onchange="calcular()">
-                    <option value="pequeno">Pequeño (Gol, 208, Yaris)</option>
-                    <option value="familiar">Familiar (Cronos, Corolla)</option>
-                    <option value="utilitario">Utilitario (Kangoo, Partner)</option>
-                    <option value="suv">SUV (Ecosport, Tracker, T-Cross)</option>
-                    <option value="camioneta">Camioneta (Hilux, Amarok)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Rango de Año (Define el Objetivo)</label>
-                <select id="rangoAno" onchange="calcular()">
-                    <option value="2010_2015">Usado: 2010 - 2015 (Requiere 50%)</option>
-                    <option value="2015_2020">Usado: 2015 - 2020 (Requiere 50%)</option>
-                    <option value="2020_2025">Usado: 2020 - 2025 (Requiere 50%)</option>
-                    <option value="0km">0 KM: 2025 en adelante (Requiere 35%)</option>
-                </select>
-            </div>
-
-            <div class="form-group" style="margin-top: 15px;">
-                <label>Suma Total Abonada en Sistema ($)</label>
-                <input type="number" id="totalAbonado" value="3000000" oninput="calcular()">
-            </div>
-            <div class="form-group">
-                <label>Ahorro Base / Efectivo Actual ($)</label>
-                <input type="number" id="ahorroBase" value="0" oninput="calcular()">
-                <span class="disclaimer">Capital disponible e integrado al momento.</span>
-            </div>
-            <div class="form-group">
-                <label>Valor Infoauto Vehículo Usado ($)</label>
-                <input type="number" id="valorUsadoInfoauto" value="0" oninput="calcular()">
-                <span class="disclaimer">Sujeto a peritaje técnico (-10% automático).</span>
-            </div>
-            <div class="form-group">
-                <label>Proyección de Cuota Mensual ($)</label>
-                <input type="number" id="cuotaProyectada" value="250000" oninput="calcular()">
-            </div>
-        </div>
-
-        <!-- Panel 2: Simulador What If -->
-        <div class="panel panel-whatif">
-            <div class="form-group" style="margin-bottom: 0;">
-                <label style="color: var(--gold);">¿Qué pasa si inyecto capital extraordinario?</label>
-                <input type="number" id="capitalWhatIf" value="0" placeholder="Ej: Aguinaldo, venta de activo..." oninput="calcular()">
-                <span class="disclaimer" style="color: #bbb;">Acelera la proyección gráfica de forma inmediata.</span>
-            </div>
-        </div>
-
-        <!-- Panel 3: Resultados -->
-        <div class="panel">
-            <h2>2. Estado de Cuenta y Brecha</h2>
-            
-            <div class="gauge-container">
-                <div class="gauge-background" id="gaugeBg"></div>
-                <div class="gauge-needle" id="gaugeNeedle"></div>
-                <div class="gauge-cover">
-                    <p class="gauge-percentage" id="lblPorcentaje">0%</p>
-                    <p class="gauge-label" id="lblObjetivo">Objetivo: 50%</p>
-                </div>
-            </div>
-
-            <div id="statusMessage" class="status-message">Calculando...</div>
-
-            <div class="kpi-grid">
-                <div class="kpi-card">
-                    <span class="kpi-title">Valor Vehículo X5</span>
-                    <span class="kpi-value" id="lblValorVehiculo" style="color: var(--text-main);">$0</span>
-                </div>
-                <div class="kpi-card">
-                    <span class="kpi-title">Capital Efectivo</span>
-                    <span class="kpi-value" id="lblCapitalTotal" style="color: var(--cyan);">$0</span>
-                </div>
-                <div class="kpi-card" style="border-color: var(--gold);">
-                    <span class="kpi-title">Brecha Restante</span>
-                    <span class="kpi-value" id="lblBrecha" style="color: var(--gold);">$0</span>
-                </div>
-            </div>
-
-            <!-- Gráfico -->
-            <div class="chart-container">
-                <canvas id="projectionChart"></canvas>
-            </div>
-        </div>
-
-        <button class="btn-export" onclick="exportarImagen()">Compartir Auditoría como Imagen (HD)</button>
-
+<main class="x5-wrap">
+  <div id="reporte">
+    <div class="rep-head">
+      <div><div class="brandmark"><b>X5</b> ARGENTINA</div><div class="t">Auditoría de inversión</div></div>
+      <div class="who"><b id="who-cliente">Cliente</b><br><span id="who-fecha"></span></div>
     </div>
 
-    <script>
-        const basePrecios = {
-            pequeno: { "2010_2015": 9000000, "2015_2020": 13500000, "2020_2025": 18000000, "0km": 23000000 },
-            familiar: { "2010_2015": 10500000, "2015_2020": 15000000, "2020_2025": 21000000, "0km": 27000000 },
-            utilitario: { "2010_2015": 11000000, "2015_2020": 16000000, "2020_2025": 22000000, "0km": 28000000 },
-            suv: { "2010_2015": 13000000, "2015_2020": 19000000, "2020_2025": 28000000, "0km": 35000000 },
-            camioneta: { "2010_2015": 18000000, "2015_2020": 26000000, "2020_2025": 40000000, "0km": 52000000 }
-        };
+    <!-- Parámetros -->
+    <section class="card no-export">
+      <details class="params" open id="det-params">
+        <summary><div><div class="card-title" style="margin:0"><span><span class="dot"></span>Parámetros base</span></div><div class="resumen" id="resumen-params"></div></div><span class="chev">⌄</span></summary>
+        <div class="grid">
+          <div class="field"><label for="cliente">Cliente (opcional)</label><input id="cliente" placeholder="Nombre para el reporte" autocomplete="off"></div>
+          <div class="row">
+            <div class="field"><label for="tipoVehiculo">Tipo de vehículo</label>
+              <select id="tipoVehiculo">
+                <option value="pequeno">Pequeño (Gol, 208, Yaris)</option>
+                <option value="familiar">Familiar (Cronos, Corolla)</option>
+                <option value="utilitario">Utilitario (Kangoo, Partner)</option>
+                <option value="suv">SUV (Ecosport, Tracker, T-Cross)</option>
+                <option value="camioneta">Camioneta (Hilux, Amarok)</option>
+              </select></div>
+          </div>
+          <div class="field"><label for="rangoAno">Rango de año (define el objetivo)</label>
+            <select id="rangoAno">
+              <option value="2010_2015">Usado 2010 – 2015 · requiere 50%</option>
+              <option value="2015_2020">Usado 2015 – 2020 · requiere 50%</option>
+              <option value="2020_2025">Usado 2020 – 2025 · requiere 50%</option>
+              <option value="0km">0 km 2025 en adelante · requiere 35%</option>
+            </select></div>
+          <div class="row">
+            <div class="field"><label for="totalAbonado">Total abonado</label><div class="money"><input id="totalAbonado" type="text" inputmode="numeric" value="3.000.000"></div></div>
+            <div class="field"><label for="cuotaProyectada">Cuota mensual</label><div class="money"><input id="cuotaProyectada" type="text" inputmode="numeric" value="250.000"></div></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="ahorroBase">Ahorro / efectivo</label><div class="money"><input id="ahorroBase" type="text" inputmode="numeric" value="0"></div></div>
+            <div class="field"><label for="valorUsadoInfoauto">Usado (Infoauto)</label><div class="money"><input id="valorUsadoInfoauto" type="text" inputmode="numeric" value="0"></div><span class="hint">Peritaje: −10% automático</span></div>
+          </div>
+        </div>
+      </details>
+    </section>
 
-        const formatearMoneda = (valor) => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(valor);
-        
-        let projectionChartInst = null;
+    <!-- Escenario -->
+    <section class="card whatif no-export" id="panel-whatif">
+      <div class="lbl">¿Qué pasa si inyecto capital extraordinario?</div>
+      <div class="money"><input id="capitalWhatIf" type="text" inputmode="numeric" value="0" placeholder="Aguinaldo, venta de un activo…"></div>
+      <input type="range" id="rangoWhatIf" min="0" max="10000000" step="100000" value="0" aria-label="Capital extraordinario">
+      <div class="quick" id="quick">
+        <button data-v="500000">+500K</button><button data-v="1000000">+1M</button><button data-v="2000000">+2M</button><button data-v="0">Quitar</button>
+      </div>
+    </section>
 
-        function calcular() {
-            const tipo = document.getElementById('tipoVehiculo').value;
-            const ano = document.getElementById('rangoAno').value;
-            
-            const totalAbonado = parseFloat(document.getElementById('totalAbonado').value) || 0;
-            const ahorroBase = parseFloat(document.getElementById('ahorroBase').value) || 0;
-            const valorUsado = parseFloat(document.getElementById('valorUsadoInfoauto').value) || 0;
-            const cuotaProyectada = parseFloat(document.getElementById('cuotaProyectada').value) || 0;
-            const capitalWhatIf = parseFloat(document.getElementById('capitalWhatIf').value) || 0;
+    <!-- Resumen solo para la imagen exportada -->
+    <section class="card only-export" id="resumenExport"></section>
 
-            const porcentajeObjetivo = (ano === "0km") ? 35 : 50;
-            const precioBase = basePrecios[tipo][ano];
-            const valorVentaX5 = precioBase * 1.32; 
-            
-            const capitalIntegradoPuro = totalAbonado * 0.80; 
-            const valorTomaReal = valorUsado * 0.90; 
-            
-            const capitalTotalCliente = capitalIntegradoPuro + valorTomaReal + ahorroBase + capitalWhatIf;
-            
-            let brecha = valorVentaX5 - capitalTotalCliente;
-            if(brecha < 0) brecha = 0;
+    <!-- Resultado -->
+    <section class="card">
+      <div class="card-title"><span><span class="dot"></span>Estado de cuenta y brecha</span><span class="chip dom" id="chip-meta">Meta 50%</span></div>
+      <div class="gauge" id="gauge"></div>
+      <div class="status go" id="status">Calculando…</div>
+    </section>
 
-            let porcentaje = (capitalTotalCliente / valorVentaX5) * 100;
-            if(porcentaje > 100) porcentaje = 100;
+    <section class="kgrid">
+      <div class="k"><span>Valor vehículo X5</span><b id="kValor">$0</b></div>
+      <div class="k"><span>Capital efectivo</span><b id="kCapital" style="color:var(--x5)">$0</b></div>
+      <div class="k meta"><span>Falta para la meta</span><b id="kFalta">$0</b><em id="kFaltaSub"></em></div>
+      <div class="k time"><span>Tiempo estimado</span><b id="kMeses">–</b><em id="kMesesSub"></em></div>
+    </section>
 
-            document.getElementById('lblValorVehiculo').innerText = formatearMoneda(valorVentaX5);
-            document.getElementById('lblCapitalTotal').innerText = formatearMoneda(capitalTotalCliente);
-            document.getElementById('lblBrecha').innerText = formatearMoneda(brecha);
-            document.getElementById('lblPorcentaje').innerText = porcentaje.toFixed(1) + '%';
-            document.getElementById('lblObjetivo').innerText = `Objetivo: ${porcentajeObjetivo}%`;
+    <section class="card">
+      <div class="card-title"><span><span class="dot" style="background:var(--dom)"></span>¿De dónde sale el capital?</span><span class="muted num" style="font-size:.72rem;text-transform:none;letter-spacing:0" id="saldoTotal"></span></div>
+      <div class="stack-wrap">
+        <div class="stack-bar" id="stack"></div>
+        <div class="meta-mark" id="metaMark"><span>Meta</span></div>
+      </div>
+      <div class="comp-legend" id="compLegend"></div>
+    </section>
 
-            const grados = (porcentaje / 100) * 180 - 90;
-            document.getElementById('gaugeNeedle').style.transform = `rotate(${grados > 90 ? 90 : grados}deg)`;
+    <section class="card">
+      <div class="card-title"><span><span class="dot"></span>Proyección de capital</span></div>
+      <div class="proj" id="proj"><div class="tip" id="tip"></div></div>
+      <div class="proj-legend" id="projLegend"></div>
+    </section>
 
-            const statusMsg = document.getElementById('statusMessage');
-            if (porcentaje >= porcentajeObjetivo) {
-                statusMsg.style.borderColor = "var(--success)";
-                statusMsg.style.color = "var(--success)";
-                statusMsg.style.backgroundColor = "rgba(46, 204, 113, 0.1)";
-                statusMsg.innerText = "¡Calificado para programar entrega!";
-            } else {
-                statusMsg.style.borderColor = "var(--gold)";
-                statusMsg.style.color = "var(--gold)";
-                statusMsg.style.backgroundColor = "rgba(212, 175, 55, 0.1)";
-                statusMsg.innerText = "Construyendo capital. Analizá inyectar efectivo.";
-            }
+    <div class="foot">Valores de referencia sujetos a peritaje técnico y aprobación. Se computa el 80% de lo abonado y de cada cuota como capital integrado.</div>
+  </div>
 
-            const bg = document.getElementById('gaugeBg');
-            const anguloObjetivo = (porcentajeObjetivo / 100) * 180;
-            const anguloMedio = anguloObjetivo * 0.6;
-            bg.style.background = `conic-gradient(from 270deg at 50% 100%, 
-                var(--danger) 0deg, 
-                var(--danger) ${anguloMedio}deg, 
-                var(--gold) ${anguloMedio}deg, 
-                var(--gold) ${anguloObjetivo}deg, 
-                var(--success) ${anguloObjetivo}deg, 
-                var(--success) 180deg)`;
+  <div class="row" style="margin-top:14px">
+    <button class="btn btn-ghost" id="btnReset">Reiniciar</button>
+    <button class="btn" id="btnExport"><svg viewBox="0 0 24 24"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13"/></svg>Compartir imagen</button>
+  </div>
+</main>
 
-            actualizarGrafico(capitalTotalCliente, valorVentaX5, cuotaProyectada, porcentajeObjetivo);
-        }
+<script src="x5-core.js"></script>
+<script>
+(() => {
+'use strict';
+const $ = (id) => document.getElementById(id);
 
-        function actualizarGrafico(capitalInicial, valorVehiculo, cuotaMensual, objetivo) {
-            const meses = ['Hoy', 'Mes 1', 'Mes 2', 'Mes 3', 'Mes 4', 'Mes 5', 'Mes 6', 'Mes 9', 'Mes 12'];
-            let capitalData = [];
-            let gapData = [];
-            let metaData = []; 
+/* ── Reglas de negocio (sin cambios) ─────────────────────── */
+const basePrecios = {
+  pequeno:    { '2010_2015': 9000000,  '2015_2020': 13500000, '2020_2025': 18000000, '0km': 23000000 },
+  familiar:   { '2010_2015': 10500000, '2015_2020': 15000000, '2020_2025': 21000000, '0km': 27000000 },
+  utilitario: { '2010_2015': 11000000, '2015_2020': 16000000, '2020_2025': 22000000, '0km': 28000000 },
+  suv:        { '2010_2015': 13000000, '2015_2020': 19000000, '2020_2025': 28000000, '0km': 35000000 },
+  camioneta:  { '2010_2015': 18000000, '2015_2020': 26000000, '2020_2025': 40000000, '0km': 52000000 }
+};
+const MARGEN_X5 = 1.32, PUREZA = 0.80, TOMA_USADO = 0.90;
 
-            const valorObjetivoEfectivo = valorVehiculo * (objetivo / 100);
-            const purezaCuota = cuotaMensual * 0.80; 
+/* ── Entrada de montos con separador de miles ─────────────── */
+const montoIds = ['totalAbonado', 'cuotaProyectada', 'ahorroBase', 'valorUsadoInfoauto', 'capitalWhatIf'];
+const leer = (id) => Number(String($(id).value).replace(/\D/g, '')) || 0;
+const fmtMiles = (n) => n ? n.toLocaleString('es-AR') : '0';
+montoIds.forEach(id => {
+  const el = $(id);
+  el.addEventListener('input', () => {
+    const n = leer(id);
+    const fin = el.value.length - el.selectionEnd;
+    el.value = n ? fmtMiles(n) : '';
+    const pos = Math.max(0, el.value.length - fin);
+    try { el.setSelectionRange(pos, pos); } catch (e) {}
+    if (id === 'capitalWhatIf') $('rangoWhatIf').value = Math.min(n, +$('rangoWhatIf').max);
+    programar();
+  });
+  el.addEventListener('focus', () => { if (el.value === '0') el.value = ''; });
+  el.addEventListener('blur', () => { if (!el.value) el.value = '0'; });
+});
+['tipoVehiculo', 'rangoAno'].forEach(id => $(id).addEventListener('change', calcular));
+$('cliente').addEventListener('input', () => { $('who-cliente').textContent = $('cliente').value.trim() || 'Cliente'; guardar(); });
+$('rangoWhatIf').addEventListener('input', (e) => { $('capitalWhatIf').value = fmtMiles(+e.target.value); programar(); });
+$('quick').addEventListener('click', (e) => {
+  const b = e.target.closest('button'); if (!b) return;
+  const v = +b.dataset.v, nuevo = v ? leer('capitalWhatIf') + v : 0;
+  $('capitalWhatIf').value = fmtMiles(nuevo); $('rangoWhatIf').value = Math.min(nuevo, +$('rangoWhatIf').max); calcular();
+});
 
-            meses.forEach((_, index) => {
-                let multiplicador = index;
-                if(index === 7) multiplicador = 9;
-                if(index === 8) multiplicador = 12;
+let raf = 0;
+const programar = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(calcular); };
 
-                let capitalFuturo = capitalInicial + (purezaCuota * multiplicador);
-                if (capitalFuturo > valorVehiculo) capitalFuturo = valorVehiculo;
+/* ── Colores resueltos (los SVG exportados no entienden var()) ── */
+let C = {};
+function leerColores() {
+  const cs = getComputedStyle(document.documentElement);
+  const g = (v) => cs.getPropertyValue(v).trim();
+  C = { x5: g('--x5'), x5s: g('--x5-strong'), dom: g('--dom'), ok: g('--ok'), warn: g('--warn'), bad: g('--bad'),
+        text: g('--text'), muted: g('--muted'), faint: g('--faint'), line: g('--line'), s3: g('--surface-3'), surface: g('--surface'), extra: '#8b7cf6' };
+}
+matchMedia('(prefers-color-scheme: light)').addEventListener?.('change', () => { leerColores(); calcular(); });
 
-                let brechaFutura = valorVehiculo - capitalFuturo;
+/* ── Cálculo principal ───────────────────────────────────── */
+let ultimo = null;
+function calcular() {
+  const tipo = $('tipoVehiculo').value, ano = $('rangoAno').value;
+  const totalAbonado = leer('totalAbonado'), ahorro = leer('ahorroBase'), usado = leer('valorUsadoInfoauto');
+  const cuota = leer('cuotaProyectada'), extra = leer('capitalWhatIf');
 
-                capitalData.push(capitalFuturo);
-                gapData.push(brechaFutura);
-                metaData.push(valorObjetivoEfectivo);
-            });
+  const objetivo = ano === '0km' ? 35 : 50;
+  const valor = basePrecios[tipo][ano] * MARGEN_X5;
+  const partes = [
+    { k: 'Capital integrado (80% abonado)', v: totalAbonado * PUREZA, c: C.x5 },
+    { k: 'Toma del usado (−10%)', v: usado * TOMA_USADO, c: C.x5s },
+    { k: 'Ahorro / efectivo', v: ahorro, c: C.ok },
+    { k: 'Inyección extraordinaria', v: extra, c: C.dom }
+  ];
+  const capital = partes.reduce((s, p) => s + p.v, 0);
+  const metaMonto = valor * objetivo / 100;
+  const falta = Math.max(0, metaMonto - capital);
+  const saldo = Math.max(0, valor - capital);
+  const pct = Math.min(100, capital / valor * 100);
+  const aporteMes = cuota * PUREZA;
+  const meses = falta === 0 ? 0 : (aporteMes > 0 ? Math.ceil(falta / aporteMes) : Infinity);
+  const mesesSinExtra = (() => { const f = Math.max(0, metaMonto - (capital - extra)); return f === 0 ? 0 : (aporteMes > 0 ? Math.ceil(f / aporteMes) : Infinity); })();
 
-            const ctx = document.getElementById('projectionChart').getContext('2d');
-            
-            if (projectionChartInst) {
-                projectionChartInst.destroy();
-            }
+  ultimo = { valor, capital, objetivo, metaMonto, falta, saldo, pct, aporteMes, meses, mesesSinExtra, extra };
 
-            projectionChartInst = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: meses,
-                    datasets: [
-                        {
-                            label: 'Evolución del Capital',
-                            data: capitalData,
-                            borderColor: '#00d2ff',
-                            backgroundColor: 'rgba(0, 210, 255, 0.1)',
-                            borderWidth: 2,
-                            fill: true,
-                            tension: 0.3
-                        },
-                        {
-                            label: 'Proyección del Gap',
-                            data: gapData,
-                            borderColor: '#d4af37',
-                            borderWidth: 2,
-                            borderDash: [5, 5],
-                            tension: 0.3
-                        },
-                        {
-                            label: `Meta (${objetivo}%)`,
-                            data: metaData,
-                            borderColor: '#2ecc71',
-                            borderWidth: 1,
-                            pointRadius: 0,
-                            tension: 0
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { labels: { color: '#a0a0a0', font: { size: 10 } } }
-                    },
-                    scales: {
-                        y: { ticks: { color: '#888', callback: (value) => '$' + (value/1000000).toFixed(1) + 'M' }, grid: { color: 'rgba(200, 200, 200, 0.15)', lineWidth: 0.5 } },
-                        x: { ticks: { color: '#888' }, grid: { display: false } }
-                    }
-                }
-            });
-        }
+  $('kValor').textContent = X5.money(valor);
+  $('kCapital').textContent = X5.money(capital);
+  $('kFalta').textContent = falta ? X5.money(falta) : '¡Cubierta!';
+  $('kFaltaSub').textContent = `Saldo hasta el 100%: ${X5.moneyShort(saldo)}`;
+  $('kMeses').textContent = meses === 0 ? 'Hoy' : meses === Infinity ? 'Sin cuota' : `${meses} ${meses === 1 ? 'mes' : 'meses'}`;
+  $('kMesesSub').textContent = extra > 0 && mesesSinExtra !== meses && mesesSinExtra !== Infinity
+    ? `Ahorrás ${mesesSinExtra - meses} ${mesesSinExtra - meses === 1 ? 'mes' : 'meses'} con la inyección`
+    : (meses && meses !== Infinity ? `Aporte neto ${X5.moneyShort(aporteMes)}/mes` : '');
+  $('chip-meta').textContent = `Meta ${objetivo}%`;
+  $('saldoTotal').textContent = `de ${X5.moneyShort(valor)}`;
+  $('resumen-params').textContent = `${$('tipoVehiculo').selectedOptions[0].text.split(' (')[0]} · ${ano === '0km' ? '0 km' : ano.replace('_', '–')}`;
 
-        // Función optimizada para exportar directamente a Imagen PNG de alta calidad
-        function exportarImagen() {
-            const elemento = document.getElementById('dashboard-export');
-            const boton = document.querySelector('.btn-export');
-            
-            boton.style.display = 'none'; // Ocultar botón durante la captura
+  const st = $('status');
+  if (pct >= objetivo) { st.className = 'status ok'; st.textContent = '✓ Calificado para programar entrega'; }
+  else { st.className = 'status go'; st.textContent = meses === Infinity ? 'Construyendo capital · cargá la cuota para proyectar' : `Construyendo capital · meta en ${meses} ${meses === 1 ? 'mes' : 'meses'}`; }
 
-            html2canvas(elemento, {
-                scale: 2, // Alta definición para celulares y pantallas Retina
-                useCORS: true,
-                backgroundColor: '#0a0a0a'
-            }).then(canvas => {
-                const enlace = document.createElement('a');
-                enlace.download = 'Auditoria_Inversion_X5.png';
-                enlace.href = canvas.toDataURL('image/png');
-                enlace.click();
-                boton.style.display = 'block'; // Volver a mostrar el botón
-            });
-        }
+  dibujarGauge(pct, objetivo);
+  dibujarComposicion(partes, valor, objetivo, falta);
+  dibujarProyeccion(ultimo);
+  guardar();
+}
 
-        window.onload = calcular;
-    </script>
+/* ── Gauge (SVG) ─────────────────────────────────────────── */
+const CX = 150, CY = 150, R = 118;
+const pto = (p, r = R) => { const a = Math.PI * (1 - p / 100); return [CX + r * Math.cos(a), CY - r * Math.sin(a)]; };
+const arco = (p0, p1, r = R) => { const [x0, y0] = pto(p0, r), [x1, y1] = pto(p1, r); return `M${x0.toFixed(1)},${y0.toFixed(1)} A${r},${r} 0 0 1 ${x1.toFixed(1)},${y1.toFixed(1)}`; };
+let pctMostrado = 0;
+
+function dibujarGauge(pct, obj) {
+  const zonaBaja = obj * 0.6;
+  const [tx0, ty0] = pto(obj, R + 16), [tx1, ty1] = pto(obj, R - 16), [lx, ly] = pto(obj, R + 30);
+  const ticks = [0, 25, 50, 75, 100].map(t => { const [a, b] = pto(t, R - 22), [c, d] = pto(t, R - 28); return `<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="${C.faint}" stroke-width="1.5"/>`; }).join('');
+  const colorVal = pct >= obj ? C.ok : C.x5;
+  $('gauge').innerHTML = `
+    <svg viewBox="0 -16 300 184" role="img" aria-label="Capital cubierto ${pct.toFixed(1)}% sobre meta ${obj}%">
+      <defs>
+        <linearGradient id="gVal" x1="0" x2="1"><stop offset="0" stop-color="${C.x5s}"/><stop offset="1" stop-color="${colorVal}"/></linearGradient>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <path d="${arco(0, zonaBaja, R + 13)}" stroke="${C.bad}" stroke-width="3" fill="none" opacity=".7"/>
+      <path d="${arco(zonaBaja, obj, R + 13)}" stroke="${C.warn}" stroke-width="3" fill="none" opacity=".7"/>
+      <path d="${arco(obj, 100, R + 13)}" stroke="${C.ok}" stroke-width="3" fill="none" opacity=".7"/>
+      <path d="${arco(0, 100)}" stroke="${C.s3}" stroke-width="18" fill="none" stroke-linecap="round"/>
+      <path id="gArc" d="${arco(0, Math.max(0.5, pctMostrado))}" stroke="url(#gVal)" stroke-width="18" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+      ${ticks}
+      <line x1="${tx0}" y1="${ty0}" x2="${tx1}" y2="${ty1}" stroke="${C.dom}" stroke-width="3" stroke-linecap="round"/>
+      <text x="${lx}" y="${ly}" fill="${C.dom}" font-size="11" font-weight="800" text-anchor="middle" font-family="Inter, sans-serif">${obj}%</text>
+      <circle id="gDot" cx="${pto(pctMostrado)[0]}" cy="${pto(pctMostrado)[1]}" r="6" fill="${C.surface}" stroke="${colorVal}" stroke-width="3"/>
+    </svg>
+    <div class="center"><div class="pct num" id="gPct">${pctMostrado.toFixed(1).replace('.', ',')}<small>%</small></div><div class="cap">del valor cubierto</div></div>`;
+  animarGauge(pct);
+}
+
+let animRaf = 0;
+function animarGauge(dest) {
+  cancelAnimationFrame(animRaf);
+  const ini = pctMostrado, t0 = performance.now(), dur = 650;
+  const paso = (t) => {
+    const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+    pctMostrado = ini + (dest - ini) * e;
+    const arc = $('gArc'), dot = $('gDot'), lbl = $('gPct');
+    if (arc) arc.setAttribute('d', arco(0, Math.max(0.5, pctMostrado)));
+    if (dot) { const [x, y] = pto(pctMostrado); dot.setAttribute('cx', x); dot.setAttribute('cy', y); }
+    if (lbl) lbl.innerHTML = pctMostrado.toFixed(1).replace('.', ',') + '<small>%</small>';
+    if (k < 1) animRaf = requestAnimationFrame(paso);
+  };
+  animRaf = requestAnimationFrame(paso);
+}
+
+/* ── Composición del capital ─────────────────────────────── */
+function dibujarComposicion(partes, valor, obj, falta) {
+  const vis = partes.filter(p => p.v > 0);
+  const segs = vis.map(p => `<div style="width:${Math.min(100, p.v / valor * 100)}%;background:${p.c}" title="${X5.esc(p.k)}"></div>`).join('');
+  const faltaSeg = falta > 0 ? `<div style="width:${falta / valor * 100}%;background:${C.dom}40"></div>` : '';
+  $('stack').innerHTML = segs + faltaSeg;
+  $('metaMark').style.left = obj + '%';
+  $('metaMark').querySelector('span').textContent = `Meta ${obj}%`;
+  $('compLegend').innerHTML = partes.map(p => `<div><i style="background:${p.c};${p.v ? '' : 'opacity:.3'}"></i><span>${p.k}</span><b>${X5.moneyShort(p.v)}</b></div>`).join('')
+    + (falta > 0 ? `<div><i style="background:${C.dom};opacity:.45"></i><span>Falta para la meta</span><b style="color:${C.dom}">${X5.moneyShort(falta)}</b></div>` : '');
+}
+
+/* ── Proyección (SVG con interacción táctil) ─────────────── */
+let geo = null;
+function dibujarProyeccion(d) {
+  const W = 340, H = 210, L = 46, Rm = 14, T = 16, B = 28;
+  const horizonte = Math.min(36, Math.max(12, (isFinite(d.meses) ? d.meses : 12) + 3));
+  const serie = (base) => Array.from({ length: horizonte + 1 }, (_, m) => Math.min(d.valor, base + d.aporteMes * m));
+  const con = serie(d.capital), sin = d.extra > 0 ? serie(d.capital - d.extra) : null;
+  const maxY = Math.max(d.metaMonto * 1.15, con[con.length - 1] * 1.05);
+  const x = (m) => L + (W - L - Rm) * m / horizonte;
+  const y = (v) => T + (H - T - B) * (1 - v / maxY);
+  const linea = (s) => s.map((v, m) => `${m ? 'L' : 'M'}${x(m).toFixed(1)},${y(v).toFixed(1)}`).join('');
+  const area = linea(con) + `L${x(horizonte)},${y(0)}L${x(0)},${y(0)}Z`;
+
+  const ticksY = 4, gy = Array.from({ length: ticksY + 1 }, (_, i) => maxY * i / ticksY);
+  const pasoX = horizonte > 24 ? 6 : horizonte > 12 ? 3 : 2;
+  const gx = []; for (let m = 0; m <= horizonte; m += pasoX) gx.push(m);
+
+  const cruce = isFinite(d.meses) ? d.meses : null;
+  const cruceMk = cruce != null && cruce <= horizonte ? `
+    <line x1="${x(cruce)}" y1="${y(d.metaMonto)}" x2="${x(cruce)}" y2="${y(0)}" stroke="${C.dom}" stroke-width="1" stroke-dasharray="2 3"/>
+    <circle cx="${x(cruce)}" cy="${y(d.metaMonto)}" r="9" fill="${C.dom}" opacity=".18"/>
+    <circle cx="${x(cruce)}" cy="${y(d.metaMonto)}" r="4.5" fill="${C.dom}" stroke="${C.surface}" stroke-width="2"/>
+    <g transform="translate(${Math.min(Math.max(x(cruce), L + 34), W - Rm - 34)},${y(d.metaMonto) - 16})">
+      <rect x="-34" y="-12" width="68" height="18" rx="9" fill="${C.dom}"/>
+      <text y="1" text-anchor="middle" font-size="10" font-weight="800" fill="#120d02" font-family="Inter, sans-serif">${cruce === 0 ? 'Hoy' : 'Mes ' + cruce}</text>
+    </g>` : '';
+
+  $('proj').innerHTML = `<div class="tip" id="tip"></div>
+  <svg viewBox="0 0 ${W} ${H}" id="projSvg" role="img" aria-label="Proyección de capital mes a mes">
+    <defs>
+      <linearGradient id="gArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${C.x5}" stop-opacity=".38"/><stop offset="1" stop-color="${C.x5}" stop-opacity="0"/></linearGradient>
+      <clipPath id="clipIn">${geo ? `<rect x="${L}" y="0" width="${W - L}" height="${H}"/>` : `<rect x="${L}" y="0" width="0" height="${H}"><animate attributeName="width" from="0" to="${W - L}" dur=".8s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".2 .8 .2 1"/></rect>`}</clipPath>
+    </defs>
+    ${gy.map(v => `<line x1="${L}" x2="${W - Rm}" y1="${y(v)}" y2="${y(v)}" stroke="${C.line}" stroke-width="1"/>
+      <text x="${L - 8}" y="${y(v) + 3.5}" text-anchor="end" font-size="9.5" fill="${C.faint}" font-family="Inter, sans-serif">${X5.moneyShort(v)}</text>`).join('')}
+    ${gx.map(m => `<text x="${x(m)}" y="${H - 9}" text-anchor="middle" font-size="9.5" fill="${C.faint}" font-family="Inter, sans-serif">${m === 0 ? 'Hoy' : m}</text>`).join('')}
+    <text x="${W - Rm}" y="${H - 9}" text-anchor="end" font-size="9" fill="${C.faint}" font-family="Inter, sans-serif" dy="0" opacity="0">meses</text>
+    <line x1="${L}" x2="${W - Rm}" y1="${y(d.metaMonto)}" y2="${y(d.metaMonto)}" stroke="${C.dom}" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <text x="${L + 6}" y="${y(d.metaMonto) - 6}" text-anchor="start" font-size="9.5" font-weight="700" fill="${C.dom}" font-family="Inter, sans-serif">Meta ${d.objetivo}% · ${X5.moneyShort(d.metaMonto)}</text>
+    <g clip-path="url(#clipIn)">
+      <path d="${area}" fill="url(#gArea)"/>
+      ${sin ? `<path d="${linea(sin)}" fill="none" stroke="${C.muted}" stroke-width="1.6" stroke-dasharray="4 4"/>` : ''}
+      <path d="${linea(con)}" fill="none" stroke="${C.x5}" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+    </g>
+    ${cruceMk}
+    <g id="cursor" opacity="0">
+      <line id="cLine" y1="${T}" y2="${y(0)}" stroke="${C.text}" stroke-opacity=".35" stroke-width="1"/>
+      <circle id="cDot" r="5" fill="${C.x5}" stroke="${C.surface}" stroke-width="2"/>
+    </g>
+  </svg>`;
+
+  $('projLegend').innerHTML = `<span><i style="background:${C.x5}"></i>${d.extra > 0 ? 'Con inyección' : 'Capital proyectado'}</span>`
+    + (sin ? `<span><i style="background:${C.muted}"></i>Sin inyección</span>` : '')
+    + `<span><i style="background:${C.dom}"></i>Meta de entrega</span>`;
+
+  geo = { W, L, Rm, horizonte, con, x, y };
+}
+
+function moverCursor(clientX) {
+  if (!geo) return;
+  const svg = $('projSvg'), r = svg.getBoundingClientRect();
+  const sx = (clientX - r.left) * (geo.W / r.width);
+  const m = Math.round(Math.min(geo.horizonte, Math.max(0, (sx - geo.L) / (geo.W - geo.L - geo.Rm) * geo.horizonte)));
+  const v = geo.con[m], px = geo.x(m), py = geo.y(v);
+  $('cursor').setAttribute('opacity', 1);
+  $('cLine').setAttribute('x1', px); $('cLine').setAttribute('x2', px);
+  $('cDot').setAttribute('cx', px); $('cDot').setAttribute('cy', py);
+  const tip = $('tip');
+  tip.innerHTML = `<span class="muted">${m === 0 ? 'Hoy' : 'Mes ' + m}</span><b class="num">${X5.money(v)}</b><span class="muted">${Math.min(100, v / ultimo.valor * 100).toFixed(1).replace('.', ',')}% del valor</span>`;
+  tip.style.left = Math.min(Math.max(px / geo.W * r.width, 70), r.width - 70) + 'px';
+  tip.style.opacity = 1;
+}
+const ocultarCursor = () => { const c = $('cursor'); if (c) c.setAttribute('opacity', 0); const t = $('tip'); if (t) t.style.opacity = 0; };
+$('proj').addEventListener('pointermove', (e) => moverCursor(e.clientX));
+$('proj').addEventListener('pointerdown', (e) => moverCursor(e.clientX));
+$('proj').addEventListener('pointerleave', ocultarCursor);
+$('proj').addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse') setTimeout(ocultarCursor, 1600); });
+
+/* ── Persistencia del último cálculo ─────────────────────── */
+function guardar() {
+  try {
+    const o = { cliente: $('cliente').value, tipo: $('tipoVehiculo').value, ano: $('rangoAno').value };
+    montoIds.forEach(id => o[id] = leer(id));
+    localStorage.setItem('x5_auditoria', JSON.stringify(o));
+  } catch (e) {}
+}
+function restaurar() {
+  try {
+    const o = JSON.parse(localStorage.getItem('x5_auditoria') || 'null'); if (!o) return;
+    $('cliente').value = o.cliente || ''; $('who-cliente').textContent = o.cliente || 'Cliente';
+    if (o.tipo) $('tipoVehiculo').value = o.tipo; if (o.ano) $('rangoAno').value = o.ano;
+    montoIds.forEach(id => { if (o[id] != null) $(id).value = fmtMiles(o[id]); });
+    $('rangoWhatIf').value = Math.min(o.capitalWhatIf || 0, +$('rangoWhatIf').max);
+  } catch (e) {}
+}
+$('btnReset').addEventListener('click', () => {
+  try { localStorage.removeItem('x5_auditoria'); } catch (e) {}
+  $('cliente').value = ''; $('who-cliente').textContent = 'Cliente';
+  $('totalAbonado').value = '3.000.000'; $('cuotaProyectada').value = '250.000';
+  ['ahorroBase', 'valorUsadoInfoauto', 'capitalWhatIf'].forEach(id => $(id).value = '0');
+  $('rangoWhatIf').value = 0; $('det-params').open = true; calcular();
+});
+
+function armarResumenExport() {
+  const extra = leer('capitalWhatIf');
+  $('resumenExport').innerHTML = `<div class="card-title" style="margin-bottom:10px"><span><span class="dot"></span>Datos considerados</span></div>
+    <div class="rx">
+      <div><span>Vehículo</span><b>${X5.esc($('tipoVehiculo').selectedOptions[0].text.split(' (')[0])} · ${X5.esc($('rangoAno').value === '0km' ? '0 km' : $('rangoAno').value.replace('_', '–'))}</b></div>
+      <div><span>Total abonado</span><b>${X5.money(leer('totalAbonado'))}</b></div>
+      <div><span>Cuota mensual</span><b>${X5.money(leer('cuotaProyectada'))}</b></div>
+      <div><span>Ahorro / efectivo</span><b>${X5.money(leer('ahorroBase'))}</b></div>
+      <div><span>Usado (Infoauto)</span><b>${X5.money(leer('valorUsadoInfoauto'))}</b></div>
+      ${extra ? `<div><span>Inyección extra</span><b style="color:${C.dom}">${X5.money(extra)}</b></div>` : ''}
+    </div>`;
+}
+
+/* ── Exportar como imagen (html2canvas se carga solo al usarlo) ── */
+function cargarScript(src) {
+  return new Promise((res, rej) => { if (window.html2canvas) return res(); const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+}
+$('btnExport').addEventListener('click', async () => {
+  const btn = $('btnExport'), txt = btn.innerHTML;
+  btn.disabled = true; btn.textContent = 'Generando imagen…';
+  const det = $('det-params'), estabaAbierto = det.open;
+  try {
+    await cargarScript('libs/html2canvas.min.js');
+    ocultarCursor(); armarResumenExport();
+    $('reporte').classList.add('exporting'); calcular();
+    await new Promise(r => setTimeout(r, 750));
+    const bg = getComputedStyle(document.body).backgroundColor;
+    const canvas = await html2canvas($('reporte'), { scale: Math.min(3, (window.devicePixelRatio || 1) * 1.5), backgroundColor: bg, useCORS: true, logging: false });
+    const blob = await new Promise(r => canvas.toBlob(r, 'image/png'));
+    const nombre = `Auditoria_X5_${X5.slug($('cliente').value || 'cliente')}_${X5.hoyISO()}.png`;
+    await X5.compartirArchivo(blob, nombre, 'Auditoría de inversión X5');
+  } catch (e) {
+    X5.toast('No se pudo generar la imagen. Revisá la conexión.', 'bad');
+  } finally {
+    $('reporte').classList.remove('exporting'); det.open = estabaAbierto; btn.disabled = false; btn.innerHTML = txt;
+  }
+});
+
+/* ── Inicio ──────────────────────────────────────────────── */
+$('who-fecha').textContent = new Date().toLocaleDateString('es-AR', { day: '2-digit', month: 'long', year: 'numeric' });
+leerColores();
+restaurar();
+calcular();
+})();
+</script>
 </body>
 </html>

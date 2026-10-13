@@ -1,220 +1,169 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escáner y Unificador X5</title>
-    <!-- Librerías PDF-Lib y Cropper.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
-    
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
-        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; max-width: 550px; width: 100%; }
-        h1 { color: #0056b3; font-size: 24px; margin-bottom: 10px; }
-        p.subtitle { color: #666; font-size: 14px; margin-bottom: 25px; }
-        .file-input-wrapper { margin-bottom: 20px; }
-        input[type="file"] { display: none; }
-        .custom-file-upload { border: 2px dashed #0056b3; display: inline-block; padding: 20px; cursor: pointer; border-radius: 5px; color: #0056b3; font-weight: bold; width: 80%; transition: background-color 0.3s; }
-        .custom-file-upload:hover { background-color: #e9ecef; }
-        #file-list { text-align: left; margin: 15px 0; font-size: 14px; color: #555; max-height: 150px; overflow-y: auto; background: #fafafa; padding: 10px; border-radius: 5px; border: 1px solid #eee; }
-        button { background-color: #28a745; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 5px; cursor: pointer; width: 100%; margin-bottom: 10px; font-weight: bold;}
-        button:disabled { background-color: #cccccc; cursor: not-allowed; }
-        .btn-clear { background-color: #dc3545; }
-        #status { margin-top: 15px; font-size: 14px; color: #2196F3; font-weight: bold; }
-
-        /* MODAL DE RECORTE TIPO ESCÁNER */
-        #cropper-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center; flex-direction: column; padding: 15px; box-sizing: border-box; }
-        .cropper-container-box { width: 100%; max-width: 500px; height: 60vh; background: #000; margin-bottom: 15px; display: flex; justify-content: center; align-items: center;}
-        #image-to-crop { max-width: 100%; max-height: 100%; display: block; }
-        .cropper-buttons { display: flex; flex-wrap: wrap; gap: 10px; width: 100%; max-width: 500px; justify-content: center;}
-        .btn-crop { background-color: #28a745; flex: 1; min-width: 140px;}
-        .btn-rotate { background-color: #17a2b8; flex: 1; min-width: 140px;}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#07080a">
+<title>Gestor Documental · X5 Cuyo</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="x5-theme.css">
+<script src="libs/pdf-lib.min.js"></script>
+<style>
+  .capture { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cap-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 22px 10px; border-radius: 16px; border: 1px dashed var(--line-strong); background: var(--surface-2); color: var(--text); font-weight: 700; font-size: .9rem; cursor: pointer; text-align: center; }
+  .cap-btn svg { width: 30px; height: 30px; stroke: var(--x5); fill: none; stroke-width: 1.7; }
+  .cap-btn.dom svg { stroke: var(--dom); }
+  .cap-btn small { font-weight: 500; color: var(--muted); font-size: .72rem; }
+  .pages { display: grid; grid-template-columns: repeat(auto-fill, minmax(102px, 1fr)); gap: 10px; }
+  .pg { position: relative; background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 6px; }
+  .pg .thumb { aspect-ratio: 210 / 297; border-radius: 8px; background: #fff center/contain no-repeat; display: grid; place-items: center; color: #444; font-weight: 800; font-size: .8rem; }
+  .pg .thumb.pdf { background: linear-gradient(160deg, #fff, #eef1f4); }
+  .pg .n { position: absolute; top: 10px; left: 10px; min-width: 22px; height: 22px; border-radius: 11px; background: var(--x5); color: var(--on-accent); font-size: .7rem; font-weight: 800; display: grid; place-items: center; padding: 0 6px; }
+  .pg .tools { display: flex; justify-content: space-between; margin-top: 6px; }
+  .pg .tools button { width: 28px; height: 28px; border-radius: 8px; border: 0; background: var(--surface-3); color: var(--text); font-size: .85rem; cursor: pointer; }
+  .pg .tools button.del { color: var(--bad); }
+  .result { display: none; }
+  .result.show { display: block; }
+  .tip-box { display: flex; gap: 10px; padding: 12px; border-radius: 12px; background: var(--x5-soft); color: var(--text); font-size: .8rem; line-height: 1.4; }
+</style>
 </head>
 <body>
+<header class="x5-top">
+  <a class="x5-back" href="index.html" aria-label="Volver al Hub"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a>
+  <div><h1>Gestor Documental</h1><div class="sub">Escaneo y unificación de legajos en PDF</div></div>
+</header>
 
-    <div class="container">
-        <h1>Escáner de Legajos X5</h1>
-        <p class="subtitle">Sube o fotografía documentos. El sistema los adaptará automáticamente a formato A4 sin bordes.</p>
-        
-        <div class="file-input-wrapper">
-            <label class="custom-file-upload">
-                <input type="file" id="file-upload" accept=".pdf, .jpg, .jpeg, .png" multiple>
-                + Añadir Fotos o PDFs
-            </label>
-        </div>
-
-        <div id="file-list" style="display: none;"></div>
-
-        <button id="merge-btn" disabled>Generar Legajo PDF</button>
-        <button id="clear-btn" class="btn-clear" disabled>Limpiar todo</button>
-        <div id="status"></div>
+<main class="x5-wrap">
+  <section class="card">
+    <div class="field"><label for="nombre">Nombre del legajo</label><input id="nombre" placeholder="Ej: Juan Pérez" autocomplete="off"></div>
+    <div class="capture">
+      <label class="cap-btn"><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h2l2-2h6l2 2h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="4"/></svg>Escanear<small>Abre la cámara</small>
+        <input type="file" id="in-cam" accept="image/*" capture="environment" hidden></label>
+      <label class="cap-btn dom"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15h6"/></svg>Agregar archivos<small>Fotos o PDFs</small>
+        <input type="file" id="in-files" accept="image/*,application/pdf" multiple hidden></label>
     </div>
+    <div class="tip-box" style="margin-top:12px"><span>💡</span><span>Apoyá la hoja sobre una superficie oscura y con buena luz: el escáner detecta los bordes solo y endereza la página.</span></div>
+  </section>
 
-    <div id="cropper-modal">
-        <p style="color: white; margin-bottom: 10px; font-weight: bold; text-align: center;">Ajusta las esquinas para eliminar la mesa/fondo</p>
-        <div class="cropper-container-box">
-            <img id="image-to-crop" src="">
-        </div>
-        <div class="cropper-buttons">
-            <button class="btn-rotate" onclick="rotarImagen()">🔄 Girar</button>
-            <button class="btn-crop" onclick="confirmarRecorte()">✅ Confirmar</button>
-        </div>
+  <section class="card" id="sec-pages" hidden>
+    <div class="card-title"><span><span class="dot"></span>Páginas del legajo</span><span class="chip x5" id="count">0</span></div>
+    <div class="pages" id="pages"></div>
+    <div class="row" style="margin-top:14px">
+      <button class="btn btn-ghost" id="btn-clear">Vaciar</button>
+      <button class="btn btn-dom" id="btn-make">Generar PDF</button>
     </div>
+  </section>
 
-    <script>
-        const fileInput = document.getElementById('file-upload');
-        const fileListDisplay = document.getElementById('file-list');
-        const mergeBtn = document.getElementById('merge-btn');
-        const clearBtn = document.getElementById('clear-btn');
-        const statusDisplay = document.getElementById('status');
-        const modal = document.getElementById('cropper-modal');
-        const imageToCrop = document.getElementById('image-to-crop');
+  <section class="card result" id="result">
+    <div class="card-title"><span><span class="dot" style="background:var(--ok)"></span>Legajo listo</span><span class="chip ok" id="size"></span></div>
+    <p class="muted" style="margin:0 0 12px;font-size:.86rem" id="res-name"></p>
+    <div class="row"><button class="btn btn-ghost" id="btn-save">Guardar</button><button class="btn" id="btn-share">Compartir</button></div>
+  </section>
+</main>
 
-        const { PDFDocument } = PDFLib;
-        let selectedFiles = [];
-        let queueImages = []; 
-        let cropper = null;
+<script src="x5-core.js"></script>
+<script src="x5-scanner.js"></script>
+<script>
+(() => {
+'use strict';
+const $ = (id) => document.getElementById(id);
+const { PDFDocument } = PDFLib;
+let items = []; // { tipo: 'img'|'pdf', blob, url, w, h, nombre, paginas }
+let pdfFinal = null;
 
-        const updateUI = () => {
-            if (selectedFiles.length > 0) {
-                fileListDisplay.style.display = 'block';
-                fileListDisplay.innerHTML = '<strong>Archivos procesados:</strong><br>' + 
-                    selectedFiles.map((f, i) => `✓ ${f.name}`).join('<br>');
-                mergeBtn.disabled = false;
-                clearBtn.disabled = false;
-            } else {
-                fileListDisplay.innerHTML = '';
-                fileListDisplay.style.display = 'none';
-                mergeBtn.disabled = true;
-                clearBtn.disabled = true;
-            }
-        };
+const p = new URLSearchParams(location.search);
+if (p.get('cliente')) $('nombre').value = p.get('cliente');
 
-        const clearFiles = () => {
-            selectedFiles = [];
-            fileInput.value = '';
-            statusDisplay.innerText = '';
-            updateUI();
-        };
+async function agregarImagen(file) {
+  const canvas = await X5Scanner.abrir(file, { titulo: `Página ${items.length + 1}`, filtro: 'color' });
+  if (!canvas) return;
+  const { blob, width, height } = await X5.comprimir(canvas, 2000, 0.82);
+  items.push({ tipo: 'img', blob, url: URL.createObjectURL(blob), w: width, h: height });
+  render();
+}
 
-        clearBtn.addEventListener('click', clearFiles);
+async function agregarPdf(file) {
+  try {
+    const doc = await PDFDocument.load(await file.arrayBuffer(), { ignoreEncryption: true });
+    items.push({ tipo: 'pdf', blob: file, nombre: file.name, paginas: doc.getPageCount() });
+    render();
+  } catch (e) { X5.toast(`No se pudo leer ${file.name}`, 'bad'); }
+}
 
-        fileInput.addEventListener('change', (event) => {
-            const files = Array.from(event.target.files);
-            fileInput.value = ''; 
-            
-            queueImages = [];
-            for (let file of files) {
-                if (file.type === 'application/pdf') {
-                    selectedFiles.push({ data: file, name: file.name, isPdf: true });
-                } else if (file.type.includes('image')) {
-                    queueImages.push(file);
-                }
-            }
-            updateUI();
-            processNextImage();
-        });
+async function procesar(files) {
+  for (const f of files) {
+    if (f.type === 'application/pdf') await agregarPdf(f);
+    else if (f.type.startsWith('image/')) await agregarImagen(f);
+  }
+}
+$('in-cam').addEventListener('change', async (e) => { const f = [...e.target.files]; e.target.value = ''; await procesar(f); });
+$('in-files').addEventListener('change', async (e) => { const f = [...e.target.files]; e.target.value = ''; await procesar(f); });
 
-        const processNextImage = () => {
-            if (queueImages.length > 0) {
-                const imgFile = queueImages.shift();
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    imageToCrop.src = e.target.result;
-                    modal.style.display = 'flex';
-                    
-                    // Esperamos un microsegundo a que el modal sea visible para iniciar Cropper correctamente
-                    setTimeout(() => {
-                        if (cropper) cropper.destroy();
-                        cropper = new Cropper(imageToCrop, {
-                            viewMode: 2, // Impide que el cuadro salga de los límites de la imagen
-                            autoCropArea: 0.95,
-                            background: false
-                        });
-                    }, 50);
-                };
-                reader.readAsDataURL(imgFile);
-            }
-        };
+function render() {
+  pdfFinal = null; $('result').classList.remove('show');
+  $('sec-pages').hidden = !items.length;
+  const total = items.reduce((s, it) => s + (it.tipo === 'pdf' ? it.paginas : 1), 0);
+  $('count').textContent = `${total} ${total === 1 ? 'página' : 'páginas'}`;
+  let n = 1;
+  $('pages').innerHTML = items.map((it, i) => {
+    const num = it.tipo === 'pdf' ? (it.paginas > 1 ? `${n}–${n + it.paginas - 1}` : n) : n;
+    n += it.tipo === 'pdf' ? it.paginas : 1;
+    return `<div class="pg">
+      <span class="n">${num}</span>
+      ${it.tipo === 'img' ? `<div class="thumb" style="background-image:url(${it.url})"></div>` : `<div class="thumb pdf">PDF<br><small style="font-weight:500">${it.paginas} pág.</small></div>`}
+      <div class="tools">
+        <button data-a="up" data-i="${i}" aria-label="Mover antes" ${i === 0 ? 'disabled' : ''}>◀</button>
+        <button data-a="del" data-i="${i}" class="del" aria-label="Quitar">✕</button>
+        <button data-a="down" data-i="${i}" aria-label="Mover después" ${i === items.length - 1 ? 'disabled' : ''}>▶</button>
+      </div></div>`;
+  }).join('');
+}
 
-        window.rotarImagen = () => {
-            if (cropper) cropper.rotate(90);
-        };
+$('pages').addEventListener('click', (e) => {
+  const b = e.target.closest('button[data-a]'); if (!b) return;
+  const i = +b.dataset.i, a = b.dataset.a;
+  if (a === 'del') { const [x] = items.splice(i, 1); if (x.url) URL.revokeObjectURL(x.url); }
+  if (a === 'up' && i > 0) [items[i - 1], items[i]] = [items[i], items[i - 1]];
+  if (a === 'down' && i < items.length - 1) [items[i + 1], items[i]] = [items[i], items[i + 1]];
+  render();
+});
+$('btn-clear').addEventListener('click', () => { if (confirm('¿Quitar todas las páginas?')) { items.forEach(x => x.url && URL.revokeObjectURL(x.url)); items = []; render(); } });
 
-        window.confirmarRecorte = () => {
-            if (!cropper) return;
-            const canvas = cropper.getCroppedCanvas({ fillColor: '#fff' });
-            canvas.toBlob((blob) => {
-                selectedFiles.push({ data: blob, name: 'Documento_Escaneado.jpg', isPdf: false });
-                cerrarModalYContinuar();
-            }, 'image/jpeg', 0.90);
-        };
-
-        const cerrarModalYContinuar = () => {
-            modal.style.display = 'none';
-            if (cropper) { cropper.destroy(); cropper = null; }
-            imageToCrop.src = ""; 
-            updateUI();
-            processNextImage(); 
-        };
-
-        mergeBtn.addEventListener('click', async () => {
-            try {
-                mergeBtn.disabled = true; clearBtn.disabled = true;
-                statusDisplay.innerText = 'Ensamblando legajo...';
-
-                const mergedPdf = await PDFDocument.create();
-
-                for (let item of selectedFiles) {
-                    const arrayBuffer = await item.data.arrayBuffer();
-
-                    if (item.isPdf) {
-                        const pdf = await PDFDocument.load(arrayBuffer);
-                        const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-                        copiedPages.forEach((page) => mergedPdf.addPage(page));
-                    } else {
-                        const image = await mergedPdf.embedJpg(arrayBuffer);
-                        
-                        // LÓGICA DE ESCÁNER: Detectar si es DNI (apaisado) o Título (vertical)
-                        const isLandscape = image.width > image.height;
-                        const pageWidth = isLandscape ? 841.89 : 595.28;  // A4 en puntos
-                        const pageHeight = isLandscape ? 595.28 : 841.89;
-
-                        const page = mergedPdf.addPage([pageWidth, pageHeight]);
-                        
-                        // Escalar dejando solo 15 puntos de margen para simular hoja completa
-                        const margin = 15;
-                        const imgDims = image.scaleToFit(pageWidth - margin * 2, pageHeight - margin * 2);
-                        
-                        page.drawImage(image, {
-                            x: (pageWidth - imgDims.width) / 2,
-                            y: (pageHeight - imgDims.height) / 2,
-                            width: imgDims.width,
-                            height: imgDims.height,
-                        });
-                    }
-                }
-
-                const mergedPdfBytes = await mergedPdf.save();
-                const blob = new Blob([mergedPdfBytes], { type: 'application/pdf' });
-                const url = URL.createObjectURL(blob);
-                
-                const a = document.createElement('a');
-                a.href = url; a.download = 'Legajo_Escaneado_X5.pdf';
-                document.body.appendChild(a); a.click(); document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-
-                statusDisplay.innerText = '¡PDF generado con éxito!';
-            } catch (error) {
-                console.error(error);
-                statusDisplay.innerText = 'Error al procesar el archivo.';
-            } finally {
-                clearBtn.disabled = false; mergeBtn.disabled = false;
-            }
-        });
-    </script>
+const A4 = [595.28, 841.89];
+$('btn-make').addEventListener('click', async () => {
+  const btn = $('btn-make'); btn.disabled = true; btn.textContent = 'Armando PDF…';
+  try {
+    const out = await PDFDocument.create();
+    for (const it of items) {
+      if (it.tipo === 'pdf') {
+        const src = await PDFDocument.load(await it.blob.arrayBuffer(), { ignoreEncryption: true });
+        (await out.copyPages(src, src.getPageIndices())).forEach(pg => out.addPage(pg));
+      } else {
+        const img = await out.embedJpg(await it.blob.arrayBuffer());
+        const apaisada = img.width > img.height;
+        const [W, H] = apaisada ? [A4[1], A4[0]] : A4;
+        const pg = out.addPage([W, H]);
+        const m = 18, d = img.scaleToFit(W - m * 2, H - m * 2);
+        pg.drawImage(img, { x: (W - d.width) / 2, y: (H - d.height) / 2, width: d.width, height: d.height });
+      }
+    }
+    out.setTitle(`Legajo ${$('nombre').value || ''}`.trim()); out.setProducer('X5 Cuyo · Hub Comercial');
+    pdfFinal = new Blob([await out.save()], { type: 'application/pdf' });
+    const nombre = `Legajo_${X5.slug($('nombre').value || 'X5')}_${X5.hoyISO()}.pdf`;
+    pdfFinal.nombre = nombre;
+    $('res-name').textContent = nombre;
+    $('size').textContent = (pdfFinal.size / 1048576).toFixed(1).replace('.', ',') + ' MB';
+    $('result').classList.add('show');
+    $('result').scrollIntoView({ behavior: 'smooth' });
+  } catch (e) {
+    console.error(e); X5.toast('Error al armar el PDF', 'bad');
+  } finally { btn.disabled = false; btn.textContent = 'Generar PDF'; }
+});
+$('btn-save').addEventListener('click', () => pdfFinal && X5.guardarArchivo(pdfFinal, pdfFinal.nombre).then(() => X5.toast('PDF guardado', 'ok')));
+$('btn-share').addEventListener('click', () => pdfFinal && X5.compartirArchivo(pdfFinal, pdfFinal.nombre, `Legajo ${$('nombre').value}`));
+})();
+</script>
 </body>
 </html>

@@ -1,21 +1,22 @@
 {
-  "name": "X5 OS Comercial",
+  "id": "./",
+  "name": "X5 Cuyo · Hub Comercial",
   "short_name": "X5 Cuyo",
+  "description": "Hub comercial de X5 Argentina Región Cuyo: CRM, auditoría de inversión, documentos y checklist vehicular.",
+  "lang": "es-AR",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#050505",
-  "theme_color": "#0a0a0a",
   "orientation": "portrait",
+  "background_color": "#07080a",
+  "theme_color": "#07080a",
   "icons": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "Mini CRM", "url": "crm.html", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Auditoría de Inversión", "url": "simulador.html", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Gestor Documental", "url": "unificador.html", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] }
   ]
 }

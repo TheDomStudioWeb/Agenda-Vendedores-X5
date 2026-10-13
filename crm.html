@@ -1,629 +1,779 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CRM | X5 Argentina</title>
-    <!-- Librerías de PDF y Gráficos -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <style>
-        :root { --primary: #0056b3; --secondary: #f8f9fa; --success: #28a745; --warning: #ffc107; --danger: #dc3545; --text: #333; --bg: #e9ecef; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 0; padding-bottom: 70px; }
-        
-        #login-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10000; }
-        .logo-txt { font-size: 32px; font-weight: bold; color: var(--primary); margin-bottom: 30px;}
-        .login-box { background: var(--secondary); padding: 30px; border-radius: 10px; width: 80%; max-width: 350px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);}
-        
-        .app-container { padding: 15px; max-width: 1000px; margin: 0 auto; display: none; }
-        .panel { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        h2 { color: var(--primary); margin-top: 0; font-size: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;}
-        
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
-        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ced4da; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
-        .btn-main { background-color: var(--primary); color: white; border: none; padding: 14px 20px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; font-size: 16px; }
-        
-        .card { background: var(--secondary); border-left: 5px solid var(--warning); padding: 15px; margin-bottom: 15px; border-radius: 6px; }
-        .card.realizado { border-left-color: var(--success); }
-        .card.cancelado { border-left-color: var(--danger); }
-        .card.vencido { border-left-color: var(--danger); background-color: #fff3f3; }
-        
-        .card-header { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 10px; flex-wrap: wrap; gap: 5px;}
-        .badge { background: #e2e3e5; padding: 4px 8px; border-radius: 12px; font-size: 13px;}
-        .card-body { font-size: 15px; margin-bottom: 15px; line-height: 1.4;}
-        
-        .controls-row { display: flex; gap: 10px; flex-wrap: wrap;}
-        .controls-row select, .controls-row input { flex: 1; min-width: 120px;}
-        
-        .btn-action { background-color: white; border: 1px solid #ccc; padding: 10px; border-radius: 5px; text-align: center; color: #333; font-weight: bold; display: block; text-decoration: none; font-size: 14px;}
-        .btn-wsp { background-color: #25D366; color: white; border: none; }
-        .btn-pdf { background-color: #dc3545; color: white; border: none; }
-        .btn-sync { background-color: #28a745; color: white; border: none; padding: 8px 12px; border-radius: 5px; font-size: 14px;}
-        .btn-logout { background-color: #6c757d; color: white; border: none; padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer;}
-        
-        .filter-tabs { display: flex; margin-bottom: 15px; background: #e9ecef; border-radius: 8px; overflow: hidden; }
-        .filter-tab { flex: 1; text-align: center; padding: 10px; font-weight: bold; cursor: pointer; color: #666; font-size: 14px; }
-        .filter-tab.active { background: var(--primary); color: white; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#07080a">
+<title>Mini CRM · X5 Cuyo</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="x5-theme.css">
+<style>
+  body { padding-bottom: calc(76px + var(--safe-bottom)); }
 
-        .result-box { background: #fff; padding: 15px; border-radius: 5px; border: 1px dashed #ccc; margin-top: 15px; display: none; }
-        .result-box.active { display: block; }
-        
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: white; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); display: flex; z-index: 1000; }
-        .nav-item { flex: 1; text-align: center; padding: 12px 0; color: #666; font-weight: bold; cursor: pointer; border-top: 3px solid transparent; font-size: 12px;}
-        .nav-item.active { color: var(--primary); border-top-color: var(--primary); background: #f8f9fa;}
-        .nav-icon { font-size: 20px; display: block; margin-bottom: 2px; }
+  /* Login */
+  #login { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; background: var(--bg-glow), var(--bg); }
+  #login .brandmark { font-size: 1.9rem; margin-bottom: 4px; }
+  #login .tag { color: var(--muted); font-size: .8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 28px; }
+  #login .card { width: 100%; max-width: 360px; }
 
-        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 20px; }
-        .metric-box { background: #fff; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.02);}
-        .metric-number { font-size: 24px; font-weight: bold; color: var(--primary); margin-bottom: 5px;}
-        .metric-title { font-size: 12px; color: #666; font-weight: bold; text-transform: uppercase;}
-        .chart-container { background: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #dee2e6; }
-        
-        #pdf-upload { display: none; }
-    </style>
+  /* Estado de sincronización */
+  .sync { display: inline-flex; align-items: center; gap: 6px; font-size: .72rem; font-weight: 600; color: var(--muted); padding: 6px 10px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); cursor: pointer; }
+  .sync i { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+  .sync.pend i { background: var(--warn); animation: pulse 1.2s infinite; }
+  .sync.off i { background: var(--bad); }
+  @keyframes pulse { 50% { opacity: .3; } }
+
+  .tab { display: none; }
+  .tab.active { display: block; animation: x5-in .2s ease-out; }
+
+  /* Resumen del día */
+  .today { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+  .today div { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px; }
+  .today b { display: block; font-size: 1.5rem; font-weight: 800; line-height: 1.1; }
+  .today span { font-size: .68rem; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; font-weight: 600; }
+
+  /* Tarjetas de agenda / leads */
+  .item { position: relative; background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; padding: 14px 14px 14px 18px; margin-bottom: 10px; overflow: hidden; }
+  .item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--warn); }
+  .item.realizado::before, .item.entrevista_pactada::before { background: var(--ok); }
+  .item.en_seguimiento::before { background: var(--x5); }
+  .item.cancelado::before, .item.descartado::before { background: var(--faint); }
+  .item.vencido::before { background: var(--bad); }
+  .item.vencido { border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+  .item-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+  .item-head h3 { margin: 0; font-size: 1rem; font-weight: 700; }
+  .item-head .time { font-size: .8rem; color: var(--muted); font-weight: 600; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .84rem; color: var(--muted); margin-bottom: 12px; }
+  .meta b { color: var(--text); font-weight: 600; }
+  .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .actions .full { grid-column: 1 / -1; }
+  .note-state { font-size: .7rem; color: var(--faint); text-align: right; margin-top: 4px; min-height: 1em; }
+  .sale { margin-top: 10px; padding: 12px; border-radius: 12px; background: var(--ok-soft); border: 1px solid color-mix(in srgb, var(--ok) 25%, transparent); }
+
+  details.newform summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: 700; }
+  details.newform summary::-webkit-details-marker { display: none; }
+  details.newform summary .plus { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: var(--x5-soft); color: var(--x5); font-size: 1.2rem; transition: transform .2s; }
+  details.newform[open] summary .plus { transform: rotate(45deg); }
+  details.newform form { margin-top: 14px; }
+
+  .search { margin: 12px 0; }
+
+  /* Navegación inferior */
+  .bnav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: flex; padding: 6px 8px calc(6px + var(--safe-bottom)); background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid var(--line); }
+  .bnav button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 7px 0; border: 0; background: none; color: var(--faint); font-size: .68rem; font-weight: 600; cursor: pointer; border-radius: 12px; position: relative; }
+  .bnav button svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+  .bnav button.active { color: var(--x5); }
+  .bnav .badge { position: absolute; top: 2px; left: calc(50% + 6px); min-width: 17px; height: 17px; padding: 0 4px; border-radius: 9px; background: var(--bad); color: #fff; font-size: .62rem; display: grid; place-items: center; }
+
+  /* Métricas */
+  .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+  .kpi span { font-size: .66rem; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .kpi b { display: block; font-size: 1.35rem; font-weight: 800; margin-top: 4px; }
+  .kpi.hero { grid-column: 1 / -1; background: linear-gradient(135deg, var(--dom-soft), transparent 70%), var(--surface); border-color: color-mix(in srgb, var(--dom) 30%, transparent); }
+  .kpi.hero b { font-size: 1.9rem; color: var(--dom); }
+  .bars { display: flex; flex-direction: column; gap: 10px; }
+  .bar-row { display: grid; grid-template-columns: 96px 1fr auto; align-items: center; gap: 10px; font-size: .82rem; }
+  .bar-row .name { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bar-track { height: 10px; border-radius: 6px; background: var(--surface-3); overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--x5-strong), var(--x5)); transform-origin: left; animation: grow .7s cubic-bezier(.2,.8,.2,1) both; }
+  .bar-fill.dom { background: linear-gradient(90deg, var(--dom-strong), var(--dom)); }
+  .bar-fill.warn { background: linear-gradient(90deg, #d48f12, var(--warn)); }
+  .bar-row .val { font-weight: 700; font-variant-numeric: tabular-nums; }
+  @keyframes grow { from { transform: scaleX(0); } }
+  .donut-wrap { display: flex; align-items: center; gap: 18px; }
+  .legend { display: flex; flex-direction: column; gap: 7px; font-size: .82rem; flex: 1; }
+  .legend div { display: flex; align-items: center; gap: 8px; }
+  .legend i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+  .legend span { flex: 1; color: var(--muted); }
+</style>
 </head>
 <body>
 
-    <div id="login-screen">
-        <div class="logo-txt">X5 ARGENTINA</div>
-        <div class="login-box" id="login-box" style="display:none;">
-            <h3>Ingreso al Sistema</h3>
-            <select id="user-select" style="margin-bottom: 15px;">
-                <option value="">Selecciona tu usuario...</option>
+<!-- ── LOGIN ─────────────────────────────────────────────── -->
+<div id="login">
+  <div class="brandmark"><b>X5</b> CUYO</div>
+  <div class="tag">Mini CRM comercial</div>
+  <div class="card" id="login-box" hidden>
+    <div class="field"><label for="user-select">Usuario</label><select id="user-select"><option value="">Seleccioná tu usuario…</option></select></div>
+    <div class="field"><label for="user-pass">Clave</label><input type="password" id="user-pass" autocomplete="current-password" placeholder="Tu clave de acceso"></div>
+    <button class="btn" id="btn-login">Ingresar</button>
+    <a href="index.html" class="btn btn-ghost" style="margin-top:10px">Volver al Hub</a>
+  </div>
+  <div id="login-loading" class="center muted"><span class="spinner"></span><p>Conectando con la base de datos…</p></div>
+</div>
+
+<!-- ── APP ────────────────────────────────────────────────── -->
+<header class="x5-top">
+  <a class="x5-back" href="index.html" aria-label="Volver al Hub"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a>
+  <div><h1 id="greeting">Mini CRM</h1><div class="sub" id="user-role"></div></div>
+  <div class="spacer"></div>
+  <button class="sync" id="sync-pill" title="Sincronizar ahora"><i></i><span>Al día</span></button>
+  <button class="btn btn-ghost btn-icon" id="btn-logout" title="Cerrar sesión" aria-label="Cerrar sesión"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button>
+</header>
+
+<main class="x5-wrap">
+
+  <!-- AGENDA -->
+  <section id="tab-agenda" class="tab active">
+    <div class="today">
+      <div><b class="num" id="sum-entrevistas">0</b><span>Entrevistas hoy</span></div>
+      <div><b class="num" id="sum-leads">0</b><span>Leads hoy</span></div>
+      <div><b class="num" id="sum-vencidos" style="color:var(--bad)">0</b><span>Vencidos</span></div>
+    </div>
+
+    <div class="card">
+      <details class="newform" id="det-agenda">
+        <summary>Nueva entrevista <span class="plus">+</span></summary>
+        <form id="form-agenda" autocomplete="off">
+          <div class="field"><input id="ag-cliente" required placeholder="Nombre del prospecto"></div>
+          <div class="row field">
+            <input id="ag-vehiculo" required placeholder="Vehículo de interés">
+            <select id="ag-lugar"><option value="Agencia">En agencia</option><option value="Domicilio">En domicilio</option></select>
+          </div>
+          <div class="field hidden" id="wrap-auto"><select id="ag-auto"><option value="">Vehículo de flota…</option></select></div>
+          <div class="field"><select id="ag-asesor" required></select></div>
+          <div class="row field"><input type="date" id="ag-fecha" required><input type="time" id="ag-hora" required></div>
+          <div class="field"><textarea id="ag-notas" rows="2" placeholder="Observaciones (opcional)"></textarea></div>
+          <input type="hidden" id="ag-lead-id">
+          <button class="btn" type="submit">Agendar entrevista</button>
+        </form>
+      </details>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span><span class="dot"></span>Agenda</span></div>
+      <div class="seg" data-filtro="agenda">
+        <button data-v="hoy" class="active">Foco de hoy</button>
+        <button data-v="proximas">Próximas</button>
+        <button data-v="todo">Historial</button>
+      </div>
+      <input class="search hidden" id="q-agenda" type="search" placeholder="Buscar cliente, vehículo o asesor…">
+      <div id="lista-agenda" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <!-- LEADS -->
+  <section id="tab-leads" class="tab">
+    <div class="card hidden" id="panel-asignar">
+      <details class="newform">
+        <summary>Asignar nuevo lead <span class="plus">+</span></summary>
+        <form id="form-leads" autocomplete="off">
+          <div class="row field"><input id="ld-cliente" required placeholder="Prospecto"><input type="tel" id="ld-telefono" required placeholder="Teléfono"></div>
+          <div class="row field">
+            <input id="ld-interes" required placeholder="Interés">
+            <select id="ld-origen" required>
+              <option value="">Origen…</option><option>Meta Ads</option><option>Web X5</option><option>Referido</option><option>Redes Asesor</option><option>Salón / Espontáneo</option>
             </select>
-            <input type="password" id="user-pass" placeholder="Tu clave de acceso" style="margin-bottom: 15px;">
-            <button class="btn-main" onclick="iniciarSesion()">Ingresar</button>
-        </div>
-        <div id="loading-initial"><p>Sincronizando Base de Datos...</p></div>
+          </div>
+          <div class="field"><select id="ld-asignado" required></select></div>
+          <div class="field"><label>Contactar antes de</label><div class="row"><input type="date" id="ld-fecha" required><input type="time" id="ld-hora" required></div></div>
+          <div class="field"><textarea id="ld-notas" rows="2" placeholder="Observaciones iniciales (opcional)"></textarea></div>
+          <button class="btn" type="submit">Asignar lead</button>
+        </form>
+      </details>
     </div>
 
-    <input type="file" id="pdf-upload" accept="image/*" multiple onchange="procesarYDescargarPDF(event)">
-
-    <div class="app-container" id="main-app">
-        
-        <!-- PESTAÑA: AGENDA -->
-        <div id="tab-agenda" class="tab-content active">
-            <div class="panel">
-                <h2>Nueva Entrevista 
-                    <div><span id="user-greeting" style="font-size:14px; color:#666; margin-right: 10px;"></span><button class="btn-logout" onclick="cerrarSesion()">🚪 Salir</button></div>
-                </h2>
-                <form id="form-agenda">
-                    <div class="form-group"><input type="text" id="ag-cliente" required placeholder="Nombre del prospecto"></div>
-                    <div class="controls-row form-group">
-                        <input type="text" id="ag-vehiculo" required placeholder="Vehículo de interés">
-                        <select id="ag-lugar" required onchange="toggleFlota()">
-                            <option value="Agencia">En Agencia</option>
-                            <option value="Domicilio">En Domicilio</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><select id="ag-auto" style="display:none;"><option value="">-- Vehículo de Flota --</option></select></div>
-                    <div class="form-group"><select id="ag-asesor" required><option value="">-- Asesor --</option></select></div>
-                    <div class="controls-row form-group">
-                        <input type="date" id="ag-fecha" required>
-                        <input type="time" id="ag-hora" required>
-                    </div>
-                    <button type="submit" class="btn-main">Agendar Entrevista</button>
-                </form>
-            </div>
-
-            <div class="panel">
-                <h2>Agenda <button class="btn-sync" onclick="sincronizarFondo(true)">🔄</button></h2>
-                
-                <div class="filter-tabs">
-                    <div class="filter-tab active" id="btn-hoy-agenda" onclick="setFiltro('agenda', 'hoy')">🔥 Foco de Hoy</div>
-                    <div class="filter-tab" id="btn-todo-agenda" onclick="setFiltro('agenda', 'todo')">🗓️ Historial Completo</div>
-                </div>
-
-                <div id="lista-agenda"></div>
-            </div>
-        </div>
-
-        <!-- PESTAÑA: LEADS -->
-        <div id="tab-leads" class="tab-content">
-            <div class="panel" id="panel-asignar-leads" style="display:none;">
-                <h2>Asignar Nuevo Lead</h2>
-                <form id="form-leads">
-                    <div class="controls-row form-group">
-                        <input type="text" id="ld-cliente" required placeholder="Prospecto">
-                        <input type="tel" id="ld-telefono" required placeholder="Teléfono">
-                    </div>
-                    <div class="controls-row form-group">
-                        <input type="text" id="ld-interes" required placeholder="Interés">
-                        <select id="ld-origen" required>
-                            <option value="">-- Origen --</option>
-                            <option value="Meta Ads">Meta Ads</option>
-                            <option value="Web X5">Web X5</option>
-                            <option value="Referido">Referido</option>
-                            <option value="Redes Asesor">Redes Asesor</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><select id="ld-asignado" required><option value="">-- Asignar a --</option></select></div>
-                    <div class="controls-row form-group">
-                        <input type="date" id="ld-fecha-limite" required>
-                        <input type="time" id="ld-hora-limite" required>
-                    </div>
-                    <button type="submit" class="btn-main">Asignar Lead</button>
-                </form>
-            </div>
-
-            <div class="panel">
-                <h2>Seguimiento de Leads</h2>
-                <div class="filter-tabs">
-                    <div class="filter-tab active" id="btn-hoy-leads" onclick="setFiltro('leads', 'hoy')">🔥 Para Hoy</div>
-                    <div class="filter-tab" id="btn-todo-leads" onclick="setFiltro('leads', 'todo')">🗓️ Todos los Leads</div>
-                </div>
-                <div id="lista-leads"></div>
-            </div>
-        </div>
-
-        <!-- PESTAÑA: MÉTRICAS GERENCIALES -->
-        <div id="tab-dashboard" class="tab-content">
-            <div class="panel">
-                <h2 style="margin-bottom: 20px;">📊 Dashboard Regional Cuyo</h2>
-                
-                <div class="dashboard-grid">
-                    <div class="metric-box">
-                        <div class="metric-number" id="dash-facturacion">$0</div>
-                        <div class="metric-title">Facturación Mensual</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-number" id="dash-ventas">0</div>
-                        <div class="metric-title">Cierres Realizados</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-number" id="dash-leads-activos">0</div>
-                        <div class="metric-title">Leads Atendidos</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-number" id="dash-conversion">0%</div>
-                        <div class="metric-title">Tasa de Conversión</div>
-                    </div>
-                </div>
-
-                <div class="chart-container">
-                    <h3 style="font-size: 14px; margin-top: 0;">Rendimiento por Asesor (Facturación)</h3>
-                    <canvas id="chartAsesores" height="200"></canvas>
-                </div>
-
-                <div class="chart-container">
-                    <h3 style="font-size: 14px; margin-top: 0;">Origen de las Ventas (ROI)</h3>
-                    <canvas id="chartOrigenes" height="200"></canvas>
-                </div>
-
-                <div class="chart-container">
-                    <h3 style="font-size: 14px; margin-top: 0;">Tiempo promedio de Respuesta (Minutos)</h3>
-                    <canvas id="chartTiempos" height="200"></canvas>
-                </div>
-                
-                <div class="chart-container">
-                    <h3 style="font-size: 14px; margin-top: 0;">Uso de Flota vs Ventas</h3>
-                    <canvas id="chartFlota" height="200"></canvas>
-                </div>
-            </div>
-        </div>
+    <div class="card">
+      <div class="card-title"><span><span class="dot" style="background:var(--dom)"></span>Seguimiento de leads</span></div>
+      <div class="seg" data-filtro="leads">
+        <button data-v="hoy" class="active">Para hoy</button>
+        <button data-v="abiertos">Abiertos</button>
+        <button data-v="todo">Todos</button>
+      </div>
+      <input class="search hidden" id="q-leads" type="search" placeholder="Buscar nombre, teléfono o interés…">
+      <div id="lista-leads" style="margin-top:12px"></div>
     </div>
+  </section>
 
-    <!-- MENÚ INFERIOR -->
-    <div class="bottom-nav" id="bottom-nav" style="display:none;">
-        <div class="nav-item active" onclick="switchTab('agenda', this)"><span class="nav-icon">📅</span> Agenda</div>
-        <div class="nav-item" onclick="switchTab('leads', this)"><span class="nav-icon">🎯</span> Leads</div>
-        <div class="nav-item" id="nav-dashboard" style="display:none;" onclick="switchTab('dashboard', this)"><span class="nav-icon">📊</span> Métricas</div>
+  <!-- MÉTRICAS -->
+  <section id="tab-dashboard" class="tab">
+    <div class="card" style="margin-bottom:14px">
+      <div class="row" style="align-items:center">
+        <div><div class="lbl" style="margin:0">Período</div></div>
+        <select id="dash-mes" style="max-width:220px"></select>
+      </div>
     </div>
+    <div class="kpis">
+      <div class="kpi hero"><span>Facturación del período</span><b class="num" id="k-fact">$0</b></div>
+      <div class="kpi"><span>Cierres</span><b class="num" id="k-ventas">0</b></div>
+      <div class="kpi"><span>Conversión leads</span><b class="num" id="k-conv">0%</b></div>
+      <div class="kpi"><span>Leads recibidos</span><b class="num" id="k-leads">0</b></div>
+      <div class="kpi"><span>Respuesta prom.</span><b class="num" id="k-resp">–</b></div>
+    </div>
+    <div class="card"><div class="card-title">Facturación por asesor</div><div class="bars" id="ch-asesores"></div></div>
+    <div class="card"><div class="card-title">Origen de las ventas</div><div id="ch-origen"></div></div>
+    <div class="card"><div class="card-title">Minutos promedio hasta el primer contacto</div><div class="bars" id="ch-tiempos"></div></div>
+    <div class="card"><div class="card-title">Ventas cerradas por auto de flota</div><div class="bars" id="ch-flota"></div></div>
+  </section>
+</main>
 
-    <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
-        
-        let db = { agenda: [], leads: [], personal: [], flota: [] };
-        let currentUser = null;
-        let nombreClientePDF = "Cliente"; 
-        let vistaFiltro = { agenda: 'hoy', leads: 'hoy' }; 
-        
-        let chart1, chart2, chart3, chart4; 
-        const { PDFDocument } = PDFLib;
+<nav class="bnav hidden" id="bnav">
+  <button data-tab="agenda" class="active"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>Agenda</button>
+  <button data-tab="leads"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3"/></svg>Leads<span class="badge hidden" id="badge-leads">0</span></button>
+  <button data-tab="dashboard" class="hidden" id="nav-dashboard"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Métricas</button>
+</nav>
 
-        window.onload = () => {
-            const cache = localStorage.getItem('x5_db');
-            if (cache) {
-                db = JSON.parse(cache);
-                prepararPantallaLogin();
-                sincronizarFondo(false); 
-            } else {
-                sincronizarFondo(true); 
-            }
-        };
+<script src="x5-core.js"></script>
+<script>
+(() => {
+'use strict';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
+const SUPERVISION = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
+const $ = (id) => document.getElementById(id);
+const esc = X5.esc;
 
-        const sincronizarFondo = async (mostrarCarga = false) => {
-            if(mostrarCarga) document.getElementById('loading-initial').style.display = 'block';
-            try {
-                const res = await fetch(SCRIPT_URL);
-                db = await res.json();
-                localStorage.setItem('x5_db', JSON.stringify(db)); 
-                if (!currentUser) prepararPantallaLogin();
-                else cargarVistas(); 
-            } catch (error) { console.error("Error sincronizando:", error); } 
-            finally { document.getElementById('loading-initial').style.display = 'none'; }
-        };
+let db = { agenda: [], leads: [], personal: [], flota: [] };
+let user = null, token = null;
+const filtro = { agenda: 'hoy', leads: 'hoy' };
 
-        const prepararPantallaLogin = () => {
-            const guardado = localStorage.getItem('x5_user');
-            if (guardado) {
-                currentUser = JSON.parse(guardado); iniciarApp();
-            } else {
-                const select = document.getElementById('user-select');
-                select.innerHTML = '<option value="">Selecciona tu usuario...</option>';
-                db.personal.filter(p => p.estado === 'Activo').forEach(p => {
-                    select.innerHTML += `<option value="${p.nombre}">${p.nombre} (${p.rol})</option>`;
-                });
-                document.getElementById('login-box').style.display = 'block';
-            }
-        };
+/* ── Almacenamiento local seguro ────────────────────────────── */
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+  del(k) { try { localStorage.removeItem(k); } catch (e) {} }
+};
 
-        const iniciarSesion = () => {
-            const nombre = document.getElementById('user-select').value;
-            const claveIngresada = document.getElementById('user-pass').value;
+/* ── API ────────────────────────────────────────────────────── */
+async function apiGet(params = {}) {
+  const qs = new URLSearchParams(params).toString();
+  const r = await fetch(SCRIPT_URL + (qs ? '?' + qs : ''), { cache: 'no-store' });
+  return r.json();
+}
+async function apiPost(body) {
+  const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body) });
+  return r.json();
+}
+// El backend viejo responde {status:"ok"}; el nuevo {ok:true}
+const respOk = (r) => r && (r.ok === true || r.status === 'ok');
 
-            if(!nombre) return alert('⚠️ Selecciona tu usuario');
-            if(!claveIngresada) return alert('⚠️ Ingresa tu clave de acceso');
+/* ── Cola de cambios (no se pierde nada sin señal) ──────────── */
+let outbox = store.get('x5_outbox', []);
+let enviando = false;
 
-            const usuarioEncontrado = db.personal.find(p => p.nombre === nombre);
+function encolar(accion, tabla, data) {
+  // Si ya hay un update pendiente del mismo registro, se reemplaza por el más nuevo
+  if (accion === 'update') {
+    const i = outbox.findIndex(o => o.action === 'update' && o.tabla === tabla && String(o.data.id) === String(data.id));
+    if (i > -1) outbox.splice(i, 1);
+  }
+  outbox.push({ action: accion, tabla, data: { ...data }, t: Date.now() });
+  store.set('x5_outbox', outbox);
+  pintarSync();
+  procesarCola();
+}
 
-            if (String(usuarioEncontrado.clave) !== String(claveIngresada)) {
-                return alert('❌ Clave incorrecta. Acceso denegado.');
-            }
+async function procesarCola() {
+  if (enviando || !outbox.length) return pintarSync();
+  if (!navigator.onLine) return pintarSync('off');
+  enviando = true; pintarSync();
+  try {
+    while (outbox.length) {
+      const op = outbox[0];
+      // Se envía en ambos formatos: el backend nuevo lee "data", el viejo los campos sueltos
+      const r = await apiPost({ ...op.data, action: op.action, tabla: op.tabla, data: op.data, token });
+      if (r && r.error === 'sesion_vencida') { sesionVencida(); break; }
+      if (!respOk(r) && r.error !== 'no_encontrado') throw new Error(r.error || 'error');
+      outbox.shift(); store.set('x5_outbox', outbox);
+    }
+  } catch (e) {
+    pintarSync('off');
+    setTimeout(procesarCola, 20000);
+  } finally {
+    enviando = false; pintarSync();
+  }
+}
 
-            currentUser = usuarioEncontrado;
-            localStorage.setItem('x5_user', JSON.stringify(currentUser));
-            iniciarApp();
-        };
+function pintarSync(estado) {
+  const p = $('sync-pill'), s = p.querySelector('span');
+  p.classList.remove('pend', 'off');
+  if (estado === 'off' || (!navigator.onLine && outbox.length)) { p.classList.add('off'); s.textContent = `Sin señal · ${outbox.length}`; }
+  else if (outbox.length || enviando) { p.classList.add('pend'); s.textContent = outbox.length ? `Guardando ${outbox.length}` : 'Sincronizando'; }
+  else s.textContent = 'Al día';
+}
+window.addEventListener('online', procesarCola);
+window.addEventListener('offline', () => pintarSync('off'));
 
-        window.cerrarSesion = () => { localStorage.removeItem('x5_user'); location.reload(); };
+/* Aplica los cambios pendientes sobre los datos que llegan del servidor */
+function aplicarPendientes(base) {
+  outbox.forEach(op => {
+    const key = op.tabla === 'Leads' ? 'leads' : 'agenda';
+    const arr = base[key] || (base[key] = []);
+    const i = arr.findIndex(r => String(r.id) === String(op.data.id));
+    if (op.action === 'add' && i < 0) arr.push({ ...op.data });
+    if (op.action === 'update' && i > -1) Object.assign(arr[i], op.data);
+  });
+  return base;
+}
 
-        const iniciarApp = () => {
-            document.getElementById('login-screen').style.display = 'none';
-            document.getElementById('main-app').style.display = 'block';
-            document.getElementById('bottom-nav').style.display = 'flex';
-            document.getElementById('user-greeting').innerText = `Hola, ${currentUser.nombre.split(' ')[0]}`;
-            
-            if (['Gerente Comercial', 'Jefe de Ventas', 'Referente'].includes(currentUser.rol)) {
-                document.getElementById('panel-asignar-leads').style.display = 'block';
-                document.getElementById('nav-dashboard').style.display = 'block';
-            }
-            
-            llenarDesplegables(); cargarVistas();
-        };
+/* ── Carga de datos ─────────────────────────────────────────── */
+async function sincronizar(manual = false) {
+  try {
+    if (manual) pintarSync();
+    const r = await apiGet(token ? { token } : {});
+    if (r && r.error === 'sesion_vencida') return sesionVencida();
+    if (!r || !Array.isArray(r.agenda)) throw new Error('respuesta');
+    db = aplicarPendientes({ agenda: r.agenda || [], leads: r.leads || [], personal: r.personal || [], flota: r.flota || [] });
+    store.set('x5_db', db);
+    if (user) render();
+    if (manual) X5.toast('Datos actualizados', 'ok');
+    return true;
+  } catch (e) {
+    if (manual) X5.toast('Sin conexión. Mostrando lo último guardado.', 'bad');
+    return false;
+  }
+}
 
-        const puedeVer = (asesorName) => {
-            if (currentUser.rol === 'Gerente Comercial') return true;
-            if (currentUser.nombre === asesorName) return true;
-            const miEquipo = db.personal.filter(p => p.reporta_a === currentUser.nombre).map(p => p.nombre);
-            return miEquipo.includes(asesorName);
-        };
+/* ── Login ──────────────────────────────────────────────────── */
+async function prepararLogin() {
+  $('login-loading').hidden = false;
+  let usuarios = null;
+  try {
+    const r = await apiGet({ action: 'usuarios' });
+    if (r && Array.isArray(r.usuarios)) usuarios = r.usuarios;
+    else if (r && Array.isArray(r.personal)) { db = r; usuarios = r.personal.filter(p => p.estado === 'Activo'); } // backend viejo
+  } catch (e) {
+    const cache = store.get('x5_db', null);
+    if (cache) { db = cache; usuarios = (cache.personal || []).filter(p => p.estado === 'Activo'); }
+  }
+  $('login-loading').hidden = true;
+  if (!usuarios) { $('login-loading').hidden = false; $('login-loading').innerHTML = '<p>No hay conexión. Probá de nuevo en un momento.</p><button class="btn btn-ghost" onclick="location.reload()">Reintentar</button>'; return; }
+  $('user-select').innerHTML = '<option value="">Seleccioná tu usuario…</option>' +
+    usuarios.map(u => `<option value="${esc(u.nombre)}">${esc(u.nombre)} · ${esc(u.rol)}</option>`).join('');
+  $('login-box').hidden = false;
+}
 
-        const llenarDesplegables = () => {
-            const selAsesor = document.getElementById('ag-asesor'); const selLeadAsig = document.getElementById('ld-asignado'); const selAuto = document.getElementById('ag-auto');
-            let asesoresHTML = '<option value="">-- Asesor --</option>';
-            db.personal.filter(p => p.estado === 'Activo').forEach(p => {
-                if (puedeVer(p.nombre)) asesoresHTML += `<option value="${p.nombre}">${p.nombre}</option>`;
-            });
-            selAsesor.innerHTML = asesoresHTML; selLeadAsig.innerHTML = asesoresHTML;
-            let autosHTML = '<option value="">-- Vehículo de Flota --</option>';
-            db.flota.filter(f => f.estado === 'Activo').forEach(f => { autosHTML += `<option value="${f.vehiculo} (${f.patente})">${f.vehiculo}</option>`; });
-            selAuto.innerHTML = autosHTML;
-        };
+async function iniciarSesion() {
+  const nombre = $('user-select').value, clave = $('user-pass').value;
+  if (!nombre) return X5.toast('Seleccioná tu usuario', 'bad');
+  if (!clave) return X5.toast('Ingresá tu clave', 'bad');
+  const btn = $('btn-login'); btn.disabled = true; btn.textContent = 'Verificando…';
+  try {
+    const r = await apiPost({ action: 'login', nombre, clave });
+    if (r && r.ok && r.token) {
+      token = r.token; user = r.usuario;
+    } else if (r && r.ok === false) {
+      throw new Error(r.error === 'clave_incorrecta' ? 'Clave incorrecta' : 'Usuario no habilitado');
+    } else {
+      // Backend viejo (sin login en servidor): validación local transitoria
+      const p = (db.personal || []).find(x => x.nombre === nombre);
+      if (!p || String(p.clave) !== String(clave)) throw new Error('Clave incorrecta');
+      user = { ...p }; delete user.clave;
+    }
+    store.set('x5_session', { user, token });
+    await sincronizar();
+    iniciarApp();
+  } catch (e) {
+    X5.toast(e.message || 'No se pudo ingresar', 'bad');
+  } finally { btn.disabled = false; btn.textContent = 'Ingresar'; }
+}
 
-        window.toggleFlota = () => {
-            const lugar = document.getElementById('ag-lugar').value;
-            document.getElementById('ag-auto').style.display = lugar === 'Domicilio' ? 'block' : 'none';
-            document.getElementById('ag-auto').required = lugar === 'Domicilio';
-        };
+function sesionVencida() {
+  store.del('x5_session'); token = null; user = null;
+  X5.toast('Tu sesión venció. Ingresá de nuevo.', 'bad', 4000);
+  setTimeout(() => location.reload(), 1500);
+}
 
-        window.abrirGeneradorPDF = (nombreCliente) => { nombreClientePDF = nombreCliente.replace(/\s+/g, '_'); document.getElementById('pdf-upload').click(); };
-        window.procesarYDescargarPDF = async (event) => {
-            const archivos = Array.from(event.target.files);
-            if (archivos.length === 0) return;
-            alert("Procesando fotos. Espera mientras se arma el PDF...");
-            try {
-                const mergedPdf = await PDFDocument.create();
-                for (let file of archivos) {
-                    const arrayBuffer = await file.arrayBuffer();
-                    if (file.type.includes('image/jpeg')) {
-                        const img = await mergedPdf.embedJpg(arrayBuffer);
-                        const page = mergedPdf.addPage([img.width, img.height]);
-                        page.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
-                    } else if (file.type.includes('image/png')) {
-                        const img = await mergedPdf.embedPng(arrayBuffer);
-                        const page = mergedPdf.addPage([img.width, img.height]);
-                        page.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
-                    }
-                }
-                const pdfBytes = await mergedPdf.save();
-                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `Legajo_${nombreClientePDF}.pdf`;
-                document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-                alert("✅ ¡PDF descargado con éxito!");
-            } catch (error) { console.error(error); alert("Hubo un error al crear el PDF."); }
-            event.target.value = ''; 
-        };
+function cerrarSesion() {
+  if (outbox.length && !confirm(`Hay ${outbox.length} cambio(s) sin enviar. Si salís ahora se envían cuando vuelvas a ingresar. ¿Salir igual?`)) return;
+  store.del('x5_session'); location.reload();
+}
 
-        window.setFiltro = (tabla, tipo) => {
-            vistaFiltro[tabla] = tipo;
-            document.getElementById(`btn-hoy-${tabla}`).classList.remove('active');
-            document.getElementById(`btn-todo-${tabla}`).classList.remove('active');
-            document.getElementById(`btn-${tipo}-${tabla}`).classList.add('active');
-            if(tabla === 'agenda') renderizarAgenda(); else renderizarLeads();
-        };
+function iniciarApp() {
+  $('login').style.display = 'none';
+  $('bnav').classList.remove('hidden');
+  $('greeting').textContent = 'Hola, ' + String(user.nombre).split(' ')[0];
+  $('user-role').textContent = user.rol || '';
+  const supervisa = SUPERVISION.includes(user.rol);
+  $('panel-asignar').classList.toggle('hidden', !supervisa);
+  $('nav-dashboard').classList.toggle('hidden', !supervisa);
+  llenarDesplegables();
+  $('ag-fecha').value = X5.hoyISO();
+  render();
+  procesarCola();
+}
 
-        const obtenerFechaHoy = () => new Date().toISOString().split('T')[0];
+/* ── Permisos de vista ─────────────────────────────────────── */
+function puedeVer(nombre) {
+  if (!user) return false;
+  if (user.rol === 'Gerente Comercial' || nombre === user.nombre) return true;
+  return (db.personal || []).some(p => p.reporta_a === user.nombre && p.nombre === nombre);
+}
 
-        const cargarVistas = () => { renderizarAgenda(); renderizarLeads(); if(currentUser.rol !== 'Vendedor') renderizarDashboard(); };
+function llenarDesplegables() {
+  const opts = (db.personal || []).filter(p => p.estado === 'Activo' && puedeVer(p.nombre))
+    .map(p => `<option value="${esc(p.nombre)}" ${p.nombre === user.nombre ? 'selected' : ''}>${esc(p.nombre)}</option>`).join('');
+  $('ag-asesor').innerHTML = '<option value="">Asesor…</option>' + opts;
+  $('ld-asignado').innerHTML = '<option value="">Asignar a…</option>' + opts;
+  $('ag-auto').innerHTML = '<option value="">Vehículo de flota…</option>' + (db.flota || []).filter(f => f.estado === 'Activo')
+    .map(f => `<option value="${esc(f.vehiculo)} (${esc(f.patente)})">${esc(f.vehiculo)} · ${esc(f.patente)}</option>`).join('');
+}
 
-        const renderizarAgenda = () => {
-            const list = document.getElementById('lista-agenda'); list.innerHTML = '';
-            let data = db.agenda.filter(a => puedeVer(a.asesor));
-            
-            if (vistaFiltro.agenda === 'hoy') {
-                const hoy = obtenerFechaHoy();
-                data = data.filter(item => {
-                    let fechaItem = item.fecha.includes('T') ? item.fecha.split('T')[0] : item.fecha;
-                    return fechaItem === hoy || (item.estado === 'pendiente' && fechaItem < hoy);
-                });
-            }
+/* ── Utilidades de fecha ───────────────────────────────────── */
+const soloFecha = (v) => String(v || '').split('T')[0];
+const ahora = () => new Date();
+function vencido(fecha, hora) {
+  if (!fecha) return false;
+  const d = new Date(`${soloFecha(fecha)}T${(hora || '23:59').toString().slice(0, 5)}`);
+  return !isNaN(d) && d < ahora();
+}
 
-            data.sort((a, b) => new Date(`${a.fecha}T${a.hora}`) - new Date(`${b.fecha}T${b.hora}`));
-            if (data.length === 0) list.innerHTML = '<p style="text-align:center; color:#666;">No hay tareas para esta vista.</p>';
+/* ── Render ────────────────────────────────────────────────── */
+function render() { renderAgenda(); renderLeads(); resumen(); if (SUPERVISION.includes(user.rol) && $('tab-dashboard').classList.contains('active')) renderDashboard(); }
 
-            data.forEach(item => {
-                const isRealizado = item.estado === 'realizado'; const isVenta = item.resultado === 'venta';
-                let fechaLimpia = item.fecha.includes('T') ? item.fecha.split('T')[0] : item.fecha;
-                const linkLegajo = `https://wa.me/?text=${encodeURIComponent(`Hola, te adjunto legajo de ${item.cliente} (Contrato:${item.nro_contrato}).`)}`;
+function resumen() {
+  const hoy = X5.hoyISO();
+  const ag = db.agenda.filter(a => puedeVer(a.asesor));
+  const ld = db.leads.filter(l => puedeVer(l.asignado_a));
+  const entrevistasHoy = ag.filter(a => soloFecha(a.fecha) === hoy && a.estado !== 'cancelado').length;
+  const leadsHoy = ld.filter(l => soloFecha(l.fecha_asignacion) === hoy || (l.estado === 'pendiente' && soloFecha(l.fecha_asignacion) < hoy)).length;
+  const venc = ld.filter(l => l.estado === 'pendiente' && vencido(l.fecha_asignacion, l.hora_limite)).length
+             + ag.filter(a => a.estado === 'pendiente' && vencido(a.fecha, a.hora) && soloFecha(a.fecha) < hoy).length;
+  $('sum-entrevistas').textContent = entrevistasHoy;
+  $('sum-leads').textContent = leadsHoy;
+  $('sum-vencidos').textContent = venc;
+  const b = $('badge-leads'); const pend = ld.filter(l => l.estado === 'pendiente').length;
+  b.textContent = pend; b.classList.toggle('hidden', !pend);
+}
 
-                list.innerHTML += `
-                    <div class="card ${item.estado || 'pendiente'}">
-                        <div class="card-header">
-                            <span>${item.hora}hs - ${item.cliente}</span>
-                            <span class="badge">${fechaLimpia.split('-').reverse().join('/')}</span>
-                        </div>
-                        <div class="card-body">
-                            <strong>Asesor:</strong> ${item.asesor}<br> <strong>Vehículo:</strong> ${item.vehiculo}<br>
-                            ${item.lugar === 'Domicilio' ? `📍 <strong>Domicilio</strong> (${item.auto_usado})` : '🏢 En Agencia'}
-                        </div>
-                        <div class="controls-row">
-                            <select onchange="actualizar('agenda', '${item.id}', 'estado', this.value)">
-                                <option value="pendiente" ${item.estado === 'pendiente' ? 'selected' : ''}>⏳ Pendiente</option>
-                                <option value="realizado" ${item.estado === 'realizado' ? 'selected' : ''}>🤝 Realizado</option>
-                                <option value="cancelado" ${item.estado === 'cancelado' ? 'selected' : ''}>❌ Cancelado</option>
-                            </select>
-                        </div>
-                        <div class="result-box ${isRealizado ? 'active' : ''}">
-                            <select onchange="toggleVentaCampos('${item.id}', this.value)">
-                                <option value="">-- Resultado --</option>
-                                <option value="venta" ${item.resultado === 'venta' ? 'selected' : ''}>🎉 VENTA CERRADA</option>
-                                <option value="seguimiento" ${item.resultado === 'seguimiento' ? 'selected' : ''}>🔄 En seguimiento</option>
-                                <option value="descartado" ${item.resultado === 'descartado' ? 'selected' : ''}>📉 Descartado</option>
-                            </select>
-                            <div id="venta-campos-${item.id}" style="display: ${isVenta ? 'block' : 'none'}; margin-top:10px; background:#e8f5e9; padding:10px; border-radius:5px;">
-                                <input type="text" placeholder="N° Contrato" value="${item.nro_contrato || ''}" onblur="actualizar('agenda', '${item.id}', 'nro_contrato', this.value)" style="margin-bottom:5px;">
-                                <input type="number" placeholder="Monto Total $" value="${item.monto || ''}" onblur="actualizar('agenda', '${item.id}', 'monto', this.value)" style="margin-bottom:15px;">
-                                <button type="button" class="btn-action btn-pdf" style="width:100%; margin-bottom:10px;" onclick="abrirGeneradorPDF('${item.cliente}')">📸 1. Armar PDF Legajo</button>
-                                <a href="${linkLegajo}" target="_blank" class="btn-action btn-wsp">💬 2. Avisar al Jefe</a>
-                            </div>
-                        </div>
-                    </div>`;
-            });
-        };
+const estadosAgenda = [['pendiente', 'Pendiente'], ['realizado', 'Realizada'], ['cancelado', 'Cancelada']];
+const resultados = [['', 'Resultado…'], ['venta', 'Venta cerrada'], ['seguimiento', 'En seguimiento'], ['descartado', 'Descartado']];
+const estadosLead = [['pendiente', 'Pendiente'], ['entrevista_pactada', 'Entrevista pactada'], ['en_seguimiento', 'En seguimiento'], ['descartado', 'Descartado / frío']];
+const opciones = (lista, actual) => lista.map(([v, t]) => `<option value="${v}" ${String(actual || '') === v ? 'selected' : ''}>${t}</option>`).join('');
 
-        const renderizarLeads = () => {
-            const list = document.getElementById('lista-leads'); list.innerHTML = '';
-            let data = db.leads.filter(l => puedeVer(l.asignado_a));
-            
-            if (vistaFiltro.leads === 'hoy') {
-                const hoy = obtenerFechaHoy();
-                data = data.filter(item => {
-                    let fechaAsig = item.fecha_asignacion.includes('T') ? item.fecha_asignacion.split('T')[0] : item.fecha_asignacion;
-                    return fechaAsig === hoy || (item.estado === 'pendiente' && fechaAsig < hoy);
-                });
-            }
-            
-            if (data.length === 0) list.innerHTML = '<p style="text-align:center; color:#666;">Sin leads pendientes para hoy.</p>';
+function coincide(item, q, campos) {
+  if (!q) return true;
+  q = q.toLowerCase();
+  return campos.some(c => String(item[c] || '').toLowerCase().includes(q));
+}
 
-            data.forEach(lead => {
-                const linkWsp = `https://wa.me/?text=${encodeURIComponent(`Hola ${lead.asignado_a}, seguimiento de Lead: ${lead.cliente}. Interés: ${lead.interes}.`)}`;
-                
-                list.innerHTML += `
-                    <div class="card ${lead.estado || 'pendiente'}">
-                        <div class="card-header">
-                            <span>🎯 ${lead.cliente}</span>
-                            <span class="badge">Límite: ${lead.hora_limite}hs</span>
-                        </div>
-                        <div class="card-body">
-                            <strong>Asignado:</strong> ${lead.asignado_a}<br> 
-                            <strong>Interés:</strong> ${lead.interes} (${lead.origen})<br>
-                            <strong>Tel:</strong> <a href="tel:${lead.telefono}">${lead.telefono}</a>
-                        </div>
-                        
-                        <div class="controls-row" style="margin-bottom: 10px;">
-                            <select onchange="actualizarLeadStatus('${lead.id}', this.value)">
-                                <option value="pendiente" ${lead.estado === 'pendiente' ? 'selected' : ''}>⏳ Pendiente</option>
-                                <option value="entrevista_pactada" ${lead.estado === 'entrevista_pactada' ? 'selected' : ''}>📅 Entrevista Pactada</option>
-                                <option value="en_seguimiento" ${lead.estado === 'en_seguimiento' ? 'selected' : ''}>🔄 En Seguimiento</option>
-                                <option value="descartado" ${lead.estado === 'descartado' ? 'selected' : ''}>📉 Descartado / Frío</option>
-                            </select>
-                        </div>
+function renderAgenda() {
+  const hoy = X5.hoyISO(), q = $('q-agenda').value.trim();
+  let data = db.agenda.filter(a => puedeVer(a.asesor));
+  if (filtro.agenda === 'hoy') data = data.filter(a => soloFecha(a.fecha) === hoy || (a.estado === 'pendiente' && soloFecha(a.fecha) < hoy));
+  if (filtro.agenda === 'proximas') data = data.filter(a => soloFecha(a.fecha) > hoy && a.estado !== 'cancelado');
+  data = data.filter(a => coincide(a, q, ['cliente', 'vehiculo', 'asesor', 'nro_contrato']));
+  data.sort((a, b) => (`${soloFecha(a.fecha)}T${a.hora}`).localeCompare(`${soloFecha(b.fecha)}T${b.hora}`));
+  if (filtro.agenda === 'todo') data.reverse();
 
-                        <div class="form-group" style="margin-bottom: 10px;">
-                            <textarea placeholder="Notas de la llamada o motivo del estado..." rows="2" onblur="actualizarNotaLead('${lead.id}', this.value)">${lead.notas || ''}</textarea>
-                        </div>
+  $('lista-agenda').innerHTML = data.length ? data.map(it => {
+    const atrasada = it.estado === 'pendiente' && soloFecha(it.fecha) < hoy;
+    const esVenta = it.resultado === 'venta';
+    const lugar = it.lugar === 'Domicilio' ? `Domicilio${it.auto_usado ? ' · ' + esc(it.auto_usado) : ''}` : 'En agencia';
+    return `
+    <article class="item ${esc(it.estado || 'pendiente')} ${atrasada ? 'vencido' : ''}" data-tabla="agenda" data-id="${esc(it.id)}">
+      <div class="item-head">
+        <div><h3>${esc(it.cliente)}</h3><div class="time">${esc(String(it.hora || '').slice(0, 5))} hs · ${X5.fechaCorta(it.fecha)}</div></div>
+        ${atrasada ? '<span class="chip bad">Atrasada</span>' : esVenta ? '<span class="chip ok">Venta</span>' : ''}
+      </div>
+      <div class="meta"><span><b>${esc(it.vehiculo)}</b></span><span>${esc(it.asesor)}</span><span>${lugar}</span></div>
+      <select data-campo="estado">${opciones(estadosAgenda, it.estado || 'pendiente')}</select>
+      <div class="${it.estado === 'realizado' ? '' : 'hidden'}" style="margin-top:8px">
+        <select data-campo="resultado">${opciones(resultados, it.resultado)}</select>
+        <div class="sale ${esVenta ? '' : 'hidden'}">
+          <div class="row" style="display:grid;grid-template-columns:1fr 1.4fr"><input data-campo="nro_contrato" placeholder="N° contrato" value="${esc(it.nro_contrato)}"><div class="money"><input data-campo="monto" type="number" inputmode="numeric" placeholder="Monto" value="${esc(it.monto)}"></div></div>
+          <div class="actions">
+            <a class="btn btn-ghost btn-sm" href="unificador.html?cliente=${encodeURIComponent(it.cliente)}">Armar legajo PDF</a>
+            <a class="btn btn-wsp btn-sm" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(`Venta cerrada: ${it.cliente} · ${it.vehiculo}. Contrato ${it.nro_contrato || 's/n'} · ${X5.money(it.monto)}. Te adjunto el legajo.`)}">Avisar al jefe</a>
+          </div>
+        </div>
+      </div>
+      <textarea data-campo="notas" rows="2" placeholder="Observaciones de la entrevista…" style="margin-top:8px">${esc(it.notas)}</textarea>
+      <div class="note-state"></div>
+    </article>`;
+  }).join('') : `<div class="empty">${filtro.agenda === 'hoy' ? 'Nada agendado para hoy.' : 'No hay entrevistas en esta vista.'}</div>`;
+}
 
-                        <div class="controls-row">
-                            <a href="${linkWsp}" target="_blank" class="btn-action btn-wsp" style="width:100%;">💬 Notificar por WhatsApp</a>
-                        </div>
-                    </div>`;
-            });
-        };
+function telAR(t) {
+  let d = String(t || '').replace(/\D/g, '');
+  if (!d) return '';
+  if (d.startsWith('0')) d = d.slice(1);
+  d = d.replace(/^(\d{2,4})15(\d{6,8})$/, '$1$2'); // quita el 15 viejo
+  if (!d.startsWith('54')) d = '54' + d;
+  if (!d.startsWith('549')) d = '549' + d.slice(2);
+  return d;
+}
 
-        window.actualizarLeadStatus = (id, valor) => {
-            const index = db.leads.findIndex(r => String(r.id) === String(id));
-            if(index > -1) {
-                db.leads[index].estado = valor;
-                if (!db.leads[index].hora_contacto) {
-                    let tiempoAsignado = parseInt(id); 
-                    let tiempoAhora = Date.now();
-                    if (!isNaN(tiempoAsignado) && tiempoAsignado > 1000000000000) {
-                        let demoraMinutos = Math.round((tiempoAhora - tiempoAsignado) / 60000);
-                        db.leads[index].hora_contacto = (demoraMinutos > 0 && demoraMinutos < 10080) ? demoraMinutos : 15;
-                    } else {
-                        db.leads[index].hora_contacto = 15;
-                    }
-                }
-                syncUpdate(db.leads[index], 'Leads');
-                cargarVistas();
-            }
-        };
+function renderLeads() {
+  const hoy = X5.hoyISO(), q = $('q-leads').value.trim();
+  let data = db.leads.filter(l => puedeVer(l.asignado_a));
+  if (filtro.leads === 'hoy') data = data.filter(l => soloFecha(l.fecha_asignacion) === hoy || (l.estado === 'pendiente' && soloFecha(l.fecha_asignacion) < hoy));
+  if (filtro.leads === 'abiertos') data = data.filter(l => l.estado !== 'descartado');
+  data = data.filter(l => coincide(l, q, ['cliente', 'telefono', 'interes', 'asignado_a', 'origen']));
+  // Primero los vencidos, después por límite
+  data.sort((a, b) => {
+    const va = a.estado === 'pendiente' && vencido(a.fecha_asignacion, a.hora_limite), vb = b.estado === 'pendiente' && vencido(b.fecha_asignacion, b.hora_limite);
+    if (va !== vb) return va ? -1 : 1;
+    return (`${soloFecha(a.fecha_asignacion)}T${a.hora_limite}`).localeCompare(`${soloFecha(b.fecha_asignacion)}T${b.hora_limite}`);
+  });
 
-        window.actualizarNotaLead = (id, nota) => {
-            const index = db.leads.findIndex(r => String(r.id) === String(id));
-            if(index > -1) {
-                db.leads[index].notas = nota;
-                syncUpdate(db.leads[index], 'Leads');
-            }
-        };
+  $('lista-leads').innerHTML = data.length ? data.map(l => {
+    const venc = l.estado === 'pendiente' && vencido(l.fecha_asignacion, l.hora_limite);
+    const wa = telAR(l.telefono);
+    const msgCliente = `Hola ${String(l.cliente).split(' ')[0]}, te escribe ${String(user.nombre).split(' ')[0]} de X5. Te contacto por tu consulta sobre ${l.interes}.`;
+    return `
+    <article class="item ${esc(l.estado || 'pendiente')} ${venc ? 'vencido' : ''}" data-tabla="leads" data-id="${esc(l.id)}">
+      <div class="item-head">
+        <div><h3>${esc(l.cliente)}</h3><div class="time">Contactar antes de ${esc(String(l.hora_limite || '').slice(0, 5))} hs · ${X5.fechaCorta(l.fecha_asignacion)}</div></div>
+        ${venc ? '<span class="chip bad">Vencido</span>' : `<span class="chip">${esc(l.origen)}</span>`}
+      </div>
+      <div class="meta"><span>Interés: <b>${esc(l.interes)}</b></span><span>${esc(l.asignado_a)}</span><span>${esc(l.telefono)}</span></div>
+      <select data-campo="estado">${opciones(estadosLead, l.estado || 'pendiente')}</select>
+      <textarea data-campo="notas" rows="2" placeholder="Notas de la llamada o motivo del estado…" style="margin-top:8px">${esc(l.notas)}</textarea>
+      <div class="note-state"></div>
+      <div class="actions">
+        <a class="btn btn-ghost btn-sm" href="tel:${esc(String(l.telefono).replace(/[^\d+]/g, ''))}" data-contacto="1">Llamar</a>
+        <a class="btn btn-wsp btn-sm" target="_blank" rel="noopener" data-contacto="1" href="${wa ? `https://wa.me/${wa}?text=${encodeURIComponent(msgCliente)}` : '#'}">WhatsApp</a>
+        ${l.estado === 'entrevista_pactada' ? `<button class="btn btn-sm full" data-agendar="1">Agendar la entrevista</button>` : ''}
+      </div>
+    </article>`;
+  }).join('') : `<div class="empty">${filtro.leads === 'hoy' ? 'Sin leads para hoy. ¡Bien ahí!' : 'No hay leads en esta vista.'}</div>`;
+}
 
-        const renderizarDashboard = () => {
-            const ventasData = db.agenda.filter(a => a.resultado === 'venta' && puedeVer(a.asesor));
-            const leadsAsignados = db.leads.filter(l => puedeVer(l.asignado_a));
-            
-            let facturacion = 0;
-            let ventasPorAsesor = {};
-            let origenVentas = {};
-            let usoFlota = {};
-            let tiemposPorAsesor = {};
-            let cantidadLeadsAsesor = {};
+/* ── Edición (delegación de eventos) ───────────────────────── */
+function registro(el) {
+  const card = el.closest('.item'); if (!card) return null;
+  const tabla = card.dataset.tabla, id = card.dataset.id;
+  const item = db[tabla].find(r => String(r.id) === String(id));
+  return item ? { card, tabla, item } : null;
+}
 
-            ventasData.forEach(v => {
-                let monto = parseFloat(v.monto) || 0;
-                facturacion += monto;
-                ventasPorAsesor[v.asesor] = (ventasPorAsesor[v.asesor] || 0) + monto;
-                
-                let leadAsociado = db.leads.find(l => l.cliente.toLowerCase() === v.cliente.toLowerCase());
-                let origen = leadAsociado ? leadAsociado.origen : 'Salón / Espontáneo';
-                origenVentas[origen] = (origenVentas[origen] || 0) + 1;
+function guardarCampo(tabla, item, campo, valor) {
+  if (String(item[campo] ?? '') === String(valor ?? '')) return false;
+  item[campo] = valor;
+  if (tabla === 'leads' && campo === 'estado' && !item.hora_contacto) marcarContacto(item);
+  store.set('x5_db', db);
+  encolar('update', tabla === 'agenda' ? 'Hoja 1' : 'Leads', item);
+  return true;
+}
 
-                if (v.lugar === 'Domicilio' && v.auto_usado) {
-                    usoFlota[v.auto_usado] = (usoFlota[v.auto_usado] || 0) + 1;
-                }
-            });
+function marcarContacto(lead) {
+  const t0 = parseInt(lead.id, 10);
+  if (!isNaN(t0) && t0 > 1e12) {
+    const min = Math.round((Date.now() - t0) / 60000);
+    lead.hora_contacto = (min > 0 && min < 10080) ? min : '';
+  }
+}
 
-            document.getElementById('dash-facturacion').innerText = '$' + facturacion.toLocaleString('es-AR');
-            document.getElementById('dash-ventas').innerText = ventasData.length;
-            document.getElementById('dash-leads-activos').innerText = leadsAsignados.length;
-            
-            let conversion = leadsAsignados.length > 0 ? (ventasData.length / leadsAsignados.length * 100).toFixed(1) : 0;
-            document.getElementById('dash-conversion').innerText = conversion + '%';
+document.addEventListener('change', (e) => {
+  const el = e.target, campo = el.dataset && el.dataset.campo;
+  if (!campo || el.tagName === 'TEXTAREA') return;
+  const r = registro(el); if (!r) return;
+  if (guardarCampo(r.tabla, r.item, campo, el.value) && (campo === 'estado' || campo === 'resultado')) {
+    if (campo === 'resultado' && el.value === 'venta') X5.toast('¡Felicitaciones por la venta!', 'ok');
+    render();
+  }
+});
 
-            if(chart1) chart1.destroy(); if(chart2) chart2.destroy(); if(chart3) chart3.destroy(); if(chart4) chart4.destroy();
+// Observaciones: se guardan mientras escribís (pausa de 1,2 s), al salir del campo y al cerrar la app
+const timers = new WeakMap();
+function guardarNota(el) {
+  const r = registro(el); if (!r) return;
+  clearTimeout(timers.get(el));
+  if (guardarCampo(r.tabla, r.item, 'notas', el.value)) {
+    const st = r.card.querySelector('.note-state');
+    if (st) st.textContent = outbox.length && !navigator.onLine ? 'Guardado en el teléfono · se envía con señal' : 'Guardado ✓';
+  }
+}
+document.addEventListener('input', (e) => {
+  const el = e.target;
+  if (el.tagName !== 'TEXTAREA' || el.dataset.campo !== 'notas') return;
+  const st = el.closest('.item').querySelector('.note-state'); if (st) st.textContent = 'Escribiendo…';
+  clearTimeout(timers.get(el));
+  timers.set(el, setTimeout(() => guardarNota(el), 1200));
+});
+document.addEventListener('focusout', (e) => {
+  const el = e.target;
+  if (el.dataset && el.dataset.campo === 'notas') guardarNota(el);
+  else if (el.dataset && (el.dataset.campo === 'nro_contrato' || el.dataset.campo === 'monto')) {
+    const r = registro(el); if (r) guardarCampo(r.tabla, r.item, el.dataset.campo, el.value);
+  }
+});
+function volcarNotas() { document.querySelectorAll('textarea[data-campo="notas"]').forEach(guardarNota); }
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') volcarNotas(); });
+window.addEventListener('pagehide', volcarNotas);
 
-            const ctxAsesores = document.getElementById('chartAsesores').getContext('2d');
-            chart1 = new Chart(ctxAsesores, {
-                type: 'bar',
-                data: {
-                    labels: Object.keys(ventasPorAsesor),
-                    datasets: [{ label: 'Facturación ($)', data: Object.values(ventasPorAsesor), backgroundColor: '#0056b3' }]
-                },
-                options: { responsive: true, scales: { y: { beginAtZero: true } } }
-            });
+// Llamar / WhatsApp: si el lead seguía pendiente, se registra el tiempo de respuesta
+document.addEventListener('click', (e) => {
+  const c = e.target.closest('[data-contacto]');
+  if (c) { const r = registro(c); if (r && !r.item.hora_contacto) { marcarContacto(r.item); encolar('update', 'Leads', r.item); } }
+  const ag = e.target.closest('[data-agendar]');
+  if (ag) {
+    const r = registro(ag); if (!r) return;
+    cambiarTab('agenda');
+    $('det-agenda').open = true;
+    $('ag-cliente').value = r.item.cliente; $('ag-vehiculo').value = r.item.interes || '';
+    $('ag-asesor').value = r.item.asignado_a; $('ag-lead-id').value = r.item.id;
+    $('ag-notas').value = r.item.notas ? 'Lead: ' + r.item.notas : '';
+    $('ag-fecha').focus();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+});
 
-            const ctxOrigenes = document.getElementById('chartOrigenes').getContext('2d');
-            chart2 = new Chart(ctxOrigenes, {
-                type: 'doughnut',
-                data: {
-                    labels: Object.keys(origenVentas),
-                    datasets: [{ data: Object.values(origenVentas), backgroundColor: ['#28a745', '#ffc107', '#dc3545', '#17a2b8', '#6c757d'] }]
-                },
-                options: { responsive: true, maintainAspectRatio: true, aspectRatio: 1.2 }
-            });
+/* ── Formularios ───────────────────────────────────────────── */
+$('ag-lugar').addEventListener('change', (e) => {
+  const dom = e.target.value === 'Domicilio';
+  $('wrap-auto').classList.toggle('hidden', !dom); $('ag-auto').required = dom;
+});
 
-            const ctxFlota = document.getElementById('chartFlota').getContext('2d');
-            chart3 = new Chart(ctxFlota, {
-                type: 'bar',
-                data: {
-                    labels: Object.keys(usoFlota),
-                    datasets: [{ label: 'Ventas cerradas usando este auto', data: Object.values(usoFlota), backgroundColor: '#17a2b8' }]
-                },
-                options: { indexAxis: 'y', responsive: true, scales: { x: { beginAtZero: true, ticks: { stepSize: 1 } } } }
-            });
+$('form-agenda').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const lugar = $('ag-lugar').value;
+  const item = {
+    id: Date.now().toString(), cliente: $('ag-cliente').value.trim(), vehiculo: $('ag-vehiculo').value.trim(),
+    asesor: $('ag-asesor').value, fecha: $('ag-fecha').value, hora: $('ag-hora').value,
+    estado: 'pendiente', resultado: '', notas: $('ag-notas').value.trim(), lugar,
+    auto_usado: lugar === 'Domicilio' ? $('ag-auto').value : '', nro_contrato: '', monto: ''
+  };
+  db.agenda.push(item); store.set('x5_db', db);
+  encolar('add', 'Hoja 1', item);
+  e.target.reset(); $('ag-fecha').value = X5.hoyISO(); $('wrap-auto').classList.add('hidden'); $('det-agenda').open = false;
+  $('ag-asesor').value = user.nombre; $('ag-lead-id').value = '';
+  X5.toast('Entrevista agendada', 'ok');
+  render();
+});
 
-            db.leads.filter(l => l.hora_contacto && puedeVer(l.asignado_a)).forEach(l => {
-                tiemposPorAsesor[l.asignado_a] = (tiemposPorAsesor[l.asignado_a] || 0) + parseInt(l.hora_contacto);
-                cantidadLeadsAsesor[l.asignado_a] = (cantidadLeadsAsesor[l.asignado_a] || 0) + 1;
-            });
+$('form-leads').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const item = {
+    id: Date.now().toString(), cliente: $('ld-cliente').value.trim(), telefono: $('ld-telefono').value.trim(),
+    interes: $('ld-interes').value.trim(), origen: $('ld-origen').value, asignado_a: $('ld-asignado').value,
+    fecha_asignacion: $('ld-fecha').value, hora_limite: $('ld-hora').value,
+    estado: 'pendiente', resultado: '', hora_contacto: '', notas: $('ld-notas').value.trim()
+  };
+  db.leads.push(item); store.set('x5_db', db);
+  encolar('add', 'Leads', item);
+  e.target.reset();
+  X5.toast(`Lead asignado a ${item.asignado_a}`, 'ok');
+  render();
+});
 
-            let promediosTiempo = {};
-            Object.keys(tiemposPorAsesor).forEach(asesor => {
-                promediosTiempo[asesor] = Math.round(tiemposPorAsesor[asesor] / cantidadLeadsAsesor[asesor]);
-            });
+/* ── Filtros / pestañas ────────────────────────────────────── */
+document.querySelectorAll('.seg[data-filtro]').forEach(seg => {
+  seg.addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    const t = seg.dataset.filtro; filtro[t] = b.dataset.v;
+    seg.querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b));
+    $('q-' + t).classList.toggle('hidden', b.dataset.v === 'hoy');
+    t === 'agenda' ? renderAgenda() : renderLeads();
+  });
+});
+$('q-agenda').addEventListener('input', renderAgenda);
+$('q-leads').addEventListener('input', renderLeads);
 
-            const ctxTiempos = document.getElementById('chartTiempos').getContext('2d');
-            chart4 = new Chart(ctxTiempos, {
-                type: 'bar',
-                data: {
-                    labels: Object.keys(promediosTiempo),
-                    datasets: [{
-                        label: 'Minutos promedio en contactar',
-                        data: Object.values(promediosTiempo),
-                        backgroundColor: '#ffc107'
-                    }]
-                },
-                options: {
-                    indexAxis: 'y', 
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    aspectRatio: 1.2,
-                    scales: { x: { beginAtZero: true } }
-                }
-            });
-        };
+function cambiarTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.id === 'tab-' + id));
+  document.querySelectorAll('.bnav button').forEach(b => b.classList.toggle('active', b.dataset.tab === id));
+  if (id === 'dashboard') renderDashboard();
+  window.scrollTo(0, 0);
+}
+$('bnav').addEventListener('click', (e) => { const b = e.target.closest('button[data-tab]'); if (b) cambiarTab(b.dataset.tab); });
 
-        window.switchTab = (tabId, el) => {
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            document.getElementById(`tab-${tabId}`).classList.add('active');
-            el.classList.add('active');
-            if (tabId === 'dashboard') renderizarDashboard();
-        };
+/* ── Métricas (sin librerías: más livianas y nítidas) ──────── */
+const MESES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+function llenarMeses() {
+  const sel = $('dash-mes'); if (sel.options.length) return;
+  const d = new Date(); let html = '';
+  for (let i = 0; i < 12; i++) {
+    const m = new Date(d.getFullYear(), d.getMonth() - i, 1);
+    const v = `${m.getFullYear()}-${String(m.getMonth() + 1).padStart(2, '0')}`;
+    html += `<option value="${v}">${MESES[m.getMonth()]} ${m.getFullYear()}</option>`;
+  }
+  sel.innerHTML = html + '<option value="todo">Todo el historial</option>';
+  sel.addEventListener('change', renderDashboard);
+}
 
-        window.toggleVentaCampos = (id, valor) => {
-            actualizar('agenda', id, 'resultado', valor);
-            document.getElementById(`venta-campos-${id}`).style.display = valor === 'venta' ? 'block' : 'none';
-        };
+function barras(el, obj, fmt, clase = '') {
+  const arr = Object.entries(obj).sort((a, b) => b[1] - a[1]);
+  if (!arr.length) { el.innerHTML = '<div class="empty">Sin datos en el período</div>'; return; }
+  const max = Math.max(...arr.map(x => x[1])) || 1;
+  el.innerHTML = arr.map(([k, v]) => `
+    <div class="bar-row"><span class="name" title="${esc(k)}">${esc(k)}</span>
+      <div class="bar-track"><div class="bar-fill ${clase}" style="width:${Math.max(3, v / max * 100)}%"></div></div>
+      <span class="val">${fmt(v)}</span></div>`).join('');
+}
 
-        window.actualizar = (tabla, id, campo, valor) => {
-            const index = db[tabla].findIndex(r => String(r.id) === String(id));
-            if(index > -1) {
-                db[tabla][index][campo] = valor;
-                syncUpdate(db[tabla][index], tabla === 'agenda' ? 'Hoja 1' : 'Leads');
-                if(campo === 'estado' || campo === 'resultado') cargarVistas();
-            }
-        };
+function dona(el, obj) {
+  const arr = Object.entries(obj).sort((a, b) => b[1] - a[1]);
+  const total = arr.reduce((s, x) => s + x[1], 0);
+  if (!total) { el.innerHTML = '<div class="empty">Sin ventas en el período</div>'; return; }
+  const cols = ['var(--x5)', 'var(--dom)', 'var(--ok)', '#8b7cf6', 'var(--warn)', 'var(--faint)'];
+  const R = 42, C = 2 * Math.PI * R; let off = 0;
+  const segs = arr.map(([k, v], i) => {
+    const len = v / total * C;
+    const s = `<circle r="${R}" cx="60" cy="60" fill="none" stroke="${cols[i % cols.length]}" stroke-width="16" stroke-dasharray="${Math.max(0, len - 2)} ${C}" stroke-dashoffset="${-off}" transform="rotate(-90 60 60)"/>`;
+    off += len; return s;
+  }).join('');
+  el.innerHTML = `<div class="donut-wrap">
+    <svg viewBox="0 0 120 120" width="128" height="128" role="img" aria-label="Origen de las ventas">
+      <circle r="${R}" cx="60" cy="60" fill="none" stroke="var(--surface-3)" stroke-width="16"/>${segs}
+      <text x="60" y="58" text-anchor="middle" fill="var(--text)" font-size="20" font-weight="800">${total}</text>
+      <text x="60" y="74" text-anchor="middle" fill="var(--muted)" font-size="9">ventas</text>
+    </svg>
+    <div class="legend">${arr.map(([k, v], i) => `<div><i style="background:${cols[i % cols.length]}"></i><span>${esc(k)}</span><b>${Math.round(v / total * 100)}%</b></div>`).join('')}</div>
+  </div>`;
+}
 
-        const syncUpdate = (data, tabla, isNew = false) => { fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ ...data, tabla: tabla, action: isNew ? 'add' : 'update' }) }); };
+function renderDashboard() {
+  llenarMeses();
+  const per = $('dash-mes').value || 'todo';
+  const enPer = (f) => per === 'todo' || soloFecha(f).startsWith(per);
+  const ventas = db.agenda.filter(a => a.resultado === 'venta' && puedeVer(a.asesor) && enPer(a.fecha));
+  const leads = db.leads.filter(l => puedeVer(l.asignado_a) && enPer(l.fecha_asignacion));
 
-        document.getElementById('form-agenda').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const autoUsado = document.getElementById('ag-lugar').value === 'Domicilio' ? document.getElementById('ag-auto').value : '';
-            const item = { id: Date.now().toString(), cliente: document.getElementById('ag-cliente').value, vehiculo: document.getElementById('ag-vehiculo').value, lugar: document.getElementById('ag-lugar').value, auto_usado: autoUsado, asesor: document.getElementById('ag-asesor').value, fecha: document.getElementById('ag-fecha').value, hora: document.getElementById('ag-hora').value, estado: 'pendiente', resultado: '', notas: '', nro_contrato: '', monto: '' };
-            db.agenda.push(item); cargarVistas(); syncUpdate(item, 'Hoja 1', true); e.target.reset(); document.getElementById('ag-auto').style.display = 'none';
-        });
+  let fact = 0; const porAsesor = {}, origen = {}, flota = {};
+  ventas.forEach(v => {
+    const m = parseFloat(v.monto) || 0; fact += m;
+    porAsesor[v.asesor] = (porAsesor[v.asesor] || 0) + m;
+    const lead = db.leads.find(l => String(l.cliente).trim().toLowerCase() === String(v.cliente).trim().toLowerCase());
+    const o = lead ? lead.origen : 'Salón / Espontáneo';
+    origen[o] = (origen[o] || 0) + 1;
+    if (v.lugar === 'Domicilio' && v.auto_usado) flota[v.auto_usado] = (flota[v.auto_usado] || 0) + 1;
+  });
 
-        document.getElementById('form-leads').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const item = { id: Date.now().toString(), cliente: document.getElementById('ld-cliente').value, telefono: document.getElementById('ld-telefono').value, interes: document.getElementById('ld-interes').value, origen: document.getElementById('ld-origen').value, asignado_a: document.getElementById('ld-asignado').value, fecha_asignacion: document.getElementById('ld-fecha-limite').value, hora_limite: document.getElementById('ld-hora-limite').value, estado: 'pendiente', resultado: '', hora_contacto: '' };
-            db.leads.push(item); cargarVistas(); syncUpdate(item, 'Leads', true); e.target.reset();
-        });
-    </script>
+  const tSum = {}, tN = {};
+  leads.filter(l => l.hora_contacto !== '' && l.hora_contacto != null && !isNaN(parseInt(l.hora_contacto))).forEach(l => {
+    tSum[l.asignado_a] = (tSum[l.asignado_a] || 0) + parseInt(l.hora_contacto); tN[l.asignado_a] = (tN[l.asignado_a] || 0) + 1;
+  });
+  const tProm = {}; Object.keys(tSum).forEach(k => tProm[k] = Math.round(tSum[k] / tN[k]));
+  const totalN = Object.values(tN).reduce((a, b) => a + b, 0);
+  const promGlobal = totalN ? Math.round(Object.values(tSum).reduce((a, b) => a + b, 0) / totalN) : null;
+
+  $('k-fact').textContent = X5.money(fact);
+  $('k-ventas').textContent = ventas.length;
+  $('k-leads').textContent = leads.length;
+  const conv = leads.length ? ventas.filter(v => leads.some(l => String(l.cliente).trim().toLowerCase() === String(v.cliente).trim().toLowerCase())).length / leads.length * 100 : 0;
+  $('k-conv').textContent = conv.toFixed(1).replace('.', ',') + '%';
+  $('k-resp').textContent = promGlobal == null ? '–' : (promGlobal < 60 ? promGlobal + ' min' : (promGlobal / 60).toFixed(1).replace('.', ',') + ' h');
+
+  barras($('ch-asesores'), porAsesor, X5.moneyShort, 'dom');
+  dona($('ch-origen'), origen);
+  barras($('ch-tiempos'), tProm, v => v + ' min', 'warn');
+  barras($('ch-flota'), flota, v => v);
+}
+
+/* ── Arranque ──────────────────────────────────────────────── */
+$('btn-login').addEventListener('click', iniciarSesion);
+$('user-pass').addEventListener('keydown', e => { if (e.key === 'Enter') iniciarSesion(); });
+$('btn-logout').addEventListener('click', cerrarSesion);
+$('sync-pill').addEventListener('click', async () => { await procesarCola(); await sincronizar(true); });
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && user) { procesarCola(); sincronizar(); } });
+
+const ses = store.get('x5_session', null);
+const cache = store.get('x5_db', null);
+if (ses && ses.user) {
+  user = ses.user; token = ses.token || null;
+  if (cache) db = aplicarPendientes(cache);
+  iniciarApp();
+  sincronizar();
+} else {
+  store.del('x5_user'); // sesión del formato viejo (guardaba la clave)
+  prepararLogin();
+}
+pintarSync();
+})();
+</script>
 </body>
 </html>
