@@ -6,7 +6,8 @@
 
 :root {
   /* Marca */
-  --x5: #00c8f5;            /* acento X5 (acciones, datos, links) */
+  --x5-silver: linear-gradient(160deg, #ffffff 0%, #c9ced4 35%, #8e959d 55%, #e9ecef 75%, #a7adb4 100%); /* cromado del logo X5 */
+  --x5: #00c8f5;            /* cian del ícono X5 OS (acciones, datos, links) */
   --x5-strong: #00a6cc;
   --x5-soft: rgba(0, 200, 245, .12);
   --dom: #d4af37;           /* oro DOM Studio (thedomstudioweb.github.io) */
@@ -111,7 +112,8 @@ button { font-family: inherit; }
 .x5-top .spacer { flex: 1; }
 
 .brandmark { font-weight: 800; letter-spacing: 1.5px; }
-.brandmark b { color: var(--x5); font-weight: 800; }
+.brandmark b { font-weight: 800; background: var(--x5-silver); -webkit-background-clip: text; background-clip: text; color: transparent; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .brandmark b { background: linear-gradient(160deg, #3a4048, #8e959d 50%, #2b3036); -webkit-background-clip: text; background-clip: text; } }
 .brandmark i { color: var(--dom); font-style: normal; }
 
 /* ── Contenedores ─────────────────────────────────────────────────── */
