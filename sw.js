@@ -3,7 +3,7 @@
    - Estilos, scripts, íconos y librerías de CDN: copia guardada al instante + actualización en segundo plano.
    - La base de datos (Apps Script) nunca se guarda acá: la maneja el CRM con su propia cola offline.
    Al publicar cambios grandes, subí el número de VERSION. */
-const VERSION = 'x5-os-v3';
+const VERSION = 'x5-os-v4';
 const PRECACHE = [
   './', './index.html', './crm.html', './simulador.html', './x5check.html', './dni.html', './unificador.html',
   './x5-theme.css', './x5-core.js', './x5-scanner.js', './manifest.json', './icon-192.png', './icon-512.png',
