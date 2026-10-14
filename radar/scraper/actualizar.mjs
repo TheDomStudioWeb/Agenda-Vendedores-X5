@@ -2,9 +2,10 @@
 // Reglas de seguridad: si una agencia falla o trae muy pocos autos, se conserva su stock anterior.
 import { readFile, writeFile } from 'node:fs/promises';
 import * as maipu from './agencias/maipu.mjs';
+import * as autocity from './agencias/autocity.mjs';
 import { cruzar, marcaPorModelo } from './guia.mjs';
 
-const AGENCIAS = [maipu];                 // sumar acá las próximas (Autocity, etc.)
+const AGENCIAS = [maipu, autocity];                 // sumar acá las próximas (Autocity, etc.)
 const MINIMO_RELATIVO = 0.5;              // si trae menos de la mitad que ayer, se considera rota
 const STOCK = 'radar/data/stock.json', NOVEDADES = 'radar/data/novedades.json', GUIA = 'radar/data/guia-cca.json';
 
@@ -21,7 +22,7 @@ for (const ag of AGENCIAS) {
   const previos = anterior.autos.filter(a => a.agencia === ag.agencia.id);
   let lista, error = null;
   try {
-    lista = await ag.leer();
+    lista = await ag.leer(previos);
     const incompletos = lista.filter(a => !a.modelo || !a.anio || !a.fotos.length).length;
     if (!lista.length) error = 'no se encontró ningún auto';
     else if (previos.length >= 10 && lista.length < previos.length * MINIMO_RELATIVO) error = `trajo ${lista.length} autos y ayer había ${previos.length}`;

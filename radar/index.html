@@ -255,7 +255,7 @@
         const vs = k.vsGuia;
         return `<div class="fila" data-id="${esc(a.id)}" tabindex="0">
           <div class="foto">${img(a.fotos[0], a.modelo)}</div>
-          <div><div class="t">${esc(a.marca)} ${esc(a.modelo)} ${a.anio}</div><div class="s">${esc(a.version)} · ${a.km != null ? nf.format(a.km) + ' km' : ''} · ${esc(a.caja)}<br>${esc(ag)} · publicado ${fecha(a.alta || a.publicado).split(',')[0]}</div></div>
+          <div><div class="t">${esc(a.marca)} ${esc(a.modelo)} ${a.anio}</div><div class="s">${esc(a.version)} · ${a.km != null ? nf.format(a.km) + ' km' : ''} · ${esc(a.caja)}<br>${esc(ag)}${a.sucursal ? ' · ' + esc(a.sucursal) : ''} · publicado ${fecha(a.alta || a.publicado).split(',')[0]}${a.oportunidad ? ' · <b style="color:var(--dom)">Oportunidad</b>' : ''}</div></div>
           <div class="c-ag"><div class="k">Agencia</div><div class="v num">${a.precio == null ? 'A confirmar' : a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio) : mill(a.precio)}</div></div>
           <div class="c-guia"><div class="k">Guía${a.guia?.mejor ? '' : ' (mediana)'}</div><div class="v num">${mill(k.ref)}</div></div>
           <div class="c-x5"><div class="k">Precio X5</div><div class="v num">${mill(k.x5)}</div><div class="s num">${k.margen != null ? `<span class="${k.margen >= 0 ? 'pos' : 'neg'}">${k.margen >= 0 ? '+' : '−'}${mill(Math.abs(k.margen))}</span>` : ''}</div>
@@ -300,7 +300,7 @@
         </div>
         ${a.equipamiento ? `<div class="tabla" style="grid-template-columns:1fr"><div><span>Equipamiento</span>${esc(a.equipamiento)}</div></div>` : ''}
         ${interno ? `<div class="interno">
-          <div><b>${esc(AG[a.agencia]?.nombre || a.agencia)}</b> (${esc(AG[a.agencia]?.ciudad || '')}) · precio publicado ${a.precio == null ? 'a confirmar' : a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio) : plata(a.precio)}${a.precio_sin_imp ? ` · sin impuestos ${a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio_sin_imp) : plata(a.precio_sin_imp)}` : ''}</div>
+          <div><b>${esc(AG[a.agencia]?.nombre || a.agencia)}</b> (${esc(a.sucursal || AG[a.agencia]?.ciudad || '')}) · precio publicado ${a.precio == null ? 'a confirmar' : a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio) : plata(a.precio)}${a.precio_sin_imp ? ` · sin impuestos ${a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio_sin_imp) : plata(a.precio_sin_imp)}` : ''}</div>
           <div>Guía ${esc(DATA.guia?.fuente || '')}: ${a.guia ? (a.guia.mejor ? `${esc(a.guia.mejor.version)} → <b>${plata(a.guia.mejor.valor)}</b>` : 'versión no identificada') + ` · rango ${mill(a.guia.min)} – ${mill(a.guia.max)} (${a.guia.n} versiones)` : 'sin coincidencia'}</div>
           <div>Margen X5: <b>${k.margen != null ? plata(k.margen) : '—'}</b>${k.vsGuia != null ? ` · precio X5 a guía ${k.vsGuia >= 0 ? '+' : '−'}${Math.abs(Math.round(k.vsGuia * 100))}%` : ''}</div>
           <div><a href="${esc(a.url)}" target="_blank" rel="noopener">Ver publicación original</a></div>
@@ -393,9 +393,9 @@
     const mod = sinTilde(q.modelo);
     return DATA.autos.filter(a => sinTilde(a.marca) === sinTilde(q.marca) && sinTilde(a.modelo).startsWith(mod)
       && (!q.desde || a.anio >= q.desde) && (!q.hasta || a.anio <= q.hasta)
-      && (!q.provincia || sinTilde(AG[a.agencia]?.ciudad) === sinTilde(q.provincia)))
+      && (!q.provincia || sinTilde(a.provincia || AG[a.agencia]?.ciudad) === sinTilde(q.provincia)))
       .map(a => ({ fuente: a.agencia, fuenteNombre: AG[a.agencia]?.nombre, vendedor: AG[a.agencia]?.nombre, marca: a.marca, modelo: a.modelo, version: a.version, anio: a.anio, km: a.km, caja: a.caja,
-        precio: a.precio, moneda: a.moneda, provincia: AG[a.agencia]?.ciudad, localidad: '', foto: a.fotos[0], url: a.url, id: a.id }));
+        precio: a.precio, moneda: a.moneda, provincia: a.provincia || AG[a.agencia]?.ciudad, localidad: a.sucursal || '', foto: a.fotos[0], url: a.url, id: a.id }));
   }
 
   async function buscarCompra(ev) {
