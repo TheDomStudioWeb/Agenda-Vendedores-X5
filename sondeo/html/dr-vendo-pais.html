@@ -1,0 +1,1682 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> 		
+	
+  <meta name="google" content="notranslate">
+  <!-- NECESARIO PARA DESCARGAR APP -->	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="theme-color" content="#333333">
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="/images/design/icon_192.png">
+  <link rel="apple-touch-startup-image" href="/images/design/icon_512.png">
+  <link rel="manifest" href="/manifest.json">
+  
+	
+		<meta name="description" content="El portal número uno en venta de vehículos de Argentina :)">
+  
+  
+	<meta name="Keywords" content="AUTOS, CAMIONETAS, MOTOS, CUATRICICLOS, CAMIONES, PLANES, AUTOS NUEVOS, AUTOS USADOS, AUTOS EN CUOTAS, AUTOS FINANCIADOS, AUTOS EN MENDOZA, AUTOS EN BUENOS AIRES, AUTOS EN CATAMARCA, AUTOS EN CHACO, AUTOS EN CHUBUT, AUTOS EN CORDOBA, AUTOS EN CORRIENTES, AUTOS EN ENTRE RIOS, AUTOS EN FORMOSA, AUTOS EN JUJUY, AUTOS EN LA PAMPA, AUTOS EN LA RIOJA, AUTOS EN MISIONES, AUTOS EN NEUQUEN, AUTOS EN RIO NEGRO, AUTOS EN SALTA, AUTOS EN SAN JUAN, AUTOS EN SAN LUIS, AUTOS EN SANTA CRUZ, AUTOS EN SANTA FE, AUTOS EN SANTIAGO DEL ESTERO, AUTOS EN TIERRA DEL FUEGO, AUTOS EN TUCUMAN">
+	
+	<!-- TEMPORAL PARA FORZAR LA ACTUALIZACION DEL FAVICON -->
+	<link rel="shortcut icon" href="https://www.deruedas.com.ar/favicon.ico?v=3" /> 
+	<link rel='stylesheet' type='text/css' href='/scripts/fontAwesome/css/font-awesome.min.css' />
+<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
+<link href="https://www.deruedas.com.ar/scripts/bootstrap/bootstrap_4.css?version=1.0.0" rel="stylesheet">
+<style type="text/css">
+body 													{font-family:'Nunito', sans-serif; overflow-x: hidden; background-color: #F2F2F2; }
+@media screen and (max-width: 600px){ /*DESACTIVAR LA SELECCION DE TEXTO EN MOVILES (PARA QUE AL HACER TAP NO PINTE EL TEXTO) */
+	body {-webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
+}
+.pantalla 										{width:100%; margin:auto;}
+.ventana 											{width:98%; max-width:1100px; margin:auto;}
+.ventanaMax										{width:98%; max-width:1280px; margin:auto;}
+.ventanaMid										{width:98%; max-width:1160px; margin:auto;}
+.ventana.limitAR							{min-width:980px;}
+.redondear	 									{border-radius:6px 6px 6px 6px; -moz-border-radius:6px 6px 6px 6px; -webkit-border-radius:6px 6px 6px 6px;}
+
+/*SACO ESTILOS A H1, H2 Y H3 PARA POSICIONAMIENTO WEB*/
+h1, h2, h3										{display:inline; font-size:inherit;	font-weight:inherit; margin-block-start:inherit; margin-block-end:inherit; margin-inline-start:inherit; margin-inline-end:inherit;}
+
+/* TITULOS */
+.titulo			  								{font-family:'Nunito', sans-serif; font-size:16px; color:#666666; font-weight:bold; text-decoration:none; cursor:default;}
+.titulo.mini									{font-size:12px;}
+.titulo.ultra                 {font-size:26px;}
+.titulo.super									{color:#FFFFFF;}
+.titulo.off										{color:#666666;}
+.titulo.resaltar							{color:#FF6C00;}
+a.titulo:hover								{color:#FF6C00; cursor:pointer;}
+a.titulo.super:hover					{color:#E1E1E1; cursor:pointer;}
+
+/* TEXTO */
+.texto												{font-size:15px; color: #666666; text-decoration:none; cursor:default;}
+.texto.mini	  								{font-size:11px;}
+.texto.super	  							{font-size:16px;}
+.texto.obligatorio						{font-weight:bold;}
+.texto.resaltar								{color:#FF6C00 !important; font-weight:bold;}
+.texto.alerta									{color:#FF1E2C; font-weight:bold;}
+.texto.error									{color:#FF1E2C; padding-top:3px;}
+.texto.success								{color:#1DB954; padding-top:3px;}
+.texto.nota										{color:#2463DE;}
+.texto.inv										{color:#FFFFFF;}
+a.texto:hover 							 	{color:#000000; cursor:pointer;}
+a.texto.resaltar:hover 			 	{color:#000000; cursor:pointer;}
+
+.link   											{font-size:15px; color:#009EE3; text-decoration:none; cursor:pointer;}
+.link span  									{color:#009EE3;}
+.link.inv											{color:#FFFFFF;}
+a.link:hover									{color:#FF6C00;}
+a.toggleVersionLink:hover				{color:#000000 !important;}
+.link.inv_2										{color:#FFFFFF;}
+a.link.inv_2:hover						{color:#000000;}
+.linkBlack    								{color:#000000; text-decoration:none; cursor:pointer;}
+a.linkBlack:hover    					{color:#FF6C00;}
+.text-orange                  {color:#FF6C00;}
+.text-yellow                  {color:#FFFFCC;}
+
+/* RECUADROS */
+.recuadro											{border:1px solid #FFFFFF; background-color:white; border-radius:6px 6px 6px 6px; -moz-border-radius:6px 6px 6px 6px; -webkit-border-radius:6px 6px 6px 6px;}
+.recuadro.super								{border:1px solid #E1E1E1;}
+.recuadro.sombra							{box-shadow:0px 0px 4px #999999;}
+.recuadro.sombra_2						{box-shadow: 1px 1px 3px #999999;}
+.recuadro.resaltar:hover			{border-color:#FF6C00;}
+.recuadro.resaltar_2:hover		{border-color:#009EE3;}
+.recuadro.off:hover						{border-color:#666666;}
+
+/* RESALTADORES */
+.fondo												{margin:3px; padding:8px 20px 8px 20px; border-radius:3px 3px 3px 3px; -moz-border-radius:3px 3px 3px 3px; -webkit-border-radius:3px 3px 3px 3px;}
+.naranja											{background:linear-gradient(to right, #F05F22, #FF354D);}
+.verde												{background-color:#1DB954;}
+.verdeClaro										{background-color:#A9F5A9;}
+.gris													{background-color:#F0F0F0;}
+.amarillo 										{background-color:#FFFFCC;}
+.rojo													{background-color:#FF1E2C;}
+.azul													{background-color:#2463DE;}
+.grisOscuro										{background-color:#333333;}
+.fondoResaltar								{background-color:#F0F0F0; border-radius:3px 3px 3px 3px; -moz-border-radius:3px 3px 3px 3px; -webkit-border-radius:3px 3px 3px 3px;}
+.oculto												{display:none;}
+.visible											{display:block;}
+
+/* BOTONES */
+.boton, .botPlus											 		{font-family:'Nunito', sans-serif; white-space:nowrap; cursor:pointer; 
+																				 		border:0;	border-bottom:rgba(0, 0, 0, .1) 1px solid; 
+																				 		/*box-shadow:1px 1px 2px 0px #999999;*/
+																					  transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+																					}																						
+.boton span, .botPlus									 		{color:#FFFFFF; text-align:center;}
+.boton, .boton span, .botPlus		 					{display:inline-block; border-radius: 6px;}
+.boton:hover, .botPlus:hover							{background:-moz-linear-gradient(center top, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, .1) 100%);	background:-webkit-gradient(linear, center bottom,	center top,	from(rgba(255, 255, 255, .1)), to(rgba(255, 255, 255, .2)));}
+.boton.pequeno span, .botPlus.pequeno			{font-size:12px; padding:6px 10px 6px 10px;}
+.boton.mediano span, .botPlus.mediano			{font-size:14px; padding:9px 20px 9px 20px;}
+.boton.grande span, .botPlus.grande				{font-size:20px; padding:12px 30px 12px 30px;}
+.boton.rojo, .botPlus.rojo								{background-color:#FF1E2C;}
+.boton.verde, .botPlus.verde							{background-color:#1DB954;}
+.boton.azul, .botPlus.azul								{background-color: #1A73E9;}
+.boton.naranja, .botPlus.naranja					{background: linear-gradient(41.12deg, #F05F22 -13.09%, #FF354D 127.35%);}
+.boton.gris, .botPlus.gris								{background-color:#E1E1E1;}
+.boton.grisOscuro, .botPlus.grisOscuro		{background-color:#666666;}
+.boton.transparente												{border: 2px solid #FFFFFF; box-sizing: border-box;}
+.botPlus:disabled													{background-color:#999999;}
+.boton:disabled														{opacity:0.55; cursor:default; pointer-events:none;}
+
+/* ESPECIALES BUS */
+.cerrarItem										{font-size:15px; color:#666666; text-decoration:none; background-color:#E1E1E1; padding:5px 0 5px 10px; border-radius:0px 10px 10px 0px; -moz-border-radius:0px 10px 10px 0px; -webkit-border-radius:0px 10px 10px 0px;}
+.cerrarItem:hover							{color:#000000; cursor:pointer;}
+.cerrarItem_2									{background: #FFF3F0; border: 1px solid #F3562C; min-height:35px; box-sizing: border-box; border-radius: 6px;font-size:15px; color:#F3562C; text-decoration:none; padding:5px 0 5px 10px; float:left;}
+.cerrarItem_2:hover						{color:#000000; cursor:pointer;}
+.cerrarItem_3									{font-size:15px; color:#FFFFFF; height:23px; border: 1px solid #F3562C; text-decoration:none; background-color:#333333; padding:5px 0 5px 10px; float:left;}
+.cerrarItem_3:hover						{color:#FF6C00; cursor:pointer;}
+.cerrarItem_4								  {background: #FFF3F0; border: 1px solid #F3562C; box-sizing: border-box; border-radius: 6px;font-size:15px; color:#F3562C; text-decoration:none; padding:5px 0 5px 10px; width:fit-content;}
+.cerrarItem_4:hover						{color:#000000; cursor:pointer;}
+.cerrarItem_5									{border: 1px solid #F0F0F0; min-height:35px; box-sizing: border-box; border-radius: 6px;font-size:15px; color:#009EE3; text-decoration:none; padding:5px 0 5px 10px; float:left;}
+.cerrarItem_5:hover						{color:#FF6C00; cursor:pointer; border-color:#E1E1E1;}
+.fancyCheck                   {transform: scale(1.4) !important; margin-right:8px;}
+.slider												{font-family:'Nunito', sans-serif; font-size:15px; color:#009EE3; text-decoration:none; font-weight:normal; background-color:transparent; margin-bottom:12px; letter-spacing: -0.02em; text-align:center; width:100%; border:0;margin-left: 2px;}
+input.slider:disabled					{color:#009EE3;}
+.aviso-limite-fancy           {padding: 5px;}
+/* PAGINACION */
+.pagina				  							{font-size:14px; color:#FFFFFF; text-decoration:none; cursor:default; background-color:#1DB954; padding:5px 10px 5px 10px; border-radius:3px 3px 3px 3px; -moz-border-radius:3px 3px 3px 3px; -webkit-border-radius:3px 3px 3px 3px;}
+a.pagina:hover								{color:#000000; cursor:pointer; background-color:#FF6C00;}
+span.pagina:hover							{color:#000000; cursor:pointer; background-color:#FF6C00;}
+.paginaSel		  							{padding:5px 10px 5px 10px; border:1px solid #1DB954; border-radius:3px 3px 3px 3px; -moz-border-radius:3px 3px 3px 3px; -webkit-border-radius:3px 3px 3px 3px;}
+
+/* TABLAS */
+.tabla 												{font:85% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif; border-collapse:collapse; color:#333; background:#F3F5F7; border-collapse: collapse; overflow:hidden; border-radius:3px 3px 3px 3px; -moz-border-radius:3px 3px 3px 3px; -webkit-border-radius:3px 3px 3px 3px;}
+.tabla tbody 									{border-bottom:1px solid #EAECEE;}
+.tabla tr 										{background-color:#F3F5F7;}
+.tabla tr.odd 								{background-color:#F0F2F4;}
+.tabla tr.oddUp								{background-color:#FFF0F0;}
+.tabla tr:hover 							{background:#EAECEE; color:#111;}
+.tabla tr.division 						{background-color:#CEF6F5;}
+.tabla tr.important 					{background-color:#A9F5A9;}
+.tabla td 										{padding:10px; background:url("images/design/td_back.gif") repeat-x;}
+.tabla th											{padding:15px; background:url("images/design/td_back.gif") repeat-x; background-color:#FFFFCC; font-size:10px; text-align:center; font-weight:normal;}
+.tabla a											{color:#009EE3; text-decoration:none; cursor:pointer;}
+.tabla td.columna							{border-left:1px solid #E1E1E1; border-right:1px solid #E1E1E1}
+
+/* FORMULARIOS */
+.formTitulo		  							{font-size:16px; color:#666666; padding-top:8px; text-align:right; vertical-align:top;}
+.formCheck					  				{font-size:16px; color:#666666; line-height:25px; padding-left:5px;}
+.formBox 											{font-family:'Nunito', sans-serif; font-size:16px; color:#990000; background-color: #F0F0F0; border-width:0; padding:5px; border-radius:3px 3px 3px 3px; -moz-border-radius:3px 3px 3px 3px; -webkit-border-radius:3px 3px 3px 3px}
+.formBox.blanco								{background-color:#FFFFFF;}
+.formBox.mini									{font-size:14px;}
+.formBox.mini.blanco					{background-color:#FFFFFF;} 
+.formBox.trabajando 					{background: white url("images/design/trabajando_1.gif") right center no-repeat;}
+input.formBox:disabled				{color:#666666;}
+
+/* Agrandar Checkboxes */
+input[type=checkbox] {
+	-ms-transform: scale(1.2); /* IE */
+	-moz-transform: scale(1.2); /* FF */
+	-webkit-transform: scale(1.2); /* Safari and Chrome */
+	-o-transform: scale(1.2); /* Opera */
+}
+
+/* Sacar estilos de input number*/
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Sacar estilos de input number*/
+input[type=number] {
+	-moz-appearance:textfield;
+}
+
+/* Parpadeo */
+.parpadea {
+  
+  animation-name: parpadeo;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-name:parpadeo;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-moz-keyframes parpadeo{  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes parpadeo {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+   100% { opacity: 1.0; }
+}
+
+@keyframes parpadeo {  
+  0% { opacity: 1.0; }
+   50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+.div_td_1_width		{width:25%;}
+
+.div_tr						{display:flex; align-items:center;}
+.div_td_1					{float:left; text-align:right;}
+.div_td_2					{float:left; padding-left:2%; min-width: 400px;}
+.div_clear				{clear:both; height:20px;}
+
+@media screen and (max-width: 600px){
+	.div_tr					{display:inherit;}
+	.div_td_1				{width:90%; text-align:left; padding-left:5%}
+	.div_td_2				{width:90%; padding-left:5%; min-width:auto; max-width:320px;} 
+}
+
+
+@media screen and (max-width: 350px) {.v350 {display:none;}}
+@media screen and (min-width: 351px) {.i350 {display:none;}}
+@media screen and (max-width: 400px) {.v400 {display:none;}}
+@media screen and (min-width: 401px) {.i400 {display:none;}}
+@media screen and (max-width: 450px) {.v450 {display:none;}}
+@media screen and (min-width: 451px) {.i450 {display:none;}}
+@media screen and (max-width: 500px) {.v500 {display:none;}}
+@media screen and (min-width: 501px) {.i500 {display:none;}}
+@media screen and (max-width: 550px) {.v550 {display:none;}}
+@media screen and (min-width: 551px) {.i550 {display:none;}}
+@media screen and (max-width: 600px) {.v600 {display:none;}}
+@media screen and (min-width: 601px) {.i600 {display:none;}}
+@media screen and (max-width: 650px) {.v650 {display:none;}}
+@media screen and (min-width: 651px) {.i650 {display:none;}}
+@media screen and (max-width: 700px) {.v700 {display:none;}}
+@media screen and (min-width: 701px) {.i700 {display:none;}}
+@media screen and (max-width: 750px) {.v750 {display:none;}}
+@media screen and (min-width: 751px) {.i750 {display:none;}}
+@media screen and (max-width: 800px) {.v800 {display:none;}}
+@media screen and (min-width: 801px) {.i800 {display:none;}}
+@media screen and (max-width: 850px) {.v850 {display:none;}}
+@media screen and (min-width: 851px) {.i850 {display:none;}}
+@media screen and (max-width: 900px) {.v900 {display:none;}}
+@media screen and (min-width: 901px) {.i900 {display:none;}}
+@media screen and (max-width: 950px) {.v950 {display:none;}}
+@media screen and (min-width: 951px) {.i950 {display:none;}}
+@media screen and (max-width: 1000px) {.v1000 {display:none;}}
+@media screen and (min-width: 1001px) {.i1000 {display:none;}}
+@media screen and (max-width: 1100px) {.v1100 {display:none;}}
+@media screen and (min-width: 1101px) {.i1100 {display:none;}}
+
+
+
+
+
+
+</style>
+
+	<script type="text/javascript" src="/scripts/jQuery/jquery.min.js" ></script>
+	<link rel='stylesheet' type='text/css' href='/scripts/ui/css/ui-lightness/jquery-ui-1.8.21.custom.css?ver=4'/>
+	<script  type="text/javascript" src="/scripts/ui/js/jquery-ui-1.9.1.min.js"></script>
+	<script  type="text/javascript" src="/scripts/ui/js/tooltip.js"></script>
+	<!-- <script type="text/javascript" src="/scripts/ui/js/jquery-ui-1.8.21.custom.min.js"></script>  LO COMENTO PARA VER SI CON 1.9.1 NO SE ROMPE NADA -->
+	<script type="text/javascript" src="/scripts/ui/js/jquery.ui.touch-punch.min.js"></script>
+	<link rel='stylesheet' href='/scripts/fancyBox2/jquery.fancybox.min.css?v=2.1.5' type='text/css' media='screen' />
+	<script type="text/javascript" src="/scripts/fancyBox2/jquery.fancybox.pack.js?v=2.1.5"></script>
+	<style type="text/css">
+		html.fancyLockScroll,
+		body.fancyLockScroll {
+			overflow: hidden !important;
+		}
+
+		body.fancyLockScroll {
+			width: 100%;
+		}
+
+		#fancybox-wrap,
+		#fancybox-outer,
+		#fancybox-content,
+		.fancybox-inner {
+			-webkit-overflow-scrolling: touch;
+			overscroll-behavior: contain;
+		}
+
+		.fancybox-inner {
+			overflow-x: auto !important;
+		}
+
+		.fancyScrollArea {
+			max-height: calc(100vh - 160px);
+			overflow-y: auto !important;
+			-webkit-overflow-scrolling: touch;
+			overscroll-behavior: contain;
+			touch-action: pan-y;
+		}
+
+		/* CON EL TECLADO DEL MOVIL ABIERTO EL FANCY SE PEGA ARRIBA DE LA ZONA VISIBLE
+		   EN VEZ DE QUEDAR CENTRADO (Y TAPADO) SOBRE EL VIEWPORT COMPLETO. EL VALOR DE
+		   --fancyTecladoTop LO CALCULA EL JS SEGUN EL visualViewport. VA POR VARIABLE Y
+		   NO INLINE PORQUE CADA $.fancybox.update() PISA EL style.top DEL WRAP */
+		body.fancyTecladoAbierto .fancybox-wrap {
+			position: fixed !important;
+			top: var(--fancyTecladoTop, 8px) !important;
+			margin-top: 0 !important;
+			bottom: auto !important;
+		}
+
+		body.fancyTecladoAbierto .fancybox-inner {
+			overflow-y: auto !important;
+			-webkit-overflow-scrolling: touch;
+			overscroll-behavior: contain;
+		}
+	</style>
+
+	<!-- FANCY VIEJO
+	<link rel="stylesheet" href="/scripts/fancyBox/css/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="/scripts/fancyBox/jquery.fancybox-1.3.4.pack.js"></script>
+	<script type="text/javascript" src="/scripts/fancyBox/jquery.easing-1.3.pack.js"></script>
+	<script type="text/javascript" src="/scripts/fancyBox/jquery.mousewheel-3.0.4.pack.js"></script>
+	-->
+	
+	<script language="JavaScript" type="text/JavaScript"> 
+		//APERTURA DEL FANCY
+		$(document).ready(function() {
+			var fancyLockClass = 'fancyLockScroll';
+			var fancyTecladoClass = 'fancyTecladoAbierto';
+			var fancyResizeTimer = null;
+			var fancyMargenTeclado = 8; //MARGEN ENTRE EL BORDE DE LA ZONA VISIBLE Y EL FANCY
+			var fancyScrollDuracion = 1000; //DURACION DEL SCROLL HASTA EL CAMPO ENFOCADO
+			var fancyCampoFoco = null; //CAMPO DEL FANCY QUE TIENE EL FOCO, null SI NO HAY NINGUNO
+			var fancyAltoBase = 0; //ALTO DE LA ZONA VISIBLE MEDIDO SIN TECLADO
+			var fancyTecladoPrevio = false; //ESTADO ANTERIOR DEL TECLADO, PARA DETECTAR LA APERTURA
+
+			//LA BASE ES EL ALTO DISPONIBLE CON EL TECLADO CERRADO. NO SE MIDE SI HAY UN CAMPO
+			//ENFOCADO: UNA MEDICION HECHA CON EL TECLADO ARRIBA DEJARIA LA BASE CHICA Y A PARTIR
+			//DE AHI NO SE DETECTARIA MAS LA APERTURA
+			function medirAltoBaseFancy() {
+				if (fancyCampoFoco) return;
+				fancyAltoBase = Math.max(altoVentanaFancy(), altoViewportFancy());
+			}
+
+			function bloquearScrollFancy() {
+				$('html, body').addClass(fancyLockClass);
+				//AL ABRIR EL FANCY TODAVIA NO HAY TECLADO: ES EL MOMENTO EXACTO PARA FIJAR LA BASE
+				medirAltoBaseFancy();
+			}
+
+			function desbloquearScrollFancy() {
+				$('html, body').removeClass(fancyLockClass);
+				$('body').css({ 'padding-right': '', 'margin-right': '', 'width': '' });
+				$('.fancyScrollArea').css('max-height', '');
+				fancyCampoFoco = null;
+				fancyTecladoPrevio = false;
+				soltarFancyTeclado();
+			}
+
+			function esFancyMovil() {
+				return (window.matchMedia && window.matchMedia('(max-width: 768px)').matches) || $(window).width() <= 768;
+			}
+
+			function altoViewportFancy() {
+				if (window.visualViewport && window.visualViewport.height) return window.visualViewport.height;
+				return $(window).height();
+			}
+
+			function altoVentanaFancy() {
+				return window.innerHeight || $(window).height();
+			}
+
+			//HAY DOS COMPORTAMIENTOS DISTINTOS AL ABRIR EL TECLADO:
+			// - iOS Y CHROME ANDROID (interactive-widget=resizes-visual, EL DEFAULT): SE ACHICA EL
+			//   visualViewport Y innerHeight QUEDA IGUAL
+			// - WEBVIEW EMBEBIDO EN UNA APP CON adjustResize (META/FACEBOOK/INSTAGRAM): SE ACHICAN
+			//   LAS DOS MEDIDAS A LA VEZ
+			//POR ESO NO SE PUEDEN RESTAR ENTRE SI: EN EL SEGUNDO CASO LA DIFERENCIA DA CERO Y EL
+			//TECLADO NUNCA SE DETECTABA. SE COMPARA CONTRA UNA BASE TOMADA SIN TECLADO, QUE SIRVE
+			//PARA LOS DOS. EN NAVEGADORES QUE NO ACHICAN NINGUNA MEDIDA SOLO QUEDA MIRAR EL FOCO.
+			function tecladoAbiertoFancy() {
+				if (!$('.fancybox-wrap').length) return false;
+				if (fancyAltoBase && (fancyAltoBase - altoViewportFancy()) > 150) return true;
+				if (!window.visualViewport) return !!fancyCampoFoco;
+				return false;
+			}
+
+			function fijarTopTeclado(arriba) {
+				var body = document.body;
+				if (body.style.setProperty) body.style.setProperty('--fancyTecladoTop', arriba + 'px');
+			}
+
+			//PEGA EL FANCY ARRIBA DE LO QUE QUEDA VISIBLE Y LE LIMITA EL ALTO
+			function pegarFancyTeclado() {
+				var vv = window.visualViewport;
+				var arriba = (vv && vv.offsetTop ? vv.offsetTop : 0) + fancyMargenTeclado;
+				//SIN visualViewport NO SE CUANTO OCUPA EL TECLADO: ESTIMO POCO MAS DE LA MITAD
+				var altoVisible = (vv ? altoViewportFancy() : Math.round(altoVentanaFancy() * 0.55)) - (fancyMargenTeclado * 2);
+
+				fijarTopTeclado(arriba);
+				$('body').addClass(fancyTecladoClass);
+				//DESCUENTO EL PADDING/BORDE DEL skin PARA QUE EL CONTENIDO ENTRE COMPLETO
+				$('.fancybox-inner').css('max-height', Math.max(140, altoVisible - 60) + 'px');
+				$('.fancyScrollArea').css('max-height', Math.max(120, altoVisible - 120) + 'px');
+			}
+
+			//DEVUELVE EL CONTENEDOR DEL FANCY QUE REALMENTE SCROLLEA PARA ESE CAMPO
+			function contenedorScrollFancy(campo) {
+				var cont = $(campo).closest('.fancyScrollArea');
+				if (cont.length && cont[0].scrollHeight > cont[0].clientHeight + 2) return cont;
+				cont = $(campo).closest('.fancybox-inner');
+				if (cont.length && cont[0].scrollHeight > cont[0].clientHeight + 2) return cont;
+				return $([]);
+			}
+
+			//SCROLLEA DENTRO DEL FANCY HASTA DEJAR EL CAMPO A LA VISTA
+			function scrollFancyAlCampo(campo) {
+				var $campo = $(campo);
+				if (!$campo.length || !$campo.is(':visible')) return;
+
+				var cont = contenedorScrollFancy($campo);
+				if (!cont.length) return;
+
+				var alto = cont[0].clientHeight;
+				var margen = Math.min(40, Math.round(alto * 0.25)); //DEJO ALGO DE CONTEXTO ARRIBA DEL CAMPO
+				var maximo = Math.max(0, cont[0].scrollHeight - alto);
+				var destino = cont.scrollTop() + ($campo.offset().top - cont.offset().top) - margen;
+
+				destino = Math.max(0, Math.min(destino, maximo));
+				if (Math.abs(destino - cont.scrollTop()) < 2) return;
+
+				cont.stop(true).animate({ scrollTop: destino }, fancyScrollDuracion);
+			}
+
+			//VUELVE TODO AL CENTRADO NORMAL DE FANCYBOX
+			function soltarFancyTeclado() {
+				if (!$('body').hasClass(fancyTecladoClass)) return;
+				$('body').removeClass(fancyTecladoClass);
+				if (document.body.style.removeProperty) document.body.style.removeProperty('--fancyTecladoTop');
+				//CORTO EL SCROLL AL CAMPO SI SEGUIA CORRIENDO, SI NO QUEDA SALTANDO
+				$('.fancybox-inner, .fancyScrollArea').stop(true);
+				$('.fancybox-inner').css('max-height', '');
+				$('.fancyScrollArea').css('max-height', '');
+				if ($.fancybox && $.fancybox.isOpen && $.fancybox.reposition) $.fancybox.reposition();
+			}
+
+			function redimensionarFancyMovil() {
+				if (!esFancyMovil()) return;
+
+				//EL TECLADO SE APLICA SIN DEMORA, SI NO SE VE EL SALTO
+				if (tecladoAbiertoFancy()) {
+					pegarFancyTeclado();
+					//EL SCROLL AL CAMPO SE DISPARA CUANDO EL VIEWPORT CAMBIO DE VERDAD, NO A LOS 450ms
+					//FIJOS DEL focusin: EN EL WEBVIEW DE META EL TECLADO TARDA MAS EN SUBIR Y EL SCROLL
+					//LLEGABA ANTES DE QUE EL FANCY SE REACOMODARA, DEJANDO EL CAMPO IGUAL ABAJO.
+					//SOLO EN LA TRANSICION CERRADO -> ABIERTO, PARA NO PELEAR CON EL SCROLL DEL USUARIO
+					if (!fancyTecladoPrevio && fancyCampoFoco) scrollFancyAlCampo(fancyCampoFoco);
+					fancyTecladoPrevio = true;
+					return;
+				}
+				fancyTecladoPrevio = false;
+				soltarFancyTeclado();
+				//CON EL TECLADO CERRADO LA MEDIDA ACTUAL ES UNA BASE VALIDA (LA BARRA DEL NAVEGADOR
+				//APARECE Y DESAPARECE AL SCROLLEAR, ASI QUE CONVIENE REFRESCARLA)
+				medirAltoBaseFancy();
+
+				clearTimeout(fancyResizeTimer);
+				fancyResizeTimer = setTimeout(function() {
+					var altoDisponible = Math.max(180, altoViewportFancy() - 160);
+					$('.fancybox-inner .fancyScrollArea, .fancyScrollArea:visible').css('max-height', altoDisponible + 'px');
+					if ($.fancybox && $.fancybox.update) $.fancybox.update();
+				}, 60);
+			}
+
+			//AL ENFOCAR UN CAMPO ACOMODO EL FANCY Y LO SCROLLEO HASTA EL CAMPO
+			//OJO: ESTA jQuery ES 1.6.1, NO EXISTE .on() -> VA CON .delegate()
+			var camposFancy = '.fancybox-wrap input, .fancybox-wrap textarea, .fancybox-wrap select';
+
+			$(document).delegate(camposFancy, 'focusin', function() {
+				if (!esFancyMovil()) return;
+				var campo = this;
+				fancyCampoFoco = campo;
+				//RESPALDO POR SI EL NAVEGADOR NO EMITE NINGUN resize AL ABRIR EL TECLADO. SI SI LO
+				//EMITE, redimensionarFancyMovil YA HIZO EL SCROLL Y ACA NO QUEDA NADA POR CORRER
+				setTimeout(function() {
+					if (fancyCampoFoco !== campo) return;
+					redimensionarFancyMovil();
+					scrollFancyAlCampo(campo);
+				}, 450);
+			});
+
+			$(document).delegate(camposFancy, 'focusout', function() {
+				if (!esFancyMovil()) return;
+				setTimeout(function() {
+					//SI EL FOCO SALTO A OTRO CAMPO DEL MISMO FANCY NO BAJO NADA
+					if ($('.fancybox-wrap').find('input:focus, textarea:focus, select:focus').length) return;
+					fancyCampoFoco = null;
+					if (tecladoAbiertoFancy()) return;
+					soltarFancyTeclado();
+				}, 300);
+			});
+
+			var fancyBaseConfig = {
+				helpers: {
+					overlay: {
+						locked: true,
+						css: {
+							'overflow': 'hidden'
+						}
+					}
+				},
+				beforeShow: bloquearScrollFancy,
+				afterShow: redimensionarFancyMovil,
+				afterClose: desbloquearScrollFancy
+			};
+
+			$(window).bind('resize orientationchange', redimensionarFancyMovil);
+			if (window.visualViewport) {
+				window.visualViewport.addEventListener('resize', redimensionarFancyMovil);
+				window.visualViewport.addEventListener('scroll', redimensionarFancyMovil);
+			}
+
+			//AL ROTAR CAMBIA EL ALTO DISPONIBLE Y LA BASE ANTERIOR DEJA DE SERVIR. SI HAY UN CAMPO
+			//ENFOCADO NO SE TOCA: MEDIRIA CON EL TECLADO ARRIBA
+			$(window).bind('orientationchange', function() {
+				setTimeout(function() {
+					if (fancyCampoFoco) return;
+					fancyAltoBase = 0;
+					medirAltoBaseFancy();
+				}, 400);
+			});
+
+			medirAltoBaseFancy();
+
+			$(".fancy").fancybox({
+				type: 'ajax',
+				padding: 10,
+				margin: 15,
+				helpers: fancyBaseConfig.helpers,
+				beforeShow: fancyBaseConfig.beforeShow,
+				afterShow: fancyBaseConfig.afterShow,
+				afterClose: fancyBaseConfig.afterClose
+			});
+
+			$(".fancyIn").fancybox({
+				helpers: fancyBaseConfig.helpers,
+				beforeShow: fancyBaseConfig.beforeShow,
+				afterShow: fancyBaseConfig.afterShow,
+				afterClose: fancyBaseConfig.afterClose
+			});
+		});
+	</script>
+	
+	
+	<script src="/scripts/flexSlider/jquery.flexslider-min.js" type="text/javascript"></script>
+	<link href='/scripts/flexSlider/flexslider.min.css' type='text/css' rel='stylesheet' />
+	<script type="text/javascript" src="/scripts/blockUI/blockui_2024.js"></script> 
+	<!-- <script type="text/javascript" src="/scripts/blockUI/blockui-2.7.js"></script> -->
+	
+<title>deRuedas.com.ar ¡Cambiar tu auto es genial!</title>
+<meta name="facebook-domain-verification" content="1u4yhcvoh9ynlu3ptjke9r0o7l2x0q" />
+<style type="text/css">
+	#divCompañero		{width:55%;}
+	#divSegmentos		{width:45%;}
+	#divFoto				{bottom:-5px; overflow:hidden; left:8%;}
+	#imgCompañero		{max-height:315px;}
+	#divSlogan			{margin-right:4%;}
+	#divIconos			{border-radius:6px 6px 6px 6px; -moz-border-radius:6px 6px 6px 6px; -webkit-border-radius:6px 6px 6px 6px; background: rgba(255, 255, 255, 0.3); box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, .2);}
+	#divQueBuscas		{color:#666666; font-size:22px;}
+	.divSL					{float:left; width:33%;}
+
+	@media screen and (max-width: 1000px){
+		#divCompañero	{width:96%;}
+		#divSegmentos	{width:100%; margin-top:20px;}
+		#divFoto	{left:18%;}
+		#divSlogan		{margin-right:18%;}
+		#divIconos		{background: inherit; border:inherit; box-shadow:inherit;}
+		#divQueBuscas {color:#666666; font-size:24px;}
+	}
+	@media screen and (max-width: 750px){
+		#divFoto	{left:8%;}
+		#divSlogan		{margin-right:8%;}
+	}	
+	@media screen and (max-width: 850px){
+		.divSL				{float:left; width:100%;}
+	}		
+	@media screen and (max-width: 550px){
+		#divFoto {left:-10%;} #imgCompañero {max-height:285px;}
+		#divSlogan		{margin-right:3%;}
+	}	
+
+	.provinciaSeteada {
+    background: #FFF3F0;
+    border: 1px solid #F3562C;
+    box-sizing: border-box;
+    border-radius: 6px;
+    font-size: 15px;
+    color: #F3562C;
+    text-decoration: none;
+    padding: 1px 3px 1px 3px;
+    width: fit-content;
+}
+
+</style>
+
+
+	
+	<script language="JavaScript" type="text/JavaScript">
+    $(document).delegate('.linkVehiculo','click', function(e){
+      e.preventDefault();  // Prevenir la navegación inmediata
+      var href = $(this).attr('href');  // Obtener el href del enlace
+      $.blockUI();  // Bloquear la UI
+      window.location.href = href;  // Redirigir al href del enlace
+    });			
+
+
+    $(window).load(function() {
+      // Inicia la presentación de las imágenes
+      $('.flexslider').flexslider({
+        animation: "slide",
+        pauseOnHover: true,
+        slideshowSpeed: 15000, 
+        animationSpeed: 300, 
+        itemWidth: 212,                   //{NEW} Integer: Box-model width of individual carousel items, including horizontal borders and padding.
+        minItems: 2,
+      });
+    });
+
+		$(document).ready(function() {
+			sessionStorage.clear();
+			
+			//FILTRO CREDITO
+			$('.linkCredito').click(function(e){
+				$.fancybox({
+					'type': 'ajax',
+					'href': 'https://www.deruedas.com.ar/multi.asp?con=configurarFiltroFinanciamiento&fromHome=1'
+				});
+				return false;
+			});			
+
+			$('.cambiarCompa').click(function(){
+				$.fancybox({
+					'type': 'ajax',
+					'href': 'https://www.deruedas.com.ar/multi.asp?con=cambiarCompa&fromHome=1'
+				});
+			});
+
+			$(document).delegate(".companiero","click",function () {
+				$.blockUI();
+				let compa = $(this).attr('companero');
+
+				$.get('/ajax.asp?accion=setCompanero&compa='+compa, function(data) {
+					parent.location.reload();
+				});
+			});	
+
+		});		
+
+			function mostrarPrecio(precio_1, precio_2) {
+				if (precio_1 > 0 && precio_2 == 100) {
+					mostrar = "Desde $ " + convertirPrecio(precio_1)
+				}
+				if (precio_1 == 0 && precio_2 <= 100) {
+					mostrar = "Puedo entregar $ " + convertirPrecio(precio_2)
+				}
+
+				if (precio_1 > 0 && precio_2 < 100) {
+					if (precio_1 == precio_2) {
+						mostrar = "Cerca de $ " + convertirPrecio(precio_1)
+					} else {
+						mostrar = "De $ " + convertirPrecio(precio_1) + " hasta $ " + convertirPrecio(precio_2)
+					}
+				}				
+				
+				return mostrar;
+			}
+
+			function convertirPrecio(numero) {
+        precio = 1000000
+        if (numero > 0 && numero <= 36) {
+          precio = precio + (numero * 250000)
+        }else if( numero > 36 && numero <= 64){
+          base = 10000000
+          precio = base + ((numero - 36) * 500000)
+        }else if(numero > 64){
+          base = 25000000
+          precio = base + ((numero - 65) * 1000000)
+        }
+        return precio.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+      }
+					
+			function mostrarMontoCuota(montoCuota) {
+				if (montoCuota < 100000)
+					{return "Sin Cuotas"}
+				else {
+					return "Puedo pagar cuotas de $ " + montoCuota.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+				}
+			}	
+			
+			function mostrarCantidadCuota(cantidadCuota) {
+					switch (cantidadCuota) {
+						case 1:
+							cantidadCuota = 12;
+						break;
+						case 2:
+							cantidadCuota = 18;
+						break;
+						case 3:
+							cantidadCuota = 24;
+						break;
+						case 4:
+							cantidadCuota = 30;
+						break;
+						case 5:
+							cantidadCuota = 36;
+						break;
+						case 6:
+							cantidadCuota = 48;
+						break;
+						case 7:
+							cantidadCuota = 60;
+						break;
+						default:
+							cantidadCuota = 60;
+						sbreak;
+					}
+					return  cantidadCuota;
+			}	
+
+			//FILTRO PROVINCIAS
+			$(document).delegate('.linkUbEstatico','click',function(){
+				var provincia = $(this).data("provincia")
+				$.fancybox({
+					'type': 'ajax',
+					'href': 'https://www.deruedas.com.ar/multi.asp?con=listadoProvincias&provincia='+ provincia
+				});
+			});
+
+
+			//FILTRO PROVINCIAS
+			$(document).delegate('.refreshLink','click',function(e){
+				e.preventDefault();
+				var provincia = $(this).data("provincia");
+				window.location.href = window.location.protocol + '//' + window.location.hostname + "?provincia=" + provincia
+			});
+			
+	</script>
+
+</head>
+
+<body topmargin="0" rightmargin="0" bottommargin="0" leftmargin="0">
+
+
+	<script>
+		$(document).ready(function() {
+			$('#bMenuMovil').click(function(){
+				if (parseInt($("#divMain").css("margin-left")) > 0) {
+					closeMenuMovil(true);
+				} else {
+					closeMenuMovil(false);
+				};
+			});
+			
+			var width = $(window).width();
+			$(window).resize(function(){
+				if($(window).width() != width){
+					width = $(window).width();
+					if (parseInt($("#divMain").css("margin-left")) > 0) {
+						closeMenuMovil(true);
+					} 
+				}
+			});
+			
+		});
+
+		function closeMenuMovil(isClose){
+			if(isClose){
+				$('#divMain').animate({marginLeft:'0'}, 300);
+				$('#divBackIcon').animate({width:'0px'}, 300)
+				$("#iconMenuMovil").removeClass("fa-times");
+				$("#iconMenuMovil").addClass("fa-bars");
+			}else{
+				$('#divMain').animate({marginLeft:'260'}, 300);
+				$('#divBackIcon').animate({width:'90px'}, 300);
+				$("#iconMenuMovil").removeClass("fa-bars");
+				$("#iconMenuMovil").addClass("fa-times");					
+			};
+		}
+	</script>
+
+	<div id="divMain" style="width:100%; position:relative;"> <!-- APERTURA DIV MAESTRO -->
+	
+	
+		<div id="divMenu" style="width:260px; position:absolute; left:-260px; top:0; z-index:2; background-color: #333333; height:100%;">
+			
+  <script>
+		$(document).ready(function() {
+			$('#coSucMovil').bind('change', function() {
+				  
+				var aux = $(this).val().split(",");
+				var datos = {
+					accion: "cambiarSucursal",
+					mail: aux[0],
+					pass: aux[1]
+				}
+				$.ajax({
+					url: "https://www.deruedas.com.ar/ajax.asp",
+					type: 'GET',
+					data: datos,
+					success: function(msg) {
+						if(msg == 'ok'){ 
+							window.location.href = window.location.href;
+						}else{
+							$.unblockUI();
+						}
+					}
+				});
+			});
+
+      $(".link-blockUI").bind('click', function (e) {
+        if ($(this).attr('target') !== '_blank') {
+          $.blockUI();
+        }
+      });
+
+		});
+	</script>
+  
+	<div id="divMenuMovil" style="background-color:#333333;">
+		<div class="texto inv" style="padding:40px 20px 20px 23px; line-height:36px;">
+			
+				<a href="/login.asp" class="boton azul pequeno fancy" style="width:100%; text-align:center; margin-bottom:20px;"><span><i class="fa fa-user fa-fw" aria-hidden="true"></i>Ingresar</span></a>
+			
+			<a href="/publicar.asp" class="boton verde pequeno" style="width:100%; text-align:center; margin-bottom:20px;"><span><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>Publicar un Aviso Nuevo</span></a>
+			
+
+			<b>Menú Principal</b>
+			
+	<div style="width:100%; border-bottom:1px solid #E1E1E1; margin:auto;"></div>
+
+			<!-- <a href="https://www.deruedas.seguru.com.ar/" class="link inv">Seguros</a> -->
+			
+			<a href="/info.asp?con=10" class="link inv">Ayuda</a>
+			
+	<div style="width:100%; border-bottom:1px solid #E1E1E1; margin:auto;"></div>
+
+			<a href="/info.asp?con=4" class="link inv">Escribí a deRuedas</a>
+			
+	<div style="width:100%; border-bottom:1px solid #E1E1E1; margin:auto;"></div>
+
+			<a href="descargarApp.asp" class="link inv_2 i700 oculto"><i class="fa fa-mobile-phone fa-fw" aria-hidden="true"></i>Descarga nuestra APP</a>
+			
+	<div style="width:100%; border-bottom:1px solid #E1E1E1; margin:auto;"></div>
+
+			<a href="/servicios.asp" class="link inv"><i class="fa fa-car fa-fw" aria-hidden="true"></i>Subí tu Agencia</a>	
+			
+	<div style="width:100%; border-bottom:1px solid #E1E1E1; margin:auto;"></div>
+
+			<a href="/info.asp?con=9" class="link inv">Términos y Condiciones</a>
+      
+	<div style="width:100%; border-bottom:1px solid #E1E1E1; margin:auto;"></div>
+
+			<a href="/info.asp?con=12" class="link inv">Consejos de seguridad</a>
+			
+	<div style="width:100%; border-bottom:1px solid #E1E1E1; margin:auto;"></div>
+
+			<a href="https://www.facebook.com/deruedas" target="_blank" class="link inv"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i>Seguinos en Facebook</a>
+			
+	<div style="width:100%; border-bottom:1px solid #E1E1E1; margin:auto;"></div>
+
+			<a href="https://www.instagram.com/deruedas_ar/" class="link inv_2" target="_blank"><i class="fa fa-instagram fa-fw" aria-hidden="true"></i>Seguinos en Instagram</a>
+			
+	<div style="width:100%; border-bottom:1px solid #E1E1E1; margin:auto;"></div>
+
+			<a href="https://www.proyecto4patas.org/" class="link inv_2" target="_blank"><i class="fa fa-paw fa-fw" aria-hidden="true"></i>Conocé Proyecto 4 Patas</a>
+			
+		</div>
+	</div>
+	
+		</div>	
+	
+
+	<div class="pantalla" style="background:linear-gradient(to right, #F05F22, #FF354D); box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15); margin-bottom:20px;">
+		<div class="ventana" style="position:relative;">
+			<!-- LOGO -->
+			<table width="94%" border="0" cellspacing="0" cellpadding="0" align="center">
+				<tr>
+					<td width="40%" valign="middle" align="left">
+						<!-- BOTON APERTURA MENU MOVIL -->
+						<div id="divBackIcon" style="position:absolute; z-index:0; left:-10px; top:0; height:100%; width:0px; background-color:#333333; border-radius:0px 20px 20px 0px; -moz-border-radius:0px 20px 20px 0px; -webkit-border-radius:0px 20px 20px 0px;"></div>
+						
+							<div id="bMenuMovil" class="i800" style="color:#FFFFFF; position:relative; z-index:1;">
+								<i id="iconMenuMovil" class="fa fa-bars fa-2x" aria-hidden="true"></i>
+							</div>
+						
+						<!-- AR -->
+																
+					</td>
+					<td width="20%" height="90" valign="middle" align="center">
+            
+              <link rel="image_src" href="https://www.deruedas.com.ar/images/design/logo_11.png">
+              <meta property="og:image" content="https://www.deruedas.com.ar/images/design/logo_11.png">
+              <meta property="twitter:image" content="https://www.deruedas.com.ar/images/design/logo_11.png">	
+            
+						<a id="hrefLogo" href="https://www.deruedas.com.ar/"><img src="/images/design/logo_11.png"></a>
+					</td>
+					<td width="40%" valign="middle" align="right">
+						<div>			
+							<!-- LOGIN -->
+							
+								<a href="/login.asp" class="boton mediano transparente v800 fancy"><span>Ingresar</span></a>
+								
+									<a href="/login.asp" class="fancy">
+										<div class="i800">
+											<div style="color:#FFFFFF"><i class="fa fa-user fa-2x" aria-hidden="true"></i></div>
+										</div>
+									</a>
+								
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+
+<div class="pantalla" id="divIntro" style="height:335px; margin-top:-20px; background: url('../images/intros/fondo_5.jpg') no-repeat center;background-size: cover; box-shadow:inset 0px 10px 20px 0px rgba(0, 0, 0, 0.25), inset 0px -10px 20px 0px rgba(0, 0, 0, 0.25);">
+	<div class="ventana">
+		<!-- SEGMENTOS -->
+		<div id="divCompañero" style="float:left; position:relative; height:335px; z-index:1;">
+			<div id="divFoto" style="position:absolute;">
+				<img src="images/intros/2025_simon_2.png" id="imgCompañero">
+			</div>			
+			<div id="divSlogan" align="right">
+				<div style="font-family: Nunito; font-style: normal; font-weight: 700; letter-spacing: -1.8px; font-size:36px; line-height:40px; color: #555555;">
+					<br>Cambiar tu auto<br> es genial
+				</div>
+				<div style="margin-top:30px;">
+					<a href="publicar.asp" class="boton mediano azul"><span><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>Publicar</span></a>
+				</div>
+				<div class="texto mini" style="color:rgb(255, 255, 255); margin-top:30px">
+					<b style="font-size:14px;">Simón</b><br>Especialista en Vehículos &<br> Tu compañero de búsqueda
+          <br/><span class="cambiarCompa boton transparente" style="display: inline-block; border: 1px solid #fff; border-radius: 20px; padding: 4px 12px; font-size: 13px; color: #fff; font-weight: bold; cursor:pointer; background-color: transparent; margin-top: 3px;"><i class="fa fa-refresh fa-fw" aria-hidden="true"></i>Cambiar</span>
+				</div>
+			</div>
+		</div>
+		<div style="float:right; z-index:2; position:relative;" id="divSegmentos" align="center"><br class="v1000">
+			<div id="divIconos" class="sombra" style="width:98%; max-width:470px; height:290px;">
+				<div class="titulo" id="divQueBuscas" style="font-size:24px; padding:15px 0 0 15px;">¿Qué Buscás? 
+        <button id="button-pay-apple" class="boton mediano verde pull-center" style="display:none;">Comprar</button>
+        </div>
+				<table width="100%" align="center" border="0" cellspacing="15" cellpadding="0" style="margin-top:-5px; padding:0 5px 0 5px;">
+					<tr>
+						<td align="center" width="33%" valign="bottom">
+							<a href="/precio/Autos/Usados/Argentina?segmento=0" class="titulo linkVehiculo">
+								<div class="recuadro sombra resaltar" style="width:100%; height:110px; background-color:#FFFFFF"> 
+									<img alt="Autos Usados " src="images/design/autos_2.png" border="0" style="width:70px; margin-top:31px;">
+									<div style="padding-top:5px; font-size:20px;"><h1>Autos</h1></div>
+								</div>
+							</a>
+						</td>
+						<td align="center" width="34%">
+							<a href="/precio/Camionetas/Usados/Argentina?segmento=1" class="titulo linkVehiculo">
+								<div class="recuadro sombra resaltar" style="width:100%; height:110px; background-color:#FFFFFF">
+									<img alt="Camionetas Usadas " src="images/design/camionetas_2.png" border="0" style="width:70px; margin-top:30px;">
+									<div style="padding-top:5px; font-size:20px;"><h1>Utilitarios</h1></div>
+								</div>
+							</a>
+						</td>		
+						<td align="center" width="33%">					
+							<a href="/precio/Motos/Usados/Argentina?segmento=2" class="titulo linkVehiculo">
+								<div class="recuadro sombra resaltar" style="width:100%; height:110px; background-color:#FFFFFF">
+									<img alt="Motos Usadas " src="images/design/motos_2.png" border="0" style="width:55px; margin-top:27px;">
+									<div style="padding-top:5px; font-size:20px;"><h1>Motos</h1></div>
+								</div>
+							</a>
+						</td>
+					</tr>
+				</table>
+				<table width="100%" align="center" border="0" cellspacing="15" cellpadding="0" style="margin-top:-15px; padding:0 5px 0 5px;">
+					<tr>
+						<td align="center" width="25%">
+							<a href="/precio/Planes/Nuevos/Argentina?segmento=4" class="titulo linkVehiculo">
+								<div class="recuadro sombra resaltar" style="width:100%; height:85px; background-color:#FFFFFF">
+									<img alt="Planes Nuevos " src="images/design/planes_2.png" border="0" style="width:40px; margin-top:12px;">
+									<div style="font-size:15px;"><h1>Planes</h1></div>
+								</div>
+							</a>
+						</td>
+						<td align="center" width="25%">
+							<a href="/precio/Cuatris/Usados/Argentina?segmento=3" class="titulo linkVehiculo">
+								<div class="recuadro sombra resaltar" style="width:100%; height:85px; background-color:#FFFFFF">
+									<img alt="Cuatriciclos Usados " src="images/design/cuatriciclos_2.png" border="0" style="width:45px; margin-top:19px;">
+									<div style="font-size:15px;"><h1>Cuatris</h1></div>
+								</div>
+							</a>
+						</td>
+						<td align="center" width="25%">
+							<a href="/precio/Camiones/Usados/Argentina?segmento=5" class="titulo linkVehiculo">
+								<div class="recuadro sombra resaltar" style="width:100%; height:85px; background-color:#FFFFFF">
+									<img alt="Camiones Usados " src="images/design/camiones_2.png" border="0" style="width:45px; margin-top:16px;">
+									<div style="font-size:15px;"><h1>Camiones</h1></div>
+								</div>
+							</a>
+						</td>
+						<td align="center" width="25%">
+							<a href="/precio/Vehiculos/Usados/Argentina?segmento=6" class="titulo linkVehiculo">
+								<div class="recuadro sombra resaltar" style="width:100%; height:85px; background-color:#FFFFFF">
+									<img alt="Vehiculos Usados " src="images/design/otros_4.png" border="0" style="width:40px; margin-top:19px;">
+									<div style="font-size:15px;"><h1>Otros</h1></div>
+								</div>
+							</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+</div>
+
+<div class="ventana">
+	<div class="divSL" style="text-align:center;">
+		<div style="width:90%; margin:auto; margin-top:40px;">
+			<a class="linkCredito" href="/precio/Autos/Usados/Argentina?segmento=0&condicion=Usados">
+				<div class="recuadro resaltar sombra " style="border-radius: 100px; width:fit-content; max-width:80px; cursor:pointer; padding:20px 18px 14px 20px; margin:auto; margin-bottom:10px;">
+					<img src="images/design/specialLink_1.png" width="70">
+				</div>
+			</a>
+			<span class="titulo" style="font-size:18px;">Encontrá tu Auto en Cuotas</span>
+			<br><span class="texto">Simplemente decinos cuanto dinero podés entregar, que cuota máxima querés pagar y hacemos el resto. ¡Excelente!</span>
+			<br><a class="boton mediano naranja linkCredito" href="/precio/Autos/Usados/Argentina?segmento=0&condicion=Usados" style="margin-top:10px;"><span><i class="fa fa-cog fa-fw" aria-hidden="true"></i>Configurá tu Financiación</span></a>
+		</div>
+	</div>
+	<div class="divSL" style="text-align:center;">
+		<div style="width:90%; margin:auto; margin-top:40px;">
+			<a class="linkVehiculo" href="/precio/Autos/Nuevos/Argentina?segmento=0&condicion=Nuevos">
+				<div class="recuadro resaltar sombra" style="border-radius: 100px; padding:17px 20px; width:fit-content; max-width:80px; margin:auto; margin-bottom:10px;">
+					<img src="images/design/specialLink_8.png" width="70">
+				</div>
+			</a>
+			<span class="titulo" style="font-size:18px;">Catálogo de Nuevos</span>
+			<br><span class="texto">Con la ayuda de nuestro buscador compará precios de las principales marcas y encontrá el 0Km ideal para vos. ¡Simple!</span>
+			<br><a href="/precio/Autos/Nuevos/Argentina?segmento=0&condicion=Nuevos" class="boton mediano verde linkVehiculo" style="margin-top:10px;"><span><i class="fa fa-certificate fa-fw" aria-hidden="true"></i>Ver Catálogo 0Km</span></a>
+		</div>
+	</div>
+	<div class="divSL" style="text-align:center;">
+		<div style="width:90%; margin:auto; margin-top:40px;">
+			<a href="publicar.asp" class="linkVehiculo">
+				<div class="recuadro resaltar sombra" style="border-radius: 100px; padding:26px 26px 18px; width:fit-content; max-width:80px; margin:auto; margin-bottom:10px;">
+					<img src="images/design/specialLink_3.png" width="60">
+				</div>
+			</a>
+			<span class="titulo" style="font-size:18px;">¡Publicá tu Vehículo Gratis!</span>
+			<br><span class="texto">Publicá sin registrarte y en un sólo paso. ¿Apurado por vender? Recibí ofertas en Efectivo de agencias registradas. ¡Súper!</span>
+			<br><a href="publicar.asp" class="boton mediano azul linkVehiculo" style="margin-top:10px;"><span><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>Ir a Publicar...</span></a>
+		</div>
+	</div>
+	<div style="clear:both;"></div>
+</div>
+
+<div class="pantalla" style="background-color:white; margin-bottom:-30px;">
+	<div class="ventanaMax" style="padding:40px 0 40px 0; margin-top:40px; position:relative; text-align:center;">
+		<span class="titulo linkCredito" style="font-size:24px;">Vehículos Financiados</span>
+		<div class="flexslider" style="margin-top:20px; border:0;">
+			<ul class="slides">						
+				
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Ford/Territory/Usado/Mendoza?cod=831160" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Ford-Territory-2024/831/831160_1_tr.jpg?edit=2" alt="Ford Territory" border="0" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Ford</b></span>
+							<br>Territory 2024
+							<br><span style="color:#FF6C00;cursor:pointer;"><b>$ 33.500.000</b> y cuotas</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Mercedes-Benz/Clase-C/Usado/Mendoza?cod=831063" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Mercedes-Benz-Clase-C-2011/831/831063_1_tr.jpg?edit=3" alt="Mercedes Benz Clase C" border="0" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Mercedes Benz</b></span>
+							<br>Clase C 2011
+							<br><span style="color:#FF6C00;cursor:pointer;"><b>$ 11.842.200</b> y cuotas</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Peugeot/207/Usado/Mendoza?cod=831056" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Peugeot-207-2016/831/831056_1_tr.jpg?edit=3" alt="Peugeot 207" border="0" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Peugeot</b></span>
+							<br>207 2016
+							<br><span style="color:#FF6C00;cursor:pointer;"><b>$ 6.000.000</b> y cuotas</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Peugeot/208/Usado/Mendoza?cod=831055" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Peugeot-208-2014/831/831055_1_tr.jpg?edit=2" alt="Peugeot 208" border="0" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Peugeot</b></span>
+							<br>208 2014
+							<br><span style="color:#FF6C00;cursor:pointer;"><b>$ 7.500.000</b> y cuotas</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Volkswagen/Gol-Trend/Usado/Mendoza?cod=831053" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Volkswagen-Gol-Trend-2017/831/831053_1_tr.jpg?edit=2" alt="Volkswagen Gol Trend" border="0" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Volkswagen</b></span>
+							<br>Gol Trend 2017
+							<br><span style="color:#FF6C00;cursor:pointer;"><b>$ 7.450.000</b> y cuotas</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Toyota/Hiace/Usado/Mendoza?cod=830992" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Toyota-Hiace-2024/830/830992_1_tr.jpg?edit=2" alt="Toyota Hiace" border="0" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Toyota</b></span>
+							<br>Hiace 2024
+							<br><span style="color:#FF6C00;cursor:pointer;"><b>$ 59.000.000</b> y cuotas</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Renault/Duster-Oroch/Usado/Mendoza?cod=830930" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Renault-Duster-Oroch-2019/830/830930_1_tr.jpg?edit=2" alt="Renault Duster Oroch" border="0" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Renault</b></span>
+							<br>Duster Oroch 2019
+							<br><span style="color:#FF6C00;cursor:pointer;"><b>$ 16.000.000</b> y cuotas</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Toyota/Corolla/Usado/Mendoza?cod=830923" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Toyota-Corolla-2019/830/830923_1_tr.jpg?edit=2" alt="Toyota Corolla" border="0" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Toyota</b></span>
+							<br>Corolla 2019
+							<br><span style="color:#FF6C00;cursor:pointer;"><b>$ 17.750.000</b> y cuotas</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Chevrolet/Cruze/Usado/Mendoza?cod=830919" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Chevrolet-Cruze-2014/830/830919_1_tr.jpg?edit=2" alt="Chevrolet Cruze" border="0" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Chevrolet</b></span>
+							<br>Cruze 2014
+							<br><span style="color:#FF6C00;cursor:pointer;"><b>$ 8.100.000</b> y cuotas</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Toyota/Hilux/Usado/Mendoza?cod=830902" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Toyota-Hilux-2022/830/830902_1_tr.jpg?edit=2" alt="Toyota Hilux" border="0" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Toyota</b></span>
+							<br>Hilux 2022
+							<br><span style="color:#FF6C00;cursor:pointer;"><b>$ 44.500.000</b> y cuotas</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Fiat/Cronos/Usado/Mendoza?cod=830896" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Fiat-Cronos-2022/830/830896_1_tr.jpg?edit=2" alt="Fiat Cronos" border="0" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Fiat</b></span>
+							<br>Cronos 2022
+							<br><span style="color:#FF6C00;cursor:pointer;"><b>$ 13.900.000</b> y cuotas</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/BMW/Serie-3/Usado/Mendoza?cod=830640" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/BMW-Serie-3-2014/830/830640_1_tr.jpg?edit=2" alt="BMW Serie 3" border="0" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>BMW</b></span>
+							<br>Serie 3 2014
+							<br><span style="color:#FF6C00;cursor:pointer;"><b>$ 34.755.850</b> y cuotas</span>
+						</a>
+						
+				<li>
+					<div class="redondear" style="width:100%; height:144px; background-color:#FFFBFA; border:1px solid #FF6C00; text-align:center; display:table-cell; vertical-align:middle; padding:10px;">
+						<a class="link linkCredito">
+							<i class="fa fa-search-plus" aria-hidden="true" style="font-size:30px; margin-bottom:10px;"></i>
+							<br>Buscar más vehículos Financiados
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="pantalla" style="margin-bottom:-30px;">
+	<div class="ventanaMax" style="padding:40px 0 40px 0; margin-top:40px; position:relative; text-align:center;">
+		<span class="titulo" style="font-size:24px;">Vehículos Destacados</span>
+		<div class="flexslider" style="margin-top:20px; background-color:#F2F2F2; border:0;">
+			<ul class="slides">						
+				
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Peugeot/208/Usado/Mendoza?cod=831181" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Peugeot-208-2015/831/831181_1_tr.jpg?edit=2" alt="Peugeot 208" border="0" class="redondear" style="margin-bottom:5px; width:94%; height:145px; object-fit:cover;">
+							<span style="font-size:18px;"><b>Peugeot</b></span>
+							<br>208 2015
+							<span class="texto resaltar" style="cursor:pointer;">
+								<br>$ 13.500.000
+							</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Renault/Fluence/Usado/Mendoza?cod=831171" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Renault-Fluence-2017/831/831171_1_tr.jpg?edit=2" alt="Renault Fluence" border="0" class="redondear" style="margin-bottom:5px; width:94%; height:145px; object-fit:cover;">
+							<span style="font-size:18px;"><b>Renault</b></span>
+							<br>Fluence 2017
+							<span class="texto resaltar" style="cursor:pointer;">
+								<br>$ 17.500.000
+							</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Ford/EcoSport/Usado/Mendoza?cod=831166" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Ford-EcoSport-2011/831/831166_1_tr.jpg?edit=2" alt="Ford EcoSport" border="0" class="redondear" style="margin-bottom:5px; width:94%; height:145px; object-fit:cover;">
+							<span style="font-size:18px;"><b>Ford</b></span>
+							<br>EcoSport 2011
+							<span class="texto resaltar" style="cursor:pointer;">
+								<br>$ 13.500.000
+							</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Chevrolet/Onix/Usado/Mendoza?cod=831157" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Chevrolet-Onix-2025/831/831157_1_tr.jpg?edit=2" alt="Chevrolet Onix" border="0" class="redondear" style="margin-bottom:5px; width:94%; height:145px; object-fit:cover;">
+							<span style="font-size:18px;"><b>Chevrolet</b></span>
+							<br>Onix 2025
+							<span class="texto resaltar" style="cursor:pointer;">
+								<br>$ 26.950.000
+							</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Volkswagen/Virtus/Usado/Mendoza?cod=831152" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Volkswagen-Virtus-2020/831/831152_1_tr.jpg?edit=2" alt="Volkswagen Virtus" border="0" class="redondear" style="margin-bottom:5px; width:94%; height:145px; object-fit:cover;">
+							<span style="font-size:18px;"><b>Volkswagen</b></span>
+							<br>Virtus 2020
+							<span class="texto resaltar" style="cursor:pointer;">
+								<br>$ 18.900.000
+							</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Volkswagen/Taos/Usado/Mendoza?cod=831151" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Volkswagen-Taos-2023/831/831151_1_tr.jpg?edit=2" alt="Volkswagen Taos" border="0" class="redondear" style="margin-bottom:5px; width:94%; height:145px; object-fit:cover;">
+							<span style="font-size:18px;"><b>Volkswagen</b></span>
+							<br>Taos 2023
+							<span class="texto resaltar" style="cursor:pointer;">
+								<br>$ 35.500.000
+							</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Volkswagen/Polo/Usado/Mendoza?cod=831148" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Volkswagen-Polo-2018/831/831148_1_tr.jpg?edit=2" alt="Volkswagen Polo" border="0" class="redondear" style="margin-bottom:5px; width:94%; height:145px; object-fit:cover;">
+							<span style="font-size:18px;"><b>Volkswagen</b></span>
+							<br>Polo 2018
+							<span class="texto resaltar" style="cursor:pointer;">
+								<br>$ 20.000.000
+							</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Volkswagen/Gol-Trend/Usado/Mendoza?cod=831144" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Volkswagen-Gol-Trend-2021/831/831144_1_tr.jpg?edit=2" alt="Volkswagen Gol Trend" border="0" class="redondear" style="margin-bottom:5px; width:94%; height:145px; object-fit:cover;">
+							<span style="font-size:18px;"><b>Volkswagen</b></span>
+							<br>Gol Trend 2021
+							<span class="texto resaltar" style="cursor:pointer;">
+								<br>$ 17.400.000
+							</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Toyota/Hilux-SW4/Usado/Mendoza?cod=831143" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Toyota-Hilux-SW4-2010/831/831143_1_tr.jpg?edit=2" alt="Toyota Hilux SW4" border="0" class="redondear" style="margin-bottom:5px; width:94%; height:145px; object-fit:cover;">
+							<span style="font-size:18px;"><b>Toyota</b></span>
+							<br>Hilux SW4 2010
+							<span class="texto resaltar" style="cursor:pointer;">
+								<br>U$ 22.000
+							</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Toyota/Yaris/Usado/Mendoza?cod=831138" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Toyota-Yaris-2023/831/831138_1_tr.jpg?edit=2" alt="Toyota Yaris" border="0" class="redondear" style="margin-bottom:5px; width:94%; height:145px; object-fit:cover;">
+							<span style="font-size:18px;"><b>Toyota</b></span>
+							<br>Yaris 2023
+							<span class="texto resaltar" style="cursor:pointer;">
+								<br>$ 27.500.000
+							</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Nissan/Versa/Usado/Mendoza?cod=831137" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Nissan-Versa-2017/831/831137_1_tr.jpg?edit=2" alt="Nissan Versa" border="0" class="redondear" style="margin-bottom:5px; width:94%; height:145px; object-fit:cover;">
+							<span style="font-size:18px;"><b>Nissan</b></span>
+							<br>Versa 2017
+							<span class="texto resaltar" style="cursor:pointer;">
+								<br>$ 14.700.000
+							</span>
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="/vendo/Renault/Kwid/Usado/Mendoza?cod=831136" class="texto linkVehiculo">
+							<img src="https://www.deruedas.com.ar/images/autos/Renault-Kwid-2019/831/831136_1_tr.jpg?edit=2" alt="Renault Kwid" border="0" class="redondear" style="margin-bottom:5px; width:94%; height:145px; object-fit:cover;">
+							<span style="font-size:18px;"><b>Renault</b></span>
+							<br>Kwid 2019
+							<span class="texto resaltar" style="cursor:pointer;">
+								<br>$ 13.200.000
+							</span>
+						</a>
+						
+				<li>
+					<div class="redondear" style="width:100%;height:144px; background-color:#FFFBFA; border:1px solid #FF6C00; text-align:center; display:table-cell; vertical-align:middle; padding:10px;">
+						<a class="link" href="/precio/Autos/Usados/Argentina?segmento=0">
+							<i class="fa fa-search-plus" aria-hidden="true" style="font-size:30px; margin-bottom:10px;"></i>
+							<br>Buscar más vehículos Destacados
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="pantalla" style="background-color:white; margin-bottom:-30px;">
+	<div class="ventanaMax" style="padding:40px 0 40px 0; margin-top:40px; position:relative; text-align:center;">
+		<span class="titulo" style="font-size:24px;">Vehículos Nuevos 0Km</span>
+		<div class="flexslider" style="margin-top:20px; background-color:#fff; border:0;">
+			<ul class="slides">						
+				
+					<li style="text-align:-webkit-center;">
+						<a href="nuevos.asp?marca=Benelli&modelo=Leoncino&provincia=0" class="texto linkVehiculo">
+							<img src="/images/vehiculos/Benelli-Leoncino-2026/9455_tr.jpg" border="0" alt="Benelli Leoncino" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Benelli</b></span>
+							<br>Leoncino
+								<br/><span class="texto mini">desde: </span><span class="titulo resaltar">$ 9.900.000</span>
+							
+								<br/><span class="texto mini">hasta: &nbsp;</span><span class="texto">$ 13.500.000</span>
+							
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="nuevos.asp?marca=Fiat&modelo=Toro&provincia=0" class="texto linkVehiculo">
+							<img src="/images/vehiculos/Fiat-Toro-2026/11220_tr.jpg" border="0" alt="Fiat Toro" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Fiat</b></span>
+							<br>Toro
+								<br/><span class="texto mini">desde: </span><span class="titulo resaltar">$ 44.200.000</span>
+							
+								<br/><span class="texto mini">hasta: &nbsp;</span><span class="texto">$ 52.000.000</span>
+							
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="nuevos.asp?marca=Honda&modelo=XR&provincia=0" class="texto linkVehiculo">
+							<img src="/images/vehiculos/Honda-XR-2026/9479_tr.jpg" border="0" alt="Honda XR" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Honda</b></span>
+							<br>XR
+								<br/><span class="texto mini">desde: </span><span class="titulo resaltar">$ 5.950.000</span>
+							
+								<br/><span class="texto mini">hasta: &nbsp;</span><span class="texto">$ 10.900.000</span>
+							
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="nuevos.asp?marca=Ford&modelo=Maverick&provincia=0" class="texto linkVehiculo">
+							<img src="/images/vehiculos/Ford-Maverick-2026/11111_tr.jpg" border="0" alt="Ford Maverick" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Ford</b></span>
+							<br>Maverick
+								<br/><span class="texto mini">desde: </span><span class="titulo resaltar">$ 63.000.000</span>
+							
+								<br/><span class="texto mini">hasta: &nbsp;</span><span class="texto">$ 68.650.000</span>
+							
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="nuevos.asp?marca=Fiat&modelo=Titano&provincia=0" class="texto linkVehiculo">
+							<img src="/images/vehiculos/Fiat-Titano-2026/9886_tr.jpg" border="0" alt="Fiat Titano" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Fiat</b></span>
+							<br>Titano
+								<br/><span class="texto mini">desde: </span><span class="titulo resaltar">$ 54.300.000</span>
+							
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="nuevos.asp?marca=Jeep&modelo=Renegade&provincia=0" class="texto linkVehiculo">
+							<img src="/images/vehiculos/Jeep-Renegade-2026/10702_tr.jpg" border="0" alt="Jeep Renegade" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Jeep</b></span>
+							<br>Renegade
+								<br/><span class="texto mini">desde: </span><span class="titulo resaltar">$ 43.900.000</span>
+							
+								<br/><span class="texto mini">hasta: &nbsp;</span><span class="texto">$ 50.000.000</span>
+							
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="nuevos.asp?marca=Kove&modelo=X&provincia=0" class="texto linkVehiculo">
+							<img src="/images/vehiculos/Kove-X-2026/11864_tr.jpg" border="0" alt="Kove X" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Kove</b></span>
+							<br>X
+								<br/><span class="texto mini">desde: </span><span class="titulo resaltar">$ 9.990.000</span>
+							
+								<br/><span class="texto mini">hasta: &nbsp;</span><span class="texto">$ 20.199.000</span>
+							
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="nuevos.asp?marca=Beta&modelo=Arrow&provincia=0" class="texto linkVehiculo">
+							<img src="/images/vehiculos/Beta-Arrow-2026/7827_tr.jpg" border="0" alt="Beta Arrow" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Beta</b></span>
+							<br>Arrow
+								<br/><span class="texto mini">desde: </span><span class="titulo resaltar">$ 3.150.000</span>
+							
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="nuevos.asp?marca=BYD&modelo=Yuan Pro&provincia=0" class="texto linkVehiculo">
+							<img src="/images/vehiculos/BYD-Yuan-Pro-2026/11500_tr.jpg" border="0" alt="BYD Yuan Pro" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>BYD</b></span>
+							<br>Yuan Pro
+								<br/><span class="texto mini">desde: </span><span class="titulo resaltar">$ 45.747.000</span>
+							
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="nuevos.asp?marca=Fiat&modelo=Mobi&provincia=0" class="texto linkVehiculo">
+							<img src="/images/vehiculos/Fiat-Mobi-2026/9708_tr.jpg" border="0" alt="Fiat Mobi" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Fiat</b></span>
+							<br>Mobi
+								<br/><span class="texto mini">desde: </span><span class="titulo resaltar">$ 25.400.000</span>
+							
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="nuevos.asp?marca=Renault&modelo=Duster Oroch&provincia=0" class="texto linkVehiculo">
+							<img src="/images/vehiculos/Renault-Duster-Oroch-2026/8966_tr.jpg" border="0" alt="Renault Duster Oroch" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Renault</b></span>
+							<br>Duster Oroch
+								<br/><span class="texto mini">desde: </span><span class="titulo resaltar">$ 37.500.000</span>
+							
+								<br/><span class="texto mini">hasta: &nbsp;</span><span class="texto">$ 42.950.000</span>
+							
+						</a>
+						
+					</li>
+					
+					<li style="text-align:-webkit-center;">
+						<a href="nuevos.asp?marca=Corven&modelo=Energy&provincia=0" class="texto linkVehiculo">
+							<img src="/images/vehiculos/Corven-Energy-2026/5464_tr.jpg" border="0" alt="Corven Energy" class="redondear" style="margin-bottom:5px; width:94%; height: 145px; object-fit: cover;">
+							<span style="font-size:18px;"><b>Corven</b></span>
+							<br>Energy
+								<br/><span class="texto mini">desde: </span><span class="titulo resaltar">$ 1.700.000</span>
+							
+						</a>
+						
+				<li>
+					<div class="redondear" style="width:100%; height:144px; background-color:#FFFBFA; border:1px solid #FF6C00; text-align:center; display:table-cell; vertical-align:middle; padding:10px;">
+						<a class="link" href="/precio/Cuatris/Nuevos/Argentina?segmento=0&condicion=Nuevos">
+							<i class="fa fa-search-plus" aria-hidden="true" style="font-size:30px; margin-bottom:10px;"></i>
+							<br>Buscar más vehículos Nuevos 0Km
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="pantalla" style="margin-bottom:-30px;">
+	<div class="ventana" style="padding:40px 0 60px 0; margin-top:40px; position:relative; text-align:center;">
+		<span class="titulo" style="font-size:24px;">¿Donde estás Buscando?</span>
+		<br><br><a href="/index.asp?provincia=6" class="link " style="font-size:22px;"><b>Córdoba</b></a>
+		<br><a href="/index.asp?provincia=1" class="link " style="font-size:22px;"><b>Mendoza</b></a>
+		<br><a href="/index.asp?provincia=17" class="link " style="font-size:22px;"><b>San Juan</b></a>
+		<br><a href="/index.asp?provincia=18" class="link " style="font-size:22px;"><b>San Luis</b></a>
+		<br><a class="link linkUbEstatico" data-provincia="0" style="font-size:22px;"><b>+ Más Provincias</b></a>
+	</div>
+</div>
+
+
+  <!-- <script type="text/javascript" src="scripts/chat/chat.js" ></script>-->
+	<script language="JavaScript" type="text/JavaScript">
+    // Detectar si está en WebView o TWA
+      function getAppType() {
+          const ua = navigator.userAgent;
+          
+          // TWA tiene este header específico
+          if (document.referrer.includes('android-app://com.ideasonlinesa.deruedas')) {
+              return 'TWA';
+          }
+          
+          // WebView tiene estos indicadores
+          if (ua.includes('wv') || ua.includes('WebView')) {
+              return 'WebView';
+          }
+          
+          return 'Browser';
+      }
+
+		$(document).ready(function() {
+			$(window).resize(function() {
+				$('#divAncho').html('Ancho: '+$(window).width());
+			});
+
+            // Forzar actualización si están en WebView
+      if (getAppType() === 'WebView' && false) {
+          // Mostrar modal de actualización obligatoria
+          showForceUpdateDialog();
+          // Bloquear toda la aplicación
+          document.body.innerHTML = `
+              <div style="text-align:center; padding:50px;">
+                  <h2>Actualización Requerida</h2>
+                  <p>Por favor actualiza a la nueva versión de deRuedas</p>
+                  <a href="market://details?id=com.ideasonlinesa.deruedas">
+                      Actualizar Ahora
+                  </a>
+              </div>
+          `;
+      }
+
+      // Si es TWA, forzar que todos los enlaces _blank se abran en la misma página
+      if (getAppType() === 'TWA') {
+          // Remover target="_blank" de todos los enlaces al cargar
+          $('a').removeAttr('target');
+          
+          // Interceptar clicks para enlaces agregados dinámicamente
+          $(document).delegate('a', 'click', function(e) {
+              var target = $(this).attr('target');
+              
+              // Si tiene target="_blank", quitarlo y dejar que navegue normalmente
+              if (target === '_blank') {
+                  $(this).removeAttr('target');
+                  // NO hacer preventDefault, dejar que el navegador maneje el click normalmente
+              }
+          });
+      }
+		});
+	</script>		
+
+	<style type="text/css">
+		.divPie_1				{width:33%; border-right:1px solid white;}
+		.divPie_2				{width:33%; border-right:1px solid white;}
+		@media screen and (max-width: 800px){
+			.divPie_1			{width:100%; border:0;}
+			.divPie_2			{width:85%; border:0;}
+		}
+	</style>
+	
+	
+	
+	<div id="divPie" class="pantalla " style="margin-top:30px; background:linear-gradient(to right, #F05F22, #FF354D);">
+		<div class="ventana" style="color:#FFFFFF; height: 260px;">
+			
+			<div class="divPie_1" style="float:left; text-align:center; margin-top:40px;">
+				<a href="/index.asp" class="link inv_2">
+					<img src="/images/design/logo_12.png">
+					<br><br>Cambiar tu auto es genial
+				</a>
+			</div>
+			
+			<div class="divPie_2" style="float:left; margin-top:40px;">
+				<div style="padding-left:40px;">
+					<a href="/info.asp?con=10" class="link inv_2">Ayuda</a>
+					<br><a href="/info.asp?con=4" class="link inv_2">Escribí a deRuedas</a>
+					<br><a href="/info.asp?con=9" class="link inv_2">Términos y Condiciones</a>			
+					<br><a href="/info.asp?con=12" class="link inv_2">Consejos de seguridad</a>			
+					<br><br><a href="/servicios.asp" class="link inv_2"><i class="fa fa-car fa-fw" aria-hidden="true"></i>Subí tu Agencia</a>
+					<br><a href="/publicar.asp" class="link inv_2"><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>Publicar un Aviso Nuevo</a>
+											
+				</div>
+			</div>
+			
+			<div style="float:left; margin:40px 0 70px 0;">
+				<div style="padding-left:40px;">
+					<!-- <a href="descargarApp.asp" class="link inv_2 i700 oculto"><i class="fa fa-mobile-phone fa-fw" aria-hidden="true"></i>Descarga nuestra APP</a> -->
+					<a href="https://www.facebook.com/deruedas" class="link inv_2" target="_blank"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i>Seguinos en Facebook</a>
+					<br><a href="https://www.instagram.com/deruedas_ar/" class="link inv_2" target="_blank"><i class="fa fa-instagram fa-fw" aria-hidden="true"></i>Seguinos en Instagram</a>
+					<br><br><a href="https://www.proyecto4patas.org/" class="link inv_2" target="_blank"><i class="fa fa-paw fa-fw" aria-hidden="true"></i>Conocé Proyecto 4 Patas</a>
+				</div>
+			</div>
+			
+		</div>
+		<div style="clear:both;"></div>
+	</div> 
+
+	</div><!-- CIERRE DIV MAESTRO -->
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1121632-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+	
+		gtag('config', 'UA-1121632-1');
+		gtag('config', 'AW-1053244374'); //SOLO PARA GOOGLE ADS
+	</script>
+
+	<!-- Google tag (gtag.js) NUEVO CODIGO -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-2LKMTDDMCY"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-2LKMTDDMCY');
+	</script>
+
+	
+
+</body>
+</html>
