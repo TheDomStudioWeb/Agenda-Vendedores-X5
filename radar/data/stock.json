@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-14T19:04:51.589Z",
+ "actualizado": "2026-10-14T19:08:56.798Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -10,11 +10,10 @@
    "nombre": "Maipú Usados",
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
-   "estado": "error",
-   "detalle": "Unterminated string in JSON at position 3211264",
+   "estado": "ok",
    "autos": 91,
-   "revisado": "2026-10-14T19:04:51.589Z",
-   "actualizado": "2026-10-14T18:55:50.771Z"
+   "revisado": "2026-10-14T19:08:56.798Z",
+   "actualizado": "2026-10-14T19:08:56.798Z"
   }
  ],
  "autos": [
