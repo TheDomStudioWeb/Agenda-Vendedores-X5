@@ -1,18 +1,20 @@
 import { chromium } from 'playwright';
 import fs from 'node:fs';
-const out = { paginas: [], apis: [] };
+const out = { apis: [] };
 const b = await chromium.launch();
-const ctx = await b.newContext({ locale: 'es-AR', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36', viewport: { width: 1366, height: 900 } });
+const ctx = await b.newContext({ locale: 'es-AR', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36' });
 const p = await ctx.newPage();
-p.on('response', async r => { const u = r.url(); const ct = r.headers()['content-type'] || ''; if (/json/.test(ct) && !/google|facebook|hotjar|clarity|doubleclick/.test(u)) { let body = ''; try { body = (await r.text()).slice(0, 1500); } catch {} out.apis.push({ u, status: r.status(), body }); } });
-for (const u of ['https://autocity.com.ar/catalogo/usados/', 'https://autocity.com.ar/catalogo/usados/page/2/']) {
-  try { const r = await p.goto(u, { waitUntil: 'networkidle', timeout: 60000 }); await p.waitForTimeout(6000);
-    const html = await p.content(); out.paginas.push({ u, status: r?.status(), titulo: await p.title(), bytes: html.length, autos: (html.match(/\$\s?[\d\.]{7,}/g) || []).length, fichas: (html.match(/catalogo\/usados\/m-/g) || []).length, texto: (await p.innerText('body')).slice(0, 1500) });
-    fs.writeFileSync('sondeo/autocity-' + (u.includes('page/2') ? 'p2' : 'usados') + '.html', html);
-  } catch (e) { out.paginas.push({ u, error: e.message }); }
-}
-// DeRuedas: ¿hay catálogo de Autocity?
-const dr = await (await fetch('https://www.deruedas.com.ar/busCraw.asp?weNeed=divAll&pag=1&mostrarRegistros=90&segmento=0&provincia=6')).text();
-out.deruedas_cba = { bytes: dr.length, autocity: (dr.match(/autocity/gi) || []).length, logos: [...new Set([...dr.matchAll(/alt="([^"]*(?:Logo|logo)[^"]*)"/g)].map(m => m[1]))].slice(0, 30), codUsr: [...new Set([...dr.matchAll(/codUsr=(\d+)/g)].map(m => m[1]))].slice(0, 30) };
+p.on('response', async r => { const ct = r.headers()['content-type'] || ''; if (/json/.test(ct) && /asofix|autocity/.test(r.url()) && !/contact-form/.test(r.url())) { let body = ''; try { body = (await r.text()).slice(0, 3000); } catch {} out.apis.push({ u: r.url(), status: r.status(), body }); } });
+const t0 = Date.now();
+const r = await p.goto('https://autocity.com.ar/catalogo/usados/m-volkswagen/m-up/1-0-highline-3p-l14/', { waitUntil: 'networkidle', timeout: 60000 });
+await p.waitForTimeout(3000);
+out.ficha = { status: r.status(), ms: Date.now() - t0, titulo: await p.title(), texto: (await p.innerText('body')).slice(0, 2500) };
+fs.writeFileSync('sondeo/autocity-ficha.html', await p.content());
+// imagen grande sin "mini-"
+const big = 'https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/1791472323474.IMG_6492.jpeg';
+const rb = await fetch(big); out.grande = { status: rb.status, tipo: rb.headers.get('content-type'), bytes: (await rb.arrayBuffer()).byteLength };
+const rm = await fetch(big.replace('/products/', '/products/mini-')); out.mini = { status: rm.status, bytes: (await rm.arrayBuffer()).byteLength };
+// ¿responde a fetch simple el catálogo con página?
+const rs = await fetch('https://autocity.com.ar/catalogo/usados/page/3/', { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/129.0' } }); out.fetchSimple = rs.status;
 fs.writeFileSync('sondeo/autocity.json', JSON.stringify(out, null, 1));
 await b.close();
