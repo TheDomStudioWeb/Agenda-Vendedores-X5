@@ -79,7 +79,26 @@
   .interno a { color: var(--x5); }
   .vacio { padding: 40px 16px; text-align: center; color: var(--muted); }
 
+  /* Compra */
+  #f-compra { margin-bottom: 12px; }
+  .buscador { display: grid; grid-template-columns: 1.2fr 1.4fr .7fr .7fr 1.2fr auto; gap: 8px; align-items: end; }
+  .buscador label { display: grid; gap: 5px; font-size: .66rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+  .buscador input, .buscador select { width: 100%; min-width: 0; font: 500 .85rem var(--font); color: var(--text); background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: var(--radius-sm); padding: 10px 12px; }
+  .buscador .btn { white-space: nowrap; }
+  .resumen { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 12px 0; }
+  .resumen div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
+  .resumen span { display: block; font-size: .62rem; letter-spacing: 1px; text-transform: uppercase; color: var(--faint); font-weight: 700; }
+  .resumen b { font-size: 1.05rem; }
+  .fuentes { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  a.fila { color: inherit; text-decoration: none; }
+  .conectar { display: grid; gap: 10px; font-size: .85rem; }
+  .conectar ol { margin: 0; padding-left: 18px; color: var(--muted); display: grid; gap: 4px; }
+  .conectar .row input { flex: 3; font: 500 .85rem var(--font); color: var(--text); background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: var(--radius-sm); padding: 10px 12px; }
   @media (max-width: 760px) {
+    .buscador { grid-template-columns: 1fr 1fr; }
+    .buscador .modelo, .buscador .prov { grid-column: span 2; }
+    .buscador .btn { grid-column: 1 / -1; }
+    .resumen { grid-template-columns: 1fr 1fr; }
     .filtros { grid-template-columns: 1fr 1fr; }
     .filtros .q { grid-column: 1 / -1; }
     .cfg { grid-template-columns: 1fr 1fr; }
@@ -103,6 +122,7 @@
     <div class="seg" role="tablist">
       <button class="active" data-v="cliente">Cliente</button>
       <button data-v="interno">Interno</button>
+      <button data-v="compra">Compra</button>
       <button data-v="novedades">Novedades</button>
     </div>
 
@@ -118,7 +138,7 @@
       </div>
     </details>
 
-    <div class="filtros">
+    <div class="filtros" id="filtros">
       <input class="q" id="q" type="search" placeholder="Buscar: Amarok, Hilux 2021, diésel…" aria-label="Buscar">
       <select id="marca" aria-label="Marca"><option value="">Todas las marcas</option></select>
       <select id="caja" aria-label="Caja"><option value="">Manual y automática</option><option value="man">Manual</option><option value="aut">Automática</option></select>
@@ -136,6 +156,18 @@
   <div class="cuenta" id="cuenta"></div>
   <section id="v-cliente" class="grilla"></section>
   <section id="v-interno" class="lista" hidden></section>
+  <section id="v-compra" hidden>
+    <form class="card buscador" id="f-compra" autocomplete="off">
+      <label>Marca<select id="c-marca" required><option value="">Elegí…</option></select></label>
+      <label class="modelo">Modelo<input id="c-modelo" list="c-modelos" placeholder="Gol Trend, Hilux…" required></label>
+      <label>Desde<input id="c-desde" type="number" inputmode="numeric" min="1990" max="2030" placeholder="Año"></label>
+      <label>Hasta<input id="c-hasta" type="number" inputmode="numeric" min="1990" max="2030" placeholder="Año"></label>
+      <label class="prov">Provincia<select id="c-prov"></select></label>
+      <button class="btn btn-dom" type="submit" id="c-buscar">Buscar</button>
+      <datalist id="c-modelos"></datalist>
+    </form>
+    <div id="c-res"></div>
+  </section>
   <section id="v-novedades" class="card" hidden style="padding:0"></section>
 </main>
 
@@ -196,9 +228,11 @@
       ? `Precio X5 = precio de la agencia + <b>${plata(p.fijo)}</b>. Puesto en calle = precio X5 + ${Math.round(p.papeles * 100)}% de papeles.`
       : `Precio X5 = guía + <b>${Math.round(p.pct * 100)}%</b>. Con ${Math.round(p.papeles * 100)}% de papeles, puesto en calle queda en guía + <b>${pc.toLocaleString('es-AR')}%</b>. Los 0 km van al valor de guía, sin recargo. Los autos que no figuran en la guía (anteriores a 2012) usan precio de agencia + ${plata(p.fijo)}.`;
     document.querySelectorAll('.seg button').forEach(b => b.classList.toggle('active', b.dataset.v === vista));
-    ['cliente', 'interno', 'novedades'].forEach(v => $('#v-' + v).hidden = v !== vista);
+    ['cliente', 'interno', 'compra', 'novedades'].forEach(v => $('#v-' + v).hidden = v !== vista);
+    $('#filtros').hidden = vista === 'compra' || vista === 'novedades';
     $('#cfg-box').hidden = vista === 'cliente';
     $('#estado').hidden = vista === 'cliente';
+    if (vista === 'compra') return prepararCompra();
     if (!DATA) return;
     if (vista === 'novedades') return renderNovedades();
     const L = filtrados().filter(x => vista === 'interno' || x.k.x5 != null);
@@ -297,6 +331,130 @@
   document.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.matches('.fila')) abrirFicha(e.target.dataset.id); });
   ['regla', 'fijo', 'pct', 'papeles', 'usd'].forEach(id => $('#' + id).addEventListener('input', () => { guardar(id, $('#' + id).value); render(); }));
   ['q', 'marca', 'caja', 'orden'].forEach(id => $('#' + id).addEventListener('input', render));
+
+  /* ══ Compra: buscar un modelo en sitios públicos y analizar si conviene ══ */
+  const BUSCADOR_URL = ''; // URL /exec del Apps Script Buscador.gs (si queda vacío, se pide en pantalla)
+  const PROVINCIAS = ['Buenos Aires', 'CABA', 'Catamarca', 'Chaco', 'Chubut', 'Córdoba', 'Corrientes', 'Entre Ríos', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquén', 'Río Negro', 'Salta', 'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego', 'Tucumán'];
+  const AUTOMATICA = /\b(\d?at\d?|aut\.?|automatic[oa]?|tiptronic|tipt|cvt|e?cvt|dsg|s-?tronic|tct|edc|dct)\b/i;
+  let GUIA = null, cruzarGuia = null, ultimo = null, compraLista = false;
+  const titulo = (s) => String(s || '').toLowerCase().replace(/(^|[\s-])([a-záéíóúñ])/g, (m, a, b) => a + b.toUpperCase());
+  const sinTilde = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const urlBuscador = () => BUSCADOR_URL || leer('buscador') || '';
+
+  async function cargarGuia() {
+    if (GUIA) return;
+    const [g, m] = await Promise.all([fetch('data/guia-cca.json', { cache: 'no-store' }).then(r => r.json()), import('./scraper/guia.mjs')]);
+    GUIA = g; cruzarGuia = m.cruzar;
+  }
+
+  async function prepararCompra() {
+    $('#cuenta').textContent = '';
+    if (!compraLista) {
+      compraLista = true;
+      $('#c-prov').innerHTML = '<option value="">Todo el país</option>' + PROVINCIAS.map(p => `<option>${p}</option>`).join('');
+      $('#c-prov').value = leer('c-prov') ?? 'Mendoza';
+      try { await cargarGuia(); } catch (e) { $('#c-res').innerHTML = '<div class="vacio">No se pudo cargar la guía de precios.</div>'; return; }
+      const marcas = Object.keys(GUIA.marcas).sort();
+      $('#c-marca').insertAdjacentHTML('beforeend', marcas.map(m => `<option value="${esc(m)}">${esc(titulo(m))}</option>`).join(''));
+      $('#c-marca').addEventListener('input', () => {
+        const mods = [...new Set(Object.keys(GUIA.marcas[$('#c-marca').value] || {}).map(m => titulo(m.replace(/\s*PICK\s*-?\s*UP.*$/i, ''))))].sort();
+        $('#c-modelos').innerHTML = mods.map(m => `<option value="${esc(m)}">`).join('');
+      });
+    }
+    if (!urlBuscador()) return pedirConexion();
+    if (ultimo) mostrarResultados(ultimo); else if (!$('#c-res').innerHTML) $('#c-res').innerHTML = '<div class="vacio">Elegí marca y modelo de lo que pide el cliente. Se busca en DeRuedas, Autocosmos y el stock de las agencias, y se compara cada precio con la guía.</div>';
+  }
+
+  function pedirConexion() {
+    $('#c-res').innerHTML = `<div class="card conectar">
+      <b>Falta conectar el buscador</b>
+      <ol><li>Abrí script.google.com → Nuevo proyecto.</li><li>Pegá el archivo <code>radar/apps-script/Buscador.gs</code> del repositorio.</li>
+      <li>Implementar → Nueva implementación → Aplicación web · Ejecutar como: Yo · Acceso: Cualquier persona.</li><li>Copiá la URL que termina en <code>/exec</code> y pegala acá.</li></ol>
+      <div class="row"><input id="c-url" placeholder="https://script.google.com/macros/s/…/exec"><button class="btn btn-dom btn-sm" id="c-guardar" type="button">Conectar</button></div></div>`;
+    $('#c-guardar').onclick = () => { const u = $('#c-url').value.trim(); if (/^https:\/\/script\.google\.com\/.+\/exec$/.test(u)) { guardar('buscador', u); prepararCompra(); } else $('#c-url').focus(); };
+  }
+
+  function analizar(a, p) {
+    const ars = a.precio == null ? null : (a.moneda === 'USD' ? a.precio * p.usd : a.precio);
+    const caja = a.caja || (AUTOMATICA.test(a.version) ? 'Automática' : 'Manual');
+    const g = GUIA && a.anio ? cruzarGuia({ ...a, caja }, GUIA) : null;
+    const ref = g ? (g.mejor?.valor ?? g.med) : null;
+    const cero = a.anio >= new Date().getFullYear();
+    const venta = ref ? r100k(cero ? ref : ref * (1 + p.pct)) : null;
+    return { ars, ref, g, venta, margen: venta != null && ars != null ? venta - ars : null, ratio: ref && ars ? ars / ref : null };
+  }
+
+  const pill = (ratio) => ratio == null ? '<span class="chip">sin guía</span>'
+    : ratio <= .9 ? '<span class="chip ok">Muy buena compra</span>' : ratio <= 1 ? '<span class="chip x5">Buena compra</span>'
+    : ratio <= 1.1 ? '<span class="chip warn">Precio justo</span>' : '<span class="chip bad">Cara</span>';
+
+  function stockLocal(q) {
+    if (!DATA) return [];
+    const mod = sinTilde(q.modelo);
+    return DATA.autos.filter(a => sinTilde(a.marca) === sinTilde(q.marca) && sinTilde(a.modelo).startsWith(mod)
+      && (!q.desde || a.anio >= q.desde) && (!q.hasta || a.anio <= q.hasta)
+      && (!q.provincia || sinTilde(AG[a.agencia]?.ciudad) === sinTilde(q.provincia)))
+      .map(a => ({ fuente: a.agencia, fuenteNombre: AG[a.agencia]?.nombre, vendedor: AG[a.agencia]?.nombre, marca: a.marca, modelo: a.modelo, version: a.version, anio: a.anio, km: a.km, caja: a.caja,
+        precio: a.precio, moneda: a.moneda, provincia: AG[a.agencia]?.ciudad, localidad: '', foto: a.fotos[0], url: a.url, id: a.id }));
+  }
+
+  async function buscarCompra(ev) {
+    ev.preventDefault();
+    const q = { marca: titulo($('#c-marca').value), modelo: $('#c-modelo').value.trim(), provincia: $('#c-prov').value,
+      desde: +$('#c-desde').value || 0, hasta: +$('#c-hasta').value || 0 };
+    if (!q.marca || !q.modelo) return;
+    guardar('c-prov', q.provincia);
+    const btn = $('#c-buscar'); btn.disabled = true; btn.textContent = 'Buscando…';
+    $('#c-res').innerHTML = '<div class="vacio">Buscando en DeRuedas, Autocosmos y el stock de las agencias…</div>';
+    try {
+      const u = new URL(urlBuscador());
+      Object.entries(q).forEach(([k, v]) => v && u.searchParams.set(k, v));
+      const r = await (await fetch(u)).json();
+      if (!r.ok) throw new Error(r.error || 'respuesta inválida');
+      const fuentes = r.fuentes.map(f => ({ nombre: f.nombre, n: r.autos.filter(a => a.fuente === f.id).length, error: f.errores.length && !f.encontrados }));
+      const locales = stockLocal(q);
+      if (DATA) DATA.agencias.forEach(ag => fuentes.push({ nombre: ag.nombre, n: locales.filter(a => a.fuente === ag.id).length }));
+      ultimo = { q, fuentes, autos: [...locales, ...r.autos] };
+      mostrarResultados(ultimo);
+    } catch (e) {
+      $('#c-res').innerHTML = `<div class="vacio">No se pudo completar la búsqueda (${esc(e.message)}). Revisá la conexión o la URL del buscador.<br><button class="btn btn-ghost btn-sm" type="button" id="c-reconectar" style="margin-top:10px">Cambiar URL del buscador</button></div>`;
+      const b = $('#c-reconectar'); if (b) b.onclick = () => { guardar('buscador', ''); pedirConexion(); };
+    } finally { btn.disabled = false; btn.textContent = 'Buscar'; }
+  }
+
+  function mostrarResultados(res) {
+    const p = P();
+    const L = res.autos.map(a => ({ a, k: analizar(a, p) })).filter(x => x.k.ars != null)
+      .sort((x, y) => (y.k.margen ?? -1e15) - (x.k.margen ?? -1e15));
+    const precios = L.map(x => x.k.ars).sort((a, b) => a - b), refs = L.map(x => x.k.ref).filter(Boolean).sort((a, b) => a - b);
+    const med = (v) => v.length ? v[Math.floor(v.length / 2)] : null;
+    const buenas = L.filter(x => x.k.ratio != null && x.k.ratio <= 1).length;
+    const titulo2 = `${res.q.marca} ${res.q.modelo}${res.q.desde || res.q.hasta ? ` ${res.q.desde || '…'}–${res.q.hasta || '…'}` : ''} · ${res.q.provincia || 'todo el país'}`;
+    if (!L.length) { $('#c-res').innerHTML = `<div class="fuentes">${res.fuentes.map(f => `<span class="chip ${f.error ? 'bad' : ''}">${esc(f.nombre)} · ${f.error ? 'sin respuesta' : f.n}</span>`).join('')}</div><div class="vacio">No hay publicaciones con precio para ${esc(titulo2)}. Probá ampliar los años o buscar en todo el país.</div>`; return; }
+    $('#c-res').innerHTML = `
+      <div class="fuentes">${res.fuentes.map(f => `<span class="chip ${f.error ? 'bad' : f.n ? 'x5' : ''}">${esc(f.nombre)} · ${f.error ? 'sin respuesta' : f.n}</span>`).join('')}</div>
+      <div class="resumen">
+        <div><span>Publicados</span><b>${L.length}</b></div>
+        <div><span>Precio mediano</span><b class="num">${mill(med(precios))}</b></div>
+        <div><span>Guía mediana</span><b class="num">${mill(med(refs))}</b></div>
+        <div><span>A guía o menos</span><b>${buenas}</b></div>
+      </div>
+      <div class="cuenta">${esc(titulo2)} · ordenado por margen para X5 (venta a guía + ${Math.round(p.pct * 100)}%)</div>
+      <div class="lista">${L.map(({ a, k }) => `
+        <a class="fila" href="${esc(a.url)}" target="_blank" rel="noopener">
+          <div class="foto">${img(a.foto, a.modelo)}</div>
+          <div><div class="t">${esc(a.marca)} ${esc(a.modelo)} ${a.anio || ''}</div>
+            <div class="s">${esc(a.version)}${a.km != null ? ' · ' + nf.format(a.km) + ' km' : ''}<br>${esc([a.localidad, a.provincia].filter(Boolean).join(', '))} · ${esc(a.fuenteNombre || (a.fuente === 'deruedas' ? 'DeRuedas' : 'Autocosmos'))}${a.vendedor && a.vendedor !== a.fuenteNombre ? ' · ' + esc(a.vendedor) : ''}</div>
+            <div class="s num" style="margin-top:3px"><b>${a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio) + ' ≈ ' : ''}${mill(k.ars)}</b></div></div>
+          <div class="c-ag"><div class="k">Publicado</div><div class="v num">${mill(k.ars)}</div></div>
+          <div class="c-guia"><div class="k">Guía</div><div class="v num">${mill(k.ref)}</div><div class="s">${k.g?.mejor ? esc(k.g.mejor.version) : k.g ? 'mediana de ' + k.g.n + ' versiones' : ''}</div></div>
+          <div class="c-x5"><div class="k">Venta X5</div><div class="v num">${mill(k.venta)}</div>
+            <div class="s num">${k.margen != null ? `<span class="${k.margen >= 0 ? 'pos' : 'neg'}">${k.margen >= 0 ? '+' : '−'}${mill(Math.abs(k.margen))}</span>` : ''}</div>${pill(k.ratio)}</div>
+        </a>`).join('')}</div>`;
+  }
+
+  $('#f-compra').addEventListener('submit', buscarCompra);
+  ['pct', 'usd'].forEach(id => $('#' + id).addEventListener('input', () => { if (vista === 'compra' && ultimo) mostrarResultados(ultimo); }));
 
   render();
   fetch('data/stock.json', { cache: 'no-store' }).then(r => r.json()).then(d => {

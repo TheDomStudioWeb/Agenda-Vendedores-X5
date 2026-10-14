@@ -3,7 +3,7 @@ const AUTO = /(\b\d{0,2}AT\d?\b|\bAT\d\b|CVT|\bAUT|TIPTRONIC|\bTIPT|DSG|TRONIC|\
 const MARCAS = { 'VW': 'VOLKSWAGEN', 'MERCEDES-BENZ': 'MERCEDES BENZ', 'MERCEDES': 'MERCEDES BENZ', 'CITROËN': 'CITROEN', 'MINI': 'MINI COOPER' };
 const norm = (s) => String(s || '').toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
 const variantes = (m) => { const a = norm(m); return [...new Set([a, a.replace(/([A-Z])(\d)/g, '$1 $2'), a.replace(/(\d)([A-Z])/g, '$1 $2'), a.replace(/-/g, ' '), a.replace(/\s+/g, '')])]; };
-const tokens = (s) => new Set(norm(s).replace(/(\d),(\d)/g, '$1.$2').split(/[^A-Z0-9\.]+/).filter(t => t.length > 1));
+const tokens = (s) => new Set(norm(s).replace(/(\d),(\d)/g, '$1.$2').replace(/\b([2-5])\s*(?:PTAS?|PUERTAS|D)\b\.?/g, '$1P').replace(/\bPACK\s*([123])\b/g, (_, n) => 'PACK ' + 'I'.repeat(+n)).split(/[^A-Z0-9\.]+/).filter(t => t.length > 1 || t === 'I'));
 
 export function cruzar(auto, guia, anioActual = new Date().getFullYear()) {
   const marca = MARCAS[norm(auto.marca)] || norm(auto.marca);
