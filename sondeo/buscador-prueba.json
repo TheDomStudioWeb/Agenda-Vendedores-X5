@@ -1,0 +1,293 @@
+[
+ {
+  "q": {
+   "marca": "Volkswagen",
+   "modelo": "Gol Trend",
+   "provincia": "mendoza",
+   "desde": 2014,
+   "hasta": 2016
+  },
+  "ms": 2299,
+  "fuentes": [
+   {
+    "id": "deruedas",
+    "nombre": "DeRuedas",
+    "encontrados": 56,
+    "errores": [],
+    "consultas": 2
+   },
+   {
+    "id": "autocosmos",
+    "nombre": "Autocosmos",
+    "encontrados": 18,
+    "errores": [],
+    "consultas": 3
+   }
+  ],
+  "total": 61,
+  "muestra": [
+   {
+    "fuente": "deruedas",
+    "id": "dr-830709",
+    "marca": "Volkswagen",
+    "modelo": "Gol Trend",
+    "version": "1.6 3ptas Trendline (L13)",
+    "anio": 2015,
+    "km": 60000,
+    "combustible": "Nafta",
+    "precio": 13000000,
+    "moneda": "ARS",
+    "provincia": "Mendoza",
+    "localidad": "Capital",
+    "foto": "https://www.deruedas.com.ar/images/autos/Volkswagen-Gol-Trend-2015/830/830709_1_tr.jpg?edit=8",
+    "url": "https://www.deruedas.com.ar/vendo/Volkswagen/Gol-Trend/Usado/Mendoza?cod=830709",
+    "vendedor": ""
+   },
+   {
+    "fuente": "deruedas",
+    "id": "dr-830530",
+    "marca": "Volkswagen",
+    "modelo": "Gol Trend",
+    "version": "1.6 5ptas Sportline",
+    "anio": 2016,
+    "km": 103000,
+    "combustible": "Nafta",
+    "precio": 15000000,
+    "moneda": "ARS",
+    "provincia": "Mendoza",
+    "localidad": "Maipú",
+    "foto": "https://www.deruedas.com.ar/images/autos/Volkswagen-Gol-Trend-2016/830/830530_1_tr.jpg?edit=2",
+    "url": "https://www.deruedas.com.ar/vendo/Volkswagen/Gol-Trend/Usado/Mendoza?cod=830530",
+    "vendedor": ""
+   },
+   {
+    "fuente": "deruedas",
+    "id": "dr-831089",
+    "marca": "Volkswagen",
+    "modelo": "Gol Trend",
+    "version": "1.6 3ptas Pack 2 (L13)",
+    "anio": 2014,
+    "km": null,
+    "combustible": "Nafta",
+    "precio": 11900000,
+    "moneda": "ARS",
+    "provincia": "Mendoza",
+    "localidad": "Guaymallén",
+    "foto": "https://www.deruedas.com.ar/images/autos/Volkswagen-Gol-Trend-2014/831/831089_1_tr.jpg?edit=2",
+    "url": "https://www.deruedas.com.ar/vendo/Volkswagen/Gol-Trend/Usado/Mendoza?cod=831089",
+    "vendedor": ""
+   },
+   {
+    "fuente": "deruedas",
+    "id": "dr-780028",
+    "marca": "Volkswagen",
+    "modelo": "Gol Trend",
+    "version": "1.6 5ptas (L13)",
+    "anio": 2014,
+    "km": 144000,
+    "combustible": "Nafta",
+    "precio": 12900000,
+    "moneda": "ARS",
+    "provincia": "Mendoza",
+    "localidad": "Guaymallén",
+    "foto": "https://www.deruedas.com.ar/images/autos/Volkswagen-Gol-Trend-2014/780/780028_1_tr.jpg?edit=8",
+    "url": "https://www.deruedas.com.ar/vendo/Volkswagen/Gol-Trend/Usado/Mendoza?cod=780028",
+    "vendedor": "Agencia"
+   }
+  ]
+ },
+ {
+  "q": {
+   "marca": "Toyota",
+   "modelo": "Hilux",
+   "provincia": "cordoba",
+   "desde": 2018,
+   "hasta": 2022
+  },
+  "ms": 1684,
+  "fuentes": [
+   {
+    "id": "deruedas",
+    "nombre": "DeRuedas",
+    "encontrados": 12,
+    "errores": [],
+    "consultas": 2
+   },
+   {
+    "id": "autocosmos",
+    "nombre": "Autocosmos",
+    "encontrados": 12,
+    "errores": [],
+    "consultas": 3
+   }
+  ],
+  "total": 18,
+  "muestra": [
+   {
+    "fuente": "deruedas",
+    "id": "dr-829033",
+    "marca": "Toyota",
+    "modelo": "Hilux",
+    "version": "(L16) 2.8 C/D 4x4 TDI SRX AT 177cv",
+    "anio": 2018,
+    "km": 192000,
+    "combustible": "Diesel",
+    "precio": 44217000,
+    "moneda": "ARS",
+    "provincia": "Córdoba",
+    "localidad": "Capital",
+    "foto": "https://www.deruedas.com.ar/images/autos/Toyota-Hilux-2018/829/829033_1_tr.jpg?edit=2",
+    "url": "https://www.deruedas.com.ar/vendo/Toyota/Hilux/Usado/Cordoba?cod=829033",
+    "vendedor": ""
+   },
+   {
+    "fuente": "deruedas",
+    "id": "dr-828387",
+    "marca": "Toyota",
+    "modelo": "Hilux",
+    "version": "(L20) 2.4 TDI C/D 4x2 SR 150cv",
+    "anio": 2021,
+    "km": 198000,
+    "combustible": "Diesel",
+    "precio": 42000000,
+    "moneda": "ARS",
+    "provincia": "Córdoba",
+    "localidad": "Capital",
+    "foto": "https://www.deruedas.com.ar/images/autos/Toyota-Hilux-2021/828/828387_1_tr.jpg?edit=3",
+    "url": "https://www.deruedas.com.ar/vendo/Toyota/Hilux/Usado/Cordoba?cod=828387",
+    "vendedor": ""
+   },
+   {
+    "fuente": "deruedas",
+    "id": "dr-825386",
+    "marca": "Toyota",
+    "modelo": "Hilux",
+    "version": "(L16) 2.4 C/D 4x2 TDI DX 150cv",
+    "anio": 2019,
+    "km": 155000,
+    "combustible": "Diesel",
+    "precio": 33800000,
+    "moneda": "ARS",
+    "provincia": "Córdoba",
+    "localidad": "Capital",
+    "foto": "https://www.deruedas.com.ar/images/autos/Toyota-Hilux-2019/825/825386_1_tr.jpg?edit=2",
+    "url": "https://www.deruedas.com.ar/vendo/Toyota/Hilux/Usado/Cordoba?cod=825386",
+    "vendedor": "Agencia"
+   },
+   {
+    "fuente": "deruedas",
+    "id": "dr-819889",
+    "marca": "Toyota",
+    "modelo": "Hilux",
+    "version": "(L16) 2.8 TDI C/D 4x2 SRV AT6 177cv",
+    "anio": 2018,
+    "km": 135000,
+    "combustible": "Diesel",
+    "precio": 43889000,
+    "moneda": "ARS",
+    "provincia": "Córdoba",
+    "localidad": "Punilla",
+    "foto": "https://www.deruedas.com.ar/images/autos/Toyota-Hilux-2018/819/819889_1_tr.jpg?edit=2",
+    "url": "https://www.deruedas.com.ar/vendo/Toyota/Hilux/Usado/Cordoba?cod=819889",
+    "vendedor": "Agencia"
+   }
+  ]
+ },
+ {
+  "q": {
+   "marca": "Volkswagen",
+   "modelo": "Amarok",
+   "provincia": "",
+   "desde": 0,
+   "hasta": 0
+  },
+  "ms": 3586,
+  "fuentes": [
+   {
+    "id": "deruedas",
+    "nombre": "DeRuedas",
+    "encontrados": 90,
+    "errores": [],
+    "consultas": 2
+   },
+   {
+    "id": "autocosmos",
+    "nombre": "Autocosmos",
+    "encontrados": 144,
+    "errores": [],
+    "consultas": 3
+   }
+  ],
+  "total": 234,
+  "muestra": [
+   {
+    "fuente": "deruedas",
+    "id": "dr-783745",
+    "marca": "Volkswagen",
+    "modelo": "Amarok",
+    "version": "(L16) 2.0TD 4x2 C/D Comfortline 180cv",
+    "anio": 2018,
+    "km": 54000,
+    "combustible": "Diesel",
+    "precio": 39000000,
+    "moneda": "ARS",
+    "provincia": "Mendoza",
+    "localidad": "Godoy Cruz",
+    "foto": "https://www.deruedas.com.ar/images/autos/Volkswagen-Amarok-2018/783/783745_1_tr.jpg?edit=5",
+    "url": "https://www.deruedas.com.ar/vendo/Volkswagen/Amarok/Usado/Mendoza?cod=783745",
+    "vendedor": ""
+   },
+   {
+    "fuente": "deruedas",
+    "id": "dr-816739",
+    "marca": "Volkswagen",
+    "modelo": "Amarok",
+    "version": "(L10) 2.0TD 4x4 C/D Highline",
+    "anio": 2012,
+    "km": 190000,
+    "combustible": "Diesel",
+    "precio": 25900000,
+    "moneda": "ARS",
+    "provincia": "Mendoza",
+    "localidad": "Guaymallén",
+    "foto": "https://www.deruedas.com.ar/images/autos/Volkswagen-Amarok-2012/816/816739_1_tr.jpg?edit=4",
+    "url": "https://www.deruedas.com.ar/vendo/Volkswagen/Amarok/Usado/Mendoza?cod=816739",
+    "vendedor": "Agencia"
+   },
+   {
+    "fuente": "deruedas",
+    "id": "dr-824362",
+    "marca": "Volkswagen",
+    "modelo": "Amarok",
+    "version": "(L17) 2.0TD 4x4 C/D Comfortline 180cv",
+    "anio": 2017,
+    "km": null,
+    "combustible": "Diesel",
+    "precio": 31500000,
+    "moneda": "ARS",
+    "provincia": "Mendoza",
+    "localidad": "Rivadavia",
+    "foto": "https://www.deruedas.com.ar/images/autos/Volkswagen-Amarok-2017/824/824362_1_tr.jpg?edit=2",
+    "url": "https://www.deruedas.com.ar/vendo/Volkswagen/Amarok/Usado/Mendoza?cod=824362",
+    "vendedor": "Agencia"
+   },
+   {
+    "fuente": "deruedas",
+    "id": "dr-829194",
+    "marca": "Volkswagen",
+    "modelo": "Amarok",
+    "version": "(L10) 2.0TD 4x2 C/D Starline 163cv",
+    "anio": 2011,
+    "km": 208000,
+    "combustible": "Diesel",
+    "precio": 22000000,
+    "moneda": "ARS",
+    "provincia": "Mendoza",
+    "localidad": "Godoy Cruz",
+    "foto": "https://www.deruedas.com.ar/images/autos/Volkswagen-Amarok-2011/829/829194_1_tr.jpg?edit=2",
+    "url": "https://www.deruedas.com.ar/vendo/Volkswagen/Amarok/Usado/Mendoza?cod=829194",
+    "vendedor": ""
+   }
+  ]
+ }
+]
