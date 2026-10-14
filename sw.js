@@ -27,6 +27,7 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.hostname.endsWith('google.com') || url.hostname.endsWith('googleusercontent.com')) return; // datos en vivo
+  if (url.pathname.includes('/radar/data/')) return; // stock del Radar de Usados: siempre el último
 
   // Páginas HTML → red primero
   if (req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html')) {

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>X5 Cuyo · Radar de Usados</title>
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="../icon-192.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../x5-theme.css">
+<style>
+  /* Radar de Usados — en prueba. No tiene botón en el Hub ni está en la caché de la app. */
+  .x5-wrap { max-width: 1100px; }
+  .lab { font-size: .62rem; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--dom); border: 1px solid var(--dom-soft); background: var(--dom-soft); padding: 4px 8px; border-radius: 999px; }
+  .estado { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
+  .estado .chip { font-size: .72rem; }
+  .barra { display: grid; gap: 10px; margin-bottom: 14px; }
+  .filtros { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; }
+  .filtros input, .filtros select, .cfg input, .cfg select { width: 100%; min-width: 0; font: 500 .85rem var(--font); color: var(--text); background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: var(--radius-sm); padding: 10px 12px; }
+  .cfg { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; align-items: end; }
+  .cfg label { display: grid; gap: 5px; font-size: .66rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+  .cfg .formula { grid-column: 1 / -1; font-size: .78rem; color: var(--muted); }
+  .cfg .formula b { color: var(--dom); }
+  details.card > summary { cursor: pointer; font-weight: 700; font-size: .85rem; list-style: none; display: flex; justify-content: space-between; }
+  details.card > summary::after { content: '▾'; color: var(--muted); }
+  details[open].card > summary { margin-bottom: 12px; }
+  .cuenta { font-size: .78rem; color: var(--muted); margin: 0 2px 10px; }
+
+  /* Vista cliente */
+  .grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+  .auto { all: unset; cursor: pointer; display: grid; grid-template-rows: auto 1fr; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: border-color .2s, transform .15s; }
+  .auto:hover { border-color: var(--line-strong); }
+  .auto:active { transform: scale(.99); }
+  .auto:focus-visible { outline: 2px solid var(--x5); outline-offset: 2px; }
+  .foto { aspect-ratio: 4 / 3; max-width: 100%; background: var(--surface-3); position: relative; overflow: hidden; }
+  .foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .foto .sin { position: absolute; inset: 0; display: grid; place-items: center; color: var(--faint); font-size: .75rem; }
+  .foto .n { position: absolute; right: 8px; bottom: 8px; font-size: .68rem; font-weight: 700; background: rgba(0,0,0,.6); color: #fff; padding: 3px 7px; border-radius: 6px; }
+  .info { padding: 12px 14px 14px; display: grid; gap: 6px; align-content: start; }
+  .info h3 { margin: 0; font-size: 1rem; font-weight: 700; }
+  .info .ver { font-size: .78rem; color: var(--muted); line-height: 1.3; }
+  .specs { display: flex; flex-wrap: wrap; gap: 5px; }
+  .specs span { font-size: .7rem; color: var(--muted); background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; padding: 2px 7px; }
+  .precio { font-size: 1.35rem; font-weight: 800; letter-spacing: -.3px; margin-top: 4px; }
+  .precio small { display: block; font-size: .7rem; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+
+  /* Vista interna */
+  .lista { display: grid; gap: 8px; }
+  .fila { display: grid; grid-template-columns: 92px minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)) auto; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 8px 12px 8px 8px; cursor: pointer; }
+  .fila:hover { border-color: var(--line-strong); }
+  .fila .foto { border-radius: 9px; }
+  .fila .t { font-weight: 700; font-size: .9rem; }
+  .fila .s { font-size: .72rem; color: var(--muted); line-height: 1.35; }
+  .fila .k { font-size: .62rem; letter-spacing: 1px; text-transform: uppercase; color: var(--faint); font-weight: 700; }
+  .fila .v { font-weight: 700; font-size: .92rem; }
+  .pos { color: var(--ok); } .neg { color: var(--bad); }
+
+  /* Novedades */
+  .ev { display: grid; grid-template-columns: 80px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); font-size: .85rem; }
+  .ev:last-child { border-bottom: 0; }
+  .ev .f { font-size: .72rem; color: var(--muted); }
+
+  /* Ficha */
+  dialog { width: min(760px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); padding: 0; border: 1px solid var(--line-strong); border-radius: 20px; background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+  dialog::backdrop { background: rgba(0,0,0,.65); }
+  .galeria { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; background: #000; }
+  .galeria img { flex: 0 0 100%; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; scroll-snap-align: center; }
+  .ficha { padding: 16px 18px 18px; display: grid; gap: 12px; }
+  .ficha h2 { margin: 0; font-size: 1.3rem; }
+  .tabla { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 16px; font-size: .85rem; }
+  .tabla div span { display: block; font-size: .66rem; letter-spacing: 1px; text-transform: uppercase; color: var(--faint); font-weight: 700; }
+  .acciones { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .cerrar { position: absolute; top: 10px; right: 10px; z-index: 2; }
+  .interno { background: var(--dom-soft); border: 1px dashed color-mix(in srgb, var(--dom) 45%, transparent); border-radius: 12px; padding: 10px 12px; font-size: .8rem; display: grid; gap: 4px; }
+  .interno a { color: var(--x5); }
+  .vacio { padding: 40px 16px; text-align: center; color: var(--muted); }
+
+  @media (max-width: 760px) {
+    .filtros { grid-template-columns: 1fr 1fr; }
+    .filtros .q { grid-column: 1 / -1; }
+    .cfg { grid-template-columns: 1fr 1fr; }
+    .fila { grid-template-columns: 76px minmax(0, 1fr) auto; }
+    .fila .c-guia, .fila .c-ag { display: none; }
+  }
+</style>
+</head>
+<body>
+<header class="x5-top">
+  <a class="x5-back" href="../index.html" aria-label="Volver al Hub"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a>
+  <div><h1>Radar de Usados</h1><div class="sub">Stock de agencias con precio X5</div></div>
+  <span class="spacer"></span><span class="lab">En prueba</span>
+</header>
+
+<main class="x5-wrap">
+  <div class="estado" id="estado"></div>
+
+  <div class="barra">
+    <div class="seg" role="tablist">
+      <button class="active" data-v="cliente">Cliente</button>
+      <button data-v="interno">Interno</button>
+      <button data-v="novedades">Novedades</button>
+    </div>
+
+    <details class="card" id="cfg-box">
+      <summary>Precio X5</summary>
+      <div class="cfg">
+        <label>Regla<select id="regla"><option value="fijo">Precio agencia + monto fijo</option><option value="guia">Guía + %</option></select></label>
+        <label id="l-fijo">Monto fijo $<input id="fijo" type="number" inputmode="numeric" step="500000" value="6000000"></label>
+        <label id="l-pct" hidden>Margen sobre guía %<input id="pct" type="number" inputmode="decimal" step="1" value="20"></label>
+        <label>Papeles % (aparte)<input id="papeles" type="number" inputmode="decimal" step="1" value="10"></label>
+        <label>Dólar $<input id="usd" type="number" inputmode="numeric" step="10" value="1540"></label>
+        <div class="formula" id="formula"></div>
+      </div>
+    </details>
+
+    <div class="filtros">
+      <input class="q" id="q" type="search" placeholder="Buscar: Amarok, Hilux 2021, diésel…" aria-label="Buscar">
+      <select id="marca" aria-label="Marca"><option value="">Todas las marcas</option></select>
+      <select id="caja" aria-label="Caja"><option value="">Manual y automática</option><option value="man">Manual</option><option value="aut">Automática</option></select>
+      <select id="orden" aria-label="Ordenar">
+        <option value="nuevo">Recién publicados</option>
+        <option value="barato">Precio: menor a mayor</option>
+        <option value="caro">Precio: mayor a menor</option>
+        <option value="anio">Año: más nuevo</option>
+        <option value="km">Menos km</option>
+        <option value="guia">Mejor frente a guía</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="cuenta" id="cuenta"></div>
+  <section id="v-cliente" class="grilla"></section>
+  <section id="v-interno" class="lista" hidden></section>
+  <section id="v-novedades" class="card" hidden style="padding:0"></section>
+</main>
+
+<dialog id="ficha"></dialog>
+
+<script>
+(function () {
+  'use strict';
+  const $ = (s) => document.querySelector(s);
+  const esc = (v) => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const nf = new Intl.NumberFormat('es-AR');
+  const plata = (n) => n == null ? '—' : '$' + nf.format(Math.round(n));
+  const mill = (n) => n == null ? '—' : '$' + (n / 1e6).toLocaleString('es-AR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' M';
+  const r100k = (n) => Math.round(n / 1e5) * 1e5;
+  const fecha = (iso) => new Date(iso).toLocaleString('es-AR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+  const guardar = (k, v) => { try { localStorage.setItem('radar.' + k, v); } catch (e) {} };
+  const leer = (k) => { try { return localStorage.getItem('radar.' + k); } catch (e) { return null; } };
+
+  let DATA = null, NOV = null, vista = leer('vista') || 'cliente';
+  const AG = {};
+
+  ['regla', 'fijo', 'pct', 'papeles', 'usd'].forEach(id => { const v = leer(id); if (v != null) $('#' + id).value = v; });
+
+  const P = () => ({
+    regla: $('#regla').value, fijo: +$('#fijo').value || 0, pct: (+$('#pct').value || 0) / 100,
+    papeles: (+$('#papeles').value || 0) / 100, usd: +$('#usd').value || 1,
+  });
+
+  function calcular(a, p) {
+    const costo = a.precio == null ? null : (a.moneda === 'USD' ? a.precio * p.usd : a.precio);
+    const ref = a.guia ? (a.guia.mejor?.valor ?? a.guia.med) : null;
+    let x5 = null;
+    if (p.regla === 'fijo' && costo != null) x5 = r100k(costo + p.fijo);
+    if (p.regla === 'guia' && ref != null) x5 = r100k(ref * (1 + p.pct));
+    return { costo, ref, x5, calle: x5 != null ? r100k(x5 * (1 + p.papeles)) : null,
+      margen: x5 != null && costo != null ? x5 - costo : null, vsGuia: x5 != null && ref ? x5 / ref - 1 : null };
+  }
+
+  function filtrados() {
+    const p = P(), q = $('#q').value.trim().toLowerCase(), m = $('#marca').value, c = $('#caja').value;
+    let L = DATA.autos.map(a => ({ a, k: calcular(a, p) }))
+      .filter(({ a }) => (!m || a.marca === m) && (!c || (c === 'aut') === /autom/i.test(a.caja))
+        && (!q || `${a.marca} ${a.modelo} ${a.version} ${a.anio} ${a.combustible} ${a.color}`.toLowerCase().includes(q)));
+    const o = $('#orden').value;
+    const key = { nuevo: x => -Date.parse(x.a.alta || x.a.publicado), barato: x => x.k.x5 ?? 1e15, caro: x => -(x.k.x5 ?? -1), anio: x => -x.a.anio * 1e7 + (x.a.km || 0), km: x => x.a.km ?? 1e9, guia: x => x.k.vsGuia ?? 1e9 }[o];
+    return L.sort((x, y) => key(x) - key(y));
+  }
+
+  const img = (src, alt) => src ? `<img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="${esc(src)}" alt="${esc(alt)}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'sin',textContent:'Foto no disponible'}))">` : '<span class="sin">Sin foto</span>';
+
+  function render() {
+    const p = P();
+    $('#l-fijo').hidden = p.regla !== 'fijo';
+    $('#l-pct').hidden = p.regla !== 'guia';
+    const pc = Math.round((1 + p.pct) * (1 + p.papeles) * 1000 - 1000) / 10;
+    $('#formula').innerHTML = p.regla === 'fijo'
+      ? `Precio X5 = precio de la agencia + <b>${plata(p.fijo)}</b>. Puesto en calle = precio X5 + ${Math.round(p.papeles * 100)}% de papeles.`
+      : `Precio X5 = guía + <b>${Math.round(p.pct * 100)}%</b>. Con ${Math.round(p.papeles * 100)}% de papeles, puesto en calle queda en guía + <b>${pc.toLocaleString('es-AR')}%</b>.`;
+    document.querySelectorAll('.seg button').forEach(b => b.classList.toggle('active', b.dataset.v === vista));
+    ['cliente', 'interno', 'novedades'].forEach(v => $('#v-' + v).hidden = v !== vista);
+    $('#cfg-box').hidden = vista === 'cliente';
+    $('#estado').hidden = vista === 'cliente';
+    if (!DATA) return;
+    if (vista === 'novedades') return renderNovedades();
+    const L = filtrados().filter(x => vista === 'interno' || x.k.x5 != null);
+    $('#cuenta').textContent = `${L.length} ${L.length === 1 ? 'unidad' : 'unidades'}${vista === 'cliente' ? ' disponibles' : ''}`;
+    if (!L.length) { $('#v-' + vista).innerHTML = '<div class="vacio">Ninguna unidad coincide con la búsqueda.</div>'; return; }
+    if (vista === 'cliente') {
+      $('#v-cliente').innerHTML = L.map(({ a, k }) => `
+        <button class="auto" data-id="${esc(a.id)}">
+          <div class="foto">${img(a.fotos[0], `${a.marca} ${a.modelo}`)}${a.fotos.length > 1 ? `<span class="n">${a.fotos.length} fotos</span>` : ''}</div>
+          <div class="info">
+            <h3>${esc(a.marca)} ${esc(a.modelo)}</h3>
+            <div class="ver">${esc(a.version)}</div>
+            <div class="specs"><span>${a.anio}</span><span>${a.km != null ? nf.format(a.km) + ' km' : 's/d km'}</span><span>${esc(a.caja)}</span>${a.combustible ? `<span>${esc(a.combustible)}</span>` : ''}</div>
+            <div class="precio num">${plata(k.x5)}<small>+ papeles · puesto en calle ${plata(k.calle)}</small></div>
+          </div>
+        </button>`).join('');
+    } else {
+      $('#v-interno').innerHTML = L.map(({ a, k }) => {
+        const ag = AG[a.agencia]?.nombre || a.agencia;
+        const vs = k.vsGuia;
+        return `<div class="fila" data-id="${esc(a.id)}" tabindex="0">
+          <div class="foto">${img(a.fotos[0], a.modelo)}</div>
+          <div><div class="t">${esc(a.marca)} ${esc(a.modelo)} ${a.anio}</div><div class="s">${esc(a.version)} · ${a.km != null ? nf.format(a.km) + ' km' : ''} · ${esc(a.caja)}<br>${esc(ag)} · publicado ${fecha(a.alta || a.publicado).split(',')[0]}</div></div>
+          <div class="c-ag"><div class="k">Agencia</div><div class="v num">${a.precio == null ? 'A confirmar' : a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio) : mill(a.precio)}</div></div>
+          <div class="c-guia"><div class="k">Guía${a.guia?.mejor ? '' : ' (mediana)'}</div><div class="v num">${mill(k.ref)}</div></div>
+          <div><div class="k">Precio X5</div><div class="v num">${mill(k.x5)}</div><div class="s num">${k.margen != null ? `<span class="${k.margen >= 0 ? 'pos' : 'neg'}">${k.margen >= 0 ? '+' : '−'}${mill(Math.abs(k.margen))}</span>` : ''}</div></div>
+          <div>${vs == null ? '<span class="chip">sin guía</span>' : `<span class="chip ${vs <= 0 ? 'ok' : vs <= .15 ? 'x5' : vs <= .3 ? 'warn' : 'bad'}">guía ${vs >= 0 ? '+' : '−'}${Math.abs(Math.round(vs * 100))}%</span>`}</div>
+        </div>`;
+      }).join('');
+    }
+  }
+
+  async function renderNovedades() {
+    $('#cuenta').textContent = 'Últimos 90 días';
+    if (!NOV) {
+      try { NOV = await (await fetch('data/novedades.json', { cache: 'no-store' })).json(); } catch (e) { NOV = { eventos: [] }; }
+    }
+    const ev = NOV.eventos;
+    if (!ev.length) { $('#v-novedades').innerHTML = '<div class="vacio">Todavía no hay novedades. A partir de la próxima lectura vas a ver acá los autos nuevos, los que se vendieron y los cambios de precio.</div>'; return; }
+    const tipo = { nuevo: ['ok', 'Nuevo'], baja: ['bad', 'Salió'], precio: ['warn', 'Precio'] };
+    const fmt = (e, v) => v == null ? '—' : e.moneda === 'USD' ? 'U$S ' + nf.format(v) : mill(v);
+    $('#v-novedades').innerHTML = ev.map(e => `<div class="ev"><span class="chip ${tipo[e.tipo][0]}">${tipo[e.tipo][1]}</span>
+      <div><b>${esc(e.auto)}</b><div class="f">${fecha(e.fecha)}${e.tipo === 'baja' && e.dias != null ? ` · estuvo ${e.dias} días publicado` : ''}</div></div>
+      <div class="num">${e.tipo === 'precio' ? `${fmt(e, e.antes)} → ${fmt(e, e.precio)}` : fmt(e, e.precio)}</div></div>`).join('');
+  }
+
+  function textoCliente(a, k) {
+    return [`🚗 *${a.marca} ${a.modelo} ${a.anio}*`, a.version, `📍 ${a.km != null ? nf.format(a.km) + ' km' : ''} · ${a.caja}${a.combustible ? ' · ' + a.combustible : ''}${a.color ? ' · ' + a.color : ''}`,
+      `💰 *${plata(k.x5)}* + papeles`, `Puesto en calle: ${plata(k.calle)}`, '', 'X5 Argentina · Región Cuyo'].filter(Boolean).join('\n');
+  }
+
+  function abrirFicha(id) {
+    const a = DATA.autos.find(x => x.id === id); if (!a) return;
+    const k = calcular(a, P()), interno = vista === 'interno';
+    const d = $('#ficha');
+    d.innerHTML = `<div style="position:relative">
+      <button class="btn btn-ghost btn-icon cerrar" aria-label="Cerrar" data-cerrar>✕</button>
+      <div class="galeria">${a.fotos.map((f, i) => `<img src="${esc(f)}" referrerpolicy="no-referrer" loading="${i < 2 ? 'eager' : 'lazy'}" alt="${esc(a.modelo)} foto ${i + 1}">`).join('') || '<div class="foto" style="flex:1"><span class="sin">Sin fotos</span></div>'}</div>
+      <div class="ficha">
+        <div><h2>${esc(a.marca)} ${esc(a.modelo)} ${a.anio}</h2><div class="ver" style="color:var(--muted)">${esc(a.version)}</div></div>
+        <div class="precio num">${plata(k.x5)}<small>+ papeles · puesto en calle ${plata(k.calle)}</small></div>
+        <div class="tabla">
+          <div><span>Kilómetros</span>${a.km != null ? nf.format(a.km) : 's/d'}</div><div><span>Caja</span>${esc(a.caja) || 's/d'}</div>
+          <div><span>Combustible</span>${esc(a.combustible) || 's/d'}</div><div><span>Color</span>${esc(a.color) || 's/d'}</div>
+        </div>
+        ${a.equipamiento ? `<div class="tabla" style="grid-template-columns:1fr"><div><span>Equipamiento</span>${esc(a.equipamiento)}</div></div>` : ''}
+        ${interno ? `<div class="interno">
+          <div><b>${esc(AG[a.agencia]?.nombre || a.agencia)}</b> (${esc(AG[a.agencia]?.ciudad || '')}) · precio publicado ${a.precio == null ? 'a confirmar' : a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio) : plata(a.precio)}${a.precio_sin_imp ? ` · sin impuestos ${a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio_sin_imp) : plata(a.precio_sin_imp)}` : ''}</div>
+          <div>Guía ${esc(DATA.guia?.fuente || '')}: ${a.guia ? (a.guia.mejor ? `${esc(a.guia.mejor.version)} → <b>${plata(a.guia.mejor.valor)}</b>` : 'versión no identificada') + ` · rango ${mill(a.guia.min)} – ${mill(a.guia.max)} (${a.guia.n} versiones)` : 'sin coincidencia'}</div>
+          <div>Margen X5: <b>${k.margen != null ? plata(k.margen) : '—'}</b>${k.vsGuia != null ? ` · precio X5 a guía ${k.vsGuia >= 0 ? '+' : '−'}${Math.abs(Math.round(k.vsGuia * 100))}%` : ''}</div>
+          <div><a href="${esc(a.url)}" target="_blank" rel="noopener">Ver publicación original</a></div>
+        </div>` : ''}
+        <div class="acciones">
+          <button class="btn btn-wsp" data-copiar>Copiar para WhatsApp</button>
+          <button class="btn btn-ghost" data-compartir>Compartir</button>
+        </div>
+      </div></div>`;
+    d.onclick = async (e) => {
+      if (e.target === d || e.target.closest('[data-cerrar]')) return d.close();
+      const txt = textoCliente(a, k) + (a.fotos[0] ? '\n' + a.fotos[0] : '');
+      if (e.target.closest('[data-copiar]')) {
+        try { await navigator.clipboard.writeText(txt); e.target.textContent = 'Copiado ✓'; } catch (err) { prompt('Copiá el texto:', txt); }
+      }
+      if (e.target.closest('[data-compartir]')) {
+        if (navigator.share) navigator.share({ title: `${a.marca} ${a.modelo} ${a.anio}`, text: txt }).catch(() => {});
+        else { try { await navigator.clipboard.writeText(txt); e.target.textContent = 'Texto copiado'; } catch (err) {} }
+      }
+    };
+    d.showModal();
+  }
+
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('.seg button'); if (t) { vista = t.dataset.v; guardar('vista', vista); render(); return; }
+    const c = e.target.closest('[data-id]'); if (c && !e.target.closest('dialog')) abrirFicha(c.dataset.id);
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.matches('.fila')) abrirFicha(e.target.dataset.id); });
+  ['regla', 'fijo', 'pct', 'papeles', 'usd'].forEach(id => $('#' + id).addEventListener('input', () => { guardar(id, $('#' + id).value); render(); }));
+  ['q', 'marca', 'caja', 'orden'].forEach(id => $('#' + id).addEventListener('input', render));
+
+  render();
+  fetch('data/stock.json', { cache: 'no-store' }).then(r => r.json()).then(d => {
+    DATA = d;
+    d.agencias.forEach(a => AG[a.id] = a);
+    $('#estado').innerHTML = d.agencias.map(a => `<span class="chip ${a.estado === 'ok' ? 'ok' : 'bad'}" title="${esc(a.detalle || '')}">${esc(a.nombre)} · ${a.autos} autos · ${a.estado === 'ok' ? 'leído ' + fecha(a.actualizado) : 'falló la lectura, se muestra el stock anterior'}</span>`).join('');
+    const marcas = [...new Set(d.autos.map(a => a.marca).filter(Boolean))].sort();
+    $('#marca').insertAdjacentHTML('beforeend', marcas.map(m => `<option>${esc(m)}</option>`).join(''));
+    render();
+  }).catch(() => { $('#v-cliente').innerHTML = '<div class="vacio">No se pudo cargar el stock. Revisá la conexión y volvé a abrir la página.</div>'; });
+})();
+</script>
+</body>
+</html>

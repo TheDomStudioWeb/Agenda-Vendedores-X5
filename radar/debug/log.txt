@@ -1,6 +1,0 @@
-catalogo.html	200	403703 bytes	1277 ms	
-catalogo-p2.html	200	165721 bytes	1541 ms	
-ficha.html	404	171004 bytes	1409 ms	
-wp-json-root.json	200	934939 bytes	1105 ms	
-wp-posts.json	200	291666 bytes	3454 ms	102
-wp-types.json	200	16237 bytes	897 ms	
