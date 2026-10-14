@@ -78,10 +78,20 @@ export function parsear(post) {
 export async function leer() {
   const autos = [];
   for (let pagina = 1, total = 1; pagina <= total; pagina++) {
-    const r = await fetch(`${API}?per_page=100&page=${pagina}&_fields=${CAMPOS}`, { headers: UA, signal: AbortSignal.timeout(90000) });
-    if (!r.ok) throw new Error(`API respondió ${r.status} en la página ${pagina}`);
-    total = parseInt(r.headers.get('x-wp-totalpages') || '1', 10);
-    for (const post of await r.json()) autos.push(parsear(post));
+    let posts;
+    for (let intento = 1; ; intento++) { // reintenta cortes momentáneos de la conexión
+      try {
+        const r = await fetch(`${API}?per_page=100&page=${pagina}&_fields=${CAMPOS}`, { headers: UA, signal: AbortSignal.timeout(90000) });
+        if (!r.ok) throw new Error(`API respondió ${r.status} en la página ${pagina}`);
+        total = parseInt(r.headers.get('x-wp-totalpages') || '1', 10);
+        posts = await r.json();
+        break;
+      } catch (e) {
+        if (intento >= 3) throw e;
+        await new Promise(res => setTimeout(res, 15000 * intento));
+      }
+    }
+    for (const post of posts) autos.push(parsear(post));
   }
   return autos.filter(a => a.tipo === 'auto');
 }

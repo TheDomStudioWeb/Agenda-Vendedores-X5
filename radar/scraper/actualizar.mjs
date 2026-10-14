@@ -30,7 +30,7 @@ for (const ag of AGENCIAS) {
 
   if (error) {
     fallas++;
-    autos.push(...previos);
+    autos.push(...previos.filter(a => a.anio && a.fotos.length));
     estados.push({ ...ag.agencia, estado: 'error', detalle: error, autos: previos.length, revisado: ahora, actualizado: anterior.agencias.find(x => x.id === ag.agencia.id)?.actualizado || null });
     console.error(`✗ ${ag.agencia.nombre}: ${error}. Se conserva el stock anterior (${previos.length}).`);
     continue;
