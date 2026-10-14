@@ -48,7 +48,7 @@
 
   /* Vista interna */
   .lista { display: grid; gap: 8px; }
-  .fila { display: grid; grid-template-columns: 92px minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)) auto; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 8px 12px 8px 8px; cursor: pointer; }
+  .fila { display: grid; grid-template-columns: 92px minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 8px 12px 8px 8px; cursor: pointer; }
   .fila:hover { border-color: var(--line-strong); }
   .fila .foto { border-radius: 9px; }
   .fila .t { font-weight: 700; font-size: .9rem; }
@@ -56,6 +56,8 @@
   .fila .k { font-size: .62rem; letter-spacing: 1px; text-transform: uppercase; color: var(--faint); font-weight: 700; }
   .fila .v { font-weight: 700; font-size: .92rem; }
   .pos { color: var(--ok); } .neg { color: var(--bad); }
+  .fila .chip { white-space: nowrap; margin-top: 5px; font-size: .68rem; }
+  .galeria img { background: var(--surface-3); }
 
   /* Novedades */
   .ev { display: grid; grid-template-columns: 80px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); font-size: .85rem; }
@@ -82,6 +84,7 @@
     .filtros .q { grid-column: 1 / -1; }
     .cfg { grid-template-columns: 1fr 1fr; }
     .fila { grid-template-columns: 76px minmax(0, 1fr) auto; }
+    .fila .c-x5 { text-align: right; }
     .fila .c-guia, .fila .c-ag { display: none; }
   }
 </style>
@@ -147,7 +150,7 @@
   const plata = (n) => n == null ? '—' : '$' + nf.format(Math.round(n));
   const mill = (n) => n == null ? '—' : '$' + (n / 1e6).toLocaleString('es-AR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' M';
   const r100k = (n) => Math.round(n / 1e5) * 1e5;
-  const fecha = (iso) => new Date(iso).toLocaleString('es-AR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+  const fecha = (iso) => new Date(iso).toLocaleString('es-AR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false });
   const guardar = (k, v) => { try { localStorage.setItem('radar.' + k, v); } catch (e) {} };
   const leer = (k) => { try { return localStorage.getItem('radar.' + k); } catch (e) { return null; } };
 
@@ -220,8 +223,8 @@
           <div><div class="t">${esc(a.marca)} ${esc(a.modelo)} ${a.anio}</div><div class="s">${esc(a.version)} · ${a.km != null ? nf.format(a.km) + ' km' : ''} · ${esc(a.caja)}<br>${esc(ag)} · publicado ${fecha(a.alta || a.publicado).split(',')[0]}</div></div>
           <div class="c-ag"><div class="k">Agencia</div><div class="v num">${a.precio == null ? 'A confirmar' : a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio) : mill(a.precio)}</div></div>
           <div class="c-guia"><div class="k">Guía${a.guia?.mejor ? '' : ' (mediana)'}</div><div class="v num">${mill(k.ref)}</div></div>
-          <div><div class="k">Precio X5</div><div class="v num">${mill(k.x5)}</div><div class="s num">${k.margen != null ? `<span class="${k.margen >= 0 ? 'pos' : 'neg'}">${k.margen >= 0 ? '+' : '−'}${mill(Math.abs(k.margen))}</span>` : ''}</div></div>
-          <div>${vs == null ? '<span class="chip">sin guía</span>' : `<span class="chip ${vs <= 0 ? 'ok' : vs <= .15 ? 'x5' : vs <= .3 ? 'warn' : 'bad'}">guía ${vs >= 0 ? '+' : '−'}${Math.abs(Math.round(vs * 100))}%</span>`}</div>
+          <div class="c-x5"><div class="k">Precio X5</div><div class="v num">${mill(k.x5)}</div><div class="s num">${k.margen != null ? `<span class="${k.margen >= 0 ? 'pos' : 'neg'}">${k.margen >= 0 ? '+' : '−'}${mill(Math.abs(k.margen))}</span>` : ''}</div>
+            ${a.precio == null && P().regla === 'fijo' ? '<span class="chip">sin precio</span>' : vs == null ? '<span class="chip">sin guía</span>' : `<span class="chip ${vs <= 0 ? 'ok' : vs <= .15 ? 'x5' : vs <= .3 ? 'warn' : 'bad'}">guía ${vs >= 0 ? '+' : '−'}${Math.abs(Math.round(vs * 100))}%</span>`}</div>
         </div>`;
       }).join('');
     }
