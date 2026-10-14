@@ -35,6 +35,10 @@ for (const ag of AGENCIAS) {
     console.error(`✗ ${ag.agencia.nombre}: ${error}. Se conserva el stock anterior (${previos.length}).`);
     continue;
   }
+  // Publicaciones a medio cargar (sin año o sin fotos): no se muestran hasta que la agencia las complete
+  for (const a of lista.filter(a => !a.anio || !a.fotos.length))
+    revisar.push({ id: a.id, auto: `${a.marca} ${a.modelo}`, url: a.url, texto: 'publicación incompleta (sin año o sin fotos)' });
+  lista = lista.filter(a => a.anio && a.fotos.length);
   const ids = new Set();
   for (const a of lista) {
     ids.add(a.id);
