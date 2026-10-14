@@ -34,7 +34,7 @@ export function parsear(post) {
   const iH3 = cuerpo.search(/<h3 class="elementor-heading-title/);
   const modeloH3 = iH3 >= 0 ? limpiar(cuerpo.slice(iH3).match(/<h3[^>]*>([\s\S]*?)<\/h3>/)[1]) : limpiar(post.title?.rendered || '');
   const iModelo = titulos.indexOf(modeloH3);
-  const version = iModelo >= 0 && titulos[iModelo + 1] && !/^\$?\s*[\d\.U]/.test(titulos[iModelo + 1]) ? titulos[iModelo + 1] : '';
+  const version = iModelo >= 0 && titulos[iModelo + 1] && !/^(U\$S|\$)?\s*[\d\.,\s]+$/.test(titulos[iModelo + 1]) ? titulos[iModelo + 1] : '';
   const p1 = precio(porId('precio')), p2 = precio(porId('precio-impuestos'));
 
   // Ficha técnica en texto plano
