@@ -4,7 +4,7 @@ name: Guía de precios CCA
 on:
   push:
     branches: [main, radar-usados]
-    paths: ['radar/guia/*.pdf', 'radar/scraper/guia_cca.py']
+    paths: ['radar/guia/*.pdf', 'radar/scraper/guia_cca.py', '.github/workflows/guia-cca.yml']
   workflow_dispatch:
 permissions:
   contents: write
