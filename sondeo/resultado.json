@@ -1,0 +1,62 @@
+{
+ "ml_api": {
+  "status": 403,
+  "url": "https://api.mercadolibre.com/sites/MLA/search?category=MLA1744&q=gol%20trend%202015&limit=5",
+  "bytes": 67,
+  "gol": 0,
+  "precios": [],
+  "muestra": "{\"message\":\"forbidden\",\"error\":\"forbidden\",\"status\":403,\"cause\":[]}"
+ },
+ "ml_web": {
+  "status": 200,
+  "url": "https://autos.mercadolibre.com.ar/volkswagen/gol-trend/2015/",
+  "bytes": 1310148,
+  "gol": 673,
+  "precios": [],
+  "muestra": "<!DOCTYPE html><html lang=\"es-AR\" data-nordic-app-id=\"_n_dzPM2HcHMA_zX4qWcidP_g\" data-assets-prefix=\"https://http2.mlstatic.com/frontend-assets/search-nordic/\" data-static-markup=\"false\" data-loadable=\"true\"><head><meta charSet=\"utf-8\"/><link rel=\"preconnect\" href=\"https://http2.mlstatic.com\" crossorigin=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=5.0\"/><link rel=\"preload\" as=\"image\" href=\"https://http2.mlstatic.com/D_NQ_NP_818947-MLA74385786758_022024-O.jpg\"/><link rel=\"preload\" as=\"image\" href=\"https://http2.mlstatic.com/D_NQ_NP_799205-MLA745080306"
+ },
+ "deruedas": {
+  "status": 200,
+  "url": "https://www.deruedas.com.ar/bus.asp?pal=gol+trend+2015",
+  "bytes": 346366,
+  "gol": 6,
+  "precios": [
+   "$ 16.499.000",
+   "$ 17.000.000",
+   "$ 15.900.000",
+   "$ 7.950.000",
+   "$ 14.990.000"
+  ],
+  "muestra": "\r\n\r\n<!DOCTYPE html>\r\n\r\n<html lang=\"es-AR\">\r\n<head> \r\n<title id=\"tituloHead\"> Autos en Argentina, deRuedas</title>\r\n\r\n  <meta name=\"google\" content=\"notranslate\">\r\n\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\r\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\"> \t\t\r\n\t<meta name=\"description\" content=\"Encontrá en deRuedas todos los Vehículos en Argentina que buscás. El portal N° 1 en la Argentina de venta de  Vehículos en Argentina. Tenemos vehículos Usados y Nuevos totalmente financiados.\">\r\n\t\n\t<meta property=\"og:title\" content=\" Veh"
+ },
+ "autocosmos": {
+  "status": 200,
+  "url": "https://www.autocosmos.com.ar/auto/usado/volkswagen/gol-trend?anio=2015",
+  "bytes": 193407,
+  "gol": 303,
+  "precios": [
+   "$6.000.001",
+   "$8.000.000",
+   "$6.000.001",
+   "$8.000.000",
+   "$8.000.001"
+  ],
+  "muestra": "<!DOCTYPE html>\r\n<html lang=\"es-AR\">\r\n<head>\r\n\t<meta name=\"viewport\" content=\"width=device-width\" />\r\n\t<title>Volkswagen Gol Trend usados en Argentina</title>\r\n\t<link rel=\"canonical\" href=\"https://www.autocosmos.com.ar/auto/usado/volkswagen/gol-trend\" />\r\n\t<link rel=\"icon\" type=\"image/png\" href=\"/favicon-96x96.png\" sizes=\"96x96\" />\r\n\t<link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\" />\r\n\t<link rel=\"shortcut icon\" href=\"/favicon.ico\" />\r\n\t<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/apple-touch-icon.png\" />\r\n\t<link rel=\"manifest\" href=\"/site.webmanifest\" />\r\n\t<link rel=\"preconnec"
+ },
+ "autocity": {
+  "status": 403,
+  "url": "https://www.autocity.com.ar/usados",
+  "bytes": 75193,
+  "gol": 0,
+  "precios": [],
+  "muestra": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"cache-control\" content=\"no-store,max-age=0\" />\n    <meta name=\"robots\" content=\"noindex\" />\n    <title>403 - Forbidden</title>\n    <link href=\"https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CRoboto:400,700\" rel=\"stylesheet\">\n<style>\n    * {\n        box-sizing: border-box;\n        -moz-box-sizing: border-box;\n        -webkit-tap-highlight-color: transparent;\n    }\n    body {\n        margin: 0;\n        padding: 0;\n      "
+ },
+ "autocity_wp": {
+  "status": 403,
+  "url": "https://www.autocity.com.ar/wp-json/",
+  "bytes": 75193,
+  "gol": 0,
+  "precios": [],
+  "muestra": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"cache-control\" content=\"no-store,max-age=0\" />\n    <meta name=\"robots\" content=\"noindex\" />\n    <title>403 - Forbidden</title>\n    <link href=\"https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CRoboto:400,700\" rel=\"stylesheet\">\n<style>\n    * {\n        box-sizing: border-box;\n        -moz-box-sizing: border-box;\n        -webkit-tap-highlight-color: transparent;\n    }\n    body {\n        margin: 0;\n        padding: 0;\n      "
+ }
+}
