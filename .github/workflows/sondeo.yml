@@ -1,0 +1,17 @@
+name: Sondeo fuentes de compra
+on:
+  push:
+    branches: [sondeo-compras]
+permissions:
+  contents: write
+jobs:
+  sondeo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: node sondeo/sondeo.mjs
+      - run: |
+          git config user.name "radar-bot"; git config user.email "radar-bot@users.noreply.github.com"
+          git add sondeo && git commit -m "Sondeo: resultado" && git push
