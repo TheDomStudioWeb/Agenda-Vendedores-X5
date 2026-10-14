@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-14T17:38:07.695Z",
+ "actualizado": "2026-10-14T17:39:52.826Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -12,8 +12,8 @@
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
    "autos": 91,
-   "revisado": "2026-10-14T17:38:07.695Z",
-   "actualizado": "2026-10-14T17:38:07.695Z"
+   "revisado": "2026-10-14T17:39:52.826Z",
+   "actualizado": "2026-10-14T17:39:52.826Z"
   }
  ],
  "autos": [
@@ -6166,7 +6166,7 @@
   {
    "id": "maipu-167218",
    "tipo": "auto",
-   "marca": "",
+   "marca": "Ford",
    "modelo": "Focus",
    "version": "",
    "anio": 2016,
@@ -6202,7 +6202,47 @@
    "modificado": "2026-09-02T16:26:17",
    "agencia": "maipu",
    "alta": "2026-06-02T12:42:35",
-   "guia": null
+   "guia": {
+    "min": 12754000,
+    "med": 15204000,
+    "max": 16370000,
+    "n": 8,
+    "mejor": null,
+    "versiones": [
+     [
+      "FOCUS KINETIC DESIGN ATTRACTION 4P 1,6 S 2016",
+      12754000
+     ],
+     [
+      "FOCUS KINETIC DESIGN ATTRACTION 5P 1,6 S 2016",
+      13170000
+     ],
+     [
+      "FOCUS KINETIC DESIGN ATTRACTION 4P 2,0 SE 2016",
+      13562000
+     ],
+     [
+      "FOCUS KINETIC DESIGN ATTRACTION 5P 2,0 SE 2016",
+      13993000
+     ],
+     [
+      "FOCUS KINETIC DESIGN ATTRACTION 4P 2,0 SE PLUS 2016",
+      15204000
+     ],
+     [
+      "FOCUS KINETIC DESIGN ATTRACTION 5P 2,0 SE PLUS 2016",
+      15367000
+     ],
+     [
+      "FOCUS KINETIC DESIGN ATTRACTION 4P 2,0 TITANIUM 2016",
+      16271000
+     ],
+     [
+      "FOCUS KINETIC DESIGN ATTRACTION 5P 2,0 TITANIUM 2016",
+      16370000
+     ]
+    ]
+   }
   },
   {
    "id": "maipu-166848",
@@ -6305,7 +6345,7 @@
   {
    "id": "maipu-166768",
    "tipo": "auto",
-   "marca": "",
+   "marca": "Volkswagen",
    "modelo": "Tiguan",
    "version": "",
    "anio": 2023,
@@ -6343,12 +6383,36 @@
    "modificado": "2026-05-29T12:09:02",
    "agencia": "maipu",
    "alta": "2026-05-27T17:55:14",
-   "guia": null
+   "guia": {
+    "min": 37206000,
+    "med": 44610000,
+    "max": 49719000,
+    "n": 4,
+    "mejor": null,
+    "versiones": [
+     [
+      "TIGUAN ALLSPACE 5P 250 TSI DSG 2021",
+      37206000
+     ],
+     [
+      "TIGUAN ALLSPACE 5P 350 TSI COMFORTLINE 4MOTION DSG 2021",
+      41654000
+     ],
+     [
+      "TIGUAN ALLSPACE 5P 350 TSI LIFE 4MOTION 7DSG",
+      44610000
+     ],
+     [
+      "TIGUAN ALLSPACE 5P 350 TSI HIGHLINE 4MOTION DSG 2021",
+      49719000
+     ]
+    ]
+   }
   },
   {
    "id": "maipu-166637",
    "tipo": "auto",
-   "marca": "",
+   "marca": "Audi",
    "modelo": "Q5",
    "version": "",
    "anio": 2019,
@@ -6384,12 +6448,32 @@
    "modificado": "2026-09-25T17:14:02",
    "agencia": "maipu",
    "alta": "2026-05-27T14:47:36",
-   "guia": null
+   "guia": {
+    "min": 38052000,
+    "med": 43760000,
+    "max": 52129000,
+    "n": 3,
+    "mejor": null,
+    "versiones": [
+     [
+      "Q 5 5P 2,0 TFSI QUATTRO 252CV S-TRONIC 2017",
+      38052000
+     ],
+     [
+      "Q 5 5P 2,0 TFSI QUATTRO 252CV S-TRONIC SECURITY",
+      43760000
+     ],
+     [
+      "Q 5 5P 3,0 TFSI 354CV QUATTRO TIPT S 2017",
+      52129000
+     ]
+    ]
+   }
   },
   {
    "id": "maipu-166048",
    "tipo": "auto",
-   "marca": "",
+   "marca": "Chevrolet",
    "modelo": "Captiva",
    "version": "",
    "anio": 2026,
@@ -6424,12 +6508,24 @@
    "modificado": "2026-10-08T10:31:05",
    "agencia": "maipu",
    "alta": "2026-05-21T14:29:42",
-   "guia": null
+   "guia": {
+    "min": 54872000,
+    "med": 54872000,
+    "max": 54872000,
+    "n": 1,
+    "mejor": null,
+    "versiones": [
+     [
+      "CAPTIVA 5P 1,5 T PHEV PREMIER",
+      54872000
+     ]
+    ]
+   }
   },
   {
    "id": "maipu-165632",
    "tipo": "auto",
-   "marca": "",
+   "marca": "Fiat",
    "modelo": "Palio",
    "version": "",
    "anio": 2014,
@@ -6465,7 +6561,99 @@
    "modificado": "2026-07-02T15:58:08",
    "agencia": "maipu",
    "alta": "2026-05-19T10:03:38",
-   "guia": null
+   "guia": {
+    "min": 8830000,
+    "med": 11426000,
+    "max": 13885000,
+    "n": 21,
+    "mejor": null,
+    "versiones": [
+     [
+      "PALIO 3P 1,4 FIRE",
+      8830000
+     ],
+     [
+      "PALIO 5P 1,4 FIRE",
+      9135000
+     ],
+     [
+      "PALIO 3P 1,4 FIRE CONFORT",
+      9481000
+     ],
+     [
+      "PALIO 3P 1,4 FIRE TOP",
+      9758000
+     ],
+     [
+      "PALIO 5P 1,4 FIRE CONFORT",
+      9785000
+     ],
+     [
+      "PALIO 5P 1,4 FIRE TOP",
+      10062000
+     ],
+     [
+      "PALIO 5P 1,4 ATTRACTIVE PACK SEG",
+      10689000
+     ],
+     [
+      "PALIO WEEKEND 1,4 ATTRACTIVE",
+      10956000
+     ],
+     [
+      "PALIO 5P 1,6 ESSENCE PACK SEG",
+      10998000
+     ],
+     [
+      "PALIO WEEKEND 1,4 ATTRACTIVE ACTIVE",
+      11272000
+     ],
+     [
+      "PALIO WEEKEND 1,4 ATTRACTIVE SEG",
+      11426000
+     ],
+     [
+      "PALIO 5P 1,6 ESSENCE DUALOGIC PACK SEG",
+      11537000
+     ],
+     [
+      "PALIO 5P 1,6 SPORTING PACK SEG",
+      11555000
+     ],
+     [
+      "PALIO WEEKEND 1,4 TREKKING",
+      11721000
+     ],
+     [
+      "PALIO WEEKEND 1,4 TREKKING SEG",
+      12024000
+     ],
+     [
+      "PALIO WEEKEND 1,6 ADVENTURE",
+      13079000
+     ],
+     [
+      "PALIO WEEKEND 1,6 ADVENTURE SEG",
+      13360000
+     ],
+     [
+      "PALIO WEEKEND 1,6 ADVENTURE LOCKER",
+      13428000
+     ],
+     [
+      "PALIO WEEKEND 1,6 ADVENTURE LOCKER SEG",
+      13562000
+     ],
+     [
+      "PALIO WEEKEND 1,6 ADVENTURE SEG XTREME",
+      13768000
+     ],
+     [
+      "PALIO WEEKEND 1,6 ADVENTURE LOCKER SEG XTREME",
+      13885000
+     ]
+    ]
+   }
   },
   {
    "id": "maipu-165282",
