@@ -34,7 +34,13 @@ export function parsear(post) {
   const iH3 = cuerpo.search(/<h3 class="elementor-heading-title/);
   const modeloH3 = iH3 >= 0 ? limpiar(cuerpo.slice(iH3).match(/<h3[^>]*>([\s\S]*?)<\/h3>/)[1]) : limpiar(post.title?.rendered || '');
   const iModelo = titulos.indexOf(modeloH3);
-  const version = iModelo >= 0 && titulos[iModelo + 1] && !/^(U\$S|\$)?\s*[\d\.,\s]+$/.test(titulos[iModelo + 1]) ? titulos[iModelo + 1] : '';
+  const esPrecio = (t) => /U\$S|\$/.test(t) || /^\d{4,}$/.test(t.replace(/[\.\s]/g, ''));
+  let version = iModelo >= 0 && titulos[iModelo + 1] && !esPrecio(titulos[iModelo + 1]) ? titulos[iModelo + 1] : '';
+  if (!version) { // plantilla vieja: "Focus 1.6L N Mt S" en un solo título
+    const base = modeloH3.toLowerCase();
+    const t = titulos.find(x => x.toLowerCase().startsWith(base + ' '));
+    if (t) version = t.slice(modeloH3.length).trim();
+  }
   const p1 = precio(porId('precio')), p2 = precio(porId('precio-impuestos'));
 
   // Ficha técnica en texto plano

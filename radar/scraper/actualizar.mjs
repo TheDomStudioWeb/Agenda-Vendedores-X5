@@ -40,7 +40,7 @@ for (const ag of AGENCIAS) {
     ids.add(a.id);
     const prev = previoPorId.get(a.id);
     a.agencia = ag.agencia.id;
-    if (!a.marca && guia) a.marca = marcaPorModelo(a.modelo, guia);
+    if (!a.marca && guia) a.marca = marcaPorModelo(a, guia);
     if (a._texto) revisar.push({ id: a.id, auto: `${a.marca} ${a.modelo} ${a.anio}`, url: a.url, texto: a._texto });
     delete a._texto;
     a.alta = prev?.alta || (anterior.autos.length ? ahora : a.publicado);

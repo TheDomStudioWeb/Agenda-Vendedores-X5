@@ -37,10 +37,17 @@ export function cruzar(auto, guia, anioActual = new Date().getFullYear()) {
 }
 
 // Si la agencia no informa la marca, se busca el modelo en la guía (solo si aparece en una única marca).
-export function marcaPorModelo(modelo, guia) {
-  const vs = variantes(modelo);
+export function marcaPorModelo(auto, guia) {
+  const vs = variantes(auto.modelo);
   const marcas = Object.entries(guia.marcas).filter(([, mods]) => Object.keys(mods).some(n => vs.includes(norm(n)) || vs.some(v => norm(n).startsWith(v + ' ')))).map(([m]) => m);
-  if (marcas.length !== 1) return '';
-  const m = marcas[0].toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+  if (!marcas.length) return '';
+  let elegida = marcas[0];
+  if (marcas.length > 1) { // desempate por la versión publicada
+    const puntos = (m) => cruzar({ ...auto, marca: m }, guia)?.mejor?.coincidencias || 0;
+    const orden = marcas.map(m => [m, puntos(m)]).sort((a, b) => b[1] - a[1]);
+    if (orden[0][1] === 0 || orden[0][1] === orden[1][1]) return '';
+    elegida = orden[0][0];
+  }
+  const m = elegida.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
   return m.replace('Bmw', 'BMW').replace('Mercedes Benz', 'Mercedes-Benz');
 }
