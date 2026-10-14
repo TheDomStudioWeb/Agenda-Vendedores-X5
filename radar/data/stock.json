@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-14T19:08:56.798Z",
+ "actualizado": "2026-10-14T19:25:58.122Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,12 +11,37 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 91,
-   "revisado": "2026-10-14T19:08:56.798Z",
-   "actualizado": "2026-10-14T19:08:56.798Z"
+   "autos": 92,
+   "revisado": "2026-10-14T19:25:58.122Z",
+   "actualizado": "2026-10-14T19:25:58.122Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-181190",
+   "tipo": "auto",
+   "marca": "Volkswagen",
+   "modelo": "Tiguan",
+   "version": "",
+   "anio": null,
+   "km": null,
+   "combustible": "",
+   "caja": "",
+   "color": "",
+   "equipamiento": "",
+   "precio": null,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2360-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/14/tiguan-4/",
+   "publicado": "2026-10-14T16:23:41",
+   "modificado": "2026-10-14T16:23:58",
+   "agencia": "maipu",
+   "alta": "2026-10-14T19:25:58.122Z",
+   "guia": null
+  },
   {
    "id": "maipu-181163",
    "tipo": "auto",
@@ -2755,7 +2780,7 @@
     "mejor": {
      "version": "SURAN 5P 1,6 HIGHLINE CRO 2014",
      "valor": 13067000,
-     "coincidencias": 1,
+     "coincidencias": 2,
      "empate": 12
     },
     "versiones": [
