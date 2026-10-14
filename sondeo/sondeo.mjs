@@ -1,18 +1,12 @@
-import { writeFile, mkdir } from 'node:fs/promises';
-const UA = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36', 'Accept-Language': 'es-AR,es;q=0.9' };
-const urls = {
-  'bc-gol-mza.html': 'https://www.deruedas.com.ar/busCraw.asp?segmento=0&marca=Volkswagen&modelo=Volkswagen%3AGol+Trend&provincia=1&weNeed=divBusqueda&pag=1',
-  'bc-gol-pais-90.html': 'https://www.deruedas.com.ar/busCraw.asp?segmento=0&marca=Volkswagen&modelo=Volkswagen%3AGol+Trend&weNeed=divBusqueda&pag=1&mostrarRegistros=90',
-  'bc-gol-pais-p2.html': 'https://www.deruedas.com.ar/busCraw.asp?segmento=0&marca=Volkswagen&modelo=Volkswagen%3AGol+Trend&weNeed=divBusqueda&pag=2',
-  'bc-gol-cba.html': 'https://www.deruedas.com.ar/busCraw.asp?segmento=0&marca=Volkswagen&modelo=Volkswagen%3AGol+Trend&provincia=6&weNeed=divBusqueda&pag=1',
-  'bc-toyota.html': 'https://www.deruedas.com.ar/busCraw.asp?segmento=0&marca=Toyota&weNeed=divAll&pag=1',
-  'bc-prov.html': 'https://www.deruedas.com.ar/busCraw.asp?segmento=0&weNeed=divAll&pag=1',
-};
-await mkdir('sondeo/html', { recursive: true });
-const log = [];
-for (const [f, u] of Object.entries(urls)) {
-  try { const r = await fetch(u, { headers: UA, signal: AbortSignal.timeout(45000) }); const t = await r.text(); await writeFile('sondeo/html/' + f, t); log.push(`${f}\t${r.status}\t${r.url}\t${t.length}`); }
-  catch (e) { log.push(`${f}\tERROR ${e.message}`); }
-  await new Promise(r => setTimeout(r, 800));
-}
-await writeFile('sondeo/html/log.txt', log.join('\n'));
+// Prueba en vivo del Buscador.gs fuera de Apps Script (descargas con curl, igual que UrlFetchApp.fetchAll).
+import fs from 'node:fs'; import vm from 'node:vm'; import { execFileSync } from 'node:child_process';
+const ctx = { console, ContentService: {}, CacheService: {}, UrlFetchApp: {} }; vm.createContext(ctx);
+vm.runInContext(fs.readFileSync('sondeo/Buscador.gs', 'utf8'), ctx);
+const bajar = (urls) => urls.map(u => { try { const t = execFileSync('curl', ['-sL', '-A', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/126.0', '--max-time', '40', u], { maxBuffer: 50e6 }).toString(); return { codigo: 200, texto: t }; } catch (e) { return { codigo: 0, texto: '' }; } });
+const consultas = [
+  { marca: 'Volkswagen', modelo: 'Gol Trend', provincia: 'mendoza', desde: 2014, hasta: 2016 },
+  { marca: 'Toyota', modelo: 'Hilux', provincia: 'cordoba', desde: 2018, hasta: 2022 },
+  { marca: 'Volkswagen', modelo: 'Amarok', provincia: '', desde: 0, hasta: 0 },
+];
+const out = consultas.map(q => { const t0 = Date.now(); const r = ctx.buscar_(q, bajar); return { q, ms: Date.now() - t0, fuentes: r.fuentes, total: r.autos.length, muestra: r.autos.slice(0, 4) }; });
+fs.writeFileSync('sondeo/buscador-prueba.json', JSON.stringify(out, null, 1));
