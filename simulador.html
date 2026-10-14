@@ -174,7 +174,7 @@
       <div class="proj-legend" id="projLegend"></div>
     </section>
 
-    <div class="foot">Valores de referencia sujetos a peritaje técnico y aprobación. Se computa el 80% de lo abonado y de cada cuota como capital integrado.</div>
+    <div class="foot">Valores de referencia sujetos a peritaje técnico y aprobación. Se computa el 80% de lo abonado y de cada cuota como capital integrado.<span id="fuente-precios"></span></div>
   </div>
 
   <div class="row" style="margin-top:14px">
@@ -197,7 +197,7 @@ const basePrecios = {
   suv:        { '2010_2015': 13000000, '2015_2020': 19000000, '2020_2025': 28000000, '0km': 35000000 },
   camioneta:  { '2010_2015': 18000000, '2015_2020': 26000000, '2020_2025': 40000000, '0km': 52000000 }
 };
-const MARGEN_X5 = 1.32, PUREZA = 0.80, TOMA_USADO = 0.90;
+const MARGEN_X5 = 1.32, PUREZA = 0.80, TOMA_USADO = 0.90; // usados: guía + 32% (incluye papeles); 0 km: valor de guía
 
 /* ── Entrada de montos con separador de miles ─────────────── */
 const montoIds = ['totalAbonado', 'cuotaProyectada', 'ahorroBase', 'valorUsadoInfoauto', 'capitalWhatIf'];
@@ -247,7 +247,7 @@ function calcular() {
   const cuota = leer('cuotaProyectada'), extra = leer('capitalWhatIf');
 
   const objetivo = ano === '0km' ? 35 : 50;
-  const valor = basePrecios[tipo][ano] * MARGEN_X5;
+  const valor = basePrecios[tipo][ano] * (ano === '0km' ? 1 : MARGEN_X5);
   const partes = [
     { k: 'Capital integrado (80% abonado)', v: totalAbonado * PUREZA, c: C.x5 },
     { k: 'Toma del usado (−10%)', v: usado * TOMA_USADO, c: C.x5s },
@@ -492,6 +492,21 @@ $('who-fecha').textContent = new Date().toLocaleDateString('es-AR', { day: '2-di
 leerColores();
 restaurar();
 calcular();
+
+/* ── Precios base desde la guía CCA del mes (radar/data/simulador-base.json).
+   Si no hay conexión o falta el archivo, quedan los valores de arriba. ── */
+fetch('radar/data/simulador-base.json', { cache: 'no-store' })
+  .then(r => r.ok ? r.json() : null)
+  .then(d => {
+    if (!d || !d.base) return;
+    for (const cat in d.base) for (const rango in d.base[cat])
+      if (basePrecios[cat] && d.base[cat][rango] > 0) basePrecios[cat][rango] = d.base[cat][rango];
+    const [a, m] = String(d.mes || '').split('-');
+    const mes = m ? new Date(+a, +m - 1, 1).toLocaleDateString('es-AR', { month: 'long', year: 'numeric' }) : '';
+    $('fuente-precios').textContent = ` Precios base: ${d.fuente}${mes ? ', ' + mes : ''}.`;
+    calcular();
+  })
+  .catch(() => {});
 })();
 </script>
 </body>
