@@ -6,7 +6,7 @@ const CAMPOS = 'id,slug,link,date,modified,title,content,class_list,jetpack_feat
 const UA = { 'User-Agent': 'Mozilla/5.0 (X5 Radar de usados)' };
 
 const limpiar = (s) => s.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&#8211;/g, '-').replace(/&amp;/g, '&')
-  .replace(/&#0?39;|&#8217;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
+  .replace(/&#0?39;|&#8217;/g, "'").replace(/&quot;/g, '"').replace(/&#(\d+);/g, (_, n) => String.fromCharCode(+n)).replace(/\s+/g, ' ').trim();
 
 function precio(txt) {
   if (!txt) return { valor: null, moneda: null };
@@ -45,6 +45,11 @@ export function parsear(post) {
 
   // Ficha técnica en texto plano
   const texto = limpiar(cuerpo);
+  if (!version) {
+    const esc = modeloH3.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const m = texto.match(new RegExp('^' + esc + '\\s+(.+?)\\s+(?:19|20)\\d\\d\\s*-', 'i'));
+    if (m) version = m[1].trim();
+  }
   const campo = (et) => { const m = texto.match(new RegExp(et + ':\\s*(.+?)(?=\\s+(?:Marca|Kilometraje|Combustible|Transmisi[oó]n|Color|Incluye|Ver legales|FINANCIACIONES):|\\s+Ver legales|$)', 'i')); return m ? m[1].trim() : ''; };
   const km = parseInt((campo('Kilometraje') || kmTxt).replace(/\D/g, ''), 10);
   const clases = post.class_list || [];
