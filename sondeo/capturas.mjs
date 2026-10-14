@@ -33,3 +33,4 @@ const d = await b.newContext({ viewport: { width: 1280, height: 800 }, deviceSca
 const pd = await d.newPage(); await pd.addInitScript(() => { try { localStorage.clear(); localStorage.setItem('radar.vista', 'cliente'); } catch (e) {} });
 await pd.goto(B, { waitUntil: 'networkidle' }); await pd.waitForTimeout(5000); await pd.screenshot({ path: 'sondeo/capturas/00-escritorio.png' });
 await b.close();
+// Wed Oct 14 20:09:57 America 2026
