@@ -50,7 +50,7 @@ for (const ag of AGENCIAS) {
     a.alta = prev?.alta || (anterior.autos.length ? ahora : a.publicado);
     if (guia) a.guia = cruzar(a, guia);
     if (!prev && anterior.autos.length) eventos.push({ fecha: ahora, tipo: 'nuevo', id: a.id, auto: `${a.marca} ${a.modelo} ${a.anio}`, precio: a.precio, moneda: a.moneda });
-    if (prev && prev.precio !== a.precio) eventos.push({ fecha: ahora, tipo: 'precio', id: a.id, auto: `${a.marca} ${a.modelo} ${a.anio}`, antes: prev.precio, precio: a.precio, moneda: a.moneda });
+    if (prev && prev.precio != null && prev.precio !== a.precio) eventos.push({ fecha: ahora, tipo: 'precio', id: a.id, auto: `${a.marca} ${a.modelo} ${a.anio}`, antes: prev.precio, precio: a.precio, moneda: a.moneda });
     autos.push(a);
   }
   for (const p of previos) if (!ids.has(p.id)) {
