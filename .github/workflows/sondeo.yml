@@ -14,8 +14,8 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
       - run: npm i playwright@1.47.2 && npx playwright install --with-deps chromium
-      - run: (cd sitio && python3 -m http.server 8080 &) && sleep 2 && node sondeo/capturas.mjs
+      - run: (cd sitio && python3 -m http.server 8080 &) && sleep 2 && node sondeo/autocity.mjs
       - if: always()
         run: |
           git config user.name "radar-bot"; git config user.email "radar-bot@users.noreply.github.com"
-          git add sondeo/capturas && git commit -m "Sondeo: capturas para el manual" && git push
+          git add sondeo && git commit -m "Sondeo: Autocity" && git push
