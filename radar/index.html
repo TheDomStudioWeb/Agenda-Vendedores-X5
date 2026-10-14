@@ -333,13 +333,13 @@
   ['q', 'marca', 'caja', 'orden'].forEach(id => $('#' + id).addEventListener('input', render));
 
   /* ══ Compra: buscar un modelo en sitios públicos y analizar si conviene ══ */
-  const BUSCADOR_URL = ''; // URL /exec del Apps Script Buscador.gs (si queda vacío, se pide en pantalla)
+  const BUSCADOR_URL = 'https://script.google.com/macros/s/AKfycbw6ohUpR016N1P1rHk0W3E6PR0FlIoWZdrm2S7Fjf6MWqkwfT5xNb72MT_MobD9yrLLpg/exec'; // URL /exec del Apps Script Buscador.gs (si queda vacío, se pide en pantalla)
   const PROVINCIAS = ['Buenos Aires', 'CABA', 'Catamarca', 'Chaco', 'Chubut', 'Córdoba', 'Corrientes', 'Entre Ríos', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquén', 'Río Negro', 'Salta', 'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego', 'Tucumán'];
   const AUTOMATICA = /\b(\d?at\d?|aut\.?|automatic[oa]?|tiptronic|tipt|cvt|e?cvt|dsg|s-?tronic|tct|edc|dct)\b/i;
   let GUIA = null, cruzarGuia = null, ultimo = null, compraLista = false;
   const titulo = (s) => String(s || '').toLowerCase().replace(/(^|[\s-])([a-záéíóúñ])/g, (m, a, b) => a + b.toUpperCase());
   const sinTilde = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
-  const urlBuscador = () => BUSCADOR_URL || leer('buscador') || '';
+  const urlBuscador = () => leer('buscador') || BUSCADOR_URL;
 
   async function cargarGuia() {
     if (GUIA) return;
