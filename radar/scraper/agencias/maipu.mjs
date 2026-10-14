@@ -60,6 +60,7 @@ export function parsear(post) {
     fotos,
     url: post.link,
     publicado: post.date, modificado: post.modified,
+    _texto: (!version || !campo('Marca')) ? texto.slice(0, 500) : undefined,
   };
 }
 

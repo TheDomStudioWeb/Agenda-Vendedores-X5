@@ -35,3 +35,12 @@ export function cruzar(auto, guia, anioActual = new Date().getFullYear()) {
     versiones: cands.sort((a, b) => a.valor - b.valor).map(c => [`${c.modelo} ${c.version}`, c.valor]),
   };
 }
+
+// Si la agencia no informa la marca, se busca el modelo en la guía (solo si aparece en una única marca).
+export function marcaPorModelo(modelo, guia) {
+  const vs = variantes(modelo);
+  const marcas = Object.entries(guia.marcas).filter(([, mods]) => Object.keys(mods).some(n => vs.includes(norm(n)) || vs.some(v => norm(n).startsWith(v + ' ')))).map(([m]) => m);
+  if (marcas.length !== 1) return '';
+  const m = marcas[0].toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+  return m.replace('Bmw', 'BMW').replace('Mercedes Benz', 'Mercedes-Benz');
+}
