@@ -1,7 +1,7 @@
 """Convierte el PDF de la Guía Oficial de Precios CCA en los datos que usan el Radar y el Simulador.
 Uso: python radar/scraper/guia_cca.py radar/guia/cca-AAAA-MM.pdf
 Genera radar/data/guia-cca.json (todas las versiones) y radar/data/simulador-base.json (medianas por categoría)."""
-import json, re, statistics, sys
+import datetime, json, re, statistics, sys
 import pdfplumber
 
 pdf_path = sys.argv[1]
@@ -70,7 +70,7 @@ for cat, modelos in CATEGORIAS.items():
     for rango, anios in RANGOS.items():
         v = [val[a] for ma, mo in modelos for _, val in marcas.get(ma, {}).get(mo, []) for a in anios if a in val]
         if v: base[cat][rango] = int(round(statistics.median(v), -5))
-json.dump({'fuente': 'Guía Oficial de Precios CCA', 'mes': mes, 'base': base,
+json.dump({'fuente': 'Guía Oficial de Precios CCA', 'mes': mes, 'versiones': len(filas), 'procesado': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'), 'base': base,
            'modelos': {c: [mo.title() for _, mo in ms] for c, ms in CATEGORIAS.items()}},
           open('radar/data/simulador-base.json', 'w'), ensure_ascii=False, indent=1)
 print(f'Guía {mes}: {len(filas)} versiones, {len(marcas)} marcas')
