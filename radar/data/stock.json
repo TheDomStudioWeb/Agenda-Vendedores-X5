@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-14T17:43:32.019Z",
+ "actualizado": "2026-10-14T17:45:16.724Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -12,8 +12,8 @@
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
    "autos": 91,
-   "revisado": "2026-10-14T17:43:32.019Z",
-   "actualizado": "2026-10-14T17:43:32.019Z"
+   "revisado": "2026-10-14T17:45:16.724Z",
+   "actualizado": "2026-10-14T17:45:16.724Z"
   }
  ],
  "autos": [
@@ -6273,7 +6273,7 @@
    "tipo": "auto",
    "marca": "Ford",
    "modelo": "Focus",
-   "version": "",
+   "version": "1.6L N Mt S",
    "anio": 2016,
    "km": 193545,
    "combustible": "Nafta",
@@ -6452,7 +6452,7 @@
    "tipo": "auto",
    "marca": "Volkswagen",
    "modelo": "Tiguan",
-   "version": "",
+   "version": "Life 350 Tsi Dsg 4×4",
    "anio": 2023,
    "km": 112615,
    "combustible": "Nafta",
@@ -6493,7 +6493,12 @@
     "med": 44610000,
     "max": 49719000,
     "n": 4,
-    "mejor": null,
+    "mejor": {
+     "version": "TIGUAN ALLSPACE 5P 350 TSI LIFE 4MOTION 7DSG",
+     "valor": 44610000,
+     "coincidencias": 3,
+     "empate": 3
+    },
     "versiones": [
      [
       "TIGUAN ALLSPACE 5P 250 TSI DSG 2021",
@@ -6519,7 +6524,7 @@
    "tipo": "auto",
    "marca": "Audi",
    "modelo": "Q5",
-   "version": "",
+   "version": "2.0 Tfsi S-Tronic Quattro",
    "anio": 2019,
    "km": 151235,
    "combustible": "Nafta",
@@ -6558,7 +6563,12 @@
     "med": 43760000,
     "max": 52129000,
     "n": 3,
-    "mejor": null,
+    "mejor": {
+     "version": "Q 5 5P 2,0 TFSI QUATTRO 252CV S-TRONIC SECURITY",
+     "valor": 43760000,
+     "coincidencias": 4,
+     "empate": 2
+    },
     "versiones": [
      [
       "Q 5 5P 2,0 TFSI QUATTRO 252CV S-TRONIC 2017",
@@ -6580,7 +6590,7 @@
    "tipo": "auto",
    "marca": "Chevrolet",
    "modelo": "Captiva",
-   "version": "",
+   "version": "Premier 1.5L Phev",
    "anio": 2026,
    "km": 8500,
    "combustible": "Híbrido Enchufable",
@@ -6618,7 +6628,12 @@
     "med": 54872000,
     "max": 54872000,
     "n": 1,
-    "mejor": null,
+    "mejor": {
+     "version": "CAPTIVA 5P 1,5 T PHEV PREMIER",
+     "valor": 54872000,
+     "coincidencias": 2,
+     "empate": 1
+    },
     "versiones": [
      [
       "CAPTIVA 5P 1,5 T PHEV PREMIER",
@@ -6632,7 +6647,7 @@
    "tipo": "auto",
    "marca": "Fiat",
    "modelo": "Palio",
-   "version": "",
+   "version": "Fire 1.4",
    "anio": 2014,
    "km": 83035,
    "combustible": "Nafta",
@@ -6671,7 +6686,12 @@
     "med": 11426000,
     "max": 13885000,
     "n": 21,
-    "mejor": null,
+    "mejor": {
+     "version": "PALIO 3P 1,4 FIRE TOP",
+     "valor": 9758000,
+     "coincidencias": 2,
+     "empate": 6
+    },
     "versiones": [
      [
       "PALIO 3P 1,4 FIRE",
@@ -7038,9 +7058,9 @@
   {
    "id": "maipu-152432",
    "tipo": "auto",
-   "marca": "",
+   "marca": "BMW",
    "modelo": "X3",
-   "version": "",
+   "version": "XDrive 30I",
    "anio": 2022,
    "km": 75395,
    "combustible": "Nafta",
@@ -7074,7 +7094,28 @@
    "modificado": "2026-09-25T17:14:22",
    "agencia": "maipu",
    "alta": "2025-12-17T12:43:09",
-   "guia": null
+   "guia": {
+    "min": 65513000,
+    "med": 70099000,
+    "max": 70099000,
+    "n": 2,
+    "mejor": {
+     "version": "X3 5P 3,0 i XDRIVE LCI XLINE 252CV",
+     "valor": 70099000,
+     "coincidencias": 1,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "X3 5P 2,0 i XDRIVE LCI XLINE",
+      65513000
+     ],
+     [
+      "X3 5P 3,0 i XDRIVE LCI XLINE 252CV",
+      70099000
+     ]
+    ]
+   }
   }
  ]
 }
