@@ -1,6 +1,15 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-14T20:07:56.916Z",
+   "tipo": "precio",
+   "id": "maipu-181190",
+   "auto": "Volkswagen Tiguan 2018",
+   "antes": null,
+   "precio": 28500000,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-10-14T19:25:58.122Z",
    "tipo": "nuevo",
    "id": "maipu-181190",

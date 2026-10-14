@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-14T20:00:55.223Z",
+ "actualizado": "2026-10-14T20:07:56.916Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -10,11 +10,10 @@
    "nombre": "Maipú Usados",
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
-   "estado": "error",
-   "detalle": "terminated",
+   "estado": "ok",
    "autos": 92,
-   "revisado": "2026-10-14T20:00:55.223Z",
-   "actualizado": "2026-10-14T19:25:58.122Z"
+   "revisado": "2026-10-14T20:07:56.916Z",
+   "actualizado": "2026-10-14T20:07:56.916Z"
   }
  ],
  "autos": [
@@ -23,25 +22,70 @@
    "tipo": "auto",
    "marca": "Volkswagen",
    "modelo": "Tiguan",
-   "version": "",
-   "anio": null,
-   "km": null,
-   "combustible": "",
-   "caja": "",
-   "color": "",
-   "equipamiento": "",
-   "precio": null,
-   "precio_sin_imp": null,
+   "version": "1.4 Tsi Dsg",
+   "anio": 2018,
+   "km": 136200,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Azul",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS",
+   "precio": 28500000,
+   "precio_sin_imp": 22515000,
    "moneda": "ARS",
    "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2360-1600x1200-1.jpg"
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2357-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2358-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2360-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2362-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2356-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2359-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2355-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2349-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2353-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2345-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2346-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2347-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2354-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2348-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2352-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2350-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2351-1600x1200-1.jpg"
    ],
    "url": "https://maipuusados.com.ar/2026/10/14/tiguan-4/",
    "publicado": "2026-10-14T16:23:41",
-   "modificado": "2026-10-14T16:23:58",
+   "modificado": "2026-10-14T16:59:55",
    "agencia": "maipu",
    "alta": "2026-10-14T19:25:58.122Z",
-   "guia": null
+   "guia": {
+    "min": 27030000,
+    "med": 31906000,
+    "max": 35655000,
+    "n": 4,
+    "mejor": {
+     "version": "TIGUAN ALLSPACE 5P 1,4 TSI TRENDLINE DSG6",
+     "valor": 27030000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "TIGUAN ALLSPACE 5P 1,4 TSI TRENDLINE DSG6",
+      27030000
+     ],
+     [
+      "TIGUAN ALLSPACE 5P 2,0 TSI COMFORTLINE DSG7 4MOTION",
+      31007000
+     ],
+     [
+      "TIGUAN ALLSPACE 5P 2,0 TSI COMFORTLINE DSG7 4MOTION T/SOLAR",
+      31906000
+     ],
+     [
+      "TIGUAN ALLSPACE 5P 2,0 TSI HIGHLINE DSG7 4MOTION",
+      35655000
+     ]
+    ]
+   }
   },
   {
    "id": "maipu-181163",
@@ -6305,7 +6349,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Plata",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tiguan 2021 Automatica 102930 32000000 Precio sugerido al público 26446280 Precio sin impuestos nacionales + Precio a confirmar oportunidades Kuga 2020 Automatica 88355 32000000 Precio sugerido al público 25280000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 68915 30000000 Precio sugerido al público 24793400 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Taos 2022 Automatica 89475 33000000 Precio sugerido al público 27272700 Precio sin impuestos nacionales + Precio a confirmar destacados Tracker 2023 Manual 67980 24500000 Precio sugerido al público 19355000 Precio sin impuestos nacionales + Precio a confirmar destacados Nivus 2024 Automatica 33170 29500000 Precio sugerido al público 23305000 Precio sin impuestos nacionales + Precio a confirmar destacados Duster 2023 Automática 79970 28830000 Precio sugerido al público 22775700 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 16180000,
    "precio_sin_imp": 12782200,
    "moneda": "ARS",
@@ -6484,7 +6528,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tiguan 2021 Automatica 102930 32000000 Precio sugerido al público 26446280 Precio sin impuestos nacionales + Precio a confirmar oportunidades Kuga 2020 Automatica 88355 32000000 Precio sugerido al público 25280000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 68915 30000000 Precio sugerido al público 24793400 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Taos 2022 Automatica 89475 33000000 Precio sugerido al público 27272700 Precio sin impuestos nacionales + Precio a confirmar destacados Tracker 2023 Manual 67980 24500000 Precio sugerido al público 19355000 Precio sin impuestos nacionales + Precio a confirmar destacados Nivus 2024 Automatica 33170 29500000 Precio sugerido al público 23305000 Precio sin impuestos nacionales + Precio a confirmar destacados Duster 2023 Automática 79970 28830000 Precio sugerido al público 22775700 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -6556,7 +6600,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tiguan 2021 Automatica 102930 32000000 Precio sugerido al público 26446280 Precio sin impuestos nacionales + Precio a confirmar oportunidades Kuga 2020 Automatica 88355 32000000 Precio sugerido al público 25280000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 68915 30000000 Precio sugerido al público 24793400 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Taos 2022 Automatica 89475 33000000 Precio sugerido al público 27272700 Precio sin impuestos nacionales + Precio a confirmar destacados Tracker 2023 Manual 67980 24500000 Precio sugerido al público 19355000 Precio sin impuestos nacionales + Precio a confirmar destacados Nivus 2024 Automatica 33170 29500000 Precio sugerido al público 23305000 Precio sin impuestos nacionales + Precio a confirmar destacados Duster 2023 Automática 79970 28830000 Precio sugerido al público 22775700 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 29700,
    "precio_sin_imp": 24550,
    "moneda": "USD",
@@ -6622,7 +6666,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tiguan 2021 Automatica 102930 32000000 Precio sugerido al público 26446280 Precio sin impuestos nacionales + Precio a confirmar oportunidades Kuga 2020 Automatica 88355 32000000 Precio sugerido al público 25280000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 68915 30000000 Precio sugerido al público 24793400 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Taos 2022 Automatica 89475 33000000 Precio sugerido al público 27272700 Precio sin impuestos nacionales + Precio a confirmar destacados Tracker 2023 Manual 67980 24500000 Precio sugerido al público 19355000 Precio sin impuestos nacionales + Precio a confirmar destacados Nivus 2024 Automatica 33170 29500000 Precio sugerido al público 23305000 Precio sin impuestos nacionales + Precio a confirmar destacados Duster 2023 Automática 79970 28830000 Precio sugerido al público 22775700 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6679,7 +6723,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Rojo",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tiguan 2021 Automatica 102930 32000000 Precio sugerido al público 26446280 Precio sin impuestos nacionales + Precio a confirmar oportunidades Kuga 2020 Automatica 88355 32000000 Precio sugerido al público 25280000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 68915 30000000 Precio sugerido al público 24793400 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Taos 2022 Automatica 89475 33000000 Precio sugerido al público 27272700 Precio sin impuestos nacionales + Precio a confirmar destacados Tracker 2023 Manual 67980 24500000 Precio sugerido al público 19355000 Precio sin impuestos nacionales + Precio a confirmar destacados Nivus 2024 Automatica 33170 29500000 Precio sugerido al público 23305000 Precio sin impuestos nacionales + Precio a confirmar destacados Duster 2023 Automática 79970 28830000 Precio sugerido al público 22775700 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 11110000,
    "precio_sin_imp": 8776900,
    "moneda": "ARS",
