@@ -1,0 +1,32 @@
+name: Radar de usados
+# Lee el stock de las agencias y deja radar/data/stock.json listo para la app.
+# Corre todos los días a las 7:40 y 14:40 (hora de Mendoza) y también a mano desde la pestaña Actions.
+on:
+  schedule:
+    - cron: '40 10,17 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main, radar-usados]
+    paths: ['radar/scraper/**', '.github/workflows/radar-usados.yml']
+permissions:
+  contents: write
+concurrency: radar-usados
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Leer agencias
+        run: node radar/scraper/actualizar.mjs
+      - name: Guardar stock
+        if: always()
+        run: |
+          git config user.name "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+          git add radar/data
+          git diff --cached --quiet && exit 0
+          git commit -m "Radar: stock $(TZ=America/Argentina/Mendoza date '+%d/%m %H:%M')"
+          git pull --rebase
+          git push

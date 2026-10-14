@@ -1,0 +1,38 @@
+name: Guía de precios CCA
+# Cada mes: subí el PDF de la guía a la carpeta radar/guia/ con el nombre cca-AAAA-MM.pdf (ej. cca-2026-11.pdf).
+# Este proceso lo convierte, actualiza el Simulador y el Radar, y guarda todo en el Hub.
+on:
+  push:
+    branches: [main, radar-usados]
+    paths: ['radar/guia/*.pdf', 'radar/scraper/guia_cca.py', '.github/workflows/guia-cca.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: guia-cca
+jobs:
+  convertir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: pip install pdfplumber==0.11.4 2>&1 | tail -3 | tee guia-log.txt
+      - name: Convertir la guía más reciente
+        run: |
+          set -o pipefail
+          python radar/scraper/guia_cca.py "$(ls radar/guia/cca-*.pdf | sort | tail -1)" 2>&1 | tee -a guia-log.txt
+      - name: Recalcular el Radar con la guía nueva
+        run: node radar/scraper/actualizar.mjs || true
+      - name: Guardar
+        if: always()
+        run: |
+          cp guia-log.txt radar/data/guia-log.txt || true
+          git config user.name "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+          git add radar/data
+          git diff --cached --quiet && exit 0
+          git commit -m "Guía CCA: datos actualizados"
+          git pull --rebase
+          git push

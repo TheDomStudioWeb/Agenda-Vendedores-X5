@@ -1,0 +1,64 @@
+{
+ "fuente": "Guía Oficial de Precios CCA",
+ "mes": "2026-10",
+ "versiones": 6056,
+ "procesado": "2026-10-14T19:04:50+00:00",
+ "base": {
+  "pequeno": {
+   "2010_2015": 10300000,
+   "2015_2020": 14700000,
+   "2020_2025": 21300000,
+   "0km": 42100000
+  },
+  "familiar": {
+   "2010_2015": 14300000,
+   "2015_2020": 18100000,
+   "2020_2025": 23100000,
+   "0km": 46200000
+  },
+  "utilitario": {
+   "2010_2015": 12500000,
+   "2015_2020": 15900000,
+   "2020_2025": 24400000,
+   "0km": 43100000
+  },
+  "suv": {
+   "2010_2015": 13000000,
+   "2015_2020": 18200000,
+   "2020_2025": 24500000,
+   "0km": 51300000
+  },
+  "camioneta": {
+   "2010_2015": 23600000,
+   "2015_2020": 28500000,
+   "2020_2025": 41900000,
+   "0km": 64200000
+  }
+ },
+ "modelos": {
+  "pequeno": [
+   "Gol Trend",
+   "208",
+   "Yaris"
+  ],
+  "familiar": [
+   "Cronos",
+   "Corolla"
+  ],
+  "utilitario": [
+   "Kangoo",
+   "Kangoo Ii Express",
+   "Partner"
+  ],
+  "suv": [
+   "Ecosport",
+   "Ecosport Kinetic Design Attraction",
+   "Tracker",
+   "T-Cross"
+  ],
+  "camioneta": [
+   "Hilux Pick - Up",
+   "Amarok Pick - Up"
+  ]
+ }
+}
