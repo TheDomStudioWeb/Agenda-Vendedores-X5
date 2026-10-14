@@ -1,0 +1,24 @@
+name: Radar de usados
+on:
+  push:
+    branches: [radar-usados]
+    paths: ['radar/scraper/**', '.github/workflows/radar-usados.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: radar-usados
+jobs:
+  leer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: node radar/scraper/relevamiento.mjs
+      - name: Guardar resultado en la rama
+        run: |
+          git config user.name "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+          git add radar
+          git diff --cached --quiet || git commit -m "Radar: relevamiento $(date -u +%F)"
+          git push
