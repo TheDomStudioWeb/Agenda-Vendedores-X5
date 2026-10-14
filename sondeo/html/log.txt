@@ -1,0 +1,5 @@
+deruedas-busqueda.html	200	https://www.deruedas.com.ar/bus.asp?pal=gol+trend+2015	346356
+deruedas-home.html	200	https://www.deruedas.com.ar/	79075
+deruedas-mendoza.html	200	https://www.deruedas.com.ar/bus.asp?pal=gol+trend&prov=mendoza	346601
+autocosmos-gol.html	200	https://www.autocosmos.com.ar/auto/usado/volkswagen/gol-trend?anio=2015	193407
+autocosmos-mendoza.html	404	https://www.autocosmos.com.ar/auto/usado/mendoza/volkswagen/gol-trend	17770
