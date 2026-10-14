@@ -1,50 +1,19 @@
 {
- "paginas": [
-  {
-   "u": "https://autocity.com.ar/catalogo/usados/",
-   "status": 200,
-   "titulo": "Catálogo de Autos Usados | Autocity",
-   "bytes": 318919,
-   "autos": 13,
-   "fichas": 12,
-   "texto": "0km\nUsados\nPlanes de ahorro\nPosventa\nEmpresas\nSeguros\n¿Dónde estamos?\nNovedades\nQue tu próximo usado se sienta como cero\n\nAsesoría personalizada, garantía extendida y servicio de posventa, para que comprar un auto usado, se sienta como cero.\n\nFinancia hasta el 100%\n\ncon tasa UVA hasta 72 meses\n\nFinancia hasta $14.000.000\n\ncon tasa fija hasta 36 meses\n\nFinanciá el 100%\n\ncon tasa fija hasta 72 meses\n\nEncontrá tu próximo auto usado en nuestro catálogo\nOrdenar por\nMenor Precio\nMayor Precio\nMenor kilometraje\nMayor kilometraje\nMenor antigüedad\nMayor antigüedad\n\n227 resultados\n\nOportunidad\nOportunidad (66)\nGama\nAlta Gama (1)\nMarcas\nAlfa Romeo (1)\nAudi (2)\nBaic (1)\nByd (6)\nChangan (1)\nChery (4)\nChevrolet (4)\nCitroen (10)\nDs Automobiles (1)\nFiat (25)\nVer todo\nMarcas\nA\nAlfa romeo\n(1)\nAlta gama\n(1)\nAudi\n(2)\nB\nBaic\n(1)\nByd\n(6)\nC\nChangan\n(1)\nChery\n(4)\nChevrolet\n(4)\nCitroen\n(10)\nD\nDs automobiles\n(1)\nF\nFiat\n(25)\nFord\n(10)\nG\nGwm\n(1)\nH\nHonda\n(2)\nJ\nJeep\n(22)\nJetour\n(2)\nK\nKia\n(2)\nM\nMercedes benz\n(1)\nMini\n(1)\nN\nNissan\n(21)\nO\nOportunidad\n(66)\nP\nPeugeot\n(48)\nR\nRam\n(2)\nRenault\n(30)\nT\nToyota\n(7)\nV\nVolkswagen\n(23)\nModelos\n1500 (1)\n166 (1)\n2008 (7)\n208 (27)\n300 C (1)\n3008 (2)\n308 (4)\n408 (1)\n5008 (1)\nA1 (1)\nVer todo\nModelos\n1\n1500\n(1)\n166\n(1)\n2\n2008\n(7)\n208\n(27)\n3\n300 c\n(1)\n3008\n(2)\n308\n(4)\n4\n408\n(1)\n5\n5008\n(1)\nA\nA1\n(1)\nA4\n(1)\nAlaskan\n(1)\nAmarok\n(3)\nArgo\n(1)\nB\nBronco\n(2)\nC\nC\n(1)\nC3\n(2)\nC4 cactus\n(7)\nC4 lounge\n(1)\nCaptur\n(1)\nCerato\n(1)\nCommander\n(2)\nCompass\n(8)\nCorolla\n(2)\nCorolla cross\n(3)\nCountryman\n"
-  },
-  {
-   "u": "https://autocity.com.ar/catalogo/usados/page/2/",
-   "status": 200,
-   "titulo": "Catálogo de Autos Usados | Autocity | Página 2",
-   "bytes": 319464,
-   "autos": 13,
-   "fichas": 12,
-   "texto": "0km\nUsados\nPlanes de ahorro\nPosventa\nEmpresas\nSeguros\n¿Dónde estamos?\nNovedades\nQue tu próximo usado se sienta como cero\n\nAsesoría personalizada, garantía extendida y servicio de posventa, para que comprar un auto usado, se sienta como cero.\n\nFinancia hasta el 100%\n\ncon tasa UVA hasta 72 meses\n\nFinancia hasta $14.000.000\n\ncon tasa fija hasta 36 meses\n\nFinanciá el 100%\n\ncon tasa fija hasta 72 meses\n\nEncontrá tu próximo auto usado en nuestro catálogo\nOrdenar por\nMenor Precio\nMayor Precio\nMenor kilometraje\nMayor kilometraje\nMenor antigüedad\nMayor antigüedad\n\n227 resultados\n\nOportunidad\nOportunidad (66)\nGama\nAlta Gama (1)\nMarcas\nAlfa Romeo (1)\nAudi (2)\nBaic (1)\nByd (6)\nChangan (1)\nChery (4)\nChevrolet (4)\nCitroen (10)\nDs Automobiles (1)\nFiat (25)\nVer todo\nMarcas\nA\nAlfa romeo\n(1)\nAlta gama\n(1)\nAudi\n(2)\nB\nBaic\n(1)\nByd\n(6)\nC\nChangan\n(1)\nChery\n(4)\nChevrolet\n(4)\nCitroen\n(10)\nD\nDs automobiles\n(1)\nF\nFiat\n(25)\nFord\n(10)\nG\nGwm\n(1)\nH\nHonda\n(2)\nJ\nJeep\n(22)\nJetour\n(2)\nK\nKia\n(2)\nM\nMercedes benz\n(1)\nMini\n(1)\nN\nNissan\n(21)\nO\nOportunidad\n(66)\nP\nPeugeot\n(48)\nR\nRam\n(2)\nRenault\n(30)\nT\nToyota\n(7)\nV\nVolkswagen\n(23)\nModelos\n1500 (1)\n166 (1)\n2008 (7)\n208 (27)\n300 C (1)\n3008 (2)\n308 (4)\n408 (1)\n5008 (1)\nA1 (1)\nVer todo\nModelos\n1\n1500\n(1)\n166\n(1)\n2\n2008\n(7)\n208\n(27)\n3\n300 c\n(1)\n3008\n(2)\n308\n(4)\n4\n408\n(1)\n5\n5008\n(1)\nA\nA1\n(1)\nA4\n(1)\nAlaskan\n(1)\nAmarok\n(3)\nArgo\n(1)\nB\nBronco\n(2)\nC\nC\n(1)\nC3\n(2)\nC4 cactus\n(7)\nC4 lounge\n(1)\nCaptur\n(1)\nCerato\n(1)\nCommander\n(2)\nCompass\n(8)\nCorolla\n(2)\nCorolla cross\n(3)\nCountryman\n"
-  }
- ],
- "apis": [
-  {
-   "u": "https://api.timezonedb.com/v2.1/get-time-zone?key=0LBUZX5Z57Z6&format=json&by=zone&zone=America%2FArgentina%2FBuenos_Aires",
-   "status": 200,
-   "body": "{\n    \"status\": \"OK\",\n    \"message\": \"\",\n    \"countryCode\": \"AR\",\n    \"countryName\": \"Argentina\",\n    \"regionName\": \"\",\n    \"cityName\": \"\",\n    \"zoneName\": \"America\\/Argentina\\/Buenos_Aires\",\n    \"abbreviation\": \"ART\",\n    \"gmtOffset\": -10800,\n    \"dst\": \"0\",\n    \"zoneStart\": 1237082400,\n    \"zoneEnd\": null,\n    \"nextAbbreviation\": null,\n    \"timestamp\": 1791999486,\n    \"formatted\": \"2026-10-14 17:38:06\"\n}"
-  },
-  {
-   "u": "https://d3-36c34dc0877246a0b32c4f4e24be6ce8.ecs.us-east-1.on.aws/events?cee=no",
-   "status": 200,
-   "body": ""
-  },
-  {
-   "u": "https://d3-36c34dc0877246a0b32c4f4e24be6ce8.ecs.us-east-1.on.aws/events?cee=no",
-   "status": 200,
-   "body": ""
-  },
-  {
-   "u": "https://api.timezonedb.com/v2.1/get-time-zone?key=0LBUZX5Z57Z6&format=json&by=zone&zone=America%2FArgentina%2FBuenos_Aires",
-   "status": 200,
-   "body": "{\n    \"status\": \"OK\",\n    \"message\": \"\",\n    \"countryCode\": \"AR\",\n    \"countryName\": \"Argentina\",\n    \"regionName\": \"\",\n    \"cityName\": \"\",\n    \"zoneName\": \"America\\/Argentina\\/Buenos_Aires\",\n    \"abbreviation\": \"ART\",\n    \"gmtOffset\": -10800,\n    \"dst\": \"0\",\n    \"zoneStart\": 1237082400,\n    \"zoneEnd\": null,\n    \"nextAbbreviation\": null,\n    \"timestamp\": 1791999495,\n    \"formatted\": \"2026-10-14 17:38:15\"\n}"
-  }
- ],
- "deruedas_cba": {
-  "bytes": 615629,
-  "autocity": 0,
-  "logos": [],
-  "codUsr": []
- }
+ "apis": [],
+ "ficha": {
+  "status": 200,
+  "ms": 7307,
+  "titulo": "1.0 highline 3p l14 - Up! - Volkswagen - Catálogo de Autos Usados | Autocity",
+  "texto": " \n0km\nUsados\nPlanes de ahorro\nPosventa\nEmpresas\nSeguros\n¿Dónde estamos?\nNovedades\n \nVolkswagen Up! 1.0 Highline 3p L14\n\n1 Hatchback | Usado | Nafta\n\n2016 | 119.400 km | Champagne\n\nFicha técnica\nResumen\n\nSegmento\n\nHatchback\n\nLongitud (mm)\n\n3.610\n\nAncho (mm)\n\n1.650\n\nAlto (mm)\n\n1.500\n\nCilindrada (CC)\n\n1\n\nTipo de transmisión\n\nManual\n\nTipo de dirección\n\nAsistida\n\nTracción\n\nDelantera\n\nEspacio de baúl (Litros)\n\n285\n\nCapacidad del tanque (Litros)\n\n50\n\nDistancia entre ejes\n\n2.421\n\nPar/Torque máximo\n\n95\n\nPotencia máxima (bhp @ rpm)\n\n75\n\nTipo de motor\n\nInyeccion Multi Punto\n\nPeso total (Kg)\n\n929\n\nVelocidad máxima\n\n163\n\nTurbocompresor / sobrealimentador\n\nNo\n\nEquipamiento\n\nAire Acondicionado\n\nSi\n\nArranque sin llave / Arranque con botón\n\nNo\n\nControl de crucero\n\nNo\n\nAsistente de estacionamiento\n\nNo\n\nTecho panorámico\n\nNo\n\nRieles de techo\n\nNo\n\nOtras características\n\nReposacabezas\n\nAmbos\n\nPuertas\n\n3\n\nCabina\n\nNo\n\nTipo de freno delantero\n\nVentilados Con Pinzas Fijas\n\nTipo de freno trasero\n\nHidraulico\n\nVálvulas por cilindro\n\n4\n\nNúmero de marchas (Cambios)\n\n5\n\nSuspensión delantera\n\nSuspensión Mcpherson\n\nSuspensión trasera\n\nSuspensión De Eje Oscilante\n\nAjuste del asiento del conductor\n\nSi\n\nAjuste del asiento del pasajero delantero\n\nNo\n\nInmovilizador del motor\n\nSi\n\nBloqueo de puerta de detección de velocidad\n\nSi\n\nBloqueo de seguridad para niños\n\nSi\n\nCalefacción\n\nSi\n\nAjuste de dirección\n\nSi\n\nSistema de navegación GPS\n\nNo\n\nAltavoces\n\nSi\n\nCompatibilidad USB\n\nSi\n\nCompatibilidad Auxiliar\n\nSi\n\nCompatibilidad con Bluetooth\n\nSi\n\nRadio AM / FM\n\nSi\n\nControles montados en la dirección (Satelital)\n\nNo\n\nComando de voz\n\nNo\n\nEspejos antirreflejos\n\nNo\n\nLámparas de Cabina\n\nSi\n\nLámpara de guantera\n\nNo\n\nFaros de curva (Cornering Headlights)\n\nSi\n\nDoble embrague\n\nNo\n\nModos de conducción\n\nNo\n\nAirbags posteriores\n\nNo\n\nAirbag de cinturón\n\nNo\n\nAirbag de peatones\n\nNo\n\nAirbags de doble etapa\n\nNo\n\nCinturón de seguridad de tres puntos trasero medio\n\nSi\n\nReposacabezas trasero central\n\nSi\n\nDesempañador trasero\n\nSi\n\nLimpiaparabrisas trasero\n\nSi\n\nLimpiaparabrisas con sensor de lluvia\n\nNo\n\nGuantera refrigerada\n\nNo\n\nMedidor de recorrido (Odómetro)\n\nSi\n\nAdvertencia de bajo nivel de combustible\n\nNo\n\nAdvertencia de puerta entreabierta\n\nNo\n\nComparalo con otros modelos\n\nSeleccioná hasta 3 modelos y compará sus características.\n\nComparar auto\nCompartir esta publicación\nFinanciación recomendada:\nHasta $10.000.000 a tasa 4,9%\nPrecio $ 15.900.000\nPresupuestar auto\n\nPresupuestá este auto calculando la financiación y la entr"
+ },
+ "grande": {
+  "status": 200,
+  "tipo": "image/jpeg",
+  "bytes": 1450551
+ },
+ "mini": {
+  "status": 200,
+  "bytes": 9078
+ },
+ "fetchSimple": 202
 }
