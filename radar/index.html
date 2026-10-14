@@ -109,9 +109,9 @@
     <details class="card" id="cfg-box">
       <summary>Precio X5</summary>
       <div class="cfg">
-        <label>Regla<select id="regla"><option value="fijo">Precio agencia + monto fijo</option><option value="guia">Guía + %</option></select></label>
-        <label id="l-fijo">Monto fijo $<input id="fijo" type="number" inputmode="numeric" step="500000" value="6000000"></label>
-        <label id="l-pct" hidden>Margen sobre guía %<input id="pct" type="number" inputmode="decimal" step="1" value="20"></label>
+        <label>Regla<select id="regla"><option value="guia">Guía CCA + %</option><option value="fijo">Precio agencia + monto fijo</option></select></label>
+        <label id="l-fijo"><span id="t-fijo">Monto fijo $</span><input id="fijo" type="number" inputmode="numeric" step="500000" value="6000000"></label>
+        <label id="l-pct">Margen sobre guía %<input id="pct" type="number" inputmode="decimal" step="1" value="20"></label>
         <label>Papeles % (aparte)<input id="papeles" type="number" inputmode="decimal" step="1" value="10"></label>
         <label>Dólar $<input id="usd" type="number" inputmode="numeric" step="10" value="1540"></label>
         <div class="formula" id="formula"></div>
@@ -169,7 +169,7 @@
     const ref = a.guia ? (a.guia.mejor?.valor ?? a.guia.med) : null;
     let x5 = null;
     if (p.regla === 'fijo' && costo != null) x5 = r100k(costo + p.fijo);
-    if (p.regla === 'guia' && ref != null) x5 = r100k(ref * (1 + p.pct));
+    if (p.regla === 'guia') x5 = ref != null ? r100k(ref * (1 + p.pct)) : costo != null ? r100k(costo + p.fijo) : null; // sin guía (autos anteriores a 2012): agencia + monto fijo
     return { costo, ref, x5, calle: x5 != null ? r100k(x5 * (1 + p.papeles)) : null,
       margen: x5 != null && costo != null ? x5 - costo : null, vsGuia: x5 != null && ref ? x5 / ref - 1 : null };
   }
@@ -188,12 +188,12 @@
 
   function render() {
     const p = P();
-    $('#l-fijo').hidden = p.regla !== 'fijo';
+    $('#t-fijo').textContent = p.regla === 'fijo' ? 'Monto fijo $' : 'Autos sin guía: agencia + $';
     $('#l-pct').hidden = p.regla !== 'guia';
     const pc = Math.round((1 + p.pct) * (1 + p.papeles) * 1000 - 1000) / 10;
     $('#formula').innerHTML = p.regla === 'fijo'
       ? `Precio X5 = precio de la agencia + <b>${plata(p.fijo)}</b>. Puesto en calle = precio X5 + ${Math.round(p.papeles * 100)}% de papeles.`
-      : `Precio X5 = guía + <b>${Math.round(p.pct * 100)}%</b>. Con ${Math.round(p.papeles * 100)}% de papeles, puesto en calle queda en guía + <b>${pc.toLocaleString('es-AR')}%</b>.`;
+      : `Precio X5 = guía + <b>${Math.round(p.pct * 100)}%</b>. Con ${Math.round(p.papeles * 100)}% de papeles, puesto en calle queda en guía + <b>${pc.toLocaleString('es-AR')}%</b>. Los autos que no figuran en la guía (anteriores a 2012) usan precio de agencia + ${plata(p.fijo)}.`;
     document.querySelectorAll('.seg button').forEach(b => b.classList.toggle('active', b.dataset.v === vista));
     ['cliente', 'interno', 'novedades'].forEach(v => $('#v-' + v).hidden = v !== vista);
     $('#cfg-box').hidden = vista === 'cliente';
