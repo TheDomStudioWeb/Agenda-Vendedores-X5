@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-14T20:44:18.592Z",
+ "actualizado": "2026-10-14T20:58:01.317Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -12,8 +12,8 @@
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
    "autos": 92,
-   "revisado": "2026-10-14T20:44:18.592Z",
-   "actualizado": "2026-10-14T20:44:18.592Z"
+   "revisado": "2026-10-14T20:58:01.317Z",
+   "actualizado": "2026-10-14T20:58:01.317Z"
   },
   {
    "id": "autocity",
@@ -22,8 +22,8 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 204,
-   "revisado": "2026-10-14T20:44:18.592Z",
-   "actualizado": "2026-10-14T20:44:18.592Z"
+   "revisado": "2026-10-14T20:58:01.317Z",
+   "actualizado": "2026-10-14T20:58:01.317Z"
   }
  ],
  "autos": [
@@ -14500,13 +14500,16 @@
    "km": 44900,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 31900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903322027.IMG_5528.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903322027.IMG_5528.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903325694.IMG_5533.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903334492.IMG_5529.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903341148.IMG_5530.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-pulse/1-0-impetus-l23/",
    "sucursal": "Córdoba",
@@ -14557,13 +14560,16 @@
    "km": 14500,
    "combustible": "Nafta",
    "caja": "Manual",
-   "color": "",
+   "color": "Gris Plata",
    "equipamiento": "",
    "precio": 31900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902350844.IMG_5565.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902350844.IMG_5565.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902351503.IMG_5568.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902353701.IMG_5566.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902355890.IMG_5567.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-chery/m-tiggo/2-1-5-pro-max-comfort-2/",
    "sucursal": "Córdoba",
@@ -14602,13 +14608,16 @@
    "km": 15700,
    "combustible": "Nafta",
    "caja": "Manual",
-   "color": "",
+   "color": "Acero",
    "equipamiento": "",
    "precio": 31900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902417667.IMG_5327.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902417667.IMG_5327.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902418604.IMG_5330.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902420662.IMG_5328.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902422582.IMG_5329.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-chery/m-tiggo/2-1-5-pro-max-comfort-3/",
    "sucursal": "Córdoba",
@@ -14647,13 +14656,17 @@
    "km": 110600,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris Plata",
    "equipamiento": "",
    "precio": 31900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903966785.IMG_5008.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903966785.IMG_5008.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903970810.IMG_5009.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903974179.IMG_5012.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903983823.IMG_5010.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903994715.IMG_5011.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-sentra/2-0-advance-cvt-l20/",
    "sucursal": "Córdoba",
@@ -14700,13 +14713,16 @@
    "km": 30700,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 32150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783004561242.IMG_1477.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783004561242.IMG_1477.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783004561738.IMG_1480.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783004562487.IMG_1478.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783004563520.IMG_1479.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-308/1-6-thp-allure-plus-s-tiptronic/",
    "sucursal": "Córdoba",
@@ -14749,13 +14765,16 @@
    "km": 142200,
    "combustible": "Diesel",
    "caja": "Manual",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 32150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780581890949.IMG_8864.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780581890949.IMG_8864.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780581891480.IMG_8868.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780581893461.IMG_8865.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780581895144.IMG_8867.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-amarok/2-0-td-140hp-4x2-dc-trendline-l17/",
    "sucursal": "Río Cuarto",
@@ -14814,13 +14833,17 @@
    "km": 6000,
    "combustible": "Nafta",
    "caja": "Manual",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 32500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902726246.IMG_6319.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902726246.IMG_6319.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902726876.IMG_6320.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902727815.IMG_6324.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902731947.IMG_6321.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902735695.IMG_6323.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-chery/m-tiggo/2-1-5-pro-max-comfort-4/",
    "sucursal": "Córdoba",
@@ -14859,13 +14882,16 @@
    "km": 75100,
    "combustible": "Nafta",
    "caja": "Manual",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 32550000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785952920362.IMG_4717.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785952920362.IMG_4717.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785952921549.IMG_4721.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785952923211.IMG_4719.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785952925686.IMG_4720.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-nivus/170-tsi-trendline-l22/",
    "sucursal": "Córdoba",
@@ -14908,13 +14934,17 @@
    "km": 40100,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 32800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498160936.IMG_9818.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498160936.IMG_9818.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498161693.IMG_9820.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498162162.IMG_9822.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498163991.IMG_9819.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498167122.IMG_9821.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-kardian/1-0-t-techno-edc-l24/",
    "sucursal": "Villa María",
@@ -14969,13 +14999,16 @@
    "km": 73100,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Azul",
    "equipamiento": "",
    "precio": 32900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903476398.IMG_7178.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903476398.IMG_7178.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903478882.IMG_7181.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903481613.IMG_7182.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903485050.IMG_7179.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-renegade/1-8-4x2-longitude-at-l18-2/",
    "sucursal": "Córdoba",
@@ -15022,13 +15055,16 @@
    "km": 95100,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 33150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063516525.IMG_6979.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063516525.IMG_6979.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063518859.IMG_6980.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063520495.IMG_6985.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063523387.IMG_6981.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-mini/m-countryman/pepper-at-l17/",
    "sucursal": "Córdoba",
@@ -15075,13 +15111,15 @@
    "km": 42200,
    "combustible": "Nafta",
    "caja": "Manual",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 33500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789484152768.IMG_2311.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789484152768.IMG_2311.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789484153863.IMG_2314.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789484154753.IMG_2313.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-nivus/170-tsi-l24/",
    "sucursal": "Villa María",
@@ -15120,13 +15158,16 @@
    "km": 75900,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 33850000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1779979316507.IMG_6577.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1779979316507.IMG_6577.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1779979316611.IMG_6578.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1779979316733.IMG_6582.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1779979317528.IMG_6581.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-duster/1-3-t-4x2-iconic-cvt/",
    "sucursal": "Río Cuarto",
@@ -15169,13 +15210,20 @@
    "km": 20,
    "combustible": "Electrico",
    "caja": "Automática",
-   "color": "",
+   "color": "Verde",
    "equipamiento": "",
    "precio": 21900,
    "precio_sin_imp": null,
    "moneda": "USD",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923930202.A.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923930202.A.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923930501.S.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923930686.H.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923930880.K.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923931285.D.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923931822.F.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923932066.J.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923932473.GG.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-dolphin-mini/gl-2/",
    "sucursal": "Córdoba",
@@ -15197,13 +15245,20 @@
    "km": 30,
    "combustible": "Electrico",
    "caja": "Automática",
-   "color": "",
+   "color": "Negro",
    "equipamiento": "",
    "precio": 21900,
    "precio_sin_imp": null,
    "moneda": "USD",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924038714.WhatsApp Image 2026-10-13 at 4.22.36 PM.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924038714.WhatsApp%20Image%202026-10-13%20at%204.22.36%20PM.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924039223.WhatsApp%20Image%202026-10-13%20at%204.22.37%20PM.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924039372.WhatsApp%20Image%202026-10-13%20at%204.22.39%20PM´'.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924039537.WhatsApp%20Image%202026-10-13%20at%204.22.39%20PMW.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924039887.WhatsApp%20Image%202026-10-13%20at%204.22.38%20PM.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924040105.WhatsApp%20Image%202026-10-13%20at%204.22.38%20PMO.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924040431.WhatsApp%20Image%202026-10-13%20at%204.22.39%20PME.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924040712.WhatsApp%20Image%202026-10-13%20at%204.22.39%20PM.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-dolphin-mini/gl-3/",
    "sucursal": "Córdoba",
@@ -15225,13 +15280,16 @@
    "km": 20,
    "combustible": "Electrico",
    "caja": "Automática",
-   "color": "",
+   "color": "Celeste",
    "equipamiento": "",
    "precio": 21900,
    "precio_sin_imp": null,
    "moneda": "USD",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923816154.1.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923816154.1.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923816468.4.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923816804.3.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923817641.2.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-dolphin-mini/gl-4/",
    "sucursal": "Córdoba",
@@ -15253,13 +15311,17 @@
    "km": 49300,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 33900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791296973142.IMG_3669.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791296973142.IMG_3669.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791296973947.IMG_3670.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791296975308.IMG_3673.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791296980145.IMG_3671.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791296985073.IMG_3672.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-versa/1-6-exclusive-cvt-2/",
    "sucursal": "Córdoba",
@@ -15306,13 +15368,17 @@
    "km": 81900,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 33900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206763105.IMG_4037.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206763105.IMG_4037.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206764146.IMG_4038.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206765365.IMG_4041.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206768395.IMG_4039.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206771531.IMG_4040.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-chevrolet/m-cruze/1-4t-rs-at-5p/",
    "sucursal": "Córdoba",
@@ -15379,13 +15445,17 @@
    "km": 37500,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Negro",
    "equipamiento": "",
    "precio": 33900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791207060847.IMG_4482.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791207060847.IMG_4482.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791207061717.IMG_4483.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791207062888.IMG_4490.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791207064758.IMG_4485.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791207065770.IMG_4486.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-0-t200-gt-at-l25/",
    "sucursal": "Córdoba",
@@ -15444,13 +15514,15 @@
    "km": 108300,
    "combustible": "Diesel",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 33900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788976273839.IMG_1405.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788976273839.IMG_1405.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788976274887.IMG_1408.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788976275601.IMG_1407.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-toro/2-0-tdi-4x4-volcano-at-l19/",
    "sucursal": "Río Cuarto",
@@ -15521,13 +15593,17 @@
    "km": 36700,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 34250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902023536.IMG_5900.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902023536.IMG_5900.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902024698.IMG_5901.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902025720.IMG_5904.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902029965.IMG_5902.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902034561.IMG_5903.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-versa/1-6-exclusive-cvt-4/",
    "sucursal": "Córdoba",
@@ -15574,13 +15650,16 @@
    "km": 110000,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 34900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970652210.IMG_4886.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970652210.IMG_4886.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970652954.IMG_4891.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970654609.IMG_4889.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970658416.IMG_4890.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-honda/m-hrv/1-8-lx-cvt-l19/",
    "sucursal": "Córdoba",
@@ -15602,13 +15681,17 @@
    "km": 2800,
    "combustible": "Electrico",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 22900,
    "precio_sin_imp": null,
    "moneda": "USD",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879237868.IMG_4095.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879237868.IMG_4095.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879240724.IMG_4096.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879243172.IMG_4099.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879253708.IMG_4097.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879261100.IMG_4098.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-dolphin-mini/gs-6/",
    "sucursal": "Córdoba",
@@ -15630,13 +15713,19 @@
    "km": 64200,
    "combustible": "Nafta",
    "caja": "Manual",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 23000,
    "precio_sin_imp": null,
    "moneda": "USD",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1768223900283.IMG_3283.JPG"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1768223900283.IMG_3283.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1768223900909.IMG_3286.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1768223904030.IMG_3287.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1768223905327.IMG_3290.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1768223908163.IMG_3284.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1768223909649.IMG_3285.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1768223911033.IMG_3289.JPG"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-alfa-romeo/m-166/3-0-v6-24v-l99/",
    "sucursal": "Córdoba",
@@ -15658,13 +15747,17 @@
    "km": 34700,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 35900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790276713970.IMG_0215.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790276713970.IMG_0215.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790276715249.IMG_0217.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790276716290.IMG_0222.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790276720761.IMG_0216.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790276724518.IMG_0219.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-2008/1-0-t-200-active-cvt-l24-2/",
    "sucursal": "Villa María",
@@ -15711,13 +15804,17 @@
    "km": 25500,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Negro",
    "equipamiento": "",
    "precio": 35900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878862982.IMG_3984.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878862982.IMG_3984.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878864137.IMG_3989.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878864859.IMG_3993.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878868300.IMG_3990.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878872219.IMG_3992.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-2008/1-0-t-200-active-cvt-l24-3/",
    "sucursal": "Córdoba",
@@ -15764,13 +15861,16 @@
    "km": 70800,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 35900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903836719.IMG_5222.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903836719.IMG_5222.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903841584.IMG_5226.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903852174.IMG_5223.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903863569.IMG_5224.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-sentra/2-0-sr-cvt-l20/",
    "sucursal": "Córdoba",
@@ -15829,13 +15929,16 @@
    "km": 60000,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 36600000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788183226732.IMG_8713.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788183226732.IMG_8713.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788183229207.IMG_8716.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788183233819.IMG_8714.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788183239940.IMG_8715.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-duster/1-3-t-4x2-iconic-cvt-2/",
    "sucursal": "Córdoba",
@@ -15878,13 +15981,18 @@
    "km": 69100,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 36600000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787339355875.20260818_114046.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787339355875.20260818_114046.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787339357005.20260818_114645.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787339358228.20260818_114441.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787339359458.20260818_114330.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787339360543.20260818_114223.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787339362592.20260818_114254.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-oroch/1-3-tce-4x2-iconic-cvt-l22/",
    "sucursal": "Río Cuarto",
@@ -15906,13 +16014,18 @@
    "km": 90400,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Negro",
    "equipamiento": "",
    "precio": 36600000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787065102322.IMG_7676.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787065102322.IMG_7676.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787065103263.IMG_7678.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787065103461.IMG_7682.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787065103922.IMG_7683.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787065105295.IMG_7684.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787065105497.IMG_7681.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-toro/1-8-mpi-4x2-freedom-at6-l22/",
    "sucursal": "Córdoba",
@@ -15999,13 +16112,16 @@
    "km": 80300,
    "combustible": "Diesel",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 36900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783104507146.IMG_4422.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783104507146.IMG_4422.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783104508129.IMG_4426.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783104511406.IMG_4423.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783104514657.IMG_4425.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-compass/2-0-td-limited-plus-at9-l21/",
    "sucursal": "Villa María",
@@ -16052,13 +16168,17 @@
    "km": 14200,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Negro",
    "equipamiento": "",
    "precio": 36900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790880621866.IMG_5260.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790880621866.IMG_5260.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790880624528.IMG_5262.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790880625530.IMG_5267.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790880627905.IMG_5263.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790880630425.IMG_5266.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-pulse/1-3-t-abarth-at6-l23/",
    "sucursal": "Córdoba",
@@ -16109,13 +16229,17 @@
    "km": 46700,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 36900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903239055.IMG_5705.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903239055.IMG_5705.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903241068.IMG_5706.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903243502.IMG_5709.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903247639.IMG_5707.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903250567.IMG_5708.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-renegade/1-8-4x2-longitude-at-l18/",
    "sucursal": "Córdoba",
@@ -16162,13 +16286,17 @@
    "km": 103100,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 37000000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787326116766.WhatsApp Image 2026-08-18 at 3.11.44 PM.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787326116766.WhatsApp%20Image%202026-08-18%20at%203.11.44%20PM.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787326117400.WhatsApp%20Image%202026-08-18%20at%203.11.45%20PM.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787326117589.WhatsApp%20Image%202026-08-18%20at%203.11.46%20PMi.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787326118067.WhatsApp%20Image%202026-08-18%20at%203.11.45%20PMo.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787326118864.WhatsApp%20Image%202026-08-18%20at%203.11.45%20PM8.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-compass/1-3-t-270-sport-at6-l21-2/",
    "sucursal": "San Luis",
@@ -16227,13 +16355,18 @@
    "km": 13600,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 37250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790274628435.20260922_115612.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790274628435.20260922_115612.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790274629612.20260922_115548.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790274630824.20260922_115838.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790274632038.20260922_115847.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790274633238.20260922_120137.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790274635461.20260922_115804.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-kardian/1-0-t-techno-edc-l25/",
    "sucursal": "Río Cuarto",
@@ -16288,13 +16421,16 @@
    "km": 30700,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris Plata",
    "equipamiento": "",
    "precio": 37500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790273876544.IMG_3808.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790273876544.IMG_3808.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790273877482.IMG_3811.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790273879760.IMG_3809.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790273882084.IMG_3810.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-kicks/1-6-advance-cvt-l22/",
    "sucursal": "Villa María",
@@ -16341,13 +16477,17 @@
    "km": 44400,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Cinza Artense",
    "equipamiento": "",
    "precio": 37900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408506289.IMG_1886.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408506289.IMG_1886.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408506914.IMG_1887.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408507039.IMG_1895.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408508680.IMG_1888.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408509932.IMG_1889.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-2008/1-0-t-200-active-cvt-l24/",
    "sucursal": "San Luis",
@@ -16406,13 +16546,17 @@
    "km": 34400,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 37900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790606146759.IMG_4214.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790606146759.IMG_4214.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790606148012.IMG_4217.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790606149155.IMG_4219.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790606152767.IMG_4216.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790606156794.IMG_4218.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-kardian/1-0-t-iconic-edc-l25-2/",
    "sucursal": "San Luis",
@@ -16467,13 +16611,18 @@
    "km": 76000,
    "combustible": "Gnc",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 37900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790099831126.b29cec4c-ef2e-4816-b705-2e72b1433ab2.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790099831126.b29cec4c-ef2e-4816-b705-2e72b1433ab2.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790099831204.3dfb3311-24b7-4a1d-acde-c688cc19fd7a.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790099831229.94a75959-a3ad-466c-ad50-57ceba857bd6.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790099831261.79de32ce-e956-46a6-aef2-fb0f982f54e1.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790099831278.0397e2a3-fe10-4f1c-9395-a80e816b6297.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790099831326.d6587342-cb45-467e-a172-32e365ffc0af.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-toro/1-8-mpi-4x2-freedom-s-design-l24/",
    "sucursal": "Villa María",
@@ -16552,13 +16701,17 @@
    "km": 73700,
    "combustible": "Hibrido",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 38900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787073191219.IMG_6842.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787073191219.IMG_6842.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787073192056.IMG_6845.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787073193120.IMG_6848.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787073196435.IMG_6846.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787073200171.IMG_6847.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-toyota/m-corolla-cross/1-8-xei-hv-e-cvt/",
    "sucursal": "Córdoba",
@@ -16617,13 +16770,16 @@
    "km": 65800,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 38900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790604149617.IMG_4318.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790604149617.IMG_4318.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790604150926.IMG_4319.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790604151875.IMG_4322.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790604155185.IMG_4321.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-compass/1-3-t-270-sport-at6-l21-3/",
    "sucursal": "Córdoba",
@@ -16678,13 +16834,16 @@
    "km": 63900,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 38900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206858804.IMG_4642.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206858804.IMG_4642.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206859890.IMG_4647.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206862854.IMG_4645.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206866980.IMG_4646.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-kia/m-cerato/2-0-sx-plus-4p-at-l20/",
    "sucursal": "Córdoba",
@@ -16723,13 +16882,17 @@
    "km": 105300,
    "combustible": "Hibrido",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 39500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788377128969.IMG_9199.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788377128969.IMG_9199.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788377132358.IMG_9200.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788377134652.IMG_9204.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788377142511.IMG_9201.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788377149434.IMG_9203.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-toyota/m-corolla-cross/1-8-seg-hv-e-cvt/",
    "sucursal": "Córdoba",
@@ -16784,13 +16947,16 @@
    "km": 2000,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 39500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790875597738.IMG_3741.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790875597738.IMG_3741.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790875600095.IMG_3744.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790875601754.IMG_3757.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790875609867.IMG_3745.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-kicks/1-6-play-advance-cvt/",
    "sucursal": "Córdoba",
@@ -16837,13 +17003,17 @@
    "km": 57500,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 39900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788802622887.IMG_9801.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788802622887.IMG_9801.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788802625573.IMG_9802.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788802628298.IMG_9808.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788802635865.IMG_9805.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788802643628.IMG_9806.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-ds-automobiles/m-ds7/1-6-thp-crossback-perfor-line-l19/",
    "sucursal": "Córdoba",
@@ -16894,13 +17064,20 @@
    "km": 71900,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 39900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791311148783.7e26a181-f67f-429b-b3d7-de545f48da4f.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791311148783.7e26a181-f67f-429b-b3d7-de545f48da4f.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791311149109.b41c50a4-5c67-4c20-bd7f-570426fd3154.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791311149251.40cb93e9-d7d3-43df-a7b7-4ff499feda5a.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791311149361.4eae2f38-c907-40a9-921a-741b36bc2a8e.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791311149424.42fc1211-e0c5-4208-84c7-bc623b1ab9b8.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791311149465.a4c6f7bb-127f-45ca-9851-f353d4527bb7.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791311149500.d81fd0f0-9071-48e9-b6c0-40e08da75165.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791311149521.acd09fe1-3e7d-4357-94e0-6363a60fa77f.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-renegade/1-3-t-270-4x2-serie-s-at6-l23-2/",
    "sucursal": "Villa María",
@@ -16959,13 +17136,15 @@
    "km": 54500,
    "combustible": "Diesel",
    "caja": "Manual",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 39900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970829539.IMG_4941.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970829539.IMG_4941.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970830733.IMG_4943.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970832382.IMG_4942.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-ford/m-ranger/2-0-td-dc-4x2-xl/",
    "sucursal": "Córdoba",
@@ -17060,13 +17239,16 @@
    "km": 57000,
    "combustible": "Nafta",
    "caja": "Manual",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 25900,
    "precio_sin_imp": null,
    "moneda": "USD",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788793538062.IMG_1479.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788793538062.IMG_1479.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788793539281.IMG_1480.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788793540214.IMG_1483.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788793543444.IMG_1481.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-308/1-6-thp-gti-s-l17/",
    "sucursal": "Córdoba",
@@ -17145,13 +17327,17 @@
    "km": 32500,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 40100000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785953119147.IMG_4321.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785953119147.IMG_4321.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785953120002.IMG_4323.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785953120871.IMG_4326.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785953123310.IMG_4324.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785953125816.IMG_4325.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-nivus/200-tsi-outfit-at-l25-2/",
    "sucursal": "Córdoba",
@@ -17210,13 +17396,17 @@
    "km": 22800,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 40300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063579871.IMG_5366.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063579871.IMG_5366.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063583570.IMG_5367.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063585845.IMG_5370.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063590151.IMG_5368.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063593560.IMG_5369.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-2008/1-0-t-200-allure-cvt-l24/",
    "sucursal": "Córdoba",
@@ -17275,13 +17465,18 @@
    "km": 77400,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 40300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788802439290.20260903_120831.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788802439290.20260903_120831.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788802440436.20260903_120755.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788802441476.20260903_121158.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788802443215.20260903_121128.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788802444801.20260903_121042.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788802447653.20260903_120857.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-taos/1-4-250-tsi-comfortline-tiptronic-l23/",
    "sucursal": "Río Cuarto",
@@ -17340,13 +17535,17 @@
    "km": 26900,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 40600000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787341190063.IMG_8044.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787341190063.IMG_8044.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787341191145.IMG_8046.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787341191443.IMG_8049.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787341192632.IMG_8047.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787341192860.IMG_8048.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-2008/1-0-t-200-gt-cvt-l24/",
    "sucursal": "Río Cuarto",
@@ -17393,13 +17592,17 @@
    "km": 30800,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Negro",
    "equipamiento": "",
    "precio": 40600000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790087656413.IMG_2908.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790087656413.IMG_2908.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790087657605.IMG_2910.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790087658252.IMG_2913.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790087661788.IMG_2911.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790087663164.IMG_2912.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-2008/1-0-t-200-gt-cvt-l24-2/",
    "sucursal": "Córdoba",
@@ -17446,13 +17649,17 @@
    "km": 72100,
    "combustible": "Hibrido",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 40900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790098548516.IMG_3425.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790098548516.IMG_3425.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790098549137.IMG_3426.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790098549357.IMG_3430.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790098550049.IMG_3427.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790098550495.IMG_3429.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-toyota/m-corolla/1-8-xei-cvt-hybrid-l20/",
    "sucursal": "Río Cuarto",
@@ -17535,13 +17742,16 @@
    "km": 88300,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 41200000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785940431606.IMG_2034.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785940431606.IMG_2034.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785940435053.IMG_2037.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785940447048.IMG_2036.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785940453939.IMG_2035.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-toro/1-3-t-4x2-freedom-at6-l24/",
    "sucursal": "Villa María",
@@ -17620,13 +17830,17 @@
    "km": 52400,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 41300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790098213293.IMG_3297.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790098213293.IMG_3297.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790098214392.IMG_3303.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790098215752.IMG_3308.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790098218823.IMG_3304.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790098219356.IMG_3307.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-renegade/1-3-t-270-4x2-serie-s-at6-l23/",
    "sucursal": "Córdoba",
@@ -17685,13 +17899,15 @@
    "km": 78600,
    "combustible": "Diesel",
    "caja": "Manual",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 41400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1786645357780.IMG_4963.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1786645357780.IMG_4963.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1786645360473.IMG_4965.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1786645363511.IMG_4964.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-ford/m-ranger/3-2-tdi-4x4-dc-xls-l19/",
    "sucursal": "Villa María",
@@ -17786,13 +18002,17 @@
    "km": 39300,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Negro",
    "equipamiento": "",
    "precio": 41500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787074527716.IMG_3047.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787074527716.IMG_3047.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787074528714.IMG_3048.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787074528868.IMG_3052.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787074529121.IMG_3049.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787074529551.IMG_3051.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-renegade/1-3-t-270-4x2-sport-at6-l25/",
    "sucursal": "Río Cuarto",
@@ -17851,13 +18071,17 @@
    "km": 28100,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Negro",
    "equipamiento": "",
    "precio": 41500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784724602610.IMG_1302.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784724602610.IMG_1302.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784724603154.IMG_1304.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784724603782.IMG_1307.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784724605907.IMG_1306.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784724607583.IMG_1305.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-toro/1-3-t-4x2-freedom-at6-l24-2/",
    "sucursal": "Córdoba",
@@ -17908,13 +18132,16 @@
    "km": 72200,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Negro",
    "equipamiento": "",
    "precio": 41500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791901904009.IMG_4991.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791901904009.IMG_4991.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791901905483.IMG_4994.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791901908706.IMG_4992.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791901911639.IMG_4993.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-compass/1-3-t-270-longitude-at6-l21/",
    "sucursal": "Córdoba",
@@ -17969,13 +18196,16 @@
    "km": 84000,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 41700000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787064918760.IMG_5759.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787064918760.IMG_5759.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787064919216.IMG_5769.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787064919883.IMG_5760.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787064921136.IMG_5766.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-taos/1-4-250-tsi-highline-tiptronic-l21/",
    "sucursal": "Córdoba",
@@ -18022,13 +18252,16 @@
    "km": 52100,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 41700000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787602065149.IMG_7590.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787602065149.IMG_7590.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787602066144.IMG_7593.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787602068151.IMG_7591.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787602070174.IMG_7592.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-2008/1-0-t-200-gt-cvt-l26/",
    "sucursal": "Córdoba",
@@ -18087,13 +18320,16 @@
    "km": 12400,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Negro",
    "equipamiento": "",
    "precio": 41900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787341117370.IMG_5417.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787341117370.IMG_5417.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787341118491.IMG_5424.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787341118928.IMG_5420.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787341119369.IMG_5423.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-renegade/1-3-t-270-4x2-sport-at6-l25-2/",
    "sucursal": "Río Cuarto",
@@ -18152,13 +18388,17 @@
    "km": 9500,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Negro",
    "equipamiento": "",
    "precio": 41900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485314313.IMG_1653.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485314313.IMG_1653.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485315504.IMG_1655.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485315857.IMG_1658.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485317513.IMG_1656.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485319523.IMG_1657.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-renegade/1-3-t-270-4x2-sport-at6-l25-3/",
    "sucursal": "Río Cuarto",
@@ -18217,13 +18457,17 @@
    "km": 52100,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 41900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485764013.IMG_1977.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485764013.IMG_1977.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485764549.IMG_1980.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485765802.IMG_1985.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485767426.IMG_1984.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485769919.IMG_1983.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-compass/1-3-t-270-sport-at6-l21-4/",
    "sucursal": "Río Cuarto",
@@ -18306,13 +18550,20 @@
    "km": 56100,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 42500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788373492073.IMG_0648.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788373492073.IMG_0648.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788373494161.IMG_0650.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788373495580.IMG_0656.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788373497135.IMG_0658.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788373502383.IMG_0651.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788373508786.IMG_0653.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788373511452.IMG_0657.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788373512736.IMG_0654.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-gwm/m-haval-h6/2-0-t-2wd-g3-7dct/",
    "sucursal": "Córdoba",
@@ -18334,13 +18585,17 @@
    "km": 31600,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Negro",
    "equipamiento": "",
    "precio": 42500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787855971791.IMG_8667.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787855971791.IMG_8667.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787855972655.IMG_8668.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787855973193.IMG_8672.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787855973992.IMG_8669.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787855975173.IMG_8671.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-renegade/1-3-t-270-4x2-longitude-at6-l22/",
    "sucursal": "Córdoba",
@@ -18391,13 +18646,17 @@
    "km": 56800,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 42500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791904249099.IMG_6338.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791904249099.IMG_6338.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791904249831.IMG_6339.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791904251018.IMG_6347.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791904253177.IMG_6340.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791904256209.IMG_6345.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-compass/1-3-t-270-sport-at6-l21-5/",
    "sucursal": "Córdoba",
@@ -18480,13 +18739,20 @@
    "km": 4800,
    "combustible": "",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 42600000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791898216453.20261007_153624.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791898216453.20261007_153624.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791898217454.20261007_153554.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791898218597.20261007_153656.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791898219674.20261007_154021.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791898220360.20261007_154058.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791898221222.20261007_154048.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791898221636.20261007_153923.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791898222271.20261007_153940.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-kia/m-k3-cross/1-6-gt-line-at/",
    "sucursal": "Río Cuarto",
@@ -18508,13 +18774,16 @@
    "km": 145400,
    "combustible": "Diesel",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 42650000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785951964479.IMG_2659.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785951964479.IMG_2659.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785951964948.IMG_2662.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785951966594.IMG_2660.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785951968435.IMG_2661.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-frontier/2-3-4x4-dc-x-gear-l20/",
    "sucursal": "Córdoba",
@@ -18589,13 +18858,17 @@
    "km": 17400,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Rojo",
    "equipamiento": "",
    "precio": 42900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1781790966051.IMG_4570.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1781790966051.IMG_4570.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1781790966723.IMG_4571.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1781790967299.IMG_4575.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1781790967904.IMG_4572.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1781790968237.IMG_4573.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-baic/m-x55-ii/1-5-t-luxury-dct/",
    "sucursal": "Córdoba",
@@ -18617,13 +18890,15 @@
    "km": 50600,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 43500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788206471432.IMG_9250.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788206471432.IMG_9250.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788206472467.IMG_9255.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788206473012.IMG_9251.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-taos/1-4-250-tsi-comfortline-tiptronic-l24/",
    "sucursal": "Córdoba",
@@ -18670,13 +18945,17 @@
    "km": 83100,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Cinza Artense",
    "equipamiento": "",
    "precio": 44310000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784570839663.IMG_5316.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784570839663.IMG_5316.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784570840366.IMG_5320.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784570842526.IMG_5317.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784570844765.IMG_5318.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784570847287.IMG_5319.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-ford/m-bronco/2-0-t-4x4-sport-wildtrak-at8-2/",
    "sucursal": "Córdoba",
@@ -18719,13 +18998,21 @@
    "km": 61200,
    "combustible": "Diesel",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 44850000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618081.WhatsApp Image 2026-07-28 at 1.07.23 PM.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618081.WhatsApp%20Image%202026-07-28%20at%201.07.23%20PM.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618151.WhatsApp%20Image%202026-07-28%20at%201.07.24%20PM.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618153.WhatsApp%20Image%202026-07-28%20at%201.07.26%20PM%20(2).jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618156.WhatsApp%20Image%202026-07-28%20at%201.07.26%20PM%20(1).jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618159.WhatsApp%20Image%202026-07-28%20at%201.07.27%20PM.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618162.WhatsApp%20Image%202026-07-28%20at%201.07.24%20PM%20(1).jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618199.WhatsApp%20Image%202026-07-28%20at%201.07.24%20PM%20(2).jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618270.WhatsApp%20Image%202026-07-28%20at%201.07.26%20PM.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618330.WhatsApp%20Image%202026-07-28%20at%201.07.25%20PM.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-ford/m-ranger/3-2-tdi-4x4-dc-fx4-at-l19/",
    "sucursal": "Córdoba",
@@ -18816,13 +19103,16 @@
    "km": 58300,
    "combustible": "Diesel",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 44900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903762988.IMG_6188.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903762988.IMG_6188.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903766110.IMG_6191.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903774087.IMG_6189.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903783266.IMG_6190.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-alaskan/2-3-dci-4x4-outsider-at-l23/",
    "sucursal": "Córdoba",
@@ -18877,13 +19167,15 @@
    "km": 44200,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 45500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788376901852.IMG_9995.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788376901852.IMG_9995.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788376902950.IMG_9997.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788376908755.IMG_9996.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-audi/m-a1/30-tfsi-sportback-s-tronic/",
    "sucursal": "Córdoba",
@@ -18930,13 +19222,18 @@
    "km": 71600,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Naranja",
    "equipamiento": "",
    "precio": 46400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556962966.IMG_9175.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556962966.IMG_9175.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556964100.IMG_9177.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556965017.IMG_9181.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556967773.IMG_9176.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556971276.IMG_9180.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556974167.IMG_9178.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-5008/1-6-thp-gt-pack-tiptronic-l22/",
    "sucursal": "Córdoba",
@@ -18979,13 +19276,18 @@
    "km": 80100,
    "combustible": "Diesel",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 46400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788377746362.IMG_9536.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788377746362.IMG_9536.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788377747755.IMG_9537.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788377748432.IMG_9558.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788377752182.IMG_9538.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788377755401.IMG_9540.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788377759046.IMG_9557.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-commander/2-0-td-4x4-limited-plus-at9-l22-2/",
    "sucursal": "Córdoba",
@@ -19032,13 +19334,19 @@
    "km": 82600,
    "combustible": "Diesel",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 46400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791297187685.20261005_120744.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791297187685.20261005_120744.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791297190505.20261005_120706.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791297193867.20261005_120838.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791297196850.20261005_121108.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791297199252.20261005_121135.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791297201253.20261005_121121.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791297203206.20261005_121004.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-ford/m-ranger/3-0-td-v6-dc-4x4-xls-at/",
    "sucursal": "Córdoba",
@@ -19129,13 +19437,17 @@
    "km": 27000,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 46400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970725237.IMG_5041.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970725237.IMG_5041.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970725953.IMG_5044.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970726867.IMG_5049.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970729806.IMG_5046.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970732894.IMG_5048.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-compass/1-3-t-270-serie-s-at6/",
    "sucursal": "Córdoba",
@@ -19198,13 +19510,17 @@
    "km": 40300,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 46407000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1786107664965.IMG_3502.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1786107664965.IMG_3502.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1786107665806.IMG_3506.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1786107666314.IMG_3512.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1786107668284.IMG_3507.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1786107670452.IMG_3511.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-koleos/2-5-4x4-intens-cvt/",
    "sucursal": "Córdoba",
@@ -19251,13 +19567,16 @@
    "km": 14700,
    "combustible": "Hibrido",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 47350000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787064435520.IMG_5016.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787064435520.IMG_5016.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787064436729.IMG_5019.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787064437137.IMG_5017.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787064438258.IMG_5018.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-toyota/m-corolla/1-8-se-g-cvt-hybrid/",
    "sucursal": "Córdoba",
@@ -19340,13 +19659,17 @@
    "km": 21900,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Rojo",
    "equipamiento": "",
    "precio": 48250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787595170215.IMG_6744.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787595170215.IMG_6744.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787595171588.IMG_6746.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787595172758.IMG_6749.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787595175168.IMG_6747.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787595176006.IMG_6748.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-3008/1-6-gt-pack-tiptronic-l23/",
    "sucursal": "Córdoba",
@@ -19385,13 +19708,16 @@
    "km": 14400,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 48250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787679345349.IMG_5585.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787679345349.IMG_5585.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787679346509.IMG_5588.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787679349317.IMG_5586.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787679352063.IMG_5587.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-renegade/1-3-t-270-4x4-willys-at9-l25/",
    "sucursal": "Córdoba",
@@ -19450,13 +19776,18 @@
    "km": 2700,
    "combustible": "Hibrido",
    "caja": "Automática",
-   "color": "",
+   "color": "Grafito",
    "equipamiento": "",
    "precio": 31250,
    "precio_sin_imp": null,
    "moneda": "USD",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788206057122.IMG_9624.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788206057122.IMG_9624.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788206058140.IMG_9627.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788206058327.IMG_9630.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788206059105.IMG_9631.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788206059230.IMG_9633.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788206059864.IMG_9632.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-changan/m-cs55-plus/1-5-phev-dht/",
    "sucursal": "Córdoba",
@@ -19478,13 +19809,17 @@
    "km": 87100,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 50500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784554880926.IMG_8190.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784554880926.IMG_8190.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784554881671.IMG_8191.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784554882823.IMG_8195.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784554885010.IMG_8192.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784554887469.IMG_8194.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-ford/m-bronco/2-0-t-4x4-sport-wildtrak-at8/",
    "sucursal": "Río Cuarto",
@@ -19527,13 +19862,17 @@
    "km": 57100,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 52500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784054812377.IMG_8299.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784054812377.IMG_8299.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784054813944.IMG_8301.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784054815760.IMG_8304.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784054819409.IMG_8303.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784054820803.IMG_8300.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-xtrail/2-5-4x4-exclusive-cvt-2/",
    "sucursal": "Córdoba",
@@ -19584,13 +19923,17 @@
    "km": 58200,
    "combustible": "Diesel",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 53450000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785936912580.IMG_3010.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785936912580.IMG_3010.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785936913485.IMG_3012.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785936913985.IMG_3015.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785936916866.IMG_3011.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785936918556.IMG_3013.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-amarok/3-0-td-v6-258hp-4x4-dc-extreme-at-l20/",
    "sucursal": "Río Cuarto",
@@ -19661,13 +20004,16 @@
    "km": 53600,
    "combustible": "Diesel",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 53450000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787595340083.IMG_7149.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787595340083.IMG_7149.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787595340730.IMG_7153.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787595341166.IMG_7150.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787595341591.IMG_7151.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-amarok/3-0-td-v6-258hp-4x4-dc-extreme-at-l20-2/",
    "sucursal": "Córdoba",
@@ -19738,13 +20084,17 @@
    "km": 50400,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Plata",
    "equipamiento": "",
    "precio": 54870000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408097409.IMG_0769.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408097409.IMG_0769.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408098515.IMG_0780.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408099148.IMG_0771.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408099870.IMG_0773.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408100410.IMG_0777.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-tiguan/2-0-t-350-tsi-4motion-allspace-life-dsg-2/",
    "sucursal": "Córdoba",
@@ -19783,13 +20133,17 @@
    "km": 62100,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Azul",
    "equipamiento": "",
    "precio": 54900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063766823.IMG_4843.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063766823.IMG_4843.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063767656.IMG_4846.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063767884.IMG_4853.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063768494.IMG_4844.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787063769807.IMG_4852.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-tiguan/2-0-t-350-tsi-4motion-allspace-life-dsg/",
    "sucursal": "Córdoba",
@@ -19828,13 +20182,22 @@
    "km": 37500,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 35900,
    "precio_sin_imp": null,
    "moneda": "USD",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113753482.IMG_1244.jpg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113753482.IMG_1244.jpg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113754123.IMG_1208.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113754234.IMG_1205.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113754384.IMG_1212.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113754584.IMG_1214.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113755050.IMG_1204.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113755642.IMG_1215.jpg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113756273.IMG_1207.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113756647.IMG_1206.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113756919.IMG_1218.JPG"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-300-c/3-6-v6-l13/",
    "sucursal": "Córdoba",
@@ -19856,13 +20219,16 @@
    "km": 47500,
    "combustible": "Diesel",
    "caja": "Automática",
-   "color": "",
+   "color": "Bordo",
    "equipamiento": "",
    "precio": 55750000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784912185850.IMG_6877.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784912185850.IMG_6877.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784912186812.IMG_6878.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784912187428.IMG_6881.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784912187689.IMG_6880.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-chevrolet/m-s-10/2-8td-dc-4x4-z71-at-l22/",
    "sucursal": "Río Cuarto",
@@ -19917,13 +20283,17 @@
    "km": 36400,
    "combustible": "Diesel",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 55800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783362154161.IMG_6174.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783362154161.IMG_6174.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783362155001.IMG_6180.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783362157433.IMG_6175.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783362160173.IMG_6176.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783362162502.IMG_6179.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-commander/2-0-td-4x4-limited-plus-at9-l22/",
    "sucursal": "Córdoba",
@@ -19970,13 +20340,15 @@
    "km": 7400,
    "combustible": "Hibrido",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 36200,
    "precio_sin_imp": null,
    "moneda": "USD",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853640913.IMG_8334.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853640913.IMG_8334.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853641935.IMG_8335.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853644603.IMG_8337.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-song-pro/gs-5/",
    "sucursal": "Córdoba",
@@ -20019,13 +20391,22 @@
    "km": 8500,
    "combustible": "Hibrido",
    "caja": "Automática",
-   "color": "",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 36200,
    "precio_sin_imp": null,
    "moneda": "USD",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879690771.IMG_4732.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879690771.IMG_4732.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879693479.IMG_4733.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879696463.IMG_4738.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879699998.IMG_4737.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879702337.IMG_4743.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879710957.IMG_4735.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879719206.IMG_4739.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879722670.IMG_4736.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879725819.IMG_4741.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879731090.IMG_4740.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-song-pro/gs-7/",
    "sucursal": "Córdoba",
@@ -20068,13 +20449,17 @@
    "km": 8600,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "",
+   "color": "Gris",
    "equipamiento": "",
    "precio": 36900,
    "precio_sin_imp": null,
    "moneda": "USD",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853258590.IMG_8809.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853258590.IMG_8809.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853259878.IMG_8815.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853261331.IMG_8813.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853264674.IMG_8819.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853269567.IMG_8811.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jetour/m-dashing/1-6-t-at7/",
    "sucursal": "Córdoba",
