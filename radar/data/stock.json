@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-15T15:19:18.291Z",
+ "actualizado": "2026-10-15T20:31:03.523Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 90,
-   "revisado": "2026-10-15T15:19:18.291Z",
-   "actualizado": "2026-10-15T15:19:18.291Z"
+   "autos": 94,
+   "revisado": "2026-10-15T20:31:03.523Z",
+   "actualizado": "2026-10-15T20:31:03.523Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,283 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 208,
-   "revisado": "2026-10-15T15:19:18.291Z",
-   "actualizado": "2026-10-15T15:19:18.291Z"
+   "revisado": "2026-10-15T20:31:03.523Z",
+   "actualizado": "2026-10-15T20:31:03.523Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-181367",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Captur",
+   "version": "Intens 2.0",
+   "anio": 2017,
+   "km": 129470,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 19000000,
+   "precio_sin_imp": 15010000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2479-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2480-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2482-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2483-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2478-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2481-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2477-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2475-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2471-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2467-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2468-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2469-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2476-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2470-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2474-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2472-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2473-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/15/captur/",
+   "publicado": "2026-10-15T16:34:00",
+   "modificado": "2026-10-15T16:51:47",
+   "agencia": "maipu",
+   "alta": "2026-10-15T20:31:03.523Z",
+   "guia": {
+    "min": 16726000,
+    "med": 17273000,
+    "max": 17273000,
+    "n": 2,
+    "mejor": {
+     "version": "CAPTUR 5P 2,0 INTENS",
+     "valor": 17273000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "CAPTUR 5P 2,0 ZEN",
+      16726000
+     ],
+     [
+      "CAPTUR 5P 2,0 INTENS",
+      17273000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-181343",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Kwid",
+   "version": "Iconic Outsider 1.0",
+   "anio": 2025,
+   "km": 16550,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Gris",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 19200000,
+   "precio_sin_imp": 15168000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2462-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2463-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2465-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2466-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2461-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2464-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2460-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2458-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2454-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2450-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2451-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2452-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2459-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2453-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2457-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2455-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2456-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/15/kwid-2/",
+   "publicado": "2026-10-15T16:14:21",
+   "modificado": "2026-10-15T16:28:05",
+   "agencia": "maipu",
+   "alta": "2026-10-15T20:31:03.523Z",
+   "guia": {
+    "min": 19809000,
+    "med": 19809000,
+    "max": 19809000,
+    "n": 2,
+    "mejor": {
+     "version": "KWID 5P 1,0 ICONIC OUTSIDER 2025",
+     "valor": 19809000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "KWID 5P 1,0 ICONIC BITONO 2025",
+      19809000
+     ],
+     [
+      "KWID 5P 1,0 ICONIC OUTSIDER 2025",
+      19809000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-181319",
+   "tipo": "auto",
+   "marca": "Chevrolet",
+   "modelo": "Tracker",
+   "version": "1.2T Premier",
+   "anio": 2023,
+   "km": 80430,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Negro",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 29800000,
+   "precio_sin_imp": 23542000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2445-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2446-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2448-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2449-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2444-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2447-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2443-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2441-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2437-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2433-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2434-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2435-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2442-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2436-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2440-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2438-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2439-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/15/tracker-2/",
+   "publicado": "2026-10-15T15:57:51",
+   "modificado": "2026-10-15T16:07:51",
+   "agencia": "maipu",
+   "alta": "2026-10-15T20:31:03.523Z",
+   "guia": {
+    "min": 22249000,
+    "med": 24200000,
+    "max": 27829000,
+    "n": 6,
+    "mejor": {
+     "version": "TRACKER 5P 1,2 T 6AT PREMIER 2024",
+     "valor": 27829000,
+     "coincidencias": 1,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "TRACKER 5P 1,2 T 6AT",
+      22249000
+     ],
+     [
+      "TRACKER 5P 1,2 T 6AT 2024",
+      22917000
+     ],
+     [
+      "TRACKER 5P 1,2 T 6AT LTZ",
+      23436000
+     ],
+     [
+      "TRACKER 5P 1,2 T 6AT LTZ 2024",
+      24200000
+     ],
+     [
+      "TRACKER 5P 1,2 T 6AT PREMIER",
+      27024000
+     ],
+     [
+      "TRACKER 5P 1,2 T 6AT PREMIER 2024",
+      27829000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-181295",
+   "tipo": "auto",
+   "marca": "Ford",
+   "modelo": "Territory",
+   "version": "1.8L At Titanium Eu5",
+   "anio": 2025,
+   "km": 20230,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Negro",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 45000000,
+   "precio_sin_imp": 37190000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2427-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2428-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2432-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2431-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2426-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2429-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2425-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2423-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2419-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2415-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2416-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2417-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2424-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2418-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2422-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2420-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2421-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/15/territory-2/",
+   "publicado": "2026-10-15T12:45:01",
+   "modificado": "2026-10-15T12:55:01",
+   "agencia": "maipu",
+   "alta": "2026-10-15T20:31:03.523Z",
+   "guia": {
+    "min": 38256000,
+    "med": 41757000,
+    "max": 50341000,
+    "n": 4,
+    "mejor": {
+     "version": "TERRITORY 5P 1,8 T AT7 TITANIUM 2025",
+     "valor": 50341000,
+     "coincidencias": 1,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "TERRITORY 5P 1,8 T AT7 SEL 2024",
+      38256000
+     ],
+     [
+      "TERRITORY 5P 1,8 T AT7 TITANIUM 2024",
+      41734000
+     ],
+     [
+      "TERRITORY 5P 1,8 T AT7 SEL 2025",
+      41757000
+     ],
+     [
+      "TERRITORY 5P 1,8 T AT7 TITANIUM 2025",
+      50341000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-181270",
    "tipo": "auto",
@@ -6192,7 +6464,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Plata",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar outlet Ka 2020 Manual 121480 17200000 Precio sugerido al público 13588000 Precio sin impuestos nacionales + Precio a confirmar destacados Ka 2017 Manual 76705 14500000 Precio sugerido al público 11455000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Focus 2019 Automática 112870 21000000 Precio sugerido al público 17355400 Precio sin impuestos nacionales + Precio a confirmar destacados Focus 2016 Manual 193545 16180000 Precio sugerido al público 12782200 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Sandero 2021 Manual 132520 20500000 Precio sugerido al público 16195000 Precio sin impuestos nacionales + Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar oportunidades Focus 2019 Automática 112870 21000000 Precio sugerido al público 17355400 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 16180000,
    "precio_sin_imp": 12782200,
    "moneda": "ARS",
@@ -6371,7 +6643,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar outlet Ka 2020 Manual 121480 17200000 Precio sugerido al público 13588000 Precio sin impuestos nacionales + Precio a confirmar destacados Ka 2017 Manual 76705 14500000 Precio sugerido al público 11455000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Focus 2019 Automática 112870 21000000 Precio sugerido al público 17355400 Precio sin impuestos nacionales + Precio a confirmar destacados Focus 2016 Manual 193545 16180000 Precio sugerido al público 12782200 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Sandero 2021 Manual 132520 20500000 Precio sugerido al público 16195000 Precio sin impuestos nacionales + Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar oportunidades Focus 2019 Automática 112870 21000000 Precio sugerido al público 17355400 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -6443,7 +6715,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar outlet Ka 2020 Manual 121480 17200000 Precio sugerido al público 13588000 Precio sin impuestos nacionales + Precio a confirmar destacados Ka 2017 Manual 76705 14500000 Precio sugerido al público 11455000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Focus 2019 Automática 112870 21000000 Precio sugerido al público 17355400 Precio sin impuestos nacionales + Precio a confirmar destacados Focus 2016 Manual 193545 16180000 Precio sugerido al público 12782200 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Sandero 2021 Manual 132520 20500000 Precio sugerido al público 16195000 Precio sin impuestos nacionales + Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar oportunidades Focus 2019 Automática 112870 21000000 Precio sugerido al público 17355400 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 29700,
    "precio_sin_imp": 24550,
    "moneda": "USD",
@@ -6509,7 +6781,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar outlet Ka 2020 Manual 121480 17200000 Precio sugerido al público 13588000 Precio sin impuestos nacionales + Precio a confirmar destacados Ka 2017 Manual 76705 14500000 Precio sugerido al público 11455000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Focus 2019 Automática 112870 21000000 Precio sugerido al público 17355400 Precio sin impuestos nacionales + Precio a confirmar destacados Focus 2016 Manual 193545 16180000 Precio sugerido al público 12782200 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Sandero 2021 Manual 132520 20500000 Precio sugerido al público 16195000 Precio sin impuestos nacionales + Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar oportunidades Focus 2019 Automática 112870 21000000 Precio sugerido al público 17355400 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6566,7 +6838,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Rojo",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar outlet Ka 2020 Manual 121480 17200000 Precio sugerido al público 13588000 Precio sin impuestos nacionales + Precio a confirmar destacados Ka 2017 Manual 76705 14500000 Precio sugerido al público 11455000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Focus 2019 Automática 112870 21000000 Precio sugerido al público 17355400 Precio sin impuestos nacionales + Precio a confirmar destacados Focus 2016 Manual 193545 16180000 Precio sugerido al público 12782200 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Sandero 2021 Manual 132520 20500000 Precio sugerido al público 16195000 Precio sin impuestos nacionales + Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar oportunidades Focus 2019 Automática 112870 21000000 Precio sugerido al público 17355400 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 11110000,
    "precio_sin_imp": 8776900,
    "moneda": "ARS",

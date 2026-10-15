@@ -1,6 +1,38 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-15T20:31:03.523Z",
+   "tipo": "nuevo",
+   "id": "maipu-181367",
+   "auto": "Renault Captur 2017",
+   "precio": 19000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T20:31:03.523Z",
+   "tipo": "nuevo",
+   "id": "maipu-181343",
+   "auto": "Renault Kwid 2025",
+   "precio": 19200000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T20:31:03.523Z",
+   "tipo": "nuevo",
+   "id": "maipu-181319",
+   "auto": "Chevrolet Tracker 2023",
+   "precio": 29800000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T20:31:03.523Z",
+   "tipo": "nuevo",
+   "id": "maipu-181295",
+   "auto": "Ford Territory 2025",
+   "precio": 45000000,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-10-15T15:19:18.291Z",
    "tipo": "nuevo",
    "id": "maipu-181270",
