@@ -59,6 +59,22 @@
   details.newform form { margin-top: 14px; }
 
   .search { margin: 12px 0; }
+  /* Filtros */
+  .fbar { display: flex; gap: 8px; margin: 12px 0 0; }
+  .fbar .search { margin: 0; flex: 1; min-width: 0; }
+  .fbtn { width: auto; flex: none; padding: 0 14px; position: relative; gap: 6px; font-size: .82rem; }
+  .fbtn svg { width: 17px; height: 17px; }
+  .fbtn.on { border-color: var(--x5); color: var(--x5); }
+  .fcount { position: absolute; top: -7px; right: -7px; min-width: 19px; height: 19px; padding: 0 5px; border-radius: 10px; background: var(--x5); color: var(--on-accent); font-size: .66rem; font-weight: 800; display: grid; place-items: center; }
+  .fpanel { margin-top: 10px; padding: 12px 12px 4px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--line); animation: x5-in .18s ease-out; }
+  .fpanel .field { margin-bottom: 10px; }
+  .fpanel select, .fpanel input { padding-left: 12px; padding-right: 30px; }
+  .fpanel select { background-position: calc(100% - 15px) 50%, calc(100% - 10px) 50%; }
+  .fpanel .acc { display: flex; justify-content: flex-end; margin-bottom: 8px; }
+  .fsum { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 10px; font-size: .78rem; color: var(--muted); }
+  .fsum b { color: var(--text); }
+  .fsum .chip { padding: 4px 6px 4px 10px; }
+  .fsum .chip button { border: 0; background: none; color: inherit; cursor: pointer; font-size: .9rem; line-height: 1; padding: 0 2px; }
 
   /* Navegación inferior */
   .bnav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: flex; padding: 6px 8px calc(6px + var(--safe-bottom)); background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid var(--line); }
@@ -151,7 +167,20 @@
         <button data-v="proximas">Próximas</button>
         <button data-v="todo">Historial</button>
       </div>
-      <input class="search hidden" id="q-agenda" type="search" placeholder="Buscar cliente, vehículo o asesor…">
+      <div class="fbar">
+        <input class="search" id="q-agenda" type="search" placeholder="Buscar cliente, vehículo o asesor…">
+        <button type="button" class="btn btn-ghost fbtn" data-fp="agenda" aria-label="Filtros"><svg viewBox="0 0 24 24"><path d="M3 5h18l-7 8v5l-4 2v-7z"/></svg>Filtros<span class="fcount hidden"></span></button>
+      </div>
+      <div class="fpanel hidden" id="fp-agenda" data-t="agenda">
+        <div class="field sup-only"><label>Asesor o equipo</label><select class="f-persona"></select></div>
+        <div class="row">
+          <div class="field"><label>Estado</label><select data-f="estado"></select></div>
+          <div class="field"><label>Fecha</label><select data-f="fecha"></select></div>
+        </div>
+        <div class="row field hidden" data-rango><input type="date" data-f="desde" aria-label="Desde"><input type="date" data-f="hasta" aria-label="Hasta"></div>
+        <div class="acc"><button type="button" class="btn btn-ghost btn-sm" data-limpiar>Limpiar filtros</button></div>
+      </div>
+      <div class="fsum hidden" id="fs-agenda"></div>
       <div id="lista-agenda" style="margin-top:12px"></div>
     </div>
   </section>
@@ -185,7 +214,20 @@
         <button data-v="vencidos">Vencidos</button>
         <button data-v="todo">Todos</button>
       </div>
-      <input class="search hidden" id="q-leads" type="search" placeholder="Buscar nombre, teléfono o interés…">
+      <div class="fbar">
+        <input class="search" id="q-leads" type="search" placeholder="Buscar nombre, teléfono o interés…">
+        <button type="button" class="btn btn-ghost fbtn" data-fp="leads" aria-label="Filtros"><svg viewBox="0 0 24 24"><path d="M3 5h18l-7 8v5l-4 2v-7z"/></svg>Filtros<span class="fcount hidden"></span></button>
+      </div>
+      <div class="fpanel hidden" id="fp-leads" data-t="leads">
+        <div class="field sup-only"><label>Asesor o equipo</label><select class="f-persona"></select></div>
+        <div class="row">
+          <div class="field"><label>Estado</label><select data-f="estado"></select></div>
+          <div class="field"><label>Fecha</label><select data-f="fecha"></select></div>
+        </div>
+        <div class="row field hidden" data-rango><input type="date" data-f="desde" aria-label="Desde"><input type="date" data-f="hasta" aria-label="Hasta"></div>
+        <div class="acc"><button type="button" class="btn btn-ghost btn-sm" data-limpiar>Limpiar filtros</button></div>
+      </div>
+      <div class="fsum hidden" id="fs-leads"></div>
       <div id="lista-leads" style="margin-top:12px"></div>
     </div>
   </section>
@@ -196,6 +238,10 @@
       <div class="row" style="align-items:center">
         <div><div class="lbl" style="margin:0">Período</div></div>
         <select id="dash-mes" style="max-width:220px"></select>
+      </div>
+      <div class="row" style="align-items:center;margin-top:10px">
+        <div><div class="lbl" style="margin:0">Asesor o equipo</div></div>
+        <select class="f-persona" style="max-width:220px"></select>
       </div>
     </div>
     <div class="kpis">
@@ -392,6 +438,7 @@ function iniciarApp() {
   $('panel-asignar').classList.toggle('hidden', !supervisa);
   $('nav-dashboard').classList.toggle('hidden', !supervisa);
   llenarDesplegables();
+  prepararFiltros();
   $('ag-fecha').value = X5.hoyISO();
   $('btn-avisos').classList.toggle('hidden', !token);
   render();
@@ -452,13 +499,153 @@ function vencido(fecha, hora) {
   return !isNaN(d) && d < ahora();
 }
 
+/* ── Filtros: asesor/equipo (compartido) + estado y fecha por pestaña ── */
+const F = { persona: '', agenda: { estado: '', fecha: '', desde: '', hasta: '' }, leads: { estado: '', fecha: '', desde: '', hasta: '' } };
+const ESTADOS_F = {
+  agenda: [['', 'Todos'], ['pendiente', 'Pendiente'], ['atrasada', 'Atrasada'], ['realizado', 'Realizada'], ['cancelado', 'Cancelada'], ['venta', 'Venta'], ['seguimiento', 'Seguimiento'], ['descartado', 'Descartado']],
+  leads: [['', 'Todos'], ['pendiente', 'Pendiente'], ['vencido', 'Vencido'], ['entrevista_pactada', 'Entrevista'], ['en_seguimiento', 'Seguimiento'], ['descartado', 'Descartado']]
+};
+const FECHAS_F = [['', 'Todas'], ['hoy', 'Hoy'], ['ayer', 'Ayer'], ['semana', 'Esta semana'], ['semana_ant', 'Semana pasada'], ['mes', 'Este mes'], ['mes_ant', 'Mes anterior'], ['rango', 'Elegir fechas…']];
+const etiqueta = (lista, v) => (lista.find(x => x[0] === v) || ['', v])[1];
+const claveFiltro = () => 'x5_f_persona_' + (user ? user.nombre : '');
+
+function equipoDe(jefe) {
+  const set = new Set([jefe]);
+  let cambio = true;
+  while (cambio) {
+    cambio = false;
+    (db.personal || []).forEach(p => { if (set.has(p.reporta_a) && !set.has(p.nombre)) { set.add(p.nombre); cambio = true; } });
+  }
+  return set;
+}
+
+/** Devuelve una función que dice si un asesor entra en la vista actual. */
+function filtroPersona() {
+  const v = F.persona;
+  if (!v) return (n) => puedeVer(n);
+  if (v.startsWith('p:')) { const x = v.slice(2); return (n) => n === x && puedeVer(n); }
+  const eq = equipoDe(v.slice(2));
+  return (n) => eq.has(n) && puedeVer(n);
+}
+
+function rangoFecha(f) {
+  const d = new Date(); d.setHours(12, 0, 0, 0);
+  const iso = (x) => X5.hoyISO(x);
+  const mas = (n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+  const dow = (d.getDay() + 6) % 7; // lunes = 0
+  switch (f.fecha) {
+    case 'hoy': return [iso(d), iso(d)];
+    case 'ayer': return [iso(mas(-1)), iso(mas(-1))];
+    case 'semana': return [iso(mas(-dow)), iso(mas(6 - dow))];
+    case 'semana_ant': return [iso(mas(-dow - 7)), iso(mas(-dow - 1))];
+    case 'mes': return [iso(new Date(d.getFullYear(), d.getMonth(), 1)), iso(new Date(d.getFullYear(), d.getMonth() + 1, 0))];
+    case 'mes_ant': return [iso(new Date(d.getFullYear(), d.getMonth() - 1, 1)), iso(new Date(d.getFullYear(), d.getMonth(), 0))];
+    case 'rango': return (f.desde || f.hasta) ? [f.desde || '0000-01-01', f.hasta || '9999-12-31'] : null;
+    default: return null;
+  }
+}
+
+const estadoAgendaOk = (a, e, hoy) => {
+  const est = a.estado || 'pendiente';
+  if (e === 'atrasada') return est === 'pendiente' && soloFecha(a.fecha) < hoy;
+  if (e === 'venta' || e === 'seguimiento' || e === 'descartado') return a.resultado === e;
+  return est === e;
+};
+const estadoLeadOk = (l, e) => {
+  const est = l.estado || 'pendiente';
+  if (e === 'vencido') return est === 'pendiente' && vencido(l.fecha_asignacion, l.hora_limite);
+  return est === e;
+};
+
+let personaHtml = '';
+function llenarPersona() {
+  const vis = new Set();
+  (db.personal || []).forEach(p => { if (p.estado === 'Activo' && puedeVer(p.nombre)) vis.add(p.nombre); });
+  db.agenda.forEach(a => { if (a.asesor && puedeVer(a.asesor)) vis.add(a.asesor); });
+  db.leads.forEach(l => { if (l.asignado_a && puedeVer(l.asignado_a)) vis.add(l.asignado_a); });
+  const orden = (a, b) => String(a).localeCompare(String(b), 'es');
+  const jefes = [...vis].filter(n => n !== user.nombre && (db.personal || []).some(p => p.reporta_a === n && vis.has(p.nombre))).sort(orden);
+  let html = `<option value="">${user.rol === 'Gerente Comercial' ? 'Todo el equipo' : 'Todo mi equipo'}</option>`;
+  if (jefes.length) html += '<optgroup label="Equipos">' + jefes.map(j => `<option value="e:${esc(j)}">Equipo de ${esc(j)}</option>`).join('') + '</optgroup>';
+  html += '<optgroup label="Personas">' + [...vis].sort(orden).map(n => `<option value="p:${esc(n)}">${esc(n)}${n === user.nombre ? ' (yo)' : ''}</option>`).join('') + '</optgroup>';
+  if (html !== personaHtml) {
+    personaHtml = html;
+    document.querySelectorAll('.f-persona').forEach(sel => { sel.innerHTML = html; });
+  }
+  const valido = !F.persona || [...document.querySelector('.f-persona').options].some(o => o.value === F.persona);
+  if (!valido) F.persona = '';
+  document.querySelectorAll('.f-persona').forEach(sel => { sel.value = F.persona; });
+}
+
+function prepararFiltros() {
+  const supervisa = SUPERVISION.includes(user.rol);
+  document.querySelectorAll('.sup-only').forEach(el => el.classList.toggle('hidden', !supervisa));
+  ['agenda', 'leads'].forEach(t => {
+    const fp = $('fp-' + t);
+    fp.querySelector('[data-f="estado"]').innerHTML = ESTADOS_F[t].map(([v, x]) => `<option value="${v}">${x}</option>`).join('');
+    fp.querySelector('[data-f="fecha"]').innerHTML = FECHAS_F.map(([v, x]) => `<option value="${v}">${x}</option>`).join('');
+  });
+  try { F.persona = supervisa ? (localStorage.getItem(claveFiltro()) || '') : ''; } catch (e) { F.persona = ''; }
+  llenarPersona();
+}
+
+function setSeg(t, v) {
+  filtro[t] = v;
+  document.querySelectorAll(`.seg[data-filtro="${t}"] button`).forEach(x => x.classList.toggle('active', x.dataset.v === v));
+}
+
+function filtrosActivos(t) {
+  const f = F[t], n = [];
+  if (F.persona) n.push(['persona', F.persona.startsWith('e:') ? 'Equipo de ' + F.persona.slice(2) : F.persona.slice(2)]);
+  if (f.estado) n.push(['estado', etiqueta(ESTADOS_F[t], f.estado)]);
+  if (f.fecha && rangoFecha(f)) {
+    const txt = f.fecha === 'rango' ? `${f.desde ? X5.fechaCorta(f.desde) : '…'} → ${f.hasta ? X5.fechaCorta(f.hasta) : '…'}` : etiqueta(FECHAS_F, f.fecha);
+    n.push(['fecha', txt]);
+  }
+  return n;
+}
+
+function pintarFiltros(t, total) {
+  const act = filtrosActivos(t);
+  const btn = document.querySelector(`.fbtn[data-fp="${t}"]`), cnt = btn.querySelector('.fcount');
+  btn.classList.toggle('on', act.length > 0);
+  cnt.textContent = act.length; cnt.classList.toggle('hidden', !act.length);
+  const fs = $('fs-' + t);
+  fs.classList.toggle('hidden', !act.length);
+  if (act.length) {
+    const nombre = t === 'agenda' ? (total === 1 ? 'entrevista' : 'entrevistas') : (total === 1 ? 'lead' : 'leads');
+    fs.innerHTML = `<span><b>${total}</b> ${nombre}</span>` + act.map(([k, v]) =>
+      `<span class="chip x5">${esc(v)}<button type="button" data-quitar="${k}" aria-label="Quitar filtro">×</button></span>`).join('');
+  }
+}
+
+function quitarFiltro(t, k) {
+  if (k === 'persona') { F.persona = ''; guardarPersona(); llenarPersona(); }
+  else if (k === 'estado') F[t].estado = '';
+  else if (k === 'fecha') { F[t].fecha = ''; F[t].desde = ''; F[t].hasta = ''; }
+  sincronizarPanel(t);
+  render();
+}
+
+function guardarPersona() { try { localStorage.setItem(claveFiltro(), F.persona); } catch (e) {} }
+
+function sincronizarPanel(t) {
+  const fp = $('fp-' + t), f = F[t];
+  fp.querySelector('[data-f="estado"]').value = f.estado;
+  fp.querySelector('[data-f="fecha"]').value = f.fecha;
+  fp.querySelector('[data-f="desde"]').value = f.desde;
+  fp.querySelector('[data-f="hasta"]').value = f.hasta;
+  fp.querySelector('[data-rango]').classList.toggle('hidden', f.fecha !== 'rango');
+}
+
 /* ── Render ────────────────────────────────────────────────── */
-function render() { renderAgenda(); renderLeads(); resumen(); if (SUPERVISION.includes(user.rol) && $('tab-dashboard').classList.contains('active')) renderDashboard(); }
+function render() { if (user) llenarPersona(); renderAgenda(); renderLeads(); resumen(); if (SUPERVISION.includes(user.rol) && $('tab-dashboard').classList.contains('active')) renderDashboard(); }
 
 function resumen() {
   const hoy = X5.hoyISO();
-  const ag = db.agenda.filter(a => puedeVer(a.asesor));
-  const ld = db.leads.filter(l => puedeVer(l.asignado_a));
+  const ver = filtroPersona();
+  const ag = db.agenda.filter(a => ver(a.asesor));
+  const ld = db.leads.filter(l => ver(l.asignado_a));
   const entrevistasHoy = ag.filter(a => soloFecha(a.fecha) === hoy && a.estado !== 'cancelado').length;
   const leadsHoy = ld.filter(l => soloFecha(l.fecha_asignacion) === hoy || (l.estado === 'pendiente' && soloFecha(l.fecha_asignacion) < hoy)).length;
   const venc = ld.filter(l => l.estado === 'pendiente' && vencido(l.fecha_asignacion, l.hora_limite)).length
@@ -483,12 +670,16 @@ function coincide(item, q, campos) {
 
 function renderAgenda() {
   const hoy = X5.hoyISO(), q = $('q-agenda').value.trim();
-  let data = db.agenda.filter(a => puedeVer(a.asesor));
+  const ver = filtroPersona(), fa = F.agenda, rangoA = rangoFecha(fa);
+  let data = db.agenda.filter(a => ver(a.asesor));
+  if (rangoA) data = data.filter(a => { const x = soloFecha(a.fecha); return x >= rangoA[0] && x <= rangoA[1]; });
+  if (fa.estado) data = data.filter(a => estadoAgendaOk(a, fa.estado, hoy));
   if (filtro.agenda === 'hoy') data = data.filter(a => soloFecha(a.fecha) === hoy || (a.estado === 'pendiente' && soloFecha(a.fecha) < hoy));
   if (filtro.agenda === 'proximas') data = data.filter(a => soloFecha(a.fecha) > hoy && a.estado !== 'cancelado');
   data = data.filter(a => coincide(a, q, ['cliente', 'vehiculo', 'asesor', 'nro_contrato']));
   data.sort((a, b) => (`${soloFecha(a.fecha)}T${a.hora}`).localeCompare(`${soloFecha(b.fecha)}T${b.hora}`));
   if (filtro.agenda === 'todo') data.reverse();
+  pintarFiltros('agenda', data.length);
 
   $('lista-agenda').innerHTML = data.length ? data.map(it => {
     const atrasada = it.estado === 'pendiente' && soloFecha(it.fecha) < hoy;
@@ -515,7 +706,7 @@ function renderAgenda() {
       <textarea data-campo="notas" rows="2" placeholder="Observaciones de la entrevista…" style="margin-top:8px">${esc(it.notas)}</textarea>
       <div class="note-state"></div>
     </article>`;
-  }).join('') : `<div class="empty">${filtro.agenda === 'hoy' ? 'Nada agendado para hoy.' : 'No hay entrevistas en esta vista.'}</div>`;
+  }).join('') : `<div class="empty">${filtrosActivos('agenda').length ? 'No hay entrevistas con estos filtros.' : filtro.agenda === 'hoy' ? 'Nada agendado para hoy.' : 'No hay entrevistas en esta vista.'}</div>`;
 }
 
 function telAR(t) {
@@ -530,11 +721,15 @@ function telAR(t) {
 
 function renderLeads() {
   const hoy = X5.hoyISO(), q = $('q-leads').value.trim();
-  let data = db.leads.filter(l => puedeVer(l.asignado_a));
+  const ver = filtroPersona(), fl = F.leads, rangoL = rangoFecha(fl);
+  let data = db.leads.filter(l => ver(l.asignado_a));
+  if (rangoL) data = data.filter(l => { const x = soloFecha(l.fecha_asignacion); return x >= rangoL[0] && x <= rangoL[1]; });
+  if (fl.estado) data = data.filter(l => estadoLeadOk(l, fl.estado));
   if (filtro.leads === 'hoy') data = data.filter(l => soloFecha(l.fecha_asignacion) === hoy || (l.estado === 'pendiente' && soloFecha(l.fecha_asignacion) < hoy));
   if (filtro.leads === 'abiertos') data = data.filter(l => l.estado !== 'descartado');
   if (filtro.leads === 'vencidos') data = data.filter(l => l.estado === 'pendiente' && vencido(l.fecha_asignacion, l.hora_limite));
   data = data.filter(l => coincide(l, q, ['cliente', 'telefono', 'interes', 'asignado_a', 'origen']));
+  pintarFiltros('leads', data.length);
   // Primero los vencidos, después por límite
   data.sort((a, b) => {
     const va = a.estado === 'pendiente' && vencido(a.fecha_asignacion, a.hora_limite), vb = b.estado === 'pendiente' && vencido(b.fecha_asignacion, b.hora_limite);
@@ -562,7 +757,7 @@ function renderLeads() {
         ${l.estado === 'entrevista_pactada' ? `<button class="btn btn-sm full" data-agendar="1">Agendar la entrevista</button>` : ''}
       </div>
     </article>`;
-  }).join('') : `<div class="empty">${filtro.leads === 'hoy' ? 'Sin leads para hoy. ¡Bien ahí!' : 'No hay leads en esta vista.'}</div>`;
+  }).join('') : `<div class="empty">${filtrosActivos('leads').length ? 'No hay leads con estos filtros.' : filtro.leads === 'hoy' ? 'Sin leads para hoy. ¡Bien ahí!' : 'No hay leads en esta vista.'}</div>`;
 }
 
 /* ── Edición (delegación de eventos) ───────────────────────── */
@@ -687,13 +882,46 @@ $('form-leads').addEventListener('submit', (e) => {
 document.querySelectorAll('.seg[data-filtro]').forEach(seg => {
   seg.addEventListener('click', (e) => {
     const b = e.target.closest('button'); if (!b) return;
-    const t = seg.dataset.filtro; filtro[t] = b.dataset.v;
-    seg.querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b));
-    $('q-' + t).classList.toggle('hidden', b.dataset.v === 'hoy');
+    const t = seg.dataset.filtro;
+    setSeg(t, b.dataset.v);
+    if (b.dataset.v === 'hoy' && F[t].fecha) { F[t].fecha = ''; F[t].desde = ''; F[t].hasta = ''; sincronizarPanel(t); }
     t === 'agenda' ? renderAgenda() : renderLeads();
   });
 });
 $('q-agenda').addEventListener('input', renderAgenda);
+
+// Panel de filtros
+document.querySelectorAll('.fbtn').forEach(b => b.addEventListener('click', () => $('fp-' + b.dataset.fp).classList.toggle('hidden')));
+document.querySelectorAll('.fpanel').forEach(fp => {
+  const t = fp.dataset.t;
+  fp.addEventListener('change', (e) => {
+    const k = e.target.dataset.f; if (!k) return;
+    F[t][k] = e.target.value;
+    if (k === 'fecha') {
+      if (F[t].fecha !== 'rango') { F[t].desde = ''; F[t].hasta = ''; }
+      if (F[t].fecha) setSeg(t, 'todo'); // un filtro de fecha muestra todo ese período
+    }
+    sincronizarPanel(t);
+    t === 'agenda' ? renderAgenda() : renderLeads();
+  });
+  fp.querySelector('[data-limpiar]').addEventListener('click', () => {
+    F[t] = { estado: '', fecha: '', desde: '', hasta: '' };
+    if (F.persona) { F.persona = ''; guardarPersona(); llenarPersona(); }
+    sincronizarPanel(t);
+    render();
+  });
+});
+document.addEventListener('change', (e) => {
+  if (!e.target.classList || !e.target.classList.contains('f-persona')) return;
+  F.persona = e.target.value;
+  guardarPersona();
+  document.querySelectorAll('.f-persona').forEach(s => { s.value = F.persona; });
+  render();
+});
+document.addEventListener('click', (e) => {
+  const q = e.target.closest('[data-quitar]'); if (!q) return;
+  quitarFiltro(q.closest('.fsum').id.replace('fs-', ''), q.dataset.quitar);
+});
 $('q-leads').addEventListener('input', renderLeads);
 
 function cambiarTab(id) {
@@ -753,8 +981,9 @@ function renderDashboard() {
   llenarMeses();
   const per = $('dash-mes').value || 'todo';
   const enPer = (f) => per === 'todo' || soloFecha(f).startsWith(per);
-  const ventas = db.agenda.filter(a => a.resultado === 'venta' && puedeVer(a.asesor) && enPer(a.fecha));
-  const leads = db.leads.filter(l => puedeVer(l.asignado_a) && enPer(l.fecha_asignacion));
+  const ver = filtroPersona();
+  const ventas = db.agenda.filter(a => a.resultado === 'venta' && ver(a.asesor) && enPer(a.fecha));
+  const leads = db.leads.filter(l => ver(l.asignado_a) && enPer(l.fecha_asignacion));
 
   let fact = 0; const porAsesor = {}, origen = {}, flota = {};
   ventas.forEach(v => {
