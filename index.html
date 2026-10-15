@@ -92,7 +92,7 @@
   <button class="btn btn-ghost install" id="btn-install">Instalar en este teléfono</button>
 
   <footer class="foot">
-    Core System v2.0 · Mendoza<br>
+    Core System v2.0 · Mendoza · <span id="origen-app">Versión web</span><br>
     Desarrollado por <span class="dom-sign">The DOM Studio Web</span>
   </footer>
 </main>
@@ -103,6 +103,10 @@
   const dia = d.toLocaleDateString('es-AR', { weekday: 'long' });
   const h = d.getHours(), saludo = h < 13 ? 'Buen día' : h < 20 ? 'Buenas tardes' : 'Buenas noches';
   document.getElementById('fecha').innerHTML = `${saludo} <span>· ${dia.charAt(0).toUpperCase() + dia.slice(1)} ${d.getDate()} de ${d.toLocaleDateString('es-AR', { month: 'long' })}</span>`;
+
+  // Indica desde dónde se abre el Hub (para distinguir la APK de la versión web instalada)
+  if (window.X5Android) document.getElementById('origen-app').textContent = 'App Android';
+  else if (matchMedia('(display-mode: standalone)').matches || navigator.standalone) document.getElementById('origen-app').textContent = 'Web instalada';
 
   // Botón de instalación (Android/Chrome)
   let promptInstalar = null;
