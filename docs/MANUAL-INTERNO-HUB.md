@@ -1,0 +1,120 @@
+# Manual interno · Hub Comercial X5 Cuyo
+
+> Documento de referencia para Claudio y para el equipo de The DOM Studio Web.
+> Explica qué es el Hub, cómo funciona por dentro y cómo responder las dudas más comunes.
+> Versión 2.0 · Octubre 2026 · Desarrollado por The DOM Studio Web (Mendoza).
+
+## 1. Qué es
+
+El Hub Comercial X5 Cuyo es la herramienta de trabajo del equipo de ventas de X5 Argentina, Región Cuyo. Reúne en una sola app la agenda de entrevistas, los leads, la auditoría de inversión para el cliente, el escaneo de documentos y el checklist de vehículos.
+
+- **Dirección web:** https://thedomstudioweb.github.io/Agenda-Vendedores-X5/
+- **Android:** app "X5 Cuyo" (APK interna, paquete `com.thedomstudioweb.x5cuyo`).
+- **iPhone:** se agrega desde Safari a la pantalla de inicio. No hay versión App Store.
+- **Código:** repositorio GitHub `TheDomStudioWeb/Agenda-Vendedores-X5`.
+- **Datos:** una planilla de Google Sheets, conectada por Google Apps Script.
+
+## 2. Las herramientas
+
+### Mini CRM (`crm.html`)
+Agenda de entrevistas y seguimiento de leads. Es la única herramienta que pide usuario y clave. La sesión dura 30 días.
+
+- **Pestañas:** Agenda, Leads y Métricas. Métricas la ven solo los roles Gerente Comercial, Jefe de Ventas y Referente.
+- **Resumen del día:** entrevistas de hoy, leads de hoy y vencidos.
+- **Agenda:** se carga prospecto, vehículo, lugar (agencia o domicilio con auto de flota), asesor, fecha y hora. Después de la entrevista se marca el estado (Pendiente, Realizada o Cancelada) y el resultado (Venta cerrada, En seguimiento o Descartado). Si hubo venta, se cargan N° de contrato y monto.
+- **Leads:** posibles clientes asignados por un jefe, con hora límite de contacto. Estados: Pendiente, Entrevista pactada, En seguimiento y Descartado/frío. Filtros: Para hoy, Abiertos, Vencidos y Todos.
+- **Observaciones y notas:** se guardan solas mientras se escribe. Si no hay señal, quedan en una cola del teléfono y se envían al volver la conexión.
+- **Indicador de conexión:** "Al día" (verde), "Guardando" (amarillo) o "Sin señal" (rojo).
+- **Campanita:** activa los avisos de Telegram.
+- **Visibilidad:** cada vendedor ve lo suyo, un jefe ve lo suyo y lo de su equipo (`reporta_a`), y el Gerente Comercial ve todo.
+- **Tiempo de respuesta:** al tocar Llamar o WhatsApp en un lead, o al cambiarle el estado por primera vez, se registran los minutos desde que fue asignado.
+
+### Auditoría de Inversión (`simulador.html`)
+Muestra al cliente qué porcentaje del vehículo tiene cubierto, cuánto le falta para la meta de entrega y en cuántos meses llega.
+
+- **Meta:** 50% para usados y 35% para 0 km.
+- **Valor del vehículo X5:** precio base por tipo y año × 1,32.
+- **Capital:** 80% de lo abonado + 90% del valor Infoauto del usado + ahorro + inyección extra.
+- **Meses estimados:** lo que falta para la meta ÷ (cuota × 0,80).
+- **Simulador:** botones +500K, +1M y +2M para mostrar cuántos meses se ahorra el cliente.
+- "Compartir imagen" genera el reporte para WhatsApp.
+
+### Gestor Documental (`unificador.html`)
+Escanea hojas con la cámara y arma un legajo en un solo PDF A4.
+- El escáner detecta los bordes, endereza la hoja y ofrece tres filtros: Original, Color mejorado y Documento.
+- También suma fotos o PDFs existentes, permite reordenar páginas y después compartir o guardar.
+
+### Validador DNI (`dni.html`)
+Frente y dorso del DNI en una hoja A4 PDF, en dos tamaños: Ampliado o Tamaño real.
+
+### X5 Check (`x5check.html`)
+Checklist del vehículo para controles semanales y recepciones. Cada ítem se marca B, R, M o N/A, y R o M exigen observación. Suma fotos y firma con el dedo, y genera un Word (DOCX). Guarda un borrador si se cierra la app.
+
+## 3. Avisos por Telegram
+
+Bot propio configurado en el Apps Script. Cada persona lo activa desde la campanita del CRM y después toca "Iniciar" en Telegram.
+
+| Evento | A quién le llega |
+| --- | --- |
+| Lead asignado | Al vendedor, al instante |
+| Lead vencido sin contactar | Al vendedor, a su jefe y a gerencia (una vez por lead; se revisa cada 10 minutos) |
+| Venta cerrada | Al jefe y a gerencia, cuando se carga el monto (o a los 30 minutos sin monto) |
+
+## 4. Widget del launcher (uso de Daniel)
+
+El launcher personal de Daniel consulta `…/exec?action=widget&key=LAUNCHER_KEY` y muestra:
+- entrevistas de hoy,
+- leads a contactar,
+- leads vencidos,
+- un aviso cuando se carga una venta.
+
+Al tocar los vencidos se abre `crm.html?tab=leads&ver=vencidos`.
+
+## 5. Datos (Google Sheets)
+
+| Pestaña | Contenido | Columnas principales |
+| --- | --- | --- |
+| Hoja 1 | Agenda de entrevistas | id, cliente, vehiculo, asesor, fecha, hora, estado, resultado, notas, lugar, auto_usado, nro_contrato, monto, actualizado, aviso_venta |
+| Leads | Leads asignados | id, cliente, telefono, interes, origen, asignado_a, fecha_asignacion, hora_limite, estado, resultado, hora_contacto, notas, actualizado, aviso_vencido |
+| Personal | Usuarios | nombre, rol, estado (Activo), reporta_a, clave, telegram |
+| Flota | Autos para entrevistas a domicilio | vehiculo, patente, estado |
+
+- **Alta de un vendedor:** agregar una fila en Personal con estado "Activo", su rol, su jefe en `reporta_a` y una clave.
+- **Baja:** cambiar el estado a otro valor. La sesión se le corta sola.
+- **Cambio de clave:** se edita en la planilla.
+
+## 6. Arquitectura técnica (resumen)
+
+- **Web (PWA):** HTML, CSS y JavaScript sin frameworks, publicada con GitHub Pages.
+  - Tema compartido: `x5-theme.css`, en negro y oro de The DOM Studio con cromado y cian de X5. Tiene modo claro y oscuro.
+  - Utilidades: `x5-core.js`. Escáner: `x5-scanner.js`. Librerías locales en `libs/`.
+  - Service worker `sw.js`: funciona sin conexión y se actualiza solo. Hay que subir `VERSION` en cada cambio grande.
+- **Backend:** Google Apps Script (`apps-script/Code.gs`), publicado como aplicación web.
+  - Login validado en el servidor con token firmado. Las claves nunca salen de la planilla.
+  - Escribe por nombre de columna y crea las columnas que falten.
+  - `MODO_COMPATIBLE`: si es `true`, permite leer sin clave. Conviene dejarlo en `false` cuando todo use token o clave.
+  - Para publicar cambios: Implementar → Administrar implementaciones → editar → **Nueva versión**. La URL no cambia.
+- **Android:** carpeta `android/` del repo, un WebView nativo que carga la web. Agrega guardar en Descargas, compartir, cámara y apertura de enlaces externos. Guía de compilación: `docs/APK-ANDROID.md`.
+
+## 7. Preguntas frecuentes (para responder por voz)
+
+- **¿Cómo instalo el Hub en Android?** Abrir el archivo X5-Cuyo.apk, permitir "instalar de esta fuente" e Instalar. Si Play Protect avisa, elegir "Instalar de todas formas".
+- **¿Y en iPhone?** Abrir el enlace en Safari, tocar Compartir y después "Agregar a pantalla de inicio".
+- **No me deja entrar.** Revisar mayúsculas de la clave. Si sigue, el jefe la verifica en la hoja Personal.
+- **"Tu sesión venció".** Volver a ingresar. Pasa cada 30 días o si el usuario fue dado de baja.
+- **No veo un lead.** Tocar el indicador de conexión para actualizar y revisar el filtro Todos.
+- **No me llegan los avisos.** Tocar la campanita, luego Iniciar en Telegram, y revisar que Telegram tenga las notificaciones activadas.
+- **¿Se pierde lo que escribo sin señal?** No. Queda en el teléfono y se envía al volver la señal. No hay que cerrar sesión mientras diga "Sin señal".
+- **¿Dónde quedan los PDF en Android?** En Descargas › X5 Cuyo.
+- **¿Cada cuánto hay que actualizar la app?** La web se actualiza sola. La APK solo se cambia si cambia la parte Android.
+- **¿Cómo calcula la Auditoría los meses?** Divide lo que falta para la meta por el 80% de la cuota mensual.
+- **¿Quién da soporte?** Usuarios y claves: el jefe de ventas o la gerencia comercial. Problemas técnicos: The DOM Studio Web, WhatsApp 261-3431216, thedomstudioweb@gmail.com.
+
+## 8. Rutina diaria recomendada para vendedores
+
+1. Al llegar, mirar el resumen del día y empezar por los vencidos.
+2. Cuando llega un aviso, contactar al lead antes de su hora límite y dejar una nota.
+3. En cada entrevista, usar la Auditoría con el cliente.
+4. Después de cada entrevista, cargar estado, resultado y observaciones.
+5. Al cerrar una venta, cargar contrato y monto, armar el legajo PDF y avisar al jefe.
+6. Antes de irse, verificar que diga "Al día" y que no queden leads pendientes de hoy.

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="x5_black">#0A0A0A</color>
+    <color name="x5_icon_bg">#0E0E0E</color>
+    <color name="x5_cyan">#00C8F5</color>
+    <color name="x5_gold">#D4AF37</color>
+    <color name="x5_text">#F3F5F7</color>
+    <color name="x5_muted">#8B939E</color>
+</resources>
