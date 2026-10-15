@@ -26,6 +26,11 @@ Agenda de entrevistas y seguimiento de leads. Es la única herramienta que pide 
 - **Observaciones y notas:** se guardan solas mientras se escribe. Si no hay señal, quedan en una cola del teléfono y se envían al volver la conexión.
 - **Indicador de conexión:** "Al día" (verde), "Guardando" (amarillo) o "Sin señal" (rojo).
 - **Campanita:** activa los avisos de Telegram.
+- **Filtros (botón Filtros en Agenda y Leads):**
+  - **Asesor o equipo:** solo para jefes y gerencia. Elige una persona o un equipo completo (el jefe y quienes le reportan). Se aplica a Agenda, Leads, Métricas y al resumen del día, y queda recordado en el teléfono.
+  - **Estado:** en Agenda, pendiente, atrasada, realizada, cancelada, venta, seguimiento o descartado. En Leads, pendiente, vencido, entrevista, seguimiento o descartado.
+  - **Fecha:** hoy, ayer, esta semana, semana pasada, este mes, mes anterior o un rango a elección. Al elegir una fecha, la vista pasa sola a Historial/Todos.
+  - Debajo aparece un resumen, por ejemplo "12 entrevistas · Equipo de X · Venta". Cada filtro se quita con la ×.
 - **Visibilidad:** cada vendedor ve lo suyo, un jefe ve lo suyo y lo de su equipo (`reporta_a`), y el Gerente Comercial ve todo.
 - **Tiempo de respuesta:** al tocar Llamar o WhatsApp en un lead, o al cambiarle el estado por primera vez, se registran los minutos desde que fue asignado.
 
@@ -102,13 +107,15 @@ Al tocar los vencidos se abre `crm.html?tab=leads&ver=vencidos`.
 - **¿Y en iPhone?** Abrir el enlace en Safari, tocar Compartir y después "Agregar a pantalla de inicio".
 - **No me deja entrar.** Revisar mayúsculas de la clave. Si sigue, el jefe la verifica en la hoja Personal.
 - **"Tu sesión venció".** Volver a ingresar. Pasa cada 30 días o si el usuario fue dado de baja.
-- **No veo un lead.** Tocar el indicador de conexión para actualizar y revisar el filtro Todos.
+- **No veo un lead.** Tocar el indicador de conexión para actualizar, elegir la vista Todos y revisar que no haya filtros activos (el botón Filtros muestra un número cuando los hay).
 - **No me llegan los avisos.** Tocar la campanita, luego Iniciar en Telegram, y revisar que Telegram tenga las notificaciones activadas.
 - **¿Se pierde lo que escribo sin señal?** No. Queda en el teléfono y se envía al volver la señal. No hay que cerrar sesión mientras diga "Sin señal".
 - **¿Dónde quedan los PDF en Android?** En Descargas › X5 Cuyo.
 - **¿Cada cuánto hay que actualizar la app?** La web se actualiza sola. La APK solo se cambia si cambia la parte Android.
 - **¿Cómo calcula la Auditoría los meses?** Divide lo que falta para la meta por el 80% de la cuota mensual.
 - **¿Quién da soporte?** Usuarios y claves: el jefe de ventas o la gerencia comercial. Problemas técnicos: The DOM Studio Web, WhatsApp 261-3431216, thedomstudioweb@gmail.com.
+
+- **¿Cómo veo solo lo de un vendedor o un equipo?** Siendo jefe o gerente, tocar Filtros y elegir en "Asesor o equipo".
 
 ## 8. Rutina diaria recomendada para vendedores
 
