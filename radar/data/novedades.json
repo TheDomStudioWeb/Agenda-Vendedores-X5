@@ -1,6 +1,328 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "maipu-181270",
+   "auto": "Ford Focus 2018",
+   "precio": 17500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "maipu-181246",
+   "auto": "Geely Emgrand 2018",
+   "precio": 17500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "maipu-181217",
+   "auto": "Jeep Renegade 2018",
+   "precio": 27000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "maipu-180672",
+   "auto": "Volkswagen Nivus 2024",
+   "precio": 29500000,
+   "moneda": "ARS",
+   "dias": 8
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "maipu-179511",
+   "auto": "Ford Ecosport 2016",
+   "precio": 15700000,
+   "moneda": "ARS",
+   "dias": 16
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "maipu-179319",
+   "auto": "Nissan Versa 2021",
+   "precio": 23500000,
+   "moneda": "ARS",
+   "dias": 20
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "maipu-178175",
+   "auto": "Renault Captur 2018",
+   "precio": 19500000,
+   "moneda": "ARS",
+   "dias": 30
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "maipu-175078",
+   "auto": "Ford Ka 2018",
+   "precio": 13900000,
+   "moneda": "ARS",
+   "dias": 62
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-f7ccb9a9-ee7c-4d86-b28b-0c3b60970aee",
+   "auto": "Volkswagen Up! 2016",
+   "precio": 14300000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-deb28e4b-8f7e-4a1e-9347-1c9f91ed4743",
+   "auto": "Chevrolet Onix 2017",
+   "precio": 17500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-19d482a2-a0e4-410c-a4c5-6e99a7fb8859",
+   "auto": "Volkswagen Virtus 2018",
+   "precio": 20900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-d287f132-3ed6-412f-90b1-b9b39b99dc39",
+   "auto": "Chery Tiggo 2022",
+   "precio": 23900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-4081a02d-75e9-41e8-b037-be3544f4ed7c",
+   "auto": "Fiat Cronos 2024",
+   "precio": 26100000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-a7a86051-ff01-4690-b723-9f0cec4fabc3",
+   "auto": "Citroen C4 Cactus 2022",
+   "precio": 26250000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-31678664-0d28-4828-a7eb-b34e1fbd5df9",
+   "auto": "Nissan Kicks 2018",
+   "precio": 27200000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-d4a316d5-3793-439a-8353-a79f31ca1468",
+   "auto": "Nissan Kicks 2020",
+   "precio": 27500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-6a599105-bc28-4fa0-9918-4b7a3c594d74",
+   "auto": "Toyota Yaris 2022",
+   "precio": 27900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-224a7247-9555-4280-b25f-c72591506771",
+   "auto": "Peugeot 3008 2020",
+   "precio": 33900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-b90194fd-e394-46fa-9f93-4d8e575c543d",
+   "auto": "Toyota Yaris 2026",
+   "precio": 35500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-0c89091d-4937-4bd0-ab17-3572884fc9c7",
+   "auto": "Jeep Renegade 2024",
+   "precio": 36900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-b5fd36cb-dffb-43c4-b5ff-8a3238027d6c",
+   "auto": "Jeep Compass 2022",
+   "precio": 37900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-1530d50a-da7a-4737-8e14-456f4d88f5c0",
+   "auto": "Fiat Toro 2025",
+   "precio": 42500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-6202d729-3fde-4f61-8ea2-44a9233c694c",
+   "auto": "Renault Koleos 2024",
+   "precio": 46900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-3c230799-ae81-4929-b948-3fd3e2c0d918",
+   "auto": "RAM Rampage 2024",
+   "precio": 51900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "nuevo",
+   "id": "autocity-5db72b60-807d-4f1b-a229-95c943f04bcf",
+   "auto": "Toyota Hilux 2026",
+   "precio": 75900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "autocity-7f183ee2-076e-4a3d-a2b1-738825b54061",
+   "auto": "Renault Kwid 2025",
+   "precio": 19900000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "autocity-b2a02f34-0989-48b0-a2bd-41bf9e3cc149",
+   "auto": "Peugeot 208 2019",
+   "precio": 19900000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "autocity-f2187917-5159-4a9d-9cc7-bb8e1d065a25",
+   "auto": "Peugeot 408 2022",
+   "precio": 21150000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "autocity-8ec6b68f-1bfe-47b4-928c-45374a8d63a2",
+   "auto": "Renault Logan 2022",
+   "precio": 23350000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "autocity-508dba56-53c1-468b-946f-06e4c386bcdb",
+   "auto": "Fiat Cronos 2023",
+   "precio": 24500000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "autocity-f11ab17f-d22c-4c39-80db-1ec5cd06f5d8",
+   "auto": "Nissan Kicks 2020",
+   "precio": 25900000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "autocity-6a03280b-76a3-44f2-a893-b2e465e7ea83",
+   "auto": "Fiat Cronos 2026",
+   "precio": 28500000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "autocity-e68259b1-6e97-43fd-914f-f13dc6893caa",
+   "auto": "Volkswagen Nivus 2022",
+   "precio": 30250000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "autocity-466828d5-5f06-4ba8-bf40-29d60d3e4d9c",
+   "auto": "Volkswagen Nivus 2023",
+   "precio": 31500000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "autocity-876ea393-8f31-46a2-aa5f-15a918c1f983",
+   "auto": "Fiat Pulse 2023",
+   "precio": 31900000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "autocity-538e4782-6755-4ed7-b1e0-6ac7c1f62c40",
+   "auto": "Ford Ranger 2023",
+   "precio": 39900000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "autocity-45e30ebf-291b-4a6b-b01f-0c80b8ce0b54",
+   "auto": "Volkswagen Tiguan 2024",
+   "precio": 54870000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-15T15:19:18.291Z",
+   "tipo": "baja",
+   "id": "autocity-20874bcf-4613-4c16-8969-ead91961ffa7",
+   "auto": "Volkswagen Tiguan 2024",
+   "precio": 54900000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
    "fecha": "2026-10-14T20:44:18.592Z",
    "tipo": "nuevo",
    "id": "autocity-acd44c1f-d009-4b2e-8f95-3ff2408b1fbd",
