@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-16T14:59:17.046Z",
+ "actualizado": "2026-10-16T20:03:09.733Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 92,
-   "revisado": "2026-10-16T14:59:17.046Z",
-   "actualizado": "2026-10-16T14:59:17.046Z"
+   "autos": 93,
+   "revisado": "2026-10-16T20:03:09.733Z",
+   "actualizado": "2026-10-16T20:03:09.733Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,117 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 211,
-   "revisado": "2026-10-16T14:59:17.046Z",
-   "actualizado": "2026-10-16T14:59:17.046Z"
+   "revisado": "2026-10-16T20:03:09.733Z",
+   "actualizado": "2026-10-16T20:03:09.733Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-181468",
+   "tipo": "auto",
+   "marca": "Ford",
+   "modelo": "Ka",
+   "version": "Se 1.5L",
+   "anio": 2018,
+   "km": 152270,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": null,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2547-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2548-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2550-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2551-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2546-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2549-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2545-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2543-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2539-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2535-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2536-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2537-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2544-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2538-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2542-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2540-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2541-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/16/ka/",
+   "publicado": "2026-10-16T15:06:22",
+   "modificado": "2026-10-16T15:18:10",
+   "agencia": "maipu",
+   "alta": "2026-10-16T20:03:09.733Z",
+   "guia": {
+    "min": 11229000,
+    "med": 13469000,
+    "max": 14923000,
+    "n": 13,
+    "mejor": {
+     "version": "KA 5P 1,5 12V SE 2018",
+     "valor": 13469000,
+     "coincidencias": 1,
+     "empate": 4
+    },
+    "versiones": [
+     [
+      "KA + 4P 1,5 16V S",
+      11229000
+     ],
+     [
+      "KA 5P 1,5 16V S",
+      11648000
+     ],
+     [
+      "KA 5P 1,5 12V S 2018",
+      11991000
+     ],
+     [
+      "KA + 4P 1,5 12V S 2018",
+      12251000
+     ],
+     [
+      "KA + 4P 1,5 16V SE",
+      12300000
+     ],
+     [
+      "KA 5P 1,5 16V SE",
+      12855000
+     ],
+     [
+      "KA 5P 1,5 12V SE 2018",
+      13469000
+     ],
+     [
+      "KA + 4P 1,5 12V SE 2018",
+      13686000
+     ],
+     [
+      "KA 5P 1,5 16V SEL",
+      14107000
+     ],
+     [
+      "KA + 4P 1,5 16V SEL",
+      14151000
+     ],
+     [
+      "KA 5P 1,5 12V SEL 2018",
+      14739000
+     ],
+     [
+      "KA FREESTYLE 5P 1,5 12V SEL",
+      14824000
+     ],
+     [
+      "KA + 4P 1,5 12V SEL 2018",
+      14923000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-181444",
    "tipo": "auto",
@@ -6450,7 +6556,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Plata",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Focus 2018 Manual 148250 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Focus 2019 Automática 112870 21000000 Precio sugerido al público 17355400 Precio sin impuestos nacionales + Precio a confirmar oportunidades Kwid 2025 Manual 21645 20000000 Precio sugerido al público 16528900 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar outlet Ka 2020 Manual 121480 17200000 Precio sugerido al público 13588000 Precio sin impuestos nacionales + Precio a confirmar outlet Ka 2013 Manual 76085 11500000 Precio sugerido al público 9085000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Fiesta 2016 Automática 81770 15000000 Precio sugerido al público 12396700 Precio sin impuestos nacionales + Precio a confirmar destacados Palio 2014 Manual 83035 11110000 Precio sugerido al público 8776900 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 16180000,
    "precio_sin_imp": 12782200,
    "moneda": "ARS",
@@ -6531,7 +6637,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Focus 2018 Manual 148250 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Focus 2019 Automática 112870 21000000 Precio sugerido al público 17355400 Precio sin impuestos nacionales + Precio a confirmar oportunidades Kwid 2025 Manual 21645 20000000 Precio sugerido al público 16528900 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar outlet Ka 2020 Manual 121480 17200000 Precio sugerido al público 13588000 Precio sin impuestos nacionales + Precio a confirmar outlet Ka 2013 Manual 76085 11500000 Precio sugerido al público 9085000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Fiesta 2016 Automática 81770 15000000 Precio sugerido al público 12396700 Precio sin impuestos nacionales + Precio a confirmar destacados Palio 2014 Manual 83035 11110000 Precio sugerido al público 8776900 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -6603,7 +6709,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Focus 2018 Manual 148250 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Focus 2019 Automática 112870 21000000 Precio sugerido al público 17355400 Precio sin impuestos nacionales + Precio a confirmar oportunidades Kwid 2025 Manual 21645 20000000 Precio sugerido al público 16528900 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar outlet Ka 2020 Manual 121480 17200000 Precio sugerido al público 13588000 Precio sin impuestos nacionales + Precio a confirmar outlet Ka 2013 Manual 76085 11500000 Precio sugerido al público 9085000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Fiesta 2016 Automática 81770 15000000 Precio sugerido al público 12396700 Precio sin impuestos nacionales + Precio a confirmar destacados Palio 2014 Manual 83035 11110000 Precio sugerido al público 8776900 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6660,7 +6766,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Rojo",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Focus 2018 Manual 148250 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Focus 2019 Automática 112870 21000000 Precio sugerido al público 17355400 Precio sin impuestos nacionales + Precio a confirmar oportunidades Kwid 2025 Manual 21645 20000000 Precio sugerido al público 16528900 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar outlet Ka 2020 Manual 121480 17200000 Precio sugerido al público 13588000 Precio sin impuestos nacionales + Precio a confirmar outlet Ka 2013 Manual 76085 11500000 Precio sugerido al público 9085000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Fiesta 2016 Automática 81770 15000000 Precio sugerido al público 12396700 Precio sin impuestos nacionales + Precio a confirmar destacados Palio 2014 Manual 83035 11110000 Precio sugerido al público 8776900 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 11110000,
    "precio_sin_imp": 8776900,
    "moneda": "ARS",

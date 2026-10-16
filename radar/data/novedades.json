@@ -1,6 +1,14 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-16T20:03:09.733Z",
+   "tipo": "nuevo",
+   "id": "maipu-181468",
+   "auto": "Ford Ka 2018",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-10-16T14:59:17.046Z",
    "tipo": "nuevo",
    "id": "maipu-181444",
