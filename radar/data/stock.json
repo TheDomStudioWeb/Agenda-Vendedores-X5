@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-16T20:03:09.733Z",
+ "actualizado": "2026-10-17T13:54:19.025Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -12,8 +12,8 @@
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
    "autos": 93,
-   "revisado": "2026-10-16T20:03:09.733Z",
-   "actualizado": "2026-10-16T20:03:09.733Z"
+   "revisado": "2026-10-17T13:54:19.025Z",
+   "actualizado": "2026-10-17T13:54:19.025Z"
   },
   {
    "id": "autocity",
@@ -21,9 +21,9 @@
    "ciudad": "Córdoba",
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
-   "autos": 211,
-   "revisado": "2026-10-16T20:03:09.733Z",
-   "actualizado": "2026-10-16T20:03:09.733Z"
+   "autos": 241,
+   "revisado": "2026-10-17T13:54:19.025Z",
+   "actualizado": "2026-10-17T13:54:19.025Z"
   }
  ],
  "autos": [
@@ -7318,42 +7318,99 @@
    }
   },
   {
-   "id": "autocity-f7ccb9a9-ee7c-4d86-b28b-0c3b60970aee",
+   "id": "autocity-628171c2-d00f-495a-8ad4-f573d062dfe5",
    "tipo": "auto",
-   "marca": "Volkswagen",
-   "modelo": "Up!",
-   "version": "1.0 Take Aa 3p L14",
-   "anio": 2016,
-   "km": 67500,
+   "marca": "Nissan",
+   "modelo": "Tiida",
+   "version": "1.8 Visia 5p L08",
+   "anio": 2015,
+   "km": 96100,
    "combustible": "Nafta",
    "caja": "Manual",
-   "color": "Cromo",
+   "color": "Rojo",
    "equipamiento": "",
-   "precio": 14300000,
+   "precio": 14899999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792004772437.IMG_6892.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792004773160.IMG_6897.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792004775963.IMG_6894.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792004781698.IMG_6904.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170938006.IMG_5153.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170938911.IMG_5159.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170939686.IMG_5160.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170941434.IMG_5157.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170944558.IMG_5156.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170946974.IMG_5158.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-up/1-0-take-aa-3p-l14-2/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-tiida/1-8-visia-5p-l08/",
    "sucursal": "Córdoba",
    "provincia": "Córdoba",
-   "oportunidad": false,
+   "oportunidad": true,
    "publicado": null,
    "modificado": null,
    "agencia": "autocity",
-   "alta": "2026-10-15T15:19:18.291Z",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 12771000,
+    "med": 13698000,
+    "max": 14184000,
+    "n": 3,
+    "mejor": {
+     "version": "TIIDA 5P 1,8 VISIA HATCHBACK",
+     "valor": 12771000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "TIIDA 5P 1,8 VISIA HATCHBACK",
+      12771000
+     ],
+     [
+      "TIIDA 5P 1,8 ACENTA HATCHBACK",
+      13698000
+     ],
+     [
+      "TIIDA 5P 1,8 TEKNA HATCHBACK",
+      14184000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-e50f9c44-2621-473d-845f-a783c64daec7",
+   "tipo": "auto",
+   "marca": "Volkswagen",
+   "modelo": "Up!",
+   "version": "1.0 White 5p L14",
+   "anio": 2016,
+   "km": 108700,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 15899999,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173435638.IMG_7934.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173436925.IMG_7937.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173439164.IMG_7936.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-up/1-0-white-5p-l14/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
    "guia": {
     "min": 10420000,
     "med": 11160000,
     "max": 12077000,
     "n": 11,
     "mejor": {
-     "version": "UP! 3P 1,0 TAKE A/C",
-     "valor": 10420000,
+     "version": "UP! 5P 1,0 WHITE",
+     "valor": 11840000,
      "coincidencias": 3,
      "empate": 1
     },
@@ -7401,85 +7458,6 @@
      [
       "UP! 5P 1,0 CROSS",
       12077000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-8f7d0c0f-c018-4f8d-bde8-ff9384d6f8ba",
-   "tipo": "auto",
-   "marca": "Renault",
-   "modelo": "Fluence",
-   "version": "2.0 Luxe L15",
-   "anio": 2016,
-   "km": 99200,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Rojo",
-   "equipamiento": "",
-   "precio": 16750000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790606910956.20260922_151749.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790606912375.20260922_151716.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790606912760.20260922_151835.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790606913255.20260922_152042.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790606914419.20260922_152100.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790606915624.20260922_152229.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790606919194.20260922_151904.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-fluence/2-0-luxe-l15/",
-   "sucursal": "Río Cuarto",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 12473000,
-    "med": 15278000,
-    "max": 18630000,
-    "n": 8,
-    "mejor": {
-     "version": "FLUENCE 4P 2,0 LUXE PACK",
-     "valor": 15278000,
-     "coincidencias": 2,
-     "empate": 3
-    },
-    "versiones": [
-     [
-      "FLUENCE 4P 1,6 DYNAMIQUE",
-      12473000
-     ],
-     [
-      "FLUENCE 4P 1,6 DYNAMIQUE PACK",
-      12731000
-     ],
-     [
-      "FLUENCE 4P 1,6 LUXE",
-      13325000
-     ],
-     [
-      "FLUENCE 4P 2,0 LUXE 2014",
-      14558000
-     ],
-     [
-      "FLUENCE 4P 2,0 LUXE PACK",
-      15278000
-     ],
-     [
-      "FLUENCE 4P 2,0 LUXE RLINK CUIR",
-      15823000
-     ],
-     [
-      "FLUENCE 4P 2,0 PRIVILEGE 2015",
-      16442000
-     ],
-     [
-      "FLUENCE 4P 2,0 16V GT 2 2015",
-      18630000
      ]
     ]
    }
@@ -7734,6 +7712,197 @@
    }
   },
   {
+   "id": "autocity-50f4fe10-2573-4825-bff5-edce70c165c4",
+   "tipo": "auto",
+   "marca": "Peugeot",
+   "modelo": "208",
+   "version": "1.6 Active 5p L17",
+   "anio": 2017,
+   "km": 109900,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 17900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170856287.IMG_7883.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170857593.IMG_7885.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170860129.IMG_7884.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-active-5p-l17/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 11512000,
+    "med": 13275000,
+    "max": 18983000,
+    "n": 17,
+    "mejor": {
+     "version": "208 5P 1,6 ACTIVE 2017",
+     "valor": 11710000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "208 5P 1,5 ACTIVE",
+      11512000
+     ],
+     [
+      "208 5P 1,6 ACTIVE 2017",
+      11710000
+     ],
+     [
+      "208 5P 1,5 ALLURE",
+      12048000
+     ],
+     [
+      "208 5P 1,5 ALLURE TOUCHSCREEN",
+      12484000
+     ],
+     [
+      "208 5P 1,6 ALLURE",
+      12593000
+     ],
+     [
+      "208 5P 1,6 HDi ALLURE PLUS",
+      12625000
+     ],
+     [
+      "208 5P 1,6 ALLURE NAV",
+      12830000
+     ],
+     [
+      "208 5P 1,5 ALLURE SMEG",
+      12910000
+     ],
+     [
+      "208 5P 1,6 ALLURE 2017",
+      13275000
+     ],
+     [
+      "208 5P 1,6 ALLURE 2016",
+      13622000
+     ],
+     [
+      "208 5P 1,6 FELINE",
+      13629000
+     ],
+     [
+      "208 5P 1,6 ALLURE TOUCHSCREEN",
+      13686000
+     ],
+     [
+      "208 5P 1,6 FELINE 2016",
+      14231000
+     ],
+     [
+      "208 5P 1,6 FELINE PACK CUIR",
+      15253000
+     ],
+     [
+      "208 5P 1,6 THP GT",
+      16417000
+     ],
+     [
+      "208 5P 1,6 THP GT 2017",
+      17088000
+     ],
+     [
+      "208 3P GTI",
+      18983000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-9233df36-5e0a-462a-9b65-f797e9f4e352",
+   "tipo": "auto",
+   "marca": "Honda",
+   "modelo": "Fit",
+   "version": "1.4 Lxl 5p L09",
+   "anio": 2012,
+   "km": 90900,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 18899999,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171276244.IMG_6411.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171276991.IMG_6416.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171278394.IMG_6414.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171280605.IMG_6415.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-honda/m-fit/1-4-lxl-5p-l09/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": null
+  },
+  {
+   "id": "autocity-11a609fb-00c4-461c-85aa-a0085226b98f",
+   "tipo": "auto",
+   "marca": "Fiat",
+   "modelo": "Mobi",
+   "version": "1.0 Fire Like",
+   "anio": 2022,
+   "km": 51200,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 18900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784558401406.IMG_1232.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784558402210.IMG_1233.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784558402462.IMG_1238.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784558403100.IMG_1236.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784558404263.IMG_1235.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-mobi/1-0-fire-like/",
+   "sucursal": "Río Cuarto",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-14T20:44:18.592Z",
+   "guia": {
+    "min": 15352000,
+    "med": 15352000,
+    "max": 15352000,
+    "n": 1,
+    "mejor": {
+     "version": "MOBI 5P 1,0 LIKE",
+     "valor": 15352000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "MOBI 5P 1,0 LIKE",
+      15352000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-51ae1951-1860-409c-848e-7c34918c5afe",
    "tipo": "auto",
    "marca": "Nissan",
@@ -7793,126 +7962,128 @@
    }
   },
   {
-   "id": "autocity-cee19776-02cd-4337-a452-dbd0e232c41d",
+   "id": "autocity-420effc7-7511-4fed-92fc-0d51bcc9555d",
    "tipo": "auto",
-   "marca": "Renault",
-   "modelo": "Sandero",
-   "version": "1.6 16v Intens L19",
-   "anio": 2020,
-   "km": 81500,
-   "combustible": "Gnc",
+   "marca": "Fiat",
+   "modelo": "Fiorino",
+   "version": "1.4 Evo Top L14",
+   "anio": 2021,
+   "km": 94900,
+   "combustible": "Nafta",
    "caja": "Manual",
-   "color": "Gris",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 18900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792089021853.a.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792089022998.s.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792089023594.f.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792089025079.d.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164691713.IMG_7123.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164694729.IMG_7125.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164698258.IMG_7124.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-sandero/1-6-16v-intens-l19/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-fiorino/1-4-evo-top-l14/",
    "sucursal": "Córdoba",
    "provincia": "Córdoba",
    "oportunidad": false,
    "publicado": null,
    "modificado": null,
    "agencia": "autocity",
-   "alta": "2026-10-16T14:59:17.046Z",
+   "alta": "2026-10-17T13:54:19.025Z",
    "guia": {
-    "min": 15602000,
-    "med": 18411000,
-    "max": 22058000,
-    "n": 8,
+    "min": 15326000,
+    "med": 15648000,
+    "max": 15648000,
+    "n": 2,
     "mejor": {
-     "version": "SANDERO STEPWAY 5P 1,6 16V INTENS PH2",
-     "valor": 20094000,
-     "coincidencias": 3,
+     "version": "FIORINO FURGON 1,4 8V TOP 2021",
+     "valor": 15648000,
+     "coincidencias": 2,
      "empate": 2
     },
     "versiones": [
      [
-      "SANDERO 5P 1,6 16V LIFE PH2",
-      15602000
+      "FIORINO FURGON 1,4 8V TOP 2014",
+      15326000
      ],
      [
-      "SANDERO 5P 1,6 16V ZEN PH2",
-      16825000
-     ],
-     [
-      "SANDERO 5P 1,6 16V GT LINE 2020",
-      17513000
-     ],
-     [
-      "SANDERO 5P 1,6 16V INTENS PH2",
-      18045000
-     ],
-     [
-      "SANDERO STEPWAY 5P 1,6 16V ZEN PH2",
-      18411000
-     ],
-     [
-      "SANDERO 5P 2,0 RS",
-      19252000
-     ],
-     [
-      "SANDERO STEPWAY 5P 1,6 16V INTENS PH2",
-      20094000
-     ],
-     [
-      "SANDERO 5P 2,0 RS 2020",
-      22058000
+      "FIORINO FURGON 1,4 8V TOP 2021",
+      15648000
      ]
     ]
    }
   },
   {
-   "id": "autocity-11a609fb-00c4-461c-85aa-a0085226b98f",
+   "id": "autocity-0bd30628-c8a2-42f0-8b9b-b262681ede79",
    "tipo": "auto",
-   "marca": "Fiat",
-   "modelo": "Mobi",
-   "version": "1.0 Fire Like",
-   "anio": 2022,
-   "km": 51200,
+   "marca": "Peugeot",
+   "modelo": "208",
+   "version": "1.6 Feline L16",
+   "anio": 2018,
+   "km": 53500,
    "combustible": "Nafta",
    "caja": "Manual",
-   "color": "Blanco",
+   "color": "Grafito",
    "equipamiento": "",
-   "precio": 19250000,
+   "precio": 19500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784558401406.IMG_1232.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784558402210.IMG_1233.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784558402462.IMG_1238.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784558403100.IMG_1236.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784558404263.IMG_1235.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792163957575.IMG_7638.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792163959330.IMG_7641.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792163963988.IMG_7639.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792163969119.IMG_7640.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-mobi/1-0-fire-like/",
-   "sucursal": "Río Cuarto",
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-feline-l16/",
+   "sucursal": "Córdoba",
    "provincia": "Córdoba",
-   "oportunidad": true,
+   "oportunidad": false,
    "publicado": null,
    "modificado": null,
    "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
+   "alta": "2026-10-17T13:54:19.025Z",
    "guia": {
-    "min": 15352000,
-    "med": 15352000,
-    "max": 15352000,
-    "n": 1,
+    "min": 12531000,
+    "med": 14639000,
+    "max": 20314000,
+    "n": 8,
     "mejor": {
-     "version": "MOBI 5P 1,0 LIKE",
-     "valor": 15352000,
+     "version": "208 5P 1,6 FELINE 2016",
+     "valor": 15229000,
      "coincidencias": 2,
      "empate": 1
     },
     "versiones": [
      [
-      "MOBI 5P 1,0 LIKE",
-      15352000
+      "208 5P 1,6 ACTIVE 2017",
+      12531000
+     ],
+     [
+      "208 5P 1,6 HDi ALLURE PLUS",
+      13510000
+     ],
+     [
+      "208 5P 1,6 URBAN TECH",
+      13633000
+     ],
+     [
+      "208 5P 1,6 ALLURE 2017",
+      14206000
+     ],
+     [
+      "208 5P 1,6 HDi 92 ALLURE PLUS",
+      14639000
+     ],
+     [
+      "208 5P 1,6 FELINE 2016",
+      15229000
+     ],
+     [
+      "208 5P 1,6 THP GT 2017",
+      18285000
+     ],
+     [
+      "208 3P GTI",
+      20314000
      ]
     ]
    }
@@ -8035,6 +8206,67 @@
      [
       "POLO 5P 1,6 MSI HIGHLINE",
       19457000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-c90c4d7d-1ec6-4c4a-b6b6-2f5dff913f76",
+   "tipo": "auto",
+   "marca": "Nissan",
+   "modelo": "Note",
+   "version": "1.6 Advance Pure Drive Cvt L18",
+   "anio": 2018,
+   "km": 98900,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Rojo",
+   "equipamiento": "",
+   "precio": 19900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171991823.IMG_7247.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171992646.IMG_7251.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171993310.IMG_7255.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171996355.IMG_7252.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171998492.IMG_7254.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-note/1-6-advance-pure-drive-cvt-l18/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 15782000,
+    "med": 19158000,
+    "max": 20585000,
+    "n": 4,
+    "mejor": {
+     "version": "NOTE 5P 1,6 ADVANCE CVT",
+     "valor": 17291000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "NOTE 5P 1,6 SENSE CVT",
+      15782000
+     ],
+     [
+      "NOTE 5P 1,6 ADVANCE CVT",
+      17291000
+     ],
+     [
+      "NOTE 5P 1,6 EXCLUSIVE CVT",
+      19158000
+     ],
+     [
+      "NOTE 5P 1,6 SR CVT 2018",
+      20585000
      ]
     ]
    }
@@ -8192,6 +8424,98 @@
      [
       "KWID 5P 1,0 ICONIC OUTSIDER 2025",
       19809000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-2ddd176b-ae68-47a2-a228-c6daaebabb57",
+   "tipo": "auto",
+   "marca": "Peugeot",
+   "modelo": "308",
+   "version": "1.6 Hdi Feline",
+   "anio": 2018,
+   "km": 70000,
+   "combustible": "Diesel",
+   "caja": "Manual",
+   "color": "Rojo",
+   "equipamiento": "",
+   "precio": 20600000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164303527.20261016_114554.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164304511.20261016_114410.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164306042.20261016_114503.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164306971.20261016_115004.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164308249.20261016_115022.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164309490.20261016_114953.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164311513.20261016_114855.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164314073.20261016_114440.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-308/1-6-hdi-feline/",
+   "sucursal": "Río Cuarto",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 13633000,
+    "med": 16706000,
+    "max": 33996000,
+    "n": 11,
+    "mejor": {
+     "version": "308 5P 1,6 HDi FELINE 2015",
+     "valor": 19141000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "308 5P 1,6 ACTIVE 2015",
+      13633000
+     ],
+     [
+      "308 5P 1,6 ACTIVE NAV",
+      14059000
+     ],
+     [
+      "308 5P 1,6 ALLURE ESP",
+      15635000
+     ],
+     [
+      "308 5P 1,6 ALLURE PACK",
+      16109000
+     ],
+     [
+      "308 5P 1,6 HDi ALLURE 2015",
+      16631000
+     ],
+     [
+      "308 5P 1,6 HDi ALLURE PACK",
+      16706000
+     ],
+     [
+      "308 5P 1,6 THP FELINE 2015",
+      18053000
+     ],
+     [
+      "308 5P 1,6 HDi FELINE 2015",
+      19141000
+     ],
+     [
+      "308 5P 1,6 HDi ROLLAND GARROS 2018",
+      19731000
+     ],
+     [
+      "308 5P 1,6 THP S GTi",
+      31796000
+     ],
+     [
+      "308 COUPE 1,6 THP S GTi FRANCHE",
+      33996000
      ]
     ]
    }
@@ -8516,59 +8840,72 @@
    }
   },
   {
-   "id": "autocity-19d482a2-a0e4-410c-a4c5-6e99a7fb8859",
+   "id": "autocity-e0c3b015-5d02-4573-b1e0-3e2410ec287b",
    "tipo": "auto",
-   "marca": "Volkswagen",
-   "modelo": "Virtus",
-   "version": "1.6 Msi Trendline At L18",
-   "anio": 2018,
-   "km": 110800,
+   "marca": "Peugeot",
+   "modelo": "208",
+   "version": "1.6 Like Pack L20",
+   "anio": 2021,
+   "km": 80300,
    "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Gris",
+   "caja": "Manual",
+   "color": "Blanco",
    "equipamiento": "",
-   "precio": 20900000,
+   "precio": 21250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791986760192.20261008_170730.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791986761463.20261008_170701.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791986762620.20261009_123453.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791986763761.20261009_123531.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791986764758.20261009_123544.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791986765566.20261009_123347.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173344719.IMG_6362.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173345895.IMG_6364.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173349291.IMG_6363.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-virtus/1-6-msi-trendline-at-l18/",
-   "sucursal": "Río Cuarto",
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-like-pack-l20/",
+   "sucursal": "Córdoba",
    "provincia": "Córdoba",
    "oportunidad": false,
    "publicado": null,
    "modificado": null,
    "agencia": "autocity",
-   "alta": "2026-10-15T15:19:18.291Z",
+   "alta": "2026-10-17T13:54:19.025Z",
    "guia": {
-    "min": 14827000,
-    "med": 17057000,
-    "max": 19405000,
-    "n": 3,
+    "min": 15643000,
+    "med": 17740000,
+    "max": 27076000,
+    "n": 7,
     "mejor": {
-     "version": "VIRTUS 4P 1,6 MSI TRENDLINE TIPT",
-     "valor": 14827000,
+     "version": "208 5P 1,6 LIKE PACK 2020",
+     "valor": 16836000,
      "coincidencias": 3,
      "empate": 1
     },
     "versiones": [
      [
-      "VIRTUS 4P 1,6 MSI TRENDLINE TIPT",
-      14827000
+      "208 5P 1,2 LIKE 2020",
+      15643000
      ],
      [
-      "VIRTUS 4P 1,6 MSI COMFORTLINE TIPT",
-      17057000
+      "208 5P 1,6 ACTIVE 2020",
+      16213000
      ],
      [
-      "VIRTUS 4P 1,6 MSI HIGHLINE TIPT",
-      19405000
+      "208 5P 1,6 LIKE PACK 2020",
+      16836000
+     ],
+     [
+      "208 5P 1,6 ALLURE 2020",
+      17740000
+     ],
+     [
+      "208 5P 1,6 STYLE",
+      18416000
+     ],
+     [
+      "208 5P 1,2 T GT 6TIPT LINE",
+      27030000
+     ],
+     [
+      "208 5P 1,2 T GT 6TIPT",
+      27076000
      ]
     ]
    }
@@ -8794,53 +9131,88 @@
    }
   },
   {
-   "id": "autocity-ee7b8810-041f-4847-bb72-03b7bc9e7baf",
+   "id": "autocity-79c65075-9dc5-4c78-ba32-63daa0fa32da",
    "tipo": "auto",
-   "marca": "Volkswagen",
-   "modelo": "Gol",
-   "version": "1.6 Trend Trendline 5p L16",
+   "marca": "Citroen",
+   "modelo": "C4 Cactus",
+   "version": "1.6 Vti Feel Pack At6",
    "anio": 2020,
-   "km": 30000,
+   "km": 80100,
    "combustible": "Nafta",
-   "caja": "Manual",
+   "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 21900000,
+   "precio": 21899999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792089203737.44.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792089204195.33.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792089204573.11.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792089205091.22.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171139818.IMG_6013.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171140732.IMG_6015.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171142820.IMG_6014.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-gol/1-6-trend-trendline-5p-l16/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-citroen/m-c4-cactus/1-6-vti-feel-pack-at6/",
    "sucursal": "Córdoba",
    "provincia": "Córdoba",
-   "oportunidad": false,
+   "oportunidad": true,
    "publicado": null,
    "modificado": null,
    "agencia": "autocity",
-   "alta": "2026-10-16T14:59:17.046Z",
+   "alta": "2026-10-17T13:54:19.025Z",
    "guia": {
-    "min": 15861000,
-    "med": 17074000,
-    "max": 17074000,
-    "n": 2,
+    "min": 14843000,
+    "med": 17837000,
+    "max": 18624000,
+    "n": 11,
     "mejor": {
-     "version": "GOL TREND 5P 1,6 TRENDLINE 2019",
-     "valor": 15861000,
-     "coincidencias": 3,
-     "empate": 1
+     "version": "C 4 CACTUS 5P 1,6 VTi 115 FEEL PACK E6AT",
+     "valor": 18624000,
+     "coincidencias": 4,
+     "empate": 2
     },
     "versiones": [
      [
-      "GOL TREND 5P 1,6 TRENDLINE 2019",
-      15861000
+      "C 4 CACTUS 5P 1,6 VTi 115 LIVE",
+      14843000
      ],
      [
-      "GOL TREND 5P 1,6 COMF 2019",
-      17074000
+      "C 4 CACTUS 5P 1,6 VTi 115 RIP CURL",
+      17282000
+     ],
+     [
+      "C 4 CACTUS 5P 1,6 VTi 115 FEEL",
+      17394000
+     ],
+     [
+      "C 4 CACTUS 5P 1,6 VTi 115 C-SERIES",
+      17417000
+     ],
+     [
+      "C 4 CACTUS 5P 1,6 VTi 115 FEEL PACK",
+      17792000
+     ],
+     [
+      "C 4 CACTUS 5P 1,6 VTi 115 C-SERIES E6AT",
+      17837000
+     ],
+     [
+      "C 4 CACTUS 5P 1,6 VTi 115 RIP CURL E6AT",
+      17973000
+     ],
+     [
+      "C 4 CACTUS 5P 1,6 THP 165 SHINE E6AT",
+      18069000
+     ],
+     [
+      "C 4 CACTUS 5P 1,6 THP 165 SHINE E6AT BITONO",
+      18128000
+     ],
+     [
+      "C 4 CACTUS 5P 1,6 VTi 115 FEEL PACK E6AT",
+      18624000
+     ],
+     [
+      "C 4 CACTUS 5P 1,6 VTi 115 ORIGINS",
+      18624000
      ]
     ]
    }
@@ -9344,6 +9716,67 @@
    }
   },
   {
+   "id": "autocity-dd22968e-444d-43bf-96a1-d729d07996ae",
+   "tipo": "auto",
+   "marca": "Peugeot",
+   "modelo": "208",
+   "version": "1.6 Active Tiptronic L20",
+   "anio": 2021,
+   "km": 52600,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 23500000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173155137.IMG_6430.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173156346.IMG_6431.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173157416.IMG_6434.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173160369.IMG_6433.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173164950.IMG_6432.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-active-tiptronic-l20/",
+   "sucursal": "Río Cuarto",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 17471000,
+    "med": 19385000,
+    "max": 19677000,
+    "n": 4,
+    "mejor": {
+     "version": "208 5P 1,6 ACTIVE TIPT6 2020",
+     "valor": 17471000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "208 5P 1,6 ACTIVE TIPT6 2020",
+      17471000
+     ],
+     [
+      "208 5P 1,6 ALLURE TIPT6 2020",
+      18961000
+     ],
+     [
+      "208 5P 1,6 STYLE TIPT6",
+      19385000
+     ],
+     [
+      "208 5P 1,6 FELINE TIPT6 2020",
+      19677000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-07ccb305-1d9c-40a9-a083-5077eaca7ebc",
    "tipo": "auto",
    "marca": "Jeep",
@@ -9783,6 +10216,66 @@
    }
   },
   {
+   "id": "autocity-2a83e434-9ae1-4bee-a17f-a060ddae0074",
+   "tipo": "auto",
+   "marca": "Peugeot",
+   "modelo": "208",
+   "version": "1.6 Feline Tiptronic L20",
+   "anio": 2021,
+   "km": 39600,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Negro",
+   "equipamiento": "",
+   "precio": 23900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164208536.IMG_6394.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164209230.IMG_6395.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164209878.IMG_6397.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164212088.IMG_6396.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-feline-tiptronic-l20/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 17471000,
+    "med": 19385000,
+    "max": 19677000,
+    "n": 4,
+    "mejor": {
+     "version": "208 5P 1,6 FELINE TIPT6 2020",
+     "valor": 19677000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "208 5P 1,6 ACTIVE TIPT6 2020",
+      17471000
+     ],
+     [
+      "208 5P 1,6 ALLURE TIPT6 2020",
+      18961000
+     ],
+     [
+      "208 5P 1,6 STYLE TIPT6",
+      19385000
+     ],
+     [
+      "208 5P 1,6 FELINE TIPT6 2020",
+      19677000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-d287f132-3ed6-412f-90b1-b9b39b99dc39",
    "tipo": "auto",
    "marca": "Chery",
@@ -9843,6 +10336,125 @@
      [
       "TIGGO 4 5P 1,5 T 4X2 LUXURY CVT PRO",
       21328000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-b491db48-243f-4ad6-b91c-11941cb06272",
+   "tipo": "auto",
+   "marca": "Fiat",
+   "modelo": "Cronos",
+   "version": "1.3 Gse Drive Con Tazas L23",
+   "anio": 2023,
+   "km": 93900,
+   "combustible": "Gnc",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 23900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171605854.IMG_6933.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171606603.IMG_6936.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171608957.IMG_6934.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171611044.IMG_6935.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-cronos/1-3-gse-drive-con-tazas-l23/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 17162000,
+    "med": 18938000,
+    "max": 20659000,
+    "n": 6,
+    "mejor": {
+     "version": "CRONOS 4P 1,3 DRIVE GSE PACK PLUS 2023",
+     "valor": 18938000,
+     "coincidencias": 3,
+     "empate": 3
+    },
+    "versiones": [
+     [
+      "CRONOS 4P 1,3 ATTRACTIVE GSE 2022",
+      17162000
+     ],
+     [
+      "CRONOS 4P 1,3 LIKE GSE 2023",
+      17677000
+     ],
+     [
+      "CRONOS 4P 1,3 DRIVE GSE 2022",
+      18762000
+     ],
+     [
+      "CRONOS 4P 1,3 DRIVE GSE PACK PLUS 2023",
+      18938000
+     ],
+     [
+      "CRONOS 4P 1,3 DRIVE GSE PACK S-DESING 2022",
+      19474000
+     ],
+     [
+      "CRONOS 4P 1,3 STILE GSE 2023",
+      20659000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-c302da15-7ffc-4307-8a57-0686711c1f3c",
+   "tipo": "auto",
+   "marca": "Fiat",
+   "modelo": "Fiorino",
+   "version": "1.4 Endurance L24",
+   "anio": 2025,
+   "km": 63100,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 23900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878919470.IMG_3926.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878921484.IMG_3927.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878925343.IMG_3933.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-fiorino/1-4-endurance-l24/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 20549000,
+    "med": 21600000,
+    "max": 21600000,
+    "n": 2,
+    "mejor": {
+     "version": "FIORINO FURGON 1,4 8V ENDURANCE 2022",
+     "valor": 20549000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "FIORINO FURGON 1,4 8V ENDURANCE 2022",
+      20549000
+     ],
+     [
+      "FIORINO FURGON 1,3 8V ENDURANCE FIREFLY 2025",
+      21600000
      ]
     ]
    }
@@ -10022,104 +10634,6 @@
      [
       "KICKS 5P 1,6 ADVANCE 2019",
       21378000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-42ebcdec-cc53-4b04-98ca-04f5f54e2755",
-   "tipo": "auto",
-   "marca": "Peugeot",
-   "modelo": "208",
-   "version": "1.6 Active Pack L23",
-   "anio": 2023,
-   "km": 49000,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Negro",
-   "equipamiento": "",
-   "precio": 24250000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790272429202.20260922_113821.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790272431300.20260922_113748.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790272432545.20260922_113902.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790272433865.20260922_114233.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790272435866.20260922_114141.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790272439686.20260922_113834.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-active-pack-l23/",
-   "sucursal": "Río Cuarto",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 16901000,
-    "med": 19167000,
-    "max": 29254000,
-    "n": 13,
-    "mejor": {
-     "version": "208 5P 1,6 ACTIVE PACK 2023",
-     "valor": 18733000,
-     "coincidencias": 3,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "208 5P 1,2 LIKE 2020",
-      16901000
-     ],
-     [
-      "208 5P 1,6 ACTIVE 2020",
-      17517000
-     ],
-     [
-      "208 5P 1,2 LIKE NEW 2023",
-      17746000
-     ],
-     [
-      "208 5P 1,6 ACTIVE 2023",
-      17841000
-     ],
-     [
-      "208 5P 1,6 LIKE PACK 2020",
-      18191000
-     ],
-     [
-      "208 5P 1,6 ACTIVE PACK 2023",
-      18733000
-     ],
-     [
-      "208 5P 1,6 ALLURE 2020",
-      19167000
-     ],
-     [
-      "208 5P 1,6 ALLURE 2023",
-      19522000
-     ],
-     [
-      "208 5P 1,6 STYLE",
-      19897000
-     ],
-     [
-      "208 5P 1,6 ALLURE PACK 2023",
-      20498000
-     ],
-     [
-      "208 5P 1,6 ROADTRIP",
-      22536000
-     ],
-     [
-      "208 5P 1,2 T GT 6TIPT LINE",
-      29205000
-     ],
-     [
-      "208 5P 1,2 T GT 6TIPT",
-      29254000
      ]
     ]
    }
@@ -10843,66 +11357,78 @@
    }
   },
   {
-   "id": "autocity-c3307b5e-4c97-48c1-b5e2-a7d004bb3a76",
+   "id": "autocity-e2207ee1-8690-4a81-9e94-18e666b3a713",
    "tipo": "auto",
-   "marca": "Volkswagen",
-   "modelo": "Golf",
-   "version": "1.4 Vii Tsi Bluemotion Tech Highline Dsg L15",
-   "anio": 2016,
-   "km": 131600,
+   "marca": "Peugeot",
+   "modelo": "208",
+   "version": "1.6 Active Pack Tiptronic L24",
+   "anio": 2024,
+   "km": 35200,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "Gris",
+   "color": "Blanco",
    "equipamiento": "",
    "precio": 24899999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791208624106.IMG_5599.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791208624469.IMG_5600.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791208625098.IMG_5605.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791208626129.IMG_5602.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791208627418.IMG_5604.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790274899457.IMG_3899.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790274900649.IMG_3900.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790274901604.IMG_3906.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790274904582.IMG_3902.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790274908448.IMG_3903.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-golf/1-4-vii-tsi-bluemotion-tech-highline-dsg-l15/",
-   "sucursal": "Villa María",
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-active-pack-tiptronic-l24-3/",
+   "sucursal": "Córdoba",
    "provincia": "Córdoba",
    "oportunidad": true,
    "publicado": null,
    "modificado": null,
    "agencia": "autocity",
-   "alta": "2026-10-16T14:59:17.046Z",
+   "alta": "2026-10-17T13:54:19.025Z",
    "guia": {
-    "min": 16034000,
-    "med": 18180000,
-    "max": 20731000,
-    "n": 5,
+    "min": 19618000,
+    "med": 22356000,
+    "max": 25185000,
+    "n": 8,
     "mejor": {
-     "version": "GOLF 5P 1,4 TSI HIGHLINE DSG",
-     "valor": 20731000,
-     "coincidencias": 4,
-     "empate": 2
+     "version": "208 5P 1,6 ACTIVE TIPT6 PACK 2023",
+     "valor": 20599000,
+     "coincidencias": 3,
+     "empate": 1
     },
     "versiones": [
      [
-      "GOLF VARIANT 5P 1,6 TRENDLINE AT",
-      16034000
+      "208 5P 1,6 ACTIVE TIPT6 2023",
+      19618000
      ],
      [
-      "GOLF VARIANT 5P 1,4 TSI COMFORTLINE DSG",
-      16894000
+      "208 5P 1,6 ALLURE TIPT6 2025",
+      19792000
      ],
      [
-      "GOLF 5P 1,4 TSI COMFORTLINE DSG",
-      18180000
+      "208 5P 1,6 ACTIVE TIPT6 PACK 2023",
+      20599000
      ],
      [
-      "GOLF VARIANT 5P 1,4 TSI HIGHLINE DSG",
-      18245000
+      "208 5P 1,6 ALLURE TIPT6 2023",
+      21292000
      ],
      [
-      "GOLF 5P 1,4 TSI HIGHLINE DSG",
-      20731000
+      "208 5P 1,6 ALLURE TIPT6 PACK 2023",
+      22356000
+     ],
+     [
+      "208 5P 1,6 FELINE TIPT6 2023",
+      23199000
+     ],
+     [
+      "208 5P T200 ALLURE PK CVT6 2025",
+      23718000
+     ],
+     [
+      "208 5P T200 CVT GT 2025",
+      25185000
      ]
     ]
    }
@@ -12160,7 +12686,7 @@
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790879460371.IMG_4531.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-cronos/1-3-gse-drive-pack-plus-l23/",
-   "sucursal": "Córdoba",
+   "sucursal": "Río Cuarto",
    "provincia": "Córdoba",
    "oportunidad": false,
    "publicado": null,
@@ -12193,6 +12719,95 @@
      ]
     ]
    }
+  },
+  {
+   "id": "autocity-746224cd-f898-4f64-824b-6f4711b9eed1",
+   "tipo": "auto",
+   "marca": "Fiat",
+   "modelo": "Cronos",
+   "version": "1.8 Precision At L21",
+   "anio": 2022,
+   "km": 66800,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 25500000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171076781.IMG_6949.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171077558.IMG_6950.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171078588.IMG_6953.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171082322.IMG_6951.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171085093.IMG_6952.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-cronos/1-8-precision-at-l21/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 19492000,
+    "med": 20694000,
+    "max": 20729000,
+    "n": 3,
+    "mejor": {
+     "version": "CRONOS 4P 1,8 PRECISION AT 2021",
+     "valor": 20694000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "CRONOS 4P 1,3 DRIVE GSE CVT 2022",
+      19492000
+     ],
+     [
+      "CRONOS 4P 1,8 PRECISION AT 2021",
+      20694000
+     ],
+     [
+      "CRONOS 4P 1,3 PRECISION GSE CVT 2022",
+      20729000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-ba69db91-07a9-4bec-93fa-b8167e53fc92",
+   "tipo": "auto",
+   "marca": "Jac Motors",
+   "modelo": "S2",
+   "version": "1.5 Fl Intelligent",
+   "anio": 2022,
+   "km": 23100,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 25500000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171842475.IMG_7673.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171843252.IMG_7674.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171843956.IMG_7679.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171845989.IMG_7677.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171849169.IMG_7678.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-jac-motors/m-s2/1-5-fl-intelligent/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": null
   },
   {
    "id": "autocity-3566610b-6c1a-4a5c-a2b7-d7da90725ae6",
@@ -12245,65 +12860,6 @@
      [
       "NIVUS 5P 1,0 TSI 200 6AT HERO",
       26211000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-ccb8107b-5ab9-4e71-8c34-503fa737aa8a",
-   "tipo": "auto",
-   "marca": "Audi",
-   "modelo": "A4",
-   "version": "2.0 T Ambition Multitronic L12",
-   "anio": 2015,
-   "km": 73100,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Gris",
-   "equipamiento": "",
-   "precio": 25900000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784900305874.IMG_0871.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784900308618.IMG_0873.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784900315925.IMG_0872.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-audi/m-a4/2-0-t-ambition-multitronic-l12/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": true,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 20337000,
-    "med": 23268000,
-    "max": 24851000,
-    "n": 4,
-    "mejor": {
-     "version": "A4 4P 2,0 TFSI QUATTRO PLUS AMBITION S-TRONIC 2012",
-     "valor": 21571000,
-     "coincidencias": 2,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "A4 4P 2,0 TFSI QUATTRO ATTRACTION S-TRONIC 2012",
-      20337000
-     ],
-     [
-      "A4 4P 2,0 TFSI QUATTRO PLUS AMBITION S-TRONIC 2012",
-      21571000
-     ],
-     [
-      "A4 4P 3,0 TFSI S-TRONIC QUATTRO",
-      23268000
-     ],
-     [
-      "A4 4P 3,0 TDi QUATTRO S-TRONIC",
-      24851000
      ]
     ]
    }
@@ -12575,7 +13131,7 @@
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902281136.IMG_5513.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-kicks/1-6-exclusive-cvt-l17-2/",
-   "sucursal": "Córdoba",
+   "sucursal": "Río Cuarto",
    "provincia": "Córdoba",
    "oportunidad": false,
    "publicado": null,
@@ -12605,6 +13161,135 @@
      [
       "KICKS 5P 1,6 SPECIAL EDITION CVT",
       20216000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-196fc235-ddab-4421-97a1-b30d4095c86c",
+   "tipo": "auto",
+   "marca": "Chevrolet",
+   "modelo": "Onix",
+   "version": "1.0 T Lt 5p L26",
+   "anio": 2025,
+   "km": 300,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Negro",
+   "equipamiento": "",
+   "precio": 25900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164020861.IMG_8091.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164023057.IMG_8093.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164024544.IMG_8099.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164027708.IMG_8098.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-chevrolet/m-onix/1-0-t-lt-5p-l26/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 20333000,
+    "med": 21403000,
+    "max": 24598000,
+    "n": 8,
+    "mejor": {
+     "version": "ONIX 5P 1,0 T LT 2026",
+     "valor": 20380000,
+     "coincidencias": 3,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "ONIX 5P 1,0 T LT",
+      20333000
+     ],
+     [
+      "ONIX 5P 1,0 T LT 2026",
+      20380000
+     ],
+     [
+      "ONIX 4P 1,0 T PLUS LT 2026",
+      20380000
+     ],
+     [
+      "ONIX 4P 1,0 T PLUS LT",
+      20503000
+     ],
+     [
+      "ONIX 5P 1,0 T LTZ",
+      21403000
+     ],
+     [
+      "ONIX 4P 1,0 T PLUS LTZ",
+      21583000
+     ],
+     [
+      "ONIX 5P 1,0 T RS",
+      22353000
+     ],
+     [
+      "ONIX 5P 1,0 T RS 2026",
+      24598000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-d1fec750-c397-48ef-9033-bb52d87d54e2",
+   "tipo": "auto",
+   "marca": "Honda",
+   "modelo": "Wr-v",
+   "version": "1.5 Ex Cvt L19",
+   "anio": 2019,
+   "km": 93900,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 25900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172944261.IMG_6667.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172946638.IMG_6665.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172948507.IMG_6671.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172955096.IMG_6668.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172962889.IMG_6670.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-honda/m-wr-v/1-5-ex-cvt-l19/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 21782000,
+    "med": 23042000,
+    "max": 23042000,
+    "n": 2,
+    "mejor": {
+     "version": "WR-V 5P 1,5 EX CVT",
+     "valor": 21782000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "WR-V 5P 1,5 EX CVT",
+      21782000
+     ],
+     [
+      "WR-V 5P 1,5 EXL CVT",
+      23042000
      ]
     ]
    }
@@ -13041,6 +13726,63 @@
    }
   },
   {
+   "id": "autocity-93202ec5-cef5-4d28-8171-a2555b716519",
+   "tipo": "auto",
+   "marca": "Fiat",
+   "modelo": "Cronos",
+   "version": "1.3 Gse Precision Cvt L23",
+   "anio": 2022,
+   "km": 41600,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 26500000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171373886.IMG_7902.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171375333.IMG_7903.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171376385.IMG_7906.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171379005.IMG_7904.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171383130.IMG_7905.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-cronos/1-3-gse-precision-cvt-l23/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 19492000,
+    "med": 20694000,
+    "max": 20729000,
+    "n": 3,
+    "mejor": {
+     "version": "CRONOS 4P 1,3 PRECISION GSE CVT 2022",
+     "valor": 20729000,
+     "coincidencias": 4,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "CRONOS 4P 1,3 DRIVE GSE CVT 2022",
+      19492000
+     ],
+     [
+      "CRONOS 4P 1,8 PRECISION AT 2021",
+      20694000
+     ],
+     [
+      "CRONOS 4P 1,3 PRECISION GSE CVT 2022",
+      20729000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-a6d0f2f1-205b-4ec2-a4c1-59095f579082",
    "tipo": "auto",
    "marca": "Renault",
@@ -13131,49 +13873,88 @@
    }
   },
   {
-   "id": "autocity-6dda3944-65ae-44af-88f2-edccc4ea67c5",
+   "id": "autocity-7be22b82-79aa-48a7-a215-1bb10216468a",
    "tipo": "auto",
-   "marca": "Fiat",
-   "modelo": "Argo",
-   "version": "1.3 Gse Firefly Drive L26",
-   "anio": 2025,
-   "km": 33900,
+   "marca": "Renault",
+   "modelo": "Stepway",
+   "version": "1.6 Intens L23",
+   "anio": 2024,
+   "km": 87100,
    "combustible": "Nafta",
    "caja": "Manual",
-   "color": "Gris",
+   "color": "Rojo",
    "equipamiento": "",
    "precio": 26900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790276457294.IMG_3964.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790276458483.IMG_3969.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790276462165.IMG_3968.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790276465437.IMG_3966.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171225698.20261015_153810.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171226471.20261015_153741.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171227241.20261015_153838.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171228018.20261015_153959.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171228918.20261015_154005.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171229844.20261015_154016.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171230642.20261015_154058.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171231842.20261015_153857.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-argo/1-3-gse-firefly-drive-l26/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-stepway/1-6-intens-l23/",
+   "sucursal": "Río Cuarto",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": null
+  },
+  {
+   "id": "autocity-d1b79dd6-8a1d-45f2-834a-eba197a157e7",
+   "tipo": "auto",
+   "marca": "Citroen",
+   "modelo": "Basalt",
+   "version": "1.6 Vti Live Pack L25",
+   "anio": 2025,
+   "km": 34500,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Plata",
+   "equipamiento": "",
+   "precio": 26900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172684241.IMG_6855.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172685195.IMG_6856.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172685855.IMG_6857.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172688641.IMG_6858.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-citroen/m-basalt/1-6-vti-live-pack-l25/",
    "sucursal": "Córdoba",
    "provincia": "Córdoba",
    "oportunidad": false,
    "publicado": null,
    "modificado": null,
    "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
+   "alta": "2026-10-17T13:54:19.025Z",
    "guia": {
-    "min": 20598000,
-    "med": 20598000,
-    "max": 20598000,
-    "n": 1,
+    "min": 21011000,
+    "med": 22359000,
+    "max": 22359000,
+    "n": 2,
     "mejor": {
-     "version": "ARGO 5P 1,3 DRIVE MT 2025",
-     "valor": 20598000,
+     "version": "BASALT 5P VTi LIVE PK",
+     "valor": 21011000,
      "coincidencias": 2,
      "empate": 1
     },
     "versiones": [
      [
-      "ARGO 5P 1,3 DRIVE MT 2025",
-      20598000
+      "BASALT 5P VTi LIVE PK",
+      21011000
+     ],
+     [
+      "BASALT 5P VTi FEEL",
+      22359000
      ]
     ]
    }
@@ -13499,6 +14280,214 @@
    }
   },
   {
+   "id": "autocity-aa4ea9df-2b9b-48a9-83a1-3fd7f6a3d0a8",
+   "tipo": "auto",
+   "marca": "Peugeot",
+   "modelo": "208",
+   "version": "1.6 Allure At L25",
+   "anio": 2024,
+   "km": 23400,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 27500000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171448831.IMG_7489.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171449515.IMG_7494.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171450130.IMG_7497.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171451885.IMG_7495.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171454182.IMG_7496.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-allure-at-l25-2/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 19618000,
+    "med": 22356000,
+    "max": 25185000,
+    "n": 8,
+    "mejor": {
+     "version": "208 5P 1,6 ALLURE TIPT6 2023",
+     "valor": 21292000,
+     "coincidencias": 2,
+     "empate": 3
+    },
+    "versiones": [
+     [
+      "208 5P 1,6 ACTIVE TIPT6 2023",
+      19618000
+     ],
+     [
+      "208 5P 1,6 ALLURE TIPT6 2025",
+      19792000
+     ],
+     [
+      "208 5P 1,6 ACTIVE TIPT6 PACK 2023",
+      20599000
+     ],
+     [
+      "208 5P 1,6 ALLURE TIPT6 2023",
+      21292000
+     ],
+     [
+      "208 5P 1,6 ALLURE TIPT6 PACK 2023",
+      22356000
+     ],
+     [
+      "208 5P 1,6 FELINE TIPT6 2023",
+      23199000
+     ],
+     [
+      "208 5P T200 ALLURE PK CVT6 2025",
+      23718000
+     ],
+     [
+      "208 5P T200 CVT GT 2025",
+      25185000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-c0fdf6b6-55b9-4ca8-ae8b-93e028700b89",
+   "tipo": "auto",
+   "marca": "Fiat",
+   "modelo": "Fiorino",
+   "version": "1.3 Firefly Endurance",
+   "anio": 2026,
+   "km": 100,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 27500000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171911071.IMG_6739.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171911826.IMG_6740.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171912351.IMG_6750.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171912968.IMG_6747.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171913792.IMG_6754.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171915039.IMG_6742.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171917366.IMG_6751.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-fiorino/1-3-firefly-endurance-2/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 33180000,
+    "med": 33180000,
+    "max": 33180000,
+    "n": 1,
+    "mejor": {
+     "version": "FIORINO FURGON 1,3 8V ENDURANCE FIREFLY 2025",
+     "valor": 33180000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "FIORINO FURGON 1,3 8V ENDURANCE FIREFLY 2025",
+      33180000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-642c81b7-b186-455b-8dc8-4a8645ad2f50",
+   "tipo": "auto",
+   "marca": "Fiat",
+   "modelo": "Toro",
+   "version": "1.8 Mpi 4×2 Freedom At L19",
+   "anio": 2021,
+   "km": 105400,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Rojo",
+   "equipamiento": "",
+   "precio": 27899999,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171003916.IMG_8213.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171004964.IMG_8217.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171007259.IMG_8215.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171010059.IMG_8216.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-toro/1-8-mpi-4x2-freedom-at-l19/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 19071000,
+    "med": 27227000,
+    "max": 32900000,
+    "n": 9,
+    "mejor": {
+     "version": "TORO PICK UP D/C 1,8 FREEDOM 4X2 6AT 2021",
+     "valor": 19742000,
+     "coincidencias": 2,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "TORO PICK UP D/C 1,8 FREEDOM 4X2 6AT PACK SEG",
+      19071000
+     ],
+     [
+      "TORO PICK UP D/C 1,8 FREEDOM 4X2 6AT 2021",
+      19742000
+     ],
+     [
+      "TORO PICK UP D/C 2,0 TD FREEDOM 4X4 9AT PACK SEG",
+      25655000
+     ],
+     [
+      "TORO PICK UP D/C 1,3 T VOLCANO 4X2 6AT 2021",
+      26945000
+     ],
+     [
+      "TORO PICK UP D/C 2,0 TD FREEDOM 4X4 9AT 2021",
+      27227000
+     ],
+     [
+      "TORO PICK UP D/C 2,0 TD VOLCANO 4X4 9AT",
+      27497000
+     ],
+     [
+      "TORO PICK UP D/C 2,0 TD RANCH 4X4 9AT",
+      28931000
+     ],
+     [
+      "TORO PICK UP D/C 2,0 TD VOLCANO 4X4 9AT 2021",
+      30105000
+     ],
+     [
+      "TORO PICK UP D/C 2,0 16V TD MULTIJET ULTRA 4X4 9AT 2021",
+      32900000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-0238fa64-9ddb-4779-9c25-4f940bb410aa",
    "tipo": "auto",
    "marca": "Volkswagen",
@@ -13569,67 +14558,6 @@
    }
   },
   {
-   "id": "autocity-6a599105-bc28-4fa0-9918-4b7a3c594d74",
-   "tipo": "auto",
-   "marca": "Toyota",
-   "modelo": "Yaris",
-   "version": "1.5 Xls 5p",
-   "anio": 2022,
-   "km": 61900,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Gris",
-   "equipamiento": "",
-   "precio": 27900000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485189575.IMG_1690.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485190948.IMG_1693.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485191558.IMG_1698.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485193950.IMG_1696.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789485196562.IMG_1697.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-toyota/m-yaris/1-5-xls-5p/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-15T15:19:18.291Z",
-   "guia": {
-    "min": 19839000,
-    "med": 22268000,
-    "max": 65168000,
-    "n": 4,
-    "mejor": {
-     "version": "YARIS 5P 1,5 XLS 6MT 2022",
-     "valor": 21751000,
-     "coincidencias": 3,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "YARIS 5P 1,5 XS 6MT 2022",
-      19839000
-     ],
-     [
-      "YARIS 5P 1,5 XLS 6MT 2022",
-      21751000
-     ],
-     [
-      "YARIS 4P 1,5 XLS 6MT 2022",
-      22268000
-     ],
-     [
-      "YARIS 3P 1,6 T GR",
-      65168000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-52c771ee-7f36-492f-9f1f-91cc654f9f58",
    "tipo": "auto",
    "marca": "Chevrolet",
@@ -13686,6 +14614,83 @@
      [
       "ONIX 5P 1,0 T PREMIER II AT",
       23093000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-d3d66cb5-dea5-49e9-8188-6955aa79aa01",
+   "tipo": "auto",
+   "marca": "Peugeot",
+   "modelo": "208",
+   "version": "1.6 Feline Tiptronic L24",
+   "anio": 2024,
+   "km": 22100,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Azul",
+   "equipamiento": "",
+   "precio": 28900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173020379.IMG_7104.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173022457.IMG_7105.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173023625.IMG_7110.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173028515.IMG_7108.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173032815.IMG_7109.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-feline-tiptronic-l24-2/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 19618000,
+    "med": 22356000,
+    "max": 25185000,
+    "n": 8,
+    "mejor": {
+     "version": "208 5P 1,6 FELINE TIPT6 2023",
+     "valor": 23199000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "208 5P 1,6 ACTIVE TIPT6 2023",
+      19618000
+     ],
+     [
+      "208 5P 1,6 ALLURE TIPT6 2025",
+      19792000
+     ],
+     [
+      "208 5P 1,6 ACTIVE TIPT6 PACK 2023",
+      20599000
+     ],
+     [
+      "208 5P 1,6 ALLURE TIPT6 2023",
+      21292000
+     ],
+     [
+      "208 5P 1,6 ALLURE TIPT6 PACK 2023",
+      22356000
+     ],
+     [
+      "208 5P 1,6 FELINE TIPT6 2023",
+      23199000
+     ],
+     [
+      "208 5P T200 ALLURE PK CVT6 2025",
+      23718000
+     ],
+     [
+      "208 5P T200 CVT GT 2025",
+      25185000
      ]
     ]
    }
@@ -13884,6 +14889,82 @@
    }
   },
   {
+   "id": "autocity-d7959ab6-adbd-4168-b7ad-1f97e1c8d527",
+   "tipo": "auto",
+   "marca": "Nissan",
+   "modelo": "Kicks",
+   "version": "1.6 Exclusive Cvt L21",
+   "anio": 2021,
+   "km": 78100,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Negro",
+   "equipamiento": "",
+   "precio": 29899999,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173098006.IMG_4503.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173100414.IMG_4506.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173105343.IMG_4504.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173110378.IMG_4505.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-kicks/1-6-exclusive-cvt-l21-2/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 23910000,
+    "med": 25130000,
+    "max": 28824000,
+    "n": 8,
+    "mejor": {
+     "version": "KICKS 5P 1,6 EXCLUSIVE CVT TBT 2019",
+     "valor": 27497000,
+     "coincidencias": 3,
+     "empate": 4
+    },
+    "versiones": [
+     [
+      "KICKS 5P 1,6 ADVANCE CVT 2019",
+      23910000
+     ],
+     [
+      "KICKS 5P 1,6 ADVANCE CVT UCL 2020",
+      23910000
+     ],
+     [
+      "KICKS 5P 1,6 ADVANCE CVT 2021",
+      24164000
+     ],
+     [
+      "KICKS 5P 1,6 EXCLUSIVE CVT 2019",
+      24867000
+     ],
+     [
+      "KICKS 5P 1,6 ADVANCE CVT PLUS 2021",
+      25130000
+     ],
+     [
+      "KICKS 5P 1,6 EXCLUSIVE CVT 2021",
+      26136000
+     ],
+     [
+      "KICKS 5P 1,6 EXCLUSIVE CVT TBT 2019",
+      27497000
+     ],
+     [
+      "KICKS 5P 1,6 EXCLUSIVE CVT TBT 2021",
+      28824000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-07a459cd-2c6d-49ad-98fa-aad1a8348026",
    "tipo": "auto",
    "marca": "Nissan",
@@ -13947,6 +15028,67 @@
      [
       "KICKS 5P 1,6 EDITION CVT 2019",
       25648000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-e866b5b3-93dc-41a1-83eb-2bdfbfe8d71b",
+   "tipo": "auto",
+   "marca": "Citroen",
+   "modelo": "Basalt",
+   "version": "1.0 T200 Shine Cvt Bt L25",
+   "anio": 2025,
+   "km": 27400,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 29900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173493675.IMG_8035.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173494418.IMG_8037.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173495103.IMG_8041.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173497347.IMG_8038.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173500638.IMG_8040.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-citroen/m-basalt/1-0-t200-shine-cvt-bt-l25/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 25170000,
+    "med": 25514000,
+    "max": 25682000,
+    "n": 4,
+    "mejor": {
+     "version": "BASALT 5P T200 CVT SHINE BITONO",
+     "valor": 25339000,
+     "coincidencias": 3,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "BASALT 5P T200 CVT SHINE",
+      25170000
+     ],
+     [
+      "BASALT 5P T200 CVT SHINE BITONO",
+      25339000
+     ],
+     [
+      "BASALT 5P T200 CVT DARK EDITION",
+      25514000
+     ],
+     [
+      "BASALT 5P T200 CVT DARK EDITION BITONO",
+      25682000
      ]
     ]
    }
@@ -14716,6 +15858,97 @@
    }
   },
   {
+   "id": "autocity-cfd52e93-7cce-47cd-bc2f-ce72d000332a",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Kangoo",
+   "version": "Express 1.6 Sce Emotion 5as L18",
+   "anio": 2023,
+   "km": 112400,
+   "combustible": "Gnc",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 31900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172423627.IMG_7428.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172424471.IMG_7430.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172427472.IMG_7429.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-kangoo/express-1-6-sce-emotion-5as-l18/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 24333000,
+    "med": 27530000,
+    "max": 34331000,
+    "n": 12,
+    "mejor": {
+     "version": "KANGOO II EXPRESS FURGON 1,6 SCe EMOTION 5A",
+     "valor": 27530000,
+     "coincidencias": 3,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "KANGOO II EXPRESS FURGON 1,6 SCe CONFORT STD",
+      24333000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON 1,6 SCe EMOTION",
+      25409000
+     ],
+     [
+      "KANGOO II VERSION PASAJEROS 1,6 SCe LIFE",
+      25471000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON 1,5 dCi CONFORT STD",
+      26164000
+     ],
+     [
+      "KANGOO II VERSION PASAJEROS 1,6 SCe ZEN",
+      26734000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON 1,6 SCe CONFORT STD 5A",
+      26889000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON 1,6 SCe EMOTION 5A",
+      27530000
+     ],
+     [
+      "KANGOO II VERSION PASAJEROS 1,6 SCe STEPWAY",
+      27981000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON 1,5 dCi CONFORT STD 5A",
+      28739000
+     ],
+     [
+      "KANGOO II VERSION PASAJEROS 1,5 dCi STEPWAY",
+      28824000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON ZE 2A",
+      33864000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON ZE MAXI 2A",
+      34331000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-c0fa2de2-b3dc-4ceb-96be-5df8ee9893b9",
    "tipo": "auto",
    "marca": "Peugeot",
@@ -14831,6 +16064,82 @@
      [
       "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X4 HIGH 2023",
       44719000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-80e6fd18-df74-4494-98fd-df18768fae84",
+   "tipo": "auto",
+   "marca": "Nissan",
+   "modelo": "Kicks",
+   "version": "1.6 Exclusive Cvt L17",
+   "anio": 2021,
+   "km": 58800,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 32250000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791207351431.IMG_5368.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791207352184.IMG_5372.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791207353496.IMG_5369.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791207354696.IMG_5371.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-kicks/1-6-exclusive-cvt-l17-4/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 23910000,
+    "med": 25130000,
+    "max": 28824000,
+    "n": 8,
+    "mejor": {
+     "version": "KICKS 5P 1,6 EXCLUSIVE CVT TBT 2019",
+     "valor": 27497000,
+     "coincidencias": 3,
+     "empate": 4
+    },
+    "versiones": [
+     [
+      "KICKS 5P 1,6 ADVANCE CVT 2019",
+      23910000
+     ],
+     [
+      "KICKS 5P 1,6 ADVANCE CVT UCL 2020",
+      23910000
+     ],
+     [
+      "KICKS 5P 1,6 ADVANCE CVT 2021",
+      24164000
+     ],
+     [
+      "KICKS 5P 1,6 EXCLUSIVE CVT 2019",
+      24867000
+     ],
+     [
+      "KICKS 5P 1,6 ADVANCE CVT PLUS 2021",
+      25130000
+     ],
+     [
+      "KICKS 5P 1,6 EXCLUSIVE CVT 2021",
+      26136000
+     ],
+     [
+      "KICKS 5P 1,6 EXCLUSIVE CVT TBT 2019",
+      27497000
+     ],
+     [
+      "KICKS 5P 1,6 EXCLUSIVE CVT TBT 2021",
+      28824000
      ]
     ]
    }
@@ -15023,7 +16332,7 @@
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903485050.IMG_7179.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-renegade/1-8-4x2-longitude-at-l18-2/",
-   "sucursal": "Córdoba",
+   "sucursal": "Río Cuarto",
    "provincia": "Córdoba",
    "oportunidad": false,
    "publicado": null,
@@ -15125,7 +16434,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 33500000,
+   "precio": 33250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15159,6 +16468,107 @@
      ]
     ]
    }
+  },
+  {
+   "id": "autocity-506986e9-d293-47b0-a3f3-e7ad4d779e9f",
+   "tipo": "auto",
+   "marca": "BYD",
+   "modelo": "Dolphin Mini",
+   "version": "Gl",
+   "anio": 2026,
+   "km": 20,
+   "combustible": "Electrico",
+   "caja": "Automática",
+   "color": "Verde",
+   "equipamiento": "",
+   "precio": 21600,
+   "precio_sin_imp": null,
+   "moneda": "USD",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923930202.A.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923930501.S.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923930686.H.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923930880.K.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923931285.D.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923931822.F.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923932066.J.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923932473.GG.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-dolphin-mini/gl/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-14T20:44:18.592Z",
+   "guia": null
+  },
+  {
+   "id": "autocity-5eb61620-0ad9-4efe-9f7d-ba311f46ddf1",
+   "tipo": "auto",
+   "marca": "BYD",
+   "modelo": "Dolphin Mini",
+   "version": "Gl",
+   "anio": 2026,
+   "km": 30,
+   "combustible": "Electrico",
+   "caja": "Automática",
+   "color": "Negro",
+   "equipamiento": "",
+   "precio": 21600,
+   "precio_sin_imp": null,
+   "moneda": "USD",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924038714.WhatsApp%20Image%202026-10-13%20at%204.22.36%20PM.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924039223.WhatsApp%20Image%202026-10-13%20at%204.22.37%20PM.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924039372.WhatsApp%20Image%202026-10-13%20at%204.22.39%20PM´'.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924039537.WhatsApp%20Image%202026-10-13%20at%204.22.39%20PMW.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924039887.WhatsApp%20Image%202026-10-13%20at%204.22.38%20PM.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924040105.WhatsApp%20Image%202026-10-13%20at%204.22.38%20PMO.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924040431.WhatsApp%20Image%202026-10-13%20at%204.22.39%20PME.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924040712.WhatsApp%20Image%202026-10-13%20at%204.22.39%20PM.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-dolphin-mini/gl-2/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-14T20:44:18.592Z",
+   "guia": null
+  },
+  {
+   "id": "autocity-cab5b063-7609-4116-99fe-7e243d686b2d",
+   "tipo": "auto",
+   "marca": "BYD",
+   "modelo": "Dolphin Mini",
+   "version": "Gl",
+   "anio": 2026,
+   "km": 20,
+   "combustible": "Electrico",
+   "caja": "Automática",
+   "color": "Celeste",
+   "equipamiento": "",
+   "precio": 21600,
+   "precio_sin_imp": null,
+   "moneda": "USD",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923816154.1.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923816468.4.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923816804.3.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923817641.2.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-dolphin-mini/gl-3/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-14T20:44:18.592Z",
+   "guia": null
   },
   {
    "id": "autocity-064adb66-d797-41c7-9c30-186e6543cde8",
@@ -15208,63 +16618,6 @@
      [
       "DUSTER OROCH PICK - UP D/C 1,3 TCE ICONIC 163 2WD CVT",
       31866000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-17e3bcb1-54e9-43ab-8a67-c8ecea5ecd11",
-   "tipo": "auto",
-   "marca": "Nissan",
-   "modelo": "Versa",
-   "version": "1.6 Exclusive Cvt",
-   "anio": 2024,
-   "km": 49300,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Blanco",
-   "equipamiento": "",
-   "precio": 33900000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791296973142.IMG_3669.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791296973947.IMG_3670.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791296975308.IMG_3673.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791296980145.IMG_3671.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791296985073.IMG_3672.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-versa/1-6-exclusive-cvt-2/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 26766000,
-    "med": 27009000,
-    "max": 30966000,
-    "n": 3,
-    "mejor": {
-     "version": "VERSA 4P 1,6 EXCLUSIVE CVT 2023",
-     "valor": 30966000,
-     "coincidencias": 3,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "VERSA 4P 1,6 ADVANCE CVT 2023",
-      26766000
-     ],
-     [
-      "VERSA 4P 1,6 SR CVT 2024",
-      27009000
-     ],
-     [
-      "VERSA 4P 1,6 EXCLUSIVE CVT 2023",
-      30966000
      ]
     ]
    }
@@ -15629,7 +16982,7 @@
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792088939547.2.jpeg",
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792088940519.3.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-versa/1-6-exclusive-cvt-5/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-versa/1-6-exclusive-cvt-4/",
    "sucursal": "Córdoba",
    "provincia": "Córdoba",
    "oportunidad": false,
@@ -15665,107 +17018,6 @@
    }
   },
   {
-   "id": "autocity-506986e9-d293-47b0-a3f3-e7ad4d779e9f",
-   "tipo": "auto",
-   "marca": "BYD",
-   "modelo": "Dolphin Mini",
-   "version": "Gl",
-   "anio": 2026,
-   "km": 20,
-   "combustible": "Electrico",
-   "caja": "Automática",
-   "color": "Verde",
-   "equipamiento": "",
-   "precio": 21900,
-   "precio_sin_imp": null,
-   "moneda": "USD",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923930202.A.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923930501.S.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923930686.H.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923930880.K.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923931285.D.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923931822.F.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923932066.J.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923932473.GG.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-dolphin-mini/gl-2/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": null
-  },
-  {
-   "id": "autocity-5eb61620-0ad9-4efe-9f7d-ba311f46ddf1",
-   "tipo": "auto",
-   "marca": "BYD",
-   "modelo": "Dolphin Mini",
-   "version": "Gl",
-   "anio": 2026,
-   "km": 30,
-   "combustible": "Electrico",
-   "caja": "Automática",
-   "color": "Negro",
-   "equipamiento": "",
-   "precio": 21900,
-   "precio_sin_imp": null,
-   "moneda": "USD",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924038714.WhatsApp%20Image%202026-10-13%20at%204.22.36%20PM.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924039223.WhatsApp%20Image%202026-10-13%20at%204.22.37%20PM.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924039372.WhatsApp%20Image%202026-10-13%20at%204.22.39%20PM´'.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924039537.WhatsApp%20Image%202026-10-13%20at%204.22.39%20PMW.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924039887.WhatsApp%20Image%202026-10-13%20at%204.22.38%20PM.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924040105.WhatsApp%20Image%202026-10-13%20at%204.22.38%20PMO.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924040431.WhatsApp%20Image%202026-10-13%20at%204.22.39%20PME.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791924040712.WhatsApp%20Image%202026-10-13%20at%204.22.39%20PM.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-dolphin-mini/gl-3/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": null
-  },
-  {
-   "id": "autocity-cab5b063-7609-4116-99fe-7e243d686b2d",
-   "tipo": "auto",
-   "marca": "BYD",
-   "modelo": "Dolphin Mini",
-   "version": "Gl",
-   "anio": 2026,
-   "km": 20,
-   "combustible": "Electrico",
-   "caja": "Automática",
-   "color": "Celeste",
-   "equipamiento": "",
-   "precio": 21900,
-   "precio_sin_imp": null,
-   "moneda": "USD",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923816154.1.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923816468.4.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923816804.3.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923817641.2.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-dolphin-mini/gl-4/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": null
-  },
-  {
    "id": "autocity-26c3436a-cad5-4dd8-b170-37ae3b27476c",
    "tipo": "auto",
    "marca": "Nissan",
@@ -15787,7 +17039,7 @@
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902029965.IMG_5902.jpeg",
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791902034561.IMG_5903.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-versa/1-6-exclusive-cvt-4/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-versa/1-6-exclusive-cvt-3/",
    "sucursal": "Córdoba",
    "provincia": "Córdoba",
    "oportunidad": false,
@@ -15886,6 +17138,176 @@
    "agencia": "autocity",
    "alta": "2026-10-14T20:44:18.592Z",
    "guia": null
+  },
+  {
+   "id": "autocity-1d3e0415-1327-4448-a26b-736dd12bfdb9",
+   "tipo": "auto",
+   "marca": "Volkswagen",
+   "modelo": "Nivus",
+   "version": "170 Tsi L25",
+   "anio": 2025,
+   "km": 13500,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 34900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164094547.IMG_5775.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164095548.IMG_5778.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164096505.IMG_5781.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164100133.IMG_5779.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164105196.IMG_5780.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-nivus/170-tsi-l25/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 24726000,
+    "med": 25231000,
+    "max": 25231000,
+    "n": 2,
+    "mejor": {
+     "version": "NIVUS 5P 1,0 TSI 170 5MT 2025",
+     "valor": 25231000,
+     "coincidencias": 2,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "NIVUS 5P 1,0 TSI 170 5MT 2024",
+      24726000
+     ],
+     [
+      "NIVUS 5P 1,0 TSI 170 5MT 2025",
+      25231000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-4a7ed8ab-8c85-4e77-9330-a16100189b72",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Kangoo",
+   "version": "Ii Express 1.6 Sce 5as L24",
+   "anio": 2024,
+   "km": 46900,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 34900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170726728.IMG_6377.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170727579.IMG_6378.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170728273.IMG_6382.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170730662.IMG_6379.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170741061.IMG_6380.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-kangoo/ii-express-1-6-sce-5as-l24-2/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 25550000,
+    "med": 29548000,
+    "max": 36048000,
+    "n": 18,
+    "mejor": {
+     "version": "KANGOO II EXPRESS FURGON 1,6 SCe CONFORT GNC",
+     "valor": 29086000,
+     "coincidencias": 2,
+     "empate": 10
+    },
+    "versiones": [
+     [
+      "KANGOO II EXPRESS FURGON 1,6 SCe CONFORT STD",
+      25550000
+     ],
+     [
+      "KANGOO II VERSION PASAJEROS 1,6 SCe LIFE",
+      26812000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON 1,6 SCe CONFORT 114",
+      26827000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON 1,5 dCi CONFORT STD",
+      27472000
+     ],
+     [
+      "KANGOO II VERSION PASAJEROS 1,6 SCe ZEN",
+      28141000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON 1,6 SCe CONFORT STD 5A",
+      28233000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON 1,5 dCi CONFORT 89",
+      28846000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON 1,6 SCe CONFORT GNC",
+      29086000
+     ],
+     [
+      "KANGOO II VERSION PASAJEROS 1,6 SCe STEPWAY",
+      29453000
+     ],
+     [
+      "KANGOO II VERSION PASAJEROS 1,6 SCe ZEN 2024",
+      29548000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON 1,6 SCe CONFORT 114 5A",
+      29645000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON 1,5 dCi CONFORT STD 5A",
+      30175000
+     ],
+     [
+      "KANGOO II VERSION PASAJEROS 1,5 dCi STEPWAY",
+      30341000
+     ],
+     [
+      "KANGOO II VERSION PASAJEROS 1,6 SCe STEPWAY 2024",
+      30926000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON 1,5 dCi CONFORT 89 5A",
+      31621000
+     ],
+     [
+      "KANGOO II VERSION PASAJEROS 1,5 dCi STEPWAY 2024",
+      31858000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON ZE 2A",
+      35558000
+     ],
+     [
+      "KANGOO II EXPRESS FURGON ZE MAXI 2A",
+      36048000
+     ]
+    ]
+   }
   },
   {
    "id": "autocity-56be40ff-d377-4610-98ab-68bade1a03a1",
@@ -16036,63 +17458,6 @@
    "guia": null
   },
   {
-   "id": "autocity-00a32f16-1303-4d38-aa7c-f8973509455c",
-   "tipo": "auto",
-   "marca": "Peugeot",
-   "modelo": "2008",
-   "version": "1.0 T 200 Active Cvt L24",
-   "anio": 2024,
-   "km": 34700,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Blanco",
-   "equipamiento": "",
-   "precio": 35900000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790276713970.IMG_0215.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790276715249.IMG_0217.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790276716290.IMG_0222.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790276720761.IMG_0216.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790276724518.IMG_0219.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-2008/1-0-t-200-active-cvt-l24-2/",
-   "sucursal": "Villa María",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 25047000,
-    "med": 27097000,
-    "max": 30279000,
-    "n": 3,
-    "mejor": {
-     "version": "2008 5P T200 CVT ACTIVE 2024",
-     "valor": 25047000,
-     "coincidencias": 2,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "2008 5P T200 CVT ACTIVE 2024",
-      25047000
-     ],
-     [
-      "2008 5P T200 CVT ALLURE 2024",
-      27097000
-     ],
-     [
-      "2008 5P T200 CVT GT 2024",
-      30279000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-855be3ca-3332-479d-90ed-1593ec7f5521",
    "tipo": "auto",
    "marca": "Peugeot",
@@ -16114,7 +17479,7 @@
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878868300.IMG_3990.jpeg",
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878872219.IMG_3992.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-2008/1-0-t-200-active-cvt-l24-3/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-2008/1-0-t-200-active-cvt-l24-2/",
    "sucursal": "Río Cuarto",
    "provincia": "Córdoba",
    "oportunidad": false,
@@ -16273,6 +17638,148 @@
      [
       "RENEGADE 5P T270 AT9 TRAILHAWK 4X4 2025",
       37992000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-4910fae7-6b6e-4555-8c00-e41e0a72bb61",
+   "tipo": "auto",
+   "marca": "Nissan",
+   "modelo": "Kicks",
+   "version": "1.6 Advance Plus Cvt L22",
+   "anio": 2023,
+   "km": 24800,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 35900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164919045.IMG_8017.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164920527.IMG_8018.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164922044.IMG_8021.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164927660.IMG_8019.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164936575.IMG_8020.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-kicks/1-6-advance-plus-cvt-l22/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 26870000,
+    "med": 28213000,
+    "max": 32070000,
+    "n": 7,
+    "mejor": {
+     "version": "KICKS 5P 1,6 ADVANCE CVT PLUS 2023",
+     "valor": 28213000,
+     "coincidencias": 4,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "KICKS 5P 1,6 ADVANCE CVT 2021",
+      26870000
+     ],
+     [
+      "KICKS 5P 1,6 ADVANCE CVT 2023",
+      27128000
+     ],
+     [
+      "KICKS 5P 1,6 ADVANCE CVT PLUS 2021",
+      27945000
+     ],
+     [
+      "KICKS 5P 1,6 ADVANCE CVT PLUS 2023",
+      28213000
+     ],
+     [
+      "KICKS 5P 1,6 EXCLUSIVE CVT 2021",
+      29062000
+     ],
+     [
+      "KICKS 5P 1,6 EXCLUSIVE CVT TBT 2021",
+      32051000
+     ],
+     [
+      "KICKS 5P 1,6 EXCLUSIVE CVT 2023",
+      32070000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-cbe23fd3-6b91-41d9-bb4f-4fe89828315f",
+   "tipo": "auto",
+   "marca": "Volkswagen",
+   "modelo": "Amarok",
+   "version": "2.0 Td 140hp 4×2 Dc Trendline L17",
+   "anio": 2023,
+   "km": 70000,
+   "combustible": "Diesel",
+   "caja": "Manual",
+   "color": "Acero",
+   "equipamiento": "",
+   "precio": 36500000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172187194.IMG_7850.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172188077.IMG_7852.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172188556.IMG_7856.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172190535.IMG_7853.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172192678.IMG_7855.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-amarok/2-0-td-140hp-4x2-dc-trendline-l17-2/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 26764000,
+    "med": 37053000,
+    "max": 44719000,
+    "n": 6,
+    "mejor": {
+     "version": "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 HIGH 2023",
+     "valor": 37053000,
+     "coincidencias": 1,
+     "empate": 6
+    },
+    "versiones": [
+     [
+      "AMAROK PICK - UP D/C 2,0 TDi 140CV 4X2 TREND 2023",
+      26764000
+     ],
+     [
+      "AMAROK PICK - UP D/C 2,0 TDi 140CV 4X4 TREND 2023",
+      31172000
+     ],
+     [
+      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 COMF 2023",
+      33220000
+     ],
+     [
+      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 HIGH 2023",
+      37053000
+     ],
+     [
+      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X4 COMF 2023",
+      38075000
+     ],
+     [
+      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X4 HIGH 2023",
+      44719000
      ]
     ]
    }
@@ -17325,7 +18832,7 @@
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790875609867.IMG_3745.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-kicks/1-6-play-advance-cvt/",
-   "sucursal": "Córdoba",
+   "sucursal": "Río Cuarto",
    "provincia": "Córdoba",
    "oportunidad": false,
    "publicado": null,
@@ -17514,7 +19021,7 @@
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788793543444.IMG_1481.jpeg"
    ],
    "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-308/1-6-thp-gti-s-l17/",
-   "sucursal": "Córdoba",
+   "sucursal": "Río Cuarto",
    "provincia": "Córdoba",
    "oportunidad": true,
    "publicado": null,
@@ -17991,6 +19498,159 @@
      [
       "COROLLA CROSS 5P 2,0 GR-SPORT CVT 2024",
       43089000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-cd616323-c3ec-4ad9-b4df-7ab542991e83",
+   "tipo": "auto",
+   "marca": "Jeep",
+   "modelo": "Compass",
+   "version": "2.4 Limited At9 Plus L17",
+   "anio": 2021,
+   "km": 55600,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Negro",
+   "equipamiento": "",
+   "precio": 40900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172252845.IMG_6222.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172253458.IMG_6225.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172254309.IMG_6231.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172256710.IMG_6227.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172259223.IMG_6230.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-compass/2-4-limited-at9-plus-l17/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 26800000,
+    "med": 30138000,
+    "max": 34990000,
+    "n": 7,
+    "mejor": {
+     "version": "COMPASS 5P 2,4 AT9 LIMITED 4X4 PLUS 2019",
+     "valor": 34990000,
+     "coincidencias": 4,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "COMPASS 5P 2,4 6AT SPORT 4X2 FWD 2019",
+      26800000
+     ],
+     [
+      "COMPASS 5P 1,3 T 6AT SPORT 4X2 2021",
+      27030000
+     ],
+     [
+      "COMPASS 5P 2,4 6AT LONGITUDE 4X2 FWD 2019",
+      29160000
+     ],
+     [
+      "COMPASS 5P 1,3 T 6AT LONGITUDE 4X2 2021",
+      30138000
+     ],
+     [
+      "COMPASS 5P 1,3 T 6AT LONGITUDE PLUS 4X2 2021",
+      31645000
+     ],
+     [
+      "COMPASS 5P 1,3 T 6AT LIMITED PLUS 4X2 2021",
+      33025000
+     ],
+     [
+      "COMPASS 5P 2,4 AT9 LIMITED 4X4 PLUS 2019",
+      34990000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-0b26062b-c015-4e41-ba9d-4c0787b9612e",
+   "tipo": "auto",
+   "marca": "Volkswagen",
+   "modelo": "Amarok",
+   "version": "2.0 Td 180hp 4×2 Dc Comfortline At L16",
+   "anio": 2023,
+   "km": 95900,
+   "combustible": "Diesel",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 40900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792163873216.IMG_6968.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792163874591.IMG_6972.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792163877797.IMG_6969.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792163881323.IMG_6970.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-amarok/2-0-td-180hp-4x2-dc-comfortline-at-l16/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 35136000,
+    "med": 48081000,
+    "max": 57258000,
+    "n": 9,
+    "mejor": {
+     "version": "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 HIGH AT 2023",
+     "valor": 39595000,
+     "coincidencias": 2,
+     "empate": 3
+    },
+    "versiones": [
+     [
+      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 COMF AT 2023",
+      35136000
+     ],
+     [
+      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 HIGH AT 2023",
+      39595000
+     ],
+     [
+      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 COMF AT 258CV",
+      43501000
+     ],
+     [
+      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 COMF AT 258CV 2023",
+      44806000
+     ],
+     [
+      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X4 HIGH AT 2023",
+      48081000
+     ],
+     [
+      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT HIGH 258CV P1",
+      52371000
+     ],
+     [
+      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT HIGH 258CV 2023",
+      52900000
+     ],
+     [
+      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT EXTREME 258CV 2023",
+      55262000
+     ],
+     [
+      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT BLACK STYLE 258CV 2023",
+      57258000
      ]
     ]
    }
@@ -19064,7 +20724,7 @@
    "version": "1.6 Gt Line At",
    "anio": 2026,
    "km": 4800,
-   "combustible": "",
+   "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
@@ -19208,6 +20868,61 @@
    "guia": null
   },
   {
+   "id": "autocity-db31bfba-23a5-4796-ae36-86aa53a2ba47",
+   "tipo": "auto",
+   "marca": "BYD",
+   "modelo": "Yuan Pro",
+   "version": "Gl",
+   "anio": 2025,
+   "km": 5000,
+   "combustible": "Electrico",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 27900,
+   "precio_sin_imp": null,
+   "moneda": "USD",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792175363019.20261008_145547.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792175364069.20261008_145442.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792175365304.20261008_145621.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792175366577.20261008_145824.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792175367938.20261008_145849.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792175369180.20261008_145836.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792175370640.20261008_145734.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-yuan-pro/gl-4/",
+   "sucursal": "Río Cuarto",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 33481000,
+    "med": 34597000,
+    "max": 34597000,
+    "n": 2,
+    "mejor": {
+     "version": "YUAN PRO 5P GL ELECTRICO AT",
+     "valor": 33481000,
+     "coincidencias": 1,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "YUAN PRO 5P GL ELECTRICO AT",
+      33481000
+     ],
+     [
+      "YUAN PRO 5P GS ELECTRICO AT",
+      34597000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-ad07050f-0bd9-45b6-8c32-6efe586cc624",
    "tipo": "auto",
    "marca": "Volkswagen",
@@ -19311,6 +21026,67 @@
      [
       "BRONCO SPORT 5P 2,0 T 4WD 8AT WILDTRAK",
       39672000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-3789ec23-9f8c-4db5-ad41-222640203ebc",
+   "tipo": "auto",
+   "marca": "Fiat",
+   "modelo": "Toro",
+   "version": "1.3 T 4×2 Volcano At6 L24",
+   "anio": 2025,
+   "km": 25300,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 44500000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164378449.IMG_7993.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164381398.IMG_7994.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164384597.IMG_7998.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164395551.IMG_7995.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164407575.IMG_7997.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-toro/1-3-t-4x2-volcano-at6-l24/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 31635000,
+    "med": 40154000,
+    "max": 43843000,
+    "n": 4,
+    "mejor": {
+     "version": "TORO PICK UP D/C TD350 9AT 4X4 VOLCANO",
+     "valor": 40154000,
+     "coincidencias": 1,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "TORO PICK UP D/C T270 6AT 4X2 FREEDOM",
+      31635000
+     ],
+     [
+      "TORO PICK UP D/C T270 6AT 4X2 VOLCANO",
+      35939000
+     ],
+     [
+      "TORO PICK UP D/C TD350 9AT 4X4 VOLCANO",
+      40154000
+     ],
+     [
+      "TORO PICK UP D/C TD350 9AT 4X4 ULTRA",
+      43843000
      ]
     ]
    }
@@ -19485,6 +21261,60 @@
    }
   },
   {
+   "id": "autocity-ac2d3645-7fbc-4867-a9e7-212e642777a3",
+   "tipo": "auto",
+   "marca": "Peugeot",
+   "modelo": "5008",
+   "version": "1.6 Thp Gt Pack Tiptronic L22",
+   "anio": 2023,
+   "km": 71600,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Naranja",
+   "equipamiento": "",
+   "precio": 45400000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556962966.IMG_9175.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556964100.IMG_9177.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556965017.IMG_9181.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556967773.IMG_9176.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556971276.IMG_9180.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556974167.IMG_9178.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-5008/1-6-thp-gt-pack-tiptronic-l22/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-14T20:44:18.592Z",
+   "guia": {
+    "min": 49259000,
+    "med": 49983000,
+    "max": 49983000,
+    "n": 2,
+    "mejor": {
+     "version": "5008 5P 1,6 THP GT PACK TIPT",
+     "valor": 49983000,
+     "coincidencias": 4,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "5008 5P 2,0 HDi ALLURE PLUS 8AT 2021",
+      49259000
+     ],
+     [
+      "5008 5P 1,6 THP GT PACK TIPT",
+      49983000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-98294eab-68ef-4fa7-a258-05d21c7bd8c9",
    "tipo": "auto",
    "marca": "Audi",
@@ -19540,55 +21370,93 @@
    }
   },
   {
-   "id": "autocity-ac2d3645-7fbc-4867-a9e7-212e642777a3",
+   "id": "autocity-4a8a09bc-4eb6-42bf-b38f-e16f7dc969c9",
    "tipo": "auto",
-   "marca": "Peugeot",
-   "modelo": "5008",
-   "version": "1.6 Thp Gt Pack Tiptronic L22",
+   "marca": "Toyota",
+   "modelo": "Corolla Cross",
+   "version": "2.0 Xei Cvt",
    "anio": 2023,
-   "km": 71600,
+   "km": 42900,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "Naranja",
+   "color": "Blanco",
    "equipamiento": "",
-   "precio": 46400000,
+   "precio": 45900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556962966.IMG_9175.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556964100.IMG_9177.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556965017.IMG_9181.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556967773.IMG_9176.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556971276.IMG_9180.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784556974167.IMG_9178.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170807024.IMG_7401.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170808109.IMG_7407.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170810405.IMG_7409.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792170816102.IMG_7408.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-5008/1-6-thp-gt-pack-tiptronic-l22/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-toyota/m-corolla-cross/2-0-xei-cvt/",
    "sucursal": "Córdoba",
    "provincia": "Córdoba",
-   "oportunidad": true,
+   "oportunidad": false,
    "publicado": null,
    "modificado": null,
    "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
+   "alta": "2026-10-17T13:54:19.025Z",
    "guia": {
-    "min": 49259000,
-    "med": 49983000,
-    "max": 49983000,
-    "n": 2,
+    "min": 28564000,
+    "med": 37041000,
+    "max": 41797000,
+    "n": 12,
     "mejor": {
-     "version": "5008 5P 1,6 THP GT PACK TIPT",
-     "valor": 49983000,
-     "coincidencias": 4,
-     "empate": 1
+     "version": "COROLLA CROSS 5P 2,0 XEI CVT 2024",
+     "valor": 37041000,
+     "coincidencias": 3,
+     "empate": 2
     },
     "versiones": [
      [
-      "5008 5P 2,0 HDi ALLURE PLUS 8AT 2021",
-      49259000
+      "COROLLA CROSS 5P 2,0 XLI CVT",
+      28564000
      ],
      [
-      "5008 5P 1,6 THP GT PACK TIPT",
-      49983000
+      "COROLLA CROSS 5P 2,0 XLI CVT 2024",
+      29993000
+     ],
+     [
+      "COROLLA CROSS 5P HEV 1,8 XEI eCVT",
+      32011000
+     ],
+     [
+      "COROLLA CROSS 5P HEV 1,8 XEI eCVT 2024",
+      33611000
+     ],
+     [
+      "COROLLA CROSS 5P 2,0 XEI CVT",
+      35277000
+     ],
+     [
+      "COROLLA CROSS 5P HEV 1,8 SEG eCVT",
+      36773000
+     ],
+     [
+      "COROLLA CROSS 5P 2,0 XEI CVT 2024",
+      37041000
+     ],
+     [
+      "COROLLA CROSS 5P 2,0 SEG CVT",
+      37984000
+     ],
+     [
+      "COROLLA CROSS 5P HEV 1,8 SEG eCVT 2024",
+      38612000
+     ],
+     [
+      "COROLLA CROSS 5P 2,0 GR-SPORT CVT",
+      39806000
+     ],
+     [
+      "COROLLA CROSS 5P 2,0 SEG CVT 2024",
+      39884000
+     ],
+     [
+      "COROLLA CROSS 5P 2,0 GR-SPORT CVT 2024",
+      41797000
      ]
     ]
    }
@@ -19755,79 +21623,6 @@
    }
   },
   {
-   "id": "autocity-e2b2895e-6c21-450f-a04d-0f9e05040392",
-   "tipo": "auto",
-   "marca": "Jeep",
-   "modelo": "Compass",
-   "version": "1.3 T 270 Serie-s At6",
-   "anio": 2025,
-   "km": 27000,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Blanco",
-   "equipamiento": "",
-   "precio": 46400000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970725237.IMG_5041.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970725953.IMG_5044.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970726867.IMG_5049.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970729806.IMG_5046.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790970732894.IMG_5048.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-compass/1-3-t-270-serie-s-at6/",
-   "sucursal": "Río Cuarto",
-   "provincia": "Córdoba",
-   "oportunidad": true,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 35069000,
-    "med": 42848000,
-    "max": 47722000,
-    "n": 7,
-    "mejor": {
-     "version": "COMPASS 5P 1,3 T270 6AT SERIE-S FWD 2024",
-     "valor": 43141000,
-     "coincidencias": 2,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "COMPASS 5P 1,3 T270 6AT SPORT 4X2 2024",
-      35069000
-     ],
-     [
-      "COMPASS 5P 1,3 T270 6AT LONGITUDE 4X2 2024",
-      39103000
-     ],
-     [
-      "COMPASS 5P 1,3 T270 6AT LONGITUDE PLUS 4X2 2021",
-      41058000
-     ],
-     [
-      "COMPASS 5P 1,3 T270 6AT LIMITED 4X2 2024",
-      42848000
-     ],
-     [
-      "COMPASS 5P 1,3 T270 6AT SERIE-S FWD 2024",
-      43141000
-     ],
-     [
-      "COMPASS 5P 2,0 TD 350 AT9 TRAILHAWK 4X4",
-      46635000
-     ],
-     [
-      "COMPASS 5P 2,0 T AT9 AWD BLACKHAWK",
-      47722000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-84115463-bc0a-4f4d-b4bb-27ae964ce9aa",
    "tipo": "auto",
    "marca": "Renault",
@@ -19928,6 +21723,98 @@
      [
       "KOLEOS 5P 2,5 INTENS 4WD CVT X TRONIC 2023",
       43783000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-b4fb978e-3585-4cb5-a0c2-04267a71c43b",
+   "tipo": "auto",
+   "marca": "Volkswagen",
+   "modelo": "T-cross",
+   "version": "1.0 200 Tsi Highline At Pack Safe",
+   "anio": 2025,
+   "km": 32900,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 46900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171770434.IMG_7736.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171771190.IMG_7739.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171773073.IMG_7737.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171775807.IMG_7738.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-t-cross/1-0-200-tsi-highline-at-pack-safe/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 28761000,
+    "med": 32239000,
+    "max": 34947000,
+    "n": 12,
+    "mejor": {
+     "version": "T-CROSS 5P 1,0 TSI 200 HIGHLINE 6AT BITONO + PACK SAFE 2025",
+     "valor": 34809000,
+     "coincidencias": 6,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "T-CROSS 5P 1,0 TSI 200 TRENDILINE 6AT",
+      28761000
+     ],
+     [
+      "T-CROSS 5P 1,0 TSI 200 TRENDILINE 6AT + PACK SAFE",
+      29095000
+     ],
+     [
+      "T-CROSS 5P 1,0 TSI 200 TRENDILINE 6AT 2026",
+      29624000
+     ],
+     [
+      "T-CROSS 5P 1,0 TSI 200 COMFORTLINE 6AT 2025",
+      30966000
+     ],
+     [
+      "T-CROSS 5P 1,0 TSI 200 COMFORTLINE 6AT + PACK SAFE 2025",
+      31300000
+     ],
+     [
+      "T-CROSS 5P 1,0 TSI 200 COMFORTLINE 6AT 2026",
+      31895000
+     ],
+     [
+      "T-CROSS 5P 1,0 TSI 200 EXTREME 6AT",
+      32239000
+     ],
+     [
+      "T-CROSS 5P 1,0 TSI 200 HIGHLINE 6AT 2025",
+      33929000
+     ],
+     [
+      "T-CROSS 5P 1,0 TSI 200 HIGHLINE 6AT + PACK SAFE 2025",
+      34263000
+     ],
+     [
+      "T-CROSS 5P 1,0 TSI 200 HIGHLINE 6AT BITONO 2025",
+      34476000
+     ],
+     [
+      "T-CROSS 5P 1,0 TSI 200 HIGHLINE 6AT BITONO + PACK SAFE 2025",
+      34809000
+     ],
+     [
+      "T-CROSS 5P 1,0 TSI 200 HIGHLINE 6AT 2026",
+      34947000
      ]
     ]
    }
@@ -20175,6 +22062,75 @@
    "guia": null
   },
   {
+   "id": "autocity-ebeb0a36-be08-429a-9291-9f12cc98d8d4",
+   "tipo": "auto",
+   "marca": "Jeep",
+   "modelo": "Renegade",
+   "version": "1.3 T 270 4×4 Willys At9 L25",
+   "anio": 2025,
+   "km": 69600,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Negro",
+   "equipamiento": "",
+   "precio": 49900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173551054.IMG_7290.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173552193.IMG_7291.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173553149.IMG_7300.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173555771.IMG_7298.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792173558794.IMG_7297.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-renegade/1-3-t-270-4x4-willys-at9-l25-2/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 30895000,
+    "med": 38743000,
+    "max": 41605000,
+    "n": 6,
+    "mejor": {
+     "version": "RENEGADE 5P T270 AT9 WILLYS 4X4 2025",
+     "valor": 41605000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "RENEGADE 5P 1,8 6AT SPORT 4X2 2025",
+      30895000
+     ],
+     [
+      "RENEGADE 5P T270 AT6 SPORT",
+      33408000
+     ],
+     [
+      "RENEGADE 5P T270 AT6 LONGITUDE 4X2 2025",
+      38457000
+     ],
+     [
+      "RENEGADE 5P T270 AT6 SERIE-S 4X2 2025",
+      38743000
+     ],
+     [
+      "RENEGADE 5P T270 AT9 TRAILHAWK 4X4 2025",
+      39992000
+     ],
+     [
+      "RENEGADE 5P T270 AT9 WILLYS 4X4 2025",
+      41605000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-32f12da4-4706-4492-8269-bb11d3b3e46c",
    "tipo": "auto",
    "marca": "Jeep",
@@ -20351,6 +22307,78 @@
      [
       "RAMPAGE PICK -UP D/C 2,0 T R/T 4X4 AT9",
       55514000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-ab90ce5a-2166-4fb1-8f6d-b799d5c9c34d",
+   "tipo": "auto",
+   "marca": "Nissan",
+   "modelo": "Frontier",
+   "version": "2.3 Bi Turbo D 4×4 Cd X-gear At L22",
+   "anio": 2025,
+   "km": 8600,
+   "combustible": "Diesel",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 51900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171555850.IMG_7831.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171556631.IMG_7832.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171557529.IMG_7835.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171559373.IMG_7834.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-frontier/2-3-bi-turbo-d-4x4-cd-x-gear-at-l22/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 31781000,
+    "med": 43218000,
+    "max": 53507000,
+    "n": 7,
+    "mejor": {
+     "version": "FRONTIER PICK - UP D/C 2,3 TD 4X4 X-GEAR AT 190CV",
+     "valor": 43218000,
+     "coincidencias": 4,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "FRONTIER PICK - UP D/C 2,3 TD 4X2 S AT 190CV",
+      31781000
+     ],
+     [
+      "FRONTIER PICK - UP D/C 2,3 TD 4X4 X-GEAR AT 190CV 2024",
+      42401000
+     ],
+     [
+      "FRONTIER PICK - UP D/C 2,3 TD 4X2 XE AT 190CV",
+      42401000
+     ],
+     [
+      "FRONTIER PICK - UP D/C 2,3 TD 4X4 X-GEAR AT 190CV",
+      43218000
+     ],
+     [
+      "FRONTIER PICK - UP D/C 2,3 TD 4X2 PLATINUM AT 190CV",
+      47980000
+     ],
+     [
+      "FRONTIER PICK - UP D/C 2,3 TD 4X4 PLATINUM AT 190CV",
+      50592000
+     ],
+     [
+      "FRONTIER PICK - UP D/C 2,3 TD 4X4 PRO-4X AT 190CV",
+      53507000
      ]
     ]
    }
@@ -21076,6 +23104,92 @@
      [
       "T1 5P 2,0 T 8AT 4X4",
       52607000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-5db72b60-807d-4f1b-a229-95c943f04bcf",
+   "tipo": "auto",
+   "marca": "Toyota",
+   "modelo": "Hilux",
+   "version": "2.8 Tdi 4×4 Srx At6",
+   "anio": 2026,
+   "km": 9000,
+   "combustible": "Diesel",
+   "caja": "Automática",
+   "color": "Rojo",
+   "equipamiento": "",
+   "precio": 75900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792003470539.IMG_7065.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792003472231.IMG_7068.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792003475309.IMG_7073.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792003483168.IMG_7069.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792003490887.IMG_7070.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792003498277.IMG_7071.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-toyota/m-hilux/2-8-tdi-4x4-srx-at6-2/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 50704000,
+    "med": 79838000,
+    "max": 97092000,
+    "n": 10,
+    "mejor": {
+     "version": "HILUX SW4 5P 2,8 TDi SRX 4X4 6AT 7A HAR 2025",
+     "valor": 91585000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "HILUX PICK - UP D/C 2,4 TDi 4X2 DX 6AT HAR 2025",
+      50704000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,4 TDi 4X2 SR 6AT HAR 2025",
+      59125000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,4 TDi 4X4 DX 6AT HAR 2025",
+      59383000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X2 SRV 6AT HAR 2025",
+      67506000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X4 SR 6AT HAR 2025",
+      69326000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X4 SRV + 6AT 2025",
+      79838000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X4 GR-S IV 6AT HAR 2025",
+      89327000
+     ],
+     [
+      "HILUX SW4 5P 2,8 TDi SRX 4X4 6AT 7A HAR 2025",
+      91585000
+     ],
+     [
+      "HILUX SW4 5P 2,8 TDi DIAMOND 4X4 6AT 7A HAR 2025",
+      92508000
+     ],
+     [
+      "HILUX SW4 5P 2,8 TDi GR-SPORT 4X4 6AT 7A HAR 2025",
+      97092000
      ]
     ]
    }
