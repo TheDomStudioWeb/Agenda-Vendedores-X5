@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-17T13:54:19.025Z",
+ "actualizado": "2026-10-17T19:41:11.542Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -12,17 +12,18 @@
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
    "autos": 93,
-   "revisado": "2026-10-17T13:54:19.025Z",
-   "actualizado": "2026-10-17T13:54:19.025Z"
+   "revisado": "2026-10-17T19:41:11.542Z",
+   "actualizado": "2026-10-17T19:41:11.542Z"
   },
   {
    "id": "autocity",
    "nombre": "Autocity Usados",
    "ciudad": "Córdoba",
    "web": "https://autocity.com.ar/catalogo/usados/",
-   "estado": "ok",
+   "estado": "error",
+   "detalle": "page.waitForSelector: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator('li.product a[href*=\"/catalogo/usados/m-\"]') to be visible\n",
    "autos": 241,
-   "revisado": "2026-10-17T13:54:19.025Z",
+   "revisado": "2026-10-17T19:41:11.542Z",
    "actualizado": "2026-10-17T13:54:19.025Z"
   }
  ],
