@@ -1,6 +1,146 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "nuevo",
+   "id": "autocity-f7ccb9a9-ee7c-4d86-b28b-0c3b60970aee",
+   "auto": "Volkswagen Up! 2016",
+   "precio": 14300000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "nuevo",
+   "id": "autocity-8f7d0c0f-c018-4f8d-bde8-ff9384d6f8ba",
+   "auto": "Renault Fluence 2016",
+   "precio": 16750000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "nuevo",
+   "id": "autocity-6dda3944-65ae-44af-88f2-edccc4ea67c5",
+   "auto": "Fiat Argo 2025",
+   "precio": 26900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "nuevo",
+   "id": "autocity-00a32f16-1303-4d38-aa7c-f8973509455c",
+   "auto": "Peugeot 2008 2024",
+   "precio": 35900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "baja",
+   "id": "autocity-a684fc8c-b917-4947-9694-bfbabef50b89",
+   "auto": "Ford Eco Sport 2015",
+   "precio": 17850000,
+   "moneda": "ARS",
+   "dias": 2
+  },
+  {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "baja",
+   "id": "autocity-4d57e0d1-7dda-4200-98f7-1d2fdc738f7d",
+   "auto": "Ford Fiesta 2016",
+   "precio": 17900000,
+   "moneda": "ARS",
+   "dias": 4
+  },
+  {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "baja",
+   "id": "autocity-9233df36-5e0a-462a-9b65-f797e9f4e352",
+   "auto": "Honda Fit 2012",
+   "precio": 18899999,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "baja",
+   "id": "autocity-2ddd176b-ae68-47a2-a228-c6daaebabb57",
+   "auto": "Peugeot 308 2018",
+   "precio": 20600000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "baja",
+   "id": "autocity-74384df6-017d-4739-a225-9473d98799a2",
+   "auto": "Peugeot 208 2023",
+   "precio": 21499999,
+   "moneda": "ARS",
+   "dias": 4
+  },
+  {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "baja",
+   "id": "autocity-c302da15-7ffc-4307-8a57-0686711c1f3c",
+   "auto": "Fiat Fiorino 2025",
+   "precio": 23900000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "baja",
+   "id": "autocity-e2207ee1-8690-4a81-9e94-18e666b3a713",
+   "auto": "Peugeot 208 2024",
+   "precio": 24899999,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "baja",
+   "id": "autocity-eafad883-cde6-4dd0-8e3b-add725e39ccf",
+   "auto": "Renault Duster 2020",
+   "precio": 25450000,
+   "moneda": "ARS",
+   "dias": 4
+  },
+  {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "baja",
+   "id": "autocity-196fc235-ddab-4421-97a1-b30d4095c86c",
+   "auto": "Chevrolet Onix 2025",
+   "precio": 25900000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "baja",
+   "id": "autocity-e41a1f1d-6ca7-4ac7-b138-cf5ef499f633",
+   "auto": "Citroen C4 Cactus 2024",
+   "precio": 29350000,
+   "moneda": "ARS",
+   "dias": 4
+  },
+  {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "baja",
+   "id": "autocity-b791435b-eb95-480c-a897-00a0b5a09cda",
+   "auto": "DS Automobiles Ds7 2020",
+   "precio": 39900000,
+   "moneda": "ARS",
+   "dias": 4
+  },
+  {
+   "fecha": "2026-10-18T14:07:53.380Z",
+   "tipo": "baja",
+   "id": "autocity-429d70fd-68a2-434f-8172-5ed030f194f0",
+   "auto": "Ford Ranger 2023",
+   "precio": 46400000,
+   "moneda": "ARS",
+   "dias": 4
+  },
+  {
    "fecha": "2026-10-17T13:54:19.025Z",
    "tipo": "nuevo",
    "id": "autocity-628171c2-d00f-495a-8ad4-f573d062dfe5",
