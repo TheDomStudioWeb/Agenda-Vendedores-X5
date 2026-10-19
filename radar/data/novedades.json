@@ -1,6 +1,38 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-19T21:43:57.137Z",
+   "tipo": "nuevo",
+   "id": "maipu-181687",
+   "auto": "Peugeot 2008 2019",
+   "precio": 16700000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-19T21:43:57.137Z",
+   "tipo": "nuevo",
+   "id": "maipu-181660",
+   "auto": "Ford Ranger 2025",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-19T21:43:57.137Z",
+   "tipo": "nuevo",
+   "id": "maipu-181636",
+   "auto": "Toyota Yaris 2025",
+   "precio": 38000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-19T21:43:57.137Z",
+   "tipo": "nuevo",
+   "id": "maipu-181612",
+   "auto": "Ford Ka 2020",
+   "precio": 17000000,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-10-19T17:08:38.568Z",
    "tipo": "nuevo",
    "id": "maipu-181562",

@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-19T17:08:38.568Z",
+ "actualizado": "2026-10-19T21:43:57.137Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 88,
-   "revisado": "2026-10-19T17:08:38.568Z",
-   "actualizado": "2026-10-19T17:08:38.568Z"
+   "autos": 92,
+   "revisado": "2026-10-19T21:43:57.137Z",
+   "actualizado": "2026-10-19T21:43:57.137Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,343 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 231,
-   "revisado": "2026-10-19T17:08:38.568Z",
-   "actualizado": "2026-10-19T17:08:38.568Z"
+   "revisado": "2026-10-19T21:43:57.137Z",
+   "actualizado": "2026-10-19T21:43:57.137Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-181687",
+   "tipo": "auto",
+   "marca": "Peugeot",
+   "modelo": "2008",
+   "version": "Feline 1.6 115",
+   "anio": 2019,
+   "km": 125865,
+   "combustible": "Gas/Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 16700000,
+   "precio_sin_imp": 13193000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2690-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2691-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2693-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2694-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2689-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2692-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2688-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2686-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2682-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2678-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2679-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2680-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2687-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2681-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2685-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2683-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2684-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/19/2008/",
+   "publicado": "2026-10-19T17:30:23",
+   "modificado": "2026-10-19T17:42:31",
+   "agencia": "maipu",
+   "alta": "2026-10-19T21:43:57.137Z",
+   "guia": {
+    "min": 14116000,
+    "med": 15639000,
+    "max": 20370000,
+    "n": 9,
+    "mejor": {
+     "version": "2008 5P 1,6 FELINE 2020",
+     "valor": 17230000,
+     "coincidencias": 2,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "2008 5P 1,6 ACTIVE",
+      14116000
+     ],
+     [
+      "2008 5P 1,6 ACTIVE 2020",
+      14484000
+     ],
+     [
+      "2008 5P 1,6 ALLURE",
+      15243000
+     ],
+     [
+      "2008 5P 1,6 CROSSWAY",
+      15527000
+     ],
+     [
+      "2008 5P 1,6 ALLURE 2020",
+      15639000
+     ],
+     [
+      "2008 5P 1,6 FELINE",
+      16793000
+     ],
+     [
+      "2008 5P 1,6 FELINE 2020",
+      17230000
+     ],
+     [
+      "2008 5P 1,6 THP SPORT",
+      17766000
+     ],
+     [
+      "2008 5P 1,6 THP SPORT 2020",
+      20370000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-181660",
+   "tipo": "auto",
+   "marca": "Ford",
+   "modelo": "Ranger",
+   "version": "Dc Xl 2.0L T 4X2 D",
+   "anio": 2025,
+   "km": 52315,
+   "combustible": "Diésel",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": null,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2673-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2674-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2676-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2677-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2672-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2675-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2671-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2670-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2664-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2660-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2661-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2662-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2669-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2663-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2667-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2665-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2666-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/19/ranger-5/",
+   "publicado": "2026-10-19T17:19:49",
+   "modificado": "2026-10-19T17:27:01",
+   "agencia": "maipu",
+   "alta": "2026-10-19T21:43:57.137Z",
+   "guia": {
+    "min": 32324000,
+    "med": 37477000,
+    "max": 46120000,
+    "n": 4,
+    "mejor": {
+     "version": "RANGER PICK - UP D/C 2,0 TD XL 4X2 6MT 2023",
+     "valor": 32324000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "RANGER PICK - UP D/C 2,0 TD XL 4X2 6MT 2023",
+      32324000
+     ],
+     [
+      "RANGER PICK - UP D/C 2,0 TD XL 4X4 6MT 2023",
+      34442000
+     ],
+     [
+      "RANGER PICK - UP D/C 2,0 TD XLS 4X2 6MT 2023",
+      37477000
+     ],
+     [
+      "RANGER PICK - UP D/C 2,0 BI TD BLACK 4X4 6MT",
+      46120000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-181636",
+   "tipo": "auto",
+   "marca": "Toyota",
+   "modelo": "Yaris",
+   "version": "S 1.5 Cvt",
+   "anio": 2025,
+   "km": 13000,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Plata",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS",
+   "precio": 38000000,
+   "precio_sin_imp": 30020000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2655-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2656-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2658-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2659-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2654-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2657-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2653-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2647-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2652-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2643-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2644-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2645-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2651-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2646-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2650-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2648-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2649-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/19/yaris/",
+   "publicado": "2026-10-19T16:13:12",
+   "modificado": "2026-10-19T16:20:16",
+   "agencia": "maipu",
+   "alta": "2026-10-19T21:43:57.137Z",
+   "guia": {
+    "min": 25474000,
+    "med": 28607000,
+    "max": 82809000,
+    "n": 8,
+    "mejor": {
+     "version": "YARIS 4P 1,5 XLS CVT 2022",
+     "valor": 27913000,
+     "coincidencias": 2,
+     "empate": 7
+    },
+    "versiones": [
+     [
+      "YARIS 5P 1,5 XS CVT 2023",
+      25474000
+     ],
+     [
+      "YARIS 5P 1,5 XLS CVT 2022",
+      27307000
+     ],
+     [
+      "YARIS 5P 1,5 XLS + CVT 2024",
+      27784000
+     ],
+     [
+      "YARIS 4P 1,5 XLS CVT 2022",
+      27913000
+     ],
+     [
+      "YARIS 4P 1,5 XLS PACK CVT 2022",
+      28607000
+     ],
+     [
+      "YARIS 5P 1,5 XLS PACK CVT 2022",
+      29145000
+     ],
+     [
+      "YARIS 5P 1,5 S CVT 2022",
+      30889000
+     ],
+     [
+      "YARIS 3P 1,6 T GR 8AT 2025",
+      82809000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-181612",
+   "tipo": "auto",
+   "marca": "Ford",
+   "modelo": "Ka",
+   "version": "Se 1.5L",
+   "anio": 2020,
+   "km": 73745,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Negro",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 17000000,
+   "precio_sin_imp": 13430000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2638-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2639-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2641-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2642-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2637-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2640-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2636-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2634-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2630-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2625-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2627-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2628-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2635-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2629-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2633-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2631-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2632-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/19/ka-2/",
+   "publicado": "2026-10-19T14:45:49",
+   "modificado": "2026-10-19T14:53:55",
+   "agencia": "maipu",
+   "alta": "2026-10-19T21:43:57.137Z",
+   "guia": {
+    "min": 13597000,
+    "med": 15731000,
+    "max": 16923000,
+    "n": 8,
+    "mejor": {
+     "version": "KA + 4P 1,5 12V SE 2018",
+     "valor": 15520000,
+     "coincidencias": 1,
+     "empate": 3
+    },
+    "versiones": [
+     [
+      "KA 5P 1,5 12V S 2018",
+      13597000
+     ],
+     [
+      "KA + 4P 1,5 12V S 2018",
+      13892000
+     ],
+     [
+      "KA 5P 1,5 12V SE 2018",
+      15274000
+     ],
+     [
+      "KA + 4P 1,5 12V SE 2018",
+      15520000
+     ],
+     [
+      "KA FREESTYLE 5P 1,5 12V SE",
+      15731000
+     ],
+     [
+      "KA 5P 1,5 12V SEL 2018",
+      16714000
+     ],
+     [
+      "KA FREESTYLE 5P 1,5 12V SEL",
+      16811000
+     ],
+     [
+      "KA + 4P 1,5 12V SEL 2018",
+      16923000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-181562",
    "tipo": "auto",
@@ -6232,7 +6564,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Plata",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar premium Scrambler Nightshift 2025 Manual 1265 18635000 Precio sugerido al público 15400830 Precio sin impuestos nacionales + Precio a confirmar destacados Versys 300 2024 Manual 13200 9890000 Precio sugerido al público 8173550 Precio sin impuestos nacionales + Precio a confirmar destacados Versys 650 2024 Manual 6140 17490000 Precio sugerido al público 14454500 Precio sin impuestos nacionales + Precio a confirmar destacados 302 S 2025 Manual 1950 8790000 Precio sugerido al público 7264500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Ka 2020 Manual 73745 17000000 Precio sugerido al público 13430000 Precio sin impuestos nacionales + Precio a confirmar outlet Idea 2015 Manual 199545 13500000 Precio sugerido al público 10665000 Precio sin impuestos nacionales + Precio a confirmar destacados Focus 2018 Manual 148250 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar outlet Emgrand 2018 Automatica 121180 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar oportunidades 500X 2019 Automatica 107250 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 16180000,
    "precio_sin_imp": 12782200,
    "moneda": "ARS",
@@ -6313,7 +6645,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar premium Scrambler Nightshift 2025 Manual 1265 18635000 Precio sugerido al público 15400830 Precio sin impuestos nacionales + Precio a confirmar destacados Versys 300 2024 Manual 13200 9890000 Precio sugerido al público 8173550 Precio sin impuestos nacionales + Precio a confirmar destacados Versys 650 2024 Manual 6140 17490000 Precio sugerido al público 14454500 Precio sin impuestos nacionales + Precio a confirmar destacados 302 S 2025 Manual 1950 8790000 Precio sugerido al público 7264500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Ka 2020 Manual 73745 17000000 Precio sugerido al público 13430000 Precio sin impuestos nacionales + Precio a confirmar outlet Idea 2015 Manual 199545 13500000 Precio sugerido al público 10665000 Precio sin impuestos nacionales + Precio a confirmar destacados Focus 2018 Manual 148250 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar outlet Emgrand 2018 Automatica 121180 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar oportunidades 500X 2019 Automatica 107250 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -6385,7 +6717,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar premium Scrambler Nightshift 2025 Manual 1265 18635000 Precio sugerido al público 15400830 Precio sin impuestos nacionales + Precio a confirmar destacados Versys 300 2024 Manual 13200 9890000 Precio sugerido al público 8173550 Precio sin impuestos nacionales + Precio a confirmar destacados Versys 650 2024 Manual 6140 17490000 Precio sugerido al público 14454500 Precio sin impuestos nacionales + Precio a confirmar destacados 302 S 2025 Manual 1950 8790000 Precio sugerido al público 7264500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Ka 2020 Manual 73745 17000000 Precio sugerido al público 13430000 Precio sin impuestos nacionales + Precio a confirmar outlet Idea 2015 Manual 199545 13500000 Precio sugerido al público 10665000 Precio sin impuestos nacionales + Precio a confirmar destacados Focus 2018 Manual 148250 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar outlet Emgrand 2018 Automatica 121180 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar oportunidades 500X 2019 Automatica 107250 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6442,7 +6774,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Rojo",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar premium Scrambler Nightshift 2025 Manual 1265 18635000 Precio sugerido al público 15400830 Precio sin impuestos nacionales + Precio a confirmar destacados Versys 300 2024 Manual 13200 9890000 Precio sugerido al público 8173550 Precio sin impuestos nacionales + Precio a confirmar destacados Versys 650 2024 Manual 6140 17490000 Precio sugerido al público 14454500 Precio sin impuestos nacionales + Precio a confirmar destacados 302 S 2025 Manual 1950 8790000 Precio sugerido al público 7264500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Ka 2020 Manual 73745 17000000 Precio sugerido al público 13430000 Precio sin impuestos nacionales + Precio a confirmar outlet Idea 2015 Manual 199545 13500000 Precio sugerido al público 10665000 Precio sin impuestos nacionales + Precio a confirmar destacados Focus 2018 Manual 148250 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar outlet Emgrand 2018 Automatica 121180 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar oportunidades 500X 2019 Automatica 107250 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 11110000,
    "precio_sin_imp": 8776900,
    "moneda": "ARS",
@@ -6789,7 +7121,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar premium Scrambler Nightshift 2025 Manual 1265 18635000 Precio sugerido al público 15400830 Precio sin impuestos nacionales + Precio a confirmar destacados Versys 300 2024 Manual 13200 9890000 Precio sugerido al público 8173550 Precio sin impuestos nacionales + Precio a confirmar destacados Versys 650 2024 Manual 6140 17490000 Precio sugerido al público 14454500 Precio sin impuestos nacionales + Precio a confirmar destacados 302 S 2025 Manual 1950 8790000 Precio sugerido al público 7264500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar premium X2 2020 Automatica 15150 62000000 Precio sugerido al público 48980000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automática 51970 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Territory 2024 Automática 43690 45000000 Precio sugerido al público 35550000 Precio sin impuestos nacionales + Precio a confirmar premium, oportunidades A4 2024 Automatica 50935 U$S 45300 Precio sugerido al público U$S 37438 Precio sin impuestos nacionales + Precio a confirmar premium, oportunidades A3 2024 Automatica 3870 U$S 48900 Precio sugerido al público U$S 40415 Precio sin impuestos nacionales + Precio a confirmar unidades-test-drive Captiva 2026 Automática 8500 U$S 33.000 Precio sugerido al público U$S 27.272 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",
