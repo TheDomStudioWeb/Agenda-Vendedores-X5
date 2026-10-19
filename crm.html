@@ -12,6 +12,56 @@
 <style>
   body { padding-bottom: calc(76px + var(--safe-bottom)); }
 
+
+  /* Resumen semanal */
+  .wk { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .wk .wk-t { flex: 1; text-align: center; font-weight: 700; font-size: .92rem; }
+  .wk .wk-t small { display: block; color: var(--muted); font-weight: 500; font-size: .72rem; }
+  .wk button { width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); color: var(--text); font-size: 1.1rem; cursor: pointer; }
+  .wk button:disabled { opacity: .35; }
+  .rep { display: flex; flex-direction: column; gap: 12px; }
+  .rep-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; padding-bottom: 10px; border-bottom: 2px solid var(--dom); }
+  .rep-head h2 { margin: 0; font-size: 1.15rem; }
+  .rep-head small { color: var(--muted); display: block; margin-top: 2px; font-size: .78rem; }
+  .rep-head .rep-brand { font-weight: 800; letter-spacing: 1px; font-size: .8rem; color: var(--dom); text-align: right; white-space: nowrap; }
+  .rep-lead { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--x5); border-radius: 12px; padding: 12px 14px; font-size: .92rem; line-height: 1.45; }
+  .rep .kpis { margin: 0; grid-template-columns: repeat(4, 1fr); }
+  .rep .kpi { padding: 10px; }
+  .rep .kpi b { font-size: 1.25rem; }
+  .rep .kpi small { display: block; color: var(--muted); font-size: .68rem; margin-top: 2px; }
+  .rep .kpi.bad b { color: var(--bad); }
+  .rep .kpi.ok b { color: var(--ok); }
+  .rep-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .rep .card { margin: 0; }
+  .rep-tabla { width: 100%; border-collapse: collapse; font-size: .8rem; }
+  .rep-tabla th { text-align: right; color: var(--muted); font-size: .65rem; letter-spacing: .6px; text-transform: uppercase; padding: 4px 6px; border-bottom: 1px solid var(--line-strong); }
+  .rep-tabla th:first-child, .rep-tabla td:first-child { text-align: left; }
+  .rep-tabla td { text-align: right; padding: 7px 6px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  .rep-tabla td:first-child { font-weight: 600; }
+  .rep-tabla .mal { color: var(--bad); font-weight: 700; }
+  .rep-tabla .bien { color: var(--ok); font-weight: 700; }
+  .rep-obs { display: flex; flex-direction: column; gap: 8px; font-size: .8rem; }
+  .rep-obs div { border-left: 3px solid var(--line-strong); padding: 2px 0 2px 10px; line-height: 1.4; }
+  .rep-obs b { font-weight: 700; }
+  .rep-obs small { color: var(--muted); display: block; }
+  .rep-aviso { display: flex; flex-direction: column; gap: 6px; font-size: .84rem; }
+  .rep-aviso div { padding: 8px 10px; border-radius: 10px; background: var(--warn-soft); line-height: 1.4; }
+  .rep-aviso div.ok { background: var(--ok-soft); }
+  .rep-foot { text-align: center; color: var(--faint); font-size: .68rem; padding-top: 4px; }
+  .rep-acc { display: flex; gap: 8px; margin-bottom: 12px; }
+  .rep-acc .btn { flex: 1; }
+  @media (max-width: 520px) { .rep-tabla { font-size: .72rem; } .rep-tabla th, .rep-tabla td { padding: 6px 3px; } .rep-tabla td { white-space: nowrap; } .rep-tabla td:first-child { white-space: normal; } .rep .kpis { grid-template-columns: 1fr 1fr; } .rep-2 { grid-template-columns: 1fr; } .rep-head .rep-brand { display: none; } }
+  /* Versión para PDF: hoja A4 clara, sin importar el tema del teléfono */
+  .rep-pdf { position: fixed; left: -10000px; top: 0; width: 794px; padding: 36px 40px; background: #fff; color: #0d1117; color-scheme: light;
+    --surface: #fff; --surface-2: #f6f8fa; --surface-3: #eceff3; --line: rgba(10,20,30,.1); --line-strong: rgba(10,20,30,.2);
+    --text: #0d1117; --muted: #5b6573; --faint: #8a93a0; --x5: #0093b8; --x5-strong: #007a99; --x5-soft: rgba(0,147,184,.1);
+    --dom: #a8841f; --dom-strong: #8c6d16; --dom-soft: rgba(168,132,31,.12); --ok: #12a066; --ok-soft: rgba(18,160,102,.12);
+    --warn: #c98a0e; --warn-soft: rgba(201,138,14,.14); --bad: #d93a3a; --bad-soft: rgba(217,58,58,.1); }
+  .rep-pdf .rep .kpis { grid-template-columns: repeat(4, 1fr); }
+  .rep-pdf .rep-2 { grid-template-columns: 1fr 1fr; }
+  .rep-pdf .bar-fill { animation: none; }
+  .rep-pdf .rep-head .rep-brand { display: block; }
+
   /* Login */
   #login { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; background: var(--bg-glow), var(--bg); }
   #login .brandmark { font-size: 1.9rem; margin-bottom: 4px; }
@@ -271,12 +321,32 @@
     <div class="card"><div class="card-title">Minutos promedio hasta el primer contacto</div><div class="bars" id="ch-tiempos"></div></div>
     <div class="card"><div class="card-title">Ventas cerradas por auto de flota</div><div class="bars" id="ch-flota"></div></div>
   </section>
+
+  <!-- RESUMEN SEMANAL -->
+  <section id="tab-resumen" class="tab">
+    <div class="wk">
+      <button type="button" id="wk-prev" aria-label="Semana anterior">‹</button>
+      <div class="wk-t" id="wk-titulo"></div>
+      <button type="button" id="wk-next" aria-label="Semana siguiente">›</button>
+    </div>
+    <div class="card" style="margin-bottom:12px">
+      <div class="row" style="align-items:center">
+        <div><div class="lbl" style="margin:0">Asesor o equipo</div></div>
+        <select class="f-persona" style="max-width:220px"></select>
+      </div>
+    </div>
+    <div class="rep-acc">
+      <button type="button" class="btn" id="btn-rep-pdf">Descargar PDF</button>
+    </div>
+    <div class="rep" id="rep"></div>
+  </section>
 </main>
 
 <nav class="bnav hidden" id="bnav">
   <button data-tab="agenda" class="active"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>Agenda</button>
   <button data-tab="leads"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3"/></svg>Leads<span class="badge hidden" id="badge-leads">0</span></button>
   <button data-tab="dashboard" class="hidden" id="nav-dashboard"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Métricas</button>
+  <button data-tab="resumen" class="hidden" id="nav-resumen"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>Resumen</button>
 </nav>
 
 <script src="x5-core.js"></script>
@@ -457,6 +527,7 @@ function iniciarApp() {
   const supervisa = SUPERVISION.includes(user.rol);
   $('panel-asignar').classList.toggle('hidden', !supervisa);
   $('nav-dashboard').classList.toggle('hidden', !supervisa);
+  $('nav-resumen').classList.toggle('hidden', !supervisa);
   llenarDesplegables();
   prepararFiltros();
   $('ag-fecha').value = X5.hoyISO();
@@ -471,7 +542,7 @@ function iniciarApp() {
 function aplicarEnlace() {
   const q = new URLSearchParams(location.search);
   const tab = q.get('tab'), ver = q.get('ver');
-  if (tab === 'dashboard' && !SUPERVISION.includes(user.rol)) return;
+  if ((tab === 'dashboard' || tab === 'resumen') && !SUPERVISION.includes(user.rol)) return;
   if (tab && document.getElementById('tab-' + tab)) cambiarTab(tab);
   if (ver && tab) {
     const seg = document.querySelector(`.seg[data-filtro="${tab}"] button[data-v="${ver}"]`);
@@ -659,7 +730,7 @@ function sincronizarPanel(t) {
 }
 
 /* ── Render ────────────────────────────────────────────────── */
-function render() { if (user) llenarPersona(); renderAgenda(); renderLeads(); resumen(); pintarDup(); if (SUPERVISION.includes(user.rol) && $('tab-dashboard').classList.contains('active')) renderDashboard(); }
+function render() { if (user) llenarPersona(); renderAgenda(); renderLeads(); resumen(); pintarDup(); if (SUPERVISION.includes(user.rol) && $('tab-dashboard').classList.contains('active')) renderDashboard(); if (SUPERVISION.includes(user.rol) && $('tab-resumen').classList.contains('active')) renderResumen(); }
 
 function resumen() {
   const hoy = X5.hoyISO();
@@ -1071,6 +1142,7 @@ function cambiarTab(id) {
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.id === 'tab-' + id));
   document.querySelectorAll('.bnav button').forEach(b => b.classList.toggle('active', b.dataset.tab === id));
   if (id === 'dashboard') renderDashboard();
+  if (id === 'resumen') renderResumen();
   window.scrollTo(0, 0);
 }
 $('bnav').addEventListener('click', (e) => { const b = e.target.closest('button[data-tab]'); if (b) cambiarTab(b.dataset.tab); });
@@ -1158,6 +1230,191 @@ function renderDashboard() {
   barras($('ch-tiempos'), tProm, v => v + ' min', 'warn');
   barras($('ch-flota'), flota, v => v);
 }
+
+
+/* ── Resumen semanal ───────────────────────────────────────── */
+let semOff = -1; // 0 = esta semana (parcial) · -1 = semana pasada completa
+const MES_L = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+function semanaRango(off) {
+  const d = new Date(); d.setHours(12, 0, 0, 0);
+  const dow = (d.getDay() + 6) % 7;
+  const lun = new Date(d); lun.setDate(d.getDate() - dow + off * 7);
+  const dom = new Date(lun); dom.setDate(lun.getDate() + 6);
+  return { desde: X5.hoyISO(lun), hasta: X5.hoyISO(dom), lun, dom };
+}
+function textoSemana(r) {
+  const a = r.lun, b = r.dom;
+  return a.getMonth() === b.getMonth()
+    ? `${a.getDate()} al ${b.getDate()} de ${MES_L[b.getMonth()]} de ${b.getFullYear()}`
+    : `${a.getDate()} de ${MES_L[a.getMonth()]} al ${b.getDate()} de ${MES_L[b.getMonth()]} de ${b.getFullYear()}`;
+}
+const fmtMin = (m) => m == null ? '–' : (m < 60 ? m + ' min' : (m / 60).toFixed(1).replace('.', ',') + ' h');
+const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+const numMin = (l) => (l.hora_contacto !== '' && l.hora_contacto != null && !isNaN(parseInt(l.hora_contacto))) ? parseInt(l.hora_contacto) : null;
+const contactado = (l) => (l.estado && l.estado !== 'pendiente') || numMin(l) != null;
+const recorte = (t, n) => { t = String(t || '').replace(/\s+/g, ' ').trim(); return t.length > n ? t.slice(0, n - 1) + '…' : t; };
+
+function datosSemana(r) {
+  const ver = filtroPersona();
+  const hoy = X5.hoyISO();
+  const L = db.leads.filter(l => ver(l.asignado_a) && soloFecha(l.fecha_asignacion) >= r.desde && soloFecha(l.fecha_asignacion) <= r.hasta);
+  const A = db.agenda.filter(a => ver(a.asesor) && soloFecha(a.fecha) >= r.desde && soloFecha(a.fecha) <= r.hasta);
+  const cont = L.filter(contactado);
+  const mins = cont.map(numMin).filter(m => m != null);
+  const prom = mins.length ? Math.round(mins.reduce((x, y) => x + y, 0) / mins.length) : null;
+  const rapidos = mins.filter(m => m <= 60).length;
+  const sinCont = L.filter(l => !contactado(l));
+  const canc = A.filter(a => a.estado === 'cancelado');
+  const real = A.filter(a => a.estado === 'realizado');
+  const abiertas = A.filter(a => (a.estado || 'pendiente') === 'pendiente' && soloFecha(a.fecha) < hoy);
+  const res = { venta: 0, seguimiento: 0, descartado: 0, sin: 0 };
+  real.forEach(a => { res[a.resultado && res[a.resultado] != null ? a.resultado : 'sin']++; });
+  const ventas = A.filter(a => a.resultado === 'venta' && a.estado !== 'cancelado');
+  const fact = ventas.reduce((s, a) => s + (parseFloat(a.monto) || 0), 0);
+  // por asesor
+  const nombres = new Set([...L.map(l => l.asignado_a), ...A.map(a => a.asesor)].filter(Boolean));
+  const filas = [...nombres].map(n => {
+    const l = L.filter(x => x.asignado_a === n), a = A.filter(x => x.asesor === n);
+    const m = l.filter(contactado).map(numMin).filter(v => v != null);
+    return { n, leads: l.length, cont: l.filter(contactado).length, prom: m.length ? Math.round(m.reduce((x, y) => x + y, 0) / m.length) : null,
+      real: a.filter(x => x.estado === 'realizado').length, canc: a.filter(x => x.estado === 'cancelado').length,
+      ventas: a.filter(x => x.resultado === 'venta' && x.estado !== 'cancelado').length };
+  }).sort((x, y) => y.ventas - x.ventas || y.leads - x.leads || x.n.localeCompare(y.n, 'es'));
+  const obs = [
+    ...A.filter(a => a.notas).map(a => ({ f: soloFecha(a.fecha), t: 'Entrevista', n: a.cliente, q: a.asesor, r: a.resultado, x: a.notas })),
+    ...L.filter(l => l.notas).map(l => ({ f: soloFecha(l.fecha_asignacion), t: 'Lead', n: l.cliente, q: l.asignado_a, r: l.estado, x: l.notas }))
+  ].sort((x, y) => x.f < y.f ? 1 : -1);
+  return { r, L, A, cont, prom, rapidos, nMins: mins.length, sinCont, canc, real, abiertas, res, ventas, fact, filas, obs };
+}
+
+function frase(d) {
+  if (!d.L.length && !d.A.length) return 'No hay leads ni entrevistas cargados en esta semana.';
+  const p = [];
+  p.push(`${d.L.length} lead${d.L.length === 1 ? '' : 's'} recibido${d.L.length === 1 ? '' : 's'}, ${pct(d.cont.length, d.L.length)}% contactado${d.prom != null ? ' con respuesta promedio de ' + fmtMin(d.prom) : ''}.`);
+  p.push(`${d.real.length} entrevista${d.real.length === 1 ? '' : 's'} realizada${d.real.length === 1 ? '' : 's'}${d.canc.length ? ' y ' + d.canc.length + ' cancelada' + (d.canc.length === 1 ? '' : 's') : ''}, ${d.ventas.length} venta${d.ventas.length === 1 ? '' : 's'}${d.fact ? ' (' + X5.money(d.fact) + ')' : ''}.`);
+  return p.join(' ');
+}
+
+function avisos(d) {
+  const a = [];
+  if (d.sinCont.length) a.push(`${d.sinCont.length} lead${d.sinCont.length === 1 ? '' : 's'} de la semana sin contactar: ${d.sinCont.slice(0, 5).map(l => esc(l.cliente) + ' (' + esc(l.asignado_a) + ')').join(', ')}${d.sinCont.length > 5 ? '…' : ''}.`);
+  if (d.abiertas.length) a.push(`${d.abiertas.length} entrevista${d.abiertas.length === 1 ? '' : 's'} ya pasada${d.abiertas.length === 1 ? '' : 's'} sin marcar como realizada o cancelada: ${d.abiertas.slice(0, 5).map(x => esc(x.cliente) + ' (' + esc(x.asesor) + ')').join(', ')}${d.abiertas.length > 5 ? '…' : ''}.`);
+  const conT = d.filas.filter(f => f.prom != null);
+  if (conT.length > 1) {
+    const rap = conT.slice().sort((x, y) => x.prom - y.prom), len = rap[rap.length - 1];
+    if (len.prom > rap[0].prom) a.push(`Respuesta más rápida: ${esc(rap[0].n)} (${fmtMin(rap[0].prom)}). Más lenta: ${esc(len.n)} (${fmtMin(len.prom)}).`);
+  }
+  const rr = d.real.length;
+  if (rr >= 3 && d.res.sin >= Math.ceil(rr / 2)) a.push(`${d.res.sin} de ${rr} entrevistas realizadas no tienen resultado cargado.`);
+  return a;
+}
+
+function reporteHtml(d, pdf) {
+  const r = d.r;
+  const vacio = !d.L.length && !d.A.length;
+  const kRes = d.prom == null ? '–' : fmtMin(d.prom);
+  const kCont = pct(d.cont.length, d.L.length);
+  const barL = { 'Recibidos': d.L.length, 'Contactados': d.cont.length, 'Sin contactar': d.sinCont.length };
+  const maxL = Math.max(1, d.L.length);
+  const barra = (k, v, tot, cls) => `<div class="bar-row"><span class="name">${k}</span><div class="bar-track"><div class="bar-fill ${cls || ''}" style="width:${v ? Math.max(3, v / tot * 100) : 0}%"></div></div><span class="val">${v}</span></div>`;
+  const mal = (f) => f.leads && f.cont < f.leads ? 'mal' : (f.leads ? 'bien' : '');
+  const dona2 = (() => {
+    const items = [['Venta', d.res.venta, 'var(--ok)'], ['Seguimiento', d.res.seguimiento, 'var(--x5)'], ['Descartado', d.res.descartado, 'var(--bad)'], ['Sin resultado', d.res.sin, 'var(--faint)']];
+    const tot = items.reduce((s, x) => s + x[1], 0);
+    if (!tot) return '<div class="empty">Sin entrevistas realizadas</div>';
+    const R = 42, C = 2 * Math.PI * R; let off = 0;
+    const segs = items.filter(x => x[1]).map(x => { const len = x[1] / tot * C; const o = `<circle r="${R}" cx="60" cy="60" fill="none" stroke="${x[2]}" stroke-width="16" stroke-dasharray="${Math.max(0, len - (items.filter(i => i[1]).length > 1 ? 2 : 0))} ${C}" stroke-dashoffset="${-off}" transform="rotate(-90 60 60)"/>`; off += len; return o; }).join('');
+    return `<div class="donut-wrap"><svg viewBox="0 0 120 120" width="112" height="112" role="img" aria-label="Resultados de las entrevistas"><circle r="${R}" cx="60" cy="60" fill="none" stroke="var(--surface-3)" stroke-width="16"/>${segs}<text x="60" y="60" text-anchor="middle" fill="var(--text)" font-size="22" font-weight="800">${tot}</text><text x="60" y="76" text-anchor="middle" fill="var(--muted)" font-size="9">realizadas</text></svg>
+      <div class="legend">${items.map(x => `<div><i style="background:${x[2]}"></i><span>${x[0]}</span><b>${x[1]}</b></div>`).join('')}</div></div>`;
+  })();
+  const av = avisos(d);
+  const obsMax = pdf ? 14 : 8;
+  const obsHtml = d.obs.length ? d.obs.slice(0, obsMax).map(o => `<div><b>${esc(o.n)}</b> · ${esc(o.q)}<small>${o.t} · ${X5.fechaCorta(o.f)}${o.r ? ' · ' + esc(String(o.r).replace(/_/g, ' ')) : ''}</small>${esc(recorte(o.x, 220))}</div>`).join('') + (d.obs.length > obsMax ? `<small style="color:var(--muted)">y ${d.obs.length - obsMax} observaciones más</small>` : '') : '<div class="empty">No se cargaron observaciones en la semana</div>';
+  return `
+  <div class="rep-head"><div><h2>Resumen semanal · X5 Cuyo</h2><small>Semana del ${textoSemana(r)}${r.hasta >= X5.hoyISO() ? ' (en curso)' : ''} · ${esc(alcance())}</small></div><div class="rep-brand">HUB COMERCIAL</div></div>
+  <div class="rep-lead">${esc(frase(d))}</div>
+  <div class="kpis">
+    <div class="kpi"><span>Leads</span><b class="num">${d.L.length}</b><small>recibidos</small></div>
+    <div class="kpi ${d.L.length && kCont < 100 ? '' : 'ok'}"><span>Contactados</span><b class="num">${d.L.length ? kCont + '%' : '–'}</b><small>${d.cont.length} de ${d.L.length}</small></div>
+    <div class="kpi"><span>Respuesta</span><b class="num">${kRes}</b><small>${d.nMins ? pct(d.rapidos, d.nMins) + '% en menos de 1 h' : 'promedio'}</small></div>
+    <div class="kpi ${d.ventas.length ? 'ok' : ''}"><span>Ventas</span><b class="num">${d.ventas.length}</b><small>${d.fact ? X5.money(d.fact) : 'cerradas'}</small></div>
+  </div>
+  ${vacio ? '' : `<div class="rep-2">
+    <div class="card"><div class="card-title">Respuesta a los leads</div><div class="bars">${barra('Recibidos', d.L.length, maxL)}${barra('Contactados', d.cont.length, maxL, 'dom')}${barra('Sin contactar', d.sinCont.length, maxL, 'warn')}</div></div>
+    <div class="card"><div class="card-title">Resultado de las entrevistas</div>${dona2}<div style="margin-top:8px;color:var(--muted);font-size:.78rem">${d.A.length} programadas · ${d.real.length} realizadas · ${d.canc.length} canceladas${d.abiertas.length ? ' · ' + d.abiertas.length + ' sin cerrar' : ''}</div></div>
+  </div>
+  <div class="card"><div class="card-title">Por asesor</div>
+    <table class="rep-tabla"><thead><tr><th>Asesor</th><th>Leads</th><th>Contact.</th><th>Resp.</th><th>Entrev.</th><th>Ventas</th></tr></thead><tbody>
+    ${d.filas.map(f => `<tr><td>${esc(f.n)}</td><td>${f.leads}</td><td class="${mal(f)}">${f.cont}/${f.leads}</td><td>${fmtMin(f.prom)}</td><td>${f.real}${f.canc ? ' <span style="color:var(--faint)">(-' + f.canc + ')</span>' : ''}</td><td><b>${f.ventas}</b></td></tr>`).join('')}
+    </tbody></table></div>
+  <div class="card"><div class="card-title">Para atender</div>${av.length ? '<div class="rep-aviso">' + av.map(x => '<div>' + x + '</div>').join('') + '</div>' : '<div class="rep-aviso"><div class="ok">Todo al día: no hay pendientes de la semana.</div></div>'}</div>
+  <div class="card"><div class="card-title">Observaciones de la semana</div><div class="rep-obs">${obsHtml}</div></div>`}
+  <div class="rep-foot">Generado el ${new Date().toLocaleDateString('es-AR')} · X5 Cuyo Hub Comercial · The DOM Studio Web · thedomstudioweb.github.io</div>`;
+}
+
+function alcance() {
+  const v = F.persona;
+  if (!v) return user.rol === 'Gerente Comercial' ? 'Todo el equipo' : 'Mi equipo';
+  return v.startsWith('e:') ? 'Equipo de ' + v.slice(2) : v.slice(2);
+}
+
+function renderResumen() {
+  const r = semanaRango(semOff);
+  $('wk-titulo').innerHTML = `${semOff === 0 ? 'Esta semana' : semOff === -1 ? 'Semana pasada' : 'Semana del ' + r.lun.getDate() + '/' + (r.lun.getMonth() + 1)}<small>${textoSemana(r)}</small>`;
+  $('wk-next').disabled = semOff >= 0;
+  $('rep').innerHTML = reporteHtml(datosSemana(r), false);
+}
+$('wk-prev').addEventListener('click', () => { semOff--; renderResumen(); });
+$('wk-next').addEventListener('click', () => { if (semOff < 0) { semOff++; renderResumen(); } });
+
+function cargarScriptLocal(src, global) {
+  return new Promise((res, rej) => { if (window[global]) return res(); const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+}
+$('btn-rep-pdf').addEventListener('click', async () => {
+  const btn = $('btn-rep-pdf'), txt = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Generando PDF…';
+  let nodo = null;
+  try {
+    await Promise.all([cargarScriptLocal('libs/html2canvas.min.js', 'html2canvas'), cargarScriptLocal('libs/pdf-lib.min.js', 'PDFLib')]);
+    const r = semanaRango(semOff);
+    nodo = document.createElement('div');
+    nodo.className = 'rep-pdf';
+    nodo.innerHTML = `<div class="rep">${reporteHtml(datosSemana(r), true)}</div>`;
+    document.body.appendChild(nodo);
+    await new Promise(res => setTimeout(res, 300));
+    // Acomodar bloques para que no queden cortados entre páginas (A4 a 794 px de ancho = 1123 px de alto)
+    const PH = 1123, PAD = 36, rep = nodo.querySelector('.rep');
+    [...rep.children].forEach(ch => {
+      const top = ch.offsetTop, h = ch.offsetHeight;
+      const usado = top % PH;
+      if (h < PH - PAD * 2 && usado + h > PH - PAD) ch.style.marginTop = (PH - usado + PAD) + 'px';
+    });
+    const alto = Math.ceil(nodo.scrollHeight / PH) * PH;
+    nodo.style.height = alto + 'px';
+    const canvas = await html2canvas(nodo, { scale: 2, backgroundColor: '#ffffff', useCORS: true, logging: false, windowWidth: 794 });
+    const { PDFDocument } = PDFLib;
+    const pdf = await PDFDocument.create();
+    const hPag = PH * 2, paginas = Math.max(1, Math.ceil(canvas.height / hPag));
+    for (let i = 0; i < paginas; i++) {
+      const c = document.createElement('canvas'); c.width = canvas.width; c.height = hPag;
+      const g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height);
+      g.drawImage(canvas, 0, i * hPag, canvas.width, hPag, 0, 0, canvas.width, hPag);
+      const jpg = await new Promise(res => c.toBlob(res, 'image/jpeg', 0.92));
+      const img = await pdf.embedJpg(new Uint8Array(await jpg.arrayBuffer()));
+      const pg = pdf.addPage([595.28, 841.89]);
+      pg.drawImage(img, { x: 0, y: 0, width: 595.28, height: 841.89 });
+    }
+    pdf.setTitle('Resumen semanal X5 Cuyo ' + r.desde);
+    const bytes = await pdf.save();
+    const blob = new Blob([bytes], { type: 'application/pdf' });
+    await X5.compartirArchivo(blob, `Resumen_semanal_X5_${r.desde}.pdf`, 'Resumen semanal X5 Cuyo');
+  } catch (e) {
+    X5.toast('No se pudo generar el PDF. Probá de nuevo con conexión.', 'bad');
+  } finally {
+    if (nodo) nodo.remove();
+    btn.disabled = false; btn.textContent = txt;
+  }
+});
 
 /* ── Arranque ──────────────────────────────────────────────── */
 $('btn-login').addEventListener('click', iniciarSesion);

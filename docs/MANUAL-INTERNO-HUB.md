@@ -135,3 +135,17 @@ Para Claudio: explicalo en lenguaje simple.
 - **Duplicados:** el botón "Buscar duplicados" (o "Posibles duplicados (n)" cuando hay) muestra los grupos sospechosos. En leads: mismo teléfono (últimos 8 dígitos) o mismo nombre e interés. En entrevistas: mismo nombre el mismo día y hora, o con el mismo vehículo. Se marca por defecto el registro con más información (venta, monto, estado avanzado, observaciones, contacto hecho). Se revisa y se toca "Conservar el marcado y eliminar los otros".
 - **Requiere actualizar el script:** para que "Eliminar" funcione hay que pegar el `apps-script/Code.gs` nuevo y desplegarlo con "Nueva versión" (la URL no cambia). Sin eso, editar funciona pero eliminar avisa "Falta actualizar el script".
 - **Si dos personas son distintas pero comparten teléfono** (por ejemplo, de la misma familia), el sistema las propone como posible duplicado: hay que mirar antes de eliminar.
+
+## Resumen semanal (19/10/2026)
+
+Pestaña **Resumen** en el menú inferior. Solo la ven Gerente Comercial, Jefe de Ventas y Referente.
+
+- Muestra una semana de lunes a domingo. Abre en la **semana pasada** (completa). Las flechas ‹ › cambian de semana; "Esta semana" es parcial.
+- El selector "Asesor o equipo" filtra igual que en Métricas.
+- Arriba: una frase con el resumen y 4 números (leads, % contactados, respuesta promedio, ventas con monto).
+- Gráficos: respuesta a los leads (recibidos / contactados / sin contactar) y resultado de las entrevistas realizadas (venta, seguimiento, descartado, sin resultado).
+- **Por asesor**: leads, contactados, tiempo de respuesta, entrevistas realizadas (entre paréntesis las canceladas) y ventas.
+- **Para atender**: leads de la semana sin contactar, entrevistas pasadas sin marcar, asesor más rápido y más lento.
+- **Observaciones**: las notas cargadas en leads y entrevistas de esa semana.
+- Botón **Descargar PDF**: arma una hoja A4 clara de una o dos páginas. En el celular abre "Compartir" (WhatsApp, mail); en la compu lo descarga.
+- Cómo se calcula: lead contactado = estado distinto de "pendiente" o con tiempo de contacto cargado. Entrevista según su fecha. No hay cambios en el script ni en la planilla.
