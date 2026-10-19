@@ -1,6 +1,120 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-19T17:08:38.568Z",
+   "tipo": "nuevo",
+   "id": "maipu-181562",
+   "auto": "Fiat Idea 2015",
+   "precio": 13500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-19T17:08:38.568Z",
+   "tipo": "nuevo",
+   "id": "maipu-181520",
+   "auto": "Chevrolet Spin 2015",
+   "precio": 13000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-19T17:08:38.568Z",
+   "tipo": "nuevo",
+   "id": "maipu-181495",
+   "auto": "BMW X2 2020",
+   "precio": 62000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-19T17:08:38.568Z",
+   "tipo": "baja",
+   "id": "maipu-181163",
+   "auto": "Volkswagen Taos 2022",
+   "precio": 33000000,
+   "moneda": "ARS",
+   "dias": 5
+  },
+  {
+   "fecha": "2026-10-19T17:08:38.568Z",
+   "tipo": "baja",
+   "id": "maipu-181066",
+   "auto": "Chevrolet Tracker 2023",
+   "precio": 24500000,
+   "moneda": "ARS",
+   "dias": 6
+  },
+  {
+   "fecha": "2026-10-19T17:08:38.568Z",
+   "tipo": "baja",
+   "id": "maipu-180806",
+   "auto": "Renault Duster 2017",
+   "precio": 17500000,
+   "moneda": "ARS",
+   "dias": 11
+  },
+  {
+   "fecha": "2026-10-19T17:08:38.568Z",
+   "tipo": "baja",
+   "id": "maipu-180151",
+   "auto": "Volkswagen Amarok 2021",
+   "precio": 40000000,
+   "moneda": "ARS",
+   "dias": 17
+  },
+  {
+   "fecha": "2026-10-19T17:08:38.568Z",
+   "tipo": "baja",
+   "id": "maipu-179710",
+   "auto": "Peugeot 208 2025",
+   "precio": 30500000,
+   "moneda": "ARS",
+   "dias": 18
+  },
+  {
+   "fecha": "2026-10-19T17:08:38.568Z",
+   "tipo": "baja",
+   "id": "maipu-177585",
+   "auto": "Peugeot 208 2022",
+   "precio": 22000000,
+   "moneda": "ARS",
+   "dias": 39
+  },
+  {
+   "fecha": "2026-10-19T17:08:38.568Z",
+   "tipo": "baja",
+   "id": "maipu-177352",
+   "auto": "Audi Q2 2026",
+   "precio": 54300,
+   "moneda": "USD",
+   "dias": 40
+  },
+  {
+   "fecha": "2026-10-19T17:08:38.568Z",
+   "tipo": "baja",
+   "id": "maipu-160197",
+   "auto": "Volkswagen Taos 2024",
+   "precio": 44000000,
+   "moneda": "ARS",
+   "dias": 213
+  },
+  {
+   "fecha": "2026-10-19T17:08:38.568Z",
+   "tipo": "baja",
+   "id": "autocity-e866b5b3-93dc-41a1-83eb-2bdfbfe8d71b",
+   "auto": "Citroen Basalt 2025",
+   "precio": 29900000,
+   "moneda": "ARS",
+   "dias": 2
+  },
+  {
+   "fecha": "2026-10-19T17:08:38.568Z",
+   "tipo": "baja",
+   "id": "autocity-32f12da4-4706-4492-8269-bb11d3b3e46c",
+   "auto": "Jeep Compass 2025",
+   "precio": 49900000,
+   "moneda": "ARS",
+   "dias": 3
+  },
+  {
    "fecha": "2026-10-18T14:07:53.380Z",
    "tipo": "nuevo",
    "id": "autocity-f7ccb9a9-ee7c-4d86-b28b-0c3b60970aee",
