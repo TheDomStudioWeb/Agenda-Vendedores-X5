@@ -149,3 +149,14 @@ Pestaña **Resumen** en el menú inferior. Solo la ven Gerente Comercial, Jefe d
 - **Observaciones**: las notas cargadas en leads y entrevistas de esa semana.
 - Botón **Descargar PDF**: arma una hoja A4 clara de una o dos páginas. En el celular abre "Compartir" (WhatsApp, mail); en la compu lo descarga.
 - Cómo se calcula: lead contactado = estado distinto de "pendiente" o con tiempo de contacto cargado. Entrevista según su fecha. No hay cambios en el script ni en la planilla.
+
+## Limpiar / archivar descartados (19/10/2026)
+
+Botón **Limpiar / archivar** al lado de "Buscar duplicados", en las pestañas Agenda y Leads. Lo ve solo el **Gerente Comercial** (el script también lo exige: nadie más puede archivar ni restaurar).
+
+- Mueve a una hoja nueva de la planilla, **Archivo**, los leads con estado "Descartado" y las entrevistas con resultado "Descartado". Se crea sola la primera vez.
+- Opciones antes de confirmar, con el número exacto de lo que se va a mover: leads, entrevistas, incluir también las entrevistas canceladas (apagado por defecto) y antigüedad (cualquier fecha, o solo las de más de 30, 60 o 90 días).
+- **No borra nada.** Cada registro queda en "Archivo" con quién lo archivó y la fecha. **Ver archivo** lista lo archivado y permite **Restaurar** uno por uno; vuelve con el mismo estado que tenía.
+- Lo archivado deja de aparecer en la agenda, en los leads y en el resumen semanal y las métricas, porque ya no está en las hojas principales.
+- Requiere conexión. Si el script de la planilla todavía no se actualizó, avisa "Falta actualizar el script de la planilla para poder archivar".
+- Hojas de la planilla: **Eliminados** guarda lo borrado a mano; **Archivo** guarda lo archivado.

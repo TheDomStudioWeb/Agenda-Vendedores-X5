@@ -13,6 +13,12 @@
   body { padding-bottom: calc(76px + var(--safe-bottom)); }
 
 
+  .arch label { display: flex; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
+  .arch input[type=checkbox] { width: 20px; height: 20px; flex: none; appearance: auto; accent-color: var(--x5); margin: 0; }
+  .arch label b { margin-left: auto; font-variant-numeric: tabular-nums; }
+  .arch select { margin: 10px 0 4px; }
+  .arch-it { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: .85rem; }
+  .arch-it small { display: block; color: var(--muted); font-size: .72rem; margin-top: 2px; }
   /* Resumen semanal */
   .wk { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
   .wk .wk-t { flex: 1; text-align: center; font-weight: 700; font-size: .92rem; }
@@ -244,7 +250,7 @@
         <div class="acc"><button type="button" class="btn btn-ghost btn-sm" data-limpiar>Limpiar filtros</button></div>
       </div>
       <div class="fsum hidden" id="fs-agenda"></div>
-      <div class="acc" style="margin-top:10px"><button type="button" class="btn btn-ghost btn-sm" data-dup="agenda" id="btn-dup-agenda">Buscar duplicados</button></div>
+      <div class="acc" style="margin-top:10px"><button type="button" class="btn btn-ghost btn-sm" data-dup="agenda" id="btn-dup-agenda">Buscar duplicados</button> <button type="button" class="btn btn-ghost btn-sm ger-only hidden" data-arch="1">Limpiar / archivar</button></div>
       <div id="lista-agenda" style="margin-top:12px"></div>
     </div>
   </section>
@@ -292,7 +298,7 @@
         <div class="acc"><button type="button" class="btn btn-ghost btn-sm" data-limpiar>Limpiar filtros</button></div>
       </div>
       <div class="fsum hidden" id="fs-leads"></div>
-      <div class="acc" style="margin-top:10px"><button type="button" class="btn btn-ghost btn-sm" data-dup="leads" id="btn-dup-leads">Buscar duplicados</button></div>
+      <div class="acc" style="margin-top:10px"><button type="button" class="btn btn-ghost btn-sm" data-dup="leads" id="btn-dup-leads">Buscar duplicados</button> <button type="button" class="btn btn-ghost btn-sm ger-only hidden" data-arch="1">Limpiar / archivar</button></div>
       <div id="lista-leads" style="margin-top:12px"></div>
     </div>
   </section>
@@ -528,6 +534,7 @@ function iniciarApp() {
   $('panel-asignar').classList.toggle('hidden', !supervisa);
   $('nav-dashboard').classList.toggle('hidden', !supervisa);
   $('nav-resumen').classList.toggle('hidden', !supervisa);
+  document.querySelectorAll('.ger-only').forEach(el => el.classList.toggle('hidden', user.rol !== 'Gerente Comercial'));
   llenarDesplegables();
   prepararFiltros();
   $('ag-fecha').value = X5.hoyISO();
@@ -974,6 +981,7 @@ $('form-leads').addEventListener('submit', (e) => {
 
 /* ── Editar, eliminar y duplicados ─────────────────────────── */
 const TABLA_HOJA = { agenda: 'Hoja 1', leads: 'Leads' };
+const HOJAS_X = { agenda: 'Hoja 1', leads: 'Leads' };
 const ORIGENES = ['Meta Ads', 'Web X5', 'Referido', 'Redes Asesor', 'Salón / Espontáneo'];
 const CAMPOS_EDIT = {
   leads: [['cliente', 'Prospecto', 'text'], ['telefono', 'Teléfono', 'tel'], ['interes', 'Interés', 'text'], ['origen', 'Origen', 'origen'], ['asignado_a', 'Asignado a', 'persona'], ['fecha_asignacion', 'Fecha de asignación', 'date'], ['hora_limite', 'Contactar antes de', 'time'], ['notas', 'Observaciones', 'area']],
@@ -1081,6 +1089,80 @@ function resolverDuplicado(gi) {
   if (bloqueados) X5.toast(`${bloqueados} no se pudieron eliminar: no son tuyos.`, 'bad', 4000);
   dDuplicados(dupTabla);
 }
+
+/* ── Limpiar / archivar (solo Gerente Comercial) ───────────── */
+function criterioArchivo() {
+  const v = (id) => dlgX.querySelector('#' + id);
+  return { leads: v('ar-l').checked, entrevistas: v('ar-e').checked, canceladas: v('ar-c').checked, dias: Number(v('ar-d').value) || 0 };
+}
+function candidatosArchivo(c) {
+  const corte = c.dias > 0 ? X5.hoyISO(new Date(Date.now() - c.dias * 86400000)) : '';
+  const okF = (f) => !corte || (soloFecha(f) && soloFecha(f) < corte);
+  return {
+    leads: c.leads ? db.leads.filter(l => l.estado === 'descartado' && okF(l.fecha_asignacion)) : [],
+    entrevistas: c.entrevistas ? db.agenda.filter(a => (a.resultado === 'descartado' || (c.canceladas && a.estado === 'cancelado')) && okF(a.fecha)) : []
+  };
+}
+function dArchivar() {
+  const nl = db.leads.filter(l => l.estado === 'descartado').length;
+  const ne = db.agenda.filter(a => a.resultado === 'descartado').length;
+  dialogo('Limpiar / archivar', `<div class="arch">
+    <p class="muted" style="margin-top:0">Mueve a la hoja "Archivo" lo que ya no hace falta ver. No se borra nada y se puede restaurar.</p>
+    <label><input type="checkbox" id="ar-l" checked> Leads descartados <b id="ar-nl">${nl}</b></label>
+    <label><input type="checkbox" id="ar-e" checked> Entrevistas con resultado «Descartado» <b id="ar-ne">${ne}</b></label>
+    <label><input type="checkbox" id="ar-c"> Incluir también las entrevistas canceladas <b id="ar-nc"></b></label>
+    <select id="ar-d"><option value="0">De cualquier fecha</option><option value="30">Solo las de más de 30 días</option><option value="60">Solo las de más de 60 días</option><option value="90">Solo las de más de 90 días</option></select>
+    <p class="note-state" id="ar-err" style="color:var(--bad)"></p>
+    <div class="row"><button class="btn btn-ghost" data-arch-ver="1">Ver archivo</button><button class="btn" data-arch-go="1" id="ar-go">Archivar</button></div></div>`);
+  actualizarArchivo();
+}
+function actualizarArchivo() {
+  const c = criterioArchivo(), cand = candidatosArchivo(c);
+  const cc = candidatosArchivo({ ...c, entrevistas: true, canceladas: true }).entrevistas.length - candidatosArchivo({ ...c, entrevistas: true, canceladas: false }).entrevistas.length;
+  const nl = candidatosArchivo({ ...c, leads: true }).leads.length, ne = candidatosArchivo({ ...c, entrevistas: true, canceladas: false }).entrevistas.length;
+  dlgX.querySelector('#ar-nl').textContent = nl; dlgX.querySelector('#ar-ne').textContent = ne; dlgX.querySelector('#ar-nc').textContent = cc;
+  const total = cand.leads.length + cand.entrevistas.length, go = dlgX.querySelector('#ar-go');
+  go.textContent = total ? `Archivar ${total}` : 'Nada para archivar'; go.disabled = !total;
+}
+const ERR_ARCH = { accion_invalida: 'Falta actualizar el script de la planilla para poder archivar.', sin_permiso: 'Solo el Gerente Comercial puede archivar.', sesion_vencida: 'La sesión venció. Cerrá sesión y volvé a entrar.', sin_token: 'Cerrá sesión y volvé a entrar para poder archivar.' };
+async function ejecutarArchivo() {
+  const c = criterioArchivo(), cand = candidatosArchivo(c);
+  if (!cand.leads.length && !cand.entrevistas.length) return;
+  const go = dlgX.querySelector('#ar-go'), er = dlgX.querySelector('#ar-err'); er.textContent = ''; go.disabled = true; go.textContent = 'Archivando…';
+  try {
+    if (!token) throw new Error('sin_token');
+    await procesarCola();
+    const r = await apiPost({ action: 'archivar', token, tabla: HOJAS_X.agenda, criterio: c });
+    if (!respOk(r)) throw new Error((r && r.error) || 'error');
+    dlgX.close(); await sincronizar();
+    X5.toast(`Archivados: ${r.leads} lead${r.leads === 1 ? '' : 's'} y ${r.entrevistas} entrevista${r.entrevistas === 1 ? '' : 's'}`, 'ok');
+  } catch (e) {
+    er.textContent = ERR_ARCH[e.message] || (e instanceof TypeError ? 'Sin conexión. Probá de nuevo.' : 'No se pudo archivar. Probá de nuevo.');
+    go.disabled = false; actualizarArchivo();
+  }
+}
+async function verArchivo() {
+  dialogo('Archivo', '<div class="empty">Cargando…</div>');
+  try {
+    if (!token) throw new Error('sin_token');
+    const r = await apiPost({ action: 'archivo_listar', token, tabla: HOJAS_X.agenda });
+    if (!respOk(r)) throw new Error((r && r.error) || 'error');
+    const it = r.items || [];
+    dialogo('Archivo', `<div class="arch"><p class="muted" style="margin-top:0">Lo archivado más reciente primero. Al restaurar, vuelve con el mismo estado que tenía.</p>${it.length ? it.map(x => `<div class="arch-it"><span><b>${esc(x.cliente)}</b> · ${x.tabla === 'Leads' ? 'Lead' : 'Entrevista'}${x.detalle ? ' · ' + esc(x.detalle) : ''}<small>${X5.fechaCorta(x.fecha)} · ${esc(x.estado || '')} · archivado ${X5.fechaCorta(x.archivado)}</small></span><button class="btn btn-ghost btn-sm" data-restaurar="${esc(x.tabla)}|${esc(x.id)}">Restaurar</button></div>`).join('') : '<div class="empty">El archivo está vacío.</div>'}<div class="row" style="margin-top:12px"><button class="btn btn-ghost" data-arch="1">‹ Volver</button></div></div>`);
+  } catch (e) {
+    dialogo('Archivo', `<p class="note-state" style="color:var(--bad)">${esc(ERR_ARCH[e.message] || (e instanceof TypeError ? 'Sin conexión. Probá de nuevo.' : 'No se pudo cargar el archivo.'))}</p>`);
+  }
+}
+async function restaurarItem(tabla, id, btn) {
+  btn.disabled = true; btn.textContent = 'Restaurando…';
+  try {
+    const r = await apiPost({ action: 'restaurar', token, tabla: HOJAS_X.agenda, items: [{ tabla, id }] });
+    if (!respOk(r)) throw new Error((r && r.error) || 'error');
+    await sincronizar(); X5.toast('Restaurado', 'ok'); verArchivo();
+  } catch (e) { btn.disabled = false; btn.textContent = 'Restaurar'; X5.toast('No se pudo restaurar', 'bad'); }
+}
+dlgX.addEventListener('change', (e) => { if (e.target.closest('.arch') && e.target.closest('#ar-d, #ar-l, #ar-e, #ar-c')) actualizarArchivo(); });
+
 document.addEventListener('click', (e) => {
   const t = e.target;
   if (t.closest('[data-dx="cerrar"]')) return dlgX.close();
@@ -1088,6 +1170,10 @@ document.addEventListener('click', (e) => {
   const el = t.closest('[data-eliminar]'); if (el) { const r = registro(el); if (r) dEliminar(r.tabla, r.item.id); return; }
   const gs = t.closest('[data-guardar-edit]'); if (gs) { const [tb, id] = gs.dataset.guardarEdit.split('|'); return guardarEdicion(tb, id); }
   const cd = t.closest('[data-confirmar-del]'); if (cd) { const [tb, id] = cd.dataset.confirmarDel.split('|'); dlgX.close(); eliminarRegistro(tb, id); render(); X5.toast('Eliminado', 'ok'); return; }
+  if (t.closest('[data-arch]')) return dArchivar();
+  if (t.closest('[data-arch-go]')) return ejecutarArchivo();
+  if (t.closest('[data-arch-ver]')) return verArchivo();
+  const rs = t.closest('[data-restaurar]'); if (rs) { const [tb, id] = rs.dataset.restaurar.split('|'); return restaurarItem(tb, id, rs); }
   const dp = t.closest('[data-dup]'); if (dp) return dDuplicados(dp.dataset.dup);
   const dd = t.closest('[data-dupdel]'); if (dd) return resolverDuplicado(Number(dd.dataset.dupdel));
 });

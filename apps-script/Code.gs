@@ -28,6 +28,7 @@
 const MODO_COMPATIBLE = true;
 const DIAS_TOKEN = 30;
 const ROLES_SUPERVISION = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
+const ROL_ARCHIVO = 'Gerente Comercial'; // único rol que archiva y restaura
 
 const HOJAS = {
   agenda: 'Hoja 1',
@@ -96,6 +97,19 @@ function doPost(e) {
 
     const usuario = body.token ? validarToken_(body.token) : null;
     if (!usuario && !MODO_COMPATIBLE) return json_({ ok: false, error: 'sesion_vencida' });
+
+    // Archivo (solo Gerente Comercial): archivar descartados, ver el archivo y restaurar
+    if (body.action === 'archivar' || body.action === 'archivo_listar' || body.action === 'restaurar') {
+      if (!usuario) return json_({ ok: false, error: 'sesion_vencida' });
+      if (usuario.rol !== ROL_ARCHIVO) return json_({ ok: false, error: 'sin_permiso' });
+      const lk = LockService.getScriptLock();
+      lk.waitLock(15000);
+      try {
+        if (body.action === 'archivar') return json_(archivarLote_(body.criterio || {}, usuario));
+        if (body.action === 'restaurar') return json_(restaurarArchivo_(body.items || []));
+        return json_(listarArchivo_());
+      } finally { lk.releaseLock(); }
+    }
 
     const nombreHoja = body.tabla || HOJAS.agenda;
     if (!COLUMNAS[nombreHoja]) return json_({ ok: false, error: 'tabla_invalida' });
@@ -185,6 +199,117 @@ function archivarEliminado_(nombreHoja, reg, usuario) {
     h.appendRow(['fecha', 'tabla', 'id', 'cliente', 'eliminado_por', 'datos']);
   }
   h.appendRow([new Date(), nombreHoja, "'" + reg.id, reg.cliente || '', usuario.nombre, JSON.stringify(reg)]);
+}
+
+// ── Archivo de descartados (con restauración) ─────────────────────
+// Mueve a la hoja "Archivo" los leads descartados y las entrevistas con resultado
+// "descartado" (y, si se pide, las canceladas). No borra nada: se puede restaurar.
+// criterio = { leads: bool, entrevistas: bool, canceladas: bool, dias: número (0 = todos) }
+function hojaArchivo_() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let h = ss.getSheetByName('Archivo');
+  if (!h) {
+    h = ss.insertSheet('Archivo');
+    h.appendRow(['fecha', 'tabla', 'id', 'cliente', 'archivado_por', 'datos']);
+  }
+  return h;
+}
+
+function diaTxt_(v, tz) {
+  if (Object.prototype.toString.call(v) === '[object Date]') return Utilities.formatDate(v, tz, 'yyyy-MM-dd');
+  return String(v == null ? '' : v).replace(/^'/, '').split('T')[0];
+}
+
+function archivarLote_(c, usuario) {
+  const tz = Session.getScriptTimeZone();
+  const dias = Math.max(0, Number(c.dias) || 0);
+  const corte = dias > 0 ? Utilities.formatDate(new Date(Date.now() - dias * 86400000), tz, 'yyyy-MM-dd') : '';
+  const res = { ok: true, leads: 0, entrevistas: 0 };
+  const tablas = [];
+  if (c.leads) tablas.push(HOJAS.leads);
+  if (c.entrevistas) tablas.push(HOJAS.agenda);
+  if (!tablas.length) return res;
+  const filasArchivo = [];
+  const ahora = new Date();
+  tablas.forEach(nombre => {
+    const sheet = obtenerHoja_(nombre);
+    const headers = asegurarColumnas_(sheet, COLUMNAS[nombre]);
+    const n = sheet.getLastRow() - 1;
+    if (n < 1) return;
+    const vals = sheet.getRange(2, 1, n, headers.length).getValues();
+    const esLead = nombre === HOJAS.leads;
+    const borrar = [];
+    vals.forEach((fila, i) => {
+      const r = {};
+      headers.forEach((h, k) => { r[h] = normalizar_(fila[k], tz, h); });
+      const descartado = esLead
+        ? String(r.estado) === 'descartado'
+        : (String(r.resultado) === 'descartado' || (c.canceladas && String(r.estado) === 'cancelado'));
+      if (!descartado) return;
+      if (corte) {
+        const f = diaTxt_(esLead ? r.fecha_asignacion : r.fecha, tz);
+        if (!f || f >= corte) return;
+      }
+      filasArchivo.push([ahora, nombre, "'" + r.id, r.cliente || '', usuario.nombre, JSON.stringify(r)]);
+      borrar.push(i + 2);
+      if (esLead) res.leads++; else res.entrevistas++;
+    });
+    borrar.reverse().forEach(f => sheet.deleteRow(f));
+  });
+  if (filasArchivo.length) {
+    const h = hojaArchivo_();
+    h.getRange(h.getLastRow() + 1, 1, filasArchivo.length, 6).setValues(filasArchivo);
+  }
+  return res;
+}
+
+function listarArchivo_() {
+  const tz = Session.getScriptTimeZone();
+  const h = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Archivo');
+  if (!h || h.getLastRow() < 2) return { ok: true, items: [] };
+  const vals = h.getRange(2, 1, h.getLastRow() - 1, 6).getValues();
+  const items = vals.map(v => {
+    let d = {};
+    try { d = JSON.parse(v[5]); } catch (e) {}
+    const esLead = v[1] === HOJAS.leads;
+    return {
+      tabla: v[1], id: String(v[2]).replace(/^'/, ''), cliente: v[3], por: v[4],
+      archivado: Object.prototype.toString.call(v[0]) === '[object Date]' ? Utilities.formatDate(v[0], tz, 'yyyy-MM-dd') : String(v[0]),
+      fecha: diaTxt_(esLead ? d.fecha_asignacion : d.fecha, tz),
+      detalle: esLead ? [d.interes, d.asignado_a].filter(Boolean).join(' · ') : [d.vehiculo, d.asesor].filter(Boolean).join(' · '),
+      estado: esLead ? d.estado : (d.resultado || d.estado)
+    };
+  }).reverse().slice(0, 300);
+  return { ok: true, items: items };
+}
+
+// items = [{ tabla, id }]
+function restaurarArchivo_(items) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const h = ss.getSheetByName('Archivo');
+  if (!h || h.getLastRow() < 2) return { ok: true, restaurados: 0 };
+  let restaurados = 0;
+  items.slice(0, 100).forEach(it => {
+    if (!COLUMNAS[it.tabla]) return;
+    const n = h.getLastRow() - 1;
+    if (n < 1) return;
+    const vals = h.getRange(2, 1, n, 6).getValues();
+    let fila = -1;
+    for (let i = vals.length - 1; i >= 0; i--) {
+      if (vals[i][1] === it.tabla && String(vals[i][2]).replace(/^'/, '') === String(it.id)) { fila = i + 2; break; }
+    }
+    if (fila < 0) return;
+    let d;
+    try { d = JSON.parse(vals[fila - 2][5]); } catch (e) { return; }
+    const sheet = obtenerHoja_(it.tabla);
+    const headers = asegurarColumnas_(sheet, COLUMNAS[it.tabla]);
+    if (buscarFila_(sheet, d.id) < 0) {
+      sheet.appendRow(headers.map(c => valorParaCelda_(c, c === 'actualizado' ? new Date() : d[c])));
+    }
+    h.deleteRow(fila);
+    restaurados++;
+  });
+  return { ok: true, restaurados: restaurados };
 }
 
 // ── Login y tokens ────────────────────────────────────────────────
