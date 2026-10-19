@@ -146,6 +146,8 @@ function doPost(e) {
         return json_({ ok: true });
       }
 
+      if (body.action === 'delete') return json_(eliminarRegistro_(sheet, headers, nombreHoja, datos, usuario));
+
       return json_({ ok: false, error: 'accion_invalida' });
     } finally {
       lock.releaseLock();
@@ -154,6 +156,35 @@ function doPost(e) {
   } catch (err) {
     return json_({ ok: false, error: String(err) });
   }
+}
+
+// ── Eliminar (con copia de seguridad) ──────────────────────────────
+// Solo quien tiene sesión. Puede eliminar el supervisor (gerente, jefe, referente)
+// o el asesor dueño del registro. Antes de borrar, guarda una copia en la hoja "Eliminados".
+function eliminarRegistro_(sheet, headers, nombreHoja, datos, usuario) {
+  if (!usuario) return { ok: false, error: 'sesion_vencida' };
+  const filaN = buscarFila_(sheet, datos.id);
+  if (filaN < 0) return { ok: true, ya_no_existe: true };
+  const fila = sheet.getRange(filaN, 1, 1, headers.length).getValues()[0];
+  const reg = {};
+  headers.forEach((h, i) => { reg[h] = fila[i]; });
+  const duenio = nombreHoja === HOJAS.leads ? reg.asignado_a : reg.asesor;
+  if (!ROLES_SUPERVISION.includes(usuario.rol) && String(duenio) !== String(usuario.nombre)) {
+    return { ok: false, error: 'sin_permiso' };
+  }
+  archivarEliminado_(nombreHoja, reg, usuario);
+  sheet.deleteRow(filaN);
+  return { ok: true };
+}
+
+function archivarEliminado_(nombreHoja, reg, usuario) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let h = ss.getSheetByName('Eliminados');
+  if (!h) {
+    h = ss.insertSheet('Eliminados');
+    h.appendRow(['fecha', 'tabla', 'id', 'cliente', 'eliminado_por', 'datos']);
+  }
+  h.appendRow([new Date(), nombreHoja, "'" + reg.id, reg.cliente || '', usuario.nombre, JSON.stringify(reg)]);
 }
 
 // ── Login y tokens ────────────────────────────────────────────────

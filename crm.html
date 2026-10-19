@@ -104,6 +104,19 @@
   .legend div { display: flex; align-items: center; gap: 8px; }
   .legend i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
   .legend span { flex: 1; color: var(--muted); }
+  #dlg-x { border: 1px solid var(--line); border-radius: 18px; background: var(--surface); color: var(--text); padding: 0; width: min(520px, calc(100vw - 24px)); max-height: 88vh; }
+  #dlg-x::backdrop { background: rgba(0,0,0,.55); }
+  .dx-h { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+  .dx-h h2 { margin: 0; font-size: 1.05rem; }
+  .dx-b { padding: 14px 16px 18px; overflow: auto; max-height: calc(88vh - 62px); }
+  .dup { border: 1px solid var(--line); border-radius: 12px; padding: 10px; margin-bottom: 12px; background: var(--surface-2); }
+  .dup label { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: .88rem; }
+  .dup label:last-of-type { border-bottom: 0; }
+  .dup input[type=radio] { margin-top: 2px; width: 22px; height: 22px; min-height: 0; padding: 0; flex: none; -webkit-appearance: radio; appearance: auto; accent-color: var(--x5); }
+  .btn-danger { background: var(--bad); color: #fff; border-color: var(--bad); }
+  .dup small { display: block; color: var(--muted); }
+  .item-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .danger { color: var(--bad) !important; }
 </style>
 </head>
 <body>
@@ -181,6 +194,7 @@
         <div class="acc"><button type="button" class="btn btn-ghost btn-sm" data-limpiar>Limpiar filtros</button></div>
       </div>
       <div class="fsum hidden" id="fs-agenda"></div>
+      <div class="acc" style="margin-top:10px"><button type="button" class="btn btn-ghost btn-sm" data-dup="agenda" id="btn-dup-agenda">Buscar duplicados</button></div>
       <div id="lista-agenda" style="margin-top:12px"></div>
     </div>
   </section>
@@ -228,6 +242,7 @@
         <div class="acc"><button type="button" class="btn btn-ghost btn-sm" data-limpiar>Limpiar filtros</button></div>
       </div>
       <div class="fsum hidden" id="fs-leads"></div>
+      <div class="acc" style="margin-top:10px"><button type="button" class="btn btn-ghost btn-sm" data-dup="leads" id="btn-dup-leads">Buscar duplicados</button></div>
       <div id="lista-leads" style="margin-top:12px"></div>
     </div>
   </section>
@@ -323,6 +338,10 @@ async function procesarCola() {
       // Se envía en ambos formatos: el backend nuevo lee "data", el viejo los campos sueltos
       const r = await apiPost({ ...op.data, action: op.action, tabla: op.tabla, data: op.data, token });
       if (r && r.error === 'sesion_vencida') { sesionVencida(); break; }
+      if (op.action === 'delete' && r && (r.error === 'accion_invalida' || r.error === 'sin_permiso')) {
+        X5.toast(r.error === 'sin_permiso' ? 'No tenés permiso para eliminar ese registro.' : 'Falta actualizar el script para poder eliminar.', 'bad', 5000);
+        outbox.shift(); store.set('x5_outbox', outbox); sincronizar(); continue;
+      }
       if (!respOk(r) && r.error !== 'no_encontrado') throw new Error(r.error || 'error');
       outbox.shift(); store.set('x5_outbox', outbox);
     }
@@ -352,6 +371,7 @@ function aplicarPendientes(base) {
     const i = arr.findIndex(r => String(r.id) === String(op.data.id));
     if (op.action === 'add' && i < 0) arr.push({ ...op.data });
     if (op.action === 'update' && i > -1) Object.assign(arr[i], op.data);
+    if (op.action === 'delete' && i > -1) arr.splice(i, 1);
   });
   return base;
 }
@@ -639,7 +659,7 @@ function sincronizarPanel(t) {
 }
 
 /* ── Render ────────────────────────────────────────────────── */
-function render() { if (user) llenarPersona(); renderAgenda(); renderLeads(); resumen(); if (SUPERVISION.includes(user.rol) && $('tab-dashboard').classList.contains('active')) renderDashboard(); }
+function render() { if (user) llenarPersona(); renderAgenda(); renderLeads(); resumen(); pintarDup(); if (SUPERVISION.includes(user.rol) && $('tab-dashboard').classList.contains('active')) renderDashboard(); }
 
 function resumen() {
   const hoy = X5.hoyISO();
@@ -705,6 +725,7 @@ function renderAgenda() {
       </div>
       <textarea data-campo="notas" rows="2" placeholder="Observaciones de la entrevista…" style="margin-top:8px">${esc(it.notas)}</textarea>
       <div class="note-state"></div>
+      ${accionesItem('agenda', it)}
     </article>`;
   }).join('') : `<div class="empty">${filtrosActivos('agenda').length ? 'No hay entrevistas con estos filtros.' : filtro.agenda === 'hoy' ? 'Nada agendado para hoy.' : 'No hay entrevistas en esta vista.'}</div>`;
 }
@@ -756,6 +777,7 @@ function renderLeads() {
         <a class="btn btn-wsp btn-sm" target="_blank" rel="noopener" data-contacto="1" href="${wa ? `https://wa.me/${wa}?text=${encodeURIComponent(msgCliente)}` : '#'}">WhatsApp</a>
         ${l.estado === 'entrevista_pactada' ? `<button class="btn btn-sm full" data-agendar="1">Agendar la entrevista</button>` : ''}
       </div>
+      ${accionesItem('leads', l)}
     </article>`;
   }).join('') : `<div class="empty">${filtrosActivos('leads').length ? 'No hay leads con estos filtros.' : filtro.leads === 'hoy' ? 'Sin leads para hoy. ¡Bien ahí!' : 'No hay leads en esta vista.'}</div>`;
 }
@@ -876,6 +898,127 @@ $('form-leads').addEventListener('submit', (e) => {
   e.target.reset();
   X5.toast(`Lead asignado a ${item.asignado_a}`, 'ok');
   render();
+});
+
+
+/* ── Editar, eliminar y duplicados ─────────────────────────── */
+const TABLA_HOJA = { agenda: 'Hoja 1', leads: 'Leads' };
+const ORIGENES = ['Meta Ads', 'Web X5', 'Referido', 'Redes Asesor', 'Salón / Espontáneo'];
+const CAMPOS_EDIT = {
+  leads: [['cliente', 'Prospecto', 'text'], ['telefono', 'Teléfono', 'tel'], ['interes', 'Interés', 'text'], ['origen', 'Origen', 'origen'], ['asignado_a', 'Asignado a', 'persona'], ['fecha_asignacion', 'Fecha de asignación', 'date'], ['hora_limite', 'Contactar antes de', 'time'], ['notas', 'Observaciones', 'area']],
+  agenda: [['cliente', 'Prospecto', 'text'], ['vehiculo', 'Vehículo de interés', 'text'], ['asesor', 'Asesor', 'persona'], ['lugar', 'Lugar', 'lugar'], ['fecha', 'Fecha', 'date'], ['hora', 'Hora', 'time'], ['nro_contrato', 'N° de contrato', 'text'], ['monto', 'Monto', 'number'], ['notas', 'Observaciones', 'area']]
+};
+function puedeEliminar(tabla, it) { return SUPERVISION.includes(user.rol) || String(tabla === 'leads' ? it.asignado_a : it.asesor) === String(user.nombre); }
+function accionesItem(tabla, it) {
+  return `<div class="item-tools"><button type="button" class="btn btn-ghost btn-sm" data-editar="1">Editar</button>${puedeEliminar(tabla, it) ? '<button type="button" class="btn btn-ghost btn-sm danger" data-eliminar="1">Eliminar</button>' : ''}</div>`;
+}
+const dlgX = document.createElement('dialog'); dlgX.id = 'dlg-x'; document.body.appendChild(dlgX);
+dlgX.addEventListener('click', (e) => { if (e.target === dlgX) dlgX.close(); });
+function dialogo(titulo, html) {
+  dlgX.innerHTML = `<div class="dx-h"><h2>${esc(titulo)}</h2><button type="button" class="btn btn-ghost btn-sm" data-dx="cerrar" aria-label="Cerrar">✕</button></div><div class="dx-b">${html}</div>`;
+  if (!dlgX.open) dlgX.showModal();
+}
+function nombresPersonal(actual) {
+  const l = (db.personal || []).filter(p => p.estado === 'Activo' && puedeVer(p.nombre)).map(p => p.nombre);
+  if (actual && !l.includes(actual)) l.unshift(actual);
+  return l;
+}
+function opcionesTxt(lista, sel) { return lista.map(v => `<option value="${esc(v)}" ${String(v) === String(sel) ? 'selected' : ''}>${esc(v)}</option>`).join(''); }
+
+function dEditar(tabla, id) {
+  const it = db[tabla].find(r => String(r.id) === String(id)); if (!it) return;
+  const campos = CAMPOS_EDIT[tabla].filter(c => !(['nro_contrato', 'monto'].includes(c[0]) && it.resultado !== 'venta'));
+  const html = campos.map(([k, et, tipo]) => {
+    let v = it[k] ?? '', ctl;
+    if (tipo === 'date') v = soloFecha(v);
+    if (tipo === 'time') v = String(v).slice(0, 5);
+    if (tipo === 'area') ctl = `<textarea id="ed-${k}" rows="3">${esc(v)}</textarea>`;
+    else if (tipo === 'origen') ctl = `<select id="ed-${k}">${opcionesTxt(ORIGENES.concat(v && !ORIGENES.includes(v) ? [v] : []), v)}</select>`;
+    else if (tipo === 'persona') ctl = `<select id="ed-${k}">${opcionesTxt(nombresPersonal(v), v)}</select>`;
+    else if (tipo === 'lugar') ctl = `<select id="ed-${k}">${opcionesTxt(['Agencia', 'Domicilio'], v || 'Agencia')}</select>`;
+    else ctl = `<input id="ed-${k}" type="${tipo === 'number' ? 'number' : tipo}" ${tipo === 'number' ? 'inputmode="numeric"' : ''} value="${esc(v)}">`;
+    return `<div class="field"><label for="ed-${k}">${esc(et)}</label>${ctl}</div>`;
+  }).join('');
+  dialogo(tabla === 'leads' ? 'Editar lead' : 'Editar entrevista', `${html}<p class="note-state" id="ed-err" style="color:var(--bad)"></p><button class="btn" data-guardar-edit="${tabla}|${esc(id)}">Guardar cambios</button>`);
+}
+function guardarEdicion(tabla, id) {
+  const it = db[tabla].find(r => String(r.id) === String(id)); if (!it) return;
+  const campos = CAMPOS_EDIT[tabla].filter(c => $('ed-' + c[0]));
+  const nuevo = {}; campos.forEach(c => { nuevo[c[0]] = $('ed-' + c[0]).value.trim(); });
+  if (!nuevo.cliente) { $('ed-err').textContent = 'El nombre del prospecto no puede quedar vacío.'; return; }
+  let cambio = false;
+  Object.keys(nuevo).forEach(k => { if (String(it[k] ?? '') !== String(nuevo[k])) { it[k] = nuevo[k]; cambio = true; } });
+  dlgX.close();
+  if (!cambio) return X5.toast('No hubo cambios');
+  store.set('x5_db', db); encolar('update', TABLA_HOJA[tabla], it);
+  X5.toast('Cambios guardados', 'ok'); render();
+}
+function dEliminar(tabla, id) {
+  const it = db[tabla].find(r => String(r.id) === String(id)); if (!it) return;
+  const det = tabla === 'leads' ? `${esc(it.telefono)} · ${esc(it.interes)} · ${esc(it.asignado_a)}` : `${esc(it.vehiculo)} · ${X5.fechaCorta(it.fecha)} ${esc(String(it.hora || '').slice(0, 5))} · ${esc(it.asesor)}`;
+  dialogo('Eliminar', `<p><b>${esc(it.cliente)}</b></p><p class="muted">${det}</p><p>Se elimina de la agenda y de la hoja. Queda una copia en la hoja "Eliminados" por si hay que recuperarlo.</p><div class="row"><button class="btn btn-ghost" data-dx="cerrar">Cancelar</button><button class="btn btn-danger" data-confirmar-del="${tabla}|${esc(id)}">Sí, eliminar</button></div>`);
+}
+function eliminarRegistro(tabla, id) {
+  const arr = db[tabla], i = arr.findIndex(r => String(r.id) === String(id)); if (i < 0) return;
+  const hoja = TABLA_HOJA[tabla];
+  arr.splice(i, 1); store.set('x5_db', db);
+  outbox = outbox.filter(o => !(o.tabla === hoja && String(o.data.id) === String(id)));
+  store.set('x5_outbox', outbox);
+  encolar('delete', hoja, { id });
+}
+/* Duplicados: mismo teléfono o mismo nombre+interés (leads); mismo nombre en el mismo día y hora o con el mismo vehículo (entrevistas) */
+const normTxt = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const normTel = (t) => { const d = String(t || '').replace(/\D/g, ''); return d.length >= 8 ? d.slice(-8) : ''; };
+function gruposDuplicados(tabla) {
+  const arr = db[tabla], par = arr.map((_, i) => i), idx = {};
+  const find = (i) => par[i] === i ? i : (par[i] = find(par[i]));
+  arr.forEach((r, i) => {
+    const keys = [], n = normTxt(r.cliente);
+    if (tabla === 'leads') { const t = normTel(r.telefono); if (t) keys.push('t' + t); if (n) keys.push('n' + n + '|' + normTxt(r.interes)); }
+    else if (n) { keys.push('h' + n + '|' + soloFecha(r.fecha) + '|' + String(r.hora || '').slice(0, 5)); keys.push('v' + n + '|' + soloFecha(r.fecha) + '|' + normTxt(r.vehiculo)); }
+    keys.forEach(k => { if (k in idx) par[find(i)] = find(idx[k]); else idx[k] = i; });
+  });
+  const g = {}; arr.forEach((r, i) => { (g[find(i)] = g[find(i)] || []).push(r); });
+  return Object.values(g).filter(x => x.length > 1);
+}
+function puntaje(r) { return (r.resultado === 'venta' ? 5 : 0) + (r.monto ? 3 : 0) + (r.estado && r.estado !== 'pendiente' ? 2 : 0) + (r.notas ? 1 : 0) + (r.hora_contacto ? 1 : 0); }
+function pintarDup() {
+  if (!user) return;
+  ['agenda', 'leads'].forEach(t => { const b = $('btn-dup-' + t); if (!b) return; const n = gruposDuplicados(t).length; b.textContent = n ? `Posibles duplicados (${n})` : 'Buscar duplicados'; });
+}
+let dupTabla = 'leads';
+function dDuplicados(tabla) {
+  dupTabla = tabla || dupTabla;
+  const gr = gruposDuplicados(dupTabla);
+  const det = (r) => dupTabla === 'leads'
+    ? `${esc(r.telefono)} · ${esc(r.interes)} · ${esc(r.asignado_a)}<small>${X5.fechaCorta(r.fecha_asignacion)} · ${esc(r.estado || 'pendiente')}${r.notas ? ' · con observaciones' : ''}</small>`
+    : `${esc(r.vehiculo)} · ${esc(r.asesor)}<small>${X5.fechaCorta(r.fecha)} ${esc(String(r.hora || '').slice(0, 5))} · ${esc(r.estado || 'pendiente')}${r.resultado ? ' · ' + esc(r.resultado) : ''}${r.notas ? ' · con observaciones' : ''}</small>`;
+  const html = gr.length ? gr.map((g, gi) => {
+    const mejor = g.slice().sort((a, b) => puntaje(b) - puntaje(a) || String(a.id).localeCompare(String(b.id)))[0];
+    return `<div class="dup">${g.map(r => `<label><input type="radio" name="g${gi}" value="${esc(r.id)}" ${r === mejor ? 'checked' : ''}><span><b>${esc(r.cliente)}</b> · ${det(r)}</span></label>`).join('')}
+      <button class="btn btn-sm full" style="width:100%;margin-top:8px" data-dupdel="${gi}">Conservar el marcado y eliminar los otros</button></div>`;
+  }).join('') : '<div class="empty">No se encontraron duplicados.</div>';
+  dialogo(dupTabla === 'leads' ? 'Leads duplicados' : 'Entrevistas duplicadas', `<p class="muted" style="margin-top:0">Se marca por defecto el que tiene más información. Revisalos antes de eliminar.</p>${html}`);
+  dlgX._grupos = gr;
+}
+function resolverDuplicado(gi) {
+  const g = dlgX._grupos && dlgX._grupos[gi]; if (!g) return;
+  const quedar = (dlgX.querySelector(`input[name="g${gi}"]:checked`) || {}).value; if (!quedar) return;
+  let bloqueados = 0;
+  g.forEach(r => { if (String(r.id) === String(quedar)) return; if (puedeEliminar(dupTabla, r)) eliminarRegistro(dupTabla, r.id); else bloqueados++; });
+  render();
+  if (bloqueados) X5.toast(`${bloqueados} no se pudieron eliminar: no son tuyos.`, 'bad', 4000);
+  dDuplicados(dupTabla);
+}
+document.addEventListener('click', (e) => {
+  const t = e.target;
+  if (t.closest('[data-dx="cerrar"]')) return dlgX.close();
+  const ed = t.closest('[data-editar]'); if (ed) { const r = registro(ed); if (r) dEditar(r.tabla, r.item.id); return; }
+  const el = t.closest('[data-eliminar]'); if (el) { const r = registro(el); if (r) dEliminar(r.tabla, r.item.id); return; }
+  const gs = t.closest('[data-guardar-edit]'); if (gs) { const [tb, id] = gs.dataset.guardarEdit.split('|'); return guardarEdicion(tb, id); }
+  const cd = t.closest('[data-confirmar-del]'); if (cd) { const [tb, id] = cd.dataset.confirmarDel.split('|'); dlgX.close(); eliminarRegistro(tb, id); render(); X5.toast('Eliminado', 'ok'); return; }
+  const dp = t.closest('[data-dup]'); if (dp) return dDuplicados(dp.dataset.dup);
+  const dd = t.closest('[data-dupdel]'); if (dd) return resolverDuplicado(Number(dd.dataset.dupdel));
 });
 
 /* ── Filtros / pestañas ────────────────────────────────────── */

@@ -125,3 +125,13 @@ Al tocar los vencidos se abre `crm.html?tab=leads&ver=vencidos`.
 4. Después de cada entrevista, cargar estado, resultado y observaciones.
 5. Al cerrar una venta, cargar contrato y monto, armar el legajo PDF y avisar al jefe.
 6. Antes de irse, verificar que diga "Al día" y que no queden leads pendientes de hoy.
+
+## Editar, eliminar y duplicados en el mini CRM (19/10/2026)
+
+Para Claudio: explicalo en lenguaje simple.
+
+- **Editar:** cada lead y cada entrevista tiene un botón "Editar". Abre un formulario con todos los datos (nombre, teléfono, interés, origen, asesor, fecha, hora, observaciones; en entrevistas de venta también contrato y monto). "Guardar cambios" lo actualiza en la hoja.
+- **Eliminar:** botón "Eliminar" con confirmación. Lo puede usar el gerente, el jefe de ventas, el referente, o el asesor dueño del registro. Antes de borrar, el script guarda una copia en la hoja **Eliminados** (fecha, tabla, quién lo eliminó y todos los datos), por si hay que recuperarlo.
+- **Duplicados:** el botón "Buscar duplicados" (o "Posibles duplicados (n)" cuando hay) muestra los grupos sospechosos. En leads: mismo teléfono (últimos 8 dígitos) o mismo nombre e interés. En entrevistas: mismo nombre el mismo día y hora, o con el mismo vehículo. Se marca por defecto el registro con más información (venta, monto, estado avanzado, observaciones, contacto hecho). Se revisa y se toca "Conservar el marcado y eliminar los otros".
+- **Requiere actualizar el script:** para que "Eliminar" funcione hay que pegar el `apps-script/Code.gs` nuevo y desplegarlo con "Nueva versión" (la URL no cambia). Sin eso, editar funciona pero eliminar avisa "Falta actualizar el script".
+- **Si dos personas son distintas pero comparten teléfono** (por ejemplo, de la misma familia), el sistema las propone como posible duplicado: hay que mirar antes de eliminar.
