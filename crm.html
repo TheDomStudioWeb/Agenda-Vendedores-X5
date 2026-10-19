@@ -737,7 +737,7 @@ function sincronizarPanel(t) {
 }
 
 /* ── Render ────────────────────────────────────────────────── */
-function render() { if (user) llenarPersona(); renderAgenda(); renderLeads(); resumen(); pintarDup(); if (SUPERVISION.includes(user.rol) && $('tab-dashboard').classList.contains('active')) renderDashboard(); if (SUPERVISION.includes(user.rol) && $('tab-resumen').classList.contains('active')) renderResumen(); }
+function render() { if (user) llenarPersona(); renderAgenda(); renderLeads(); resumen(); pintarDup(); pintarArch(); if (SUPERVISION.includes(user.rol) && $('tab-dashboard').classList.contains('active')) renderDashboard(); if (SUPERVISION.includes(user.rol) && $('tab-resumen').classList.contains('active')) renderResumen(); }
 
 function resumen() {
   const hoy = X5.hoyISO();
@@ -1091,6 +1091,10 @@ function resolverDuplicado(gi) {
 }
 
 /* ── Limpiar / archivar (solo Gerente Comercial) ───────────── */
+function pintarArch() {
+  const n = db.leads.filter(l => l.estado === 'descartado').length + db.agenda.filter(a => a.resultado === 'descartado').length;
+  document.querySelectorAll('button[data-arch].ger-only').forEach(b => { b.textContent = n ? `Limpiar / archivar (${n})` : 'Limpiar / archivar'; });
+}
 function criterioArchivo() {
   const v = (id) => dlgX.querySelector('#' + id);
   return { leads: v('ar-l').checked, entrevistas: v('ar-e').checked, canceladas: v('ar-c').checked, dias: Number(v('ar-d').value) || 0 };
