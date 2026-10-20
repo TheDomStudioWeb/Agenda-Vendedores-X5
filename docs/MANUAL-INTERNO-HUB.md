@@ -163,3 +163,6 @@ Botón **Limpiar / archivar** al lado de "Buscar duplicados", en las pestañas A
 
 ## Imagen de marca (kit X5)
 Todo el Hub usa el kit de marca de X5 Argentina: rojo #E3182D, negro carbón y grafito, plata como acento secundario, tipografía Montserrat. El logo oficial (carpeta `brand/`) va en blanco sobre fondo oscuro y en rojo sobre fondo claro, y cambia solo según el modo del teléfono. Los colores se ajustan en un único lugar: las variables al inicio de `x5-theme.css`. La firma de The DOM Studio Web conserva su dorado.
+
+## Radar de Usados (20/10/2026)
+Es una tarjeta del Hub, entre Mini CRM y Auditoría. Muestra el stock de usados de las agencias con el precio X5 ya calculado. Tiene cuatro vistas: **Cliente** (tarjetas con fotos, para mostrarle al cliente), **Interno** (precio de la agencia, guía y diferencia), **Compra** (buscador de unidades en otras provincias) y **Novedades** (qué se publicó, bajó de precio o salió). El precio X5 se ajusta en el desplegable «Precio X5»: regla (guía + % o precio de agencia + monto fijo), papeles y dólar. Los datos se actualizan solos varias veces al día; la app los pide siempre frescos y nunca los guarda en el teléfono.

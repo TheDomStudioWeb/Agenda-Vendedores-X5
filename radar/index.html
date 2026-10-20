@@ -5,13 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>X5 Cuyo · Radar de Usados</title>
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#161618">
+<link rel="manifest" href="../manifest.json">
 <link rel="icon" href="../icon-192.png">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../x5-theme.css">
 <style>
-  /* Radar de Usados — en prueba. No tiene botón en el Hub ni está en la caché de la app. */
+  /* Radar de Usados — herramienta del Hub (los datos de /data nunca se guardan en la caché de la app). */
   .x5-wrap { max-width: 1100px; }
   .lab { font-size: .62rem; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--dom); border: 1px solid var(--dom-soft); background: var(--dom-soft); padding: 4px 8px; border-radius: 999px; }
   .estado { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
@@ -111,8 +112,8 @@
 <body>
 <header class="x5-top">
   <a class="x5-back" href="../index.html" aria-label="Volver al Hub"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a>
+  <img class="logo logo-mini" src="../brand/x5-logo-blanco.png" alt="X5 Argentina">
   <div><h1>Radar de Usados</h1><div class="sub">Stock de agencias con precio X5</div></div>
-  <span class="spacer"></span><span class="lab">En prueba</span>
 </header>
 
 <main class="x5-wrap">
