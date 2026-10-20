@@ -47,6 +47,8 @@ Muestra al cliente qué porcentaje del vehículo tiene cubierto, cuánto le falt
 ### Gestor Documental (`unificador.html`)
 Escanea hojas con la cámara y arma un legajo en un solo PDF A4.
 - El escáner detecta los bordes, endereza la hoja y ofrece tres filtros: Original, Color mejorado y Documento.
+- Calcula la proporción real de la hoja a partir de la perspectiva: una hoja fotografiada en ángulo ya no sale estirada. Si la forma se parece a una A4 o a una tarjeta (DNI), se ajusta a esa medida.
+- En el Gestor Documental, con la casilla "Abrir la cámara de nuevo después de cada página" activa (viene activada), se escanean varias páginas seguidas: al guardar una, la cámara vuelve a abrirse sola. Para terminar, se cierra la cámara sin sacar foto.
 - También suma fotos o PDFs existentes, permite reordenar páginas y después compartir o guardar.
 
 ### Validador DNI (`dni.html`)

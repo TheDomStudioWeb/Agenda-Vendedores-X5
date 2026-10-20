@@ -45,6 +45,7 @@
       <label class="cap-btn dom"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15h6"/></svg>Agregar archivos<small>Fotos o PDFs</small>
         <input type="file" id="in-files" accept="image/*,application/pdf" multiple hidden></label>
     </div>
+    <label class="seguir" style="display:flex;align-items:center;gap:10px;margin-top:12px;font-size:.88rem"><input type="checkbox" id="seguir" checked style="width:20px;height:20px;accent-color:var(--x5)"><span>Abrir la cámara de nuevo después de cada página. Para terminar, cerrá la cámara sin sacar foto.</span></label>
     <div class="tip-box" style="margin-top:12px"><span>💡</span><span>Apoyá la hoja sobre una superficie oscura y con buena luz: el escáner detecta los bordes solo y endereza la página.</span></div>
   </section>
 
@@ -79,10 +80,11 @@ if (p.get('cliente')) $('nombre').value = p.get('cliente');
 
 async function agregarImagen(file) {
   const canvas = await X5Scanner.abrir(file, { titulo: `Página ${items.length + 1}`, filtro: 'color' });
-  if (!canvas) return;
+  if (!canvas) return false;
   const { blob, width, height } = await X5.comprimir(canvas, 2000, 0.82);
   items.push({ tipo: 'img', blob, url: URL.createObjectURL(blob), w: width, h: height });
   render();
+  return true;
 }
 
 async function agregarPdf(file) {
@@ -99,7 +101,16 @@ async function procesar(files) {
     else if (f.type.startsWith('image/')) await agregarImagen(f);
   }
 }
-$('in-cam').addEventListener('change', async (e) => { const f = [...e.target.files]; e.target.value = ''; await procesar(f); });
+const SEGUIR_LS = 'x5_escaner_seguir';
+try { if (localStorage.getItem(SEGUIR_LS) === '0') $('seguir').checked = false; } catch (e) {}
+$('seguir').addEventListener('change', () => { try { localStorage.setItem(SEGUIR_LS, $('seguir').checked ? '1' : '0'); } catch (e) {} });
+// Varias páginas seguidas: tras guardar una página se vuelve a abrir la cámara. Si se cancela el escáner, se corta.
+$('in-cam').addEventListener('change', async (e) => {
+  const f = [...e.target.files]; e.target.value = '';
+  let agregada = false;
+  for (const x of f) agregada = (await agregarImagen(x)) || agregada;
+  if (agregada && $('seguir').checked) setTimeout(() => $('in-cam').click(), 200);
+});
 $('in-files').addEventListener('change', async (e) => { const f = [...e.target.files]; e.target.value = ''; await procesar(f); });
 
 function render() {

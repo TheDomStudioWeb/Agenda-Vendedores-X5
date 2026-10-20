@@ -92,9 +92,43 @@
     return B.map((v, i) => v / A[i][i]).concat(1);
   }
 
-  function enderezar(img, q) {
+  /* Proporción real de la hoja (ancho/alto) a partir de la perspectiva de sus 4 esquinas.
+     Método de Zhang & He: estima la distancia focal de la cámara y recupera el rectángulo original.
+     Sin esto, una hoja fotografiada en ángulo sale estirada. */
+  function proporcion(q, ancho, alto) {
+    const u0 = ancho / 2, v0 = alto / 2;
+    const m = [q[0], q[1], q[3], q[2]].map(([x, y]) => [x - u0, y - v0, 1]); // TL, TR, BL, BR
+    const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+    const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+    const [m1, m2, m3, m4] = m;
+    const c14 = cross(m1, m4);
+    const k2 = dot(c14, m3) / dot(cross(m2, m4), m3), k3 = dot(c14, m2) / dot(cross(m3, m4), m2);
+    const n2 = [k2 * m2[0] - m1[0], k2 * m2[1] - m1[1], k2 * m2[2] - m1[2]], n3 = [k3 * m3[0] - m1[0], k3 * m3[1] - m1[1], k3 * m3[2] - m1[2]];
+    const diag = Math.hypot(ancho, alto);
+    let f2 = null;
+    if (Math.abs(n2[2]) > 1e-4 && Math.abs(n3[2]) > 1e-4) {
+      f2 = -((n2[0] * n3[0] + n2[1] * n3[1]) / (n2[2] * n3[2]));
+    }
+    // Cámara de teléfono típica: distancia focal ≈ 0,8 de la diagonal. Se usa si la estimación no es creíble.
+    let f = f2 && f2 > 0 ? Math.sqrt(f2) : 0.8 * diag;
+    if (f < 0.35 * diag || f > 2.2 * diag) f = 0.8 * diag;
+    const nn = (n) => { const a = n[0] / f, b = n[1] / f; return Math.hypot(a, b, n[2]); };
+    const r = nn(n2) / nn(n3);
+    return isFinite(r) && r > 0.2 && r < 5 ? r : null;
+  }
+  const FORMATOS = [1 / 1.4142, 1.4142, 1.586, 1 / 1.586]; // A4 vertical/horizontal, tarjeta (DNI) horizontal/vertical
+  function ajustarFormato(r) { for (const f of FORMATOS) if (Math.abs(r / f - 1) < 0.09) return f; return r; }
+
+  function enderezar(img, q, opts = {}) {
     const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
+    // Se achica apenas el recorte (0,8 %) para no arrastrar el borde oscuro de la hoja
+    const cx = q.reduce((a, p) => a + p[0], 0) / 4, cy = q.reduce((a, p) => a + p[1], 0) / 4;
+    q = q.map(([x, y]) => [x + (cx - x) * 0.008, y + (cy - y) * 0.008]);
     let W = Math.max(dist(q[0], q[1]), dist(q[3], q[2])), H = Math.max(dist(q[0], q[3]), dist(q[1], q[2]));
+    if (opts.proporcion !== false) {
+      const r = proporcion(q, img.width, img.height);
+      if (r) { const rr = ajustarFormato(r), area = W * H; H = Math.sqrt(area / rr); W = rr * H; }
+    }
     const lim = 2200 / Math.max(W, H); if (lim < 1) { W *= lim; H *= lim; }
     W = Math.round(W); H = Math.round(H);
     // H inversa: de la salida a la foto original
@@ -259,5 +293,5 @@
     });
   }
 
-  window.X5Scanner = { abrir, enderezar, filtrar, detectar };
+  window.X5Scanner = { abrir, enderezar, filtrar, detectar, proporcion };
 })();
