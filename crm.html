@@ -812,13 +812,14 @@ function renderAgenda() {
 }
 
 function telAR(t) {
+  // Devuelve el número en formato internacional de WhatsApp para Argentina: 549 + código de área + número (10 dígitos en total, sin 0 ni 15).
   let d = String(t || '').replace(/\D/g, '');
   if (!d) return '';
+  if (d.startsWith('54')) { d = d.slice(2); if (d.startsWith('9')) d = d.slice(1); }
   if (d.startsWith('0')) d = d.slice(1);
-  d = d.replace(/^(\d{2,4})15(\d{6,8})$/, '$1$2'); // quita el 15 viejo
-  if (!d.startsWith('54')) d = '54' + d;
-  if (!d.startsWith('549')) d = '549' + d.slice(2);
-  return d;
+  // El 15 solo se quita cuando sobra: código de área + 15 + número suman 12 dígitos.
+  if (d.length === 12) d = d.replace(/^(\d{2,4})15(\d{6,8})$/, '$1$2');
+  return '549' + d;
 }
 
 function renderLeads() {
