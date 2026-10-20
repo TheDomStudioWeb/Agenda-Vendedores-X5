@@ -500,12 +500,10 @@ async function iniciarSesion() {
     if (r && r.ok && r.token) {
       token = r.token; user = r.usuario;
     } else if (r && r.ok === false) {
-      throw new Error(r.error === 'clave_incorrecta' ? 'Clave incorrecta' : 'Usuario no habilitado');
+      const msg = { clave_incorrecta: 'Clave incorrecta', demasiados_intentos: 'Demasiados intentos. Esperá 10 minutos y probá de nuevo.' };
+      throw new Error(msg[r.error] || 'Usuario no habilitado');
     } else {
-      // Backend viejo (sin login en servidor): validación local transitoria
-      const p = (db.personal || []).find(x => x.nombre === nombre);
-      if (!p || String(p.clave) !== String(clave)) throw new Error('Clave incorrecta');
-      user = { ...p }; delete user.clave;
+      throw new Error('No se pudo verificar tu clave. Revisá la conexión.');
     }
     store.set('x5_session', { user, token });
     await sincronizar();

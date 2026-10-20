@@ -97,7 +97,8 @@ Al tocar los vencidos se abre `crm.html?tab=leads&ver=vencidos`.
 - **Backend:** Google Apps Script (`apps-script/Code.gs`), publicado como aplicación web.
   - Login validado en el servidor con token firmado. Las claves nunca salen de la planilla.
   - Escribe por nombre de columna y crea las columnas que falten.
-  - `MODO_COMPATIBLE`: si es `true`, permite leer sin clave. Conviene dejarlo en `false` cuando todo use token o clave.
+  - `MODO_COMPATIBLE`: desde la v2.2 viene en `false`: sin iniciar sesión (o sin la clave del widget, `LAUNCHER_KEY`) no se puede leer ni escribir nada. Si algún widget viejo deja de mostrar datos, hay que agregarle `&key=<LAUNCHER_KEY>` a su dirección.
+- Seguridad del login: después de 5 claves incorrectas de un mismo usuario, el acceso queda bloqueado 10 minutos.
   - Para publicar cambios: Implementar → Administrar implementaciones → editar → **Nueva versión**. La URL no cambia.
 - **Android:** carpeta `android/` del repo, un WebView nativo que carga la web. Agrega guardar en Descargas, compartir, cámara y apertura de enlaces externos. Guía de compilación: `docs/APK-ANDROID.md`.
 

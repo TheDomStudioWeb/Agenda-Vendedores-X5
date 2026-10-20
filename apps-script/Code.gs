@@ -7,6 +7,8 @@
  *    => Corrige que las observaciones de los Leads se borraban.
  *  - Las claves del personal NUNCA salen del servidor.
  *  - Login validado en el servidor; devuelve un token firmado (30 días).
+ *  - v2.2: lectura y escritura cerradas sin sesión (MODO_COMPATIBLE = false) y
+ *    bloqueo de 10 minutos tras 5 claves incorrectas.
  *  - Cada usuario recibe solo la agenda y los leads que le corresponden.
  *  - Escrituras con LockService (evita filas pisadas si dos guardan a la vez).
  *  - Respuestas con { ok: true/false } para que la app sepa si se guardó.
@@ -25,8 +27,10 @@
 // true  = la lectura sin token sigue funcionando (sin claves) para no romper
 //         integraciones viejas (ej. un widget). Pasalo a false cuando todo
 //         use token o LAUNCHER_KEY.
-const MODO_COMPATIBLE = true;
+const MODO_COMPATIBLE = false; // CERRADO: sin sesión (token) o clave del widget no se lee ni se escribe nada
 const DIAS_TOKEN = 30;
+const MAX_INTENTOS_LOGIN = 5;   // errores de clave permitidos por usuario
+const MIN_BLOQUEO_LOGIN = 10;   // minutos de bloqueo tras superarlos
 const ROLES_SUPERVISION = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
 const ROL_ARCHIVO = 'Gerente Comercial'; // único rol que archiva y restaura
 
@@ -315,10 +319,25 @@ function restaurarArchivo_(items) {
 }
 
 // ── Login y tokens ────────────────────────────────────────────────
+function iguales_(a, b) { // comparación sin cortar en la primera diferencia
+  a = String(a); b = String(b);
+  let r = a.length ^ b.length;
+  for (let i = 0; i < Math.max(a.length, b.length); i++) r |= (a.charCodeAt(i) || 0) ^ (b.charCodeAt(i) || 0);
+  return r === 0;
+}
+
 function login_(nombre, clave) {
+  const cache = CacheService.getScriptCache();
+  const kInt = 'intentos_' + Utilities.base64EncodeWebSafe(String(nombre)).slice(0, 80);
+  const intentos = Number(cache.get(kInt) || 0);
+  if (intentos >= MAX_INTENTOS_LOGIN) return { ok: false, error: 'demasiados_intentos' };
   const persona = leerHoja_(HOJAS.personal).find(p => String(p.nombre) === String(nombre));
   if (!persona || String(persona.estado) !== 'Activo') return { ok: false, error: 'usuario_invalido' };
-  if (String(persona.clave) !== String(clave)) return { ok: false, error: 'clave_incorrecta' };
+  if (!iguales_(persona.clave, clave)) {
+    cache.put(kInt, String(intentos + 1), MIN_BLOQUEO_LOGIN * 60);
+    return { ok: false, error: 'clave_incorrecta' };
+  }
+  cache.remove(kInt);
   const exp = Date.now() + DIAS_TOKEN * 86400000;
   return { ok: true, token: firmarToken_(persona.nombre, exp), usuario: limpiarPersona_(persona) };
 }
