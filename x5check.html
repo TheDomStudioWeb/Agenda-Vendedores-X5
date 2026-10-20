@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#161618">
 <title>X5 Check · Checklist Vehicular</title>
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="x5-theme.css">
 <script src="libs/docx.min.js"></script>
 <style>
@@ -42,6 +42,7 @@
 <body>
 <header class="x5-top">
   <a class="x5-back" href="index.html" aria-label="Volver al Hub"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a>
+  <img class="logo logo-mini" src="brand/x5-logo-blanco.png" alt="X5 Argentina">
   <div><h1>X5 Check</h1><div class="sub">Peritaje y recepción de unidades</div></div>
   <div class="spacer"></div>
   <button class="btn btn-ghost btn-sm" id="btn-nuevo" type="button">Nuevo</button>
@@ -193,7 +194,7 @@ function borrarFirma() { g.clearRect(0, 0, cv.width, cv.height); firmado = false
 $('btn-borrar-firma').addEventListener('click', borrarFirma);
 
 /* ── DOCX ────────────────────────────────────────────────── */
-const AZUL = '0B6E8A', DORADO = 'A8841F';
+const AZUL = 'B80F22', DORADO = '55595F';
 const colorEstado = { B: '12A066', R: 'C98A0E', M: 'D93A3A', NA: '777777' };
 const txtEstado = { B: 'Bueno', R: 'Regular', M: 'Malo', NA: 'N/A' };
 

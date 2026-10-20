@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#161618">
 <title>Mini CRM · X5 Cuyo</title>
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="x5-theme.css">
 <style>
   body { padding-bottom: calc(76px + var(--safe-bottom)); }
@@ -59,9 +59,9 @@
   @media (max-width: 520px) { .rep-tabla { font-size: .72rem; } .rep-tabla th, .rep-tabla td { padding: 6px 3px; } .rep-tabla td { white-space: nowrap; } .rep-tabla td:first-child { white-space: normal; } .rep .kpis { grid-template-columns: 1fr 1fr; } .rep-2 { grid-template-columns: 1fr; } .rep-head .rep-brand { display: none; } }
   /* Versión para PDF: hoja A4 clara, sin importar el tema del teléfono */
   .rep-pdf { position: fixed; left: -10000px; top: 0; width: 794px; padding: 36px 40px; background: #fff; color: #0d1117; color-scheme: light;
-    --surface: #fff; --surface-2: #f6f8fa; --surface-3: #eceff3; --line: rgba(10,20,30,.1); --line-strong: rgba(10,20,30,.2);
-    --text: #0d1117; --muted: #5b6573; --faint: #8a93a0; --x5: #0093b8; --x5-strong: #007a99; --x5-soft: rgba(0,147,184,.1);
-    --dom: #a8841f; --dom-strong: #8c6d16; --dom-soft: rgba(168,132,31,.12); --ok: #12a066; --ok-soft: rgba(18,160,102,.12);
+    --surface: #fff; --surface-2: #F7F7F8; --surface-3: #E8E9EB; --line: rgba(22,22,24,.1); --line-strong: rgba(22,22,24,.2);
+    --text: #161618; --muted: #55595F; --faint: #8A8E95; --x5: #E3182D; --x5-strong: #B80F22; --x5-soft: rgba(227,24,45,.1); --x5-text: #E3182D;
+    --dom: #55595F; --dom-strong: #3E4247; --dom-soft: rgba(85,89,95,.12); --ok: #12a066; --ok-soft: rgba(18,160,102,.12);
     --warn: #c98a0e; --warn-soft: rgba(201,138,14,.14); --bad: #d93a3a; --bad-soft: rgba(217,58,58,.1); }
   .rep-pdf .rep .kpis { grid-template-columns: repeat(4, 1fr); }
   .rep-pdf .rep-2 { grid-template-columns: 1fr 1fr; }
@@ -179,7 +179,7 @@
 
 <!-- ── LOGIN ─────────────────────────────────────────────── -->
 <div id="login">
-  <div class="brandmark"><b>X5</b> CUYO</div>
+  <img class="logo" src="brand/x5-logo-blanco.png" alt="X5 Argentina" style="width:112px;margin-bottom:10px">
   <div class="tag">Mini CRM comercial</div>
   <div class="card" id="login-box" hidden>
     <div class="field"><label for="user-select">Usuario</label><select id="user-select"><option value="">Seleccioná tu usuario…</option></select></div>
@@ -193,6 +193,7 @@
 <!-- ── APP ────────────────────────────────────────────────── -->
 <header class="x5-top">
   <a class="x5-back" href="index.html" aria-label="Volver al Hub"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a>
+  <img class="logo logo-mini" src="brand/x5-logo-blanco.png" alt="X5 Argentina">
   <div><h1 id="greeting">Mini CRM</h1><div class="sub" id="user-role"></div></div>
   <div class="spacer"></div>
   <button class="btn btn-ghost btn-icon hidden" id="btn-avisos" title="Avisos por Telegram" aria-label="Avisos por Telegram"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></button>
@@ -1275,7 +1276,7 @@ function dona(el, obj) {
   const arr = Object.entries(obj).sort((a, b) => b[1] - a[1]);
   const total = arr.reduce((s, x) => s + x[1], 0);
   if (!total) { el.innerHTML = '<div class="empty">Sin ventas en el período</div>'; return; }
-  const cols = ['var(--x5)', 'var(--dom)', 'var(--ok)', '#8b7cf6', 'var(--warn)', 'var(--faint)'];
+  const cols = ['var(--x5)', 'var(--dom)', 'var(--ok)', '#7C8087', 'var(--warn)', 'var(--faint)'];
   const R = 42, C = 2 * Math.PI * R; let off = 0;
   const segs = arr.map(([k, v], i) => {
     const len = v / total * C;

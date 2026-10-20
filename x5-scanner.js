@@ -18,14 +18,14 @@
   .xs-stage canvas{max-width:100%;max-height:100%;display:block}
   .xs-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
   .xs-h{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;touch-action:none;cursor:grab;display:grid;place-items:center}
-  .xs-h::after{content:'';width:18px;height:18px;border-radius:50%;background:rgba(0,200,245,.25);border:3px solid #00c8f5;box-shadow:0 0 0 3px rgba(0,0,0,.35)}
-  .xs-loupe{position:absolute;width:110px;height:110px;border-radius:50%;border:3px solid #00c8f5;overflow:hidden;pointer-events:none;display:none;box-shadow:0 6px 20px rgba(0,0,0,.6);background:#000}
+  .xs-h::after{content:'';width:18px;height:18px;border-radius:50%;background:rgba(227,24,45,.25);border:3px solid #E3182D;box-shadow:0 0 0 3px rgba(0,0,0,.35)}
+  .xs-loupe{position:absolute;width:110px;height:110px;border-radius:50%;border:3px solid #E3182D;overflow:hidden;pointer-events:none;display:none;box-shadow:0 6px 20px rgba(0,0,0,.6);background:#000}
   .xs-loupe canvas{width:100%;height:100%}
   .xs-bar{padding:10px 12px calc(12px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:10px;background:#0b0c0f}
   .xs-f{display:flex;gap:6px}.xs-f button{flex:1;padding:9px 6px;border-radius:10px;border:1px solid #2a2f37;background:#15181d;color:#cfd5dc;font-weight:600;font-size:.78rem}
-  .xs-f button.on{border-color:#00c8f5;color:#00c8f5;background:rgba(0,200,245,.1)}
+  .xs-f button.on{border-color:#E3182D;color:#E3182D;background:rgba(227,24,45,.1)}
   .xs-a{display:flex;gap:8px}.xs-a button{flex:1;padding:13px;border-radius:12px;border:0;font-weight:700;font-size:.92rem}
-  .xs-cancel{background:#1c2026;color:#fff}.xs-rot{background:#1c2026;color:#fff;flex:0 0 56px!important}.xs-ok{background:#00c8f5;color:#041015}
+  .xs-cancel{background:#1c2026;color:#fff}.xs-rot{background:#1c2026;color:#fff;flex:0 0 56px!important}.xs-ok{background:#E3182D;color:#fff}
   .xs-prev{max-width:100%;max-height:100%;object-fit:contain}
   .xs-busy{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.55);font-weight:600}
   `;
@@ -168,7 +168,7 @@
       const bg = document.createElement('div'); bg.className = 'xs-bg';
       bg.innerHTML = `
         <div class="xs-top"><div><b>${opts.titulo || 'Ajustá el documento'}</b><br><span class="xs-sub">Arrastrá las esquinas hasta los bordes de la hoja</span></div></div>
-        <div class="xs-stage"><canvas class="xs-cv"></canvas><svg class="xs-svg"><polygon fill="rgba(0,200,245,.12)" stroke="#00c8f5" stroke-width="2"/></svg><div class="xs-loupe"><canvas width="220" height="220"></canvas></div><div class="xs-busy">Procesando…</div></div>
+        <div class="xs-stage"><canvas class="xs-cv"></canvas><svg class="xs-svg"><polygon fill="rgba(227,24,45,.12)" stroke="#E3182D" stroke-width="2"/></svg><div class="xs-loupe"><canvas width="220" height="220"></canvas></div><div class="xs-busy">Procesando…</div></div>
         <div class="xs-bar">
           <div class="xs-f hidden-f">
             <button data-f="original">Original</button><button data-f="color">Color mejorado</button><button data-f="doc">Documento</button>
@@ -228,7 +228,7 @@
         loupe.style.top = (ly > 160 ? ly - 150 : ly + 40) + 'px';
         const r = 40 / k; lg.fillStyle = '#000'; lg.fillRect(0, 0, 220, 220);
         lg.drawImage(fuente, x - r, y - r, r * 2, r * 2, 0, 0, 220, 220);
-        lg.strokeStyle = '#00c8f5'; lg.lineWidth = 2; lg.beginPath(); lg.moveTo(110, 90); lg.lineTo(110, 130); lg.moveTo(90, 110); lg.lineTo(130, 110); lg.stroke();
+        lg.strokeStyle = '#E3182D'; lg.lineWidth = 2; lg.beginPath(); lg.moveTo(110, 90); lg.lineTo(110, 130); lg.moveTo(90, 110); lg.lineTo(130, 110); lg.stroke();
       });
       const soltar = () => { drag = -1; loupe.style.display = 'none'; };
       stage.addEventListener('pointerup', soltar); stage.addEventListener('pointercancel', soltar);

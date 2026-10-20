@@ -160,3 +160,6 @@ Botón **Limpiar / archivar** al lado de "Buscar duplicados", en las pestañas A
 - Lo archivado deja de aparecer en la agenda, en los leads y en el resumen semanal y las métricas, porque ya no está en las hojas principales.
 - Requiere conexión. Si el script de la planilla todavía no se actualizó, avisa "Falta actualizar el script de la planilla para poder archivar".
 - Hojas de la planilla: **Eliminados** guarda lo borrado a mano; **Archivo** guarda lo archivado.
+
+## Imagen de marca (kit X5)
+Todo el Hub usa el kit de marca de X5 Argentina: rojo #E3182D, negro carbón y grafito, plata como acento secundario, tipografía Montserrat. El logo oficial (carpeta `brand/`) va en blanco sobre fondo oscuro y en rojo sobre fondo claro, y cambia solo según el modo del teléfono. Los colores se ajustan en un único lugar: las variables al inicio de `x5-theme.css`. La firma de The DOM Studio Web conserva su dorado.
