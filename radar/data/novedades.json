@@ -1,6 +1,226 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "nuevo",
+   "id": "maipu-181736",
+   "auto": "Citroen C3 2014",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "maipu-178863",
+   "auto": "Fiat Palio 2016",
+   "precio": 15000000,
+   "moneda": "ARS",
+   "dias": 28
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "maipu-178402",
+   "auto": "Volkswagen Gol 2017",
+   "precio": 15000000,
+   "moneda": "ARS",
+   "dias": 34
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "maipu-169210",
+   "auto": "Ford Fiesta 2016",
+   "precio": 15000000,
+   "moneda": "ARS",
+   "dias": 123
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "nuevo",
+   "id": "autocity-9233df36-5e0a-462a-9b65-f797e9f4e352",
+   "auto": "Honda Fit 2012",
+   "precio": 16899999,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "nuevo",
+   "id": "autocity-79e5331f-e01a-4302-a13d-0300fcb3d2fe",
+   "auto": "Toyota Yaris 2016",
+   "precio": 19499999,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "nuevo",
+   "id": "autocity-9860049a-a681-4e33-818c-0a47cc3f388f",
+   "auto": "Jmev Easy 2026",
+   "precio": 23600000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "precio",
+   "id": "autocity-94bba391-a46a-4306-8635-578249d50b39",
+   "auto": "Mercedes Benz C 2012",
+   "antes": 25099999,
+   "precio": 23999999,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "nuevo",
+   "id": "autocity-9b76fd5f-13a0-4fc6-bbd5-d20d729b9681",
+   "auto": "Fiat Cronos 2024",
+   "precio": 31500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-f7ccb9a9-ee7c-4d86-b28b-0c3b60970aee",
+   "auto": "Volkswagen Up! 2016",
+   "precio": 14300000,
+   "moneda": "ARS",
+   "dias": 2
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-e50f9c44-2621-473d-845f-a783c64daec7",
+   "auto": "Volkswagen Up! 2016",
+   "precio": 15899999,
+   "moneda": "ARS",
+   "dias": 3
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-420effc7-7511-4fed-92fc-0d51bcc9555d",
+   "auto": "Fiat Fiorino 2021",
+   "precio": 18900000,
+   "moneda": "ARS",
+   "dias": 3
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-01d21539-f67f-4883-be79-58574824e146",
+   "auto": "Volkswagen Polo 2018",
+   "precio": 19899999,
+   "moneda": "ARS",
+   "dias": 6
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-e0902b9a-3075-42ac-a83d-24f8ac457b9c",
+   "auto": "Renault Kwid 2025",
+   "precio": 20500000,
+   "moneda": "ARS",
+   "dias": 6
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-2a83e434-9ae1-4bee-a17f-a060ddae0074",
+   "auto": "Peugeot 208 2021",
+   "precio": 23900000,
+   "moneda": "ARS",
+   "dias": 3
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-42fed4d3-3a56-4072-a047-75da164115b6",
+   "auto": "Volkswagen Amarok 2023",
+   "precio": 32150000,
+   "moneda": "ARS",
+   "dias": 6
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-1f81d160-cff7-4f7c-bdf0-cca6c59ec11a",
+   "auto": "Volkswagen Nivus 2024",
+   "precio": 33250000,
+   "moneda": "ARS",
+   "dias": 6
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-506986e9-d293-47b0-a3f3-e7ad4d779e9f",
+   "auto": "BYD Dolphin Mini 2026",
+   "precio": 21600,
+   "moneda": "USD",
+   "dias": 6
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-cab5b063-7609-4116-99fe-7e243d686b2d",
+   "auto": "BYD Dolphin Mini 2026",
+   "precio": 21600,
+   "moneda": "USD",
+   "dias": 6
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-7b89752d-c4a0-4986-a5cd-1985d29286dd",
+   "auto": "Jeep Renegade 2022",
+   "precio": 33900000,
+   "moneda": "ARS",
+   "dias": 6
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-56be40ff-d377-4610-98ab-68bade1a03a1",
+   "auto": "BYD Dolphin Mini 2026",
+   "precio": 22900,
+   "moneda": "USD",
+   "dias": 6
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-164a1266-b7a1-42e8-920a-0dcfda7e8c61",
+   "auto": "Kia K3 Cross 2026",
+   "precio": 42600000,
+   "moneda": "ARS",
+   "dias": 6
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-ab90ce5a-2166-4fb1-8f6d-b799d5c9c34d",
+   "auto": "Nissan Frontier 2025",
+   "precio": 51900000,
+   "moneda": "ARS",
+   "dias": 3
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-5db72b60-807d-4f1b-a229-95c943f04bcf",
+   "auto": "Toyota Hilux 2026",
+   "precio": 75900000,
+   "moneda": "ARS",
+   "dias": 3
+  },
+  {
+   "fecha": "2026-10-20T15:21:15.752Z",
+   "tipo": "baja",
+   "id": "autocity-5b45c8e1-284d-437e-a7d1-67eb513d4ec0",
+   "auto": "RAM 1500 2024",
+   "precio": 59500,
+   "moneda": "USD",
+   "dias": 6
+  },
+  {
    "fecha": "2026-10-19T21:43:57.137Z",
    "tipo": "nuevo",
    "id": "maipu-181687",
