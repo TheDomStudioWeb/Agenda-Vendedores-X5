@@ -1,6 +1,58 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-20T20:49:50.229Z",
+   "tipo": "nuevo",
+   "id": "maipu-181760",
+   "auto": "Chevrolet Camaro 2017",
+   "precio": 69000,
+   "moneda": "USD"
+  },
+  {
+   "fecha": "2026-10-20T20:49:50.229Z",
+   "tipo": "nuevo",
+   "id": "maipu-181712",
+   "auto": "Volkswagen Amarok 2024",
+   "precio": 45000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-20T20:49:50.229Z",
+   "tipo": "baja",
+   "id": "maipu-181562",
+   "auto": "Fiat Idea 2015",
+   "precio": 13500000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-20T20:49:50.229Z",
+   "tipo": "baja",
+   "id": "maipu-181520",
+   "auto": "Chevrolet Spin 2015",
+   "precio": 13000000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-20T20:49:50.229Z",
+   "tipo": "baja",
+   "id": "maipu-179611",
+   "auto": "Ford Territory 2024",
+   "precio": 45000000,
+   "moneda": "ARS",
+   "dias": 20
+  },
+  {
+   "fecha": "2026-10-20T20:49:50.229Z",
+   "tipo": "baja",
+   "id": "maipu-179391",
+   "auto": "Renault Sandero 2021",
+   "precio": 16000000,
+   "moneda": "ARS",
+   "dias": 22
+  },
+  {
    "fecha": "2026-10-20T15:21:15.752Z",
    "tipo": "nuevo",
    "id": "maipu-181736",
