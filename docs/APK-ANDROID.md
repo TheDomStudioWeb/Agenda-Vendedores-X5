@@ -31,7 +31,7 @@ La web detecta la app por `window.X5Android` (lo usa `x5-core.js`) y por el agre
 | Nombre visible | X5 Cuyo |
 | Paquete (applicationId) | `com.thedomstudioweb.x5cuyo` |
 | Android mínimo | 7.0 (API 24) |
-| Versión | `versionName` 2.0 · `versionCode` 1 |
+| Versión | `versionName` 2.1 · `versionCode` 2 |
 | Herramientas | AGP 8.7.3 · Kotlin 2.0.21 · Gradle 8.9 · JDK 17 |
 
 ## Compilar la APK (primera vez)

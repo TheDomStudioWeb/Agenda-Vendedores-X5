@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.X5Cuyo" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/x5_cyan</item>
-        <item name="colorAccent">@color/x5_gold</item>
+        <item name="colorPrimary">@color/x5_red</item>
+        <item name="colorAccent">@color/x5_silver</item>
         <item name="android:windowBackground">@color/x5_black</item>
         <item name="android:statusBarColor">@color/x5_black</item>
         <item name="android:navigationBarColor">@color/x5_black</item>
