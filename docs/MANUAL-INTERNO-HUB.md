@@ -22,7 +22,7 @@ Agenda de entrevistas y seguimiento de leads. Es la única herramienta que pide 
 - **Pestañas:** Agenda, Leads y Métricas. Métricas la ven solo los roles Gerente Comercial, Jefe de Ventas y Referente.
 - **Resumen del día:** entrevistas de hoy, leads de hoy y vencidos.
 - **Agenda:** se carga prospecto, vehículo, lugar (agencia o domicilio con auto de flota), asesor, fecha y hora. Después de la entrevista se marca el estado (Pendiente, Realizada o Cancelada) y el resultado (Venta cerrada, En seguimiento o Descartado). Si hubo venta, se cargan N° de contrato y monto.
-- **Leads:** posibles clientes asignados por un jefe, con hora límite de contacto. Estados: Pendiente, Entrevista pactada, En seguimiento y Descartado/frío. Filtros: Para hoy, Abiertos, Vencidos y Todos.
+- **Leads:** posibles clientes asignados por un jefe, con hora límite de contacto. Los asesores también pueden **cargar sus propios leads** (botón «Cargar un lead propio»): piden prospecto, teléfono, interés, origen y observaciones; el lead queda asignado al propio asesor, sin hora límite (no se marca vencido ni avisa al jefe). Si el teléfono ya existe en su lista, la app lo avisa antes de cargarlo. Un asesor no puede asignar leads a otra persona: eso es de jefes y gerencia (el script también lo exige). Estados: Pendiente, Entrevista pactada, En seguimiento y Descartado/frío. Filtros: Para hoy, Abiertos, Vencidos y Todos.
 - **Observaciones y notas:** se guardan solas mientras se escribe. Si no hay señal, quedan en una cola del teléfono y se envían al volver la conexión.
 - **Indicador de conexión:** "Al día" (verde), "Guardando" (amarillo) o "Sin señal" (rojo).
 - **Campanita:** activa los avisos de Telegram.

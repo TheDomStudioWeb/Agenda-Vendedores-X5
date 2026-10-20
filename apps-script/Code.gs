@@ -124,9 +124,11 @@ function doPost(e) {
 
       if (body.action === 'add') {
         if (buscarFila_(sheet, datos.id) > 0) return json_({ ok: true, duplicado: true });
+        // Un asesor solo puede cargar leads propios; asignarle a otro es de supervisión
+        if (nombreHoja === HOJAS.leads && usuario && ROLES_SUPERVISION.indexOf(usuario.rol) < 0 && String(datos.asignado_a) !== String(usuario.nombre)) return json_({ ok: false, error: 'sin_permiso' });
         const fila = headers.map(h => valorParaCelda_(h, h === 'actualizado' ? new Date() : datos[h]));
         sheet.appendRow(fila);
-        if (nombreHoja === HOJAS.leads) avisos.push(() => avisarLeadAsignado_(datos, usuario));
+        if (nombreHoja === HOJAS.leads && !(usuario && String(datos.asignado_a) === String(usuario.nombre))) avisos.push(() => avisarLeadAsignado_(datos, usuario)); // el lead propio no se avisa a uno mismo
         return json_({ ok: true });
       }
 
@@ -641,7 +643,7 @@ function revisarLeadsVencidos_() {
   const c = (h) => headers.indexOf(h);
   for (let r = 1; r < data.length; r++) {
     const row = data[r];
-    if (String(row[c('estado')]) !== 'pendiente' || row[c('aviso_vencido')]) continue;
+    if (String(row[c('estado')]) !== 'pendiente' || row[c('aviso_vencido')] || !row[c('hora_limite')]) continue; // sin hora límite = lead propio
     const limite = fechaHora_(row[c('fecha_asignacion')], row[c('hora_limite')], tz);
     if (!limite || limite > ahora) continue;
     const lead = {}; headers.forEach((h, i) => lead[h] = normalizar_(row[i], tz, h));

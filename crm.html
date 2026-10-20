@@ -259,7 +259,7 @@
   <section id="tab-leads" class="tab">
     <div class="card hidden" id="panel-asignar">
       <details class="newform">
-        <summary>Asignar nuevo lead <span class="plus">+</span></summary>
+        <summary><span id="sum-asignar">Asignar nuevo lead</span> <span class="plus">+</span></summary>
         <form id="form-leads" autocomplete="off">
           <div class="row field"><input id="ld-cliente" required placeholder="Prospecto"><input type="tel" id="ld-telefono" required placeholder="Teléfono"></div>
           <div class="row field">
@@ -268,10 +268,10 @@
               <option value="">Origen…</option><option>Meta Ads</option><option>Web X5</option><option>Referido</option><option>Redes Asesor</option><option>Salón / Espontáneo</option>
             </select>
           </div>
-          <div class="field"><select id="ld-asignado" required></select></div>
-          <div class="field"><label>Contactar antes de</label><div class="row"><input type="date" id="ld-fecha" required><input type="time" id="ld-hora" required></div></div>
+          <div class="field sup-only"><select id="ld-asignado" required></select></div>
+          <div class="field sup-only"><label>Contactar antes de</label><div class="row"><input type="date" id="ld-fecha" required><input type="time" id="ld-hora" required></div></div>
           <div class="field"><textarea id="ld-notas" rows="2" placeholder="Observaciones iniciales (opcional)"></textarea></div>
-          <button class="btn" type="submit">Asignar lead</button>
+          <button class="btn" type="submit" id="btn-lead">Asignar lead</button>
         </form>
       </details>
     </div>
@@ -531,7 +531,10 @@ function iniciarApp() {
   $('greeting').textContent = 'Hola, ' + String(user.nombre).split(' ')[0];
   $('user-role').textContent = user.rol || '';
   const supervisa = SUPERVISION.includes(user.rol);
-  $('panel-asignar').classList.toggle('hidden', !supervisa);
+  $('panel-asignar').classList.remove('hidden');
+  $('sum-asignar').textContent = supervisa ? 'Asignar nuevo lead' : 'Cargar un lead propio';
+  $('btn-lead').textContent = supervisa ? 'Asignar lead' : 'Cargar lead';
+  document.querySelectorAll('.sup-only').forEach(el => { el.classList.toggle('hidden', !supervisa); el.querySelectorAll('select,input').forEach(c => { c.required = supervisa; }); });
   $('nav-dashboard').classList.toggle('hidden', !supervisa);
   $('nav-resumen').classList.toggle('hidden', !supervisa);
   document.querySelectorAll('.ger-only').forEach(el => el.classList.toggle('hidden', user.rol !== 'Gerente Comercial'));
@@ -592,8 +595,8 @@ function llenarDesplegables() {
 const soloFecha = (v) => String(v || '').split('T')[0];
 const ahora = () => new Date();
 function vencido(fecha, hora) {
-  if (!fecha) return false;
-  const d = new Date(`${soloFecha(fecha)}T${(hora || '23:59').toString().slice(0, 5)}`);
+  if (!fecha || !hora) return false; // lead propio, sin hora límite
+  const d = new Date(`${soloFecha(fecha)}T${hora.toString().slice(0, 5)}`);
   return !isNaN(d) && d < ahora();
 }
 
@@ -843,7 +846,7 @@ function renderLeads() {
     return `
     <article class="item ${esc(l.estado || 'pendiente')} ${venc ? 'vencido' : ''}" data-tabla="leads" data-id="${esc(l.id)}">
       <div class="item-head">
-        <div><h3>${esc(l.cliente)}</h3><div class="time">Contactar antes de ${esc(String(l.hora_limite || '').slice(0, 5))} hs · ${X5.fechaCorta(l.fecha_asignacion)}</div></div>
+        <div><h3>${esc(l.cliente)}</h3><div class="time">${l.hora_limite ? `Contactar antes de ${esc(String(l.hora_limite).slice(0, 5))} hs · ${X5.fechaCorta(l.fecha_asignacion)}` : `Lead propio · cargado el ${X5.fechaCorta(l.fecha_asignacion)}`}</div></div>
         ${venc ? '<span class="chip bad">Vencido</span>' : `<span class="chip">${esc(l.origen)}</span>`}
       </div>
       <div class="meta"><span>Interés: <b>${esc(l.interes)}</b></span><span>${esc(l.asignado_a)}</span><span>${esc(l.telefono)}</span></div>
@@ -965,16 +968,22 @@ $('form-agenda').addEventListener('submit', (e) => {
 
 $('form-leads').addEventListener('submit', (e) => {
   e.preventDefault();
+  const supervisa = SUPERVISION.includes(user.rol);
+  const tel = $('ld-telefono').value.trim();
+  const dup = normTel(tel) && (db.leads || []).find(l => normTel(l.telefono) === normTel(tel));
+  if (dup && !confirm(`Ya hay un lead con ese teléfono: ${dup.cliente} (${dup.asignado_a}). ¿Cargarlo igual?`)) return;
   const item = {
-    id: Date.now().toString(), cliente: $('ld-cliente').value.trim(), telefono: $('ld-telefono').value.trim(),
-    interes: $('ld-interes').value.trim(), origen: $('ld-origen').value, asignado_a: $('ld-asignado').value,
-    fecha_asignacion: $('ld-fecha').value, hora_limite: $('ld-hora').value,
+    id: Date.now().toString(), cliente: $('ld-cliente').value.trim(), telefono: tel,
+    interes: $('ld-interes').value.trim(), origen: $('ld-origen').value,
+    asignado_a: supervisa ? $('ld-asignado').value : user.nombre,
+    fecha_asignacion: supervisa ? $('ld-fecha').value : X5.hoyISO(), hora_limite: supervisa ? $('ld-hora').value : '',
     estado: 'pendiente', resultado: '', hora_contacto: '', notas: $('ld-notas').value.trim()
   };
   db.leads.push(item); store.set('x5_db', db);
   encolar('add', 'Leads', item);
   e.target.reset();
-  X5.toast(`Lead asignado a ${item.asignado_a}`, 'ok');
+  $('form-leads').closest('details').open = false;
+  X5.toast(supervisa ? `Lead asignado a ${item.asignado_a}` : 'Lead cargado en tu lista', 'ok');
   render();
 });
 
