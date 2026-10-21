@@ -78,8 +78,10 @@ let pdfFinal = null;
 const p = new URLSearchParams(location.search);
 if (p.get('cliente')) $('nombre').value = p.get('cliente');
 
-async function agregarImagen(file) {
-  const canvas = await X5Scanner.abrir(file, { titulo: `Página ${items.length + 1}`, filtro: 'color' });
+async function agregarImagen(file, desdeCamara) {
+  // alUsar corre en el mismo toque de "Usar": así el navegador deja reabrir la cámara sin otro toque
+  const canvas = await X5Scanner.abrir(file, { titulo: `Página ${items.length + 1}`, filtro: 'color',
+    alUsar: desdeCamara ? () => { if ($('seguir').checked) $('in-cam').click(); } : null });
   if (!canvas) return false;
   const { blob, width, height } = await X5.comprimir(canvas, 2000, 0.82);
   items.push({ tipo: 'img', blob, url: URL.createObjectURL(blob), w: width, h: height });
@@ -105,11 +107,10 @@ const SEGUIR_LS = 'x5_escaner_seguir';
 try { if (localStorage.getItem(SEGUIR_LS) === '0') $('seguir').checked = false; } catch (e) {}
 $('seguir').addEventListener('change', () => { try { localStorage.setItem(SEGUIR_LS, $('seguir').checked ? '1' : '0'); } catch (e) {} });
 // Varias páginas seguidas: tras guardar una página se vuelve a abrir la cámara. Si se cancela el escáner, se corta.
-$('in-cam').addEventListener('change', async (e) => {
+let cola = Promise.resolve();
+$('in-cam').addEventListener('change', (e) => {
   const f = [...e.target.files]; e.target.value = '';
-  let agregada = false;
-  for (const x of f) agregada = (await agregarImagen(x)) || agregada;
-  if (agregada && $('seguir').checked) setTimeout(() => $('in-cam').click(), 200);
+  cola = cola.then(async () => { for (const x of f) await agregarImagen(x, true); });
 });
 $('in-files').addEventListener('change', async (e) => { const f = [...e.target.files]; e.target.value = ''; await procesar(f); });
 

@@ -284,7 +284,7 @@
             fbar.style.display = 'flex'; btnOk.textContent = 'Usar'; btnCancel.textContent = 'Volver'; sub.textContent = 'Elegí cómo se ve mejor';
             vistaPrevia(); busy.style.display = 'none';
           }, 30);
-        } else { cerrar(filtrar(recorte, filtro)); }
+        } else { try { if (opts.alUsar) opts.alUsar(); } catch (e) {} cerrar(filtrar(recorte, filtro)); }
       };
       bg.querySelector('.xs-cancel').onclick = () => { if (fase === 'filtro') iniciarAjuste(); else cerrar(null); };
 
