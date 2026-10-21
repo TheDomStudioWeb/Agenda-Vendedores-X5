@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-21T15:33:33.769Z",
+ "actualizado": "2026-10-21T20:52:13.327Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 90,
-   "revisado": "2026-10-21T15:33:33.769Z",
-   "actualizado": "2026-10-21T15:33:33.769Z"
+   "autos": 87,
+   "revisado": "2026-10-21T20:52:13.327Z",
+   "actualizado": "2026-10-21T20:52:13.327Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,187 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 206,
-   "revisado": "2026-10-21T15:33:33.769Z",
-   "actualizado": "2026-10-21T15:33:33.769Z"
+   "revisado": "2026-10-21T20:52:13.327Z",
+   "actualizado": "2026-10-21T20:52:13.327Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-181919",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Logan",
+   "version": "Privilege 1.6 16V",
+   "anio": 2017,
+   "km": 110055,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Gris",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 15000000,
+   "precio_sin_imp": 11850000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2810-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2811-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2813-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2814-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2809-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2812-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2808-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2806-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2802-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2799-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2800-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2801-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2807-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2798-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2805-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2803-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2804-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/21/logan/",
+   "publicado": "2026-10-21T15:58:37",
+   "modificado": "2026-10-21T16:06:30",
+   "agencia": "maipu",
+   "alta": "2026-10-21T20:52:13.327Z",
+   "guia": {
+    "min": 11837000,
+    "med": 12742000,
+    "max": 13134000,
+    "n": 5,
+    "mejor": {
+     "version": "LOGAN 4P 1,6 16V PRIVILEGE PLUS 2013",
+     "valor": 13022000,
+     "coincidencias": 3,
+     "empate": 4
+    },
+    "versiones": [
+     [
+      "LOGAN 4P 1,6 EXPRESSION 2014",
+      11837000
+     ],
+     [
+      "LOGAN 4P 1,6 16V PRIVILEGE 2013",
+      12628000
+     ],
+     [
+      "LOGAN 4P 1,6 16V PRIVILEGE 2017",
+      12742000
+     ],
+     [
+      "LOGAN 4P 1,6 16V PRIVILEGE PLUS 2013",
+      13022000
+     ],
+     [
+      "LOGAN 4P 1,6 16V PRIVILEGE PLUS 2017",
+      13134000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-181892",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Duster",
+   "version": "Ph2 Privilege 2.0",
+   "anio": 2017,
+   "km": 183370,
+   "combustible": "Gas/Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": null,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2793-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2794-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2796-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2797-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2792-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2795-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2791-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2789-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2785-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2781-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2782-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2783-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2790-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2784-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2788-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2786-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2787-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/21/duster-2/",
+   "publicado": "2026-10-21T12:30:28",
+   "modificado": "2026-10-21T12:35:42",
+   "agencia": "maipu",
+   "alta": "2026-10-21T20:52:13.327Z",
+   "guia": {
+    "min": 15840000,
+    "med": 17545000,
+    "max": 19706000,
+    "n": 12,
+    "mejor": {
+     "version": "DUSTER 5P 2,0 4X4 PRIVILEGE 2015",
+     "valor": 19706000,
+     "coincidencias": 2,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "DUSTER 5P 1,6 4X2 EXPRESION 2015",
+      15840000
+     ],
+     [
+      "DUSTER OROCH PICK - UP D/C 1,6 DYNAMIQUE",
+      15960000
+     ],
+     [
+      "DUSTER OROCH PICK - UP D/C 1,6 OUTSIDER",
+      16586000
+     ],
+     [
+      "DUSTER 5P 1,6 4X2 DYNAMIQUE 2015",
+      16619000
+     ],
+     [
+      "DUSTER OROCH PICK - UP D/C 2,0 DYNAMIQUE",
+      16889000
+     ],
+     [
+      "DUSTER 5P 2,0 4X2 DAKAR",
+      17403000
+     ],
+     [
+      "DUSTER 5P 1,6 4X2 PRIVILEGE 2015",
+      17545000
+     ],
+     [
+      "DUSTER OROCH PICK - UP D/C 2,0 PRIVELEGE",
+      17696000
+     ],
+     [
+      "DUSTER 5P 2,0 4X2 PRIVILEGE 2015",
+      17701000
+     ],
+     [
+      "DUSTER OROCH PICK - UP D/C 2,0 OUTSIDER PLUS",
+      18166000
+     ],
+     [
+      "DUSTER 5P 2,0 4X4 DAKAR",
+      18197000
+     ],
+     [
+      "DUSTER 5P 2,0 4X4 PRIVILEGE 2015",
+      19706000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-181866",
    "tipo": "auto",
@@ -255,8 +431,8 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia",
-   "precio": null,
-   "precio_sin_imp": null,
+   "precio": 13660000,
+   "precio_sin_imp": 10791400,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2725-1600x1200-1.jpg",
@@ -279,7 +455,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/20/c3/",
    "publicado": "2026-10-20T10:57:07",
-   "modificado": "2026-10-20T11:05:21",
+   "modificado": "2026-10-21T14:31:44",
    "agencia": "maipu",
    "alta": "2026-10-20T15:21:15.752Z",
    "guia": {
@@ -881,8 +1057,8 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": null,
-   "precio_sin_imp": null,
+   "precio": 14000000,
+   "precio_sin_imp": 11060000,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2547-1600x1200-1.jpg",
@@ -905,7 +1081,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/16/ka/",
    "publicado": "2026-10-16T15:06:22",
-   "modificado": "2026-10-19T09:15:29",
+   "modificado": "2026-10-21T14:36:50",
    "agencia": "maipu",
    "alta": "2026-10-16T20:03:09.733Z",
    "guia": {
@@ -2154,124 +2330,6 @@
    }
   },
   {
-   "id": "maipu-180970",
-   "tipo": "auto",
-   "marca": "Renault",
-   "modelo": "Kangoo",
-   "version": "II Express Confort 1.6",
-   "anio": 2022,
-   "km": 90050,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Gris",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": null,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2194-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2195-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2197-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2198-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2193-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2196-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2192-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2200-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2187-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2183-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2184-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2185-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2201-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2186-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2190-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2188-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2189-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/10/09/kangoo/",
-   "publicado": "2026-10-09T11:08:43",
-   "modificado": "2026-10-09T11:13:37",
-   "agencia": "maipu",
-   "alta": "2026-10-09T11:08:43",
-   "guia": {
-    "min": 22079000,
-    "med": 25130000,
-    "max": 32085000,
-    "n": 16,
-    "mejor": {
-     "version": "KANGOO II EXPRESS FURGON 1,6 SCe CONFORT 5A",
-     "valor": 24398000,
-     "coincidencias": 2,
-     "empate": 4
-    },
-    "versiones": [
-     [
-      "KANGOO II EXPRESS FURGON 1,6 SCe CONFORT",
-      22079000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON 1,6 SCe CONFORT STD",
-      22741000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON 1,5 dCi CONFORT",
-      23740000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON 1,6 SCe EMOTION",
-      23747000
-     ],
-     [
-      "KANGOO II VERSION PASAJEROS 1,6 SCe LIFE",
-      23805000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON 1,6 SCe CONFORT 5A",
-      24398000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON 1,5 dCi CONFORT STD",
-      24452000
-     ],
-     [
-      "KANGOO II VERSION PASAJEROS 1,6 SCe ZEN",
-      24985000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON 1,6 SCe CONFORT STD 5A",
-      25130000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON 1,6 SCe EMOTION 5A",
-      25729000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON 1,5 dCi CONFORT 5A",
-      26076000
-     ],
-     [
-      "KANGOO II VERSION PASAJEROS 1,6 SCe STEPWAY",
-      26150000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON 1,5 dCi CONFORT STD 5A",
-      26858000
-     ],
-     [
-      "KANGOO II VERSION PASAJEROS 1,5 dCi STEPWAY",
-      26938000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON ZE 2A",
-      31649000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON ZE MAXI 2A",
-      32085000
-     ]
-    ]
-   }
-  },
-  {
    "id": "maipu-180938",
    "tipo": "auto",
    "marca": "Audi",
@@ -2497,72 +2555,6 @@
      [
       "ONIX 5P 1,0 T RS",
       19261000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "maipu-180862",
-   "tipo": "auto",
-   "marca": "Ford",
-   "modelo": "Bronco",
-   "version": "Sport Badlands 2.0L",
-   "anio": 2026,
-   "km": 880,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Negro",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS",
-   "precio": 63000000,
-   "precio_sin_imp": 52066120,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2126-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2127-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2129-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2130-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2125-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2128-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2124-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2122-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2118-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2114-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2115-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2116-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2123-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2117-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2121-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2119-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2120-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/10/08/bronco/",
-   "publicado": "2026-10-08T16:28:24",
-   "modificado": "2026-10-09T09:20:52",
-   "agencia": "maipu",
-   "alta": "2026-10-08T16:28:24",
-   "guia": {
-    "min": 59354000,
-    "med": 70297000,
-    "max": 123820000,
-    "n": 3,
-    "mejor": {
-     "version": "BRONCO SPORT 5P 2,7 BT 4WD 10AT BADLANDS",
-     "valor": 123820000,
-     "coincidencias": 1,
-     "empate": 2
-    },
-    "versiones": [
-     [
-      "BRONCO SPORT 5P 1,5 4WD 8AT BIG BEND 2025",
-      59354000
-     ],
-     [
-      "BRONCO SPORT 5P 2,0 T 4WD 8AT BADLANDS 2025",
-      70297000
-     ],
-     [
-      "BRONCO SPORT 5P 2,7 BT 4WD 10AT BADLANDS",
-      123820000
      ]
     ]
    }
@@ -3394,91 +3386,6 @@
    }
   },
   {
-   "id": "maipu-179660",
-   "tipo": "auto",
-   "marca": "Peugeot",
-   "modelo": "Partner",
-   "version": "Confort 1.6 Hdi 92",
-   "anio": 2019,
-   "km": 91790,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 17000000,
-   "precio_sin_imp": 13430000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1540-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1541-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1543-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1544-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1542-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1539-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1538-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1536-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1533-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1529-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1530-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1531-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1537-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1532-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1535-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1534-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/09/30/partner/",
-   "publicado": "2026-09-30T17:17:33",
-   "modificado": "2026-09-30T17:36:25",
-   "agencia": "maipu",
-   "alta": "2026-09-30T17:17:33",
-   "guia": {
-    "min": 15303000,
-    "med": 20160000,
-    "max": 21731000,
-    "n": 8,
-    "mejor": {
-     "version": "PARTNER PATAGONICA 1,6 HDi 92 2017",
-     "valor": 20231000,
-     "coincidencias": 3,
-     "empate": 4
-    },
-    "versiones": [
-     [
-      "PARTNER FURGON 1,6 115 CONF 2017",
-      15303000
-     ],
-     [
-      "PARTNER FURGON 1,6 HDi 92 CONF 2017",
-      16741000
-     ],
-     [
-      "PARTNER FURGON 1,6 115 CONF 5A 2017",
-      17011000
-     ],
-     [
-      "PARTNER FURGON 1,6 HDi 92 CONF 5A 2017",
-      18748000
-     ],
-     [
-      "PARTNER PATAGONICA 1,6 N 2018",
-      20160000
-     ],
-     [
-      "PARTNER PATAGONICA 1,6 HDi 92 2017",
-      20231000
-     ],
-     [
-      "PARTNER PATAGONICA 1,6 VTC PLUS 2018",
-      20870000
-     ],
-     [
-      "PARTNER PATAGONICA 1,6 HDi 92 VTC PLUS 2017",
-      21731000
-     ]
-    ]
-   }
-  },
-  {
    "id": "maipu-179635",
    "tipo": "auto",
    "marca": "Renault",
@@ -4207,92 +4114,6 @@
    }
   },
   {
-   "id": "maipu-178764",
-   "tipo": "auto",
-   "marca": "Chevrolet",
-   "modelo": "Onix",
-   "version": "1.0T Ltz",
-   "anio": 2025,
-   "km": 16215,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 26000000,
-   "precio_sin_imp": 20540000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0844-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0845-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0847-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0848-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0843-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0846-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0842-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0840-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0836-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0832-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0833-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0834-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0841-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0835-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0839-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0837-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0838-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/09/21/onix/",
-   "publicado": "2026-09-21T16:47:46",
-   "modificado": "2026-09-21T16:55:27",
-   "agencia": "maipu",
-   "alta": "2026-09-21T16:47:46",
-   "guia": {
-    "min": 22444000,
-    "med": 23754000,
-    "max": 24303000,
-    "n": 8,
-    "mejor": {
-     "version": "ONIX 5P 1,0 T LTZ AT",
-     "valor": 22507000,
-     "coincidencias": 1,
-     "empate": 4
-    },
-    "versiones": [
-     [
-      "ONIX 5P 1,0 T LTZ AT 2026",
-      22444000
-     ],
-     [
-      "ONIX 4P 1,0 T PLUS LTZ AT 2026",
-      22444000
-     ],
-     [
-      "ONIX 5P 1,0 T LTZ AT",
-      22507000
-     ],
-     [
-      "ONIX 4P 1,0 T PLUS LTZ AT",
-      22660000
-     ],
-     [
-      "ONIX 4P 1,0 T PLUS PREMIER II AT",
-      23754000
-     ],
-     [
-      "ONIX 5P 1,0 T PREMIER II AT",
-      24248000
-     ],
-     [
-      "ONIX 5P 1,0 T PREMIER AT 2026",
-      24303000
-     ],
-     [
-      "ONIX 4P 1,0 T PLUS PREMIER AT 2026",
-      24303000
-     ]
-    ]
-   }
-  },
-  {
    "id": "maipu-178698",
    "tipo": "auto",
    "marca": "Volkswagen",
@@ -4354,120 +4175,6 @@
      [
       "T-CROSS 5P 1,6 COMFORTLINE",
       19002000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "maipu-178650",
-   "tipo": "auto",
-   "marca": "Renault",
-   "modelo": "Clio",
-   "version": "Mio Expression Pack II",
-   "anio": 2013,
-   "km": 214040,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 8900000,
-   "precio_sin_imp": 7031000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0792-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0793-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0795-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0796-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0791-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0794-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0790-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0789-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0784-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0780-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0781-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0782-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0788-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0783-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0787-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0785-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0786-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/09/21/clio/",
-   "publicado": "2026-09-21T10:29:49",
-   "modificado": "2026-09-21T10:45:58",
-   "agencia": "maipu",
-   "alta": "2026-09-21T10:29:49",
-   "guia": {
-    "min": 9449000,
-    "med": 10284000,
-    "max": 11553000,
-    "n": 15,
-    "mejor": {
-     "version": "CLIO MIO 5P 1,2 16V EXP PACK II LVAVEL",
-     "valor": 10591000,
-     "coincidencias": 2,
-     "empate": 4
-    },
-    "versiones": [
-     [
-      "CLIO MIO 5P 1,2 16V EXP",
-      9449000
-     ],
-     [
-      "CLIO MIO 3P 1,2 16V EXP PACK I",
-      9797000
-     ],
-     [
-      "CLIO MIO 3P 1,2 16V CONFORT",
-      9804000
-     ],
-     [
-      "CLIO MIO 3P 1,2 16V EXP PACK II LVAVEL",
-      10132000
-     ],
-     [
-      "CLIO MIO 3P 1,2 16V CONFORT PLUS",
-      10174000
-     ],
-     [
-      "CLIO MIO 5P 1,2 16V EXP PACK I",
-      10281000
-     ],
-     [
-      "CLIO MIO 3P 1,2 16V CONFORT PLUS ABS ABG",
-      10284000
-     ],
-     [
-      "CLIO MIO 5P 1,2 16V CONFORT",
-      10284000
-     ],
-     [
-      "CLIO MIO 3P 1,2 16V EXP PACK II",
-      10290000
-     ],
-     [
-      "CLIO MIO 5P 1,2 16V EXP PACK II LVAVEL",
-      10591000
-     ],
-     [
-      "CLIO MIO 3P 1,2 16V GT LINE",
-      10611000
-     ],
-     [
-      "CLIO MIO 5P 1,2 16V CONFORT PLUS",
-      10642000
-     ],
-     [
-      "CLIO MIO 5P 1,2 16V CONFORT PLUS ABS ABG",
-      10728000
-     ],
-     [
-      "CLIO MIO 5P 1,2 16V EXP PACK II",
-      10749000
-     ],
-     [
-      "CLIO MIO 5P 1,2 16V GT LINE",
-      11553000
      ]
     ]
    }
@@ -6410,7 +6117,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Plata",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Strada 2022 Manual 105830 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Maverick 2023 Automatica 80975 38500000 Precio sugerido al público 34457500 Precio sin impuestos nacionales + Precio a confirmar outlet Amarok 2021 Automática 200650 37000000 Precio sugerido al público 33115000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Amarok 2022 Automática 114490 36500000 Precio sugerido al público 32667500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Etios 2019 Automatica 131140 20000000 Precio sugerido al público 15800000 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2019 Manual 93950 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 16180000,
    "precio_sin_imp": 12782200,
    "moneda": "ARS",
@@ -6491,7 +6198,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Strada 2022 Manual 105830 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Maverick 2023 Automatica 80975 38500000 Precio sugerido al público 34457500 Precio sin impuestos nacionales + Precio a confirmar outlet Amarok 2021 Automática 200650 37000000 Precio sugerido al público 33115000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Amarok 2022 Automática 114490 36500000 Precio sugerido al público 32667500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Etios 2019 Automatica 131140 20000000 Precio sugerido al público 15800000 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2019 Manual 93950 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -6563,7 +6270,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Strada 2022 Manual 105830 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Maverick 2023 Automatica 80975 38500000 Precio sugerido al público 34457500 Precio sin impuestos nacionales + Precio a confirmar outlet Amarok 2021 Automática 200650 37000000 Precio sugerido al público 33115000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Amarok 2022 Automática 114490 36500000 Precio sugerido al público 32667500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Etios 2019 Automatica 131140 20000000 Precio sugerido al público 15800000 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2019 Manual 93950 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6620,7 +6327,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Rojo",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Strada 2022 Manual 105830 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Maverick 2023 Automatica 80975 38500000 Precio sugerido al público 34457500 Precio sin impuestos nacionales + Precio a confirmar outlet Amarok 2021 Automática 200650 37000000 Precio sugerido al público 33115000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Amarok 2022 Automática 114490 36500000 Precio sugerido al público 32667500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Etios 2019 Automatica 131140 20000000 Precio sugerido al público 15800000 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2019 Manual 93950 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 11110000,
    "precio_sin_imp": 8776900,
    "moneda": "ARS",
@@ -6967,7 +6674,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Strada 2022 Manual 105830 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Maverick 2023 Automatica 80975 38500000 Precio sugerido al público 34457500 Precio sin impuestos nacionales + Precio a confirmar outlet Amarok 2021 Automática 200650 37000000 Precio sugerido al público 33115000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Amarok 2022 Automática 114490 36500000 Precio sugerido al público 32667500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Etios 2019 Automatica 131140 20000000 Precio sugerido al público 15800000 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2019 Manual 93950 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",

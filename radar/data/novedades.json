@@ -1,6 +1,67 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-21T20:52:13.327Z",
+   "tipo": "nuevo",
+   "id": "maipu-181919",
+   "auto": "Renault Logan 2017",
+   "precio": 15000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-21T20:52:13.327Z",
+   "tipo": "nuevo",
+   "id": "maipu-181892",
+   "auto": "Renault Duster 2017",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-21T20:52:13.327Z",
+   "tipo": "baja",
+   "id": "maipu-180970",
+   "auto": "Renault Kangoo 2022",
+   "precio": null,
+   "moneda": "ARS",
+   "dias": 12
+  },
+  {
+   "fecha": "2026-10-21T20:52:13.327Z",
+   "tipo": "baja",
+   "id": "maipu-180862",
+   "auto": "Ford Bronco 2026",
+   "precio": 63000000,
+   "moneda": "ARS",
+   "dias": 13
+  },
+  {
+   "fecha": "2026-10-21T20:52:13.327Z",
+   "tipo": "baja",
+   "id": "maipu-179660",
+   "auto": "Peugeot Partner 2019",
+   "precio": 17000000,
+   "moneda": "ARS",
+   "dias": 21
+  },
+  {
+   "fecha": "2026-10-21T20:52:13.327Z",
+   "tipo": "baja",
+   "id": "maipu-178764",
+   "auto": "Chevrolet Onix 2025",
+   "precio": 26000000,
+   "moneda": "ARS",
+   "dias": 30
+  },
+  {
+   "fecha": "2026-10-21T20:52:13.327Z",
+   "tipo": "baja",
+   "id": "maipu-178650",
+   "auto": "Renault Clio 2013",
+   "precio": 8900000,
+   "moneda": "ARS",
+   "dias": 30
+  },
+  {
    "fecha": "2026-10-21T15:33:33.769Z",
    "tipo": "nuevo",
    "id": "maipu-181866",
