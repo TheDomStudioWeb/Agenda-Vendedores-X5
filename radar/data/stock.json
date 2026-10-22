@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-22T15:35:06.731Z",
+ "actualizado": "2026-10-22T20:45:29.114Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 85,
-   "revisado": "2026-10-22T15:35:06.731Z",
-   "actualizado": "2026-10-22T15:35:06.731Z"
+   "autos": 88,
+   "revisado": "2026-10-22T20:45:29.114Z",
+   "actualizado": "2026-10-22T20:45:29.114Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,232 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 221,
-   "revisado": "2026-10-22T15:35:06.731Z",
-   "actualizado": "2026-10-22T15:35:06.731Z"
+   "revisado": "2026-10-22T20:45:29.114Z",
+   "actualizado": "2026-10-22T20:45:29.114Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-181997",
+   "tipo": "auto",
+   "marca": "Volkswagen",
+   "modelo": "Vento",
+   "version": "Comfortline 1.4Tsi Aq",
+   "anio": 2019,
+   "km": 88555,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 30000000,
+   "precio_sin_imp": 23700000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2861-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2862-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2864-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2865-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2860-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2863-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2859-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2857-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2853-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2849-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2850-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2851-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2858-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2852-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2856-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2854-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2855-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/22/vento/",
+   "publicado": "2026-10-22T16:38:12",
+   "modificado": "2026-10-22T17:12:54",
+   "agencia": "maipu",
+   "alta": "2026-10-22T20:45:29.114Z",
+   "guia": {
+    "min": 33349000,
+    "med": 34149000,
+    "max": 34149000,
+    "n": 2,
+    "mejor": null,
+    "versiones": [
+     [
+      "VENTO 4P 2,0 TSI GLI APP CONNET DSG NAV 2017",
+      33349000
+     ],
+     [
+      "VENTO 4P 2,0 TSI GLI DSG 2019",
+      34149000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-181973",
+   "tipo": "auto",
+   "marca": "Citroen",
+   "modelo": "C3",
+   "version": "Vti 115 Shine Am18",
+   "anio": 2018,
+   "km": 101955,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 15000000,
+   "precio_sin_imp": 11850000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2844-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2845-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2847-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2848-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2843-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2846-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2842-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2841-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2836-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2832-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2833-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2834-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2840-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2835-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2839-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2837-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2838-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/22/c3-2/",
+   "publicado": "2026-10-22T15:47:17",
+   "modificado": "2026-10-22T15:57:26",
+   "agencia": "maipu",
+   "alta": "2026-10-22T20:45:29.114Z",
+   "guia": {
+    "min": 14640000,
+    "med": 16023000,
+    "max": 18164000,
+    "n": 7,
+    "mejor": {
+     "version": "C 3 5P 1,6 VTi 115 SHINE 6AT",
+     "valor": 16283000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "C 3 5P 1,6 VTi 115 URBAN TRAIL 6AT",
+      14640000
+     ],
+     [
+      "C 3 AIRCROSS 5P 1,6 115 FEEL AT",
+      14902000
+     ],
+     [
+      "C 3 5P 1,6 VTi 115 FEEL 6AT",
+      15902000
+     ],
+     [
+      "C 3 AIRCROSS 5P 1,6 115 SHINE AT",
+      16023000
+     ],
+     [
+      "C 3 AIRCROSS 5P 1,6 115 FEEL 6AT 2019",
+      16255000
+     ],
+     [
+      "C 3 5P 1,6 VTi 115 SHINE 6AT",
+      16283000
+     ],
+     [
+      "C 3 AIRCROSS 5P 1,6 115 SHINE 6AT 2019",
+      18164000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-181948",
+   "tipo": "auto",
+   "marca": "Nissan",
+   "modelo": "March",
+   "version": "Active Pure Drive",
+   "anio": 2019,
+   "km": 95320,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 17500000,
+   "precio_sin_imp": 13825000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2827-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2828-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2830-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2831-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2826-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2829-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2825-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2824-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2819-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2815-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2816-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2817-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2823-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2818-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2822-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2820-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2821-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/22/march/",
+   "publicado": "2026-10-22T15:30:20",
+   "modificado": "2026-10-22T15:41:53",
+   "agencia": "maipu",
+   "alta": "2026-10-22T20:45:29.114Z",
+   "guia": {
+    "min": 13635000,
+    "med": 15470000,
+    "max": 16875000,
+    "n": 7,
+    "mejor": {
+     "version": "MARCH 5P 1,6 ACTIVE 2019",
+     "valor": 14316000,
+     "coincidencias": 1,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "MARCH 5P 1,6 ACTIVE",
+      13635000
+     ],
+     [
+      "MARCH 5P 1,6 ACTIVE 2019",
+      14316000
+     ],
+     [
+      "MARCH 5P 1,6 SENSE",
+      14734000
+     ],
+     [
+      "MARCH 5P 1,6 SENSE 2019",
+      15470000
+     ],
+     [
+      "MARCH 5P 1,6 ADVANCE",
+      16019000
+     ],
+     [
+      "MARCH 5P 1,6 ADVANCE 2019",
+      16820000
+     ],
+     [
+      "MARCH 5P 1,6 MEDIA TECH",
+      16875000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-181919",
    "tipo": "auto",
@@ -1838,8 +2059,8 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": null,
-   "precio_sin_imp": null,
+   "precio": 23500000,
+   "precio_sin_imp": 21032500,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2323-1600x1200-1.jpg",
@@ -1861,7 +2082,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/14/strada/",
    "publicado": "2026-10-14T10:48:04",
-   "modificado": "2026-10-14T10:55:14",
+   "modificado": "2026-10-22T14:19:09",
    "agencia": "maipu",
    "alta": "2026-10-14T10:48:04",
    "guia": {
@@ -5947,7 +6168,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Plata",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Etios 2019 Automatica 131140 20000000 Precio sugerido al público 15800000 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2019 Manual 93950 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Polo 2021 Automatica 90440 30000000 Precio sugerido al público 23700000 Precio sin impuestos nacionales + Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar destacados Sentra 2022 Automatica 75680 30500000 Precio sugerido al público 24095000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 16180000,
    "precio_sin_imp": 12782200,
    "moneda": "ARS",
@@ -6028,7 +6249,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Etios 2019 Automatica 131140 20000000 Precio sugerido al público 15800000 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2019 Manual 93950 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Polo 2021 Automatica 90440 30000000 Precio sugerido al público 23700000 Precio sin impuestos nacionales + Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar destacados Sentra 2022 Automatica 75680 30500000 Precio sugerido al público 24095000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -6100,7 +6321,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Etios 2019 Automatica 131140 20000000 Precio sugerido al público 15800000 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2019 Manual 93950 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Polo 2021 Automatica 90440 30000000 Precio sugerido al público 23700000 Precio sin impuestos nacionales + Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar destacados Sentra 2022 Automatica 75680 30500000 Precio sugerido al público 24095000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6157,7 +6378,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Rojo",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Etios 2019 Automatica 131140 20000000 Precio sugerido al público 15800000 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2019 Manual 93950 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Polo 2021 Automatica 90440 30000000 Precio sugerido al público 23700000 Precio sin impuestos nacionales + Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar destacados Sentra 2022 Automatica 75680 30500000 Precio sugerido al público 24095000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 11110000,
    "precio_sin_imp": 8776900,
    "moneda": "ARS",
@@ -6504,7 +6725,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Etios 2019 Automatica 131140 20000000 Precio sugerido al público 15800000 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2019 Manual 93950 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + Precio a confirmar destacados Kwid 2025 Manual 16550 19200000 Precio sugerido al público 15168000 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Polo 2021 Automatica 90440 30000000 Precio sugerido al público 23700000 Precio sin impuestos nacionales + Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar destacados Sentra 2022 Automatica 75680 30500000 Precio sugerido al público 24095000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",

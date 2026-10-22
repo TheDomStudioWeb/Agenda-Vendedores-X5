@@ -1,6 +1,30 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-22T20:45:29.114Z",
+   "tipo": "nuevo",
+   "id": "maipu-181997",
+   "auto": "Volkswagen Vento 2019",
+   "precio": 30000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-22T20:45:29.114Z",
+   "tipo": "nuevo",
+   "id": "maipu-181973",
+   "auto": "Citroen C3 2018",
+   "precio": 15000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-22T20:45:29.114Z",
+   "tipo": "nuevo",
+   "id": "maipu-181948",
+   "auto": "Nissan March 2019",
+   "precio": 17500000,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-10-22T15:35:06.731Z",
    "tipo": "baja",
    "id": "maipu-181760",
