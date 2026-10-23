@@ -14,6 +14,10 @@
  *  - Respuestas con { ok: true/false } para que la app sepa si se guardó.
  *
  *
+ * v2.3: edición validada en el servidor (un asesor solo modifica lo propio), lista de
+ *       usuarios sin puestos, caché corto del personal, renovación de la sesión mientras se usa
+ *       y limpieza automática de la hoja «Eliminados» (copias de más de 90 días).
+ *
  * v2.1: avisos por Telegram (lead asignado, lead vencido, venta cerrada)
  *       y resumen para el widget del launcher (?action=widget&key=...).
  *       Configuración en docs/AVISOS-Y-WIDGET.md
@@ -24,11 +28,9 @@
  */
 
 // ── Configuración ──────────────────────────────────────────────────
-// true  = la lectura sin token sigue funcionando (sin claves) para no romper
-//         integraciones viejas (ej. un widget). Pasalo a false cuando todo
-//         use token o LAUNCHER_KEY.
-const MODO_COMPATIBLE = false; // CERRADO: sin sesión (token) o clave del widget no se lee ni se escribe nada
 const DIAS_TOKEN = 30;
+const RENOVAR_TOKEN_DIAS = 15;  // si a la sesión le quedan menos días, se renueva sola
+const DIAS_ELIMINADOS = 90;     // las copias de «Eliminados» se limpian pasado este plazo
 const MAX_INTENTOS_LOGIN = 5;   // errores de clave permitidos por usuario
 const MIN_BLOQUEO_LOGIN = 10;   // minutos de bloqueo tras superarlos
 const ROLES_SUPERVISION = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
@@ -86,7 +88,6 @@ function doGet(e) {
       return json_(armarDatos_(usuario));
     }
 
-    if (MODO_COMPATIBLE) return json_(armarDatos_(null));
     return json_({ ok: false, error: 'sin_autorizacion' });
   } catch (err) {
     return json_({ ok: false, error: String(err) });
@@ -100,7 +101,7 @@ function doPost(e) {
     if (body.action === 'login') return json_(login_(body.nombre, body.clave));
 
     const usuario = body.token ? validarToken_(body.token) : null;
-    if (!usuario && !MODO_COMPATIBLE) return json_({ ok: false, error: 'sesion_vencida' });
+    if (!usuario) return json_({ ok: false, error: 'sesion_vencida' });
 
     // Archivo (solo Gerente Comercial): archivar descartados, ver el archivo y restaurar
     if (body.action === 'archivar' || body.action === 'archivo_listar' || body.action === 'restaurar') {
@@ -124,15 +125,16 @@ function doPost(e) {
     try {
       const sheet = obtenerHoja_(nombreHoja);
       const headers = asegurarColumnas_(sheet, COLUMNAS[nombreHoja]);
-      const datos = body.data || body; // compatibilidad con el formato viejo
+      const datos = body.data || {};
 
       if (body.action === 'add') {
         if (buscarFila_(sheet, datos.id) > 0) return json_({ ok: true, duplicado: true });
-        // Un asesor solo puede cargar leads propios; asignarle a otro es de supervisión
-        if (nombreHoja === HOJAS.leads && usuario && ROLES_SUPERVISION.indexOf(usuario.rol) < 0 && String(datos.asignado_a) !== String(usuario.nombre)) return json_({ ok: false, error: 'sin_permiso' });
+        // Un asesor solo puede cargar lo propio; asignarle a otro es de supervisión
+        const colDuenio = nombreHoja === HOJAS.leads ? 'asignado_a' : 'asesor';
+        if (!esSupervision_(usuario) && String(datos[colDuenio]) !== String(usuario.nombre)) return json_({ ok: false, error: 'sin_permiso' });
         const fila = headers.map(h => valorParaCelda_(h, h === 'actualizado' ? new Date() : datos[h]));
         sheet.appendRow(fila);
-        if (nombreHoja === HOJAS.leads && !(usuario && String(datos.asignado_a) === String(usuario.nombre))) avisos.push(() => avisarLeadAsignado_(datos, usuario)); // el lead propio no se avisa a uno mismo
+        if (nombreHoja === HOJAS.leads && String(datos.asignado_a) !== String(usuario.nombre)) avisos.push(() => avisarLeadAsignado_(datos, usuario)); // el lead propio no se avisa a uno mismo
         return json_({ ok: true });
       }
 
@@ -141,6 +143,12 @@ function doPost(e) {
         if (filaN < 0) return json_({ ok: false, error: 'no_encontrado' });
         const rango = sheet.getRange(filaN, 1, 1, headers.length);
         const actual = rango.getValues()[0];
+        // Un asesor solo edita lo propio y no puede pasárselo a otro
+        if (!esSupervision_(usuario)) {
+          const iDuenio = headers.indexOf(nombreHoja === HOJAS.leads ? 'asignado_a' : 'asesor');
+          const nuevoDuenio = Object.prototype.hasOwnProperty.call(datos, headers[iDuenio]) ? datos[headers[iDuenio]] : actual[iDuenio];
+          if (String(actual[iDuenio]) !== String(usuario.nombre) || String(nuevoDuenio) !== String(usuario.nombre)) return json_({ ok: false, error: 'sin_permiso' });
+        }
         headers.forEach((h, i) => {
           if (CAMPOS_PROTEGIDOS.includes(h)) return;
           if (Object.prototype.hasOwnProperty.call(datos, h) && datos[h] !== undefined) {
@@ -181,6 +189,8 @@ function doPost(e) {
 // ── Eliminar (con copia de seguridad) ──────────────────────────────
 // Solo quien tiene sesión. Puede eliminar el supervisor (gerente, jefe, referente)
 // o el asesor dueño del registro. Antes de borrar, guarda una copia en la hoja "Eliminados".
+function esSupervision_(usuario) { return ROLES_SUPERVISION.indexOf(usuario.rol) > -1; }
+
 function eliminarRegistro_(sheet, headers, nombreHoja, datos, usuario) {
   if (!usuario) return { ok: false, error: 'sesion_vencida' };
   const filaN = buscarFila_(sheet, datos.id);
@@ -189,7 +199,7 @@ function eliminarRegistro_(sheet, headers, nombreHoja, datos, usuario) {
   const reg = {};
   headers.forEach((h, i) => { reg[h] = fila[i]; });
   const duenio = nombreHoja === HOJAS.leads ? reg.asignado_a : reg.asesor;
-  if (!ROLES_SUPERVISION.includes(usuario.rol) && String(duenio) !== String(usuario.nombre)) {
+  if (!esSupervision_(usuario) && String(duenio) !== String(usuario.nombre)) {
     return { ok: false, error: 'sin_permiso' };
   }
   archivarEliminado_(nombreHoja, reg, usuario);
@@ -205,6 +215,18 @@ function archivarEliminado_(nombreHoja, reg, usuario) {
     h.appendRow(['fecha', 'tabla', 'id', 'cliente', 'eliminado_por', 'datos']);
   }
   h.appendRow([new Date(), nombreHoja, "'" + reg.id, reg.cliente || '', usuario.nombre, JSON.stringify(reg)]);
+  limpiarEliminados_(h);
+}
+
+// Quita de «Eliminados» las copias de más de DIAS_ELIMINADOS días (las filas están en orden de fecha)
+function limpiarEliminados_(h) {
+  const n = h.getLastRow() - 1;
+  if (n < 200) return; // con pocas filas no vale la pena
+  const corte = Date.now() - DIAS_ELIMINADOS * 86400000;
+  const fechas = h.getRange(2, 1, n, 1).getValues();
+  let viejas = 0;
+  while (viejas < n && fechas[viejas][0] instanceof Date && fechas[viejas][0].getTime() < corte) viejas++;
+  if (viejas > 0) h.deleteRows(2, viejas);
 }
 
 // ── Archivo de descartados (con restauración) ─────────────────────
@@ -342,6 +364,18 @@ function login_(nombre, clave) {
   return { ok: true, token: firmarToken_(persona.nombre, exp), usuario: limpiarPersona_(persona) };
 }
 
+var EXP_TOKEN_ = 0; // vencimiento de la sesión validada en este pedido
+
+// Personal sin claves, con caché de 60 segundos (evita releer la hoja en cada pedido)
+function personalLimpio_() {
+  const cache = CacheService.getScriptCache();
+  const guardado = cache.get('personal_limpio');
+  if (guardado) { try { return JSON.parse(guardado); } catch (e) {} }
+  const lista = leerHoja_(HOJAS.personal).map(limpiarPersona_);
+  try { const t = JSON.stringify(lista); if (t.length < 90000) cache.put('personal_limpio', t, 60); } catch (e) {}
+  return lista;
+}
+
 function firmarToken_(nombre, exp) {
   const payload = Utilities.base64EncodeWebSafe(Utilities.newBlob(nombre + '|' + exp).getBytes());
   return payload + '.' + firma_(payload);
@@ -355,9 +389,10 @@ function validarToken_(token) {
   const nombre = texto.slice(0, corte);
   const exp = Number(texto.slice(corte + 1));
   if (!exp || Date.now() > exp) return null;
-  const persona = leerHoja_(HOJAS.personal).find(p => String(p.nombre) === nombre);
+  const persona = personalLimpio_().find(p => String(p.nombre) === nombre);
   if (!persona || String(persona.estado) !== 'Activo') return null; // baja = sesión cortada
-  return limpiarPersona_(persona);
+  EXP_TOKEN_ = exp;
+  return persona;
 }
 
 function firma_(texto) {
@@ -372,7 +407,7 @@ function firma_(texto) {
 
 // ── Armado de datos según quién pide ─────────────────────────────
 function armarDatos_(usuario) {
-  const personal = leerHoja_(HOJAS.personal).map(limpiarPersona_);
+  const personal = personalLimpio_();
   let agenda = leerHoja_(HOJAS.agenda);
   let leads = leerHoja_(HOJAS.leads);
   const flota = leerHoja_(HOJAS.flota);
@@ -382,7 +417,12 @@ function armarDatos_(usuario) {
     agenda = agenda.filter(a => puedeVer(a.asesor));
     leads = leads.filter(l => puedeVer(l.asignado_a));
   }
-  return { ok: true, agenda: agenda, leads: leads, personal: personal, flota: flota, usuario: usuario || undefined, servidor: new Date().toISOString() };
+  const out = { ok: true, agenda: agenda, leads: leads, personal: personal, flota: flota, usuario: usuario || undefined, servidor: new Date().toISOString() };
+  // Sesión que se renueva mientras se usa: si le quedan pocos días, se entrega un token nuevo
+  if (usuario && EXP_TOKEN_ && EXP_TOKEN_ - Date.now() < RENOVAR_TOKEN_DIAS * 86400000) {
+    out.token_nuevo = firmarToken_(usuario.nombre, Date.now() + DIAS_TOKEN * 86400000);
+  }
+  return out;
 }
 
 function visibilidad_(usuario, personal) {
@@ -392,9 +432,10 @@ function visibilidad_(usuario, personal) {
 }
 
 function listarUsuarios_() {
-  return leerHoja_(HOJAS.personal)
+  // Solo los nombres: el puesto es privado y se conoce recién al iniciar sesión
+  return personalLimpio_()
     .filter(p => String(p.estado) === 'Activo')
-    .map(p => ({ nombre: p.nombre, rol: p.rol }));
+    .map(p => ({ nombre: p.nombre }));
 }
 
 function limpiarPersona_(p) {

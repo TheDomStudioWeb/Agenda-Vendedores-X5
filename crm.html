@@ -386,8 +386,7 @@ async function apiPost(body) {
   const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body) });
   return r.json();
 }
-// El backend viejo responde {status:"ok"}; el nuevo {ok:true}
-const respOk = (r) => r && (r.ok === true || r.status === 'ok');
+const respOk = (r) => r && r.ok === true;
 
 /* ── Cola de cambios (no se pierde nada sin señal) ──────────── */
 let outbox = store.get('x5_outbox', []);
@@ -412,14 +411,17 @@ async function procesarCola() {
   try {
     while (outbox.length) {
       const op = outbox[0];
-      // Se envía en ambos formatos: el backend nuevo lee "data", el viejo los campos sueltos
-      const r = await apiPost({ ...op.data, action: op.action, tabla: op.tabla, data: op.data, token });
+      const r = await apiPost({ action: op.action, tabla: op.tabla, data: op.data, token });
       if (r && r.error === 'sesion_vencida') { sesionVencida(); break; }
-      if (op.action === 'delete' && r && (r.error === 'accion_invalida' || r.error === 'sin_permiso')) {
-        X5.toast(r.error === 'sin_permiso' ? 'No tenés permiso para eliminar ese registro.' : 'Falta actualizar el script para poder eliminar.', 'bad', 5000);
+      // Errores que no se arreglan reintentando: se descarta ese cambio, se avisa y la cola sigue
+      if (r && ['sin_permiso', 'accion_invalida', 'tabla_invalida'].includes(r.error)) {
+        const msg = r.error === 'sin_permiso'
+          ? (op.action === 'delete' ? 'No tenés permiso para eliminar ese registro.' : 'No tenés permiso para modificar ese registro. El cambio no se guardó.')
+          : 'Falta actualizar el script para guardar ese cambio.';
+        X5.toast(msg, 'bad', 5000);
         outbox.shift(); store.set('x5_outbox', outbox); sincronizar(); continue;
       }
-      if (!respOk(r) && r.error !== 'no_encontrado') throw new Error(r.error || 'error');
+      if (!respOk(r) && !(r && r.error === 'no_encontrado')) throw new Error((r && r.error) || 'error');
       outbox.shift(); store.set('x5_outbox', outbox);
     }
   } catch (e) {
@@ -460,6 +462,7 @@ async function sincronizar(manual = false) {
     const r = await apiGet(token ? { token } : {});
     if (r && r.error === 'sesion_vencida') return sesionVencida();
     if (!r || !Array.isArray(r.agenda)) throw new Error('respuesta');
+    if (r.token_nuevo && token) { token = r.token_nuevo; store.set('x5_session', { user, token }); } // la sesión se renueva sola
     db = aplicarPendientes({ agenda: r.agenda || [], leads: r.leads || [], personal: r.personal || [], flota: r.flota || [] });
     store.set('x5_db', db);
     if (user) render();
@@ -478,7 +481,6 @@ async function prepararLogin() {
   try {
     const r = await apiGet({ action: 'usuarios' });
     if (r && Array.isArray(r.usuarios)) usuarios = r.usuarios;
-    else if (r && Array.isArray(r.personal)) { db = r; usuarios = r.personal.filter(p => p.estado === 'Activo'); } // backend viejo
   } catch (e) {
     const cache = store.get('x5_db', null);
     if (cache) { db = cache; usuarios = (cache.personal || []).filter(p => p.estado === 'Activo'); }
@@ -486,7 +488,7 @@ async function prepararLogin() {
   $('login-loading').hidden = true;
   if (!usuarios) { $('login-loading').hidden = false; $('login-loading').innerHTML = '<p>No hay conexión. Probá de nuevo en un momento.</p><button class="btn btn-ghost" onclick="location.reload()">Reintentar</button>'; return; }
   $('user-select').innerHTML = '<option value="">Seleccioná tu usuario…</option>' +
-    usuarios.map(u => `<option value="${esc(u.nombre)}">${esc(u.nombre)} · ${esc(u.rol)}</option>`).join('');
+    usuarios.map(u => `<option value="${esc(u.nombre)}">${esc(u.nombre)}</option>`).join('');
   $('login-box').hidden = false;
 }
 
@@ -1531,7 +1533,6 @@ if (ses && ses.user) {
   iniciarApp();
   sincronizar();
 } else {
-  store.del('x5_user'); // sesión del formato viejo (guardaba la clave)
   prepararLogin();
 }
 pintarSync();

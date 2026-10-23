@@ -2,7 +2,7 @@
 
 > Documento de referencia para Claudio y para el equipo de The DOM Studio Web.
 > Explica qué es el Hub, cómo funciona por dentro y cómo responder las dudas más comunes.
-> Versión 2.0 · Octubre 2026 · Desarrollado por The DOM Studio Web (Mendoza).
+> Versión 2.3 · Octubre 2026 · Desarrollado por The DOM Studio Web (Mendoza).
 
 ## 1. Qué es
 
@@ -99,7 +99,7 @@ Al tocar los vencidos se abre `crm.html?tab=leads&ver=vencidos`.
 - **Backend:** Google Apps Script (`apps-script/Code.gs`), publicado como aplicación web.
   - Login validado en el servidor con token firmado. Las claves nunca salen de la planilla.
   - Escribe por nombre de columna y crea las columnas que falten.
-  - `MODO_COMPATIBLE`: desde la v2.2 viene en `false`: sin iniciar sesión (o sin la clave del widget, `LAUNCHER_KEY`) no se puede leer ni escribir nada. Si algún widget viejo deja de mostrar datos, hay que agregarle `&key=<LAUNCHER_KEY>` a su dirección.
+  - Backend cerrado: sin iniciar sesión (o sin la clave del widget, `LAUNCHER_KEY`) no se puede leer ni escribir nada. Si algún widget viejo deja de mostrar datos, hay que agregarle `&key=<LAUNCHER_KEY>` a su dirección.
 - Seguridad del login: después de 5 claves incorrectas de un mismo usuario, el acceso queda bloqueado 10 minutos.
   - Para publicar cambios: Implementar → Administrar implementaciones → editar → **Nueva versión**. La URL no cambia.
 - **Android:** carpeta `android/` del repo, un WebView nativo que carga la web. Agrega guardar en Descargas, compartir, cámara y apertura de enlaces externos. Guía de compilación: `docs/APK-ANDROID.md`.
@@ -169,3 +169,12 @@ Todo el Hub usa el kit de marca de X5 Argentina: rojo #E3182D, negro carbón y g
 
 ## Radar de Usados (20/10/2026)
 Es una tarjeta del Hub, entre Mini CRM y Auditoría. Muestra el stock de usados de las agencias con el precio X5 ya calculado. Tiene cuatro vistas: **Cliente** (tarjetas con fotos, para mostrarle al cliente), **Interno** (precio de la agencia, guía y diferencia), **Compra** (buscador de unidades en otras provincias) y **Novedades** (qué se publicó, bajó de precio o salió). El precio X5 se ajusta en el desplegable «Precio X5»: regla (guía + % o precio de agencia + monto fijo), papeles y dólar. Los datos se actualizan solos varias veces al día; la app los pide siempre frescos y nunca los guarda en el teléfono.
+
+
+## Seguridad y mantenimiento (v2.3, 23/10/2026)
+- **Cada asesor modifica solo lo suyo.** El servidor valida al crear, editar y eliminar: un asesor solo toca sus propias entrevistas y leads y no puede pasárselos a otro. Gerente Comercial, Jefe de Ventas y Referente pueden tocar todo. Si un cambio es rechazado por permisos, la app avisa «No tenés permiso para modificar ese registro» y sigue guardando el resto.
+- **El puesto es privado.** La pantalla de ingreso muestra solo los nombres; el puesto se conoce recién al iniciar sesión.
+- **La sesión se renueva sola** mientras se usa (dura 30 días y se extiende cuando le quedan menos de 15). Quien no abre el Hub en un mes tiene que volver a ingresar.
+- **Hoja «Eliminados»:** guarda copia de cada registro borrado y se limpia sola: pasados 90 días se quitan las copias más viejas.
+- **Más rápido:** la lista de personal se guarda 60 segundos en memoria del servidor. Si se da de baja a alguien, su sesión se corta como máximo al minuto.
+- Para publicar estos cambios: pegar `Code.gs` nuevo en Apps Script y **Nueva versión** de la implementación existente.

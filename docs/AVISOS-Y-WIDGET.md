@@ -132,8 +132,5 @@ setInterval(actualizarWidgetX5, 3 * 60 * 1000);
 
 ---
 
-## Cuando todo use clave o token
-
-Con el widget ya usando `action=widget&key=...`, podés cerrar la lectura abierta del backend.
-En `Code.gs` cambiá `const MODO_COMPATIBLE = true;` por `false` y publicá una **Nueva versión**.
-Desde ese momento nadie puede leer la base sin iniciar sesión o sin la clave del widget.
+## Lectura cerrada
+Desde la v2.2 el backend está cerrado: nadie puede leer la base sin iniciar sesión o sin la clave del widget (`LAUNCHER_KEY`). El widget usa `action=widget&key=...`.
