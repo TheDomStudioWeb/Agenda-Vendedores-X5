@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-23T15:31:22.702Z",
+ "actualizado": "2026-10-23T20:37:55.558Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 89,
-   "revisado": "2026-10-23T15:31:22.702Z",
-   "actualizado": "2026-10-23T15:31:22.702Z"
+   "autos": 86,
+   "revisado": "2026-10-23T20:37:55.558Z",
+   "actualizado": "2026-10-23T20:37:55.558Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,77 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 232,
-   "revisado": "2026-10-23T15:31:22.702Z",
-   "actualizado": "2026-10-23T15:31:22.702Z"
+   "revisado": "2026-10-23T20:37:55.558Z",
+   "actualizado": "2026-10-23T20:37:55.558Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-182051",
+   "tipo": "auto",
+   "marca": "Chevrolet",
+   "modelo": "Onix",
+   "version": "1.4 Ltz",
+   "anio": 2015,
+   "km": 110730,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Gris",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": null,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2964-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2965-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2970-1600x1200-3.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2968-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2963-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2966-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2961-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2958-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2954-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2950-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2951-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2952-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2959-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2953-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2957-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2955-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2956-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/23/onix/",
+   "publicado": "2026-10-23T14:56:35",
+   "modificado": "2026-10-23T15:01:18",
+   "agencia": "maipu",
+   "alta": "2026-10-23T20:37:55.558Z",
+   "guia": {
+    "min": 10179000,
+    "med": 10583000,
+    "max": 10681000,
+    "n": 3,
+    "mejor": {
+     "version": "ONIX 5P 1,4 LTZ",
+     "valor": 10583000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "ONIX 5P 1,4 LT",
+      10179000
+     ],
+     [
+      "ONIX 5P 1,4 LTZ",
+      10583000
+     ],
+     [
+      "ONIX 5P 1,4 EFFECT",
+      10681000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-182021",
    "tipo": "auto",
@@ -1736,76 +1802,6 @@
      [
       "TRACKER 5P 1,2 T 6AT PREMIER 2024",
       27829000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "maipu-181295",
-   "tipo": "auto",
-   "marca": "Ford",
-   "modelo": "Territory",
-   "version": "1.8L At Titanium Eu5",
-   "anio": 2025,
-   "km": 20230,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Negro",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 45000000,
-   "precio_sin_imp": 37190000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2427-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2428-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2432-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2431-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2426-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2429-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2425-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2423-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2419-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2415-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2416-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2417-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2424-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2418-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2422-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2420-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2421-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/10/15/territory-2/",
-   "publicado": "2026-10-15T12:45:01",
-   "modificado": "2026-10-15T12:55:01",
-   "agencia": "maipu",
-   "alta": "2026-10-15T20:31:03.523Z",
-   "guia": {
-    "min": 38256000,
-    "med": 41757000,
-    "max": 50341000,
-    "n": 4,
-    "mejor": {
-     "version": "TERRITORY 5P 1,8 T AT7 TITANIUM 2025",
-     "valor": 50341000,
-     "coincidencias": 1,
-     "empate": 2
-    },
-    "versiones": [
-     [
-      "TERRITORY 5P 1,8 T AT7 SEL 2024",
-      38256000
-     ],
-     [
-      "TERRITORY 5P 1,8 T AT7 TITANIUM 2024",
-      41734000
-     ],
-     [
-      "TERRITORY 5P 1,8 T AT7 SEL 2025",
-      41757000
-     ],
-     [
-      "TERRITORY 5P 1,8 T AT7 TITANIUM 2025",
-      50341000
      ]
     ]
    }
@@ -4577,132 +4573,6 @@
    }
   },
   {
-   "id": "maipu-177928",
-   "tipo": "auto",
-   "marca": "Volkswagen",
-   "modelo": "Amarok",
-   "version": "Highline V6 4X4 G2",
-   "anio": 2024,
-   "km": 79155,
-   "combustible": "Diésel",
-   "caja": "Automática",
-   "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 54000000,
-   "precio_sin_imp": 44628100,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0368-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0369-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0371-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0372-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0367-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0370-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0366-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0364-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0360-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0356-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0357-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0358-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0365-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0359-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0363-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0361-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0362-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/09/11/amarok/",
-   "publicado": "2026-09-11T17:41:31",
-   "modificado": "2026-10-07T14:55:06",
-   "agencia": "maipu",
-   "alta": "2026-09-11T17:41:31",
-   "guia": {
-    "min": 36893000,
-    "med": 50817000,
-    "max": 62738000,
-    "n": 18,
-    "mejor": {
-     "version": "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT EXTREME G2 258CV 2025",
-     "valor": 62537000,
-     "coincidencias": 3,
-     "empate": 6
-    },
-    "versiones": [
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 COMF AT 2023",
-      36893000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 HIGH AT 2023",
-      41575000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 COMF G2 AT 2025",
-      42094000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 COMF G2 AT + PACK SAFE 2025",
-      42929000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 COMF AT 258CV",
-      45676000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 HIGH G2 AT 2025",
-      46817000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 COMF AT 258CV 2023",
-      47046000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 COMF G2 AT 258CV 2025",
-      49982000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X4 HIGH AT 2023",
-      50485000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 COMF G2 AT + PACK SAFE 258CV 2025",
-      50817000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT HIGH 258CV P1",
-      54989000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT HIGH 258CV 2023",
-      55545000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT EXTREME 258CV 2023",
-      58025000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT HIGH G2 258CV 2025",
-      58597000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT BLACK STYLE 258CV 2023",
-      60121000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT EXTREME G2 258CV 2025",
-      62537000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT HERO G2 258CV 2025",
-      62537000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT BLACK STYLE G2 258CV 2025",
-      62738000
-     ]
-    ]
-   }
-  },
-  {
    "id": "maipu-177678",
    "tipo": "auto",
    "marca": "Volkswagen",
@@ -5777,75 +5647,6 @@
    }
   },
   {
-   "id": "maipu-175201",
-   "tipo": "auto",
-   "marca": "Ford",
-   "modelo": "Ecosport",
-   "version": "S 1.5L N",
-   "anio": 2018,
-   "km": 129790,
-   "combustible": "Gas/Nafta",
-   "caja": "Manual",
-   "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 16000000,
-   "precio_sin_imp": 12640000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3138-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3139-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3141-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3142-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3137-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3140-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3136-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3133-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3129-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3125-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3126-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3127-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3134-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3128-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3132-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3130-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3131-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/08/19/ecosport-2/",
-   "publicado": "2026-08-19T10:56:41",
-   "modificado": "2026-10-07T12:52:11",
-   "agencia": "maipu",
-   "alta": "2026-08-19T10:56:41",
-   "guia": {
-    "min": 16787000,
-    "med": 18879000,
-    "max": 19529000,
-    "n": 5,
-    "mejor": null,
-    "versiones": [
-     [
-      "ECOSPORT KINETIC DESIGN ATTRACTION 5P 1,5 S 2017",
-      16787000
-     ],
-     [
-      "ECOSPORT KINETIC DESIGN ATTRACTION 5P 1,5 SE 2017",
-      17653000
-     ],
-     [
-      "ECOSPORT KINETIC DESIGN ATTRACTION 5P 1,5 TDCI SE 2017",
-      18879000
-     ],
-     [
-      "ECOSPORT KINETIC DESIGN ATTRACTION 5P 1,5 FREESTYLE 2017",
-      19056000
-     ],
-     [
-      "ECOSPORT KINETIC DESIGN ATTRACTION 5P 1,5 TITANIUM 2017",
-      19529000
-     ]
-    ]
-   }
-  },
-  {
    "id": "maipu-174725",
    "tipo": "auto",
    "marca": "Volkswagen",
@@ -6162,64 +5963,6 @@
    }
   },
   {
-   "id": "maipu-170672",
-   "tipo": "auto",
-   "marca": "Fiat",
-   "modelo": "500X",
-   "version": "Cross 1.4",
-   "anio": 2019,
-   "km": 107250,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave",
-   "precio": 19000000,
-   "precio_sin_imp": 15010000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0392-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0393-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0395-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0396-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0390-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0394-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0388-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0384-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0380-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0374-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0376-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0378-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0386-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0379-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0383-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0381-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_0382-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/07/02/500x/",
-   "publicado": "2026-07-02T11:16:15",
-   "modificado": "2026-10-07T12:46:09",
-   "agencia": "maipu",
-   "alta": "2026-07-02T11:16:15",
-   "guia": {
-    "min": 20580000,
-    "med": 20580000,
-    "max": 20580000,
-    "n": 1,
-    "mejor": {
-     "version": "500 X 5P 1,4 T CROSS 9AT 4X4",
-     "valor": 20580000,
-     "coincidencias": 2,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "500 X 5P 1,4 T CROSS 9AT 4X4",
-      20580000
-     ]
-    ]
-   }
-  },
-  {
    "id": "maipu-167218",
    "tipo": "auto",
    "marca": "Ford",
@@ -6230,7 +5973,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Plata",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar destacados Captur 2017 Manual 155370 19500000 Precio sugerido al público 15405000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Sandero 2023 Manual 93890 21000000 Precio sugerido al público 17355380 Precio sin impuestos nacionales + Precio a confirmar oportunidades 500X 2019 Automatica 107250 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar outlet C3 2014 Manual 157185 13660000 Precio sugerido al público 10791400 Precio sin impuestos nacionales + Precio a confirmar destacados Ka 2018 Manual 152270 14000000 Precio sugerido al público 11060000 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + Precio a confirmar outlet Suran 2015 Manual 120755 16000000 Precio sugerido al público 12640000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 16180000,
    "precio_sin_imp": 12782200,
    "moneda": "ARS",
@@ -6311,7 +6054,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar destacados Captur 2017 Manual 155370 19500000 Precio sugerido al público 15405000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Sandero 2023 Manual 93890 21000000 Precio sugerido al público 17355380 Precio sin impuestos nacionales + Precio a confirmar oportunidades 500X 2019 Automatica 107250 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar outlet C3 2014 Manual 157185 13660000 Precio sugerido al público 10791400 Precio sin impuestos nacionales + Precio a confirmar destacados Ka 2018 Manual 152270 14000000 Precio sugerido al público 11060000 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + Precio a confirmar outlet Suran 2015 Manual 120755 16000000 Precio sugerido al público 12640000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -6383,7 +6126,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar destacados Captur 2017 Manual 155370 19500000 Precio sugerido al público 15405000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Sandero 2023 Manual 93890 21000000 Precio sugerido al público 17355380 Precio sin impuestos nacionales + Precio a confirmar oportunidades 500X 2019 Automatica 107250 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar outlet C3 2014 Manual 157185 13660000 Precio sugerido al público 10791400 Precio sin impuestos nacionales + Precio a confirmar destacados Ka 2018 Manual 152270 14000000 Precio sugerido al público 11060000 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + Precio a confirmar outlet Suran 2015 Manual 120755 16000000 Precio sugerido al público 12640000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6440,7 +6183,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Rojo",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar destacados Captur 2017 Manual 155370 19500000 Precio sugerido al público 15405000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Sandero 2023 Manual 93890 21000000 Precio sugerido al público 17355380 Precio sin impuestos nacionales + Precio a confirmar oportunidades 500X 2019 Automatica 107250 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar outlet C3 2014 Manual 157185 13660000 Precio sugerido al público 10791400 Precio sin impuestos nacionales + Precio a confirmar destacados Ka 2018 Manual 152270 14000000 Precio sugerido al público 11060000 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + Precio a confirmar outlet Suran 2015 Manual 120755 16000000 Precio sugerido al público 12640000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 11110000,
    "precio_sin_imp": 8776900,
    "moneda": "ARS",
@@ -6787,7 +6530,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar destacados Captur 2017 Manual 155370 19500000 Precio sugerido al público 15405000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Sandero 2023 Manual 93890 21000000 Precio sugerido al público 17355380 Precio sin impuestos nacionales + Precio a confirmar oportunidades 500X 2019 Automatica 107250 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar outlet C3 2014 Manual 157185 13660000 Precio sugerido al público 10791400 Precio sin impuestos nacionales + Precio a confirmar destacados Ka 2018 Manual 152270 14000000 Precio sugerido al público 11060000 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + Precio a confirmar outlet Suran 2015 Manual 120755 16000000 Precio sugerido al público 12640000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",

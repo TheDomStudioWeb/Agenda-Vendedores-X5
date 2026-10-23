@@ -1,6 +1,50 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-23T20:37:55.558Z",
+   "tipo": "nuevo",
+   "id": "maipu-182051",
+   "auto": "Chevrolet Onix 2015",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-23T20:37:55.558Z",
+   "tipo": "baja",
+   "id": "maipu-181295",
+   "auto": "Ford Territory 2025",
+   "precio": 45000000,
+   "moneda": "ARS",
+   "dias": 8
+  },
+  {
+   "fecha": "2026-10-23T20:37:55.558Z",
+   "tipo": "baja",
+   "id": "maipu-177928",
+   "auto": "Volkswagen Amarok 2024",
+   "precio": 54000000,
+   "moneda": "ARS",
+   "dias": 42
+  },
+  {
+   "fecha": "2026-10-23T20:37:55.558Z",
+   "tipo": "baja",
+   "id": "maipu-175201",
+   "auto": "Ford Ecosport 2018",
+   "precio": 16000000,
+   "moneda": "ARS",
+   "dias": 65
+  },
+  {
+   "fecha": "2026-10-23T20:37:55.558Z",
+   "tipo": "baja",
+   "id": "maipu-170672",
+   "auto": "Fiat 500X 2019",
+   "precio": 19000000,
+   "moneda": "ARS",
+   "dias": 113
+  },
+  {
    "fecha": "2026-10-23T15:31:22.702Z",
    "tipo": "nuevo",
    "id": "maipu-182021",
