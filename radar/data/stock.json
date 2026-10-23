@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-22T20:45:29.114Z",
+ "actualizado": "2026-10-23T15:31:22.702Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 88,
-   "revisado": "2026-10-22T20:45:29.114Z",
-   "actualizado": "2026-10-22T20:45:29.114Z"
+   "autos": 89,
+   "revisado": "2026-10-23T15:31:22.702Z",
+   "actualizado": "2026-10-23T15:31:22.702Z"
   },
   {
    "id": "autocity",
@@ -21,12 +21,74 @@
    "ciudad": "Córdoba",
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
-   "autos": 221,
-   "revisado": "2026-10-22T20:45:29.114Z",
-   "actualizado": "2026-10-22T20:45:29.114Z"
+   "autos": 232,
+   "revisado": "2026-10-23T15:31:22.702Z",
+   "actualizado": "2026-10-23T15:31:22.702Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-182021",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Captur",
+   "version": "Intens 2.0",
+   "anio": 2017,
+   "km": 140225,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 20000000,
+   "precio_sin_imp": 15800000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2926-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2927-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2929-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2930-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2924-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2928-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2923-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2921-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2917-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2913-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2914-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2915-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2922-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2916-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2920-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2918-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2919-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/23/captur/",
+   "publicado": "2026-10-23T10:20:16",
+   "modificado": "2026-10-23T10:27:48",
+   "agencia": "maipu",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 16726000,
+    "med": 17273000,
+    "max": 17273000,
+    "n": 2,
+    "mejor": {
+     "version": "CAPTUR 5P 2,0 INTENS",
+     "valor": 17273000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "CAPTUR 5P 2,0 ZEN",
+      16726000
+     ],
+     [
+      "CAPTUR 5P 2,0 INTENS",
+      17273000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-181997",
    "tipo": "auto",
@@ -334,8 +396,8 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": null,
-   "precio_sin_imp": null,
+   "precio": 18710000,
+   "precio_sin_imp": 14780000,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2793-1600x1200-1.jpg",
@@ -358,7 +420,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/21/duster-2/",
    "publicado": "2026-10-21T12:30:28",
-   "modificado": "2026-10-21T12:35:42",
+   "modificado": "2026-10-23T11:30:59",
    "agencia": "maipu",
    "alta": "2026-10-21T20:52:13.327Z",
    "guia": {
@@ -6168,7 +6230,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Plata",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Polo 2021 Automatica 90440 30000000 Precio sugerido al público 23700000 Precio sin impuestos nacionales + Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar destacados Sentra 2022 Automatica 75680 30500000 Precio sugerido al público 24095000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar destacados Captur 2017 Manual 155370 19500000 Precio sugerido al público 15405000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Sandero 2023 Manual 93890 21000000 Precio sugerido al público 17355380 Precio sin impuestos nacionales + Precio a confirmar oportunidades 500X 2019 Automatica 107250 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 16180000,
    "precio_sin_imp": 12782200,
    "moneda": "ARS",
@@ -6249,7 +6311,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Polo 2021 Automatica 90440 30000000 Precio sugerido al público 23700000 Precio sin impuestos nacionales + Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar destacados Sentra 2022 Automatica 75680 30500000 Precio sugerido al público 24095000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar destacados Captur 2017 Manual 155370 19500000 Precio sugerido al público 15405000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Sandero 2023 Manual 93890 21000000 Precio sugerido al público 17355380 Precio sin impuestos nacionales + Precio a confirmar oportunidades 500X 2019 Automatica 107250 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -6321,7 +6383,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Polo 2021 Automatica 90440 30000000 Precio sugerido al público 23700000 Precio sin impuestos nacionales + Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar destacados Sentra 2022 Automatica 75680 30500000 Precio sugerido al público 24095000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar destacados Captur 2017 Manual 155370 19500000 Precio sugerido al público 15405000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Sandero 2023 Manual 93890 21000000 Precio sugerido al público 17355380 Precio sin impuestos nacionales + Precio a confirmar oportunidades 500X 2019 Automatica 107250 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6378,7 +6440,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Rojo",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Polo 2021 Automatica 90440 30000000 Precio sugerido al público 23700000 Precio sin impuestos nacionales + Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar destacados Sentra 2022 Automatica 75680 30500000 Precio sugerido al público 24095000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar destacados Captur 2017 Manual 155370 19500000 Precio sugerido al público 15405000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Sandero 2023 Manual 93890 21000000 Precio sugerido al público 17355380 Precio sin impuestos nacionales + Precio a confirmar oportunidades 500X 2019 Automatica 107250 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 11110000,
    "precio_sin_imp": 8776900,
    "moneda": "ARS",
@@ -6725,7 +6787,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Polo 2021 Automatica 90440 30000000 Precio sugerido al público 23700000 Precio sin impuestos nacionales + Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar destacados Sentra 2022 Automatica 75680 30500000 Precio sugerido al público 24095000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar destacados Captur 2017 Manual 155370 19500000 Precio sugerido al público 15405000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Sandero 2023 Manual 93890 21000000 Precio sugerido al público 17355380 Precio sin impuestos nacionales + Precio a confirmar oportunidades 500X 2019 Automatica 107250 19000000 Precio sugerido al público 15010000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",
@@ -6788,7 +6850,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 12150000,
+   "precio": 12400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -6888,128 +6950,128 @@
    }
   },
   {
-   "id": "autocity-a5c16c7f-4ba1-4431-98c9-4f8dd5c82e10",
+   "id": "autocity-c4dd41d7-4dfe-43b5-9d99-abad24b9d2e3",
    "tipo": "auto",
-   "marca": "Peugeot",
-   "modelo": "207",
-   "version": "Compact 1.4 5 P Xsallure",
+   "marca": "Fiat",
+   "modelo": "Palio",
+   "version": "1.6 Essence 5p L12",
    "anio": 2013,
-   "km": 59700,
+   "km": 140500,
    "combustible": "Nafta",
    "caja": "Manual",
-   "color": "Gris",
+   "color": "Blanco",
    "equipamiento": "",
-   "precio": 12700000,
+   "precio": 13249999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792606434247.IMG_8507.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792606435102.IMG_8508.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792606435518.IMG_8509.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792692433237.IMG_7867.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792692433844.IMG_7870.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792692434953.IMG_7868.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-207/compact-1-4-5-p-xsallure/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-palio/1-6-essence-5p-l12/",
    "sucursal": "Córdoba",
    "provincia": "Córdoba",
-   "oportunidad": false,
+   "oportunidad": true,
    "publicado": null,
    "modificado": null,
    "agencia": "autocity",
-   "alta": "2026-10-22T15:35:06.731Z",
+   "alta": "2026-10-23T15:31:22.702Z",
    "guia": {
-    "min": 9377000,
-    "med": 10203000,
-    "max": 24023000,
+    "min": 8256000,
+    "med": 10644000,
+    "max": 12692000,
     "n": 21,
     "mejor": {
-     "version": "207 3P 1,4 ACTIVE COMPACT SEG",
-     "valor": 9784000,
-     "coincidencias": 2,
-     "empate": 11
+     "version": "PALIO 5P 1,6 ESSENCE DUALOGIC",
+     "valor": 11082000,
+     "coincidencias": 3,
+     "empate": 2
     },
     "versiones": [
      [
-      "207 5P 1,4 ACTIVE COMPACT",
-      9377000
+      "PALIO 3P 1,4 FIRE",
+      8256000
      ],
      [
-      "207 4P 1,4 ACTIVE COMPACT SEG",
-      9495000
+      "PALIO 5P 1,4 FIRE",
+      8540000
      ],
      [
-      "207 5P 1,4 ACTIVE COMPACT SEG",
-      9672000
+      "PALIO 3P 1,4 FIRE CONFORT",
+      8864000
      ],
      [
-      "207 4P 1,4 ALLURE COMPACT SEG",
-      9731000
+      "PALIO 3P 1,4 FIRE TOP",
+      9123000
      ],
      [
-      "207 4P 1,4 HDi ACTIVE COMPACT SEG",
-      9737000
+      "PALIO 5P 1,4 FIRE CONFORT",
+      9148000
      ],
      [
-      "207 3P 1,4 ACTIVE COMPACT SEG",
-      9784000
+      "PALIO 5P 1,4 FIRE TOP",
+      9407000
      ],
      [
-      "207 5P 1,4 ALLURE COMPACT SEG",
-      9967000
+      "PALIO 5P 1,4 ATTRACTIVE",
+      9800000
      ],
      [
-      "207 4P 1,6 FELINE COMPACT",
-      10026000
+      "PALIO WEEKEND 1,4 ATTRACTIVE",
+      10243000
      ],
      [
-      "207 4P 1,4 HDi ALLURE COMPACT SEG",
-      10041000
+      "PALIO 5P 1,6 ESSENCE",
+      10418000
      ],
      [
-      "207 5P 1,6 ALLURE COMPACT SEG",
-      10085000
+      "PALIO WEEKEND 1,4 ATTRACTIVE ACTIVE",
+      10539000
      ],
      [
-      "207 5P 1,4 HDi ALLURE COMPACT SEG",
-      10203000
+      "PALIO 5P 1,6 SPORTING",
+      10644000
      ],
      [
-      "207 5P 1,6 FELINE COMPACT",
-      10380000
+      "PALIO WEEKEND 1,4 ATTRACTIVE SEG",
+      10682000
      ],
      [
-      "207 3P 1,6 FELINE COMPACT",
-      10403000
+      "PALIO WEEKEND 1,4 TREKKING",
+      10958000
      ],
      [
-      "207 SW 1,6 XT COMPACT",
-      10452000
+      "PALIO 5P 1,6 ESSENCE DUALOGIC",
+      11082000
      ],
      [
-      "207 4P 1,4 HDi FELINE COMPACT",
-      10650000
+      "PALIO WEEKEND 1,4 TREKKING SEG",
+      11241000
      ],
      [
-      "207 3P 1,6 GRIFFE COMPACT",
-      10713000
+      "PALIO WEEKEND 1,6 ADVENTURE",
+      11983000
      ],
      [
-      "207 5P 1,4 HDi FELINE COMPACT",
-      11015000
+      "PALIO WEEKEND 1,6 ADVENTURE SEG",
+      12240000
      ],
      [
-      "207 5P 1,6 GRIFFE COMPACT",
-      11163000
+      "PALIO WEEKEND 1,6 ADVENTURE LOCKER",
+      12303000
      ],
      [
-      "207 3P GTI",
-      16320000
+      "PALIO WEEKEND 1,6 ADVENTURE LOCKER SEG",
+      12426000
      ],
      [
-      "207 5P GTI",
-      16666000
+      "PALIO WEEKEND 1,6 ADVENTURE SEG XTREME",
+      12615000
      ],
      [
-      "207 CABRIO 1,6 CC 156HP",
-      24023000
+      "PALIO WEEKEND 1,6 ADVENTURE LOCKER SEG XTREME",
+      12692000
      ]
     ]
    }
@@ -7026,7 +7088,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 13400000,
+   "precio": 13650000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -7102,6 +7164,60 @@
    }
   },
   {
+   "id": "autocity-b5e350c7-a51a-4cba-aaf1-a1073fbd0f81",
+   "tipo": "auto",
+   "marca": "Chery",
+   "modelo": "Fulwin",
+   "version": "1.5 5p L15",
+   "anio": 2018,
+   "km": 76800,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 14200000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878470495.20261001_120807.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878471152.20261001_120849.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878471595.20261001_121115.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878472173.20261001_121052.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878472761.20261001_121014.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790878474194.20261001_120755.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-chery/m-fulwin/1-5-5p-l15/",
+   "sucursal": "Río Cuarto",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 10478000,
+    "med": 10478000,
+    "max": 10478000,
+    "n": 2,
+    "mejor": {
+     "version": "FULWIN 5P 1,5 2",
+     "valor": 10478000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "FULWIN 5P 1,5 2",
+      10478000
+     ],
+     [
+      "FULWIN 4P 1,5 2",
+      10478000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-628171c2-d00f-495a-8ad4-f573d062dfe5",
    "tipo": "auto",
    "marca": "Nissan",
@@ -7113,7 +7229,7 @@
    "caja": "Manual",
    "color": "Rojo",
    "equipamiento": "",
-   "precio": 14899999,
+   "precio": 15199999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -7160,6 +7276,97 @@
    }
   },
   {
+   "id": "autocity-82b7752e-49b5-422f-b824-17d0f76b4e5d",
+   "tipo": "auto",
+   "marca": "Peugeot",
+   "modelo": "208",
+   "version": "1.5 Allure Touch 5p L13",
+   "anio": 2016,
+   "km": 72500,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Negro",
+   "equipamiento": "",
+   "precio": 16599999,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690578813.IMG_5640.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690579466.IMG_5642.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690580330.IMG_5641.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-5-allure-touch-5p-l13/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 10715000,
+    "med": 12605000,
+    "max": 15279000,
+    "n": 12,
+    "mejor": {
+     "version": "208 5P 1,5 ALLURE TOUCHSCREEN",
+     "valor": 11619000,
+     "coincidencias": 3,
+     "empate": 3
+    },
+    "versiones": [
+     [
+      "208 5P 1,5 ACTIVE",
+      10715000
+     ],
+     [
+      "208 5P 1,5 ALLURE",
+      11213000
+     ],
+     [
+      "208 5P 1,5 ALLURE TOUCHSCREEN",
+      11619000
+     ],
+     [
+      "208 5P 1,6 ALLURE",
+      11721000
+     ],
+     [
+      "208 5P 1,6 ALLURE NAV",
+      11941000
+     ],
+     [
+      "208 5P 1,5 ALLURE SMEG",
+      12016000
+     ],
+     [
+      "208 5P 1,6 FELINE 2016",
+      12605000
+     ],
+     [
+      "208 5P 1,6 ALLURE 2016",
+      12662000
+     ],
+     [
+      "208 5P 1,6 FELINE",
+      12685000
+     ],
+     [
+      "208 5P 1,6 ALLURE TOUCHSCREEN",
+      12738000
+     ],
+     [
+      "208 5P 1,6 FELINE PACK CUIR",
+      14197000
+     ],
+     [
+      "208 5P 1,6 THP GT",
+      15279000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-9233df36-5e0a-462a-9b65-f797e9f4e352",
    "tipo": "auto",
    "marca": "Honda",
@@ -7171,7 +7378,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 16899999,
+   "precio": 17249999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -7202,7 +7409,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 17500000,
+   "precio": 17850000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -7268,7 +7475,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 17900000,
+   "precio": 18250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -7379,7 +7586,7 @@
    "caja": "Manual",
    "color": "Gris Plata",
    "equipamiento": "",
-   "precio": 17900000,
+   "precio": 18250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -7447,6 +7654,109 @@
    }
   },
   {
+   "id": "autocity-4d57e0d1-7dda-4200-98f7-1d2fdc738f7d",
+   "tipo": "auto",
+   "marca": "Ford",
+   "modelo": "Fiesta",
+   "version": "1.6 S Plus Kd 5p L14",
+   "anio": 2016,
+   "km": 64000,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Rojo",
+   "equipamiento": "",
+   "precio": 18250000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206917052.20261001_163420.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206918106.20261001_163351.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206919434.20261001_163532.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206920751.20261001_163630.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206922013.20261001_163641.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206923315.20261001_163651.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791206924571.20261001_163726.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-ford/m-fiesta/1-6-s-plus-kd-5p-l14/",
+   "sucursal": "Río Cuarto",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 10898000,
+    "med": 12195000,
+    "max": 14067000,
+    "n": 14,
+    "mejor": {
+     "version": "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 SE PLUS 2013",
+     "valor": 12195000,
+     "coincidencias": 3,
+     "empate": 3
+    },
+    "versiones": [
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 S",
+      10898000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 4P 1,6 S 2013",
+      11229000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 S PLUS",
+      11543000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 4P 1,6 S PLUS 2013",
+      11561000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 SE",
+      11907000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 4P 1,6 SE PLUS 2013",
+      12168000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 SE POWERSHIFT",
+      12172000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 SE PLUS 2013",
+      12195000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 SE PLUS POWERSHIFT 2013",
+      12513000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 4P 1,6 SE PLUS POWERSHIFT 2013",
+      12690000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 4P 1,6 TITANIUM 2013",
+      13430000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 4P 1,6 TITANIUM POWERSHIFT 2013",
+      13768000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 TITANIUM 2013",
+      14033000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 TITANIUM POWERSHIFT 2013",
+      14067000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-9ced4cea-fcaf-4cf0-b1ec-612f4387b5e8",
    "tipo": "auto",
    "marca": "Ford",
@@ -7458,7 +7768,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 18899999,
+   "precio": 19299999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -7521,7 +7831,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 18999999,
+   "precio": 19399999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -7589,7 +7899,7 @@
    "caja": "Automática",
    "color": "Azul",
    "equipamiento": "",
-   "precio": 19499999,
+   "precio": 19899999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -7635,7 +7945,7 @@
    "caja": "Manual",
    "color": "Rojo",
    "equipamiento": "",
-   "precio": 19899999,
+   "precio": 20299999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -7694,7 +8004,7 @@
    "caja": "Automática",
    "color": "Rojo",
    "equipamiento": "",
-   "precio": 19900000,
+   "precio": 20300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -7744,89 +8054,6 @@
    }
   },
   {
-   "id": "autocity-35ea7e08-65ea-42de-ab85-a2b73df1df5a",
-   "tipo": "auto",
-   "marca": "Fiat",
-   "modelo": "Cronos",
-   "version": "1.3 Drive Pack Conectividad L18",
-   "anio": 2019,
-   "km": 67400,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Rojo",
-   "equipamiento": "",
-   "precio": 19900000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789484677098.IMG_1334.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789484677994.IMG_1337.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789484678420.IMG_1336.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-cronos/1-3-drive-pack-conectividad-l18/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-22T15:35:06.731Z",
-   "guia": {
-    "min": 13346000,
-    "med": 15642000,
-    "max": 16986000,
-    "n": 10,
-    "mejor": {
-     "version": "CRONOS 4P 1,3 DRIVE GSE PACK CONECTIVIDAD 2020",
-     "valor": 14612000,
-     "coincidencias": 4,
-     "empate": 2
-    },
-    "versiones": [
-     [
-      "CRONOS 4P 1,3 DRIVE GSE",
-      13346000
-     ],
-     [
-      "CRONOS 4P 1,3 DRIVE GSE 2020",
-      13539000
-     ],
-     [
-      "CRONOS 4P 1,3 DRIVE GSE PACK CONECTIVIDAD",
-      13822000
-     ],
-     [
-      "CRONOS 4P 1,3 DRIVE GSE PACK CONECTIVIDAD 2020",
-      14612000
-     ],
-     [
-      "CRONOS 4P 1,8 PRECISION",
-      15250000
-     ],
-     [
-      "CRONOS 4P 1,8 PRECISION PACK TECNHOLOGY",
-      15642000
-     ],
-     [
-      "CRONOS 4P 1,8 PRECISION PACK PREMIUM",
-      16063000
-     ],
-     [
-      "CRONOS 4P 1,8 PRECISION 2020",
-      16449000
-     ],
-     [
-      "CRONOS 4P 1,8 PRECISION PACK TECNHOLOGY 2020",
-      16708000
-     ],
-     [
-      "CRONOS 4P 1,8 PRECISION PACK PREMIUM 2020",
-      16986000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-df992c46-6186-4194-b9c4-919749cd8c73",
    "tipo": "auto",
    "marca": "Renault",
@@ -7838,7 +8065,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 20600000,
+   "precio": 21000000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -7890,7 +8117,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 20600000,
+   "precio": 21000000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -7942,7 +8169,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 20650000,
+   "precio": 21050000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -7995,7 +8222,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 20700000,
+   "precio": 21100000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -8047,7 +8274,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 20750000,
+   "precio": 21150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -8100,7 +8327,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 20899999,
+   "precio": 21299999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -8176,7 +8403,7 @@
    "caja": "Manual",
    "color": "Plata",
    "equipamiento": "",
-   "precio": 20900000,
+   "precio": 21350000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -8261,7 +8488,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 21250000,
+   "precio": 21700000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -8332,7 +8559,7 @@
    "caja": "Manual",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 21300000,
+   "precio": 21750000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -8390,7 +8617,7 @@
    "caja": "Automática",
    "color": "Marron",
    "equipamiento": "",
-   "precio": 21500000,
+   "precio": 21950000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -8457,7 +8684,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 21500000,
+   "precio": 21950000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -8545,7 +8772,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 21899999,
+   "precio": 22349999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -8632,7 +8859,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 21999999,
+   "precio": 22449999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -8764,7 +8991,7 @@
    "caja": "Manual",
    "color": "Beige Bt",
    "equipamiento": "",
-   "precio": 22500000,
+   "precio": 22950000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -8816,7 +9043,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 22899999,
+   "precio": 23349999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -8900,7 +9127,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 22900000,
+   "precio": 23350000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -8924,6 +9151,196 @@
    "guia": null
   },
   {
+   "id": "autocity-07f01d10-b39e-42b0-9817-8f8b87afe075",
+   "tipo": "auto",
+   "marca": "Volkswagen",
+   "modelo": "Gol",
+   "version": "1.6 Trendline 5p",
+   "anio": 2022,
+   "km": 38500,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Plata",
+   "equipamiento": "",
+   "precio": 23350000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792689762185.IMG_8902.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792689763347.IMG_8903.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792689764523.IMG_8909.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792689768337.IMG_8904.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792689773236.IMG_8905.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792689776084.IMG_8906.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-gol/1-6-trendline-5p/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 18436000,
+    "med": 18436000,
+    "max": 18436000,
+    "n": 1,
+    "mejor": {
+     "version": "GOL TREND 5P 1,6 TRENDLINE 2019",
+     "valor": 18436000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "GOL TREND 5P 1,6 TRENDLINE 2019",
+      18436000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-6bfb3723-7160-4738-90b2-f876b224813b",
+   "tipo": "auto",
+   "marca": "Peugeot",
+   "modelo": "208",
+   "version": "1.6 Active L20",
+   "anio": 2022,
+   "km": 48500,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 23350000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408239403.IMG_2136.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408241191.IMG_2139.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408243048.IMG_2137.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1789408245527.IMG_2138.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-active-l20/",
+   "sucursal": "San Luis",
+   "provincia": "San Luis",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 16261000,
+    "med": 19143000,
+    "max": 28146000,
+    "n": 8,
+    "mejor": {
+     "version": "208 5P 1,6 ACTIVE 2020",
+     "valor": 16853000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "208 5P 1,2 LIKE 2020",
+      16261000
+     ],
+     [
+      "208 5P 1,6 ACTIVE 2020",
+      16853000
+     ],
+     [
+      "208 5P 1,6 LIKE PACK 2020",
+      17501000
+     ],
+     [
+      "208 5P 1,6 ALLURE 2020",
+      18441000
+     ],
+     [
+      "208 5P 1,6 STYLE",
+      19143000
+     ],
+     [
+      "208 5P 1,6 ROADTRIP",
+      21681000
+     ],
+     [
+      "208 5P 1,2 T GT 6TIPT LINE",
+      28098000
+     ],
+     [
+      "208 5P 1,2 T GT 6TIPT",
+      28146000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-657a4dcd-f431-4fa1-81ae-487dd26c1841",
+   "tipo": "auto",
+   "marca": "Chevrolet",
+   "modelo": "Tracker",
+   "version": "1.2 T Ltz At6 L20",
+   "anio": 2020,
+   "km": 102000,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 23650000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791480043704.20260915_175434.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791480044737.20260915_175301.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791480045325.20260915_162546.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791480046038.20260915_162336.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-chevrolet/m-tracker/1-2-t-ltz-at6-l20/",
+   "sucursal": "Río Cuarto",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-21T15:33:33.769Z",
+   "guia": {
+    "min": 19843000,
+    "med": 20869000,
+    "max": 22365000,
+    "n": 5,
+    "mejor": {
+     "version": "TRACKER 5P 1,2 T 6AT LTZ",
+     "valor": 20869000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "TRACKER 5P 1,2 T 6AT",
+      19843000
+     ],
+     [
+      "TRACKER 5P 1,8 LTZ AT 4X4 AWD 2017",
+      20491000
+     ],
+     [
+      "TRACKER 5P 1,2 T 6AT LTZ",
+      20869000
+     ],
+     [
+      "TRACKER 5P 1,8 LTZ + AT 4X4 AWD 2017",
+      21374000
+     ],
+     [
+      "TRACKER 5P 1,2 T 6AT PREMIER",
+      22365000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-5749770e-502c-45f8-997f-13966bc2fee5",
    "tipo": "auto",
    "marca": "Fiat",
@@ -8935,7 +9352,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 23250000,
+   "precio": 23700000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -9020,7 +9437,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 23350000,
+   "precio": 23800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -9095,70 +9512,6 @@
    }
   },
   {
-   "id": "autocity-657a4dcd-f431-4fa1-81ae-487dd26c1841",
-   "tipo": "auto",
-   "marca": "Chevrolet",
-   "modelo": "Tracker",
-   "version": "1.2 T Ltz At6 L20",
-   "anio": 2020,
-   "km": 102000,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Gris",
-   "equipamiento": "",
-   "precio": 23400000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791480043704.20260915_175434.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791480044737.20260915_175301.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791480045325.20260915_162546.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791480046038.20260915_162336.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-chevrolet/m-tracker/1-2-t-ltz-at6-l20/",
-   "sucursal": "Río Cuarto",
-   "provincia": "Córdoba",
-   "oportunidad": true,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-21T15:33:33.769Z",
-   "guia": {
-    "min": 19843000,
-    "med": 20869000,
-    "max": 22365000,
-    "n": 5,
-    "mejor": {
-     "version": "TRACKER 5P 1,2 T 6AT LTZ",
-     "valor": 20869000,
-     "coincidencias": 2,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "TRACKER 5P 1,2 T 6AT",
-      19843000
-     ],
-     [
-      "TRACKER 5P 1,8 LTZ AT 4X4 AWD 2017",
-      20491000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT LTZ",
-      20869000
-     ],
-     [
-      "TRACKER 5P 1,8 LTZ + AT 4X4 AWD 2017",
-      21374000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT PREMIER",
-      22365000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-dd22968e-444d-43bf-96a1-d729d07996ae",
    "tipo": "auto",
    "marca": "Peugeot",
@@ -9170,7 +9523,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 23500000,
+   "precio": 23950000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -9231,7 +9584,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 23500000,
+   "precio": 23950000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -9284,7 +9637,7 @@
    "caja": "Automática",
    "color": "Celeste",
    "equipamiento": "",
-   "precio": 23600000,
+   "precio": 24100000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -9329,7 +9682,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 23899999,
+   "precio": 24399999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -9425,7 +9778,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 23900000,
+   "precio": 24400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -9480,7 +9833,7 @@
    "caja": "Manual",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 23900000,
+   "precio": 24400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -9560,7 +9913,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 23900000,
+   "precio": 24400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -9628,7 +9981,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 23900000,
+   "precio": 24400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -9685,41 +10038,6 @@
    }
   },
   {
-   "id": "autocity-9b39cce9-fca2-4939-8fc4-6cfba5c4fcc1",
-   "tipo": "auto",
-   "marca": "Renault",
-   "modelo": "Stepway",
-   "version": "1.6 Zen L19",
-   "anio": 2023,
-   "km": 80000,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Gris",
-   "equipamiento": "",
-   "precio": 24150000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212969478.20261002_170651.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212970683.20261002_170616.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212972035.20261002_170720.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212974484.20261002_171009.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212975888.20261002_171018.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212977290.20261002_171027.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212978622.20261002_171120.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212981260.20261002_170940.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-stepway/1-6-zen-l19/",
-   "sucursal": "Río Cuarto",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": null
-  },
-  {
    "id": "autocity-0fe82993-840f-4ff5-b45b-0586e0f8f76d",
    "tipo": "auto",
    "marca": "Renault",
@@ -9731,7 +10049,7 @@
    "caja": "Manual",
    "color": "Plata",
    "equipamiento": "",
-   "precio": 24200000,
+   "precio": 24450000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -9813,6 +10131,129 @@
    }
   },
   {
+   "id": "autocity-94bba391-a46a-4306-8635-578249d50b39",
+   "tipo": "auto",
+   "marca": "Mercedes Benz",
+   "modelo": "C",
+   "version": "250 Cgi Blueefficiency Avantgarde Sport At",
+   "anio": 2012,
+   "km": 99800,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Negro",
+   "equipamiento": "",
+   "precio": 24499999,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1782915136829.IMG_5983.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1782915137456.IMG_5985.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1782915137822.IMG_5986.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1782915138459.IMG_5984.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-mercedes-benz/m-c/250-cgi-blueefficiency-avantgarde-sport-at/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 19644000,
+    "med": 22262000,
+    "max": 27702000,
+    "n": 11,
+    "mejor": {
+     "version": "C 250 4P 1,8 CGI BLUEEFFICIENCY AVANT SPORT AT KIT MEM",
+     "valor": 24469000,
+     "coincidencias": 4,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "C 200 4P 1,8 CGI BLUE EFFIENCY CITY AT",
+      19644000
+     ],
+     [
+      "C 200 4P 1,8 BLUE EFFI AVANTGARDE AT",
+      20511000
+     ],
+     [
+      "C 200 4P 1,8 BLUE EFFI AVANTGARDE AT GPS R/VOZ",
+      21152000
+     ],
+     [
+      "C 250 4P 1,8 CGI BLUEEFFICIENCY AVANT SPORT AT",
+      21257000
+     ],
+     [
+      "C 200 4P 1,8 BLUE EFFI EDITION C AT",
+      21938000
+     ],
+     [
+      "C 250 4P 1,8 CGI BLUEEFFICIENCY AVANT AT",
+      22262000
+     ],
+     [
+      "C 250 COUPE BLUEEFFICIENCY AT",
+      23743000
+     ],
+     [
+      "C 250 4P 1,8 CGI BLUEEFFICIENCY AVANT SPORT AT KIT MEM",
+      24469000
+     ],
+     [
+      "C 220 4P 2,2 CDI AVANTGARDE AT BLUEEFFIC",
+      24508000
+     ],
+     [
+      "C 250 COUPE BLUEEFFICIENCY CITY AT",
+      25584000
+     ],
+     [
+      "C 250 COUPE BLUEEFFICIENCY SPORT AT",
+      27702000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-9b39cce9-fca2-4939-8fc4-6cfba5c4fcc1",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Stepway",
+   "version": "1.6 Zen L19",
+   "anio": 2023,
+   "km": 80000,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 24650000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212969478.20261002_170651.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212970683.20261002_170616.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212972035.20261002_170720.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212974484.20261002_171009.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212975888.20261002_171018.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212977290.20261002_171027.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212978622.20261002_171120.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791212981260.20261002_170940.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-stepway/1-6-zen-l19/",
+   "sucursal": "Río Cuarto",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-14T20:44:18.592Z",
+   "guia": null
+  },
+  {
    "id": "autocity-c77ade3c-c0d2-4cd3-9eec-0a13044ea599",
    "tipo": "auto",
    "marca": "Nissan",
@@ -9824,7 +10265,7 @@
    "caja": "Manual",
    "color": "Rojo",
    "equipamiento": "",
-   "precio": 24249999,
+   "precio": 24749999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -9875,7 +10316,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 24400000,
+   "precio": 24900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -9956,7 +10397,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 24500000,
+   "precio": 25000000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -10039,7 +10480,7 @@
    "caja": "Manual",
    "color": "Cinza Silverstone",
    "equipamiento": "",
-   "precio": 24500000,
+   "precio": 25000000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -10107,7 +10548,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 24500000,
+   "precio": 25000000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -10196,7 +10637,7 @@
    "caja": "Manual",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 24500000,
+   "precio": 25000000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -10265,7 +10706,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 24500000,
+   "precio": 25000000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -10310,6 +10751,66 @@
    }
   },
   {
+   "id": "autocity-26f01e6f-e88d-4e49-a0e7-17950d2e8e6b",
+   "tipo": "auto",
+   "marca": "Peugeot",
+   "modelo": "Partner",
+   "version": "1.6 Hdi Confort L22",
+   "anio": 2023,
+   "km": 45300,
+   "combustible": "Diesel",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 25150000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784560787226.IMG_1335.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784560787831.IMG_1338.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784560788463.IMG_1339.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784560788888.IMG_1336.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-partner/1-6-hdi-confort-l22/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-14T20:44:18.592Z",
+   "guia": {
+    "min": 20037000,
+    "med": 24442000,
+    "max": 25450000,
+    "n": 4,
+    "mejor": {
+     "version": "PARTNER PATAGONICA 1,6 HDi 92 VTC PLUS 2021",
+     "valor": 25450000,
+     "coincidencias": 2,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "PARTNER FURGON 1,6 115 CONF 2022",
+      20037000
+     ],
+     [
+      "PARTNER FURGON 1,6 HDi 92 CONF 2022",
+      21938000
+     ],
+     [
+      "PARTNER PATAGONICA 1,6 VTC PLUS 2021",
+      24442000
+     ],
+     [
+      "PARTNER PATAGONICA 1,6 HDi 92 VTC PLUS 2021",
+      25450000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-2b8fc945-90de-4a4a-9284-f8b4d0a82621",
    "tipo": "auto",
    "marca": "Peugeot",
@@ -10321,7 +10822,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 24650000,
+   "precio": 25150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -10379,7 +10880,7 @@
    "caja": "Manual",
    "color": "Azul",
    "equipamiento": "",
-   "precio": 24750000,
+   "precio": 25250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -10452,7 +10953,7 @@
    "caja": "Manual",
    "color": "Rojo",
    "equipamiento": "",
-   "precio": 24750000,
+   "precio": 25250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -10530,66 +11031,6 @@
    }
   },
   {
-   "id": "autocity-26f01e6f-e88d-4e49-a0e7-17950d2e8e6b",
-   "tipo": "auto",
-   "marca": "Peugeot",
-   "modelo": "Partner",
-   "version": "1.6 Hdi Confort L22",
-   "anio": 2023,
-   "km": 45300,
-   "combustible": "Diesel",
-   "caja": "Manual",
-   "color": "Blanco",
-   "equipamiento": "",
-   "precio": 24900000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784560787226.IMG_1335.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784560787831.IMG_1338.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784560788463.IMG_1339.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1784560788888.IMG_1336.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-partner/1-6-hdi-confort-l22/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": true,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 20037000,
-    "med": 24442000,
-    "max": 25450000,
-    "n": 4,
-    "mejor": {
-     "version": "PARTNER PATAGONICA 1,6 HDi 92 VTC PLUS 2021",
-     "valor": 25450000,
-     "coincidencias": 2,
-     "empate": 2
-    },
-    "versiones": [
-     [
-      "PARTNER FURGON 1,6 115 CONF 2022",
-      20037000
-     ],
-     [
-      "PARTNER FURGON 1,6 HDi 92 CONF 2022",
-      21938000
-     ],
-     [
-      "PARTNER PATAGONICA 1,6 VTC PLUS 2021",
-      24442000
-     ],
-     [
-      "PARTNER PATAGONICA 1,6 HDi 92 VTC PLUS 2021",
-      25450000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-a0f50b31-ba4a-4602-b718-a6101f7e51a0",
    "tipo": "auto",
    "marca": "Peugeot",
@@ -10601,7 +11042,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 24900000,
+   "precio": 25400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -10665,7 +11106,7 @@
    "caja": "Manual",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 24900000,
+   "precio": 25400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -10737,7 +11178,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 24900000,
+   "precio": 25400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -10796,7 +11237,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 24900000,
+   "precio": 25400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -10865,7 +11306,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 24900000,
+   "precio": 25400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -10999,7 +11440,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 24900000,
+   "precio": 25400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -11120,6 +11561,102 @@
    }
   },
   {
+   "id": "autocity-82a42856-361a-4c07-85a3-3840e3f6409b",
+   "tipo": "auto",
+   "marca": "Peugeot",
+   "modelo": "208",
+   "version": "1.6 Allure Pack L23",
+   "anio": 2023,
+   "km": 59400,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 25400000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690512748.IMG_8797.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690513884.IMG_8801.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690516708.IMG_8799.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690518022.IMG_8800.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-allure-pack-l23-2/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 16901000,
+    "med": 19167000,
+    "max": 29254000,
+    "n": 13,
+    "mejor": {
+     "version": "208 5P 1,6 ALLURE PACK 2023",
+     "valor": 20498000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "208 5P 1,2 LIKE 2020",
+      16901000
+     ],
+     [
+      "208 5P 1,6 ACTIVE 2020",
+      17517000
+     ],
+     [
+      "208 5P 1,2 LIKE NEW 2023",
+      17746000
+     ],
+     [
+      "208 5P 1,6 ACTIVE 2023",
+      17841000
+     ],
+     [
+      "208 5P 1,6 LIKE PACK 2020",
+      18191000
+     ],
+     [
+      "208 5P 1,6 ACTIVE PACK 2023",
+      18733000
+     ],
+     [
+      "208 5P 1,6 ALLURE 2020",
+      19167000
+     ],
+     [
+      "208 5P 1,6 ALLURE 2023",
+      19522000
+     ],
+     [
+      "208 5P 1,6 STYLE",
+      19897000
+     ],
+     [
+      "208 5P 1,6 ALLURE PACK 2023",
+      20498000
+     ],
+     [
+      "208 5P 1,6 ROADTRIP",
+      22536000
+     ],
+     [
+      "208 5P 1,2 T GT 6TIPT LINE",
+      29205000
+     ],
+     [
+      "208 5P 1,2 T GT 6TIPT",
+      29254000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-2d8ce1ac-1291-42cc-ba2e-6dac3333d828",
    "tipo": "auto",
    "marca": "Peugeot",
@@ -11131,7 +11668,7 @@
    "caja": "Automática",
    "color": "Gris Plata",
    "equipamiento": "",
-   "precio": 24950000,
+   "precio": 25450000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -11219,7 +11756,7 @@
    "caja": "Manual",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 24950000,
+   "precio": 25450000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -11292,7 +11829,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 25250000,
+   "precio": 25500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -11341,7 +11878,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 25250000,
+   "precio": 25500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -11396,6 +11933,90 @@
    }
   },
   {
+   "id": "autocity-58bfed11-6c8a-4a4e-ba08-329c8150a885",
+   "tipo": "auto",
+   "marca": "Peugeot",
+   "modelo": "208",
+   "version": "1.6 Feline Tiptronic L23",
+   "anio": 2023,
+   "km": 104700,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 25500000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690115219.IMG_8252.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690116422.IMG_8256.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690119393.IMG_8254.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690123787.IMG_8255.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-feline-tiptronic-l23-4/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 18876000,
+    "med": 20944000,
+    "max": 23386000,
+    "n": 10,
+    "mejor": {
+     "version": "208 5P 1,6 FELINE TIPT6 2023",
+     "valor": 22735000,
+     "coincidencias": 2,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "208 5P 1,6 ACTIVE TIPT6 2020",
+      18876000
+     ],
+     [
+      "208 5P 1,6 ACTIVE TIPT6 2023",
+      19226000
+     ],
+     [
+      "208 5P 1,6 ACTIVE TIPT6 PACK 2023",
+      20187000
+     ],
+     [
+      "208 5P 1,6 ALLURE TIPT6 2020",
+      20487000
+     ],
+     [
+      "208 5P 1,6 ALLURE TIPT6 2023",
+      20866000
+     ],
+     [
+      "208 5P 1,6 STYLE TIPT6",
+      20944000
+     ],
+     [
+      "208 5P 1,6 ALLURE TIPT6 PACK 2023",
+      21909000
+     ],
+     [
+      "208 5P 1,6 FELINE TIPT6 2020",
+      22323000
+     ],
+     [
+      "208 5P 1,6 FELINE TIPT6 2023",
+      22735000
+     ],
+     [
+      "208 5P 1,6 ROADTRIP TIPT6",
+      23386000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-73c9a9ec-3b26-4729-aff7-ad7ef80d7ffd",
    "tipo": "auto",
    "marca": "Honda",
@@ -11407,7 +12028,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 25499999,
+   "precio": 25749999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -11437,7 +12058,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 25500000,
+   "precio": 25750000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -11521,7 +12142,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 25500000,
+   "precio": 25750000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -11610,7 +12231,7 @@
    "caja": "Manual",
    "color": "Rojo",
    "equipamiento": "",
-   "precio": 25500000,
+   "precio": 25750000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -11666,7 +12287,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 25500000,
+   "precio": 25750000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -11723,7 +12344,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 25500000,
+   "precio": 25750000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -11755,7 +12376,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 25899999,
+   "precio": 26149999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -11810,7 +12431,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 25900000,
+   "precio": 26150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -11895,7 +12516,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 25900000,
+   "precio": 26150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -11971,7 +12592,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 25900000,
+   "precio": 26150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -12055,7 +12676,7 @@
    "caja": "Automática",
    "color": "Azul",
    "equipamiento": "",
-   "precio": 25900000,
+   "precio": 26150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -12100,54 +12721,61 @@
    }
   },
   {
-   "id": "autocity-d1fec750-c397-48ef-9033-bb52d87d54e2",
+   "id": "autocity-26518118-93b8-4413-9cc1-053086a60c87",
    "tipo": "auto",
-   "marca": "Honda",
-   "modelo": "Wr-v",
-   "version": "1.5 Ex Cvt L19",
-   "anio": 2019,
-   "km": 93900,
+   "marca": "Volkswagen",
+   "modelo": "Nivus",
+   "version": "200 Tsi Comfortline At L20",
+   "anio": 2021,
+   "km": 115600,
    "combustible": "Nafta",
    "caja": "Automática",
-   "color": "Gris",
+   "color": "Blanco",
    "equipamiento": "",
-   "precio": 25900000,
+   "precio": 26150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172944261.IMG_6667.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172946638.IMG_6665.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172948507.IMG_6671.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172955096.IMG_6668.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172962889.IMG_6670.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792689826325.20261016_092322.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792689826975.20261016_092236.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792689827705.20261016_092406.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792689828457.20261016_092706.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792689829446.20261016_092742.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792689830246.20261016_092722.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792689831143.20261016_092550.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792689833438.20261016_092305.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-honda/m-wr-v/1-5-ex-cvt-l19/",
-   "sucursal": "Córdoba",
+   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-nivus/200-tsi-comfortline-at-l20-2/",
+   "sucursal": "Río Cuarto",
    "provincia": "Córdoba",
    "oportunidad": false,
    "publicado": null,
    "modificado": null,
    "agencia": "autocity",
-   "alta": "2026-10-17T13:54:19.025Z",
+   "alta": "2026-10-23T15:31:22.702Z",
    "guia": {
-    "min": 21782000,
-    "med": 23042000,
-    "max": 23042000,
-    "n": 2,
+    "min": 19351000,
+    "med": 24491000,
+    "max": 26211000,
+    "n": 3,
     "mejor": {
-     "version": "WR-V 5P 1,5 EX CVT",
-     "valor": 21782000,
+     "version": "NIVUS 5P 1,0 TSI 200 6AT COMFORTLINE",
+     "valor": 19351000,
      "coincidencias": 3,
      "empate": 1
     },
     "versiones": [
      [
-      "WR-V 5P 1,5 EX CVT",
-      21782000
+      "NIVUS 5P 1,0 TSI 200 6AT COMFORTLINE",
+      19351000
      ],
      [
-      "WR-V 5P 1,5 EXL CVT",
-      23042000
+      "NIVUS 5P 1,0 TSI 200 6AT HIGHLINE",
+      24491000
+     ],
+     [
+      "NIVUS 5P 1,0 TSI 200 6AT HERO",
+      26211000
      ]
     ]
    }
@@ -12164,7 +12792,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 25900000,
+   "precio": 26150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -12223,7 +12851,7 @@
    "caja": "Manual",
    "color": "Azul",
    "equipamiento": "",
-   "precio": 26000000,
+   "precio": 26250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -12275,7 +12903,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 26000000,
+   "precio": 26250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -12359,7 +12987,7 @@
    "caja": "Manual",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 26250000,
+   "precio": 26500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -12432,7 +13060,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 26250000,
+   "precio": 26500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -12509,132 +13137,6 @@
    }
   },
   {
-   "id": "autocity-8cfd7994-7785-4f11-8e83-f8cd980717c0",
-   "tipo": "auto",
-   "marca": "Citroen",
-   "modelo": "C3",
-   "version": "1.6 First Edition At Bt",
-   "anio": 2024,
-   "km": 13100,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Azul",
-   "equipamiento": "",
-   "precio": 26500000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903409447.IMG_6602.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903412026.IMG_6603.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903413319.IMG_6608.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903419254.IMG_6604.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903426904.IMG_6605.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903433465.IMG_6607.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903436241.IMG_6606.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-citroen/m-c3/1-6-first-edition-at-bt/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 22744000,
-    "med": 24877000,
-    "max": 26329000,
-    "n": 7,
-    "mejor": {
-     "version": "C 3 5P 1,6 VTi 115 FIRST EDITION 6AT",
-     "valor": 23099000,
-     "coincidencias": 3,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "C 3 5P 1,6 VTi FELL AT PK DESING",
-      22744000
-     ],
-     [
-      "C 3 5P 1,6 VTi 115 FIRST EDITION 6AT",
-      23099000
-     ],
-     [
-      "C 3 5P 1,6 VTi FELL AT PK DESING BITONO",
-      23561000
-     ],
-     [
-      "C 3 AIRCROSS 5P T200 SHINE CVT 2024",
-      24877000
-     ],
-     [
-      "C 3 AIRCROSS 5P T200 SHINE CVT BITONO 2024",
-      25032000
-     ],
-     [
-      "C 3 AIRCROSS 5P T200 SHINE CVT 7P 2024",
-      26174000
-     ],
-     [
-      "C 3 AIRCROSS 5P T200 SHINE CVT 7P BITONO 2024",
-      26329000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-c0fdf6b6-55b9-4ca8-ae8b-93e028700b89",
-   "tipo": "auto",
-   "marca": "Fiat",
-   "modelo": "Fiorino",
-   "version": "1.3 Firefly Endurance",
-   "anio": 2026,
-   "km": 100,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Blanco",
-   "equipamiento": "",
-   "precio": 26500000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171911071.IMG_6739.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171911826.IMG_6740.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171912351.IMG_6750.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171912968.IMG_6747.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171913792.IMG_6754.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171915039.IMG_6742.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171917366.IMG_6751.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-fiorino/1-3-firefly-endurance-2/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": true,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-17T13:54:19.025Z",
-   "guia": {
-    "min": 33180000,
-    "med": 33180000,
-    "max": 33180000,
-    "n": 1,
-    "mejor": {
-     "version": "FIORINO FURGON 1,3 8V ENDURANCE FIREFLY 2025",
-     "valor": 33180000,
-     "coincidencias": 3,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "FIORINO FURGON 1,3 8V ENDURANCE FIREFLY 2025",
-      33180000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-93202ec5-cef5-4d28-8171-a2555b716519",
    "tipo": "auto",
    "marca": "Fiat",
@@ -12646,7 +13148,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 26500000,
+   "precio": 26750000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -12692,6 +13194,57 @@
    }
   },
   {
+   "id": "autocity-c0fdf6b6-55b9-4ca8-ae8b-93e028700b89",
+   "tipo": "auto",
+   "marca": "Fiat",
+   "modelo": "Fiorino",
+   "version": "1.3 Firefly Endurance",
+   "anio": 2026,
+   "km": 100,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 26800000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171911071.IMG_6739.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171911826.IMG_6740.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171912351.IMG_6750.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171912968.IMG_6747.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171913792.IMG_6754.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171915039.IMG_6742.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171917366.IMG_6751.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-fiorino/1-3-firefly-endurance-2/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-17T13:54:19.025Z",
+   "guia": {
+    "min": 33180000,
+    "med": 33180000,
+    "max": 33180000,
+    "n": 1,
+    "mejor": {
+     "version": "FIORINO FURGON 1,3 8V ENDURANCE FIREFLY 2025",
+     "valor": 33180000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "FIORINO FURGON 1,3 8V ENDURANCE FIREFLY 2025",
+      33180000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-a6d0f2f1-205b-4ec2-a4c1-59095f579082",
    "tipo": "auto",
    "marca": "Renault",
@@ -12703,7 +13256,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 26900000,
+   "precio": 27150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -12793,7 +13346,7 @@
    "caja": "Manual",
    "color": "Rojo",
    "equipamiento": "",
-   "precio": 26900000,
+   "precio": 27150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -12828,7 +13381,7 @@
    "caja": "Manual",
    "color": "Plata",
    "equipamiento": "",
-   "precio": 26900000,
+   "precio": 27150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -12880,7 +13433,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 26900000,
+   "precio": 27150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -12928,7 +13481,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 26900000,
+   "precio": 27150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13017,7 +13570,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 26900000,
+   "precio": 27150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13070,7 +13623,7 @@
    "caja": "Automática",
    "color": "Rojo",
    "equipamiento": "",
-   "precio": 27050000,
+   "precio": 27300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13150,7 +13703,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 27100000,
+   "precio": 27350000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13199,7 +13752,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 27200000,
+   "precio": 27450000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13260,7 +13813,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 27400000,
+   "precio": 27700000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13327,7 +13880,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 27500000,
+   "precio": 27800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13387,7 +13940,7 @@
    "caja": "Manual",
    "color": "Bordo",
    "equipamiento": "",
-   "precio": 27500000,
+   "precio": 27800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13439,7 +13992,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 27500000,
+   "precio": 27800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13516,7 +14069,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 27900000,
+   "precio": 28200000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13586,7 +14139,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 27900000,
+   "precio": 28200000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13653,7 +14206,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 27900000,
+   "precio": 28200000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13710,6 +14263,132 @@
    }
   },
   {
+   "id": "autocity-41975de1-02fe-41cd-acf7-84db9b9f3c92",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Captur",
+   "version": "2.0 Intens",
+   "anio": 2022,
+   "km": 85200,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 28200000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690060263.IMG_8759.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690062663.IMG_8760.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690064122.IMG_8763.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690067200.IMG_8761.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690071008.IMG_8762.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-captur/2-0-intens-2/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 20726000,
+    "med": 23633000,
+    "max": 24617000,
+    "n": 3,
+    "mejor": {
+     "version": "CAPTUR 5P 2,0 INTENS",
+     "valor": 24617000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "CAPTUR 5P 1,6 LIFE",
+      20726000
+     ],
+     [
+      "CAPTUR 5P 2,0 ZEN",
+      23633000
+     ],
+     [
+      "CAPTUR 5P 2,0 INTENS",
+      24617000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-8b025cf7-5d4a-4c9e-84ad-0e7cb98df173",
+   "tipo": "auto",
+   "marca": "Volkswagen",
+   "modelo": "T-cross",
+   "version": "1.6 Comfortline At6 L19",
+   "anio": 2020,
+   "km": 100200,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 28550000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792691848041.IMG_8346.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792691848763.IMG_8350.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792691849801.IMG_8347.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792691851122.IMG_8348.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792691852254.IMG_8349.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-t-cross/1-6-comfortline-at6-l19/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 20930000,
+    "med": 23441000,
+    "max": 25922000,
+    "n": 6,
+    "mejor": {
+     "version": "T-CROSS 5P 1,6 COMFORTLINE TIPT 2021",
+     "valor": 21977000,
+     "coincidencias": 2,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "T-CROSS 5P 1,6 COMFORTLINE TIPT",
+      20930000
+     ],
+     [
+      "T-CROSS 5P 1,6 COMFORTLINE TIPT 2021",
+      21977000
+     ],
+     [
+      "T-CROSS 5P 1,6 HIGHLINE TIPT",
+      22325000
+     ],
+     [
+      "T-CROSS 5P 1,6 HIGHLINE TIPT 2021",
+      23441000
+     ],
+     [
+      "T-CROSS 5P 1,6 STYLE EDITION TIPT",
+      24662000
+     ],
+     [
+      "T-CROSS 5P 1,6 HERO TIPT",
+      25922000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-52c771ee-7f36-492f-9f1f-91cc654f9f58",
    "tipo": "auto",
    "marca": "Chevrolet",
@@ -13721,7 +14400,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 28900000,
+   "precio": 29200000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13782,7 +14461,7 @@
    "caja": "Automática",
    "color": "Azul",
    "equipamiento": "",
-   "precio": 28900000,
+   "precio": 29200000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13859,7 +14538,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 29200000,
+   "precio": 29500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13912,7 +14591,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 29500000,
+   "precio": 29800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -13980,7 +14659,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 29800000,
+   "precio": 30100000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -14048,7 +14727,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 29899999,
+   "precio": 30199999,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -14124,7 +14803,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 30050000,
+   "precio": 30350000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -14182,7 +14861,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 30500000,
+   "precio": 30800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -14275,7 +14954,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 30500000,
+   "precio": 30800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -14306,7 +14985,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 30500000,
+   "precio": 30800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -14353,6 +15032,56 @@
    }
   },
   {
+   "id": "autocity-c8d3edba-5aaf-41ed-abf4-97976e05b542",
+   "tipo": "auto",
+   "marca": "Nissan",
+   "modelo": "Leaf",
+   "version": "Tekna",
+   "anio": 2023,
+   "km": 25500,
+   "combustible": "Electrico",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 30849999,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787073613966.IMG_5828.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787073615125.IMG_5832.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787073615976.IMG_5834.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787073619030.IMG_5829.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787073622406.IMG_5830.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787073625051.IMG_5833.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-leaf/tekna/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 33719000,
+    "med": 33719000,
+    "max": 33719000,
+    "n": 1,
+    "mejor": {
+     "version": "LEAF 5P TEKNA",
+     "valor": 33719000,
+     "coincidencias": 1,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "LEAF 5P TEKNA",
+      33719000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-70e15d7e-74bd-469f-86ee-369167ce3a50",
    "tipo": "auto",
    "marca": "Volkswagen",
@@ -14364,7 +15093,7 @@
    "caja": "Manual",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 30850000,
+   "precio": 31150000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -14415,7 +15144,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 31100000,
+   "precio": 31400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -14508,7 +15237,7 @@
    "caja": "Manual",
    "color": "Azul",
    "equipamiento": "",
-   "precio": 31250000,
+   "precio": 31550000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -14561,7 +15290,7 @@
    "caja": "Manual",
    "color": "Naranja",
    "equipamiento": "",
-   "precio": 31500000,
+   "precio": 31800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -14610,7 +15339,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 31500000,
+   "precio": 31800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -14686,7 +15415,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 31750000,
+   "precio": 32100000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -14732,71 +15461,6 @@
    }
   },
   {
-   "id": "autocity-c8450372-cdf7-4b89-b0fa-3d9324ac4079",
-   "tipo": "auto",
-   "marca": "Renault",
-   "modelo": "Kardian",
-   "version": "1.0 T Techno Edc L24",
-   "anio": 2025,
-   "km": 40100,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Blanco",
-   "equipamiento": "",
-   "precio": 31900000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498160936.IMG_9818.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498161693.IMG_9820.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498162162.IMG_9822.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498163991.IMG_9819.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498167122.IMG_9821.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-kardian/1-0-t-techno-edc-l24/",
-   "sucursal": "Villa María",
-   "provincia": "Córdoba",
-   "oportunidad": true,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 28073000,
-    "med": 30543000,
-    "max": 33490000,
-    "n": 5,
-    "mejor": {
-     "version": "KARDIAN 5P 1,0 T AT6 TECHNO",
-     "valor": 29785000,
-     "coincidencias": 2,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "KARDIAN 5P 1,0 T AT6 EVOLUTION",
-      28073000
-     ],
-     [
-      "KARDIAN 5P 1,0 T AT6 TECHNO",
-      29785000
-     ],
-     [
-      "KARDIAN 5P 1,0 T AT6 EVOLUTION 2025",
-      30543000
-     ],
-     [
-      "KARDIAN 5P 1,0 T AT6 PREMIERE EDITION",
-      31347000
-     ],
-     [
-      "KARDIAN 5P 1,0 T AT6 ICONIC 2025",
-      33490000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-4cb39d0a-ce90-490d-82f4-fc7ab826fdf5",
    "tipo": "auto",
    "marca": "Chery",
@@ -14808,7 +15472,7 @@
    "caja": "Manual",
    "color": "Gris Plata",
    "equipamiento": "",
-   "precio": 31900000,
+   "precio": 32200000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -14856,7 +15520,7 @@
    "caja": "Manual",
    "color": "Acero",
    "equipamiento": "",
-   "precio": 31900000,
+   "precio": 32200000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -14904,7 +15568,7 @@
    "caja": "Automática",
    "color": "Gris Plata",
    "equipamiento": "",
-   "precio": 31900000,
+   "precio": 32200000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -14961,7 +15625,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 31900000,
+   "precio": 32200000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15041,6 +15705,71 @@
    }
   },
   {
+   "id": "autocity-c8450372-cdf7-4b89-b0fa-3d9324ac4079",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Kardian",
+   "version": "1.0 T Techno Edc L24",
+   "anio": 2025,
+   "km": 40100,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 32250000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498160936.IMG_9818.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498161693.IMG_9820.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498162162.IMG_9822.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498163991.IMG_9819.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1780498167122.IMG_9821.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-kardian/1-0-t-techno-edc-l24/",
+   "sucursal": "Villa María",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-14T20:44:18.592Z",
+   "guia": {
+    "min": 28073000,
+    "med": 30543000,
+    "max": 33490000,
+    "n": 5,
+    "mejor": {
+     "version": "KARDIAN 5P 1,0 T AT6 TECHNO",
+     "valor": 29785000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "KARDIAN 5P 1,0 T AT6 EVOLUTION",
+      28073000
+     ],
+     [
+      "KARDIAN 5P 1,0 T AT6 TECHNO",
+      29785000
+     ],
+     [
+      "KARDIAN 5P 1,0 T AT6 EVOLUTION 2025",
+      30543000
+     ],
+     [
+      "KARDIAN 5P 1,0 T AT6 PREMIERE EDITION",
+      31347000
+     ],
+     [
+      "KARDIAN 5P 1,0 T AT6 ICONIC 2025",
+      33490000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-c0fa2de2-b3dc-4ceb-96be-5df8ee9893b9",
    "tipo": "auto",
    "marca": "Peugeot",
@@ -15052,7 +15781,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 32150000,
+   "precio": 32500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15104,7 +15833,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 32250000,
+   "precio": 32550000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15180,7 +15909,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 32500000,
+   "precio": 32850000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15229,7 +15958,7 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 32550000,
+   "precio": 32900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15281,7 +16010,7 @@
    "caja": "Automática",
    "color": "Azul",
    "equipamiento": "",
-   "precio": 32900000,
+   "precio": 33250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15337,7 +16066,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 33150000,
+   "precio": 33500000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15393,7 +16122,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 33850000,
+   "precio": 34200000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15434,6 +16163,37 @@
    }
   },
   {
+   "id": "autocity-cab5b063-7609-4116-99fe-7e243d686b2d",
+   "tipo": "auto",
+   "marca": "BYD",
+   "modelo": "Dolphin Mini",
+   "version": "Gl",
+   "anio": 2026,
+   "km": 20,
+   "combustible": "Electrico",
+   "caja": "Automática",
+   "color": "Celeste",
+   "equipamiento": "",
+   "precio": 34200000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923816154.1.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923816468.4.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923816804.3.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791923817641.2.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-dolphin-mini/gl-4/",
+   "sucursal": "Río Cuarto",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": null
+  },
+  {
    "id": "autocity-1b86c82c-7980-4b4d-8373-7b9ea26ab32c",
    "tipo": "auto",
    "marca": "Chevrolet",
@@ -15445,7 +16205,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 33900000,
+   "precio": 34250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15522,7 +16282,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 33900000,
+   "precio": 34250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15591,7 +16351,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 33900000,
+   "precio": 34250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15648,7 +16408,7 @@
    "caja": "Automática",
    "color": "Acero",
    "equipamiento": "",
-   "precio": 33900000,
+   "precio": 34250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15704,7 +16464,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 33900000,
+   "precio": 34250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15765,7 +16525,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 34250000,
+   "precio": 34600000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15822,7 +16582,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 34750000,
+   "precio": 35100000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15879,7 +16639,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 34900000,
+   "precio": 35250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -15899,59 +16659,6 @@
    "guia": null
   },
   {
-   "id": "autocity-1d3e0415-1327-4448-a26b-736dd12bfdb9",
-   "tipo": "auto",
-   "marca": "Volkswagen",
-   "modelo": "Nivus",
-   "version": "170 Tsi L25",
-   "anio": 2025,
-   "km": 13500,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Blanco",
-   "equipamiento": "",
-   "precio": 34900000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164094547.IMG_5775.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164095548.IMG_5778.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164096505.IMG_5781.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164100133.IMG_5779.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792164105196.IMG_5780.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-nivus/170-tsi-l25/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-17T13:54:19.025Z",
-   "guia": {
-    "min": 24726000,
-    "med": 25231000,
-    "max": 25231000,
-    "n": 2,
-    "mejor": {
-     "version": "NIVUS 5P 1,0 TSI 170 5MT 2025",
-     "valor": 25231000,
-     "coincidencias": 2,
-     "empate": 2
-    },
-    "versiones": [
-     [
-      "NIVUS 5P 1,0 TSI 170 5MT 2024",
-      24726000
-     ],
-     [
-      "NIVUS 5P 1,0 TSI 170 5MT 2025",
-      25231000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-4a7ed8ab-8c85-4e77-9330-a16100189b72",
    "tipo": "auto",
    "marca": "Renault",
@@ -15963,7 +16670,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 34900000,
+   "precio": 35250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -16080,7 +16787,7 @@
    "caja": "Automática",
    "color": "Azul",
    "equipamiento": "",
-   "precio": 34965000,
+   "precio": 35300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -16114,7 +16821,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 35500000,
+   "precio": 35850000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -16230,7 +16937,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 35900000,
+   "precio": 36250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -16279,75 +16986,6 @@
    }
   },
   {
-   "id": "autocity-cbe23fd3-6b91-41d9-bb4f-4fe89828315f",
-   "tipo": "auto",
-   "marca": "Volkswagen",
-   "modelo": "Amarok",
-   "version": "2.0 Td 140hp 4×2 Dc Trendline L17",
-   "anio": 2023,
-   "km": 70000,
-   "combustible": "Diesel",
-   "caja": "Manual",
-   "color": "Acero",
-   "equipamiento": "",
-   "precio": 36500000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172187194.IMG_7850.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172188077.IMG_7852.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172188556.IMG_7856.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172190535.IMG_7853.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172192678.IMG_7855.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-amarok/2-0-td-140hp-4x2-dc-trendline-l17/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-17T13:54:19.025Z",
-   "guia": {
-    "min": 26764000,
-    "med": 37053000,
-    "max": 44719000,
-    "n": 6,
-    "mejor": {
-     "version": "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 HIGH 2023",
-     "valor": 37053000,
-     "coincidencias": 1,
-     "empate": 6
-    },
-    "versiones": [
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 140CV 4X2 TREND 2023",
-      26764000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 140CV 4X4 TREND 2023",
-      31172000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 COMF 2023",
-      33220000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 HIGH 2023",
-      37053000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X4 COMF 2023",
-      38075000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X4 HIGH 2023",
-      44719000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-0add35c3-797f-46dc-a2ca-c5f5609430b7",
    "tipo": "auto",
    "marca": "Renault",
@@ -16359,7 +16997,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 36600000,
+   "precio": 36950000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -16411,7 +17049,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 36600000,
+   "precio": 36950000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -16509,7 +17147,7 @@
    "caja": "Automática",
    "color": "Cinza Artense",
    "equipamiento": "",
-   "precio": 36750000,
+   "precio": 37100000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -16567,62 +17205,6 @@
    }
   },
   {
-   "id": "autocity-2519a065-472f-4266-91fa-a1ec4ccc4632",
-   "tipo": "auto",
-   "marca": "Jeep",
-   "modelo": "Compass",
-   "version": "2.0 Td Limited Plus At9 L21",
-   "anio": 2020,
-   "km": 80300,
-   "combustible": "Diesel",
-   "caja": "Automática",
-   "color": "Blanco",
-   "equipamiento": "",
-   "precio": 36900000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783104507146.IMG_4422.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783104508129.IMG_4426.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783104511406.IMG_4423.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783104514657.IMG_4425.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-compass/2-0-td-limited-plus-at9-l21/",
-   "sucursal": "Villa María",
-   "provincia": "Córdoba",
-   "oportunidad": true,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 25524000,
-    "med": 27771000,
-    "max": 33411000,
-    "n": 3,
-    "mejor": {
-     "version": "COMPASS 5P 2,4 AT9 LIMITED 4X4 PLUS 2019",
-     "valor": 33411000,
-     "coincidencias": 3,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "COMPASS 5P 2,4 6AT SPORT 4X2 FWD 2019",
-      25524000
-     ],
-     [
-      "COMPASS 5P 2,4 6AT LONGITUDE 4X2 FWD 2019",
-      27771000
-     ],
-     [
-      "COMPASS 5P 2,4 AT9 LIMITED 4X4 PLUS 2019",
-      33411000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-efed17e2-67b8-4bbd-96d5-84e3068ff35c",
    "tipo": "auto",
    "marca": "Fiat",
@@ -16634,7 +17216,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 36900000,
+   "precio": 37250000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -16684,6 +17266,62 @@
    }
   },
   {
+   "id": "autocity-2519a065-472f-4266-91fa-a1ec4ccc4632",
+   "tipo": "auto",
+   "marca": "Jeep",
+   "modelo": "Compass",
+   "version": "2.0 Td Limited Plus At9 L21",
+   "anio": 2020,
+   "km": 80300,
+   "combustible": "Diesel",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 37300000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783104507146.IMG_4422.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783104508129.IMG_4426.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783104511406.IMG_4423.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783104514657.IMG_4425.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-compass/2-0-td-limited-plus-at9-l21/",
+   "sucursal": "Villa María",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-14T20:44:18.592Z",
+   "guia": {
+    "min": 25524000,
+    "med": 27771000,
+    "max": 33411000,
+    "n": 3,
+    "mejor": {
+     "version": "COMPASS 5P 2,4 AT9 LIMITED 4X4 PLUS 2019",
+     "valor": 33411000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "COMPASS 5P 2,4 6AT SPORT 4X2 FWD 2019",
+      25524000
+     ],
+     [
+      "COMPASS 5P 2,4 6AT LONGITUDE 4X2 FWD 2019",
+      27771000
+     ],
+     [
+      "COMPASS 5P 2,4 AT9 LIMITED 4X4 PLUS 2019",
+      33411000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-1a1bf814-80eb-458c-b405-93aa8d103e50",
    "tipo": "auto",
    "marca": "Jeep",
@@ -16695,7 +17333,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 37000000,
+   "precio": 37400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -16764,7 +17402,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 37250000,
+   "precio": 37600000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -16830,7 +17468,7 @@
    "caja": "Automática",
    "color": "Gris Plata",
    "equipamiento": "",
-   "precio": 37500000,
+   "precio": 37900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -16886,7 +17524,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 37900000,
+   "precio": 38300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -16951,7 +17589,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 37900000,
+   "precio": 38300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -17041,7 +17679,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 37900000,
+   "precio": 38300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -17095,6 +17733,79 @@
    }
   },
   {
+   "id": "autocity-8481a665-7bb5-40eb-b191-6ac03867cc7c",
+   "tipo": "auto",
+   "marca": "Chevrolet",
+   "modelo": "Tracker",
+   "version": "1.2 T Rs At6 L24",
+   "anio": 2024,
+   "km": 13300,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 38300000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690781022.IMG_7972.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690781738.IMG_7973.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690782262.IMG_7976.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690783175.IMG_7974.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690784320.IMG_7975.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-chevrolet/m-tracker/1-2-t-rs-at6-l24/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 22917000,
+    "med": 24926000,
+    "max": 29523000,
+    "n": 7,
+    "mejor": {
+     "version": "TRACKER 5P 1,2 T 6AT RS",
+     "valor": 28663000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "TRACKER 5P 1,2 T 6AT",
+      22917000
+     ],
+     [
+      "TRACKER 5P 1,2 T 6AT 2024",
+      23604000
+     ],
+     [
+      "TRACKER 5P 1,2 T 6AT LTZ",
+      24139000
+     ],
+     [
+      "TRACKER 5P 1,2 T 6AT LTZ 2024",
+      24926000
+     ],
+     [
+      "TRACKER 5P 1,2 T 6AT PREMIER 2024",
+      28663000
+     ],
+     [
+      "TRACKER 5P 1,2 T 6AT RS",
+      28663000
+     ],
+     [
+      "TRACKER 5P 1,2 T 6AT PREMIER 170 2024",
+      29523000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-b01587d4-c0eb-45b7-b57b-c1d4ad240b26",
    "tipo": "auto",
    "marca": "Toyota",
@@ -17106,7 +17817,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 38900000,
+   "precio": 39300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -17175,7 +17886,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 38900000,
+   "precio": 39300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -17239,7 +17950,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 38900000,
+   "precio": 39300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -17287,7 +17998,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 39400000,
+   "precio": 39800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -17356,7 +18067,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 39400000,
+   "precio": 39800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -17413,7 +18124,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 39500000,
+   "precio": 39900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -17478,7 +18189,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 39500000,
+   "precio": 39900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -17523,94 +18234,6 @@
    }
   },
   {
-   "id": "autocity-51551bd4-d7c3-4401-bc09-2eba7080b7b7",
-   "tipo": "auto",
-   "marca": "Fiat",
-   "modelo": "Toro",
-   "version": "1.3 T 4×2 Freedom At6 L24",
-   "anio": 2024,
-   "km": 88300,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Blanco",
-   "equipamiento": "",
-   "precio": 39800000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785940431606.IMG_2034.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785940435053.IMG_2037.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785940447048.IMG_2036.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785940453939.IMG_2035.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-toro/1-3-t-4x2-freedom-at6-l24/",
-   "sucursal": "Villa María",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 23828000,
-    "med": 34227000,
-    "max": 41755000,
-    "n": 11,
-    "mejor": {
-     "version": "TORO PICK UP D/C T270 6AT 4X2 FREEDOM",
-     "valor": 30129000,
-     "coincidencias": 1,
-     "empate": 5
-    },
-    "versiones": [
-     [
-      "TORO PICK UP D/C 1,8 FREEDOM 4X2 6AT 2023",
-      23828000
-     ],
-     [
-      "TORO PICK UP D/C 1,8 FREEDOM 4X2 6AT S-DESIGN 2023",
-      26491000
-     ],
-     [
-      "TORO PICK UP D/C T270 6AT 4X2 FREEDOM",
-      30129000
-     ],
-     [
-      "TORO PICK UP D/C 1,3 T VOLCANO 4X2 6AT 2023",
-      32521000
-     ],
-     [
-      "TORO PICK UP D/C 2,0 16V TD FREEDOM 4X4 9AT 2023",
-      32862000
-     ],
-     [
-      "TORO PICK UP D/C T270 6AT 4X2 VOLCANO",
-      34227000
-     ],
-     [
-      "TORO PICK UP D/C 2,0 16V TD VOLCANO 4X4 9AT 2023",
-      36335000
-     ],
-     [
-      "TORO PICK UP D/C 2,0 16V TD MULTIJET ULTRA 4X4 9AT 2023",
-      37723000
-     ],
-     [
-      "TORO PICK UP D/C TD350 9AT 4X4 VOLCANO",
-      38242000
-     ],
-     [
-      "TORO PICK UP D/C 2,0 16V TD MULTIJET RANCH 4X4 9AT 2023",
-      38894000
-     ],
-     [
-      "TORO PICK UP D/C TD350 9AT 4X4 ULTRA",
-      41755000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-f4541844-21e5-4d3b-a2a0-e0b90ec8cadc",
    "tipo": "auto",
    "marca": "Jeep",
@@ -17622,7 +18245,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 39900000,
+   "precio": 40300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -17694,7 +18317,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 40100000,
+   "precio": 40550000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -17763,7 +18386,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 40250000,
+   "precio": 40700000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -17851,7 +18474,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 40300000,
+   "precio": 40700000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -17921,7 +18544,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 40900000,
+   "precio": 41300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -18014,7 +18637,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 40900000,
+   "precio": 41300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -18087,7 +18710,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 41300000,
+   "precio": 41750000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -18156,7 +18779,7 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 41400000,
+   "precio": 41850000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -18259,7 +18882,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 41500000,
+   "precio": 41900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -18328,7 +18951,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 41500000,
+   "precio": 41900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -18396,7 +19019,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 41500000,
+   "precio": 41900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -18446,6 +19069,62 @@
    }
   },
   {
+   "id": "autocity-c22faf1d-9e05-4fe8-a564-65c38b9ea2ee",
+   "tipo": "auto",
+   "marca": "Volkswagen",
+   "modelo": "Taos",
+   "version": "1.4 250 Tsi Highline Tiptronic L21",
+   "anio": 2022,
+   "km": 103200,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 41900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792692166258.IMG_7720.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792692166631.IMG_7723.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792692167661.IMG_7721.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792692168616.IMG_7722.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-taos/1-4-250-tsi-highline-tiptronic-l21-2/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 28864000,
+    "med": 31383000,
+    "max": 33163000,
+    "n": 3,
+    "mejor": {
+     "version": "TAOS 5P 1,4 TSI 250 HIGHLINE TIPT",
+     "valor": 31383000,
+     "coincidencias": 4,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "TAOS 5P 1,4 TSI 250 COMFORTLINE TIPT",
+      28864000
+     ],
+     [
+      "TAOS 5P 1,4 TSI 250 HIGHLINE TIPT",
+      31383000
+     ],
+     [
+      "TAOS 5P 1,4 TSI 250 HERO TIPT",
+      33163000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-5ef7c917-d758-4cd6-b083-d74db52857e1",
    "tipo": "auto",
    "marca": "Volkswagen",
@@ -18457,7 +19136,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 41700000,
+   "precio": 42100000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -18513,7 +19192,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 41750000,
+   "precio": 42200000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -18597,7 +19276,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 41900000,
+   "precio": 42300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -18665,7 +19344,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 41900000,
+   "precio": 42300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -18734,7 +19413,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 41900000,
+   "precio": 42300000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -18827,7 +19506,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 42500000,
+   "precio": 42950000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -18862,7 +19541,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 42500000,
+   "precio": 42950000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -18923,7 +19602,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 42500000,
+   "precio": 42950000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -19016,7 +19695,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 42500000,
+   "precio": 42950000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -19029,7 +19708,7 @@
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791986703533.20261009_124835.jpeg",
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791986706184.20261009_124604.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-toro/1-3-t-4x2-freedom-at6-l24-3/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-toro/1-3-t-4x2-freedom-at6-l24/",
    "sucursal": "Río Cuarto",
    "provincia": "Córdoba",
    "oportunidad": false,
@@ -19080,7 +19759,7 @@
    "caja": "Automática",
    "color": "Rojo",
    "equipamiento": "",
-   "precio": 42900000,
+   "precio": 43350000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -19101,6 +19780,75 @@
    "guia": null
   },
   {
+   "id": "autocity-92a73193-6111-4ead-8cc8-3c3b18f2e81e",
+   "tipo": "auto",
+   "marca": "Nissan",
+   "modelo": "Kicks",
+   "version": "1.6 Play Exclusive Cvt",
+   "anio": 2025,
+   "km": 21300,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 43350000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792691922214.IMG_8545.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792691923057.IMG_8546.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792691923426.IMG_8550.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792691924292.IMG_8547.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792691925329.IMG_8549.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-kicks/1-6-play-exclusive-cvt/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 30059000,
+    "med": 35535000,
+    "max": 38647000,
+    "n": 6,
+    "mejor": {
+     "version": "KICKS PLAY 5P 1,6 EXCLUSIVE CVT",
+     "valor": 38647000,
+     "coincidencias": 3,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "KICKS 5P 1,6 ADVANCE CVT 2023",
+      30059000
+     ],
+     [
+      "KICKS 5P 1,6 ADVANCE CVT PLUS 2023",
+      31261000
+     ],
+     [
+      "KICKS PLAY 5P 1,6 ADVANCE CVT",
+      35141000
+     ],
+     [
+      "KICKS 5P 1,6 EXCLUSIVE CVT 2023",
+      35535000
+     ],
+     [
+      "KICKS PLAY 5P 1,6 ADVANCE CVT PLUS",
+      36801000
+     ],
+     [
+      "KICKS PLAY 5P 1,6 EXCLUSIVE CVT",
+      38647000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-92dc6dcb-5414-4ef0-982c-55c3802284e4",
    "tipo": "auto",
    "marca": "Jeep",
@@ -19112,7 +19860,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 43300000,
+   "precio": 43750000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -19203,7 +19951,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 43355000,
+   "precio": 43800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -19258,7 +20006,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 43500000,
+   "precio": 43950000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -19313,7 +20061,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 43900000,
+   "precio": 44350000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -19373,7 +20121,7 @@
    "caja": "Automática",
    "color": "Cinza Artense",
    "equipamiento": "",
-   "precio": 44310000,
+   "precio": 44800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -19426,7 +20174,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 44500000,
+   "precio": 44950000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -19487,7 +20235,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 44850000,
+   "precio": 45350000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -19581,6 +20329,70 @@
    }
   },
   {
+   "id": "autocity-c97c956f-4849-40ac-a607-809947d81d29",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Alaskan",
+   "version": "2.3 Dci 4×4 Outsider At L23",
+   "anio": 2023,
+   "km": 58300,
+   "combustible": "Diesel",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 45350000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903762988.IMG_6188.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903766110.IMG_6191.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903774087.IMG_6189.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903783266.IMG_6190.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-alaskan/2-3-dci-4x4-outsider-at-l23/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-14T20:44:18.592Z",
+   "guia": {
+    "min": 35261000,
+    "med": 44038000,
+    "max": 45359000,
+    "n": 5,
+    "mejor": {
+     "version": "ALASKAN PICK - UP D/C 2,3 DCI T 190CV 4WD INTENS NOIR AT",
+     "valor": 40470000,
+     "coincidencias": 3,
+     "empate": 3
+    },
+    "versiones": [
+     [
+      "ALASKAN PICK - UP D/C 2,3 DCI T 190CV 2WD INTENS AT",
+      35261000
+     ],
+     [
+      "ALASKAN PICK - UP D/C 2,3 DCI T 190CV 4WD INTENS NOIR AT",
+      40470000
+     ],
+     [
+      "ALASKAN PICK - UP D/C 2,3 DCI T 190CV 4X4 ICONIC 7AT",
+      44038000
+     ],
+     [
+      "ALASKAN PICK - UP D/C 2,3 DCI T 190CV 4X4 OUTSIDER 7AT",
+      44120000
+     ],
+     [
+      "ALASKAN PICK - UP D/C 2,3 DCI T 190CV 4WD ICONIC 7AT",
+      45359000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-07a44cb1-1f93-4baa-9c26-de5898a21d97",
    "tipo": "auto",
    "marca": "Jeep",
@@ -19592,7 +20404,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 44850000,
+   "precio": 45350000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -19673,70 +20485,6 @@
    }
   },
   {
-   "id": "autocity-c97c956f-4849-40ac-a607-809947d81d29",
-   "tipo": "auto",
-   "marca": "Renault",
-   "modelo": "Alaskan",
-   "version": "2.3 Dci 4×4 Outsider At L23",
-   "anio": 2023,
-   "km": 58300,
-   "combustible": "Diesel",
-   "caja": "Automática",
-   "color": "Blanco",
-   "equipamiento": "",
-   "precio": 44900000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903762988.IMG_6188.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903766110.IMG_6191.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903774087.IMG_6189.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1791903783266.IMG_6190.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-alaskan/2-3-dci-4x4-outsider-at-l23/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 35261000,
-    "med": 44038000,
-    "max": 45359000,
-    "n": 5,
-    "mejor": {
-     "version": "ALASKAN PICK - UP D/C 2,3 DCI T 190CV 4WD INTENS NOIR AT",
-     "valor": 40470000,
-     "coincidencias": 3,
-     "empate": 3
-    },
-    "versiones": [
-     [
-      "ALASKAN PICK - UP D/C 2,3 DCI T 190CV 2WD INTENS AT",
-      35261000
-     ],
-     [
-      "ALASKAN PICK - UP D/C 2,3 DCI T 190CV 4WD INTENS NOIR AT",
-      40470000
-     ],
-     [
-      "ALASKAN PICK - UP D/C 2,3 DCI T 190CV 4X4 ICONIC 7AT",
-      44038000
-     ],
-     [
-      "ALASKAN PICK - UP D/C 2,3 DCI T 190CV 4X4 OUTSIDER 7AT",
-      44120000
-     ],
-     [
-      "ALASKAN PICK - UP D/C 2,3 DCI T 190CV 4WD ICONIC 7AT",
-      45359000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-bc25696a-bb15-48bf-9304-9410221ba608",
    "tipo": "auto",
    "marca": "BYD",
@@ -19748,7 +20496,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 44900000,
+   "precio": 45350000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -19800,7 +20548,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 45300000,
+   "precio": 45800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -19915,7 +20663,7 @@
    "caja": "Automática",
    "color": "Naranja",
    "equipamiento": "",
-   "precio": 45400000,
+   "precio": 45900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -19969,7 +20717,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 45500000,
+   "precio": 46000000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -20024,7 +20772,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 45900000,
+   "precio": 46350000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -20116,7 +20864,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 46400000,
+   "precio": 46900000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -20127,7 +20875,7 @@
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788377755401.IMG_9540.jpeg",
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788377759046.IMG_9557.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-commander/2-0-td-4x4-limited-plus-at9-l22-2/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-commander/2-0-td-4x4-limited-plus-at9-l22/",
    "sucursal": "Córdoba",
    "provincia": "Córdoba",
    "oportunidad": true,
@@ -20174,7 +20922,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 46407000,
+   "precio": 46907000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -20231,7 +20979,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 46900000,
+   "precio": 47350000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -20279,7 +21027,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 46900000,
+   "precio": 47350000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -20371,7 +21119,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 47350000,
+   "precio": 47850000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -20463,7 +21211,7 @@
    "caja": "Automática",
    "color": "Rojo",
    "equipamiento": "",
-   "precio": 48250000,
+   "precio": 48750000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -20512,7 +21260,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 48250000,
+   "precio": 48750000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -20580,7 +21328,7 @@
    "caja": "Automática",
    "color": "Grafito",
    "equipamiento": "",
-   "precio": 48560000,
+   "precio": 49050000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -20613,7 +21361,7 @@
    "caja": "Automática",
    "color": "Negro",
    "equipamiento": "",
-   "precio": 49900000,
+   "precio": 50400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -20682,7 +21430,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 49900000,
+   "precio": 50400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -20744,6 +21492,75 @@
    }
   },
   {
+   "id": "autocity-6766bd48-b6b3-41bb-89cf-20f1dda37780",
+   "tipo": "auto",
+   "marca": "Nissan",
+   "modelo": "Frontier",
+   "version": "2.3 Bi Turbo D 4×4 Cd Pro4x At",
+   "anio": 2023,
+   "km": 20700,
+   "combustible": "Diesel",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 51000000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690433232.IMG_8776.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690434449.IMG_8778.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690435497.IMG_8784.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690438948.IMG_8779.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690442284.IMG_8782.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-frontier/2-3-bi-turbo-d-4x4-cd-pro4x-at/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 28683000,
+    "med": 43302000,
+    "max": 48290000,
+    "n": 6,
+    "mejor": {
+     "version": "FRONTIER PICK - UP D/C 2,3 TD 4X2 PLATINUM AT 190CV",
+     "valor": 43302000,
+     "coincidencias": 3,
+     "empate": 6
+    },
+    "versiones": [
+     [
+      "FRONTIER PICK - UP D/C 2,3 TD 4X2 S AT 190CV",
+      28683000
+     ],
+     [
+      "FRONTIER PICK - UP D/C 2,3 TD 4X2 XE AT 190CV",
+      38267000
+     ],
+     [
+      "FRONTIER PICK - UP D/C 2,3 TD 4X4 X-GEAR AT 190CV",
+      39005000
+     ],
+     [
+      "FRONTIER PICK - UP D/C 2,3 TD 4X2 PLATINUM AT 190CV",
+      43302000
+     ],
+     [
+      "FRONTIER PICK - UP D/C 2,3 TD 4X4 PLATINUM AT 190CV",
+      45660000
+     ],
+     [
+      "FRONTIER PICK - UP D/C 2,3 TD 4X4 PRO-4X AT 190CV",
+      48290000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-a2ea5b31-e28d-45e6-aaf6-75d016cfe5e4",
    "tipo": "auto",
    "marca": "Ford",
@@ -20755,7 +21572,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 50500000,
+   "precio": 51050000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -20808,7 +21625,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 51900000,
+   "precio": 52400000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -20864,7 +21681,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 52500000,
+   "precio": 53050000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -20914,6 +21731,67 @@
    }
   },
   {
+   "id": "autocity-a21d375d-e4c3-438c-a66c-8d3b4fd2dd62",
+   "tipo": "auto",
+   "marca": "Nissan",
+   "modelo": "Xtrail",
+   "version": "2.5 4×4 Exclusive Cvt",
+   "anio": 2023,
+   "km": 86100,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Azul",
+   "equipamiento": "",
+   "precio": 53450000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792692000272.IMG_8728.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792692000968.IMG_8732.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792692002172.IMG_8730.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792692002948.IMG_8729.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792692004311.IMG_8731.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-xtrail/2-5-4x4-exclusive-cvt-2/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-23T15:31:22.702Z",
+   "guia": {
+    "min": 39001000,
+    "med": 44114000,
+    "max": 52937000,
+    "n": 4,
+    "mejor": {
+     "version": "XTRAIL 5P 2,5 4X4 EXCLUSIVE CVT 2023",
+     "valor": 44114000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "XTRAIL 5P 2,5 4X4 ADVANCE 7CVT 2021",
+      39001000
+     ],
+     [
+      "XTRAIL 5P 2,5 4X4 EXCLUSIVE 7CVT 2023",
+      41908000
+     ],
+     [
+      "XTRAIL 5P 2,5 4X4 EXCLUSIVE CVT 2023",
+      44114000
+     ],
+     [
+      "XTRAIL 5P 1,5 4X4 E-POWER CVT 2023",
+      52937000
+     ]
+    ]
+   }
+  },
+  {
    "id": "autocity-073c74fc-eac4-45ec-9e7d-939d6cb49bf1",
    "tipo": "auto",
    "marca": "Volkswagen",
@@ -20925,7 +21803,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 53450000,
+   "precio": 54050000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -21006,7 +21884,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 53450000,
+   "precio": 54050000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -21075,6 +21953,100 @@
    }
   },
   {
+   "id": "autocity-11abbbde-ce91-45e4-9410-f75c16c3686d",
+   "tipo": "auto",
+   "marca": "Jetour",
+   "modelo": "Dashing",
+   "version": "1.6 T At7",
+   "anio": 2026,
+   "km": 8600,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 54900000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853258590.IMG_8809.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853259878.IMG_8815.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853261331.IMG_8813.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853264674.IMG_8819.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853269567.IMG_8811.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-jetour/m-dashing/1-6-t-at7/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-14T20:44:18.592Z",
+   "guia": {
+    "min": 29900000,
+    "med": 33900000,
+    "max": 38500000,
+    "n": 3,
+    "mejor": {
+     "version": "DASHING 5P 1,6 T 7AT",
+     "valor": 38500000,
+     "coincidencias": 1,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "DASHING 5P 1,5 T 6AT",
+      29900000
+     ],
+     [
+      "DASHING 5P 1,5 T 6AT +",
+      33900000
+     ],
+     [
+      "DASHING 5P 1,6 T 7AT",
+      38500000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-c238196b-4794-45f7-b8db-864e2c861087",
+   "tipo": "auto",
+   "marca": "Jeep",
+   "modelo": "300 C",
+   "version": "3.6 V6 L13",
+   "anio": 2013,
+   "km": 37500,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "",
+   "precio": 35900,
+   "precio_sin_imp": null,
+   "moneda": "USD",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113753482.IMG_1244.jpg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113754123.IMG_1208.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113754234.IMG_1205.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113754384.IMG_1212.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113754584.IMG_1214.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113755050.IMG_1204.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113755642.IMG_1215.jpg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113756273.IMG_1207.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113756647.IMG_1206.JPG",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113756919.IMG_1218.JPG"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-300-c/3-6-v6-l13/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": true,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-10-14T20:44:18.592Z",
+   "guia": null
+  },
+  {
    "id": "autocity-65cffbc5-9159-4bea-b424-edd9182bbfd3",
    "tipo": "auto",
    "marca": "Chevrolet",
@@ -21086,7 +22058,7 @@
    "caja": "Automática",
    "color": "Bordo",
    "equipamiento": "",
-   "precio": 55750000,
+   "precio": 56350000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -21139,100 +22111,6 @@
    }
   },
   {
-   "id": "autocity-5d3067e7-1671-44b3-ab84-ed443bcedc2d",
-   "tipo": "auto",
-   "marca": "Jeep",
-   "modelo": "Commander",
-   "version": "2.0 Td 4×4 Limited Plus At9 L22",
-   "anio": 2024,
-   "km": 36400,
-   "combustible": "Diesel",
-   "caja": "Automática",
-   "color": "Gris",
-   "equipamiento": "",
-   "precio": 55800000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783362154161.IMG_6174.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783362155001.IMG_6180.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783362157433.IMG_6175.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783362160173.IMG_6176.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1783362162502.IMG_6179.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-commander/2-0-td-4x4-limited-plus-at9-l22/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": true,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 40800000,
-    "med": 47323000,
-    "max": 50304000,
-    "n": 3,
-    "mejor": {
-     "version": "COMMANDER 5P 2,0 TD AT9 4X4 LIMITED",
-     "valor": 47323000,
-     "coincidencias": 4,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "COMMANDER 5P 1,3 T 6AT FWD LIMITED",
-      40800000
-     ],
-     [
-      "COMMANDER 5P 2,0 TD AT9 4X4 LIMITED",
-      47323000
-     ],
-     [
-      "COMMANDER 5P 2,0 TD AT9 4X4 OVERLAND",
-      50304000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-c238196b-4794-45f7-b8db-864e2c861087",
-   "tipo": "auto",
-   "marca": "Jeep",
-   "modelo": "300 C",
-   "version": "3.6 V6 L13",
-   "anio": 2013,
-   "km": 37500,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Gris",
-   "equipamiento": "",
-   "precio": 35900,
-   "precio_sin_imp": null,
-   "moneda": "USD",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113753482.IMG_1244.jpg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113754123.IMG_1208.JPG",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113754234.IMG_1205.JPG",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113754384.IMG_1212.JPG",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113754584.IMG_1214.JPG",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113755050.IMG_1204.JPG",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113755642.IMG_1215.jpg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113756273.IMG_1207.JPG",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113756647.IMG_1206.JPG",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1701113756919.IMG_1218.JPG"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-300-c/3-6-v6-l13/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": true,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": null
-  },
-  {
    "id": "autocity-3456d02d-3e45-4913-bff3-87a858808c20",
    "tipo": "auto",
    "marca": "BYD",
@@ -21244,7 +22122,7 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 56250000,
+   "precio": 56800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -21295,7 +22173,7 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "",
-   "precio": 56255000,
+   "precio": 56800000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -21342,58 +22220,52 @@
    }
   },
   {
-   "id": "autocity-11abbbde-ce91-45e4-9410-f75c16c3686d",
+   "id": "autocity-55f40237-9dfd-4fa1-8e33-6eeb3efe5986",
    "tipo": "auto",
    "marca": "Jetour",
-   "modelo": "Dashing",
-   "version": "1.6 T At7",
-   "anio": 2026,
-   "km": 8600,
+   "modelo": "T1",
+   "version": "2.0 Tgdi 4wd At",
+   "anio": 2025,
+   "km": 18200,
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "",
-   "precio": 57340000,
+   "precio": 65575000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853258590.IMG_8809.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853259878.IMG_8815.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853261331.IMG_8813.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853264674.IMG_8819.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1787853269567.IMG_8811.jpeg"
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790088312273.IMG_2432.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790088312788.IMG_2434.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790088313332.IMG_2444.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790088316566.IMG_2440.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790088318695.IMG_2441.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790088320519.IMG_2439.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790088322868.IMG_2435.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-jetour/m-dashing/1-6-t-at7/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-jetour/m-t1/2-0-tgdi-4wd-at/",
    "sucursal": "Córdoba",
    "provincia": "Córdoba",
-   "oportunidad": false,
+   "oportunidad": true,
    "publicado": null,
    "modificado": null,
    "agencia": "autocity",
    "alta": "2026-10-14T20:44:18.592Z",
    "guia": {
-    "min": 29900000,
-    "med": 33900000,
-    "max": 38500000,
-    "n": 3,
+    "min": 52607000,
+    "med": 52607000,
+    "max": 52607000,
+    "n": 1,
     "mejor": {
-     "version": "DASHING 5P 1,6 T 7AT",
-     "valor": 38500000,
+     "version": "T1 5P 2,0 T 8AT 4X4",
+     "valor": 52607000,
      "coincidencias": 1,
      "empate": 1
     },
     "versiones": [
      [
-      "DASHING 5P 1,5 T 6AT",
-      29900000
-     ],
-     [
-      "DASHING 5P 1,5 T 6AT +",
-      33900000
-     ],
-     [
-      "DASHING 5P 1,6 T 7AT",
-      38500000
+      "T1 5P 2,0 T 8AT 4X4",
+      52607000
      ]
     ]
    }
@@ -21410,7 +22282,7 @@
    "caja": "Automática",
    "color": "Rojo",
    "equipamiento": "",
-   "precio": 65900000,
+   "precio": 66550000,
    "precio_sin_imp": null,
    "moneda": "ARS",
    "fotos": [
@@ -21522,57 +22394,6 @@
      [
       "HILUX SW4 5P 2,8 TDi GR-SPORT 4X4 6AT 7A 2021",
       72820000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-55f40237-9dfd-4fa1-8e33-6eeb3efe5986",
-   "tipo": "auto",
-   "marca": "Jetour",
-   "modelo": "T1",
-   "version": "2.0 Tgdi 4wd At",
-   "anio": 2025,
-   "km": 18200,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Gris",
-   "equipamiento": "",
-   "precio": 68375000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790088312273.IMG_2432.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790088312788.IMG_2434.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790088313332.IMG_2444.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790088316566.IMG_2440.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790088318695.IMG_2441.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790088320519.IMG_2439.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1790088322868.IMG_2435.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-jetour/m-t1/2-0-tgdi-4wd-at/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 52607000,
-    "med": 52607000,
-    "max": 52607000,
-    "n": 1,
-    "mejor": {
-     "version": "T1 5P 2,0 T 8AT 4X4",
-     "valor": 52607000,
-     "coincidencias": 1,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "T1 5P 2,0 T 8AT 4X4",
-      52607000
      ]
     ]
    }
