@@ -307,19 +307,18 @@
           <div><a href="${esc(a.url)}" target="_blank" rel="noopener">Ver publicación original</a></div>
         </div>` : ''}
         <div class="acciones">
-          <button class="btn btn-wsp" data-copiar>Copiar para WhatsApp</button>
-          <button class="btn btn-ghost" data-compartir>Compartir</button>
+          <button class="btn btn-ghost" data-copiar>Copiar datos</button>
+          <button class="btn btn-wsp" data-compartir>Enviar por WhatsApp</button>
         </div>
       </div></div>`;
     d.onclick = async (e) => {
       if (e.target === d || e.target.closest('[data-cerrar]')) return d.close();
-      const txt = textoCliente(a, k) + (a.fotos[0] ? '\n' + a.fotos[0] : '');
+      const txt = textoCliente(a, k);
       if (e.target.closest('[data-copiar]')) {
         try { await navigator.clipboard.writeText(txt); e.target.textContent = 'Copiado ✓'; } catch (err) { prompt('Copiá el texto:', txt); }
       }
       if (e.target.closest('[data-compartir]')) {
-        if (navigator.share) navigator.share({ title: `${a.marca} ${a.modelo} ${a.anio}`, text: txt }).catch(() => {});
-        else { try { await navigator.clipboard.writeText(txt); e.target.textContent = 'Texto copiado'; } catch (err) {} }
+        window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
       }
     };
     d.showModal();
