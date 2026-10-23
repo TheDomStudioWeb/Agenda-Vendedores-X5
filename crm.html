@@ -459,7 +459,7 @@ function aplicarPendientes(base) {
 async function sincronizar(manual = false) {
   try {
     if (manual) pintarSync();
-    const r = await apiGet(token ? { token } : {});
+    const r = await apiPost({ action: 'datos', token });
     if (r && r.error === 'sesion_vencida') return sesionVencida();
     if (!r || !Array.isArray(r.agenda)) throw new Error('respuesta');
     if (r.token_nuevo && token) { token = r.token_nuevo; store.set('x5_session', { user, token }); } // la sesión se renueva sola
@@ -566,7 +566,7 @@ function aplicarEnlace() {
 async function activarAvisos() {
   const btn = $('btn-avisos'); btn.disabled = true;
   try {
-    const r = await apiGet({ action: 'telegram_link', token });
+    const r = await apiPost({ action: 'telegram_link', token });
     if (r && r.ok && r.url) {
       X5.toast(r.vinculado ? 'Ya tenés los avisos activos. Se abre el bot.' : 'Tocá "Iniciar" en Telegram para activar los avisos', 'ok', 4000);
       window.open(r.url, '_blank', 'noopener');

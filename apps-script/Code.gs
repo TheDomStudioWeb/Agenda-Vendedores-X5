@@ -14,6 +14,8 @@
  *  - Respuestas con { ok: true/false } para que la app sepa si se guardó.
  *
  *
+ * v2.4: claves protegidas en la planilla (huella con sal; protegerClaves() o primer ingreso) y sesión por POST, nunca en la dirección.
+ *
  * v2.3: edición validada en el servidor (un asesor solo modifica lo propio), lista de
  *       usuarios sin puestos, caché corto del personal, renovación de la sesión mientras se usa
  *       y limpieza automática de la hoja «Eliminados» (copias de más de 90 días).
@@ -68,26 +70,13 @@ function doGet(e) {
     const launcherKey = PropertiesService.getScriptProperties().getProperty('LAUNCHER_KEY');
     const conClave = !!(p.key && launcherKey && p.key === launcherKey);
 
+    // Lectura por GET: solo el widget del launcher, con su clave de solo lectura.
+    // La sesión (token) NUNCA viaja en la dirección: los datos y el enlace de Telegram se piden por POST.
     if (p.action === 'widget') {
-      const quien = conClave ? null : (p.token ? validarToken_(p.token) : null);
-      if (!conClave && !quien) return json_({ ok: false, error: 'sin_autorizacion' });
-      return json_(resumenWidget_(quien));
+      if (!conClave) return json_({ ok: false, error: 'sin_autorizacion' });
+      return json_(resumenWidget_(null));
     }
-
-    if (p.action === 'telegram_link') {
-      const quien = p.token ? validarToken_(p.token) : null;
-      if (!quien) return json_({ ok: false, error: 'sesion_vencida' });
-      return json_(linkTelegram_(quien.nombre));
-    }
-
     if (conClave) return json_(armarDatos_(null));
-
-    if (p.token) {
-      const usuario = validarToken_(p.token);
-      if (!usuario) return json_({ ok: false, error: 'sesion_vencida' });
-      return json_(armarDatos_(usuario));
-    }
-
     return json_({ ok: false, error: 'sin_autorizacion' });
   } catch (err) {
     return json_({ ok: false, error: String(err) });
@@ -102,6 +91,10 @@ function doPost(e) {
 
     const usuario = body.token ? validarToken_(body.token) : null;
     if (!usuario) return json_({ ok: false, error: 'sesion_vencida' });
+
+    // Lectura de datos y enlace de Telegram (la sesión viaja en el cuerpo, no en la dirección)
+    if (body.action === 'datos') { if (!usuario) return json_({ ok: false, error: 'sesion_vencida' }); return json_(armarDatos_(usuario)); }
+    if (body.action === 'telegram_link') { if (!usuario) return json_({ ok: false, error: 'sesion_vencida' }); return json_(linkTelegram_(usuario.nombre)); }
 
     // Archivo (solo Gerente Comercial): archivar descartados, ver el archivo y restaurar
     if (body.action === 'archivar' || body.action === 'archivo_listar' || body.action === 'restaurar') {
@@ -348,6 +341,66 @@ function iguales_(a, b) { // comparación sin cortar en la primera diferencia
   return r === 0;
 }
 
+// ── Claves protegidas ─────────────────────────────────────────────
+// En la hoja Personal la clave puede estar escrita normal (ej. 4821) o protegida ("h1$sal$huella").
+// Al ingresar con una clave escrita normal, se reemplaza sola por su versión protegida.
+// Para cambiar o dar una clave nueva: escribirla normal en la celda; se protege en el primer ingreso
+// (o al ejecutar protegerClaves()).
+const HASH_VUELTAS = 1000;
+
+function esHashClave_(v) { return /^h1\$[A-Za-z0-9_-]+\$[A-Za-z0-9_-]+$/.test(String(v)); }
+
+function huellaClave_(sal, clave) {
+  let h = Utilities.base64EncodeWebSafe(Utilities.computeHmacSha256Signature(String(clave), sal)).replace(/=+$/, '');
+  for (let i = 0; i < HASH_VUELTAS; i++) h = Utilities.base64EncodeWebSafe(Utilities.computeHmacSha256Signature(h + String(clave), sal)).replace(/=+$/, '');
+  return h;
+}
+
+function hashClave_(clave) {
+  const sal = Utilities.getUuid().replace(/-/g, '');
+  return 'h1$' + sal + '$' + huellaClave_(sal, clave);
+}
+
+function claveCorrecta_(guardada, ingresada) {
+  if (esHashClave_(guardada)) {
+    const partes = String(guardada).split('$');
+    return iguales_(partes[2], huellaClave_(partes[1], ingresada));
+  }
+  return iguales_(guardada, ingresada);
+}
+
+function guardarClave_(nombre, valor) {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    const sheet = obtenerHoja_(HOJAS.personal);
+    const datos = sheet.getDataRange().getValues();
+    const headers = datos[0].map(h => String(h).trim().toLowerCase());
+    const iN = headers.indexOf('nombre'), iC = headers.indexOf('clave');
+    if (iN < 0 || iC < 0) return;
+    for (let i = 1; i < datos.length; i++) {
+      if (String(datos[i][iN]) === String(nombre)) { sheet.getRange(i + 1, iC + 1).setValue(valor); return; }
+    }
+  } finally { lock.releaseLock(); }
+}
+
+// Ejecutar UNA VEZ desde Apps Script para proteger todas las claves de golpe
+function protegerClaves() {
+  const sheet = obtenerHoja_(HOJAS.personal);
+  const datos = sheet.getDataRange().getValues();
+  const headers = datos[0].map(h => String(h).trim().toLowerCase());
+  const iC = headers.indexOf('clave');
+  if (iC < 0) throw new Error('No hay columna «clave» en Personal');
+  let n = 0;
+  for (let i = 1; i < datos.length; i++) {
+    const v = datos[i][iC];
+    if (v === '' || v === null || esHashClave_(v)) continue;
+    sheet.getRange(i + 1, iC + 1).setValue(hashClave_(v));
+    n++;
+  }
+  console.log('Claves protegidas: ' + n);
+}
+
 function login_(nombre, clave) {
   const cache = CacheService.getScriptCache();
   const kInt = 'intentos_' + Utilities.base64EncodeWebSafe(String(nombre)).slice(0, 80);
@@ -355,11 +408,12 @@ function login_(nombre, clave) {
   if (intentos >= MAX_INTENTOS_LOGIN) return { ok: false, error: 'demasiados_intentos' };
   const persona = leerHoja_(HOJAS.personal).find(p => String(p.nombre) === String(nombre));
   if (!persona || String(persona.estado) !== 'Activo') return { ok: false, error: 'usuario_invalido' };
-  if (!iguales_(persona.clave, clave)) {
+  if (!claveCorrecta_(persona.clave, clave)) {
     cache.put(kInt, String(intentos + 1), MIN_BLOQUEO_LOGIN * 60);
     return { ok: false, error: 'clave_incorrecta' };
   }
   cache.remove(kInt);
+  if (!esHashClave_(persona.clave)) { try { guardarClave_(persona.nombre, hashClave_(clave)); } catch (e) { console.warn('No se pudo proteger la clave: ' + e); } }
   const exp = Date.now() + DIAS_TOKEN * 86400000;
   return { ok: true, token: firmarToken_(persona.nombre, exp), usuario: limpiarPersona_(persona) };
 }

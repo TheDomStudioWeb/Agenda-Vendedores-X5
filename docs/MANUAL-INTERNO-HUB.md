@@ -2,7 +2,7 @@
 
 > Documento de referencia para Claudio y para el equipo de The DOM Studio Web.
 > Explica qué es el Hub, cómo funciona por dentro y cómo responder las dudas más comunes.
-> Versión 2.3 · Octubre 2026 · Desarrollado por The DOM Studio Web (Mendoza).
+> Versión 2.4 · Octubre 2026 · Desarrollado por The DOM Studio Web (Mendoza).
 
 ## 1. Qué es
 
@@ -178,3 +178,10 @@ Es una tarjeta del Hub, entre Mini CRM y Auditoría. Muestra el stock de usados 
 - **Hoja «Eliminados»:** guarda copia de cada registro borrado y se limpia sola: pasados 90 días se quitan las copias más viejas.
 - **Más rápido:** la lista de personal se guarda 60 segundos en memoria del servidor. Si se da de baja a alguien, su sesión se corta como máximo al minuto.
 - Para publicar estos cambios: pegar `Code.gs` nuevo en Apps Script y **Nueva versión** de la implementación existente.
+
+## Claves protegidas y sesión fuera de la dirección (v2.4, 23/10/2026)
+- **Claves protegidas en la planilla.** En la hoja Personal, la columna `clave` deja de mostrar la clave real: guarda una huella («h1$…») que no se puede revertir. Quien administra la planilla ya no ve las claves del equipo.
+- **Cómo se protegen:** al ejecutar `protegerClaves()` en Apps Script (una sola vez), o solas en el primer ingreso de cada persona.
+- **Dar o cambiar una clave:** escribirla normal en la celda de esa persona (ej. 4821). Se protege sola en su primer ingreso. Si alguien la olvida, no se puede «ver»: se le asigna una nueva.
+- **La sesión ya no viaja en la dirección.** Los datos y el enlace de Telegram se piden por POST, así que el token no queda en los registros del servidor. El widget del launcher sigue usando su clave de solo lectura (`LAUNCHER_KEY`).
+- Limitación: si las claves son cortas y solo números, la huella protege de la lectura casual pero no de quien tenga la planilla y pruebe combinaciones. Conviene claves de 6 caracteres o más.
