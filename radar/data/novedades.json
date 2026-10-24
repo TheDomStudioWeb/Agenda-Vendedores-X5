@@ -1,6 +1,129 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-24T14:06:53.082Z",
+   "tipo": "nuevo",
+   "id": "maipu-182078",
+   "auto": "Ford Ranger 2025",
+   "precio": 58000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-24T14:06:53.082Z",
+   "tipo": "nuevo",
+   "id": "autocity-3d58359f-0e79-49c1-949c-5a584ce00135",
+   "auto": "Peugeot 308 2015",
+   "precio": 15800000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-24T14:06:53.082Z",
+   "tipo": "nuevo",
+   "id": "autocity-fabf1348-f5b1-4030-9f17-c34d00dfb3ee",
+   "auto": "Fiat Cronos 2022",
+   "precio": 21900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-24T14:06:53.082Z",
+   "tipo": "precio",
+   "id": "autocity-ad0e8f80-74b5-477b-9bcd-a69fa6212183",
+   "auto": "Renault Sandero 2023",
+   "antes": 25250000,
+   "precio": 23900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-24T14:06:53.082Z",
+   "tipo": "precio",
+   "id": "autocity-d56f1389-227b-40ab-8665-1a5e057d3779",
+   "auto": "Peugeot Partner 2023",
+   "antes": 30350000,
+   "precio": 29448500,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-24T14:06:53.082Z",
+   "tipo": "precio",
+   "id": "autocity-7db374fc-20f8-46bc-a05b-10c6d65d70de",
+   "auto": "Renault Kangoo 2025",
+   "antes": 31400000,
+   "precio": 30467000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-24T14:06:53.082Z",
+   "tipo": "precio",
+   "id": "autocity-cbb7d785-ab62-4fa7-a092-314994a3481d",
+   "auto": "Volkswagen Nivus 2023",
+   "antes": 32900000,
+   "precio": 31923500,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-24T14:06:53.082Z",
+   "tipo": "precio",
+   "id": "autocity-151760f0-d155-4585-a0d4-9b3cedf76354",
+   "auto": "Peugeot 2008 2025",
+   "antes": 39800000,
+   "precio": 38620000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-24T14:06:53.082Z",
+   "tipo": "precio",
+   "id": "autocity-574c4c50-ac2a-4be7-996c-4261402a1203",
+   "auto": "Fiat Toro 2025",
+   "antes": 41900000,
+   "precio": 40655000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-24T14:06:53.082Z",
+   "tipo": "precio",
+   "id": "autocity-3305022b-17a4-4a9c-a9f1-805b13031283",
+   "auto": "Baic X55 Ii 2025",
+   "antes": 43350000,
+   "precio": 41900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-24T14:06:53.082Z",
+   "tipo": "baja",
+   "id": "autocity-628171c2-d00f-495a-8ad4-f573d062dfe5",
+   "auto": "Nissan Tiida 2015",
+   "precio": 15199999,
+   "moneda": "ARS",
+   "dias": 7
+  },
+  {
+   "fecha": "2026-10-24T14:06:53.082Z",
+   "tipo": "baja",
+   "id": "autocity-c5c00c6f-c6e9-425a-810e-be75334c97e6",
+   "auto": "Fiat Cronos 2023",
+   "precio": 25000000,
+   "moneda": "ARS",
+   "dias": 10
+  },
+  {
+   "fecha": "2026-10-24T14:06:53.082Z",
+   "tipo": "baja",
+   "id": "autocity-07a44cb1-1f93-4baa-9c26-de5898a21d97",
+   "auto": "Jeep Compass 2024",
+   "precio": 45350000,
+   "moneda": "ARS",
+   "dias": 2
+  },
+  {
+   "fecha": "2026-10-24T14:06:53.082Z",
+   "tipo": "baja",
+   "id": "autocity-6766bd48-b6b3-41bb-89cf-20f1dda37780",
+   "auto": "Nissan Frontier 2023",
+   "precio": 51000000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
    "fecha": "2026-10-23T20:37:55.558Z",
    "tipo": "nuevo",
    "id": "maipu-182051",
