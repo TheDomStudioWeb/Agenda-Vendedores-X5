@@ -1,6 +1,132 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-25T14:33:19.754Z",
+   "tipo": "baja",
+   "id": "autocity-3d58359f-0e79-49c1-949c-5a584ce00135",
+   "auto": "Peugeot 308 2015",
+   "precio": 15800000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-10-25T14:33:19.754Z",
+   "tipo": "baja",
+   "id": "autocity-deb28e4b-8f7e-4a1e-9347-1c9f91ed4743",
+   "auto": "Chevrolet Onix 2017",
+   "precio": 17850000,
+   "moneda": "ARS",
+   "dias": 10
+  },
+  {
+   "fecha": "2026-10-25T14:33:19.754Z",
+   "tipo": "baja",
+   "id": "autocity-c1b68f70-e10d-4df7-9587-6488d18eb684",
+   "auto": "Volkswagen Gol 2018",
+   "precio": 18250000,
+   "moneda": "ARS",
+   "dias": 3
+  },
+  {
+   "fecha": "2026-10-25T14:33:19.754Z",
+   "tipo": "baja",
+   "id": "autocity-ad0e8f80-74b5-477b-9bcd-a69fa6212183",
+   "auto": "Renault Sandero 2023",
+   "precio": 23900000,
+   "moneda": "ARS",
+   "dias": 11
+  },
+  {
+   "fecha": "2026-10-25T14:33:19.754Z",
+   "tipo": "baja",
+   "id": "autocity-b491db48-243f-4ad6-b91c-11941cb06272",
+   "auto": "Fiat Cronos 2023",
+   "precio": 24400000,
+   "moneda": "ARS",
+   "dias": 8
+  },
+  {
+   "fecha": "2026-10-25T14:33:19.754Z",
+   "tipo": "baja",
+   "id": "autocity-a6d0f2f1-205b-4ec2-a4c1-59095f579082",
+   "auto": "Renault Kangoo 2023",
+   "precio": 27150000,
+   "moneda": "ARS",
+   "dias": 11
+  },
+  {
+   "fecha": "2026-10-25T14:33:19.754Z",
+   "tipo": "baja",
+   "id": "autocity-52c771ee-7f36-492f-9f1f-91cc654f9f58",
+   "auto": "Chevrolet Onix 2024",
+   "precio": 29200000,
+   "moneda": "ARS",
+   "dias": 11
+  },
+  {
+   "fecha": "2026-10-25T14:33:19.754Z",
+   "tipo": "baja",
+   "id": "autocity-80e6fd18-df74-4494-98fd-df18768fae84",
+   "auto": "Nissan Kicks 2021",
+   "precio": 32550000,
+   "moneda": "ARS",
+   "dias": 8
+  },
+  {
+   "fecha": "2026-10-25T14:33:19.754Z",
+   "tipo": "baja",
+   "id": "autocity-224a7247-9555-4280-b25f-c72591506771",
+   "auto": "Peugeot 3008 2020",
+   "precio": 34250000,
+   "moneda": "ARS",
+   "dias": 10
+  },
+  {
+   "fecha": "2026-10-25T14:33:19.754Z",
+   "tipo": "baja",
+   "id": "autocity-467311f0-5754-4122-bcec-16d9ad279c0b",
+   "auto": "Honda Hrv 2021",
+   "precio": 35250000,
+   "moneda": "ARS",
+   "dias": 11
+  },
+  {
+   "fecha": "2026-10-25T14:33:19.754Z",
+   "tipo": "baja",
+   "id": "autocity-4a7ed8ab-8c85-4e77-9330-a16100189b72",
+   "auto": "Renault Kangoo 2024",
+   "precio": 35250000,
+   "moneda": "ARS",
+   "dias": 8
+  },
+  {
+   "fecha": "2026-10-25T14:33:19.754Z",
+   "tipo": "baja",
+   "id": "autocity-efed17e2-67b8-4bbd-96d5-84e3068ff35c",
+   "auto": "Fiat Pulse 2024",
+   "precio": 37250000,
+   "moneda": "ARS",
+   "dias": 11
+  },
+  {
+   "fecha": "2026-10-25T14:33:19.754Z",
+   "tipo": "baja",
+   "id": "autocity-3305022b-17a4-4a9c-a9f1-805b13031283",
+   "auto": "Baic X55 Ii 2025",
+   "precio": 41900000,
+   "moneda": "ARS",
+   "dias": 11
+  },
+  {
+   "fecha": "2026-10-25T14:33:19.754Z",
+   "tipo": "baja",
+   "id": "autocity-84115463-bc0a-4f4d-b4bb-27ae964ce9aa",
+   "auto": "Renault Koleos 2025",
+   "precio": 46907000,
+   "moneda": "ARS",
+   "dias": 11
+  },
+  {
    "fecha": "2026-10-24T14:06:53.082Z",
    "tipo": "nuevo",
    "id": "maipu-182078",

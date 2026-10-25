@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-24T19:43:55.453Z",
+ "actualizado": "2026-10-25T14:33:19.754Z",
  "autos": [
   {
    "id": "autocity-b1b8637a-1ade-404f-9791-a4aef488c592",
@@ -17,12 +17,6 @@
    "id": "autocity-e6c60d79-eacd-4f43-a32b-b85475968bae",
    "auto": "Ford Ka",
    "url": "https://autocity.com.ar/catalogo/usados/m-ford/m-ka/1-5-s-5p-l16/",
-   "texto": "publicación incompleta (sin año o sin fotos)"
-  },
-  {
-   "id": "autocity-4ee92bad-64d0-4e3b-85e9-ac68d3f98baa",
-   "auto": "Ford Fiesta",
-   "url": "https://autocity.com.ar/catalogo/usados/m-ford/m-fiesta/1-6-se-kd-5p-l14/",
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
@@ -164,12 +158,6 @@
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
-   "id": "autocity-2087cb66-0add-44bd-8d72-81d73f7655f8",
-   "auto": "Renault Kardian",
-   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-kardian/1-0-t-techno-edc-l24-3/",
-   "texto": "publicación incompleta (sin año o sin fotos)"
-  },
-  {
    "id": "autocity-28ad326c-923d-4616-a014-583dd772d8b6",
    "auto": "Chery Tiggo 2",
    "url": "https://autocity.com.ar/catalogo/usados/m-chery/m-tiggo-2/1-5-pro-max-comfort/",
@@ -233,12 +221,6 @@
    "id": "autocity-c533db71-a8ee-47e4-a0a5-2e33d6de53e7",
    "auto": "Peugeot 2008",
    "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-2008/1-0-t-200-allure-cvt-l26-5-2/",
-   "texto": "publicación incompleta (sin año o sin fotos)"
-  },
-  {
-   "id": "autocity-240a4090-1480-442c-bb76-c098942be405",
-   "auto": "Toyota Corolla Cross",
-   "url": "https://autocity.com.ar/catalogo/usados/m-toyota/m-corolla-cross/1-8-xei-hv-e-cvt-2/",
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
