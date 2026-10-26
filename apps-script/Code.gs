@@ -1142,7 +1142,7 @@ function montoPrecio_(v) {
   if (t.indexOf(',') > -1) t = t.replace(/\./g, '').replace(',', '.'); else if (/^-?\d{1,3}(\.\d{3})+$/.test(t)) t = t.replace(/\./g, '');
   const n = Number(t); return isFinite(n) && n >= 0 ? n : NaN;
 }
-// texto: un plan por renglón "codigo;vehiculo;apertura;cuota;sellado;pago" (o separado por tabulaciones, como al copiar de Excel o Word)
+// texto: un plan por renglón "codigo;vehiculo;apertura;cuota;sellado;pago" (o separado por tabulaciones o por comas con espacio, como al copiar de Excel o Word)
 // modo 'reemplazar': el listado nuevo reemplaza al anterior (solo si no hay errores). modo 'actualizar': agrega o cambia solo esos códigos.
 function contratosPreciosCargar_(body, u) {
   if (!esGerente_(u)) return { ok: false, error: 'sin_permiso' };
@@ -1152,7 +1152,7 @@ function contratosPreciosCargar_(body, u) {
   if (lineas.length > 500) return { ok: false, error: 'demasiados' };
   const filas = [], errores = [], vistos = {};
   lineas.forEach((l, i) => {
-    const c = (l.indexOf('\t') > -1 ? l.split('\t') : l.split(';')).map(x => x.trim());
+    const c = (l.indexOf('\t') > -1 ? l.split('\t') : l.indexOf(';') > -1 ? l.split(';') : l.split(/,\s+/)).map(x => x.trim());
     if (i === 0 && /^c[oó]digo$/i.test(c[0])) return;
     const codigo = String(c[0] || '').toUpperCase().replace(/\s+/g, '');
     const cuota = montoPrecio_(c[3]), sellado = montoPrecio_(c[4]);

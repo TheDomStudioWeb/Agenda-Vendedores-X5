@@ -116,4 +116,9 @@ T('venta con código: copia cuota y sellado al contrato; código inválido no ca
   m.llamar(V1, { action: 'contratos_estado', ids: [ids[1]], estado: 'Cargado' }); m.llamar(JEF, { action: 'contratos_estado', ids: [ids[1]], estado: 'Recibido' });
   assert(m.llamar(GER, { action: 'contratos_estado', ids: [ids[1]], estado: 'Rendido', sellado: { forma: 'Contado', referencia: 'Ana OK' } }).ok); assert.strictEqual(est('61').sellado_monto, 40000);
 });
+T('lista de precios pegada con comas y espacio (como llega desde Word)', () => {
+  const m = nuevo(); const txt = 'PX61, Honda Tornado XR 250, 10, $ 90.000, $ 40.000, $ 130.000\nPX64, VW Polo MSI / Peug 208 All / Fiat Cronos, 10, $ 250.000, $ 50.000, $ 300.000\nPX72, Toyota SW4 4x4 SRX, 5, $ 700.000, $ 150.000, $ 850.000';
+  const r = m.llamar(GER, { action: 'contratos_precios_cargar', modo: 'reemplazar', texto: txt }); assert(r.ok && r.creados === 3 && r.errores.length === 0, JSON.stringify(r));
+  const p = m.llamar(V1, { action: 'contratos_precios' }).precios; assert(p[1].vehiculo === 'VW Polo MSI / Peug 208 All / Fiat Cronos' && p[1].cuota === 250000 && p[1].sellado === 50000 && p[2].pago_1_y_2 === 850000);
+});
 console.log(`\n${ok} bien, ${fail} con error`); process.exit(fail ? 1 : 0);
