@@ -48,3 +48,9 @@ Desarrollado por The DOM Studio Web · WhatsApp 261-3431216 · thedomstudioweb@g
 - El contrato guarda una copia del código, la cuota y el sellado del momento de la venta: si el listado cambia después, las ventas anteriores no se modifican.
 - El vendedor ve en cada contrato el **sellado a rendir** y el total. Los jefes ven el total por vendedor.
 - Al rendir, el monto del sellado se toma del contrato; gerencia puede escribir otro monto si se pagó distinto.
+
+## Vistas de la pantalla
+- **Rejilla** (por defecto): cada contrato es un cuadro con su número, coloreado por estado y con el nombre del responsable. Tocar un cuadro abre el detalle. **Elegir varios** permite tocar varios (o "Elegir todos") para asignarlos o cambiarles el estado juntos.
+- **Lista**: tarjetas con el detalle de cada contrato; se elige con casillas.
+- **Equipo** (jefes y gerente): una tarjeta por responsable con barra de avance (vacío, completo, cargado, recibido, rendido) y el sellado a rendir. Tocarla filtra los contratos de esa persona.
+- Los botones de estado de arriba también filtran.

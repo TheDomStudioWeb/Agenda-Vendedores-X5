@@ -32,6 +32,7 @@
   .e-Cargado { background: rgba(120,160,255,.14); color: #9db8ff; }
   .e-Recibido { background: rgba(255,190,80,.16); color: var(--warn); }
   .e-Rendido { background: var(--ok-soft); color: var(--ok); }
+  .e-Recibido { background: rgba(199,125,255,.16); color: #d9a8ff; }
   .e-Anulado { background: var(--surface-3); color: var(--faint); text-decoration: line-through; }
   .barra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--surface); border-top: 1px solid var(--line-strong); padding: 10px 14px calc(10px + var(--safe-bottom)); display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
   .barra .cuenta { font-weight: 700; font-size: .85rem; flex: 1 1 100%; }
@@ -56,6 +57,40 @@
   .opts label { display: flex; gap: 10px; align-items: center; background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; cursor: pointer; }
   .opts input { width: 20px; height: 20px; accent-color: var(--x5); appearance: auto; }
   .sel-box { background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .8rem; margin-top: 8px; }
+  .vbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 0 0 8px; }
+  .seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 10px; overflow: hidden; }
+  .seg button { background: transparent; color: var(--muted); border: 0; font: inherit; font-weight: 600; font-size: .82rem; padding: 9px 14px; min-height: 40px; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--x5); color: #fff; }
+  .vbar .btn-sm { min-height: 40px; }
+  .rej { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 6px; }
+  .tl { border: 2px solid transparent; border-radius: 10px; padding: 8px 4px 6px; text-align: center; font: inherit; cursor: pointer; min-height: 58px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; }
+  .tl b { font-size: .95rem; font-variant-numeric: tabular-nums; letter-spacing: .2px; }
+  .tl small { font-size: .62rem; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; opacity: .85; }
+  .tl.sel-on { border-color: var(--text); box-shadow: 0 0 0 2px var(--x5); }
+  .ley { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: .72rem; color: var(--muted); margin: 0 2px 10px; }
+  .ley i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; border: 1px solid var(--line-strong); }
+  .eq { display: grid; gap: 8px; }
+  .tj { background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; padding: 11px 12px; cursor: pointer; text-align: left; font: inherit; color: var(--text); width: 100%; }
+  .tj[aria-pressed="true"] { border-color: var(--x5); }
+  .tj .h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .tj .h b { font-size: .95rem; } .tj .h span { font-size: .75rem; color: var(--muted); }
+  .barp { display: flex; height: 10px; border-radius: 6px; overflow: hidden; background: var(--surface-3); margin: 9px 0 7px; }
+  .barp i { display: block; height: 100%; }
+  .s-Vacío { background: #e0a030; } .s-Completo { background: #E3182D; } .s-Cargado { background: #6f95ff; } .s-Recibido { background: #c77dff; } .s-Rendido { background: #2fb36b; }
+  .tj .l { font-size: .72rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 3px 10px; }
+  .tj .sd { margin-top: 6px; font-size: .8rem; }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .e-Vacío { color: #7a5200; background: rgba(224,160,48,.2); }
+    :root:not([data-theme="dark"]) .e-Cargado { color: #2a4bb0; background: rgba(60,100,230,.13); }
+    :root:not([data-theme="dark"]) .e-Recibido { color: #6b2aa3; background: rgba(150,70,220,.14); }
+    :root:not([data-theme="dark"]) .e-Rendido { color: #14683a; background: rgba(47,179,107,.18); }
+    :root:not([data-theme="dark"]) .e-Completo { color: #b3121f; }
+  }
+  :root[data-theme="light"] .e-Vacío { color: #7a5200; background: rgba(224,160,48,.2); }
+  :root[data-theme="light"] .e-Cargado { color: #2a4bb0; background: rgba(60,100,230,.13); }
+  :root[data-theme="light"] .e-Recibido { color: #6b2aa3; background: rgba(150,70,220,.14); }
+  :root[data-theme="light"] .e-Rendido { color: #14683a; background: rgba(47,179,107,.18); }
+  :root[data-theme="light"] .e-Completo { color: #b3121f; }
   .foot { text-align: center; color: var(--faint); font-size: .72rem; margin: 24px 0 6px; }
   .mas { width: 100%; margin-top: 6px; }
 </style>
@@ -111,9 +146,9 @@
     <div id="r-pre"></div>
   </details>
 
-  <details class="panel" id="p-res" hidden>
-    <summary>Resumen por responsable</summary>
-    <div style="overflow-x:auto"><table class="tabla" id="t-res"></table></div>
+  <details class="panel" id="p-res" hidden open>
+    <summary>Equipo · avance por responsable</summary>
+    <div class="eq" id="t-res"></div>
   </details>
 
   <div class="filtros">
@@ -121,6 +156,9 @@
     <select id="f-resp" aria-label="Responsable"></select>
     <select id="f-est" aria-label="Estado"><option value="">Todos los estados</option></select>
   </div>
+  <div class="vbar"><div class="seg" role="group" aria-label="Vista"><button type="button" data-v="rejilla" aria-pressed="true">Rejilla</button><button type="button" data-v="lista" aria-pressed="false">Lista</button></div>
+    <button type="button" class="btn btn-ghost btn-sm" id="b-eleg" hidden>Elegir varios</button><button type="button" class="btn btn-ghost btn-sm" id="b-todos" hidden>Elegir todos</button></div>
+  <div class="ley" id="ley"></div>
   <div class="nota" id="cuenta-lista" style="margin:0 2px 8px"></div>
   <div id="lista"></div>
   <button class="btn btn-ghost mas" id="b-mas" hidden>Mostrar más</button>
@@ -205,8 +243,12 @@ function pintar() {
   $('calle').innerHTML = `<b>En la calle: ${calle}</b> contrato${calle === 1 ? '' : 's'} con vendedores o jefes que todavía no se rindieron (${cuenta('Vacío')} vacíos · ${cuenta('Completo')} completos · ${cuenta('Cargado')} cargados · ${cuenta('Recibido')} recibidos por jefes, a rendir a gerencia).` + (gerente() ? ` <b>En gerencia: ${cuenta('Disponible')}</b> sin repartir.` : '') + (debido() ? ` <b>Sellado a rendir: ${X5.money(debido())}</b>.` : '');
   if (supervisa()) {
     const por = {}; D.contratos.filter(c => c.responsable && !['Anulado'].includes(c.estado)).forEach(c => { const p = por[c.responsable] = por[c.responsable] || { Vacío: 0, Completo: 0, Cargado: 0, Recibido: 0, Rendido: 0 }; if (p[c.estado] !== undefined) p[c.estado]++; });
-    const filas = Object.keys(por).sort(natural);
-    $('t-res').innerHTML = '<tr><th>Responsable</th><th>Vacíos</th><th>Compl.</th><th>Carg.</th><th>Recib.</th><th>Rend.</th><th>Sellado a rendir</th></tr>' + (filas.length ? filas.map(n => `<tr data-r="${esc(n)}"><td>${esc(n)}</td><td>${por[n].Vacío}</td><td>${por[n].Completo}</td><td>${por[n].Cargado}</td><td>${por[n].Recibido}</td><td>${por[n].Rendido}</td><td>${debido(n) ? X5.money(debido(n)) : '–'}</td></tr>`).join('') : '<tr><td colspan="7" class="nota">Todavía no hay contratos repartidos.</td></tr>');
+    const filas = Object.keys(por).sort(natural), rol = {}; (D.personal || []).forEach(x => { rol[x.nombre] = x.rol; });
+    const tarj = (n, p, tot, sd, act) => `<button type="button" class="tj" data-r="${esc(n)}" aria-pressed="${act}"><div class="h"><b>${esc(n)}</b><span>${rol[n] ? esc(rol[n]) + ' · ' : ''}${tot} contrato${tot === 1 ? '' : 's'}</span></div>
+      <div class="barp" role="img" aria-label="Avance">${['Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido'].map(e => p[e] ? `<i class="s-${e}" style="width:${p[e] / tot * 100}%"></i>` : '').join('')}</div>
+      <div class="l">${['Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido'].filter(e => p[e]).map(e => `<span><i class="s-${e}" style="display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px"></i>${p[e]} ${({ Vacío: 'vacío', Completo: 'completo', Cargado: 'cargado', Recibido: 'recibido', Rendido: 'rendido' })[e]}${p[e] === 1 ? '' : 's'}</span>`).join('')}</div>
+      ${sd ? `<div class="sd">Sellado a rendir: <b>${X5.money(sd)}</b></div>` : ''}</button>`;
+    $('t-res').innerHTML = filas.length ? filas.map(n => { const p = por[n], tot = p.Vacío + p.Completo + p.Cargado + p.Recibido + p.Rendido; return tot ? tarj(n, p, tot, debido(n), F.resp === n) : ''; }).join('') : '<div class="nota">Todavía no hay contratos repartidos.</div>';
   }
   if (gerente()) tablaPrecios();
   lista(); barra();
@@ -222,11 +264,21 @@ function filtrados() {
     && (!q || String(c.numero).toLowerCase().includes(q) || String(c.cliente || '').toLowerCase().includes(q) || String(c.responsable || '').toLowerCase().includes(q))).sort((a, b) => natural(a.numero, b.numero));
 }
 function puedeActuar(c) { return gerente() || (supervisa() && D.ambito.includes(c.responsable)) || c.responsable === user.nombre; }
+let vista = store.get('x5_vista') || 'rejilla', eleg = false;
+const elegible = (c) => (puedeActuar(c) && !['Rendido', 'Anulado'].includes(c.estado)) || (gerente() && c.estado !== 'Anulado');
 function lista() {
-  const l = filtrados(), ver = l.slice(0, tope);
+  const l = filtrados(), tp = vista === 'rejilla' ? Math.max(tope, 800) : tope, ver = l.slice(0, tp);
   $('cuenta-lista').textContent = l.length + ' contrato' + (l.length === 1 ? '' : 's') + (F.est || F.resp || F.q ? ' con estos filtros' : '');
+  document.querySelectorAll('[data-v]').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === vista));
+  const el = l.filter(elegible); $('b-eleg').hidden = vista !== 'rejilla' || !el.length; $('b-eleg').textContent = eleg ? 'Listo' : 'Elegir varios';
+  $('b-todos').hidden = !el.length || (vista === 'rejilla' && !eleg); $('b-todos').textContent = 'Elegir todos (' + el.length + ')';
+  $('ley').hidden = vista !== 'rejilla'; $('ley').innerHTML = ESTADOS.filter(e => e !== 'Disponible' || gerente()).map(e => `<span><i class="e-${e}"></i>${e === 'Disponible' ? 'En gerencia' : e}</span>`).join('');
+  if (vista === 'rejilla') {
+    $('lista').innerHTML = ver.length ? '<div class="rej">' + ver.map(c => `<button type="button" class="tl e-${esc(c.estado)} ${sel.has(c.id) ? 'sel-on' : ''}" data-t="${esc(c.id)}" aria-label="Contrato ${esc(c.numero)}, ${esc(c.estado)}${c.responsable ? ', ' + esc(c.responsable) : ''}"><b>${esc(c.numero)}</b><small>${c.responsable ? esc(String(c.responsable).split(' ')[0]) : 'gerencia'}</small></button>`).join('') + '</div>' : '<div class="empty">No hay contratos con esos filtros.</div>';
+    $('b-mas').hidden = true; return;
+  }
   $('lista').innerHTML = ver.length ? ver.map(c => `<div class="ct ${sel.has(c.id) ? 'sel-on' : ''}" data-id="${esc(c.id)}">
-    ${puedeActuar(c) && !['Rendido', 'Anulado'].includes(c.estado) || (gerente() && c.estado !== 'Anulado') ? `<input type="checkbox" data-sel="${esc(c.id)}" ${sel.has(c.id) ? 'checked' : ''} aria-label="Elegir contrato ${esc(c.numero)}">` : '<span></span>'}
+    ${elegible(c) ? `<input type="checkbox" data-sel="${esc(c.id)}" ${sel.has(c.id) ? 'checked' : ''} aria-label="Elegir contrato ${esc(c.numero)}">` : '<span></span>'}
     <div><span class="num">N.º ${esc(c.numero)}</span><small>${c.responsable ? esc(c.responsable) : 'En gerencia'}${c.cliente ? ' · ' + esc(c.cliente) : ''}</small><small>${c.plan_codigo ? esc(c.plan_codigo) + ' · ' : ''}${c.estado === 'Rendido' ? (c.sellado_monto ? 'Sellado rendido ' + X5.money(c.sellado_monto) + ' · ' : '') : (Number(c.sellado_debido) && c.estado !== 'Anulado' ? '<b>Sellado a rendir ' + X5.money(c.sellado_debido) + '</b> · ' : '')}${c.fecha_asignacion ? 'Asignado ' + fch(c.fecha_asignacion) + ' · ' : ''}${c.fecha_estado ? 'Estado desde ' + fch(c.fecha_estado) : ''}</small></div>
     <span class="chip e-${esc(c.estado)}">${esc(c.estado)}</span></div>`).join('') : '<div class="empty">No hay contratos con esos filtros.</div>';
   $('b-mas').hidden = l.length <= tope;
@@ -248,8 +300,12 @@ $('f-est').onchange = () => { F.est = $('f-est').value; tope = 120; pintar(); };
 $('f-resp').onchange = () => { F.resp = $('f-resp').value; tope = 120; pintar(); };
 let tq; $('f-q').oninput = () => { clearTimeout(tq); tq = setTimeout(() => { F.q = $('f-q').value; tope = 120; lista(); }, 200); };
 $('b-mas').onclick = () => { tope += 200; lista(); };
-$('t-res').onclick = (e) => { const r = e.target.closest('[data-r]'); if (!r) return; F.resp = r.dataset.r; $('f-resp').value = F.resp; tope = 120; pintar(); window.scrollTo({ top: $('lista').offsetTop - 120, behavior: 'smooth' }); };
+$('t-res').onclick = (e) => { const r = e.target.closest('[data-r]'); if (!r) return; F.resp = F.resp === r.dataset.r ? '' : r.dataset.r; $('f-resp').value = F.resp; tope = 120; pintar(); window.scrollTo({ top: $('lista').offsetTop - 120, behavior: 'smooth' }); };
+document.querySelectorAll('[data-v]').forEach(b => b.onclick = () => { vista = b.dataset.v; store.set('x5_vista', vista); if (vista === 'lista') eleg = false; lista(); });
+$('b-eleg').onclick = () => { eleg = !eleg; if (!eleg) { sel.clear(); barra(); } lista(); };
+$('b-todos').onclick = () => { const el = filtrados().filter(elegible); const todos = el.every(c => sel.has(c.id)); el.forEach(c => todos ? sel.delete(c.id) : sel.add(c.id)); lista(); barra(); };
 $('lista').onclick = (e) => {
+  const t = e.target.closest('[data-t]'); if (t) { if (eleg) { const c = D.contratos.find(x => x.id === t.dataset.t); if (!c || !elegible(c)) return X5.toast('Ese contrato no se puede elegir.', ''); sel.has(c.id) ? sel.delete(c.id) : sel.add(c.id); t.classList.toggle('sel-on', sel.has(c.id)); return barra(); } return detalle(t.dataset.t); }
   const cb = e.target.closest('[data-sel]'); if (cb) { cb.checked ? sel.add(cb.dataset.sel) : sel.delete(cb.dataset.sel); cb.closest('.ct').classList.toggle('sel-on', cb.checked); return barra(); }
   const row = e.target.closest('.ct'); if (row) detalle(row.dataset.id);
 };
