@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#161618">
+<title>Control de contratos · X5 Cuyo</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="x5-theme.css">
+<style>
+  body { padding-bottom: calc(96px + var(--safe-bottom)); }
+  [hidden] { display: none !important; }
+  .kp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+  .kp button { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px 6px; color: var(--text); font: inherit; text-align: center; cursor: pointer; min-height: 64px; }
+  .kp button b { display: block; font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+  .kp button span { font-size: .68rem; color: var(--muted); letter-spacing: .3px; }
+  .kp button[aria-pressed="true"] { border-color: var(--x5); background: var(--x5-soft); }
+  .calle { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; font-size: .82rem; color: var(--muted); margin-bottom: 12px; }
+  .calle b { color: var(--text); }
+  .filtros { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+  .filtros .full { grid-column: 1 / -1; }
+  .ct { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 11px 12px; margin-bottom: 8px; cursor: pointer; }
+  .ct .num { font-size: 1.05rem; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: .3px; }
+  .ct small { display: block; color: var(--muted); font-size: .72rem; margin-top: 2px; }
+  .ct input[type=checkbox], .sel input[type=checkbox] { width: 22px; height: 22px; accent-color: var(--x5); appearance: auto; margin: 0; }
+  .ct.sel-on { border-color: var(--x5); background: var(--x5-soft); }
+  .e-Disponible { background: var(--dom-soft); color: var(--dom); }
+  .e-Vacío { background: var(--warn-soft); color: var(--warn); }
+  .e-Completo { background: var(--x5-soft); color: var(--x5-text); }
+  .e-Cargado { background: rgba(120,160,255,.14); color: #9db8ff; }
+  .e-Rendido { background: var(--ok-soft); color: var(--ok); }
+  .e-Anulado { background: var(--surface-3); color: var(--faint); text-decoration: line-through; }
+  .barra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--surface); border-top: 1px solid var(--line-strong); padding: 10px 14px calc(10px + var(--safe-bottom)); display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .barra .cuenta { font-weight: 700; font-size: .85rem; flex: 1 1 100%; }
+  .barra .btn { flex: 1 1 auto; width: auto; }
+  .tabla { width: 100%; border-collapse: collapse; font-size: .8rem; }
+  .tabla th, .tabla td { padding: 7px 4px; text-align: right; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  .tabla th:first-child, .tabla td:first-child { text-align: left; }
+  .tabla th { color: var(--muted); font-weight: 600; font-size: .68rem; text-transform: uppercase; letter-spacing: .4px; }
+  .tabla tr[data-r] { cursor: pointer; }
+  details.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; margin-bottom: 12px; }
+  details.panel summary { font-weight: 700; cursor: pointer; min-height: 32px; display: flex; align-items: center; }
+  textarea { width: 100%; min-height: 120px; font: inherit; background: var(--surface-2); color: var(--text); border: 1px solid var(--line-strong); border-radius: 10px; padding: 10px; }
+  dialog { background: var(--surface); color: var(--text); border: 1px solid var(--line-strong); border-radius: 18px; padding: 0; width: min(560px, calc(100vw - 24px)); max-height: 88vh; }
+  dialog::backdrop { background: rgba(0,0,0,.6); }
+  .dx-h { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--surface); }
+  .dx-h h2 { margin: 0; font-size: 1.05rem; }
+  .dx-b { padding: 14px 16px 18px; overflow: auto; }
+  .err { background: var(--bad-soft); color: var(--bad); border-radius: 10px; padding: 9px 11px; font-size: .85rem; margin: 8px 0; }
+  .okk { background: var(--ok-soft); color: var(--ok); border-radius: 10px; padding: 9px 11px; font-size: .85rem; margin: 8px 0; }
+  .nota { color: var(--muted); font-size: .78rem; }
+  .opts { display: grid; gap: 8px; margin: 8px 0 12px; }
+  .opts label { display: flex; gap: 10px; align-items: center; background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; cursor: pointer; }
+  .opts input { width: 20px; height: 20px; accent-color: var(--x5); appearance: auto; }
+  .foot { text-align: center; color: var(--faint); font-size: .72rem; margin: 24px 0 6px; }
+  .mas { width: 100%; margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<div id="login">
+  <img class="logo" src="brand/x5-logo-blanco.png" alt="X5 Argentina" style="width:112px;margin-bottom:10px">
+  <div class="tag">Control de contratos</div>
+  <div class="card" id="login-box" hidden>
+    <div class="field"><label for="user-select">Usuario</label><select id="user-select"><option value="">Seleccioná tu usuario…</option></select></div>
+    <div class="field"><label for="user-pass">Clave</label><input type="password" id="user-pass" autocomplete="current-password" placeholder="Tu clave de acceso"></div>
+    <button class="btn" id="btn-login">Ingresar</button>
+    <a href="index.html" class="btn btn-ghost" style="margin-top:10px">Volver al Hub</a>
+  </div>
+  <div id="login-loading" class="center muted"><span class="spinner"></span><p>Conectando…</p></div>
+</div>
+
+<header class="x5-top" id="top" hidden>
+  <a class="x5-back" href="index.html" aria-label="Volver al Hub"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a>
+  <img class="logo logo-mini" src="brand/x5-logo-blanco.png" alt="X5 Argentina">
+  <div><h1>Control de contratos</h1><div class="sub" id="quien"></div></div>
+  <div class="spacer"></div>
+  <button class="btn btn-ghost btn-sm" id="btn-act" title="Actualizar">↻</button>
+  <button class="btn btn-ghost btn-sm" id="btn-salir" title="Cerrar sesión">Salir</button>
+</header>
+
+<main id="app" hidden style="padding:14px">
+  <div class="kp" id="kp"></div>
+  <div class="calle" id="calle"></div>
+
+  <details class="panel" id="p-ger" hidden>
+    <summary>Cargar números · solo gerencia</summary>
+    <p class="nota">Escriba o pegue los números de contrato disponibles en gerencia. Sirve una lista (separada por espacios, comas o renglones) y rangos: <b>1001-1050</b>. Los que ya existan no se duplican.</p>
+    <textarea id="t-cargar" placeholder="Ej.&#10;1001-1050&#10;1062, 1063"></textarea>
+    <button class="btn" id="b-cargar" style="margin-top:8px">Cargar como disponibles</button>
+    <div id="r-cargar"></div>
+    <hr style="border:0;border-top:1px solid var(--line);margin:16px 0">
+    <b>Cargar lo que ya está repartido</b>
+    <p class="nota">Un contrato por renglón: <b>número;responsable;estado;cliente</b> (el cliente es opcional). El estado es Vacío, Completo, Cargado o Rendido; si lo deja vacío se toma Vacío. El responsable debe estar en Personal. Si el contrato ya existe, se actualiza.</p>
+    <textarea id="t-importar" placeholder="Ej.&#10;1001;Carlos Pérez;Completo;Juan Gómez&#10;1002;Dana Ruiz;Vacío"></textarea>
+    <button class="btn btn-ghost" id="b-importar" style="margin-top:8px">Importar</button>
+    <div id="r-importar"></div>
+  </details>
+
+  <details class="panel" id="p-res" hidden>
+    <summary>Resumen por responsable</summary>
+    <div style="overflow-x:auto"><table class="tabla" id="t-res"></table></div>
+  </details>
+
+  <div class="filtros">
+    <input class="full" id="f-q" type="search" inputmode="search" placeholder="Buscar por número, cliente o responsable" autocomplete="off">
+    <select id="f-resp" aria-label="Responsable"></select>
+    <select id="f-est" aria-label="Estado"><option value="">Todos los estados</option></select>
+  </div>
+  <div class="nota" id="cuenta-lista" style="margin:0 2px 8px"></div>
+  <div id="lista"></div>
+  <button class="btn btn-ghost mas" id="b-mas" hidden>Mostrar más</button>
+  <div class="foot">Desarrollado por The DOM Studio Web · WhatsApp 261-3431216 · thedomstudioweb@gmail.com</div>
+</main>
+
+<div class="barra" id="barra" hidden></div>
+<dialog id="dlg"></dialog>
+
+<script src="x5-core.js"></script>
+<script>
+(() => {
+'use strict';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
+const $ = (id) => document.getElementById(id), esc = X5.esc;
+const SUP = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
+const ESTADOS = ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Rendido', 'Anulado'];
+const SIGUIENTE = { 'Vacío': 'Completo', 'Completo': 'Cargado', 'Cargado': 'Rendido' };
+const ERR = { sin_permiso: 'No tiene permiso para esa acción.', sesion_vencida: 'La sesión venció. Ingrese de nuevo.', sin_numeros: 'No se encontró ningún número válido.', demasiados: 'Son demasiados por vez (máximo 2000).',
+  destino_fuera_de_alcance: 'Solo puede asignar a usted o a quienes le reportan.', falta_forma_sellado: 'Elija cómo se pagó el sellado.', falta_referencia_sellado: 'Falta el número de operación o quién dio el visto bueno.', estado_invalido: 'Estado no válido.' };
+const MOTIVO = { no_existe: 'no existe', no_es_de_su_equipo: 'no es de su equipo', ya_en_proceso: 'ya está en proceso (solo se reasignan los vacíos)', no_es_suyo: 'no es suyo', ya_rendido: 'ya está rendido', anulado: 'está anulado', primero_asignar: 'primero hay que asignarlo', transicion_no_permitida: 'solo puede avanzar al estado siguiente', debe_estar_completo_o_cargado: 'debe estar Completo o Cargado' };
+let user = null, token = null, D = { contratos: [], personal: [], ambito: [] };
+const F = { est: '', resp: '', q: '' }, sel = new Set(); let tope = 120;
+const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }, del(k) { try { localStorage.removeItem(k); } catch (e) {} } };
+const post = async (b) => { const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(Object.assign({ token }, b)) }); return r.json(); };
+const supervisa = () => SUP.includes(user.rol), gerente = () => user.rol === 'Gerente Comercial';
+const fch = (s) => s ? X5.fechaLarga(s) : '';
+const natural = (a, b) => String(a).localeCompare(String(b), 'es', { numeric: true });
+
+/* ── Ingreso (comparte la sesión del Mini CRM) ── */
+async function prepararLogin() {
+  const s = store.get('x5_session');
+  if (s && s.token) { token = s.token; user = s.user; return entrar(); }
+  try {
+    const r = await (await fetch(SCRIPT_URL + '?action=usuarios', { cache: 'no-store' })).json();
+    $('user-select').innerHTML = '<option value="">Seleccioná tu usuario…</option>' + r.usuarios.map(u => `<option value="${esc(u.nombre)}">${esc(u.nombre)}</option>`).join('');
+    $('login-loading').hidden = true; $('login-box').hidden = false;
+  } catch (e) { $('login-loading').innerHTML = '<p>No hay conexión. Probá de nuevo en un momento.</p><button class="btn" onclick="location.reload()">Reintentar</button>'; }
+}
+$('btn-login').onclick = async () => {
+  const nombre = $('user-select').value, clave = $('user-pass').value; if (!nombre || !clave) return X5.toast('Elegí tu usuario y escribí tu clave', 'bad');
+  const b = $('btn-login'); b.disabled = true; b.textContent = 'Verificando…';
+  try { const r = await (await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'login', nombre, clave }) })).json();
+    if (!r.ok || !r.token) throw new Error({ clave_incorrecta: 'Clave incorrecta', demasiados_intentos: 'Demasiados intentos. Esperá 10 minutos.' }[r.error] || 'Usuario no habilitado');
+    token = r.token; user = r.usuario; store.set('x5_session', { user, token }); entrar();
+  } catch (e) { X5.toast(e.message || 'No se pudo ingresar', 'bad'); } finally { b.disabled = false; b.textContent = 'Ingresar'; }
+};
+$('btn-salir').onclick = () => { store.del('x5_session'); location.reload(); };
+$('btn-act').onclick = () => cargar(true);
+
+async function entrar() {
+  $('login').style.display = 'none'; $('top').hidden = false; $('app').hidden = false;
+  $('quien').textContent = user.nombre + ' · ' + user.rol;
+  $('p-ger').hidden = !gerente(); $('p-res').hidden = !supervisa();
+  await cargar(false);
+}
+async function cargar(manual) {
+  try {
+    const r = await post({ action: 'contratos_datos' });
+    if (r.error === 'sesion_vencida') { store.del('x5_session'); X5.toast('La sesión venció. Ingresá de nuevo.', 'bad', 4000); return setTimeout(() => location.reload(), 1500); }
+    if (!r.ok) throw 0;
+    D = r; sel.clear(); armarFiltros(); pintar(); if (manual) X5.toast('Actualizado', 'ok');
+  } catch (e) { X5.toast('No se pudo cargar. Revisá la conexión.', 'bad', 3500); }
+}
+
+/* ── Resúmenes y lista ── */
+const cuenta = (est) => D.contratos.filter(c => c.estado === est).length;
+function armarFiltros() {
+  const resps = [...new Set(D.contratos.map(c => c.responsable).filter(Boolean))].sort(natural);
+  $('f-resp').innerHTML = '<option value="">' + (gerente() ? 'Todos los responsables' : 'Mi equipo') + '</option>' + (gerente() ? '<option value="__gerencia">En gerencia (sin responsable)</option>' : '') + resps.map(r => `<option value="${esc(r)}" ${r === F.resp ? 'selected' : ''}>${esc(r)}</option>`).join('');
+  $('f-est').innerHTML = '<option value="">Todos los estados</option>' + ESTADOS.filter(e => e !== 'Disponible' || gerente()).map(e => `<option ${e === F.est ? 'selected' : ''}>${e}</option>`).join('');
+}
+function pintar() {
+  const k = (e) => ({ n: cuenta(e), e });
+  const tiles = gerente() ? ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Rendido', 'Anulado'] : ['Vacío', 'Completo', 'Cargado', 'Rendido'];
+  const nom = { Disponible: 'En gerencia', Vacío: 'Vacíos', Completo: 'Completos', Cargado: 'Cargados', Rendido: 'Rendidos', Anulado: 'Anulados' };
+  $('kp').style.gridTemplateColumns = tiles.length === 4 ? 'repeat(4,1fr)' : 'repeat(3,1fr)';
+  $('kp').innerHTML = tiles.map(e => `<button type="button" data-e="${e}" aria-pressed="${F.est === e}"><b>${cuenta(e)}</b><span>${nom[e]}</span></button>`).join('');
+  const calle = cuenta('Vacío') + cuenta('Completo') + cuenta('Cargado');
+  $('calle').innerHTML = `<b>En la calle: ${calle}</b> contrato${calle === 1 ? '' : 's'} con vendedores o jefes que todavía no se rindieron (${cuenta('Vacío')} vacíos · ${cuenta('Completo')} completos · ${cuenta('Cargado')} cargados).` + (gerente() ? ` <b>En gerencia: ${cuenta('Disponible')}</b> sin repartir.` : '');
+  if (supervisa()) {
+    const por = {}; D.contratos.filter(c => c.responsable && !['Anulado'].includes(c.estado)).forEach(c => { const p = por[c.responsable] = por[c.responsable] || { Vacío: 0, Completo: 0, Cargado: 0, Rendido: 0 }; if (p[c.estado] !== undefined) p[c.estado]++; });
+    const filas = Object.keys(por).sort(natural);
+    $('t-res').innerHTML = '<tr><th>Responsable</th><th>Vacíos</th><th>Compl.</th><th>Carg.</th><th>Rend.</th></tr>' + (filas.length ? filas.map(n => `<tr data-r="${esc(n)}"><td>${esc(n)}</td><td>${por[n].Vacío}</td><td>${por[n].Completo}</td><td>${por[n].Cargado}</td><td>${por[n].Rendido}</td></tr>`).join('') : '<tr><td colspan="5" class="nota">Todavía no hay contratos repartidos.</td></tr>');
+  }
+  lista(); barra();
+}
+function filtrados() {
+  const q = F.q.trim().toLowerCase();
+  return D.contratos.filter(c => (!F.est || c.estado === F.est)
+    && (!F.resp || (F.resp === '__gerencia' ? !c.responsable : c.responsable === F.resp))
+    && (!q || String(c.numero).toLowerCase().includes(q) || String(c.cliente || '').toLowerCase().includes(q) || String(c.responsable || '').toLowerCase().includes(q))).sort((a, b) => natural(a.numero, b.numero));
+}
+function puedeActuar(c) { return gerente() || (supervisa() && D.ambito.includes(c.responsable)) || c.responsable === user.nombre; }
+function lista() {
+  const l = filtrados(), ver = l.slice(0, tope);
+  $('cuenta-lista').textContent = l.length + ' contrato' + (l.length === 1 ? '' : 's') + (F.est || F.resp || F.q ? ' con estos filtros' : '');
+  $('lista').innerHTML = ver.length ? ver.map(c => `<div class="ct ${sel.has(c.id) ? 'sel-on' : ''}" data-id="${esc(c.id)}">
+    ${puedeActuar(c) && !['Rendido', 'Anulado'].includes(c.estado) || (gerente() && c.estado !== 'Anulado') ? `<input type="checkbox" data-sel="${esc(c.id)}" ${sel.has(c.id) ? 'checked' : ''} aria-label="Elegir contrato ${esc(c.numero)}">` : '<span></span>'}
+    <div><span class="num">N.º ${esc(c.numero)}</span><small>${c.responsable ? esc(c.responsable) : 'En gerencia'}${c.cliente ? ' · ' + esc(c.cliente) : ''}</small><small>${c.fecha_asignacion ? 'Asignado ' + fch(c.fecha_asignacion) + ' · ' : ''}${c.fecha_estado ? 'Estado desde ' + fch(c.fecha_estado) : ''}</small></div>
+    <span class="chip e-${esc(c.estado)}">${esc(c.estado)}</span></div>`).join('') : '<div class="empty">No hay contratos con esos filtros.</div>';
+  $('b-mas').hidden = l.length <= tope;
+}
+function barra() {
+  const b = $('barra'), ids = [...sel]; b.hidden = !ids.length; if (!ids.length) return;
+  const cs = ids.map(id => D.contratos.find(c => c.id === id)).filter(Boolean), estados = [...new Set(cs.map(c => c.estado))];
+  let h = `<div class="cuenta">${ids.length} elegido${ids.length === 1 ? '' : 's'}</div>`;
+  if (supervisa()) h += '<button class="btn" data-a="asignar">Asignar a…</button>';
+  if (estados.length === 1 && SIGUIENTE[estados[0]]) { const s = SIGUIENTE[estados[0]]; h += s === 'Rendido' ? (supervisa() ? '<button class="btn" data-a="rendir">Rendir…</button>' : '') : `<button class="btn" data-a="avanzar" data-s="${s}">Marcar ${s}</button>`; }
+  if (gerente()) h += '<button class="btn btn-danger" data-a="anular">Anular</button>';
+  h += '<button class="btn btn-ghost" data-a="limpiar">Cancelar</button>';
+  b.innerHTML = h;
+}
+
+/* ── Eventos ── */
+$('kp').onclick = (e) => { const b = e.target.closest('[data-e]'); if (!b) return; F.est = F.est === b.dataset.e ? '' : b.dataset.e; $('f-est').value = F.est; tope = 120; pintar(); };
+$('f-est').onchange = () => { F.est = $('f-est').value; tope = 120; pintar(); };
+$('f-resp').onchange = () => { F.resp = $('f-resp').value; tope = 120; pintar(); };
+let tq; $('f-q').oninput = () => { clearTimeout(tq); tq = setTimeout(() => { F.q = $('f-q').value; tope = 120; lista(); }, 200); };
+$('b-mas').onclick = () => { tope += 200; lista(); };
+$('t-res').onclick = (e) => { const r = e.target.closest('[data-r]'); if (!r) return; F.resp = r.dataset.r; $('f-resp').value = F.resp; tope = 120; pintar(); window.scrollTo({ top: $('lista').offsetTop - 120, behavior: 'smooth' }); };
+$('lista').onclick = (e) => {
+  const cb = e.target.closest('[data-sel]'); if (cb) { cb.checked ? sel.add(cb.dataset.sel) : sel.delete(cb.dataset.sel); cb.closest('.ct').classList.toggle('sel-on', cb.checked); return barra(); }
+  const row = e.target.closest('.ct'); if (row) detalle(row.dataset.id);
+};
+$('barra').onclick = (e) => { const b = e.target.closest('[data-a]'); if (!b) return; const a = b.dataset.a, ids = [...sel];
+  if (a === 'limpiar') { sel.clear(); return pintar(); }
+  if (a === 'asignar') return dAsignar(ids);
+  if (a === 'avanzar') return cambiarEstado(ids, b.dataset.s);
+  if (a === 'rendir') return dRendir(ids);
+  if (a === 'anular') return dAnular(ids); };
+
+/* ── Diálogos ── */
+const dlg = $('dlg');
+function dialogo(titulo, html) { dlg.innerHTML = `<div class="dx-h"><h2>${esc(titulo)}</h2><button type="button" class="btn btn-ghost btn-sm" id="dx-x" aria-label="Cerrar">✕</button></div><div class="dx-b">${html}</div>`; $('dx-x').onclick = () => dlg.close(); if (!dlg.open) dlg.showModal(); }
+function resultado(r, ok) {
+  const om = (r.omitidos || []).map(o => `<li>${esc(o.numero || o.id)}: ${esc(MOTIVO[o.motivo] || o.motivo)}</li>`).join('');
+  return (ok ? `<div class="okk">${ok}</div>` : '') + (om ? `<div class="err"><b>No se pudieron cambiar:</b><ul style="margin:6px 0 0 18px;padding:0">${om}</ul></div>` : '');
+}
+async function accion(body, btn, textoOk) {
+  if (btn) { btn.disabled = true; btn.dataset.t = btn.textContent; btn.textContent = 'Guardando…'; }
+  try { const r = await post(body); if (!r.ok) { X5.toast(ERR[r.error] || 'No se pudo guardar', 'bad', 3500); if (btn) { btn.disabled = false; btn.textContent = btn.dataset.t; } return null; }
+    await cargar(false); return r; } catch (e) { X5.toast('No se pudo guardar. Revisá la conexión.', 'bad', 3500); if (btn) { btn.disabled = false; btn.textContent = btn.dataset.t; } return null; }
+}
+async function cambiarEstado(ids, estado, extra) {
+  const r = await accion(Object.assign({ action: 'contratos_estado', ids, estado }, extra || {}));
+  if (!r) return; if ((r.omitidos || []).length) dialogo('Resultado', resultado(r, r.cambiados ? r.cambiados + ' contrato(s) pasaron a ' + estado + '.' : '') + '<button class="btn" onclick="document.getElementById(\'dlg\').close()">Entendido</button>'); else { if (dlg.open) dlg.close(); X5.toast(r.cambiados + ' contrato(s) → ' + estado, 'ok'); }
+}
+function dAsignar(ids) {
+  const cs = ids.map(id => D.contratos.find(c => c.id === id)).filter(Boolean);
+  const opts = D.ambito.slice().sort(natural).map(n => `<option>${esc(n)}</option>`).join('');
+  dialogo('Asignar ' + ids.length + ' contrato' + (ids.length === 1 ? '' : 's'), `<p class="nota">N.º ${cs.slice(0, 12).map(c => esc(c.numero)).join(', ')}${cs.length > 12 ? '… y ' + (cs.length - 12) + ' más' : ''}</p>
+    <div class="field"><label for="as-d">Asignar a</label><select id="as-d">${opts}</select></div>
+    <button class="btn" id="as-ok">Asignar</button>
+    <button class="btn btn-ghost" id="as-dev" style="margin-top:8px">Devolver a gerencia</button><div id="as-r"></div>`);
+  const hacer = async (resp, btn) => { const r = await accion({ action: 'contratos_asignar', ids, responsable: resp }, btn); if (!r) return; if ((r.omitidos || []).length) { $('as-r').innerHTML = resultado(r, r.cambiados + ' asignado(s).'); } else { dlg.close(); X5.toast(r.cambiados + ' contrato(s) ' + (resp ? 'asignados a ' + resp : 'devueltos a gerencia'), 'ok'); } };
+  $('as-ok').onclick = (e) => hacer($('as-d').value, e.target); $('as-dev').onclick = (e) => hacer('', e.target);
+}
+function dRendir(ids) {
+  dialogo('Rendir ' + ids.length + ' contrato' + (ids.length === 1 ? '' : 's'), `<p class="nota">Al rendir se registra el pago del sellado. <b>No se guardan imágenes ni archivos</b>: solo cómo se pagó y la referencia.</p>
+    <div class="opts"><label><input type="radio" name="sf" value="Transferencia" checked> Transferencia</label><label><input type="radio" name="sf" value="Contado"> Contado (con visto bueno del supervisor)</label></div>
+    <div class="field"><label for="sr" id="sr-l">N.º de operación de la transferencia</label><input id="sr" maxlength="80" autocomplete="off"></div>
+    <div class="field"><label for="sm">Monto del sellado por contrato (opcional)</label><input id="sm" inputmode="decimal" placeholder="Ej. 12.500"></div>
+    <button class="btn" id="rd-ok">Rendir y registrar sellado</button><div id="rd-r"></div>`);
+  document.querySelectorAll('[name=sf]').forEach(r => r.onchange = () => { $('sr-l').textContent = r.value === 'Transferencia' ? 'N.º de operación de la transferencia' : 'Nombre del supervisor o jefe de ventas que dio el visto bueno'; });
+  $('rd-ok').onclick = async (e) => { const forma = document.querySelector('[name=sf]:checked').value, ref = $('sr').value.trim(); if (ref.length < 3) { $('rd-r').innerHTML = '<div class="err">' + (forma === 'Transferencia' ? 'Falta el número de operación.' : 'Falta el nombre de quien dio el visto bueno.') + '</div>'; return; }
+    e.target.disabled = true; await cambiarEstado(ids, 'Rendido', { sellado: { forma, referencia: ref, monto: $('sm').value.trim() } }); e.target.disabled = false; };
+}
+function dAnular(ids) {
+  dialogo('Anular ' + ids.length + ' contrato' + (ids.length === 1 ? '' : 's'), `<p>El contrato queda <b>Anulado</b> (extraviado, dañado o dado de baja) y sale de la cuenta de los que están en la calle. Queda registrado en el historial.</p><div class="field"><label for="an-n">Motivo (opcional)</label><input id="an-n" maxlength="150"></div><button class="btn btn-danger" id="an-ok">Sí, anular</button>`);
+  $('an-ok').onclick = (e) => { e.target.disabled = true; cambiarEstado(ids, 'Anulado', ids.length === 1 ? { notas: $('an-n').value } : {}); };
+}
+function detalle(id) {
+  const c = D.contratos.find(x => x.id === id); if (!c) return;
+  const fila = (a, b) => b ? `<div style="display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--line)"><span class="nota">${a}</span><b style="text-align:right">${esc(b)}</b></div>` : '';
+  const sup = supervisa() && (gerente() || D.ambito.includes(c.responsable)), mio = c.responsable === user.nombre;
+  let acc = '';
+  if (c.estado === 'Disponible' && supervisa()) acc += '<button class="btn" data-d="asignar">Asignar…</button>';
+  if (['Vacío'].includes(c.estado) && (mio || sup)) acc += '<div class="field" style="margin-top:12px"><label for="d-cli">Cliente (opcional)</label><input id="d-cli" maxlength="80" value="' + esc(c.cliente || '') + '"></div><button class="btn" data-d="Completo">Marcar Completo</button>';
+  if (c.estado === 'Completo' && (mio || sup)) acc += '<button class="btn" data-d="Cargado">Marcar Cargado</button>';
+  if (['Completo', 'Cargado'].includes(c.estado) && sup) acc += '<button class="btn" data-d="rendir">Rendir…</button>';
+  if (['Vacío'].includes(c.estado) && sup) acc += '<button class="btn btn-ghost" data-d="asignar">Reasignar o devolver…</button>';
+  if (gerente() && !['Anulado'].includes(c.estado)) acc += '<button class="btn btn-danger" data-d="anular">Anular</button>';
+  if ((gerente() || sup) && ['Completo', 'Cargado', 'Rendido'].includes(c.estado)) acc += '<div class="nota" style="margin-top:10px">Corrección: volver a un estado anterior</div>' + ['Vacío', 'Completo', 'Cargado'].filter(e => ESTADOS.indexOf(e) < ESTADOS.indexOf(c.estado)).map(e => `<button class="btn btn-ghost" data-d="retro" data-e="${e}" style="margin-top:6px">Volver a ${e}</button>`).join('');
+  dialogo('Contrato N.º ' + c.numero, `<div style="margin-bottom:10px"><span class="chip e-${esc(c.estado)}">${esc(c.estado)}</span></div>
+    ${fila('Responsable', c.responsable || 'En gerencia')}${fila('Cliente', c.cliente)}${fila('Asignado', c.fecha_asignacion ? fch(c.fecha_asignacion) + (c.asignado_por ? ' por ' + c.asignado_por : '') : '')}${fila('Estado desde', fch(c.fecha_estado))}
+    ${c.estado === 'Rendido' ? fila('Sellado', [c.sellado_forma, c.sellado_ref].filter(Boolean).join(' · ')) + fila('Monto del sellado', c.sellado_monto ? X5.money(c.sellado_monto) : '') : ''}${fila('Notas', c.notas)}
+    <div class="opts" style="margin-top:12px">${acc}</div><div id="d-r"></div>`);
+  dlg.querySelectorAll('[data-d]').forEach(b => b.onclick = () => { const a = b.dataset.d;
+    if (a === 'asignar') return dAsignar([id]); if (a === 'rendir') return dRendir([id]); if (a === 'anular') return dAnular([id]);
+    if (a === 'retro') return cambiarEstado([id], b.dataset.e);
+    cambiarEstado([id], a, a === 'Completo' && $('d-cli') ? { cliente: $('d-cli').value.trim() } : {}); });
+}
+
+/* ── Cargar números e importar (gerencia) ── */
+$('b-cargar').onclick = async (e) => {
+  const t = $('t-cargar').value.trim(); if (!t) return X5.toast('Escribí o pegá los números', 'bad');
+  const r = await accion({ action: 'contratos_cargar', numeros: t }, e.target); if (!r) return; e.target.disabled = false; e.target.textContent = 'Cargar como disponibles';
+  $('r-cargar').innerHTML = `<div class="okk">${r.cargados} contrato(s) cargados como disponibles en gerencia.</div>` + (r.repetidos.length ? `<div class="err">Ya existían (${r.repetidos.length}): ${esc(r.repetidos.slice(0, 20).join(', '))}${r.repetidos.length > 20 ? '…' : ''}</div>` : '') + (r.problemas.length ? `<div class="err">No válidos: ${esc(r.problemas.join(', '))}</div>` : '');
+  $('t-cargar').value = '';
+};
+$('b-importar').onclick = async (e) => {
+  const t = $('t-importar').value.trim(); if (!t) return X5.toast('Pegá la lista', 'bad');
+  const r = await accion({ action: 'contratos_importar', texto: t }, e.target); if (!r) return; e.target.disabled = false; e.target.textContent = 'Importar';
+  $('r-importar').innerHTML = `<div class="okk">${r.creados} creado(s) · ${r.actualizados} actualizado(s).</div>` + (r.errores.length ? `<div class="err"><b>${r.errores.length} renglón(es) con problemas (no se cargaron):</b><ul style="margin:6px 0 0 18px;padding:0">${r.errores.slice(0, 40).map(x => `<li>Renglón ${x.linea}: ${esc(x.motivo)} — <code>${esc(x.texto)}</code></li>`).join('')}</ul></div>` : '');
+  if (!r.errores.length) $('t-importar').value = '';
+};
+
+prepararLogin();
+})();
+</script>
+</body>
+</html>

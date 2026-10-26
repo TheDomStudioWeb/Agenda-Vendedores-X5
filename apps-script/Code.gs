@@ -96,6 +96,9 @@ function doPost(e) {
     if (body.action === 'datos') { if (!usuario) return json_({ ok: false, error: 'sesion_vencida' }); return json_(armarDatos_(usuario)); }
     if (body.action === 'telegram_link') { if (!usuario) return json_({ ok: false, error: 'sesion_vencida' }); return json_(linkTelegram_(usuario.nombre)); }
 
+    // Control de contratos (solo números y estados; no guarda archivos)
+    if (String(body.action).indexOf('contratos_') === 0) return json_(despacharContratos_(body, usuario));
+
     // Archivo (solo Gerente Comercial): archivar descartados, ver el archivo y restaurar
     if (body.action === 'archivar' || body.action === 'archivo_listar' || body.action === 'restaurar') {
       if (!usuario) return json_({ ok: false, error: 'sesion_vencida' });
@@ -867,3 +870,225 @@ function fechaHora_(fecha, hora, tz) {
 function fechaCorta_(v) { const s = String(v || '').replace(/^'/, '').split('T')[0].split('-'); return s.length === 3 ? `${s[2]}/${s[1]}` : String(v || ''); }
 function moneda_(n) { return '$ ' + Math.round(Number(n) || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
 function esc_(v) { return String(v == null ? '' : v).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c])); }
+
+
+// =====================================================================
+//  CONTRATOS — control nominal de contratos (números y estados)
+//  No guarda archivos. Responde a: ¿cuáles están en la calle, cuáles en gerencia,
+//  cuáles completos, cargados o rendidos, y quién los tiene?
+//  Flujo: Gerente Comercial carga los números → los asigna a Jefes de Ventas →
+//  ellos los asignan a vendedores y referentes → el vendedor marca Completo y Cargado →
+//  el supervisor marca Rendido (con el pago del sellado). Todo queda en la hoja ContratosLog.
+// =====================================================================
+const HOJA_CONTRATOS = 'Contratos';
+const HOJA_CONTRATOS_LOG = 'ContratosLog';
+const COL_CONTRATOS = ['id', 'numero', 'estado', 'responsable', 'fecha_asignacion', 'asignado_por', 'cliente', 'fecha_estado', 'sellado_monto', 'sellado_forma', 'sellado_ref', 'notas', 'actualizado'];
+const COL_CONTRATOS_LOG = ['fecha', 'contrato', 'usuario', 'accion', 'detalle'];
+const ESTADOS_CONTRATO = ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Rendido', 'Anulado'];
+const FORMAS_SELLADO = ['Transferencia', 'Contado'];
+const MAX_CONTRATOS_LOTE = 2000;
+
+function hojaContratos_(nombre, cols) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sh = ss.getSheetByName(nombre);
+  if (!sh) { sh = ss.insertSheet(nombre); sh.getRange(1, 1, 1, cols.length).setValues([cols]); sh.setFrozenRows(1); }
+  asegurarColumnas_(sh, cols);
+  return sh;
+}
+function esGerente_(u) { return u.rol === 'Gerente Comercial'; }
+// Personas a las que este usuario puede asignar o ver: él mismo y quienes le reportan (gerente: todos los activos)
+function ambitoContratos_(u, personal) {
+  if (esGerente_(u)) return personal.filter(p => String(p.estado) === 'Activo').map(p => String(p.nombre));
+  return [String(u.nombre)].concat(personal.filter(p => String(p.reporta_a) === String(u.nombre) && String(p.estado) === 'Activo').map(p => String(p.nombre)));
+}
+function nuevoIdContrato_() { return 'C' + Utilities.getUuid().replace(/-/g, '').slice(0, 10); }
+function limpiarNumero_(v) { return String(v == null ? '' : v).replace(/^'/, '').trim().replace(/\s+/g, '').slice(0, 20); }
+function hoyContrato_() { return Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd'); }
+
+// Convierte "1001-1050, 1062 1063" en una lista de números. Los rangos solo valen si son numéricos y no pasan del tope.
+function expandirNumeros_(texto) {
+  const out = [], vistos = {}; let problemas = [];
+  String(texto || '').split(/[\s,;\n]+/).forEach(tk => {
+    tk = limpiarNumero_(tk); if (!tk) return;
+    const m = tk.match(/^(\d+)-(\d+)$/);
+    if (m && Number(m[2]) >= Number(m[1])) {
+      const a = Number(m[1]), b = Number(m[2]), ancho = m[1].length;
+      if (b - a >= MAX_CONTRATOS_LOTE) { problemas.push(tk + ' (rango demasiado grande)'); return; }
+      for (let n = a; n <= b; n++) { const s = String(n).padStart(ancho, '0'); if (!vistos[s]) { vistos[s] = 1; out.push(s); } }
+      return;
+    }
+    if (!/^[A-Za-z0-9\-_.\/]+$/.test(tk)) { problemas.push(tk + ' (caracteres no válidos)'); return; }
+    if (!vistos[tk]) { vistos[tk] = 1; out.push(tk); }
+  });
+  return { numeros: out, problemas: problemas };
+}
+
+function leerContratos_() { return leerHoja_(HOJA_CONTRATOS).map(r => { r.numero = limpiarNumero_(r.numero); return r; }); }
+function registrarLogContratos_(lista) {
+  if (!lista.length) return;
+  const sh = hojaContratos_(HOJA_CONTRATOS_LOG, COL_CONTRATOS_LOG);
+  const ahora = new Date();
+  sh.getRange(sh.getLastRow() + 1, 1, lista.length, COL_CONTRATOS_LOG.length).setValues(lista.map(l => [ahora, "'" + l.contrato, l.usuario, l.accion, l.detalle || '']));
+}
+function celdaContrato_(h, v) {
+  if (v === undefined || v === null) return '';
+  if (v instanceof Date || typeof v === 'number') return v;
+  let s = String(v);
+  if (/^[=+\-@]/.test(s)) s = "'" + s;
+  if (['numero', 'fecha_asignacion', 'fecha_estado', 'sellado_ref'].indexOf(h) > -1 && s !== '' && s[0] !== "'") s = "'" + s;
+  return s;
+}
+
+function despacharContratos_(body, u) {
+  const a = body.action;
+  if (a === 'contratos_datos') return contratosDatos_(u);
+  const lock = LockService.getScriptLock(); lock.waitLock(15000);
+  try {
+    if (a === 'contratos_cargar') return contratosCargar_(body, u);
+    if (a === 'contratos_asignar') return contratosAsignar_(body, u);
+    if (a === 'contratos_estado') return contratosEstado_(body, u);
+    if (a === 'contratos_importar') return contratosImportar_(body, u);
+    return { ok: false, error: 'accion_invalida' };
+  } finally { lock.releaseLock(); }
+}
+
+function contratosDatos_(u) {
+  const personal = personalLimpio_(), ambito = ambitoContratos_(u, personal);
+  const todos = leerContratos_();
+  const visibles = esGerente_(u) ? todos : todos.filter(c => ambito.indexOf(String(c.responsable)) > -1);
+  const gente = personal.filter(p => String(p.estado) === 'Activo').map(p => ({ nombre: p.nombre, rol: p.rol, reporta_a: p.reporta_a }));
+  return { ok: true, usuario: { nombre: u.nombre, rol: u.rol }, contratos: visibles, personal: gente, ambito: ambito, estados: ESTADOS_CONTRATO, servidor: new Date().toISOString() };
+}
+
+// Gerencia carga los números disponibles (en gerencia, todavía sin repartir).
+function contratosCargar_(body, u) {
+  if (!esGerente_(u)) return { ok: false, error: 'sin_permiso' };
+  const ex = expandirNumeros_(body.numeros);
+  if (!ex.numeros.length) return { ok: false, error: 'sin_numeros', problemas: ex.problemas };
+  if (ex.numeros.length > MAX_CONTRATOS_LOTE) return { ok: false, error: 'demasiados' };
+  const sh = hojaContratos_(HOJA_CONTRATOS, COL_CONTRATOS), h = asegurarColumnas_(sh, COL_CONTRATOS);
+  const existentes = {}; leerContratos_().forEach(c => { existentes[c.numero] = 1; });
+  const nuevos = ex.numeros.filter(n => !existentes[n]), repetidos = ex.numeros.filter(n => existentes[n]);
+  const ahora = new Date(), hoy = hoyContrato_();
+  if (nuevos.length) {
+    const filas = nuevos.map((n, i) => h.map(col => celdaContrato_(col, ({ id: nuevoIdContrato_(), numero: n, estado: 'Disponible', responsable: '', fecha_estado: hoy, actualizado: ahora })[col])));
+    sh.getRange(sh.getLastRow() + 1, 1, filas.length, h.length).setValues(filas);
+    registrarLogContratos_(nuevos.map(n => ({ contrato: n, usuario: u.nombre, accion: 'cargado', detalle: 'Disponible en gerencia' })));
+  }
+  return { ok: true, cargados: nuevos.length, repetidos: repetidos, problemas: ex.problemas };
+}
+
+// Aplica cambios a filas existentes (por id) y registra el log.
+function actualizarContratos_(cambios, u, accion, detalleFn) {
+  const sh = hojaContratos_(HOJA_CONTRATOS, COL_CONTRATOS), h = asegurarColumnas_(sh, COL_CONTRATOS);
+  const datos = sh.getDataRange().getValues(), iId = h.indexOf('id'), logs = [];
+  const pos = {}; for (let i = 1; i < datos.length; i++) pos[String(datos[i][iId])] = i;
+  cambios.forEach(cb => {
+    const i = pos[cb.id]; if (i === undefined) return;
+    const fila = datos[i];
+    Object.keys(cb.campos).forEach(k => { const j = h.indexOf(k); if (j > -1) fila[j] = celdaContrato_(k, cb.campos[k]); });
+    fila[h.indexOf('actualizado')] = new Date();
+    sh.getRange(i + 1, 1, 1, h.length).setValues([fila]);
+    logs.push({ contrato: cb.numero, usuario: u.nombre, accion: accion, detalle: detalleFn(cb) });
+  });
+  registrarLogContratos_(logs);
+}
+
+// Asignar (o reasignar / devolver a gerencia). Gerencia: a cualquiera. Jefe o referente: a sí mismo o a quien le reporta.
+function contratosAsignar_(body, u) {
+  if (SUPERVISION_CONTRATOS_.indexOf(u.rol) < 0) return { ok: false, error: 'sin_permiso' };
+  const personal = personalLimpio_(), ambito = ambitoContratos_(u, personal);
+  const dest = String(body.responsable || '').trim();
+  const devolver = dest === '';
+  if (!devolver && ambito.indexOf(dest) < 0) return { ok: false, error: 'destino_fuera_de_alcance' };
+  const ids = (body.ids || []).map(String), todos = leerContratos_(), mapa = {}; todos.forEach(c => { mapa[String(c.id)] = c; });
+  const cambios = [], omitidos = [], hoy = hoyContrato_();
+  ids.forEach(id => {
+    const c = mapa[id]; if (!c) { omitidos.push({ id: id, motivo: 'no_existe' }); return; }
+    const mio = esGerente_(u) || ambito.indexOf(String(c.responsable)) > -1;
+    if (!mio) { omitidos.push({ numero: c.numero, motivo: 'no_es_de_su_equipo' }); return; }
+    if (['Disponible', 'Vacío'].indexOf(String(c.estado)) < 0) { omitidos.push({ numero: c.numero, motivo: 'ya_en_proceso' }); return; }
+    if (devolver) cambios.push({ id: id, numero: c.numero, campos: { estado: 'Disponible', responsable: '', fecha_asignacion: '', asignado_por: '', fecha_estado: hoy }, desde: c.responsable });
+    else cambios.push({ id: id, numero: c.numero, campos: { estado: 'Vacío', responsable: dest, fecha_asignacion: hoy, asignado_por: u.nombre, fecha_estado: hoy }, desde: c.responsable });
+  });
+  if (devolver && !esGerente_(u)) { /* un jefe puede devolver a gerencia lo suyo */ }
+  actualizarContratos_(cambios, u, devolver ? 'devuelto' : 'asignado', cb => devolver ? ('Vuelve a gerencia (tenía ' + (cb.desde || 'gerencia') + ')') : ((cb.desde ? cb.desde + ' → ' : '') + dest));
+  return { ok: true, cambiados: cambios.length, omitidos: omitidos };
+}
+
+const SUPERVISION_CONTRATOS_ = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
+const SIGUIENTE_CONTRATO_ = { 'Vacío': 'Completo', 'Completo': 'Cargado', 'Cargado': 'Rendido' };
+
+// Cambio de estado. El responsable avanza Vacío → Completo → Cargado. Rendido, retrocesos y anulación son de supervisión
+// (Rendido pide el sellado: forma y referencia). Anulado solo gerencia.
+function contratosEstado_(body, u) {
+  const nuevo = String(body.estado || '');
+  if (ESTADOS_CONTRATO.indexOf(nuevo) < 0 || nuevo === 'Disponible') return { ok: false, error: 'estado_invalido' };
+  const personal = personalLimpio_(), ambito = ambitoContratos_(u, personal), supervisa = SUPERVISION_CONTRATOS_.indexOf(u.rol) > -1;
+  const ids = (body.ids || []).map(String), todos = leerContratos_(), mapa = {}; todos.forEach(c => { mapa[String(c.id)] = c; });
+  const s = body.sellado || {};
+  if (nuevo === 'Rendido') {
+    if (!supervisa) return { ok: false, error: 'sin_permiso' };
+    if (FORMAS_SELLADO.indexOf(String(s.forma)) < 0) return { ok: false, error: 'falta_forma_sellado' };
+    if (String(s.referencia || '').trim().length < 3) return { ok: false, error: 'falta_referencia_sellado' };
+  }
+  if (nuevo === 'Anulado' && !esGerente_(u)) return { ok: false, error: 'sin_permiso' };
+  const cambios = [], omitidos = [], hoy = hoyContrato_();
+  ids.forEach(id => {
+    const c = mapa[id]; if (!c) { omitidos.push({ id: id, motivo: 'no_existe' }); return; }
+    const mio = String(c.responsable) === String(u.nombre), delEquipo = ambito.indexOf(String(c.responsable)) > -1;
+    if (!(esGerente_(u) || (supervisa && delEquipo) || mio)) { omitidos.push({ numero: c.numero, motivo: 'no_es_suyo' }); return; }
+    const actual = String(c.estado);
+    if (actual === 'Rendido' && !esGerente_(u)) { omitidos.push({ numero: c.numero, motivo: 'ya_rendido' }); return; }
+    if (actual === 'Anulado' && !esGerente_(u)) { omitidos.push({ numero: c.numero, motivo: 'anulado' }); return; }
+    if (actual === 'Disponible' && nuevo !== 'Anulado') { omitidos.push({ numero: c.numero, motivo: 'primero_asignar' }); return; }
+    const avanza = SIGUIENTE_CONTRATO_[actual] === nuevo;
+    const libre = esGerente_(u) || (supervisa && delEquipo);          // correcciones: retroceder o saltear
+    if (!avanza && !libre) { omitidos.push({ numero: c.numero, motivo: 'transicion_no_permitida' }); return; }
+    if (nuevo === 'Rendido' && ['Completo', 'Cargado'].indexOf(actual) < 0 && !esGerente_(u)) { omitidos.push({ numero: c.numero, motivo: 'debe_estar_completo_o_cargado' }); return; }
+    const campos = { estado: nuevo, fecha_estado: hoy };
+    if (body.cliente !== undefined && ids.length === 1) campos.cliente = String(body.cliente).slice(0, 80);
+    if (body.notas !== undefined && ids.length === 1) campos.notas = String(body.notas).slice(0, 200);
+    if (nuevo === 'Rendido') { campos.sellado_forma = s.forma; campos.sellado_ref = String(s.referencia).trim().slice(0, 80); campos.sellado_monto = s.monto === '' || s.monto == null ? '' : Number(String(s.monto).replace(/[^\d.,-]/g, '').replace(/\./g, '').replace(',', '.')) || ''; }
+    if (nuevo === 'Vacío') { campos.sellado_forma = ''; campos.sellado_ref = ''; campos.sellado_monto = ''; }
+    cambios.push({ id: id, numero: c.numero, campos: campos, desde: actual });
+  });
+  actualizarContratos_(cambios, u, 'estado', cb => cb.desde + ' → ' + nuevo + (nuevo === 'Rendido' ? ' · sellado ' + s.forma + ' ' + String(s.referencia).trim() : ''));
+  return { ok: true, cambiados: cambios.length, omitidos: omitidos };
+}
+
+// Carga masiva de lo que ya está repartido (solo gerencia). Una línea por contrato: numero;responsable;estado[;cliente]
+// Si el contrato ya existe, se actualiza; si no, se crea.
+function contratosImportar_(body, u) {
+  if (!esGerente_(u)) return { ok: false, error: 'sin_permiso' };
+  const personal = personalLimpio_(), activos = {}; personal.filter(p => String(p.estado) === 'Activo').forEach(p => { activos[String(p.nombre).toLowerCase()] = String(p.nombre); });
+  const lineas = String(body.texto || '').split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  if (lineas.length > MAX_CONTRATOS_LOTE) return { ok: false, error: 'demasiados' };
+  const sh = hojaContratos_(HOJA_CONTRATOS, COL_CONTRATOS), h = asegurarColumnas_(sh, COL_CONTRATOS);
+  const existentes = {}; leerContratos_().forEach(c => { existentes[c.numero] = c; });
+  const errores = [], nuevasFilas = [], cambios = [], logs = [], hoy = hoyContrato_(), ahora = new Date(), vistos = {};
+  lineas.forEach((l, n) => {
+    const p = l.split(/[;\t]/).map(x => x.trim());
+    const num = limpiarNumero_(p[0]), resp = p[1] || '', est = (p[2] || '').trim(), cli = (p[3] || '').slice(0, 80);
+    if (!num || !/^[A-Za-z0-9\-_.\/]+$/.test(num)) { errores.push({ linea: n + 1, texto: l, motivo: 'número inválido' }); return; }
+    if (vistos[num]) { errores.push({ linea: n + 1, texto: l, motivo: 'número repetido en la lista' }); return; }
+    vistos[num] = 1;
+    const coincide = est ? ESTADOS_CONTRATO.find(e => e.toLowerCase() === est.toLowerCase().replace('vacio', 'vacío')) : null;
+    if (est && !coincide) { errores.push({ linea: n + 1, texto: l, motivo: 'estado inválido' }); return; }
+    const estado = coincide || (resp ? 'Vacío' : 'Disponible');
+    const responsable = resp ? activos[resp.toLowerCase()] : '';
+    if (resp && !responsable) { errores.push({ linea: n + 1, texto: l, motivo: 'responsable no encontrado en Personal' }); return; }
+    if (estado !== 'Disponible' && estado !== 'Anulado' && !responsable) { errores.push({ linea: n + 1, texto: l, motivo: 'falta el responsable' }); return; }
+    const campos = { estado: estado, responsable: estado === 'Disponible' || estado === 'Anulado' ? '' : responsable, fecha_asignacion: responsable ? hoy : '', asignado_por: responsable ? u.nombre : '', cliente: cli, fecha_estado: hoy, sellado_forma: estado === 'Rendido' ? 'Carga inicial' : '' };
+    const ex = existentes[num];
+    if (ex) { cambios.push({ id: String(ex.id), numero: num, campos: campos, desde: ex.estado }); }
+    else {
+      nuevasFilas.push(h.map(col => celdaContrato_(col, Object.assign({ id: nuevoIdContrato_(), numero: num, actualizado: ahora }, campos)[col])));
+      logs.push({ contrato: num, usuario: u.nombre, accion: 'importado', detalle: estado + (responsable ? ' · ' + responsable : '') });
+    }
+  });
+  if (nuevasFilas.length) sh.getRange(sh.getLastRow() + 1, 1, nuevasFilas.length, h.length).setValues(nuevasFilas);
+  registrarLogContratos_(logs);
+  actualizarContratos_(cambios, u, 'importado', cb => (cb.desde || '—') + ' → ' + cb.campos.estado + (cb.campos.responsable ? ' · ' + cb.campos.responsable : ''));
+  return { ok: true, creados: nuevasFilas.length, actualizados: cambios.length, errores: errores };
+}
