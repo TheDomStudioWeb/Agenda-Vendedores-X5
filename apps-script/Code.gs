@@ -948,6 +948,7 @@ function despacharContratos_(body, u) {
     if (a === 'contratos_asignar') return contratosAsignar_(body, u);
     if (a === 'contratos_estado') return contratosEstado_(body, u);
     if (a === 'contratos_importar') return contratosImportar_(body, u);
+    if (a === 'contratos_vincular') return contratosVincular_(body, u);
     return { ok: false, error: 'accion_invalida' };
   } finally { lock.releaseLock(); }
 }
@@ -1092,4 +1093,31 @@ function contratosImportar_(body, u) {
   registrarLogContratos_(logs);
   actualizarContratos_(cambios, u, 'importado', cb => (cb.desde || '—') + ' → ' + cb.campos.estado + (cb.campos.responsable ? ' · ' + cb.campos.responsable : ''));
   return { ok: true, creados: nuevasFilas.length, actualizados: cambios.length, errores: errores };
+}
+
+
+// Venta cerrada en el CRM: el N.º de contrato cargado marca el contrato como Completo (si estaba Vacío y es de quien vende).
+// Nunca pisa estados más avanzados. Si el número se corrigió, el anterior vuelve a Vacío (solo si estaba Completo por esa misma venta).
+// Devuelve ok:true con un "resultado" para que el CRM avise; no lanza error por números mal tipeados.
+function contratosVincular_(body, u) {
+  const numero = limpiarNumero_(body.numero), anterior = limpiarNumero_(body.anterior), cliente = String(body.cliente || '').slice(0, 80);
+  const asesor = String(body.asesor || u.nombre);
+  if (!numero) return { ok: true, resultado: 'sin_numero' };
+  const personal = personalLimpio_(), ambito = ambitoContratos_(u, personal), todos = leerContratos_();
+  const hallar = n => todos.filter(c => String(c.numero) === String(n))[0];
+  const c = hallar(numero);
+  const res = { ok: true, numero: numero, revertido: false };
+  const cambios = [];
+  if (anterior && anterior !== numero) {
+    const a = hallar(anterior), mioA = a && (esGerente_(u) || String(a.responsable) === u.nombre || String(a.responsable) === asesor || ambito.indexOf(String(a.responsable)) > -1);
+    if (a && mioA && a.estado === 'Completo' && String(a.cliente) === cliente) { cambios.push({ id: a.id, numero: a.numero, campos: { estado: 'Vacío', fecha_estado: hoyContrato_(), cliente: '' }, desde: 'Completo' }); res.revertido = anterior; }
+  }
+  if (!c) res.resultado = 'no_existe';
+  else if (!(esGerente_(u) || String(c.responsable) === u.nombre || String(c.responsable) === asesor || ambito.indexOf(String(c.responsable)) > -1)) res.resultado = 'no_es_suyo';
+  else if (c.estado === 'Anulado') res.resultado = 'anulado';
+  else if (c.estado === 'Disponible') res.resultado = 'sin_asignar';
+  else if (c.estado !== 'Vacío') { res.resultado = 'sin_cambio'; res.estado = c.estado; }
+  else { cambios.push({ id: c.id, numero: c.numero, campos: { estado: 'Completo', fecha_estado: hoyContrato_(), cliente: cliente }, desde: 'Vacío' }); res.resultado = 'completado'; }
+  if (cambios.length) actualizarContratos_(cambios, u, 'venta_crm', cb => cb.desde + ' → ' + cb.campos.estado + ' (venta en el CRM' + (cliente ? ': ' + cliente : '') + ')');
+  return res;
 }

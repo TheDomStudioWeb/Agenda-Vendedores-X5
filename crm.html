@@ -411,7 +411,8 @@ async function procesarCola() {
   try {
     while (outbox.length) {
       const op = outbox[0];
-      const r = await apiPost({ action: op.action, tabla: op.tabla, data: op.data, token });
+      const r = await apiPost(op.action === 'contratos_vincular' ? Object.assign({ action: op.action, token }, op.data) : { action: op.action, tabla: op.tabla, data: op.data, token });
+      if (op.action === 'contratos_vincular' && respOk(r)) avisoContrato(r);
       if (r && r.error === 'sesion_vencida') { sesionVencida(); break; }
       // Errores que no se arreglan reintentando: se descarta ese cambio, se avisa y la cola sigue
       if (r && ['sin_permiso', 'accion_invalida', 'tabla_invalida'].includes(r.error)) {
@@ -894,11 +895,43 @@ document.addEventListener('change', (e) => {
   const el = e.target, campo = el.dataset && el.dataset.campo;
   if (!campo || el.tagName === 'TEXTAREA') return;
   const r = registro(el); if (!r) return;
+  // Venta cerrada: el N.º de contrato es obligatorio. Hasta que lo carguen, la venta no se guarda.
+  if (r.tabla === 'agenda' && campo === 'resultado' && el.value === 'venta' && !String(r.item.nro_contrato || '').trim()) { pedirContrato(r.item); el.value = r.item.resultado || ''; return; }
+  if (r.tabla === 'agenda' && campo === 'nro_contrato') {
+    const nuevo = el.value.trim(), antes = String(r.item.nro_contrato || '').trim();
+    if (r.item.resultado === 'venta' && !nuevo) { el.value = antes; return X5.toast('La venta necesita el N.º de contrato.', 'bad', 3500); }
+    if (nuevo !== antes) { guardarCampo(r.tabla, r.item, campo, nuevo); vincularContrato(r.item, antes); }
+    return;
+  }
   if (guardarCampo(r.tabla, r.item, campo, el.value) && (campo === 'estado' || campo === 'resultado')) {
-    if (campo === 'resultado' && el.value === 'venta') X5.toast('¡Felicitaciones por la venta!', 'ok');
+    if (campo === 'resultado' && el.value === 'venta') { X5.toast('¡Felicitaciones por la venta!', 'ok'); vincularContrato(r.item, ''); }
     render();
   }
 });
+
+/* ── Contratos: la venta exige el N.º y lo marca Completo en el gestor ── */
+function vincularContrato(item, anterior) {
+  const numero = String(item.nro_contrato || '').trim(); if (!numero) return;
+  encolar('contratos_vincular', '', { numero, anterior: anterior || '', cliente: item.cliente || '', asesor: item.asesor || '' });
+}
+function avisoContrato(r) {
+  const n = r.numero, tipo = { completado: 'ok', sin_cambio: '' }[r.resultado] ?? 'bad';
+  const msg = { completado: `Contrato ${n} marcado como Completo en el gestor.`, sin_cambio: `El contrato ${n} ya figura como ${r.estado}; no se cambió.`,
+    no_existe: `Ojo: el contrato ${n} no está en el gestor. Revisá el número.`, no_es_suyo: `Ojo: el contrato ${n} figura a nombre de otra persona. Revisá el número.`,
+    sin_asignar: `Ojo: el contrato ${n} todavía no fue asignado a nadie en el gestor.`, anulado: `Ojo: el contrato ${n} figura como Anulado. Revisá el número.` }[r.resultado];
+  if (msg) X5.toast(msg + (r.revertido ? ` El ${r.revertido} volvió a Vacío.` : ''), tipo, r.resultado === 'completado' ? 3500 : 7000);
+}
+function pedirContrato(item) {
+  dialogo('Venta cerrada', `<p class="nota">Para cerrar la venta de <b>${esc(item.cliente)}</b> cargá el número de contrato. Es obligatorio.</p>
+    <div class="field"><label for="vc-n">N.º de contrato</label><input id="vc-n" inputmode="text" autocomplete="off" maxlength="20"></div>
+    <div class="field"><label for="vc-m">Monto (opcional)</label><input id="vc-m" type="number" inputmode="numeric" value="${esc(item.monto)}"></div>
+    <div id="vc-e"></div><button class="btn" id="vc-ok">Guardar venta</button>`);
+  $('vc-ok').onclick = () => {
+    const n = $('vc-n').value.trim(); if (!n) { $('vc-e').innerHTML = '<div class="chip bad" style="margin:6px 0">Falta el número de contrato.</div>'; return; }
+    guardarCampo('agenda', item, 'nro_contrato', n); if ($('vc-m').value !== '') guardarCampo('agenda', item, 'monto', $('vc-m').value);
+    guardarCampo('agenda', item, 'resultado', 'venta'); vincularContrato(item, ''); dlgX.close(); X5.toast('¡Felicitaciones por la venta!', 'ok'); render();
+  };
+}
 
 // Observaciones: se guardan mientras escribís (pausa de 1,2 s), al salir del campo y al cerrar la app
 const timers = new WeakMap();
@@ -920,7 +953,7 @@ document.addEventListener('input', (e) => {
 document.addEventListener('focusout', (e) => {
   const el = e.target;
   if (el.dataset && el.dataset.campo === 'notas') guardarNota(el);
-  else if (el.dataset && (el.dataset.campo === 'nro_contrato' || el.dataset.campo === 'monto')) {
+  else if (el.dataset && el.dataset.campo === 'monto') {
     const r = registro(el); if (r) guardarCampo(r.tabla, r.item, el.dataset.campo, el.value);
   }
 });

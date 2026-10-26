@@ -33,3 +33,10 @@ Panel "Cargar números", segundo cuadro: un contrato por renglón `número;respo
 3. Subir los archivos del Hub a GitHub Pages (el servicio se actualiza al subir la versión del sw).
 
 Desarrollado por The DOM Studio Web · WhatsApp 261-3431216 · thedomstudioweb@gmail.com
+
+## Conexión con el CRM (venta cerrada)
+- Al marcar **Venta cerrada** en el Mini CRM, el **N.º de contrato es obligatorio**: sin número la venta no se guarda, y no se puede borrar el número de una venta.
+- Al guardar el número, el contrato pasa solo de **Vacío a Completo** en el gestor y toma el nombre del cliente. Solo si es del vendedor (o de su equipo, si carga un jefe).
+- Si el número no existe, es de otra persona, está sin asignar, anulado o ya más avanzado, el CRM avisa con un cartel y **no cambia nada**.
+- Si se corrige el número, el anterior vuelve a Vacío (solo si estaba Completo por esa misma venta) y avisa.
+- Sin señal, el cambio queda en cola y se aplica al reconectar.

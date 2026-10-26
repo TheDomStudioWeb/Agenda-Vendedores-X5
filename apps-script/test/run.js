@@ -81,4 +81,17 @@ T('texto con fórmulas no se interpreta (cliente, notas, referencia)', () => {
   const m = nuevo(); m.llamar(GER, { action: 'contratos_cargar', numeros: '30' }); const id = idDe(m, '30'); m.llamar(GER, { action: 'contratos_asignar', ids: [id], responsable: 'Vendedor Carlos' });
   m.llamar(V1, { action: 'contratos_estado', ids: [id], estado: 'Completo', cliente: '=HYPERLINK("x")' }); const fila = m.libro.Contratos.filas.find(f => String(f[1]) === '30'); assert(String(fila[6]).startsWith("'="), 'la fórmula debe guardarse como texto: ' + fila[6]);
 });
+T('venta en el CRM: el número pasa Vacío → Completo; avisa sin romper si no existe, es ajeno o está avanzado; corrección revierte el anterior', () => {
+  const m = nuevo(); m.llamar(GER, { action: 'contratos_cargar', numeros: '40-43' }); const ids = ['40', '41', '42', '43'].map(n => idDe(m, n));
+  m.llamar(GER, { action: 'contratos_asignar', ids: ids.slice(0, 3), responsable: 'Jefe Ana' }); m.llamar(JEF, { action: 'contratos_asignar', ids: [ids[0], ids[1]], responsable: 'Vendedor Carlos' });
+  const vi = (u, b) => m.llamar(u, Object.assign({ action: 'contratos_vincular' }, b)); const est = n => datos(m, GER).contratos.find(c => c.numero === n);
+  assert.strictEqual(vi(V1, { numero: '40', cliente: 'Pérez' }).resultado, 'completado'); assert(est('40').estado === 'Completo' && est('40').cliente === 'Pérez');
+  const r = vi(V1, { numero: '41', anterior: '40', cliente: 'Pérez' }); assert(r.resultado === 'completado' && r.revertido === '40'); assert(est('40').estado === 'Vacío' && est('41').estado === 'Completo');
+  assert.strictEqual(vi(V1, { numero: '41', cliente: 'Otro' }).resultado, 'sin_cambio');
+  assert.strictEqual(vi(V1, { numero: '42', cliente: 'X' }).resultado, 'no_es_suyo'); assert.strictEqual(est('42').estado, 'Vacío');
+  assert.strictEqual(vi(V1, { numero: '43', cliente: 'X' }).resultado, 'no_es_suyo');
+  assert.strictEqual(vi(V1, { numero: '999', cliente: 'X' }).resultado, 'no_existe');
+  assert.strictEqual(vi(JEF, { numero: '42', cliente: 'X', asesor: 'Vendedor Carlos' }).resultado, 'completado');
+  m.llamar(GER, { action: 'contratos_estado', ids: [ids[1]], estado: 'Cargado' }); assert.strictEqual(vi(V1, { numero: '40', anterior: '41', cliente: 'Pérez' }).revertido, false); assert.strictEqual(est('41').estado, 'Cargado');
+});
 console.log(`\n${ok} bien, ${fail} con error`); process.exit(fail ? 1 : 0);
