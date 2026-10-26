@@ -40,3 +40,11 @@ Desarrollado por The DOM Studio Web · WhatsApp 261-3431216 · thedomstudioweb@g
 - Si el número no existe, es de otra persona, está sin asignar, anulado o ya más avanzado, el CRM avisa con un cartel y **no cambia nada**.
 - Si se corrige el número, el anterior vuelve a Vacío (solo si estaba Completo por esa misma venta) y avisa.
 - Sin señal, el cambio queda en cola y se aplica al reconectar.
+
+## Lista de precios (planes) y sellado
+- Hoja `Precios`. Columnas: código (PX61…), vehículo, apertura de carpeta (cuota 5 o 10; solo informativo), **adelanto mensual (valor de cuota)**, **sellado**, pago 1 y 2 (solo informativo).
+- Solo gerencia la carga: Hub → Control de contratos → "Lista de precios". Se puede pegar desde Excel o Word. Dos modos: **agregar o actualizar** solo los códigos pegados, o **reemplazar todo** (si hay un renglón con error, no cambia nada).
+- En el CRM, al cerrar una venta se piden **N.º de contrato y código del plan**, los dos obligatorios. Se muestra el vehículo, la cuota y el sellado a rendir.
+- El contrato guarda una copia del código, la cuota y el sellado del momento de la venta: si el listado cambia después, las ventas anteriores no se modifican.
+- El vendedor ve en cada contrato el **sellado a rendir** y el total. Los jefes ven el total por vendedor.
+- Al rendir, el monto del sellado se toma del contrato; gerencia puede escribir otro monto si se pagó distinto.

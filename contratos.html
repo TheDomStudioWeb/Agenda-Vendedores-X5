@@ -55,6 +55,7 @@
   .opts { display: grid; gap: 8px; margin: 8px 0 12px; }
   .opts label { display: flex; gap: 10px; align-items: center; background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; cursor: pointer; }
   .opts input { width: 20px; height: 20px; accent-color: var(--x5); appearance: auto; }
+  .sel-box { background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .8rem; margin-top: 8px; }
   .foot { text-align: center; color: var(--faint); font-size: .72rem; margin: 24px 0 6px; }
   .mas { width: 100%; margin-top: 6px; }
 </style>
@@ -100,6 +101,16 @@
     <div id="r-importar"></div>
   </details>
 
+  <details class="panel" id="p-pre" hidden>
+    <summary>Lista de precios · planes y sellado</summary>
+    <div style="overflow-x:auto"><table class="tabla" id="t-pre"></table></div>
+    <p class="nota" style="margin-top:10px">Pegá el listado completo o solo los códigos que cambian (puede copiarlo desde Excel o Word). Columnas: <b>código, vehículo, apertura de carpeta, adelanto mensual (cuota), sellado, pago 1 y 2</b>. Si falta el último, se calcula.</p>
+    <textarea id="t-pre-in" placeholder="Ej.&#10;PX61;Honda Tornado XR 250;10;90000;40000;130000"></textarea>
+    <div class="opts"><label><input type="radio" name="pm" value="actualizar" checked> Agregar o actualizar solo estos códigos</label><label><input type="radio" name="pm" value="reemplazar"> Reemplazar todo el listado</label></div>
+    <button class="btn" id="b-pre">Guardar lista de precios</button>
+    <div id="r-pre"></div>
+  </details>
+
   <details class="panel" id="p-res" hidden>
     <summary>Resumen por responsable</summary>
     <div style="overflow-x:auto"><table class="tabla" id="t-res"></table></div>
@@ -129,7 +140,7 @@ const SUP = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
 const ESTADOS = ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido', 'Anulado'];
 const SIGUIENTE = { 'Vacío': 'Completo', 'Completo': 'Cargado', 'Cargado': 'Recibido', 'Recibido': 'Rendido' };
 const ERR = { sin_permiso: 'No tiene permiso para esa acción.', sesion_vencida: 'La sesión venció. Ingrese de nuevo.', sin_numeros: 'No se encontró ningún número válido.', demasiados: 'Son demasiados por vez (máximo 2000).',
-  destino_fuera_de_alcance: 'Solo puede asignar a usted o a quienes le reportan.', falta_forma_sellado: 'Elija cómo se pagó el sellado.', falta_referencia_sellado: 'Falta el número de operación o quién dio el visto bueno.', estado_invalido: 'Estado no válido.' };
+  destino_fuera_de_alcance: 'Solo puede asignar a usted o a quienes le reportan.', falta_forma_sellado: 'Elija cómo se pagó el sellado.', falta_referencia_sellado: 'Falta el número de operación o quién dio el visto bueno.', estado_invalido: 'Estado no válido.', hay_errores: 'Hay renglones con errores. No se reemplazó nada.', sin_datos: 'No se encontraron planes válidos.' };
 const MOTIVO = { no_existe: 'no existe', no_es_de_su_equipo: 'no es de su equipo', ya_en_proceso: 'ya está en proceso (solo se reasignan los vacíos)', no_es_suyo: 'no es suyo', ya_rendido: 'ya está rendido', anulado: 'está anulado', primero_asignar: 'primero hay que asignarlo', transicion_no_permitida: 'solo puede avanzar al estado siguiente', debe_estar_completo_o_cargado: 'debe estar Completo o Cargado' };
 let user = null, token = null, D = { contratos: [], personal: [], ambito: [] };
 const F = { est: '', resp: '', q: '' }, sel = new Set(); let tope = 120;
@@ -163,7 +174,7 @@ $('btn-act').onclick = () => cargar(true);
 async function entrar() {
   $('login').style.display = 'none'; $('top').hidden = false; $('app').hidden = false;
   $('quien').textContent = user.nombre + ' · ' + user.rol;
-  $('p-ger').hidden = !gerente(); $('p-res').hidden = !supervisa();
+  $('p-ger').hidden = !gerente(); $('p-pre').hidden = !gerente(); $('p-res').hidden = !supervisa();
   await cargar(false);
 }
 async function cargar(manual) {
@@ -171,12 +182,14 @@ async function cargar(manual) {
     const r = await post({ action: 'contratos_datos' });
     if (r.error === 'sesion_vencida') { store.del('x5_session'); X5.toast('La sesión venció. Ingresá de nuevo.', 'bad', 4000); return setTimeout(() => location.reload(), 1500); }
     if (!r.ok) throw 0;
-    D = r; sel.clear(); armarFiltros(); pintar(); if (manual) X5.toast('Actualizado', 'ok');
+    D = r; D.precios = r.precios || []; sel.clear(); armarFiltros(); pintar(); if (manual) X5.toast('Actualizado', 'ok');
   } catch (e) { X5.toast('No se pudo cargar. Revisá la conexión.', 'bad', 3500); }
 }
 
 /* ── Resúmenes y lista ── */
 const cuenta = (est) => D.contratos.filter(c => c.estado === est).length;
+const pendSellado = (c) => !['Rendido', 'Anulado', 'Disponible'].includes(c.estado) ? (Number(c.sellado_debido) || 0) : 0;
+const debido = (resp) => D.contratos.filter(c => !resp || c.responsable === resp).reduce((t, c) => t + pendSellado(c), 0);
 function armarFiltros() {
   const resps = [...new Set(D.contratos.map(c => c.responsable).filter(Boolean))].sort(natural);
   $('f-resp').innerHTML = '<option value="">' + (gerente() ? 'Todos los responsables' : 'Mi equipo') + '</option>' + (gerente() ? '<option value="__gerencia">En gerencia (sin responsable)</option>' : '') + resps.map(r => `<option value="${esc(r)}" ${r === F.resp ? 'selected' : ''}>${esc(r)}</option>`).join('');
@@ -189,13 +202,18 @@ function pintar() {
   $('kp').style.gridTemplateColumns = 'repeat(' + (tiles.length > 5 ? 4 : 3) + ',1fr)';
   $('kp').innerHTML = tiles.map(e => `<button type="button" data-e="${e}" aria-pressed="${F.est === e}"><b>${cuenta(e)}</b><span>${nom[e]}</span></button>`).join('');
   const calle = cuenta('Vacío') + cuenta('Completo') + cuenta('Cargado') + cuenta('Recibido');
-  $('calle').innerHTML = `<b>En la calle: ${calle}</b> contrato${calle === 1 ? '' : 's'} con vendedores o jefes que todavía no se rindieron (${cuenta('Vacío')} vacíos · ${cuenta('Completo')} completos · ${cuenta('Cargado')} cargados · ${cuenta('Recibido')} recibidos por jefes, a rendir a gerencia).` + (gerente() ? ` <b>En gerencia: ${cuenta('Disponible')}</b> sin repartir.` : '');
+  $('calle').innerHTML = `<b>En la calle: ${calle}</b> contrato${calle === 1 ? '' : 's'} con vendedores o jefes que todavía no se rindieron (${cuenta('Vacío')} vacíos · ${cuenta('Completo')} completos · ${cuenta('Cargado')} cargados · ${cuenta('Recibido')} recibidos por jefes, a rendir a gerencia).` + (gerente() ? ` <b>En gerencia: ${cuenta('Disponible')}</b> sin repartir.` : '') + (debido() ? ` <b>Sellado a rendir: ${X5.money(debido())}</b>.` : '');
   if (supervisa()) {
     const por = {}; D.contratos.filter(c => c.responsable && !['Anulado'].includes(c.estado)).forEach(c => { const p = por[c.responsable] = por[c.responsable] || { Vacío: 0, Completo: 0, Cargado: 0, Recibido: 0, Rendido: 0 }; if (p[c.estado] !== undefined) p[c.estado]++; });
     const filas = Object.keys(por).sort(natural);
-    $('t-res').innerHTML = '<tr><th>Responsable</th><th>Vacíos</th><th>Compl.</th><th>Carg.</th><th>Recib.</th><th>Rend.</th></tr>' + (filas.length ? filas.map(n => `<tr data-r="${esc(n)}"><td>${esc(n)}</td><td>${por[n].Vacío}</td><td>${por[n].Completo}</td><td>${por[n].Cargado}</td><td>${por[n].Recibido}</td><td>${por[n].Rendido}</td></tr>`).join('') : '<tr><td colspan="6" class="nota">Todavía no hay contratos repartidos.</td></tr>');
+    $('t-res').innerHTML = '<tr><th>Responsable</th><th>Vacíos</th><th>Compl.</th><th>Carg.</th><th>Recib.</th><th>Rend.</th><th>Sellado a rendir</th></tr>' + (filas.length ? filas.map(n => `<tr data-r="${esc(n)}"><td>${esc(n)}</td><td>${por[n].Vacío}</td><td>${por[n].Completo}</td><td>${por[n].Cargado}</td><td>${por[n].Recibido}</td><td>${por[n].Rendido}</td><td>${debido(n) ? X5.money(debido(n)) : '–'}</td></tr>`).join('') : '<tr><td colspan="7" class="nota">Todavía no hay contratos repartidos.</td></tr>');
   }
+  if (gerente()) tablaPrecios();
   lista(); barra();
+}
+function tablaPrecios() {
+  const P = D.precios || [];
+  $('t-pre').innerHTML = '<tr><th>Código</th><th>Vehículo</th><th>Apertura</th><th>Cuota</th><th>Sellado</th><th>Pago 1 y 2</th></tr>' + (P.length ? P.map(p => `<tr><td>${esc(p.codigo)}</td><td style="text-align:left">${esc(p.vehiculo)}</td><td>${esc(p.apertura)}</td><td>${X5.money(p.cuota)}</td><td>${X5.money(p.sellado)}</td><td>${X5.money(p.pago_1_y_2)}</td></tr>`).join('') : '<tr><td colspan="6" class="nota">Todavía no hay lista de precios.</td></tr>');
 }
 function filtrados() {
   const q = F.q.trim().toLowerCase();
@@ -209,7 +227,7 @@ function lista() {
   $('cuenta-lista').textContent = l.length + ' contrato' + (l.length === 1 ? '' : 's') + (F.est || F.resp || F.q ? ' con estos filtros' : '');
   $('lista').innerHTML = ver.length ? ver.map(c => `<div class="ct ${sel.has(c.id) ? 'sel-on' : ''}" data-id="${esc(c.id)}">
     ${puedeActuar(c) && !['Rendido', 'Anulado'].includes(c.estado) || (gerente() && c.estado !== 'Anulado') ? `<input type="checkbox" data-sel="${esc(c.id)}" ${sel.has(c.id) ? 'checked' : ''} aria-label="Elegir contrato ${esc(c.numero)}">` : '<span></span>'}
-    <div><span class="num">N.º ${esc(c.numero)}</span><small>${c.responsable ? esc(c.responsable) : 'En gerencia'}${c.cliente ? ' · ' + esc(c.cliente) : ''}</small><small>${c.fecha_asignacion ? 'Asignado ' + fch(c.fecha_asignacion) + ' · ' : ''}${c.fecha_estado ? 'Estado desde ' + fch(c.fecha_estado) : ''}</small></div>
+    <div><span class="num">N.º ${esc(c.numero)}</span><small>${c.responsable ? esc(c.responsable) : 'En gerencia'}${c.cliente ? ' · ' + esc(c.cliente) : ''}</small><small>${c.plan_codigo ? esc(c.plan_codigo) + ' · ' : ''}${c.estado === 'Rendido' ? (c.sellado_monto ? 'Sellado rendido ' + X5.money(c.sellado_monto) + ' · ' : '') : (Number(c.sellado_debido) && c.estado !== 'Anulado' ? '<b>Sellado a rendir ' + X5.money(c.sellado_debido) + '</b> · ' : '')}${c.fecha_asignacion ? 'Asignado ' + fch(c.fecha_asignacion) + ' · ' : ''}${c.fecha_estado ? 'Estado desde ' + fch(c.fecha_estado) : ''}</small></div>
     <span class="chip e-${esc(c.estado)}">${esc(c.estado)}</span></div>`).join('') : '<div class="empty">No hay contratos con esos filtros.</div>';
   $('b-mas').hidden = l.length <= tope;
 }
@@ -269,10 +287,10 @@ function dAsignar(ids) {
   $('as-ok').onclick = (e) => hacer($('as-d').value, e.target); $('as-dev').onclick = (e) => hacer('', e.target);
 }
 function dRendir(ids) {
-  dialogo('Rendir ' + ids.length + ' contrato' + (ids.length === 1 ? '' : 's'), `<p class="nota">Al rendir se registra el pago del sellado. <b>No se guardan imágenes ni archivos</b>: solo cómo se pagó y la referencia.</p>
+  dialogo('Rendir ' + ids.length + ' contrato' + (ids.length === 1 ? '' : 's'), `<p class="nota">${(() => { const t = ids.reduce((a, id) => a + pendSellado(D.contratos.find(c => c.id === id) || {}), 0); return t ? 'Sellado a rendir de estos contratos: <b>' + X5.money(t) + '</b>. ' : ''; })()}Al rendir se registra el pago del sellado. <b>No se guardan imágenes ni archivos</b>: solo cómo se pagó y la referencia.</p>
     <div class="opts"><label><input type="radio" name="sf" value="Transferencia" checked> Transferencia</label><label><input type="radio" name="sf" value="Contado"> Contado (con visto bueno del supervisor)</label></div>
     <div class="field"><label for="sr" id="sr-l">N.º de operación de la transferencia</label><input id="sr" maxlength="80" autocomplete="off"></div>
-    <div class="field"><label for="sm">Monto del sellado (opcional, libre; si es por contrato aclararlo)</label><input id="sm" inputmode="decimal" placeholder="Ej. 12.500"></div>
+    <div class="field"><label for="sm">Monto rendido por contrato (opcional)</label><input id="sm" inputmode="decimal" placeholder="Vacío = el sellado de cada contrato"></div>
     <button class="btn" id="rd-ok">Rendir y registrar sellado</button><div id="rd-r"></div>`);
   document.querySelectorAll('[name=sf]').forEach(r => r.onchange = () => { $('sr-l').textContent = r.value === 'Transferencia' ? 'N.º de operación de la transferencia' : 'Nombre del supervisor o jefe de ventas que dio el visto bueno'; });
   $('rd-ok').onclick = async (e) => { const forma = document.querySelector('[name=sf]:checked').value, ref = $('sr').value.trim(); if (ref.length < 3) { $('rd-r').innerHTML = '<div class="err">' + (forma === 'Transferencia' ? 'Falta el número de operación.' : 'Falta el nombre de quien dio el visto bueno.') + '</div>'; return; }
@@ -296,7 +314,7 @@ function detalle(id) {
   if (gerente() && !['Anulado'].includes(c.estado)) acc += '<button class="btn btn-danger" data-d="anular">Anular</button>';
   if ((gerente() || sup) && ['Completo', 'Cargado', 'Recibido', 'Rendido'].includes(c.estado)) acc += '<div class="nota" style="margin-top:10px">Corrección: volver a un estado anterior</div>' + ['Vacío', 'Completo', 'Cargado', 'Recibido'].filter(e => ESTADOS.indexOf(e) < ESTADOS.indexOf(c.estado)).map(e => `<button class="btn btn-ghost" data-d="retro" data-e="${e}" style="margin-top:6px">Volver a ${e}</button>`).join('');
   dialogo('Contrato N.º ' + c.numero, `<div style="margin-bottom:10px"><span class="chip e-${esc(c.estado)}">${esc(c.estado)}</span></div>
-    ${fila('Responsable', c.responsable || 'En gerencia')}${fila('Cliente', c.cliente)}${fila('Asignado', c.fecha_asignacion ? fch(c.fecha_asignacion) + (c.asignado_por ? ' por ' + c.asignado_por : '') : '')}${fila('Estado desde', fch(c.fecha_estado))}
+    ${fila('Responsable', c.responsable || 'En gerencia')}${fila('Cliente', c.cliente)}${fila('Plan', c.plan_codigo ? ((D.precios || []).find(p => p.codigo === c.plan_codigo) || {}).vehiculo ? c.plan_codigo + ' · ' + (D.precios.find(p => p.codigo === c.plan_codigo).vehiculo) : c.plan_codigo : '')}${fila('Cuota', c.plan_cuota ? X5.money(c.plan_cuota) : '')}${fila('Sellado a rendir', c.sellado_debido && c.estado !== 'Rendido' ? X5.money(c.sellado_debido) : '')}${fila('Asignado', c.fecha_asignacion ? fch(c.fecha_asignacion) + (c.asignado_por ? ' por ' + c.asignado_por : '') : '')}${fila('Estado desde', fch(c.fecha_estado))}
     ${c.estado === 'Rendido' ? fila('Sellado', [c.sellado_forma, c.sellado_ref].filter(Boolean).join(' · ')) + fila('Monto del sellado', c.sellado_monto ? X5.money(c.sellado_monto) : '') : ''}${fila('Notas', c.notas)}
     <div class="opts" style="margin-top:12px">${acc}</div><div id="d-r"></div>`);
   dlg.querySelectorAll('[data-d]').forEach(b => b.onclick = () => { const a = b.dataset.d;
@@ -319,6 +337,18 @@ $('b-importar').onclick = async (e) => {
   if (!r.errores.length) $('t-importar').value = '';
 };
 
+$('b-pre').onclick = async (e) => {
+  const t = $('t-pre-in').value.trim(); if (!t) return X5.toast('Pegá la lista', 'bad');
+  const modo = document.querySelector('[name=pm]:checked').value;
+  e.target.disabled = true;
+  let r; try { r = await post({ action: 'contratos_precios_cargar', texto: t, modo }); } catch (x) { r = null; }
+  e.target.disabled = false;
+  if (!r) return X5.toast('No se pudo guardar. Revisá la conexión.', 'bad', 3500);
+  if (!r.ok) { $('r-pre').innerHTML = `<div class="err">${esc(ERR[r.error] || 'No se pudo guardar')}</div>` + ((r.errores || []).length ? `<div class="err"><ul style="margin:0 0 0 18px;padding:0">${r.errores.slice(0, 30).map(x => `<li>Renglón ${x.linea}: ${esc(x.motivo)} — <code>${esc(x.texto)}</code></li>`).join('')}</ul></div>` : ''); return; }
+  await cargar(false);
+  $('r-pre').innerHTML = `<div class="okk">${r.creados} nuevo(s) · ${r.actualizados} actualizado(s). Hay ${r.total} planes.</div>` + (r.errores.length ? `<div class="err"><b>${r.errores.length} renglón(es) con problemas (no se cargaron):</b><ul style="margin:6px 0 0 18px;padding:0">${r.errores.slice(0, 30).map(x => `<li>Renglón ${x.linea}: ${esc(x.motivo)} — <code>${esc(x.texto)}</code></li>`).join('')}</ul></div>` : '');
+  if (!r.errores.length) $('t-pre-in').value = '';
+};
 prepararLogin();
 })();
 </script>

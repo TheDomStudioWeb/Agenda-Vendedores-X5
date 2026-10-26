@@ -94,4 +94,26 @@ T('venta en el CRM: el número pasa Vacío → Completo; avisa sin romper si no 
   assert.strictEqual(vi(JEF, { numero: '42', cliente: 'X', asesor: 'Vendedor Carlos' }).resultado, 'completado');
   m.llamar(GER, { action: 'contratos_estado', ids: [ids[1]], estado: 'Cargado' }); assert.strictEqual(vi(V1, { numero: '40', anterior: '41', cliente: 'Pérez' }).revertido, false); assert.strictEqual(est('41').estado, 'Cargado');
 });
+const LISTA = 'CODIGO\tVEHÍCULO\tAPERTURA CARPETA\tADELANTO MENSUAL\tSELLADO\tPAGO 1 y 2\nPX61\tHonda Tornado XR 250\t10\t$ 90.000\t$ 40.000\t$ 130.000\nPX64\tVW Polo MSI / Peug 208 All\t10\t$ 250.000\t$ 50.000\t$ 300.000\nPX71\tVW Vento GLI\t5\t$ 600.000\t$ 100.000\t$ 700.000';
+T('lista de precios: solo gerencia; pega con tabulaciones y $; todos la ven; actualizar vs reemplazar', () => {
+  const m = nuevo(); assert.strictEqual(m.llamar(JEF, { action: 'contratos_precios_cargar', texto: LISTA }).error, 'sin_permiso');
+  let r = m.llamar(GER, { action: 'contratos_precios_cargar', modo: 'reemplazar', texto: LISTA }); assert(r.ok && r.creados === 3, JSON.stringify(r));
+  let p = m.llamar(V1, { action: 'contratos_precios' }).precios; assert.strictEqual(p.length, 3); const px = p.find(x => x.codigo === 'PX64'); assert(px.cuota === 250000 && px.sellado === 50000 && px.pago_1_y_2 === 300000 && String(px.apertura) === '10');
+  r = m.llamar(GER, { action: 'contratos_precios_cargar', texto: 'PX64;VW Polo;10;260000;55000\nPX99;Nuevo;5;1.000.000;70.000,50\nPX98;Malo;5;abc;1' }); assert(r.ok && r.creados === 1 && r.actualizados === 1 && r.errores.length === 1);
+  p = m.llamar(V1, { action: 'contratos_precios' }).precios; assert.strictEqual(p.length, 4); assert.strictEqual(p.find(x => x.codigo === 'PX64').sellado, 55000); assert.strictEqual(p.find(x => x.codigo === 'PX64').pago_1_y_2, 315000); assert(p.find(x => x.codigo === 'PX99').cuota === 1000000 && p.find(x => x.codigo === 'PX99').sellado === 70000.5);
+  r = m.llamar(GER, { action: 'contratos_precios_cargar', modo: 'reemplazar', texto: 'PX61;Moto;10;1;2\nXX;Mal;1;x;y' }); assert(!r.ok && r.error === 'hay_errores'); assert.strictEqual(m.llamar(V1, { action: 'contratos_precios' }).precios.length, 4);
+  r = m.llamar(GER, { action: 'contratos_precios_cargar', modo: 'reemplazar', texto: LISTA }); assert(r.ok); assert.strictEqual(m.llamar(V1, { action: 'contratos_precios' }).precios.length, 3);
+});
+T('venta con código: copia cuota y sellado al contrato; código inválido no cambia nada; rendir usa el sellado del contrato', () => {
+  const m = nuevo(); m.llamar(GER, { action: 'contratos_precios_cargar', modo: 'reemplazar', texto: LISTA }); m.llamar(GER, { action: 'contratos_cargar', numeros: '60-62' });
+  const ids = ['60', '61', '62'].map(n => idDe(m, n)); m.llamar(GER, { action: 'contratos_asignar', ids: ids, responsable: 'Vendedor Carlos' });
+  const vi = b => m.llamar(V1, Object.assign({ action: 'contratos_vincular', cliente: 'Pérez' }, b)); const est = n => datos(m, GER).contratos.find(c => c.numero === n);
+  assert.strictEqual(vi({ numero: '60', codigo: 'ZZ' }).resultado, 'codigo_invalido'); assert.strictEqual(est('60').estado, 'Vacío');
+  let r = vi({ numero: '60', codigo: 'px64' }); assert(r.resultado === 'completado' && r.sellado === 50000 && r.cuota === 250000);
+  assert(est('60').plan_codigo === 'PX64' && est('60').sellado_debido === 50000 && est('60').plan_cuota === 250000);
+  vi({ numero: '60', anterior: '60', codigo: 'PX71' }); assert.strictEqual(est('60').sellado_debido, 100000);
+  r = vi({ numero: '61', anterior: '60', codigo: 'PX61' }); assert(est('60').estado === 'Vacío' && est('60').sellado_debido === '' && est('61').sellado_debido === 40000);
+  m.llamar(V1, { action: 'contratos_estado', ids: [ids[1]], estado: 'Cargado' }); m.llamar(JEF, { action: 'contratos_estado', ids: [ids[1]], estado: 'Recibido' });
+  assert(m.llamar(GER, { action: 'contratos_estado', ids: [ids[1]], estado: 'Rendido', sellado: { forma: 'Contado', referencia: 'Ana OK' } }).ok); assert.strictEqual(est('61').sellado_monto, 40000);
+});
 console.log(`\n${ok} bien, ${fail} con error`); process.exit(fail ? 1 : 0);

@@ -47,7 +47,7 @@ const HOJAS = {
 
 // Columnas esperadas (se crean si faltan, en este orden al final de la hoja)
 const COLUMNAS = {
-  'Hoja 1': ['id', 'cliente', 'vehiculo', 'asesor', 'fecha', 'hora', 'estado', 'resultado', 'notas', 'lugar', 'auto_usado', 'nro_contrato', 'monto', 'actualizado', 'aviso_venta'],
+  'Hoja 1': ['id', 'cliente', 'vehiculo', 'asesor', 'fecha', 'hora', 'estado', 'resultado', 'notas', 'lugar', 'auto_usado', 'nro_contrato', 'monto', 'actualizado', 'aviso_venta', 'codigo_plan'],
   'Leads': ['id', 'cliente', 'telefono', 'interes', 'origen', 'asignado_a', 'fecha_asignacion', 'hora_limite', 'estado', 'resultado', 'hora_contacto', 'notas', 'actualizado', 'aviso_vencido']
 };
 
@@ -882,8 +882,10 @@ function esc_(v) { return String(v == null ? '' : v).replace(/[&<>]/g, c => ({ '
 // =====================================================================
 const HOJA_CONTRATOS = 'Contratos';
 const HOJA_CONTRATOS_LOG = 'ContratosLog';
-const COL_CONTRATOS = ['id', 'numero', 'estado', 'responsable', 'fecha_asignacion', 'asignado_por', 'cliente', 'fecha_estado', 'sellado_monto', 'sellado_forma', 'sellado_ref', 'notas', 'actualizado'];
+const COL_CONTRATOS = ['id', 'numero', 'estado', 'responsable', 'fecha_asignacion', 'asignado_por', 'cliente', 'fecha_estado', 'sellado_monto', 'sellado_forma', 'sellado_ref', 'notas', 'actualizado', 'plan_codigo', 'plan_cuota', 'sellado_debido'];
 const COL_CONTRATOS_LOG = ['fecha', 'contrato', 'usuario', 'accion', 'detalle'];
+const HOJA_PRECIOS = 'Precios';
+const COL_PRECIOS = ['codigo', 'vehiculo', 'apertura', 'cuota', 'sellado', 'pago_1_y_2', 'actualizado'];
 const ESTADOS_CONTRATO = ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido', 'Anulado'];
 const FORMAS_SELLADO = ['Transferencia', 'Contado'];
 const MAX_CONTRATOS_LOTE = 2000;
@@ -942,6 +944,7 @@ function celdaContrato_(h, v) {
 function despacharContratos_(body, u) {
   const a = body.action;
   if (a === 'contratos_datos') return contratosDatos_(u);
+  if (a === 'contratos_precios') return { ok: true, precios: leerPrecios_() };
   const lock = LockService.getScriptLock(); lock.waitLock(15000);
   try {
     if (a === 'contratos_cargar') return contratosCargar_(body, u);
@@ -949,6 +952,7 @@ function despacharContratos_(body, u) {
     if (a === 'contratos_estado') return contratosEstado_(body, u);
     if (a === 'contratos_importar') return contratosImportar_(body, u);
     if (a === 'contratos_vincular') return contratosVincular_(body, u);
+    if (a === 'contratos_precios_cargar') return contratosPreciosCargar_(body, u);
     return { ok: false, error: 'accion_invalida' };
   } finally { lock.releaseLock(); }
 }
@@ -958,7 +962,7 @@ function contratosDatos_(u) {
   const todos = leerContratos_();
   const visibles = esGerente_(u) ? todos : todos.filter(c => ambito.indexOf(String(c.responsable)) > -1);
   const gente = personal.filter(p => String(p.estado) === 'Activo').map(p => ({ nombre: p.nombre, rol: p.rol, reporta_a: p.reporta_a }));
-  return { ok: true, usuario: { nombre: u.nombre, rol: u.rol }, contratos: visibles, personal: gente, ambito: ambito, estados: ESTADOS_CONTRATO, servidor: new Date().toISOString() };
+  return { ok: true, usuario: { nombre: u.nombre, rol: u.rol }, contratos: visibles, personal: gente, ambito: ambito, estados: ESTADOS_CONTRATO, precios: leerPrecios_(), servidor: new Date().toISOString() };
 }
 
 // Gerencia carga los números disponibles (en gerencia, todavía sin repartir).
@@ -1051,7 +1055,7 @@ function contratosEstado_(body, u) {
     const campos = { estado: nuevo, fecha_estado: hoy };
     if (body.cliente !== undefined && ids.length === 1) campos.cliente = String(body.cliente).slice(0, 80);
     if (body.notas !== undefined && ids.length === 1) campos.notas = String(body.notas).slice(0, 200);
-    if (nuevo === 'Rendido') { campos.sellado_forma = s.forma; campos.sellado_ref = String(s.referencia).trim().slice(0, 80); campos.sellado_monto = s.monto === '' || s.monto == null ? '' : Number(String(s.monto).replace(/[^\d.,-]/g, '').replace(/\./g, '').replace(',', '.')) || ''; }
+    if (nuevo === 'Rendido') { campos.sellado_forma = s.forma; campos.sellado_ref = String(s.referencia).trim().slice(0, 80); campos.sellado_monto = s.monto === '' || s.monto == null ? (Number(c.sellado_debido) || '') : Number(String(s.monto).replace(/[^\d.,-]/g, '').replace(/\./g, '').replace(',', '.')) || ''; }
     if (nuevo === 'Vacío') { campos.sellado_forma = ''; campos.sellado_ref = ''; campos.sellado_monto = ''; }
     cambios.push({ id: id, numero: c.numero, campos: campos, desde: actual });
   });
@@ -1101,8 +1105,10 @@ function contratosImportar_(body, u) {
 // Devuelve ok:true con un "resultado" para que el CRM avise; no lanza error por números mal tipeados.
 function contratosVincular_(body, u) {
   const numero = limpiarNumero_(body.numero), anterior = limpiarNumero_(body.anterior), cliente = String(body.cliente || '').slice(0, 80);
-  const asesor = String(body.asesor || u.nombre);
+  const asesor = String(body.asesor || u.nombre), codigo = String(body.codigo || '').trim().toUpperCase();
   if (!numero) return { ok: true, resultado: 'sin_numero' };
+  const plan = codigo ? leerPrecios_().filter(p => String(p.codigo).toUpperCase() === codigo)[0] : null;
+  if (codigo && !plan) return { ok: true, resultado: 'codigo_invalido', codigo: codigo, numero: numero };
   const personal = personalLimpio_(), ambito = ambitoContratos_(u, personal), todos = leerContratos_();
   const hallar = n => todos.filter(c => String(c.numero) === String(n))[0];
   const c = hallar(numero);
@@ -1110,14 +1116,66 @@ function contratosVincular_(body, u) {
   const cambios = [];
   if (anterior && anterior !== numero) {
     const a = hallar(anterior), mioA = a && (esGerente_(u) || String(a.responsable) === u.nombre || String(a.responsable) === asesor || ambito.indexOf(String(a.responsable)) > -1);
-    if (a && mioA && a.estado === 'Completo' && String(a.cliente) === cliente) { cambios.push({ id: a.id, numero: a.numero, campos: { estado: 'Vacío', fecha_estado: hoyContrato_(), cliente: '' }, desde: 'Completo' }); res.revertido = anterior; }
+    if (a && mioA && a.estado === 'Completo' && String(a.cliente) === cliente) { cambios.push({ id: a.id, numero: a.numero, campos: { estado: 'Vacío', fecha_estado: hoyContrato_(), cliente: '', plan_codigo: '', plan_cuota: '', sellado_debido: '' }, desde: 'Completo' }); res.revertido = anterior; }
   }
   if (!c) res.resultado = 'no_existe';
   else if (!(esGerente_(u) || String(c.responsable) === u.nombre || String(c.responsable) === asesor || ambito.indexOf(String(c.responsable)) > -1)) res.resultado = 'no_es_suyo';
   else if (c.estado === 'Anulado') res.resultado = 'anulado';
   else if (c.estado === 'Disponible') res.resultado = 'sin_asignar';
-  else if (c.estado !== 'Vacío') { res.resultado = 'sin_cambio'; res.estado = c.estado; }
-  else { cambios.push({ id: c.id, numero: c.numero, campos: { estado: 'Completo', fecha_estado: hoyContrato_(), cliente: cliente }, desde: 'Vacío' }); res.resultado = 'completado'; }
+  else if (c.estado !== 'Vacío' && !(c.estado === 'Completo' && String(c.cliente) === cliente)) { res.resultado = 'sin_cambio'; res.estado = c.estado; }
+  else {
+    const campos = { estado: 'Completo', fecha_estado: c.estado === 'Completo' ? c.fecha_estado : hoyContrato_(), cliente: cliente };
+    if (plan) { campos.plan_codigo = plan.codigo; campos.plan_cuota = Number(plan.cuota) || ''; campos.sellado_debido = Number(plan.sellado) || ''; res.sellado = campos.sellado_debido; res.cuota = campos.plan_cuota; }
+    cambios.push({ id: c.id, numero: c.numero, campos: campos, desde: c.estado }); res.resultado = 'completado';
+  }
   if (cambios.length) actualizarContratos_(cambios, u, 'venta_crm', cb => cb.desde + ' → ' + cb.campos.estado + ' (venta en el CRM' + (cliente ? ': ' + cliente : '') + ')');
   return res;
+}
+
+
+// ── Lista de precios (planes) ────────────────────────────────────────────────
+// Hoja "Precios": codigo, vehiculo, apertura (cuota en que se abre carpeta; informativo), cuota (adelanto mensual), sellado, pago_1_y_2 (informativo).
+function leerPrecios_() { return leerHoja_(HOJA_PRECIOS).map(r => ({ codigo: String(r.codigo), vehiculo: r.vehiculo, apertura: r.apertura, cuota: Number(r.cuota) || 0, sellado: Number(r.sellado) || 0, pago_1_y_2: Number(r.pago_1_y_2) || 0 })); }
+function montoPrecio_(v) {
+  let t = String(v == null ? '' : v).replace(/[^\d.,-]/g, '');
+  if (!t) return NaN;
+  if (t.indexOf(',') > -1) t = t.replace(/\./g, '').replace(',', '.'); else if (/^-?\d{1,3}(\.\d{3})+$/.test(t)) t = t.replace(/\./g, '');
+  const n = Number(t); return isFinite(n) && n >= 0 ? n : NaN;
+}
+// texto: un plan por renglón "codigo;vehiculo;apertura;cuota;sellado;pago" (o separado por tabulaciones, como al copiar de Excel o Word)
+// modo 'reemplazar': el listado nuevo reemplaza al anterior (solo si no hay errores). modo 'actualizar': agrega o cambia solo esos códigos.
+function contratosPreciosCargar_(body, u) {
+  if (!esGerente_(u)) return { ok: false, error: 'sin_permiso' };
+  const modo = body.modo === 'reemplazar' ? 'reemplazar' : 'actualizar';
+  const lineas = String(body.texto || '').split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  if (!lineas.length) return { ok: false, error: 'sin_datos' };
+  if (lineas.length > 500) return { ok: false, error: 'demasiados' };
+  const filas = [], errores = [], vistos = {};
+  lineas.forEach((l, i) => {
+    const c = (l.indexOf('\t') > -1 ? l.split('\t') : l.split(';')).map(x => x.trim());
+    if (i === 0 && /^c[oó]digo$/i.test(c[0])) return;
+    const codigo = String(c[0] || '').toUpperCase().replace(/\s+/g, '');
+    const cuota = montoPrecio_(c[3]), sellado = montoPrecio_(c[4]);
+    let pago = c[5] === undefined || c[5] === '' ? NaN : montoPrecio_(c[5]);
+    if (!/^[A-Z0-9._-]{1,20}$/.test(codigo)) { errores.push({ linea: i + 1, texto: l.slice(0, 60), motivo: 'código no válido' }); return; }
+    if (vistos[codigo]) { errores.push({ linea: i + 1, texto: l.slice(0, 60), motivo: 'código repetido en la lista' }); return; }
+    if (isNaN(cuota)) { errores.push({ linea: i + 1, texto: l.slice(0, 60), motivo: 'falta el valor de cuota' }); return; }
+    if (isNaN(sellado)) { errores.push({ linea: i + 1, texto: l.slice(0, 60), motivo: 'falta el sellado' }); return; }
+    if (isNaN(pago)) pago = cuota + sellado;
+    vistos[codigo] = 1;
+    filas.push([codigo, String(c[1] || '').slice(0, 80), String(c[2] || '').replace(/[^\d]/g, ''), cuota, sellado, pago, new Date()]);
+  });
+  if (modo === 'reemplazar' && errores.length) return { ok: false, error: 'hay_errores', errores: errores };
+  if (!filas.length) return { ok: false, error: 'sin_datos', errores: errores };
+  const sh = hojaContratos_(HOJA_PRECIOS, COL_PRECIOS), h = asegurarColumnas_(sh, COL_PRECIOS);
+  let creados = 0, actualizados = 0;
+  if (modo === 'reemplazar') {
+    for (let r = sh.getLastRow(); r >= 2; r--) sh.deleteRow(r);
+    filas.forEach(f => sh.appendRow(f)); creados = filas.length;
+  } else {
+    const datos = sh.getDataRange().getValues(), pos = {}; for (let i = 1; i < datos.length; i++) pos[String(datos[i][h.indexOf('codigo')]).toUpperCase()] = i + 1;
+    filas.forEach(f => { if (pos[f[0]]) { sh.getRange(pos[f[0]], 1, 1, COL_PRECIOS.length).setValues([f]); actualizados++; } else { sh.appendRow(f); creados++; } });
+  }
+  registrarLogContratos_([{ contrato: '(precios)', usuario: u.nombre, accion: 'precios', detalle: modo + ': ' + creados + ' nuevos, ' + actualizados + ' actualizados' }]);
+  return { ok: true, modo: modo, creados: creados, actualizados: actualizados, errores: errores, total: leerPrecios_().length };
 }

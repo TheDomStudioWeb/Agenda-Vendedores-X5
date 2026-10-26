@@ -528,6 +528,7 @@ function cerrarSesion() {
 }
 
 function iniciarApp() {
+  cargarPrecios();
   $('login').style.display = 'none';
   $('bnav').classList.remove('hidden');
   $('greeting').textContent = 'Hola, ' + String(user.nombre).split(' ')[0];
@@ -800,6 +801,8 @@ function renderAgenda() {
         <select data-campo="resultado">${opciones(resultados, it.resultado)}</select>
         <div class="sale ${esVenta ? '' : 'hidden'}">
           <div class="row" style="display:grid;grid-template-columns:1fr 1.4fr"><input data-campo="nro_contrato" placeholder="N° contrato" value="${esc(it.nro_contrato)}"><div class="money"><input data-campo="monto" type="number" inputmode="numeric" placeholder="Monto" value="${esc(it.monto)}"></div></div>
+          <select data-campo="codigo_plan" style="margin-top:8px" aria-label="Código del plan">${opcionesPlanes(it.codigo_plan)}</select>
+          <div class="nota" style="margin-top:6px">${it.codigo_plan ? (infoPlan(it.codigo_plan) || esc(it.codigo_plan)) : '<span class="chip bad">Falta el código del plan</span>'}</div>
           <div class="actions">
             <a class="btn btn-ghost btn-sm" href="unificador.html?cliente=${encodeURIComponent(it.cliente)}">Armar legajo PDF</a>
             <a class="btn btn-wsp btn-sm" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(`Venta cerrada: ${it.cliente} · ${it.vehiculo}. Contrato ${it.nro_contrato || 's/n'} · ${X5.money(it.monto)}. Te adjunto el legajo.`)}">Avisar al jefe</a>
@@ -896,7 +899,12 @@ document.addEventListener('change', (e) => {
   if (!campo || el.tagName === 'TEXTAREA') return;
   const r = registro(el); if (!r) return;
   // Venta cerrada: el N.º de contrato es obligatorio. Hasta que lo carguen, la venta no se guarda.
-  if (r.tabla === 'agenda' && campo === 'resultado' && el.value === 'venta' && !String(r.item.nro_contrato || '').trim()) { pedirContrato(r.item); el.value = r.item.resultado || ''; return; }
+  if (r.tabla === 'agenda' && campo === 'resultado' && el.value === 'venta' && (!String(r.item.nro_contrato || '').trim() || !String(r.item.codigo_plan || '').trim())) { pedirContrato(r.item); el.value = r.item.resultado || ''; return; }
+  if (r.tabla === 'agenda' && campo === 'codigo_plan') {
+    if (r.item.resultado === 'venta' && !el.value) return X5.toast('La venta necesita el código del plan.', 'bad', 3500);
+    if (guardarCampo(r.tabla, r.item, campo, el.value)) { vincularContrato(r.item, r.item.nro_contrato); render(); }
+    return;
+  }
   if (r.tabla === 'agenda' && campo === 'nro_contrato') {
     const nuevo = el.value.trim(), antes = String(r.item.nro_contrato || '').trim();
     if (r.item.resultado === 'venta' && !nuevo) { el.value = antes; return X5.toast('La venta necesita el N.º de contrato.', 'bad', 3500); }
@@ -912,24 +920,38 @@ document.addEventListener('change', (e) => {
 /* ── Contratos: la venta exige el N.º y lo marca Completo en el gestor ── */
 function vincularContrato(item, anterior) {
   const numero = String(item.nro_contrato || '').trim(); if (!numero) return;
-  encolar('contratos_vincular', '', { numero, anterior: anterior || '', cliente: item.cliente || '', asesor: item.asesor || '' });
+  encolar('contratos_vincular', '', { numero, anterior: anterior || '', cliente: item.cliente || '', asesor: item.asesor || '', codigo: item.codigo_plan || '' });
 }
 function avisoContrato(r) {
-  const n = r.numero, tipo = { completado: 'ok', sin_cambio: '' }[r.resultado] ?? 'bad';
-  const msg = { completado: `Contrato ${n} marcado como Completo en el gestor.`, sin_cambio: `El contrato ${n} ya figura como ${r.estado}; no se cambió.`,
+  const n = r.numero, tipo = { completado: 'ok', sin_cambio: '' }[r.resultado] ?? 'bad'; if (r.resultado === 'completado') cargarPrecios();
+  const msg = { completado: `Contrato ${n} marcado como Completo.` + (r.sellado ? ` Sellado a rendir: ${X5.money(r.sellado)}.` : ''), codigo_invalido: `Ojo: el código ${r.codigo} no está en el listado de precios. Corregilo.`, sin_cambio: `El contrato ${n} ya figura como ${r.estado}; no se cambió.`,
     no_existe: `Ojo: el contrato ${n} no está en el gestor. Revisá el número.`, no_es_suyo: `Ojo: el contrato ${n} figura a nombre de otra persona. Revisá el número.`,
     sin_asignar: `Ojo: el contrato ${n} todavía no fue asignado a nadie en el gestor.`, anulado: `Ojo: el contrato ${n} figura como Anulado. Revisá el número.` }[r.resultado];
   if (msg) X5.toast(msg + (r.revertido ? ` El ${r.revertido} volvió a Vacío.` : ''), tipo, r.resultado === 'completado' ? 3500 : 7000);
 }
+/* Listado de precios (planes): se baja del servidor y queda guardado para usarlo sin señal */
+let precios = store.get('x5_precios', []);
+async function cargarPrecios() {
+  try { const r = await apiPost({ action: 'contratos_precios', token }); if (r && r.ok && Array.isArray(r.precios)) { precios = r.precios; store.set('x5_precios', precios); } } catch (e) {}
+}
+const planDe = (cod) => precios.find(p => String(p.codigo).toUpperCase() === String(cod || '').trim().toUpperCase());
+function infoPlan(cod) { const p = planDe(cod); return p ? `${esc(p.vehiculo)} · Cuota ${X5.money(p.cuota)} · <b>Sellado a rendir ${X5.money(p.sellado)}</b>` : ''; }
+function opcionesPlanes(sel) { return '<option value="">Elegí el plan…</option>' + precios.map(p => `<option value="${esc(p.codigo)}" ${String(p.codigo).toUpperCase() === String(sel || '').toUpperCase() ? 'selected' : ''}>${esc(p.codigo)} · ${esc(p.vehiculo)}</option>`).join(''); }
 function pedirContrato(item) {
-  dialogo('Venta cerrada', `<p class="nota">Para cerrar la venta de <b>${esc(item.cliente)}</b> cargá el número de contrato. Es obligatorio.</p>
-    <div class="field"><label for="vc-n">N.º de contrato</label><input id="vc-n" inputmode="text" autocomplete="off" maxlength="20"></div>
+  dialogo('Venta cerrada', `<p class="nota">Para cerrar la venta de <b>${esc(item.cliente)}</b> cargá el número de contrato y el código del plan. Los dos son obligatorios.</p>
+    <div class="field"><label for="vc-n">N.º de contrato</label><input id="vc-n" inputmode="text" autocomplete="off" maxlength="20" value="${esc(item.nro_contrato)}"></div>
+    <div class="field"><label for="vc-c">Código del plan</label><select id="vc-c">${opcionesPlanes(item.codigo_plan)}</select></div>
+    <div id="vc-i" class="nota" style="margin:-4px 0 10px">${precios.length ? infoPlan(item.codigo_plan) : 'No hay listado de precios cargado. Avisá a gerencia.'}</div>
     <div class="field"><label for="vc-m">Monto (opcional)</label><input id="vc-m" type="number" inputmode="numeric" value="${esc(item.monto)}"></div>
     <div id="vc-e"></div><button class="btn" id="vc-ok">Guardar venta</button>`);
+  $('vc-c').onchange = () => { $('vc-i').innerHTML = infoPlan($('vc-c').value); };
   $('vc-ok').onclick = () => {
-    const n = $('vc-n').value.trim(); if (!n) { $('vc-e').innerHTML = '<div class="chip bad" style="margin:6px 0">Falta el número de contrato.</div>'; return; }
-    guardarCampo('agenda', item, 'nro_contrato', n); if ($('vc-m').value !== '') guardarCampo('agenda', item, 'monto', $('vc-m').value);
-    guardarCampo('agenda', item, 'resultado', 'venta'); vincularContrato(item, ''); dlgX.close(); X5.toast('¡Felicitaciones por la venta!', 'ok'); render();
+    const n = $('vc-n').value.trim(), c = $('vc-c').value;
+    if (!n) { $('vc-e').innerHTML = '<div class="chip bad" style="margin:6px 0">Falta el número de contrato.</div>'; return; }
+    if (!c) { $('vc-e').innerHTML = '<div class="chip bad" style="margin:6px 0">Falta el código del plan.</div>'; return; }
+    const antes = String(item.nro_contrato || '').trim();
+    guardarCampo('agenda', item, 'nro_contrato', n); guardarCampo('agenda', item, 'codigo_plan', c); if ($('vc-m').value !== '') guardarCampo('agenda', item, 'monto', $('vc-m').value);
+    guardarCampo('agenda', item, 'resultado', 'venta'); vincularContrato(item, antes); dlgX.close(); X5.toast('¡Felicitaciones por la venta!', 'ok'); render();
   };
 }
 
@@ -1069,8 +1091,11 @@ function guardarEdicion(tabla, id) {
   const campos = CAMPOS_EDIT[tabla].filter(c => $('ed-' + c[0]));
   const nuevo = {}; campos.forEach(c => { nuevo[c[0]] = $('ed-' + c[0]).value.trim(); });
   if (!nuevo.cliente) { $('ed-err').textContent = 'El nombre del prospecto no puede quedar vacío.'; return; }
+  if (tabla === 'agenda' && it.resultado === 'venta' && 'nro_contrato' in nuevo && !nuevo.nro_contrato) { $('ed-err').textContent = 'La venta necesita el número de contrato.'; return; }
+  const nroAntes = String(it.nro_contrato || '').trim();
   let cambio = false;
   Object.keys(nuevo).forEach(k => { if (String(it[k] ?? '') !== String(nuevo[k])) { it[k] = nuevo[k]; cambio = true; } });
+  if (tabla === 'agenda' && it.resultado === 'venta' && String(it.nro_contrato || '').trim() !== nroAntes) vincularContrato(it, nroAntes);
   dlgX.close();
   if (!cambio) return X5.toast('No hubo cambios');
   store.set('x5_db', db); encolar('update', TABLA_HOJA[tabla], it);
