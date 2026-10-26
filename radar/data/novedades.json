@@ -1,6 +1,23 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-26T16:56:48.811Z",
+   "tipo": "nuevo",
+   "id": "maipu-182108",
+   "auto": "Volkswagen Tiguan 2019",
+   "precio": 30500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-26T16:56:48.811Z",
+   "tipo": "baja",
+   "id": "autocity-bf467828-1062-44c6-bf40-609ba6c7c96d",
+   "auto": "Ford Ranger 2023",
+   "precio": 45350000,
+   "moneda": "ARS",
+   "dias": 12
+  },
+  {
    "fecha": "2026-10-25T14:33:19.754Z",
    "tipo": "baja",
    "id": "autocity-3d58359f-0e79-49c1-949c-5a584ce00135",

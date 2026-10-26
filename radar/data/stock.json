@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-25T19:55:19.911Z",
+ "actualizado": "2026-10-26T16:56:48.811Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 87,
-   "revisado": "2026-10-25T19:55:19.911Z",
-   "actualizado": "2026-10-25T19:55:19.911Z"
+   "autos": 88,
+   "revisado": "2026-10-26T16:56:48.811Z",
+   "actualizado": "2026-10-26T16:56:48.811Z"
   },
   {
    "id": "autocity",
@@ -21,12 +21,84 @@
    "ciudad": "Córdoba",
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
-   "autos": 216,
-   "revisado": "2026-10-25T19:55:19.911Z",
-   "actualizado": "2026-10-25T19:55:19.911Z"
+   "autos": 215,
+   "revisado": "2026-10-26T16:56:48.811Z",
+   "actualizado": "2026-10-26T16:56:48.811Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-182108",
+   "tipo": "auto",
+   "marca": "Volkswagen",
+   "modelo": "Tiguan",
+   "version": "1.4 Tsi Dsg",
+   "anio": 2019,
+   "km": 101480,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Azul",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave",
+   "precio": 30500000,
+   "precio_sin_imp": 24095000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3034-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3035-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3036-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3037-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3032-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3033-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3031-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3025-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3022-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3018-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3019-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3020-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3026-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3021-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3030-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3023-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3027-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3024-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3028-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/26/tiguan-5/",
+   "publicado": "2026-10-26T10:11:21",
+   "modificado": "2026-10-26T10:23:30",
+   "agencia": "maipu",
+   "alta": "2026-10-26T16:56:48.811Z",
+   "guia": {
+    "min": 29192000,
+    "med": 34459000,
+    "max": 38507000,
+    "n": 4,
+    "mejor": {
+     "version": "TIGUAN ALLSPACE 5P 1,4 TSI TRENDLINE DSG6",
+     "valor": 29192000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "TIGUAN ALLSPACE 5P 1,4 TSI TRENDLINE DSG6",
+      29192000
+     ],
+     [
+      "TIGUAN ALLSPACE 5P 2,0 TSI COMFORTLINE DSG7 4MOTION",
+      33488000
+     ],
+     [
+      "TIGUAN ALLSPACE 5P 2,0 TSI COMFORTLINE DSG7 4MOTION T/SOLAR",
+      34459000
+     ],
+     [
+      "TIGUAN ALLSPACE 5P 2,0 TSI HIGHLINE DSG7 4MOTION",
+      38507000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-182078",
    "tipo": "auto",
@@ -6051,7 +6123,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Plata",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Amarok 2024 Automática 122370 45000000 Precio sugerido al público 40275000 Precio sin impuestos nacionales + Precio a confirmar unidades-test-drive Ranger 2025 Manual 52315 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados, unidades-test-drive Ranger 2025 Manual 52275 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automática 51970 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Amarok 2025 Manual 22500 Precio sugerido al público Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2018 Automatica 113700 40000000 Precio sugerido al público 31600000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 16180000,
    "precio_sin_imp": 12782200,
    "moneda": "ARS",
@@ -6132,7 +6204,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Amarok 2024 Automática 122370 45000000 Precio sugerido al público 40275000 Precio sin impuestos nacionales + Precio a confirmar unidades-test-drive Ranger 2025 Manual 52315 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados, unidades-test-drive Ranger 2025 Manual 52275 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automática 51970 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Amarok 2025 Manual 22500 Precio sugerido al público Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2018 Automatica 113700 40000000 Precio sugerido al público 31600000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -6204,7 +6276,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Amarok 2024 Automática 122370 45000000 Precio sugerido al público 40275000 Precio sin impuestos nacionales + Precio a confirmar unidades-test-drive Ranger 2025 Manual 52315 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados, unidades-test-drive Ranger 2025 Manual 52275 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automática 51970 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Amarok 2025 Manual 22500 Precio sugerido al público Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2018 Automatica 113700 40000000 Precio sugerido al público 31600000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6261,7 +6333,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Rojo",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Amarok 2024 Automática 122370 45000000 Precio sugerido al público 40275000 Precio sin impuestos nacionales + Precio a confirmar unidades-test-drive Ranger 2025 Manual 52315 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados, unidades-test-drive Ranger 2025 Manual 52275 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automática 51970 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Amarok 2025 Manual 22500 Precio sugerido al público Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2018 Automatica 113700 40000000 Precio sugerido al público 31600000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 11110000,
    "precio_sin_imp": 8776900,
    "moneda": "ARS",
@@ -6608,7 +6680,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Amarok 2024 Automática 122370 45000000 Precio sugerido al público 40275000 Precio sin impuestos nacionales + Precio a confirmar unidades-test-drive Ranger 2025 Manual 52315 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados, unidades-test-drive Ranger 2025 Manual 52275 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automática 51970 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Amarok 2025 Manual 22500 Precio sugerido al público Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2018 Automatica 113700 40000000 Precio sugerido al público 31600000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",
@@ -19170,111 +19242,6 @@
      [
       "TORO PICK UP D/C TD350 9AT 4X4 ULTRA",
       43843000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-bf467828-1062-44c6-bf40-609ba6c7c96d",
-   "tipo": "auto",
-   "marca": "Ford",
-   "modelo": "Ranger",
-   "version": "3.2 Tdi 4×4 Dc Fx4 At L19",
-   "anio": 2023,
-   "km": 61200,
-   "combustible": "Diesel",
-   "caja": "Automática",
-   "color": "Blanco",
-   "equipamiento": "",
-   "precio": 45350000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618081.WhatsApp%20Image%202026-07-28%20at%201.07.23%20PM.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618151.WhatsApp%20Image%202026-07-28%20at%201.07.24%20PM.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618153.WhatsApp%20Image%202026-07-28%20at%201.07.26%20PM%20(2).jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618156.WhatsApp%20Image%202026-07-28%20at%201.07.26%20PM%20(1).jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618159.WhatsApp%20Image%202026-07-28%20at%201.07.27%20PM.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618162.WhatsApp%20Image%202026-07-28%20at%201.07.24%20PM%20(1).jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618199.WhatsApp%20Image%202026-07-28%20at%201.07.24%20PM%20(2).jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618270.WhatsApp%20Image%202026-07-28%20at%201.07.26%20PM.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1785267618330.WhatsApp%20Image%202026-07-28%20at%201.07.25%20PM.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-ford/m-ranger/3-2-tdi-4x4-dc-fx4-at-l19/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": true,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 30050000,
-    "med": 43513000,
-    "max": 78305000,
-    "n": 14,
-    "mejor": {
-     "version": "RANGER PICK - UP D/C 3,2 TDCi FX4 4X4 6AT 2022",
-     "valor": 39601000,
-     "coincidencias": 2,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "RANGER PICK - UP D/C 3,2 TDCi XLS 4X2 6AT 2020",
-      30050000
-     ],
-     [
-      "RANGER PICK - UP D/C 2,2 TDCi XLT 4X2 6AT 2021",
-      32979000
-     ],
-     [
-      "RANGER PICK - UP D/C 3,2 TDCi XLT 4X2 6AT 2020",
-      34528000
-     ],
-     [
-      "RANGER PICK - UP D/C 3,2 TDCi XLT 4X4 6AT 2020",
-      38003000
-     ],
-     [
-      "RANGER PICK - UP D/C 3,2 TDCi FX4 4X4 6AT 2022",
-      39601000
-     ],
-     [
-      "RANGER PICK - UP D/C 2,0 BI TD XLT 4X2 10AT 2023",
-      42167000
-     ],
-     [
-      "RANGER PICK - UP D/C 3,2 TDCi LIMITED 4X4 6AT 2020",
-      43065000
-     ],
-     [
-      "RANGER PICK - UP D/C 3,2 TDCi BLACK EDITION 4X4 6AT 2020",
-      43513000
-     ],
-     [
-      "RANGER PICK - UP D/C 3,0 TD V6 LION XLS 4X4 10AT 2023",
-      43718000
-     ],
-     [
-      "RANGER PICK - UP D/C 2,0 BI TD XLT 4X4 10AT 2023",
-      47744000
-     ],
-     [
-      "RANGER PICK - UP D/C 2,0 BI TD LTD 4X4 10AT 2022",
-      53097000
-     ],
-     [
-      "RANGER PICK - UP D/C 3,0 TD V6 LION LTD + 4X4 10AT 2023",
-      58972000
-     ],
-     [
-      "RANGER PICK - UP D/C 2,0 T PANTHER RAPTOR 2020",
-      65467000
-     ],
-     [
-      "RANGER PICK - UP D/C 3,0 T V6 RAPTOR 2023",
-      78305000
      ]
     ]
    }
