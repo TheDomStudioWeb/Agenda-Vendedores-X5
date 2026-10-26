@@ -30,6 +30,7 @@
   .e-Vacío { background: var(--warn-soft); color: var(--warn); }
   .e-Completo { background: var(--x5-soft); color: var(--x5-text); }
   .e-Cargado { background: rgba(120,160,255,.14); color: #9db8ff; }
+  .e-Recibido { background: rgba(255,190,80,.16); color: var(--warn); }
   .e-Rendido { background: var(--ok-soft); color: var(--ok); }
   .e-Anulado { background: var(--surface-3); color: var(--faint); text-decoration: line-through; }
   .barra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--surface); border-top: 1px solid var(--line-strong); padding: 10px 14px calc(10px + var(--safe-bottom)); display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
@@ -125,8 +126,8 @@
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
 const $ = (id) => document.getElementById(id), esc = X5.esc;
 const SUP = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
-const ESTADOS = ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Rendido', 'Anulado'];
-const SIGUIENTE = { 'Vacío': 'Completo', 'Completo': 'Cargado', 'Cargado': 'Rendido' };
+const ESTADOS = ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido', 'Anulado'];
+const SIGUIENTE = { 'Vacío': 'Completo', 'Completo': 'Cargado', 'Cargado': 'Recibido', 'Recibido': 'Rendido' };
 const ERR = { sin_permiso: 'No tiene permiso para esa acción.', sesion_vencida: 'La sesión venció. Ingrese de nuevo.', sin_numeros: 'No se encontró ningún número válido.', demasiados: 'Son demasiados por vez (máximo 2000).',
   destino_fuera_de_alcance: 'Solo puede asignar a usted o a quienes le reportan.', falta_forma_sellado: 'Elija cómo se pagó el sellado.', falta_referencia_sellado: 'Falta el número de operación o quién dio el visto bueno.', estado_invalido: 'Estado no válido.' };
 const MOTIVO = { no_existe: 'no existe', no_es_de_su_equipo: 'no es de su equipo', ya_en_proceso: 'ya está en proceso (solo se reasignan los vacíos)', no_es_suyo: 'no es suyo', ya_rendido: 'ya está rendido', anulado: 'está anulado', primero_asignar: 'primero hay que asignarlo', transicion_no_permitida: 'solo puede avanzar al estado siguiente', debe_estar_completo_o_cargado: 'debe estar Completo o Cargado' };
@@ -183,16 +184,16 @@ function armarFiltros() {
 }
 function pintar() {
   const k = (e) => ({ n: cuenta(e), e });
-  const tiles = gerente() ? ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Rendido', 'Anulado'] : ['Vacío', 'Completo', 'Cargado', 'Rendido'];
-  const nom = { Disponible: 'En gerencia', Vacío: 'Vacíos', Completo: 'Completos', Cargado: 'Cargados', Rendido: 'Rendidos', Anulado: 'Anulados' };
-  $('kp').style.gridTemplateColumns = tiles.length === 4 ? 'repeat(4,1fr)' : 'repeat(3,1fr)';
+  const tiles = gerente() ? ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido', 'Anulado'] : ['Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido'];
+  const nom = { Disponible: 'En gerencia', Vacío: 'Vacíos', Completo: 'Completos', Cargado: 'Cargados', Recibido: 'Recibidos', Rendido: 'Rendidos', Anulado: 'Anulados' };
+  $('kp').style.gridTemplateColumns = 'repeat(' + (tiles.length > 5 ? 4 : 3) + ',1fr)';
   $('kp').innerHTML = tiles.map(e => `<button type="button" data-e="${e}" aria-pressed="${F.est === e}"><b>${cuenta(e)}</b><span>${nom[e]}</span></button>`).join('');
-  const calle = cuenta('Vacío') + cuenta('Completo') + cuenta('Cargado');
-  $('calle').innerHTML = `<b>En la calle: ${calle}</b> contrato${calle === 1 ? '' : 's'} con vendedores o jefes que todavía no se rindieron (${cuenta('Vacío')} vacíos · ${cuenta('Completo')} completos · ${cuenta('Cargado')} cargados).` + (gerente() ? ` <b>En gerencia: ${cuenta('Disponible')}</b> sin repartir.` : '');
+  const calle = cuenta('Vacío') + cuenta('Completo') + cuenta('Cargado') + cuenta('Recibido');
+  $('calle').innerHTML = `<b>En la calle: ${calle}</b> contrato${calle === 1 ? '' : 's'} con vendedores o jefes que todavía no se rindieron (${cuenta('Vacío')} vacíos · ${cuenta('Completo')} completos · ${cuenta('Cargado')} cargados · ${cuenta('Recibido')} recibidos por jefes, a rendir a gerencia).` + (gerente() ? ` <b>En gerencia: ${cuenta('Disponible')}</b> sin repartir.` : '');
   if (supervisa()) {
-    const por = {}; D.contratos.filter(c => c.responsable && !['Anulado'].includes(c.estado)).forEach(c => { const p = por[c.responsable] = por[c.responsable] || { Vacío: 0, Completo: 0, Cargado: 0, Rendido: 0 }; if (p[c.estado] !== undefined) p[c.estado]++; });
+    const por = {}; D.contratos.filter(c => c.responsable && !['Anulado'].includes(c.estado)).forEach(c => { const p = por[c.responsable] = por[c.responsable] || { Vacío: 0, Completo: 0, Cargado: 0, Recibido: 0, Rendido: 0 }; if (p[c.estado] !== undefined) p[c.estado]++; });
     const filas = Object.keys(por).sort(natural);
-    $('t-res').innerHTML = '<tr><th>Responsable</th><th>Vacíos</th><th>Compl.</th><th>Carg.</th><th>Rend.</th></tr>' + (filas.length ? filas.map(n => `<tr data-r="${esc(n)}"><td>${esc(n)}</td><td>${por[n].Vacío}</td><td>${por[n].Completo}</td><td>${por[n].Cargado}</td><td>${por[n].Rendido}</td></tr>`).join('') : '<tr><td colspan="5" class="nota">Todavía no hay contratos repartidos.</td></tr>');
+    $('t-res').innerHTML = '<tr><th>Responsable</th><th>Vacíos</th><th>Compl.</th><th>Carg.</th><th>Recib.</th><th>Rend.</th></tr>' + (filas.length ? filas.map(n => `<tr data-r="${esc(n)}"><td>${esc(n)}</td><td>${por[n].Vacío}</td><td>${por[n].Completo}</td><td>${por[n].Cargado}</td><td>${por[n].Recibido}</td><td>${por[n].Rendido}</td></tr>`).join('') : '<tr><td colspan="6" class="nota">Todavía no hay contratos repartidos.</td></tr>');
   }
   lista(); barra();
 }
@@ -217,7 +218,7 @@ function barra() {
   const cs = ids.map(id => D.contratos.find(c => c.id === id)).filter(Boolean), estados = [...new Set(cs.map(c => c.estado))];
   let h = `<div class="cuenta">${ids.length} elegido${ids.length === 1 ? '' : 's'}</div>`;
   if (supervisa()) h += '<button class="btn" data-a="asignar">Asignar a…</button>';
-  if (estados.length === 1 && SIGUIENTE[estados[0]]) { const s = SIGUIENTE[estados[0]]; h += s === 'Rendido' ? (supervisa() ? '<button class="btn" data-a="rendir">Rendir…</button>' : '') : `<button class="btn" data-a="avanzar" data-s="${s}">Marcar ${s}</button>`; }
+  if (estados.length === 1 && SIGUIENTE[estados[0]]) { const s = SIGUIENTE[estados[0]]; h += s === 'Rendido' ? (gerente() ? '<button class="btn" data-a="rendir">Rendir…</button>' : '') : (s === 'Recibido' && !supervisa() ? '' : `<button class="btn" data-a="avanzar" data-s="${s}">Marcar ${s}</button>`); }
   if (gerente()) h += '<button class="btn btn-danger" data-a="anular">Anular</button>';
   h += '<button class="btn btn-ghost" data-a="limpiar">Cancelar</button>';
   b.innerHTML = h;
@@ -271,7 +272,7 @@ function dRendir(ids) {
   dialogo('Rendir ' + ids.length + ' contrato' + (ids.length === 1 ? '' : 's'), `<p class="nota">Al rendir se registra el pago del sellado. <b>No se guardan imágenes ni archivos</b>: solo cómo se pagó y la referencia.</p>
     <div class="opts"><label><input type="radio" name="sf" value="Transferencia" checked> Transferencia</label><label><input type="radio" name="sf" value="Contado"> Contado (con visto bueno del supervisor)</label></div>
     <div class="field"><label for="sr" id="sr-l">N.º de operación de la transferencia</label><input id="sr" maxlength="80" autocomplete="off"></div>
-    <div class="field"><label for="sm">Monto del sellado por contrato (opcional)</label><input id="sm" inputmode="decimal" placeholder="Ej. 12.500"></div>
+    <div class="field"><label for="sm">Monto del sellado (opcional, libre; si es por contrato aclararlo)</label><input id="sm" inputmode="decimal" placeholder="Ej. 12.500"></div>
     <button class="btn" id="rd-ok">Rendir y registrar sellado</button><div id="rd-r"></div>`);
   document.querySelectorAll('[name=sf]').forEach(r => r.onchange = () => { $('sr-l').textContent = r.value === 'Transferencia' ? 'N.º de operación de la transferencia' : 'Nombre del supervisor o jefe de ventas que dio el visto bueno'; });
   $('rd-ok').onclick = async (e) => { const forma = document.querySelector('[name=sf]:checked').value, ref = $('sr').value.trim(); if (ref.length < 3) { $('rd-r').innerHTML = '<div class="err">' + (forma === 'Transferencia' ? 'Falta el número de operación.' : 'Falta el nombre de quien dio el visto bueno.') + '</div>'; return; }
@@ -289,10 +290,11 @@ function detalle(id) {
   if (c.estado === 'Disponible' && supervisa()) acc += '<button class="btn" data-d="asignar">Asignar…</button>';
   if (['Vacío'].includes(c.estado) && (mio || sup)) acc += '<div class="field" style="margin-top:12px"><label for="d-cli">Cliente (opcional)</label><input id="d-cli" maxlength="80" value="' + esc(c.cliente || '') + '"></div><button class="btn" data-d="Completo">Marcar Completo</button>';
   if (c.estado === 'Completo' && (mio || sup)) acc += '<button class="btn" data-d="Cargado">Marcar Cargado</button>';
-  if (['Completo', 'Cargado'].includes(c.estado) && sup) acc += '<button class="btn" data-d="rendir">Rendir…</button>';
+  if (c.estado === 'Cargado' && sup) acc += '<button class="btn" data-d="Recibido">Marcar Recibido (lo recibí del vendedor)</button>';
+  if (['Completo', 'Cargado', 'Recibido'].includes(c.estado) && gerente()) acc += '<button class="btn" data-d="rendir">Rendir…</button>';
   if (['Vacío'].includes(c.estado) && sup) acc += '<button class="btn btn-ghost" data-d="asignar">Reasignar o devolver…</button>';
   if (gerente() && !['Anulado'].includes(c.estado)) acc += '<button class="btn btn-danger" data-d="anular">Anular</button>';
-  if ((gerente() || sup) && ['Completo', 'Cargado', 'Rendido'].includes(c.estado)) acc += '<div class="nota" style="margin-top:10px">Corrección: volver a un estado anterior</div>' + ['Vacío', 'Completo', 'Cargado'].filter(e => ESTADOS.indexOf(e) < ESTADOS.indexOf(c.estado)).map(e => `<button class="btn btn-ghost" data-d="retro" data-e="${e}" style="margin-top:6px">Volver a ${e}</button>`).join('');
+  if ((gerente() || sup) && ['Completo', 'Cargado', 'Recibido', 'Rendido'].includes(c.estado)) acc += '<div class="nota" style="margin-top:10px">Corrección: volver a un estado anterior</div>' + ['Vacío', 'Completo', 'Cargado', 'Recibido'].filter(e => ESTADOS.indexOf(e) < ESTADOS.indexOf(c.estado)).map(e => `<button class="btn btn-ghost" data-d="retro" data-e="${e}" style="margin-top:6px">Volver a ${e}</button>`).join('');
   dialogo('Contrato N.º ' + c.numero, `<div style="margin-bottom:10px"><span class="chip e-${esc(c.estado)}">${esc(c.estado)}</span></div>
     ${fila('Responsable', c.responsable || 'En gerencia')}${fila('Cliente', c.cliente)}${fila('Asignado', c.fecha_asignacion ? fch(c.fecha_asignacion) + (c.asignado_por ? ' por ' + c.asignado_por : '') : '')}${fila('Estado desde', fch(c.fecha_estado))}
     ${c.estado === 'Rendido' ? fila('Sellado', [c.sellado_forma, c.sellado_ref].filter(Boolean).join(' · ')) + fila('Monto del sellado', c.sellado_monto ? X5.money(c.sellado_monto) : '') : ''}${fila('Notas', c.notas)}

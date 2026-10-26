@@ -40,15 +40,20 @@ T('el vendedor avanza Vacío → Completo → Cargado, pero no salta ni rinde', 
   const c = datos(m, V1).contratos[0]; assert.strictEqual(c.estado, 'Cargado'); assert.strictEqual(c.cliente, 'Pérez Juan');
   assert.strictEqual(m.llamar(V2, { action: 'contratos_estado', ids: [id], estado: 'Completo' }).omitidos[0].motivo, 'no_es_suyo');
 });
-T('Rendido pide forma y referencia del sellado; solo supervisión; queda registrado', () => {
+T('el jefe marca Recibido; Rendido solo gerencia, con forma y referencia del sellado; queda registrado', () => {
   const m = nuevo(); m.llamar(GER, { action: 'contratos_cargar', numeros: '8' }); const id = idDe(m, '8'); m.llamar(GER, { action: 'contratos_asignar', ids: [id], responsable: 'Vendedor Carlos' });
   m.llamar(V1, { action: 'contratos_estado', ids: [id], estado: 'Completo' }); m.llamar(V1, { action: 'contratos_estado', ids: [id], estado: 'Cargado' });
-  assert.strictEqual(m.llamar(JEF, { action: 'contratos_estado', ids: [id], estado: 'Rendido' }).error, 'falta_forma_sellado');
-  assert.strictEqual(m.llamar(JEF, { action: 'contratos_estado', ids: [id], estado: 'Rendido', sellado: { forma: 'Transferencia' } }).error, 'falta_referencia_sellado');
-  assert.strictEqual(m.llamar(JEF2, { action: 'contratos_estado', ids: [id], estado: 'Rendido', sellado: { forma: 'Transferencia', referencia: 'Op 123456' } }).omitidos[0].motivo, 'no_es_suyo');
-  const r = m.llamar(JEF, { action: 'contratos_estado', ids: [id], estado: 'Rendido', sellado: { forma: 'Transferencia', referencia: 'Op 123456', monto: '12.500,50' } }); assert(r.ok && r.cambiados === 1);
+  assert.strictEqual(m.llamar(V1, { action: 'contratos_estado', ids: [id], estado: 'Recibido' }).error, 'sin_permiso');
+  assert.strictEqual(m.llamar(JEF2, { action: 'contratos_estado', ids: [id], estado: 'Recibido' }).omitidos[0].motivo, 'no_es_suyo');
+  assert.strictEqual(m.llamar(JEF, { action: 'contratos_estado', ids: [id], estado: 'Recibido' }).cambiados, 1);
+  const sel = { forma: 'Transferencia', referencia: 'Op 123456', monto: '12.500,50' };
+  assert.strictEqual(m.llamar(JEF, { action: 'contratos_estado', ids: [id], estado: 'Rendido', sellado: sel }).error, 'sin_permiso');
+  assert.strictEqual(m.llamar(GER, { action: 'contratos_estado', ids: [id], estado: 'Rendido' }).error, 'falta_forma_sellado');
+  assert.strictEqual(m.llamar(GER, { action: 'contratos_estado', ids: [id], estado: 'Rendido', sellado: { forma: 'Transferencia' } }).error, 'falta_referencia_sellado');
+  const r = m.llamar(GER, { action: 'contratos_estado', ids: [id], estado: 'Rendido', sellado: sel }); assert(r.ok && r.cambiados === 1);
   const c = datos(m, JEF).contratos[0]; assert.strictEqual(c.estado, 'Rendido'); assert.strictEqual(c.sellado_forma, 'Transferencia'); assert.strictEqual(c.sellado_ref, 'Op 123456'); assert.strictEqual(c.sellado_monto, 12500.5);
   assert.strictEqual(m.llamar(V1, { action: 'contratos_estado', ids: [id], estado: 'Completo' }).omitidos[0].motivo, 'ya_rendido');
+  assert.strictEqual(m.llamar(JEF, { action: 'contratos_estado', ids: [id], estado: 'Cargado' }).omitidos[0].motivo, 'ya_rendido');
   assert(m.libro.ContratosLog.filas.length >= 6); assert(m.libro.ContratosLog.filas.some(f => String(f[3]) === 'estado' && String(f[4]).includes('Rendido')));
 });
 T('un contrato Disponible no puede pasar de estado sin asignarse; anular es solo de gerencia y no rinde', () => {

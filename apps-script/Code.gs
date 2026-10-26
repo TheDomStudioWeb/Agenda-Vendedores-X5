@@ -878,13 +878,13 @@ function esc_(v) { return String(v == null ? '' : v).replace(/[&<>]/g, c => ({ '
 //  cuáles completos, cargados o rendidos, y quién los tiene?
 //  Flujo: Gerente Comercial carga los números → los asigna a Jefes de Ventas →
 //  ellos los asignan a vendedores y referentes → el vendedor marca Completo y Cargado →
-//  el supervisor marca Rendido (con el pago del sellado). Todo queda en la hoja ContratosLog.
+//  el jefe marca Recibido y solo gerencia marca Rendido (con el pago del sellado). Todo queda en la hoja ContratosLog.
 // =====================================================================
 const HOJA_CONTRATOS = 'Contratos';
 const HOJA_CONTRATOS_LOG = 'ContratosLog';
 const COL_CONTRATOS = ['id', 'numero', 'estado', 'responsable', 'fecha_asignacion', 'asignado_por', 'cliente', 'fecha_estado', 'sellado_monto', 'sellado_forma', 'sellado_ref', 'notas', 'actualizado'];
 const COL_CONTRATOS_LOG = ['fecha', 'contrato', 'usuario', 'accion', 'detalle'];
-const ESTADOS_CONTRATO = ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Rendido', 'Anulado'];
+const ESTADOS_CONTRATO = ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido', 'Anulado'];
 const FORMAS_SELLADO = ['Transferencia', 'Contado'];
 const MAX_CONTRATOS_LOTE = 2000;
 
@@ -1017,7 +1017,7 @@ function contratosAsignar_(body, u) {
 }
 
 const SUPERVISION_CONTRATOS_ = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
-const SIGUIENTE_CONTRATO_ = { 'Vacío': 'Completo', 'Completo': 'Cargado', 'Cargado': 'Rendido' };
+const SIGUIENTE_CONTRATO_ = { 'Vacío': 'Completo', 'Completo': 'Cargado', 'Cargado': 'Recibido', 'Recibido': 'Rendido' };
 
 // Cambio de estado. El responsable avanza Vacío → Completo → Cargado. Rendido, retrocesos y anulación son de supervisión
 // (Rendido pide el sellado: forma y referencia). Anulado solo gerencia.
@@ -1028,11 +1028,12 @@ function contratosEstado_(body, u) {
   const ids = (body.ids || []).map(String), todos = leerContratos_(), mapa = {}; todos.forEach(c => { mapa[String(c.id)] = c; });
   const s = body.sellado || {};
   if (nuevo === 'Rendido') {
-    if (!supervisa) return { ok: false, error: 'sin_permiso' };
+    if (!esGerente_(u)) return { ok: false, error: 'sin_permiso' };
     if (FORMAS_SELLADO.indexOf(String(s.forma)) < 0) return { ok: false, error: 'falta_forma_sellado' };
     if (String(s.referencia || '').trim().length < 3) return { ok: false, error: 'falta_referencia_sellado' };
   }
   if (nuevo === 'Anulado' && !esGerente_(u)) return { ok: false, error: 'sin_permiso' };
+  if (nuevo === 'Recibido' && !supervisa) return { ok: false, error: 'sin_permiso' };
   const cambios = [], omitidos = [], hoy = hoyContrato_();
   ids.forEach(id => {
     const c = mapa[id]; if (!c) { omitidos.push({ id: id, motivo: 'no_existe' }); return; }
