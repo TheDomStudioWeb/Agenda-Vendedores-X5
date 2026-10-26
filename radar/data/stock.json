@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-26T16:56:48.811Z",
+ "actualizado": "2026-10-26T21:49:40.358Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 88,
-   "revisado": "2026-10-26T16:56:48.811Z",
-   "actualizado": "2026-10-26T16:56:48.811Z"
+   "autos": 89,
+   "revisado": "2026-10-26T21:49:40.358Z",
+   "actualizado": "2026-10-26T21:49:40.358Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,81 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 215,
-   "revisado": "2026-10-26T16:56:48.811Z",
-   "actualizado": "2026-10-26T16:56:48.811Z"
+   "revisado": "2026-10-26T21:49:40.358Z",
+   "actualizado": "2026-10-26T21:49:40.358Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-182134",
+   "tipo": "auto",
+   "marca": "Nissan",
+   "modelo": "March",
+   "version": "Active Pure Drive F2",
+   "anio": 2017,
+   "km": 114180,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 14600000,
+   "precio_sin_imp": 11534000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3051-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3052-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3054-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3055-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3050-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3053-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3049-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3047-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3043-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3038-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3039-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3040-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3048-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3041-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3046-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3045-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3044-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/26/march-2/",
+   "publicado": "2026-10-26T15:44:42",
+   "modificado": "2026-10-26T15:57:42",
+   "agencia": "maipu",
+   "alta": "2026-10-26T21:49:40.358Z",
+   "guia": {
+    "min": 11908000,
+    "med": 13990000,
+    "max": 14738000,
+    "n": 4,
+    "mejor": {
+     "version": "MARCH 5P 1,6 ACTIVE",
+     "valor": 11908000,
+     "coincidencias": 1,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "MARCH 5P 1,6 ACTIVE",
+      11908000
+     ],
+     [
+      "MARCH 5P 1,6 SENSE",
+      12868000
+     ],
+     [
+      "MARCH 5P 1,6 ADVANCE",
+      13990000
+     ],
+     [
+      "MARCH 5P 1,6 MEDIA TECH",
+      14738000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-182108",
    "tipo": "auto",
@@ -6123,7 +6193,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Plata",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2018 Automatica 113700 40000000 Precio sugerido al público 31600000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados CB300F Twister 2024 Manual 705 6390000 Precio sugerido al público 5281000 Precio sin impuestos nacionales + Precio a confirmar destacados ZONTES X350 2025 Manual 5440 5790000 Precio sugerido al público 4785120 Precio sin impuestos nacionales + Precio a confirmar destacados 302 S 2025 Manual 10355 7990000 Precio sugerido al público 6603300 Precio sin impuestos nacionales + Precio a confirmar destacados 302 S 2025 Manual 1950 8790000 Precio sugerido al público 7264500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 16180000,
    "precio_sin_imp": 12782200,
    "moneda": "ARS",
@@ -6204,7 +6274,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2018 Automatica 113700 40000000 Precio sugerido al público 31600000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados CB300F Twister 2024 Manual 705 6390000 Precio sugerido al público 5281000 Precio sin impuestos nacionales + Precio a confirmar destacados ZONTES X350 2025 Manual 5440 5790000 Precio sugerido al público 4785120 Precio sin impuestos nacionales + Precio a confirmar destacados 302 S 2025 Manual 10355 7990000 Precio sugerido al público 6603300 Precio sin impuestos nacionales + Precio a confirmar destacados 302 S 2025 Manual 1950 8790000 Precio sugerido al público 7264500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -6276,7 +6346,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2018 Automatica 113700 40000000 Precio sugerido al público 31600000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados CB300F Twister 2024 Manual 705 6390000 Precio sugerido al público 5281000 Precio sin impuestos nacionales + Precio a confirmar destacados ZONTES X350 2025 Manual 5440 5790000 Precio sugerido al público 4785120 Precio sin impuestos nacionales + Precio a confirmar destacados 302 S 2025 Manual 10355 7990000 Precio sugerido al público 6603300 Precio sin impuestos nacionales + Precio a confirmar destacados 302 S 2025 Manual 1950 8790000 Precio sugerido al público 7264500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6333,7 +6403,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Rojo",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2018 Automatica 113700 40000000 Precio sugerido al público 31600000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados CB300F Twister 2024 Manual 705 6390000 Precio sugerido al público 5281000 Precio sin impuestos nacionales + Precio a confirmar destacados ZONTES X350 2025 Manual 5440 5790000 Precio sugerido al público 4785120 Precio sin impuestos nacionales + Precio a confirmar destacados 302 S 2025 Manual 10355 7990000 Precio sugerido al público 6603300 Precio sin impuestos nacionales + Precio a confirmar destacados 302 S 2025 Manual 1950 8790000 Precio sugerido al público 7264500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 11110000,
    "precio_sin_imp": 8776900,
    "moneda": "ARS",
@@ -6680,7 +6750,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Tracker 2023 Automatica 80430 29800000 Precio sugerido al público 23542000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2018 Automatica 113700 40000000 Precio sugerido al público 31600000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados CB300F Twister 2024 Manual 705 6390000 Precio sugerido al público 5281000 Precio sin impuestos nacionales + Precio a confirmar destacados ZONTES X350 2025 Manual 5440 5790000 Precio sugerido al público 4785120 Precio sin impuestos nacionales + Precio a confirmar destacados 302 S 2025 Manual 10355 7990000 Precio sugerido al público 6603300 Precio sin impuestos nacionales + Precio a confirmar destacados 302 S 2025 Manual 1950 8790000 Precio sugerido al público 7264500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",

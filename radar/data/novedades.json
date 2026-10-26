@@ -1,6 +1,14 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-26T21:49:40.358Z",
+   "tipo": "nuevo",
+   "id": "maipu-182134",
+   "auto": "Nissan March 2017",
+   "precio": 14600000,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-10-26T16:56:48.811Z",
    "tipo": "nuevo",
    "id": "maipu-182108",
