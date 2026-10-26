@@ -54,3 +54,8 @@ Desarrollado por The DOM Studio Web · WhatsApp 261-3431216 · thedomstudioweb@g
 - **Lista**: tarjetas con el detalle de cada contrato; se elige con casillas.
 - **Equipo** (jefes y gerente): una tarjeta por responsable con barra de avance (vacío, completo, cargado, recibido, rendido) y el sellado a rendir. Tocarla filtra los contratos de esa persona.
 - Los botones de estado de arriba también filtran.
+
+## Cargas y correcciones
+- Los números de contrato llevan **solo cifras**. Si un renglón se carga mal (por ejemplo sin los `;`), el sistema lo rechaza y dice cuál es.
+- En la rejilla, cada cuadro muestra las **iniciales** del responsable (nombre y apellido); al mantener apretado o en el detalle se ve el nombre completo.
+- Un contrato cargado por error y que está en gerencia (o anulado) se puede **quitar del listado** (solo gerencia): se elige en la rejilla o en la lista y se toca "Quitar del listado". Queda anotado en el historial. Los que están en la calle o rendidos no se pueden quitar, solo anular.

@@ -9,7 +9,7 @@ const nuevo = () => crear(personal);
 const datos = (m, u) => m.llamar(u, { action: 'contratos_datos' });
 const idDe = (m, num) => datos(m, GER).contratos.find(c => c.numero === num).id;
 
-T('rangos y listas de números', () => { const m = nuevo(); const r = m.api.expandirNumeros_('1001-1003, 1010 1011;1002 abc-9 ##'); assert.deepStrictEqual(Array.from(r.numeros), ['1001', '1002', '1003', '1010', '1011', 'abc-9']); assert.strictEqual(r.problemas.length, 1); });
+T('rangos y listas de números', () => { const m = nuevo(); const r = m.api.expandirNumeros_('1001-1003, 1010 1011;1002 abc-9 ##'); assert.deepStrictEqual(Array.from(r.numeros), ['1001', '1002', '1003', '1010', '1011']); assert.strictEqual(r.problemas.length, 2); });
 T('rango con ceros a la izquierda y tope', () => { const m = nuevo(); assert.deepStrictEqual(Array.from(m.api.expandirNumeros_('0098-0101').numeros), ['0098', '0099', '0100', '0101']); assert(m.api.expandirNumeros_('1-99999').problemas.length === 1); });
 T('solo gerencia carga números; los repetidos no se duplican', () => {
   const m = nuevo(); assert.strictEqual(m.llamar(JEF, { action: 'contratos_cargar', numeros: '1-5' }).error, 'sin_permiso');
@@ -120,5 +120,12 @@ T('lista de precios pegada con comas y espacio (como llega desde Word)', () => {
   const m = nuevo(); const txt = 'PX61, Honda Tornado XR 250, 10, $ 90.000, $ 40.000, $ 130.000\nPX64, VW Polo MSI / Peug 208 All / Fiat Cronos, 10, $ 250.000, $ 50.000, $ 300.000\nPX72, Toyota SW4 4x4 SRX, 5, $ 700.000, $ 150.000, $ 850.000';
   const r = m.llamar(GER, { action: 'contratos_precios_cargar', modo: 'reemplazar', texto: txt }); assert(r.ok && r.creados === 3 && r.errores.length === 0, JSON.stringify(r));
   const p = m.llamar(V1, { action: 'contratos_precios' }).precios; assert(p[1].vehiculo === 'VW Polo MSI / Peug 208 All / Fiat Cronos' && p[1].cuota === 250000 && p[1].sellado === 50000 && p[2].pago_1_y_2 === 850000);
+});
+T('importar rechaza números con letras (línea mal armada) y gerencia puede eliminar los cargados por error', () => {
+  const m = nuevo(); const r = m.llamar(GER, { action: 'contratos_importar', texto: '63039-DanielArancibia\n63040;Gerente Uno;Vacío' }); assert(r.ok && r.creados === 1 && r.errores.length === 1 && r.errores[0].motivo.includes('faltan los ;'));
+  m.llamar(GER, { action: 'contratos_cargar', numeros: '70-71' }); const a = idDe(m, '70'), b = idDe(m, '63040');
+  assert.strictEqual(m.llamar(JEF, { action: 'contratos_eliminar', ids: [a] }).error, 'sin_permiso');
+  const e = m.llamar(GER, { action: 'contratos_eliminar', ids: [a, b] }); assert(e.ok && e.eliminados === 1 && e.omitidos.length === 1);
+  const n = datos(m, GER).contratos.map(c => c.numero); assert(!n.includes('70') && n.includes('71') && n.includes('63040'));
 });
 console.log(`\n${ok} bien, ${fail} con error`); process.exit(fail ? 1 : 0);

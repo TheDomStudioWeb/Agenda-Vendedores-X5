@@ -919,7 +919,7 @@ function expandirNumeros_(texto) {
       for (let n = a; n <= b; n++) { const s = String(n).padStart(ancho, '0'); if (!vistos[s]) { vistos[s] = 1; out.push(s); } }
       return;
     }
-    if (!/^[A-Za-z0-9\-_.\/]+$/.test(tk)) { problemas.push(tk + ' (caracteres no válidos)'); return; }
+    if (!/^\d{1,15}$/.test(tk)) { problemas.push(tk + ' (el número de contrato tiene solo cifras)'); return; }
     if (!vistos[tk]) { vistos[tk] = 1; out.push(tk); }
   });
   return { numeros: out, problemas: problemas };
@@ -953,6 +953,7 @@ function despacharContratos_(body, u) {
     if (a === 'contratos_importar') return contratosImportar_(body, u);
     if (a === 'contratos_vincular') return contratosVincular_(body, u);
     if (a === 'contratos_precios_cargar') return contratosPreciosCargar_(body, u);
+    if (a === 'contratos_eliminar') return contratosEliminar_(body, u);
     return { ok: false, error: 'accion_invalida' };
   } finally { lock.releaseLock(); }
 }
@@ -1076,7 +1077,7 @@ function contratosImportar_(body, u) {
   lineas.forEach((l, n) => {
     const p = l.split(/[;\t]/).map(x => x.trim());
     const num = limpiarNumero_(p[0]), resp = p[1] || '', est = (p[2] || '').trim(), cli = (p[3] || '').slice(0, 80);
-    if (!num || !/^[A-Za-z0-9\-_.\/]+$/.test(num)) { errores.push({ linea: n + 1, texto: l, motivo: 'número inválido' }); return; }
+    if (!/^\d{1,15}$/.test(num)) { errores.push({ linea: n + 1, texto: l, motivo: l.indexOf(';') < 0 && l.indexOf('\t') < 0 ? 'faltan los ; entre número, responsable y estado (ej. 64765;Daniel Arancibia;Vacío)' : 'el número de contrato tiene solo cifras' }); return; }
     if (vistos[num]) { errores.push({ linea: n + 1, texto: l, motivo: 'número repetido en la lista' }); return; }
     vistos[num] = 1;
     const coincide = est ? ESTADOS_CONTRATO.find(e => e.toLowerCase() === est.toLowerCase().replace('vacio', 'vacío')) : null;
@@ -1178,4 +1179,22 @@ function contratosPreciosCargar_(body, u) {
   }
   registrarLogContratos_([{ contrato: '(precios)', usuario: u.nombre, accion: 'precios', detalle: modo + ': ' + creados + ' nuevos, ' + actualizados + ' actualizados' }]);
   return { ok: true, modo: modo, creados: creados, actualizados: actualizados, errores: errores, total: leerPrecios_().length };
+}
+
+
+// Quita de la hoja contratos cargados por error. Solo gerencia, y solo si están en gerencia (Disponible) o Anulados: nunca uno que esté en la calle o rendido.
+function contratosEliminar_(body, u) {
+  if (!esGerente_(u)) return { ok: false, error: 'sin_permiso' };
+  const ids = (body.ids || []).map(String), sh = hojaContratos_(HOJA_CONTRATOS, COL_CONTRATOS), h = asegurarColumnas_(sh, COL_CONTRATOS);
+  const datos = sh.getDataRange().getValues(), iId = h.indexOf('id'), iE = h.indexOf('estado'), iN = h.indexOf('numero'), iR = h.indexOf('responsable');
+  const borrar = [], omitidos = [], logs = [];
+  for (let i = 1; i < datos.length; i++) {
+    if (ids.indexOf(String(datos[i][iId])) < 0) continue;
+    const num = limpiarNumero_(datos[i][iN]), est = String(datos[i][iE]);
+    if (['Disponible', 'Anulado'].indexOf(est) < 0 || String(datos[i][iR])) { omitidos.push({ numero: num, motivo: 'solo_disponible_o_anulado' }); continue; }
+    borrar.push(i + 1); logs.push({ contrato: num, usuario: u.nombre, accion: 'eliminado', detalle: 'quitado del listado (' + est + ')' });
+  }
+  borrar.sort((a, b) => b - a).forEach(r => sh.deleteRow(r));
+  registrarLogContratos_(logs);
+  return { ok: true, eliminados: borrar.length, omitidos: omitidos };
 }

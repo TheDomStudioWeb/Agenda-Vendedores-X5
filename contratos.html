@@ -64,7 +64,7 @@
   .vbar .btn-sm { min-height: 40px; }
   .rej { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 6px; }
   .tl { border: 2px solid transparent; border-radius: 10px; padding: 8px 4px 6px; text-align: center; font: inherit; cursor: pointer; min-height: 58px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; }
-  .tl b { font-size: .95rem; font-variant-numeric: tabular-nums; letter-spacing: .2px; }
+  .tl b { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .95rem; font-variant-numeric: tabular-nums; letter-spacing: .2px; }
   .tl small { font-size: .62rem; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; opacity: .85; }
   .tl.sel-on { border-color: var(--text); box-shadow: 0 0 0 2px var(--x5); }
   .ley { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: .72rem; color: var(--muted); margin: 0 2px 10px; }
@@ -130,7 +130,7 @@
     <div id="r-cargar"></div>
     <hr style="border:0;border-top:1px solid var(--line);margin:16px 0">
     <b>Cargar lo que ya está repartido</b>
-    <p class="nota">Un contrato por renglón: <b>número;responsable;estado;cliente</b> (el cliente es opcional). El estado es Vacío, Completo, Cargado o Rendido; si lo deja vacío se toma Vacío. El responsable debe estar en Personal. Si el contrato ya existe, se actualiza.</p>
+    <p class="nota">Un contrato por renglón, separado con <b>punto y coma ( ; )</b>: <b>número;responsable;estado;cliente</b> (el cliente es opcional). Ejemplo: <code>64765;Daniel Arancibia;Vacío</code>. El número lleva solo cifras. El estado es Vacío, Completo, Cargado o Rendido; si lo deja vacío se toma Vacío. El responsable debe estar en Personal. Si el contrato ya existe, se actualiza.</p>
     <textarea id="t-importar" placeholder="Ej.&#10;1001;Carlos Pérez;Completo;Juan Gómez&#10;1002;Dana Ruiz;Vacío"></textarea>
     <button class="btn btn-ghost" id="b-importar" style="margin-top:8px">Importar</button>
     <div id="r-importar"></div>
@@ -179,7 +179,7 @@ const ESTADOS = ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Recibido', 'Ren
 const SIGUIENTE = { 'Vacío': 'Completo', 'Completo': 'Cargado', 'Cargado': 'Recibido', 'Recibido': 'Rendido' };
 const ERR = { sin_permiso: 'No tiene permiso para esa acción.', sesion_vencida: 'La sesión venció. Ingrese de nuevo.', sin_numeros: 'No se encontró ningún número válido.', demasiados: 'Son demasiados por vez (máximo 2000).',
   destino_fuera_de_alcance: 'Solo puede asignar a usted o a quienes le reportan.', falta_forma_sellado: 'Elija cómo se pagó el sellado.', falta_referencia_sellado: 'Falta el número de operación o quién dio el visto bueno.', estado_invalido: 'Estado no válido.', hay_errores: 'Hay renglones con errores. No se reemplazó nada.', sin_datos: 'No se encontraron planes válidos.' };
-const MOTIVO = { no_existe: 'no existe', no_es_de_su_equipo: 'no es de su equipo', ya_en_proceso: 'ya está en proceso (solo se reasignan los vacíos)', no_es_suyo: 'no es suyo', ya_rendido: 'ya está rendido', anulado: 'está anulado', primero_asignar: 'primero hay que asignarlo', transicion_no_permitida: 'solo puede avanzar al estado siguiente', debe_estar_completo_o_cargado: 'debe estar Completo o Cargado' };
+const MOTIVO = { no_existe: 'no existe', no_es_de_su_equipo: 'no es de su equipo', ya_en_proceso: 'ya está en proceso (solo se reasignan los vacíos)', no_es_suyo: 'no es suyo', ya_rendido: 'ya está rendido', anulado: 'está anulado', solo_disponible_o_anulado: 'solo se quitan los de gerencia o anulados', primero_asignar: 'primero hay que asignarlo', transicion_no_permitida: 'solo puede avanzar al estado siguiente', debe_estar_completo_o_cargado: 'debe estar Completo o Cargado' };
 let user = null, token = null, D = { contratos: [], personal: [], ambito: [] };
 const F = { est: '', resp: '', q: '' }, sel = new Set(); let tope = 120;
 const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }, del(k) { try { localStorage.removeItem(k); } catch (e) {} } };
@@ -265,6 +265,7 @@ function filtrados() {
 }
 function puedeActuar(c) { return gerente() || (supervisa() && D.ambito.includes(c.responsable)) || c.responsable === user.nombre; }
 let vista = store.get('x5_vista') || 'rejilla', eleg = false;
+const iniciales = (n) => { const w = String(n || '').replace(/([a-záéíóúñ])([A-ZÁÉÍÓÚÑ])/g, '$1 $2').trim().split(/\s+/).filter(Boolean); return w.length ? (w[0][0] + (w.length > 1 ? w[w.length - 1][0] : '')).toUpperCase() : '·'; };
 const elegible = (c) => (puedeActuar(c) && !['Rendido', 'Anulado'].includes(c.estado)) || (gerente() && c.estado !== 'Anulado');
 function lista() {
   const l = filtrados(), tp = vista === 'rejilla' ? Math.max(tope, 800) : tope, ver = l.slice(0, tp);
@@ -274,7 +275,7 @@ function lista() {
   $('b-todos').hidden = !el.length || (vista === 'rejilla' && !eleg); $('b-todos').textContent = 'Elegir todos (' + el.length + ')';
   $('ley').hidden = vista !== 'rejilla'; $('ley').innerHTML = ESTADOS.filter(e => e !== 'Disponible' || gerente()).map(e => `<span><i class="e-${e}"></i>${e === 'Disponible' ? 'En gerencia' : e}</span>`).join('');
   if (vista === 'rejilla') {
-    $('lista').innerHTML = ver.length ? '<div class="rej">' + ver.map(c => `<button type="button" class="tl e-${esc(c.estado)} ${sel.has(c.id) ? 'sel-on' : ''}" data-t="${esc(c.id)}" aria-label="Contrato ${esc(c.numero)}, ${esc(c.estado)}${c.responsable ? ', ' + esc(c.responsable) : ''}"><b>${esc(c.numero)}</b><small>${c.responsable ? esc(String(c.responsable).split(' ')[0]) : 'gerencia'}</small></button>`).join('') + '</div>' : '<div class="empty">No hay contratos con esos filtros.</div>';
+    $('lista').innerHTML = ver.length ? '<div class="rej">' + ver.map(c => `<button type="button" class="tl e-${esc(c.estado)} ${sel.has(c.id) ? 'sel-on' : ''}" data-t="${esc(c.id)}" aria-label="Contrato ${esc(c.numero)}, ${esc(c.estado)}${c.responsable ? ', ' + esc(c.responsable) : ''}"><b>${esc(c.numero)}</b><small title="${esc(c.responsable || 'En gerencia')}">${c.responsable ? esc(iniciales(c.responsable)) : 'gerencia'}</small></button>`).join('') + '</div>' : '<div class="empty">No hay contratos con esos filtros.</div>';
     $('b-mas').hidden = true; return;
   }
   $('lista').innerHTML = ver.length ? ver.map(c => `<div class="ct ${sel.has(c.id) ? 'sel-on' : ''}" data-id="${esc(c.id)}">
@@ -290,6 +291,7 @@ function barra() {
   if (supervisa()) h += '<button class="btn" data-a="asignar">Asignar a…</button>';
   if (estados.length === 1 && SIGUIENTE[estados[0]]) { const s = SIGUIENTE[estados[0]]; h += s === 'Rendido' ? (gerente() ? '<button class="btn" data-a="rendir">Rendir…</button>' : '') : (s === 'Recibido' && !supervisa() ? '' : `<button class="btn" data-a="avanzar" data-s="${s}">Marcar ${s}</button>`); }
   if (gerente()) h += '<button class="btn btn-danger" data-a="anular">Anular</button>';
+  if (gerente() && cs.every(c => !c.responsable && ['Disponible', 'Anulado'].includes(c.estado))) h += '<button class="btn btn-danger" data-a="eliminar">Quitar del listado</button>';
   h += '<button class="btn btn-ghost" data-a="limpiar">Cancelar</button>';
   b.innerHTML = h;
 }
@@ -314,7 +316,8 @@ $('barra').onclick = (e) => { const b = e.target.closest('[data-a]'); if (!b) re
   if (a === 'asignar') return dAsignar(ids);
   if (a === 'avanzar') return cambiarEstado(ids, b.dataset.s);
   if (a === 'rendir') return dRendir(ids);
-  if (a === 'anular') return dAnular(ids); };
+  if (a === 'anular') return dAnular(ids);
+  if (a === 'eliminar') return dEliminar(ids); };
 
 /* ── Diálogos ── */
 const dlg = $('dlg');
@@ -352,6 +355,10 @@ function dRendir(ids) {
   $('rd-ok').onclick = async (e) => { const forma = document.querySelector('[name=sf]:checked').value, ref = $('sr').value.trim(); if (ref.length < 3) { $('rd-r').innerHTML = '<div class="err">' + (forma === 'Transferencia' ? 'Falta el número de operación.' : 'Falta el nombre de quien dio el visto bueno.') + '</div>'; return; }
     e.target.disabled = true; await cambiarEstado(ids, 'Rendido', { sellado: { forma, referencia: ref, monto: $('sm').value.trim() } }); e.target.disabled = false; };
 }
+function dEliminar(ids) {
+  dialogo('Quitar ' + ids.length + ' contrato' + (ids.length === 1 ? '' : 's') + ' del listado', `<p>Se borran de la planilla (quedó cargado por error). Solo se pueden quitar los que están en gerencia o anulados. <b>No se puede deshacer</b>, pero queda anotado en el historial.</p><button class="btn btn-danger" id="el-ok">Sí, quitar</button>`);
+  $('el-ok').onclick = async (e) => { const r = await accion({ action: 'contratos_eliminar', ids }, e.target); if (!r) return; if ((r.omitidos || []).length) dialogo('Resultado', resultado(r, r.eliminados + ' quitado(s).') + '<button class="btn" onclick="document.getElementById(\'dlg\').close()">Entendido</button>'); else { dlg.close(); X5.toast(r.eliminados + ' contrato(s) quitados', 'ok'); } };
+}
 function dAnular(ids) {
   dialogo('Anular ' + ids.length + ' contrato' + (ids.length === 1 ? '' : 's'), `<p>El contrato queda <b>Anulado</b> (extraviado, dañado o dado de baja) y sale de la cuenta de los que están en la calle. Queda registrado en el historial.</p><div class="field"><label for="an-n">Motivo (opcional)</label><input id="an-n" maxlength="150"></div><button class="btn btn-danger" id="an-ok">Sí, anular</button>`);
   $('an-ok').onclick = (e) => { e.target.disabled = true; cambiarEstado(ids, 'Anulado', ids.length === 1 ? { notas: $('an-n').value } : {}); };
@@ -367,6 +374,7 @@ function detalle(id) {
   if (c.estado === 'Cargado' && sup) acc += '<button class="btn" data-d="Recibido">Marcar Recibido (lo recibí del vendedor)</button>';
   if (['Completo', 'Cargado', 'Recibido'].includes(c.estado) && gerente()) acc += '<button class="btn" data-d="rendir">Rendir…</button>';
   if (['Vacío'].includes(c.estado) && sup) acc += '<button class="btn btn-ghost" data-d="asignar">Reasignar o devolver…</button>';
+  if (gerente() && !c.responsable && ['Disponible', 'Anulado'].includes(c.estado)) acc += '<button class="btn btn-ghost" data-d="eliminar">Quitar del listado (cargado por error)</button>';
   if (gerente() && !['Anulado'].includes(c.estado)) acc += '<button class="btn btn-danger" data-d="anular">Anular</button>';
   if ((gerente() || sup) && ['Completo', 'Cargado', 'Recibido', 'Rendido'].includes(c.estado)) acc += '<div class="nota" style="margin-top:10px">Corrección: volver a un estado anterior</div>' + ['Vacío', 'Completo', 'Cargado', 'Recibido'].filter(e => ESTADOS.indexOf(e) < ESTADOS.indexOf(c.estado)).map(e => `<button class="btn btn-ghost" data-d="retro" data-e="${e}" style="margin-top:6px">Volver a ${e}</button>`).join('');
   dialogo('Contrato N.º ' + c.numero, `<div style="margin-bottom:10px"><span class="chip e-${esc(c.estado)}">${esc(c.estado)}</span></div>
@@ -374,7 +382,7 @@ function detalle(id) {
     ${c.estado === 'Rendido' ? fila('Sellado', [c.sellado_forma, c.sellado_ref].filter(Boolean).join(' · ')) + fila('Monto del sellado', c.sellado_monto ? X5.money(c.sellado_monto) : '') : ''}${fila('Notas', c.notas)}
     <div class="opts" style="margin-top:12px">${acc}</div><div id="d-r"></div>`);
   dlg.querySelectorAll('[data-d]').forEach(b => b.onclick = () => { const a = b.dataset.d;
-    if (a === 'asignar') return dAsignar([id]); if (a === 'rendir') return dRendir([id]); if (a === 'anular') return dAnular([id]);
+    if (a === 'asignar') return dAsignar([id]); if (a === 'rendir') return dRendir([id]); if (a === 'anular') return dAnular([id]); if (a === 'eliminar') return dEliminar([id]);
     if (a === 'retro') return cambiarEstado([id], b.dataset.e);
     cambiarEstado([id], a, a === 'Completo' && $('d-cli') ? { cliente: $('d-cli').value.trim() } : {}); });
 }
