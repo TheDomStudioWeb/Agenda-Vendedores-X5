@@ -128,4 +128,17 @@ T('importar rechaza números con letras (línea mal armada) y gerencia puede eli
   const e = m.llamar(GER, { action: 'contratos_eliminar', ids: [a, b] }); assert(e.ok && e.eliminados === 1 && e.omitidos.length === 1);
   const n = datos(m, GER).contratos.map(c => c.numero); assert(!n.includes('70') && n.includes('71') && n.includes('63040'));
 });
+T('rol Control: ve todo el gestor de contratos, no modifica nada y no entra al CRM', () => {
+  const m = crear(personal.concat([['Control Suc', 'Control', 'Activo', '', 'x', '']])); const CTL = { nombre: 'Control Suc', rol: 'Control' };
+  m.llamar(GER, { action: 'contratos_cargar', numeros: '80-82' }); m.llamar(GER, { action: 'contratos_asignar', ids: [idDe(m, '80')], responsable: 'Vendedor Carlos' });
+  const d = datos(m, CTL); assert(d.ok && d.contratos.length === 3 && d.contratos.some(c => c.estado === 'Disponible'), JSON.stringify(d).slice(0, 200));
+  const id = idDe(m, '81');
+  ['contratos_cargar:{"numeros":"90"}', 'contratos_asignar:{"ids":["' + id + '"],"responsable":"Jefe Ana"}', 'contratos_estado:{"ids":["' + id + '"],"estado":"Anulado"}', 'contratos_eliminar:{"ids":["' + id + '"]}', 'contratos_importar:{"texto":"91;Gerente Uno;Vacío"}', 'contratos_vincular:{"numero":"80","cliente":"X"}', 'contratos_precios_cargar:{"texto":"PX1;A;1;2;3"}'].forEach(x => {
+    const i = x.indexOf(':'); const r = m.llamar(CTL, Object.assign({ action: x.slice(0, i) }, JSON.parse(x.slice(i + 1)))); assert.strictEqual(r.error, 'sin_permiso', x);
+  });
+  assert.strictEqual(datos(m, GER).contratos.length, 3); assert.strictEqual(datos(m, GER).contratos.find(c => c.numero === '81').estado, 'Disponible');
+  const tok = m.post({ action: 'login', nombre: 'Control Suc', clave: 'x' }); assert(tok.ok && tok.token, JSON.stringify(tok));
+  assert(m.post({ action: 'contratos_datos', token: tok.token }).ok);
+  ['datos', 'add', 'update', 'delete', 'archivar', 'telegram_link', 'contratos_estado'].forEach(a => assert.strictEqual(m.post({ action: a, token: tok.token, tabla: 'Hoja 1', data: { id: 'x' } }).error, 'sin_permiso', a));
+});
 console.log(`\n${ok} bien, ${fail} con error`); process.exit(fail ? 1 : 0);

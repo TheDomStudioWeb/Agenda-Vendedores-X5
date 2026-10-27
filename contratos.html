@@ -184,7 +184,7 @@ let user = null, token = null, D = { contratos: [], personal: [], ambito: [] };
 const F = { est: '', resp: '', q: '' }, sel = new Set(); let tope = 120;
 const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }, del(k) { try { localStorage.removeItem(k); } catch (e) {} } };
 const post = async (b) => { const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(Object.assign({ token }, b)) }); return r.json(); };
-const supervisa = () => SUP.includes(user.rol), gerente = () => user.rol === 'Gerente Comercial';
+const supervisa = () => SUP.includes(user.rol), gerente = () => user.rol === 'Gerente Comercial', control = () => user.rol === 'Control', veTodo = () => gerente() || control();
 const fch = (s) => s ? X5.fechaLarga(s) : '';
 const natural = (a, b) => String(a).localeCompare(String(b), 'es', { numeric: true });
 
@@ -211,8 +211,8 @@ $('btn-act').onclick = () => cargar(true);
 
 async function entrar() {
   $('login').style.display = 'none'; $('top').hidden = false; $('app').hidden = false;
-  $('quien').textContent = user.nombre + ' · ' + user.rol;
-  $('p-ger').hidden = !gerente(); $('p-pre').hidden = !gerente(); $('p-res').hidden = !supervisa();
+  $('quien').textContent = user.nombre + ' · ' + (control() ? 'Solo lectura' : user.rol);
+  $('p-ger').hidden = !gerente(); $('p-pre').hidden = !gerente(); $('p-res').hidden = !(supervisa() || control());
   await cargar(false);
 }
 async function cargar(manual) {
@@ -230,18 +230,18 @@ const pendSellado = (c) => !['Rendido', 'Anulado', 'Disponible'].includes(c.esta
 const debido = (resp) => D.contratos.filter(c => !resp || c.responsable === resp).reduce((t, c) => t + pendSellado(c), 0);
 function armarFiltros() {
   const resps = [...new Set(D.contratos.map(c => c.responsable).filter(Boolean))].sort(natural);
-  $('f-resp').innerHTML = '<option value="">' + (gerente() ? 'Todos los responsables' : 'Mi equipo') + '</option>' + (gerente() ? '<option value="__gerencia">En gerencia (sin responsable)</option>' : '') + resps.map(r => `<option value="${esc(r)}" ${r === F.resp ? 'selected' : ''}>${esc(r)}</option>`).join('');
-  $('f-est').innerHTML = '<option value="">Todos los estados</option>' + ESTADOS.filter(e => e !== 'Disponible' || gerente()).map(e => `<option ${e === F.est ? 'selected' : ''}>${e}</option>`).join('');
+  $('f-resp').innerHTML = '<option value="">' + (veTodo() ? 'Todos los responsables' : 'Mi equipo') + '</option>' + (veTodo() ? '<option value="__gerencia">En gerencia (sin responsable)</option>' : '') + resps.map(r => `<option value="${esc(r)}" ${r === F.resp ? 'selected' : ''}>${esc(r)}</option>`).join('');
+  $('f-est').innerHTML = '<option value="">Todos los estados</option>' + ESTADOS.filter(e => e !== 'Disponible' || veTodo()).map(e => `<option ${e === F.est ? 'selected' : ''}>${e}</option>`).join('');
 }
 function pintar() {
   const k = (e) => ({ n: cuenta(e), e });
-  const tiles = gerente() ? ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido', 'Anulado'] : ['Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido'];
+  const tiles = veTodo() ? ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido', 'Anulado'] : ['Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido'];
   const nom = { Disponible: 'En gerencia', Vacío: 'Vacíos', Completo: 'Completos', Cargado: 'Cargados', Recibido: 'Recibidos', Rendido: 'Rendidos', Anulado: 'Anulados' };
   $('kp').style.gridTemplateColumns = 'repeat(' + (tiles.length > 5 ? 4 : 3) + ',1fr)';
   $('kp').innerHTML = tiles.map(e => `<button type="button" data-e="${e}" aria-pressed="${F.est === e}"><b>${cuenta(e)}</b><span>${nom[e]}</span></button>`).join('');
   const calle = cuenta('Vacío') + cuenta('Completo') + cuenta('Cargado') + cuenta('Recibido');
-  $('calle').innerHTML = `<b>En la calle: ${calle}</b> contrato${calle === 1 ? '' : 's'} con vendedores o jefes que todavía no se rindieron (${cuenta('Vacío')} vacíos · ${cuenta('Completo')} completos · ${cuenta('Cargado')} cargados · ${cuenta('Recibido')} recibidos por jefes, a rendir a gerencia).` + (gerente() ? ` <b>En gerencia: ${cuenta('Disponible')}</b> sin repartir.` : '') + (debido() ? ` <b>Sellado a rendir: ${X5.money(debido())}</b>.` : '');
-  if (supervisa()) {
+  $('calle').innerHTML = `<b>En la calle: ${calle}</b> contrato${calle === 1 ? '' : 's'} con vendedores o jefes que todavía no se rindieron (${cuenta('Vacío')} vacíos · ${cuenta('Completo')} completos · ${cuenta('Cargado')} cargados · ${cuenta('Recibido')} recibidos por jefes, a rendir a gerencia).` + (veTodo() ? ` <b>En gerencia: ${cuenta('Disponible')}</b> sin repartir.` : '') + (debido() ? ` <b>Sellado a rendir: ${X5.money(debido())}</b>.` : '');
+  if (supervisa() || control()) {
     const por = {}; D.contratos.filter(c => c.responsable && !['Anulado'].includes(c.estado)).forEach(c => { const p = por[c.responsable] = por[c.responsable] || { Vacío: 0, Completo: 0, Cargado: 0, Recibido: 0, Rendido: 0 }; if (p[c.estado] !== undefined) p[c.estado]++; });
     const filas = Object.keys(por).sort(natural), rol = {}; (D.personal || []).forEach(x => { rol[x.nombre] = x.rol; });
     const tarj = (n, p, tot, sd, act) => `<button type="button" class="tj" data-r="${esc(n)}" aria-pressed="${act}"><div class="h"><b>${esc(n)}</b><span>${rol[n] ? esc(rol[n]) + ' · ' : ''}${tot} contrato${tot === 1 ? '' : 's'}</span></div>
@@ -273,7 +273,7 @@ function lista() {
   document.querySelectorAll('[data-v]').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === vista));
   const el = l.filter(elegible); $('b-eleg').hidden = vista !== 'rejilla' || !el.length; $('b-eleg').textContent = eleg ? 'Listo' : 'Elegir varios';
   $('b-todos').hidden = !el.length || (vista === 'rejilla' && !eleg); $('b-todos').textContent = 'Elegir todos (' + el.length + ')';
-  $('ley').hidden = vista !== 'rejilla'; $('ley').innerHTML = ESTADOS.filter(e => e !== 'Disponible' || gerente()).map(e => `<span><i class="e-${e}"></i>${e === 'Disponible' ? 'En gerencia' : e}</span>`).join('');
+  $('ley').hidden = vista !== 'rejilla'; $('ley').innerHTML = ESTADOS.filter(e => e !== 'Disponible' || veTodo()).map(e => `<span><i class="e-${e}"></i>${e === 'Disponible' ? 'En gerencia' : e}</span>`).join('');
   if (vista === 'rejilla') {
     $('lista').innerHTML = ver.length ? '<div class="rej">' + ver.map(c => `<button type="button" class="tl e-${esc(c.estado)} ${sel.has(c.id) ? 'sel-on' : ''}" data-t="${esc(c.id)}" aria-label="Contrato ${esc(c.numero)}, ${esc(c.estado)}${c.responsable ? ', ' + esc(c.responsable) : ''}"><b>${esc(c.numero)}</b><small title="${esc(c.responsable || 'En gerencia')}">${c.responsable ? esc(iniciales(c.responsable)) : 'gerencia'}</small></button>`).join('') + '</div>' : '<div class="empty">No hay contratos con esos filtros.</div>';
     $('b-mas').hidden = true; return;
@@ -380,7 +380,7 @@ function detalle(id) {
   dialogo('Contrato N.º ' + c.numero, `<div style="margin-bottom:10px"><span class="chip e-${esc(c.estado)}">${esc(c.estado)}</span></div>
     ${fila('Responsable', c.responsable || 'En gerencia')}${fila('Cliente', c.cliente)}${fila('Plan', c.plan_codigo ? ((D.precios || []).find(p => p.codigo === c.plan_codigo) || {}).vehiculo ? c.plan_codigo + ' · ' + (D.precios.find(p => p.codigo === c.plan_codigo).vehiculo) : c.plan_codigo : '')}${fila('Cuota', c.plan_cuota ? X5.money(c.plan_cuota) : '')}${fila('Sellado a rendir', c.sellado_debido && c.estado !== 'Rendido' ? X5.money(c.sellado_debido) : '')}${fila('Asignado', c.fecha_asignacion ? fch(c.fecha_asignacion) + (c.asignado_por ? ' por ' + c.asignado_por : '') : '')}${fila('Estado desde', fch(c.fecha_estado))}
     ${c.estado === 'Rendido' ? fila('Sellado', [c.sellado_forma, c.sellado_ref].filter(Boolean).join(' · ')) + fila('Monto del sellado', c.sellado_monto ? X5.money(c.sellado_monto) : '') : ''}${fila('Notas', c.notas)}
-    <div class="opts" style="margin-top:12px">${acc}</div><div id="d-r"></div>`);
+    <div class="opts" style="margin-top:12px">${control() ? '<div class="nota">Cuenta de solo lectura: se puede mirar, no modificar.</div>' : acc}</div><div id="d-r"></div>`);
   dlg.querySelectorAll('[data-d]').forEach(b => b.onclick = () => { const a = b.dataset.d;
     if (a === 'asignar') return dAsignar([id]); if (a === 'rendir') return dRendir([id]); if (a === 'anular') return dAnular([id]); if (a === 'eliminar') return dEliminar([id]);
     if (a === 'retro') return cambiarEstado([id], b.dataset.e);

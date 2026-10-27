@@ -462,6 +462,7 @@ async function sincronizar(manual = false) {
     if (manual) pintarSync();
     const r = await apiPost({ action: 'datos', token });
     if (r && r.error === 'sesion_vencida') return sesionVencida();
+    if (r && r.error === 'sin_permiso' && user && user.rol === 'Control') { location.href = 'contratos.html'; return false; } // cuenta de solo lectura: va al gestor de contratos
     if (!r || !Array.isArray(r.agenda)) throw new Error('respuesta');
     if (r.token_nuevo && token) { token = r.token_nuevo; store.set('x5_session', { user, token }); } // la sesión se renueva sola
     db = aplicarPendientes({ agenda: r.agenda || [], leads: r.leads || [], personal: r.personal || [], flota: r.flota || [] });
@@ -500,7 +501,9 @@ async function iniciarSesion() {
   const btn = $('btn-login'); btn.disabled = true; btn.textContent = 'Verificando…';
   try {
     const r = await apiPost({ action: 'login', nombre, clave });
-    if (r && r.ok && r.token) {
+    if (r && r.ok && r.token && r.usuario && r.usuario.rol === 'Control') {
+      throw new Error('Esta cuenta es solo para el Control de contratos.');
+    } else if (r && r.ok && r.token) {
       token = r.token; user = r.usuario;
     } else if (r && r.ok === false) {
       const msg = { clave_incorrecta: 'Clave incorrecta', demasiados_intentos: 'Demasiados intentos. Esperá 10 minutos y probá de nuevo.' };

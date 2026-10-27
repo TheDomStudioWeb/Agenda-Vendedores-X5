@@ -17,6 +17,8 @@ Pantalla: **Hub → Ventas → Control de contratos** (`contratos.html`). Es sol
 - **Jefe de Ventas / Referente**: ve lo suyo y lo de su equipo (según Personal.reporta_a); reparte a su equipo, marca **Recibido** (no Rendido) y corrige.
 - **Asesor**: ve sus contratos; marca Completo y Cargado.
 
+**Cuenta de solo lectura (rol «Control»):** para quien envía los contratos a sucursal. Ve todos los contratos, equipos y estados (incluidos los que están en gerencia), pero no puede modificar nada. Tampoco puede entrar al Mini CRM: si lo intenta, la pantalla lo deriva al Control de contratos. Se crea en la hoja «Personal» con rol «Control».
+
 ## Flujo
 1. Gerencia carga los números disponibles (lista o rangos: `1001-1050`).
 2. Gerencia asigna a jefes; los jefes reparten a vendedores (tildar contratos → "Asignar a…"). Se puede devolver a gerencia.
