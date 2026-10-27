@@ -1,6 +1,40 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-27T21:28:33.722Z",
+   "tipo": "nuevo",
+   "id": "maipu-182293",
+   "auto": "Volkswagen Gol 2013",
+   "precio": 13900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-27T21:28:33.722Z",
+   "tipo": "nuevo",
+   "id": "maipu-182267",
+   "auto": "Fiat Cronos 2023",
+   "precio": 22500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-27T21:28:33.722Z",
+   "tipo": "precio",
+   "id": "maipu-182021",
+   "auto": "Renault Captur 2017",
+   "antes": 20000000,
+   "precio": 21500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-27T21:28:33.722Z",
+   "tipo": "precio",
+   "id": "maipu-181495",
+   "auto": "BMW X2 2020",
+   "antes": 62000000,
+   "precio": 63700000,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-10-27T15:59:56.420Z",
    "tipo": "nuevo",
    "id": "maipu-182237",

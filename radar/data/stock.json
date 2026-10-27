@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-27T15:59:56.420Z",
+ "actualizado": "2026-10-27T21:28:33.722Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 83,
-   "revisado": "2026-10-27T15:59:56.420Z",
-   "actualizado": "2026-10-27T15:59:56.420Z"
+   "autos": 85,
+   "revisado": "2026-10-27T21:28:33.722Z",
+   "actualizado": "2026-10-27T21:28:33.722Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,247 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 242,
-   "revisado": "2026-10-27T15:59:56.420Z",
-   "actualizado": "2026-10-27T15:59:56.420Z"
+   "revisado": "2026-10-27T21:28:33.722Z",
+   "actualizado": "2026-10-27T21:28:33.722Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-182293",
+   "tipo": "auto",
+   "marca": "Volkswagen",
+   "modelo": "Gol",
+   "version": "Trend 1.6 Gp",
+   "anio": 2013,
+   "km": 132800,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 13900000,
+   "precio_sin_imp": 10981000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3159-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3160-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3162-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3163-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3158-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3161-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3157-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3155-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3151-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3147-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3148-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3149-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3156-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3150-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3154-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3152-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3153-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/27/gol/",
+   "publicado": "2026-10-27T17:16:18",
+   "modificado": "2026-10-27T17:25:12",
+   "agencia": "maipu",
+   "alta": "2026-10-27T21:28:33.722Z",
+   "guia": {
+    "min": 6947000,
+    "med": 9799000,
+    "max": 11796000,
+    "n": 26,
+    "mejor": {
+     "version": "GOL TREND 5P 1,6 GP PACK I 2014",
+     "valor": 9986000,
+     "coincidencias": 2,
+     "empate": 17
+    },
+    "versiones": [
+     [
+      "GOL 3P 1,4L POWER 4G",
+      6947000
+     ],
+     [
+      "GOL 5P 1,4L POWER 4G",
+      7526000
+     ],
+     [
+      "GOL COUNTRY 5P 1,4 POWER 4G",
+      7747000
+     ],
+     [
+      "GOL 3P 1,4L POWER 4G DH A/C",
+      7815000
+     ],
+     [
+      "GOL TREND 3P 1,6 GP SERIE",
+      8114000
+     ],
+     [
+      "GOL COUNTRY 5P 1,4 POWER 4G DH A/C",
+      8358000
+     ],
+     [
+      "GOL TREND 3P 1,6 GP SERIE ABG ABS 2014",
+      8426000
+     ],
+     [
+      "GOL TREND 5P 1,6 GP SERIE",
+      8426000
+     ],
+     [
+      "GOL 5P 1,4L POWER 4G DH A/C",
+      8452000
+     ],
+     [
+      "GOL TREND 5P 1,6 GP SERIE ABG ABS 2014",
+      9050000
+     ],
+     [
+      "GOL TREND 3P 1,6 GP PACK I 2014",
+      9362000
+     ],
+     [
+      "GOL TREND 5P 1,6 GP PACK I",
+      9362000
+     ],
+     [
+      "GOL TREND 3P 1,6 GP PACK I ABG ABS 2014",
+      9674000
+     ],
+     [
+      "GOL TREND 5P 1,6 GP PACK II",
+      9799000
+     ],
+     [
+      "GOL TREND 5P 1,6 PACK III",
+      9861000
+     ],
+     [
+      "GOL TREND 5P 1,6 PACK III ABS",
+      9986000
+     ],
+     [
+      "GOL TREND 5P 1,6 GP PACK I 2014",
+      9986000
+     ],
+     [
+      "GOL TREND 3P 1,6 GP PACK II 2014",
+      10111000
+     ],
+     [
+      "GOL TREND 5P 1,6 GP PACK III",
+      10236000
+     ],
+     [
+      "GOL TREND 5P 1,6 GP PACK I ABG ABS 2014",
+      10298000
+     ],
+     [
+      "GOL TREND 3P 1,6 GP PACK III 2014",
+      10548000
+     ],
+     [
+      "GOL TREND 5P 1,6 PACK III I MOTION",
+      10610000
+     ],
+     [
+      "GOL TREND 5P 1,6 GP PACK II 2014",
+      10735000
+     ],
+     [
+      "GOL TREND 5P 1,6 GP PACK III I MOTTION",
+      10860000
+     ],
+     [
+      "GOL TREND 5P 1,6 GP PACK III 2014",
+      11172000
+     ],
+     [
+      "GOL TREND 5P 1,6 GP PACK III I MOTTION 2014",
+      11796000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-182267",
+   "tipo": "auto",
+   "marca": "Fiat",
+   "modelo": "Cronos",
+   "version": "Drive 1.3 Gse Bz",
+   "anio": 2023,
+   "km": 73990,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Gris",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 22500000,
+   "precio_sin_imp": 17775000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3142-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3143-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3145-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3146-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3141-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3144-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3140-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3136-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3134-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3130-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3131-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3132-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3139-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3133-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3138-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3135-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3137-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/27/cronos/",
+   "publicado": "2026-10-27T15:33:07",
+   "modificado": "2026-10-27T15:50:42",
+   "agencia": "maipu",
+   "alta": "2026-10-27T21:28:33.722Z",
+   "guia": {
+    "min": 17162000,
+    "med": 18938000,
+    "max": 20659000,
+    "n": 6,
+    "mejor": {
+     "version": "CRONOS 4P 1,3 DRIVE GSE PACK PLUS 2023",
+     "valor": 18938000,
+     "coincidencias": 3,
+     "empate": 3
+    },
+    "versiones": [
+     [
+      "CRONOS 4P 1,3 ATTRACTIVE GSE 2022",
+      17162000
+     ],
+     [
+      "CRONOS 4P 1,3 LIKE GSE 2023",
+      17677000
+     ],
+     [
+      "CRONOS 4P 1,3 DRIVE GSE 2022",
+      18762000
+     ],
+     [
+      "CRONOS 4P 1,3 DRIVE GSE PACK PLUS 2023",
+      18938000
+     ],
+     [
+      "CRONOS 4P 1,3 DRIVE GSE PACK S-DESING 2022",
+      19474000
+     ],
+     [
+      "CRONOS 4P 1,3 STILE GSE 2023",
+      20659000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-182237",
    "tipo": "auto",
@@ -473,8 +709,8 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 20000000,
-   "precio_sin_imp": 15800000,
+   "precio": 21500000,
+   "precio_sin_imp": 17768595,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2926-1600x1200-1.jpg",
@@ -497,7 +733,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/23/captur/",
    "publicado": "2026-10-23T10:20:16",
-   "modificado": "2026-10-23T10:27:48",
+   "modificado": "2026-10-27T17:09:05",
    "agencia": "maipu",
    "alta": "2026-10-23T15:31:22.702Z",
    "guia": {
@@ -1268,8 +1504,8 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS",
-   "precio": 62000000,
-   "precio_sin_imp": 48980000,
+   "precio": 63700000,
+   "precio_sin_imp": 52644600,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2564-1600x1200-1.jpg",
@@ -1292,7 +1528,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/19/x2/",
    "publicado": "2026-10-19T09:19:28",
-   "modificado": "2026-10-19T09:27:54",
+   "modificado": "2026-10-27T15:19:18",
    "agencia": "maipu",
    "alta": "2026-10-19T17:08:38.568Z",
    "guia": {
@@ -5662,7 +5898,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Plata",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Etios 2021 Automática 50230 22900000 Precio sugerido al público 18091000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2019 Automática 101480 30500000 Precio sugerido al público 24095000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Pulse 2023 Automatica 74150 26000000 Precio sugerido al público 21487600 Precio sin impuestos nacionales + Precio a confirmar oportunidades Virtus 2021 Automatica 93040 27000000 Precio sugerido al público 22314050 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados March 2017 Manual 114180 14600000 Precio sugerido al público 11534000 Precio sin impuestos nacionales + Precio a confirmar destacados C3 2018 Automatica 101955 15000000 Precio sugerido al público 11850000 Precio sin impuestos nacionales + Precio a confirmar destacados March 2019 Manual 95320 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar destacados Logan 2017 Manual 110055 15000000 Precio sugerido al público 11850000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 16180000,
    "precio_sin_imp": 12782200,
    "moneda": "ARS",
@@ -5743,7 +5979,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Etios 2021 Automática 50230 22900000 Precio sugerido al público 18091000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2019 Automática 101480 30500000 Precio sugerido al público 24095000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Pulse 2023 Automatica 74150 26000000 Precio sugerido al público 21487600 Precio sin impuestos nacionales + Precio a confirmar oportunidades Virtus 2021 Automatica 93040 27000000 Precio sugerido al público 22314050 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados March 2017 Manual 114180 14600000 Precio sugerido al público 11534000 Precio sin impuestos nacionales + Precio a confirmar destacados C3 2018 Automatica 101955 15000000 Precio sugerido al público 11850000 Precio sin impuestos nacionales + Precio a confirmar destacados March 2019 Manual 95320 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar destacados Logan 2017 Manual 110055 15000000 Precio sugerido al público 11850000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -5815,7 +6051,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Etios 2021 Automática 50230 22900000 Precio sugerido al público 18091000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2019 Automática 101480 30500000 Precio sugerido al público 24095000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Pulse 2023 Automatica 74150 26000000 Precio sugerido al público 21487600 Precio sin impuestos nacionales + Precio a confirmar oportunidades Virtus 2021 Automatica 93040 27000000 Precio sugerido al público 22314050 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados March 2017 Manual 114180 14600000 Precio sugerido al público 11534000 Precio sin impuestos nacionales + Precio a confirmar destacados C3 2018 Automatica 101955 15000000 Precio sugerido al público 11850000 Precio sin impuestos nacionales + Precio a confirmar destacados March 2019 Manual 95320 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar destacados Logan 2017 Manual 110055 15000000 Precio sugerido al público 11850000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -5872,7 +6108,7 @@
    "combustible": "Nafta",
    "caja": "Manual",
    "color": "Rojo",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Etios 2021 Automática 50230 22900000 Precio sugerido al público 18091000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2019 Automática 101480 30500000 Precio sugerido al público 24095000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Pulse 2023 Automatica 74150 26000000 Precio sugerido al público 21487600 Precio sin impuestos nacionales + Precio a confirmar oportunidades Virtus 2021 Automatica 93040 27000000 Precio sugerido al público 22314050 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados March 2017 Manual 114180 14600000 Precio sugerido al público 11534000 Precio sin impuestos nacionales + Precio a confirmar destacados C3 2018 Automatica 101955 15000000 Precio sugerido al público 11850000 Precio sin impuestos nacionales + Precio a confirmar destacados March 2019 Manual 95320 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar destacados Logan 2017 Manual 110055 15000000 Precio sugerido al público 11850000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 11110000,
    "precio_sin_imp": 8776900,
    "moneda": "ARS",
@@ -6219,7 +6455,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Etios 2021 Automática 50230 22900000 Precio sugerido al público 18091000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2019 Automática 101480 30500000 Precio sugerido al público 24095000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Pulse 2023 Automatica 74150 26000000 Precio sugerido al público 21487600 Precio sin impuestos nacionales + Precio a confirmar oportunidades Virtus 2021 Automatica 93040 27000000 Precio sugerido al público 22314050 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados March 2017 Manual 114180 14600000 Precio sugerido al público 11534000 Precio sin impuestos nacionales + Precio a confirmar destacados C3 2018 Automatica 101955 15000000 Precio sugerido al público 11850000 Precio sin impuestos nacionales + Precio a confirmar destacados March 2019 Manual 95320 17500000 Precio sugerido al público 13825000 Precio sin impuestos nacionales + Precio a confirmar destacados Logan 2017 Manual 110055 15000000 Precio sugerido al público 11850000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",
