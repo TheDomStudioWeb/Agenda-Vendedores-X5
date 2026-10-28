@@ -1,6 +1,155 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "nuevo",
+   "id": "maipu-182422",
+   "auto": "BMW M235I 2015",
+   "precio": 43000,
+   "moneda": "USD"
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "nuevo",
+   "id": "maipu-182395",
+   "auto": "Chevrolet Tracker 2018",
+   "precio": 18500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "nuevo",
+   "id": "maipu-182371",
+   "auto": "Nissan Sentra 2025",
+   "precio": 41000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "nuevo",
+   "id": "maipu-182343",
+   "auto": "Chevrolet Spark 2026",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "baja",
+   "id": "maipu-182078",
+   "auto": "Ford Ranger 2025",
+   "precio": 58000000,
+   "moneda": "ARS",
+   "dias": 4
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "baja",
+   "id": "maipu-181444",
+   "auto": "Toyota Etios 2019",
+   "precio": 19000000,
+   "moneda": "ARS",
+   "dias": 12
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "baja",
+   "id": "maipu-181420",
+   "auto": "Ford Ranger 2025",
+   "precio": null,
+   "moneda": "ARS",
+   "dias": 12
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "baja",
+   "id": "maipu-181396",
+   "auto": "Volkswagen Polo 2021",
+   "precio": 30000000,
+   "moneda": "ARS",
+   "dias": 12
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "baja",
+   "id": "maipu-181319",
+   "auto": "Chevrolet Tracker 2023",
+   "precio": 29800000,
+   "moneda": "ARS",
+   "dias": 13
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "baja",
+   "id": "maipu-180910",
+   "auto": "Volkswagen Amarok 2025",
+   "precio": null,
+   "moneda": "ARS",
+   "dias": 20
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "baja",
+   "id": "maipu-180616",
+   "auto": "Toyota Etios 2021",
+   "precio": 21000000,
+   "moneda": "ARS",
+   "dias": 22
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "baja",
+   "id": "maipu-179464",
+   "auto": "Volkswagen Suran 2015",
+   "precio": 16000000,
+   "moneda": "ARS",
+   "dias": 29
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "baja",
+   "id": "maipu-179415",
+   "auto": "Toyota Corolla 2025",
+   "precio": 35000000,
+   "moneda": "ARS",
+   "dias": 29
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "baja",
+   "id": "maipu-178602",
+   "auto": "Renault Captur 2017",
+   "precio": 19500000,
+   "moneda": "ARS",
+   "dias": 38
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "baja",
+   "id": "maipu-177016",
+   "auto": "Fiat Pulse 2023",
+   "precio": 26000000,
+   "moneda": "ARS",
+   "dias": 51
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "baja",
+   "id": "maipu-167218",
+   "auto": "Ford Focus 2016",
+   "precio": 16180000,
+   "moneda": "ARS",
+   "dias": 148
+  },
+  {
+   "fecha": "2026-10-28T21:53:05.243Z",
+   "tipo": "baja",
+   "id": "maipu-165632",
+   "auto": "Fiat Palio 2014",
+   "precio": 11110000,
+   "moneda": "ARS",
+   "dias": 162
+  },
+  {
    "fecha": "2026-10-28T16:48:48.357Z",
    "tipo": "nuevo",
    "id": "maipu-182318",

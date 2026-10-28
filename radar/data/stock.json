@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-28T16:48:48.357Z",
+ "actualizado": "2026-10-28T21:53:05.243Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 86,
-   "revisado": "2026-10-28T16:48:48.357Z",
-   "actualizado": "2026-10-28T16:48:48.357Z"
+   "autos": 77,
+   "revisado": "2026-10-28T21:53:05.243Z",
+   "actualizado": "2026-10-28T21:53:05.243Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,237 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 240,
-   "revisado": "2026-10-28T16:48:48.357Z",
-   "actualizado": "2026-10-28T16:48:48.357Z"
+   "revisado": "2026-10-28T21:53:05.243Z",
+   "actualizado": "2026-10-28T21:53:05.243Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-182422",
+   "tipo": "auto",
+   "marca": "BMW",
+   "modelo": "M235I",
+   "version": "",
+   "anio": 2015,
+   "km": 4965,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS",
+   "precio": 43000,
+   "precio_sin_imp": 35540,
+   "moneda": "USD",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3247-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3248-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3250-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3251-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3246-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3249-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3245-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3243-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3239-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3235-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3236-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3237-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3244-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3238-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3241-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3240-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3242-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/28/m235i/",
+   "publicado": "2026-10-28T17:26:35",
+   "modificado": "2026-10-28T17:52:12",
+   "agencia": "maipu",
+   "alta": "2026-10-28T21:53:05.243Z",
+   "guia": null
+  },
+  {
+   "id": "maipu-182395",
+   "tipo": "auto",
+   "marca": "Chevrolet",
+   "modelo": "Tracker",
+   "version": "Awd Premier +",
+   "anio": 2018,
+   "km": 71865,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
+   "precio": 18500000,
+   "precio_sin_imp": 14615000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3213-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3214-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3216-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3217-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3211-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3212-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3210-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3206-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3204-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3200-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3201-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3202-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3207-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3203-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3209-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3205-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3208-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/28/tracker/",
+   "publicado": "2026-10-28T15:54:02",
+   "modificado": "2026-10-28T17:33:06",
+   "agencia": "maipu",
+   "alta": "2026-10-28T21:53:05.243Z",
+   "guia": {
+    "min": 17747000,
+    "med": 18512000,
+    "max": 18512000,
+    "n": 2,
+    "mejor": {
+     "version": "TRACKER 5P 1,8 LTZ + AT 4X4 AWD 2017",
+     "valor": 18512000,
+     "coincidencias": 1,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "TRACKER 5P 1,8 LTZ AT 4X4 AWD 2017",
+      17747000
+     ],
+     [
+      "TRACKER 5P 1,8 LTZ + AT 4X4 AWD 2017",
+      18512000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-182371",
+   "tipo": "auto",
+   "marca": "Nissan",
+   "modelo": "Sentra",
+   "version": "2.0 Exclusive Cvt",
+   "anio": 2025,
+   "km": 39425,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
+   "precio": 41000000,
+   "precio_sin_imp": 32390000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3233-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3234-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3232-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3231-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3229-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3230-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3228-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3224-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3222-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3218-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3219-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3220-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3227-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3221-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3226-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3223-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3225-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/28/sentra-2/",
+   "publicado": "2026-10-28T15:37:45",
+   "modificado": "2026-10-28T15:49:08",
+   "agencia": "maipu",
+   "alta": "2026-10-28T21:53:05.243Z",
+   "guia": {
+    "min": 35052000,
+    "med": 36305000,
+    "max": 36550000,
+    "n": 4,
+    "mejor": {
+     "version": "SENTRA 4P 2,0 EXCLUSIVE CVT",
+     "valor": 36305000,
+     "coincidencias": 3,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "SENTRA 4P 2,0 ADVANCE CVT",
+      35052000
+     ],
+     [
+      "SENTRA 4P 2,0 SR CVT",
+      36305000
+     ],
+     [
+      "SENTRA 4P 2,0 EXCLUSIVE CVT",
+      36305000
+     ],
+     [
+      "SENTRA 4P 2,0 SR CVT NIGHTFALL",
+      36550000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-182343",
+   "tipo": "auto",
+   "marca": "Chevrolet",
+   "modelo": "Spark",
+   "version": "Euv Activ",
+   "anio": 2026,
+   "km": 4165,
+   "combustible": "Eléctrico",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS",
+   "precio": null,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3195-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3196-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3198-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3199-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3194-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3197-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3193-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3190-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3186-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3182-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3183-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3184-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3191-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3185-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3189-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3187-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3188-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/28/spark/",
+   "publicado": "2026-10-28T14:41:22",
+   "modificado": "2026-10-28T14:47:01",
+   "agencia": "maipu",
+   "alta": "2026-10-28T21:53:05.243Z",
+   "guia": {
+    "min": 37893000,
+    "med": 37893000,
+    "max": 37893000,
+    "n": 1,
+    "mejor": null,
+    "versiones": [
+     [
+      "SPARK EUV 5P ELECTRICO",
+      37893000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-182318",
    "tipo": "auto",
@@ -635,84 +861,6 @@
      [
       "TIGUAN ALLSPACE 5P 2,0 TSI HIGHLINE DSG7 4MOTION",
       38507000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "maipu-182078",
-   "tipo": "auto",
-   "marca": "Ford",
-   "modelo": "Ranger",
-   "version": "Dc Xlt 2.0L Bit 4X4 D",
-   "anio": 2025,
-   "km": 6735,
-   "combustible": "Diésel",
-   "caja": "Automática",
-   "color": "Plata",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 58000000,
-   "precio_sin_imp": 51910000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3011-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3012-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3016-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3017-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3010-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3013-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3009-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3015-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3007-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3000-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3001-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3002-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3008-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3003-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3006-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3004-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3005-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/10/23/ranger/",
-   "publicado": "2026-10-23T17:54:28",
-   "modificado": "2026-10-23T17:58:58",
-   "agencia": "maipu",
-   "alta": "2026-10-24T14:06:53.082Z",
-   "guia": {
-    "min": 46120000,
-    "med": 58075000,
-    "max": 85646000,
-    "n": 6,
-    "mejor": {
-     "version": "RANGER PICK - UP D/C 2,0 BI TD XLT 4X4 10AT 2023",
-     "valor": 52220000,
-     "coincidencias": 2,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "RANGER PICK - UP D/C 2,0 BI TD XLT 4X2 10AT 2023",
-      46120000
-     ],
-     [
-      "RANGER PICK - UP D/C 3,0 TD V6 LION XLS 4X4 10AT 2023",
-      47816000
-     ],
-     [
-      "RANGER PICK - UP D/C 2,0 BI TD XLT 4X4 10AT 2023",
-      52220000
-     ],
-     [
-      "RANGER PICK - UP D/C 2,0 BI TD LTD 4X4 10AT 2022",
-      58075000
-     ],
-     [
-      "RANGER PICK - UP D/C 3,0 TD V6 LION LTD + 4X4 10AT 2023",
-      64500000
-     ],
-     [
-      "RANGER PICK - UP D/C 3,0 T V6 RAPTOR 2023",
-      85646000
      ]
     ]
    }
@@ -1747,228 +1895,6 @@
    }
   },
   {
-   "id": "maipu-181444",
-   "tipo": "auto",
-   "marca": "Toyota",
-   "modelo": "Etios",
-   "version": "Xls 1.5 Mt",
-   "anio": 2019,
-   "km": 93950,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Gris",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 19000000,
-   "precio_sin_imp": 15010000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2530-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2531-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2533-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2534-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2529-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2532-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2528-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2522-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2526-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2518-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2519-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2520-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2527-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2521-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2525-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2523-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2524-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/10/16/etios-2/",
-   "publicado": "2026-10-16T11:18:52",
-   "modificado": "2026-10-16T11:33:37",
-   "agencia": "maipu",
-   "alta": "2026-10-16T14:59:17.046Z",
-   "guia": {
-    "min": 14831000,
-    "med": 16636000,
-    "max": 17174000,
-    "n": 4,
-    "mejor": {
-     "version": "ETIOS 4P 1,5 XLS 6MT 2018",
-     "valor": 17174000,
-     "coincidencias": 2,
-     "empate": 2
-    },
-    "versiones": [
-     [
-      "ETIOS 5P 1,5 X 6MT 2018",
-      14831000
-     ],
-     [
-      "ETIOS 4P 1,5 X 6MT 2018",
-      15509000
-     ],
-     [
-      "ETIOS 5P 1,5 XLS 6MT 2018",
-      16636000
-     ],
-     [
-      "ETIOS 4P 1,5 XLS 6MT 2018",
-      17174000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "maipu-181420",
-   "tipo": "auto",
-   "marca": "Ford",
-   "modelo": "Ranger",
-   "version": "Dc Xl 2.0L T 4X2 D",
-   "anio": 2025,
-   "km": 52275,
-   "combustible": "Diésel",
-   "caja": "Manual",
-   "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
-   "precio": null,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2514-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2517-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2516-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2515-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2513-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2512-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2507-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2511-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2505-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2501-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2502-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2503-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2510-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2504-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2509-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2506-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2508-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/10/16/ranger-4/",
-   "publicado": "2026-10-16T10:54:20",
-   "modificado": "2026-10-16T11:16:52",
-   "agencia": "maipu",
-   "alta": "2026-10-16T14:59:17.046Z",
-   "guia": {
-    "min": 32324000,
-    "med": 37477000,
-    "max": 46120000,
-    "n": 4,
-    "mejor": {
-     "version": "RANGER PICK - UP D/C 2,0 TD XL 4X2 6MT 2023",
-     "valor": 32324000,
-     "coincidencias": 2,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "RANGER PICK - UP D/C 2,0 TD XL 4X2 6MT 2023",
-      32324000
-     ],
-     [
-      "RANGER PICK - UP D/C 2,0 TD XL 4X4 6MT 2023",
-      34442000
-     ],
-     [
-      "RANGER PICK - UP D/C 2,0 TD XLS 4X2 6MT 2023",
-      37477000
-     ],
-     [
-      "RANGER PICK - UP D/C 2,0 BI TD BLACK 4X4 6MT",
-      46120000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "maipu-181396",
-   "tipo": "auto",
-   "marca": "Volkswagen",
-   "modelo": "Polo",
-   "version": "Gts 1.4 Tsi",
-   "anio": 2021,
-   "km": 90440,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 30000000,
-   "precio_sin_imp": 23700000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2496-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2497-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2499-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2500-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2495-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2498-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2494-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2492-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2488-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2484-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2485-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2486-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2493-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2487-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2491-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2489-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2490-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/10/16/polo/",
-   "publicado": "2026-10-16T10:21:44",
-   "modificado": "2026-10-16T10:50:39",
-   "agencia": "maipu",
-   "alta": "2026-10-16T14:59:17.046Z",
-   "guia": {
-    "min": 19132000,
-    "med": 23244000,
-    "max": 31992000,
-    "n": 7,
-    "mejor": {
-     "version": "POLO 5P 1,4 TSI GTS TIPT",
-     "valor": 31992000,
-     "coincidencias": 3,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "POLO 5P 1,6 MSI TRENDLINE TIPT 2020",
-      19132000
-     ],
-     [
-      "POLO 5P 1,6 MSI TIPT 2021",
-      20088000
-     ],
-     [
-      "POLO 5P 1,6 MSI COMFORTLINE PLUS TIPT 2020",
-      20956000
-     ],
-     [
-      "POLO 5P 1,6 MSI HIGHLINE TIPT 2020",
-      23244000
-     ],
-     [
-      "POLO 5P 1,6 MSI HIGHLINE TIPT 2021",
-      24406000
-     ],
-     [
-      "POLO 5P 1,6 MSI HIGHLINE TIPT 2022",
-      24847000
-     ],
-     [
-      "POLO 5P 1,4 TSI GTS TIPT",
-      31992000
-     ]
-    ]
-   }
-  },
-  {
    "id": "maipu-181343",
    "tipo": "auto",
    "marca": "Renault",
@@ -2026,84 +1952,6 @@
      [
       "KWID 5P 1,0 ICONIC OUTSIDER 2025",
       19809000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "maipu-181319",
-   "tipo": "auto",
-   "marca": "Chevrolet",
-   "modelo": "Tracker",
-   "version": "1.2T Premier",
-   "anio": 2023,
-   "km": 80430,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Negro",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 29800000,
-   "precio_sin_imp": 23542000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2445-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2446-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2448-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2449-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2444-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2447-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2443-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2441-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2437-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2433-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2434-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2435-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2442-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2436-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2440-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2438-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2439-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/10/15/tracker-2/",
-   "publicado": "2026-10-15T15:57:51",
-   "modificado": "2026-10-15T16:07:51",
-   "agencia": "maipu",
-   "alta": "2026-10-15T20:31:03.523Z",
-   "guia": {
-    "min": 22249000,
-    "med": 24200000,
-    "max": 27829000,
-    "n": 6,
-    "mejor": {
-     "version": "TRACKER 5P 1,2 T 6AT PREMIER 2024",
-     "valor": 27829000,
-     "coincidencias": 1,
-     "empate": 2
-    },
-    "versiones": [
-     [
-      "TRACKER 5P 1,2 T 6AT",
-      22249000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT 2024",
-      22917000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT LTZ",
-      23436000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT LTZ 2024",
-      24200000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT PREMIER",
-      27024000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT PREMIER 2024",
-      27829000
      ]
     ]
    }
@@ -2399,8 +2247,8 @@
    "caja": "Automática",
    "color": "Naranja",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
-   "precio": null,
-   "precio_sin_imp": null,
+   "precio": 65000000,
+   "precio_sin_imp": 58175000,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2286-1600x1200-1.jpg",
@@ -2423,7 +2271,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/13/ranger-3/",
    "publicado": "2026-10-13T11:18:53",
-   "modificado": "2026-10-13T11:23:05",
+   "modificado": "2026-10-28T15:08:34",
    "agencia": "maipu",
    "alta": "2026-10-13T11:18:53",
    "guia": {
@@ -2688,88 +2536,6 @@
    }
   },
   {
-   "id": "maipu-180910",
-   "tipo": "auto",
-   "marca": "Volkswagen",
-   "modelo": "Amarok",
-   "version": "Trendline Tdi 4X2 G2",
-   "anio": 2025,
-   "km": 22500,
-   "combustible": "Diésel",
-   "caja": "Manual",
-   "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": null,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2160-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2161-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2163-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2164-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2159-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2162-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2158-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2156-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2152-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2148-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2149-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2150-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2157-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2151-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2155-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2153-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2154-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/10/08/amarok-4/",
-   "publicado": "2026-10-08T18:00:58",
-   "modificado": "2026-10-08T18:03:31",
-   "agencia": "maipu",
-   "alta": "2026-10-08T18:00:58",
-   "guia": {
-    "min": 36490000,
-    "med": 40488000,
-    "max": 44786000,
-    "n": 7,
-    "mejor": {
-     "version": "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 COMF G2 2025",
-     "valor": 40488000,
-     "coincidencias": 3,
-     "empate": 5
-    },
-    "versiones": [
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 TREND G2 2025",
-      36490000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 TREND G2 + PACK SAFE 2025",
-      37367000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X4 TREND G2 2025",
-      39971000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 COMF G2 2025",
-      40488000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 COMF G2 + PACK SAFE 2025",
-      41365000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X4 TREND G2 + PACK SAFE 2025",
-      41978000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 HIGH G2 2025",
-      44786000
-     ]
-    ]
-   }
-  },
-  {
    "id": "maipu-180886",
    "tipo": "auto",
    "marca": "Chevrolet",
@@ -2987,76 +2753,6 @@
      [
       "KWID 5P 1,0 ICONIC OUTSIDER 2025",
       28300000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "maipu-180616",
-   "tipo": "auto",
-   "marca": "Toyota",
-   "modelo": "Etios",
-   "version": "X 1.5",
-   "anio": 2021,
-   "km": 94810,
-   "combustible": "Gas/Nafta",
-   "caja": "Manual",
-   "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
-   "precio": 21000000,
-   "precio_sin_imp": 16590000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1981-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1984-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1983-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1982-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1979-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1980-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1978-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1974-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1972-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1968-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1969-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1985-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1975-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1971-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1977-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1973-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1976-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/10/06/etios/",
-   "publicado": "2026-10-06T16:29:44",
-   "modificado": "2026-10-06T16:44:05",
-   "agencia": "maipu",
-   "alta": "2026-10-06T16:29:44",
-   "guia": {
-    "min": 16555000,
-    "med": 19435000,
-    "max": 19975000,
-    "n": 4,
-    "mejor": {
-     "version": "ETIOS 5P 1,5 XLS 6MT 2021",
-     "valor": 19435000,
-     "coincidencias": 1,
-     "empate": 4
-    },
-    "versiones": [
-     [
-      "ETIOS 5P 1,5 X 6MT 2021",
-      16555000
-     ],
-     [
-      "ETIOS 4P 1,5 X 6MT 2021",
-      17608000
-     ],
-     [
-      "ETIOS 5P 1,5 XLS 6MT 2021",
-      19435000
-     ],
-     [
-      "ETIOS 4P 1,5 XLS 6MT 2021",
-      19975000
      ]
     ]
    }
@@ -3797,234 +3493,6 @@
    }
   },
   {
-   "id": "maipu-179464",
-   "tipo": "auto",
-   "marca": "Volkswagen",
-   "modelo": "Suran",
-   "version": "1.6 5D",
-   "anio": 2015,
-   "km": 120755,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 16000000,
-   "precio_sin_imp": 12640000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1404-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1405-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1407-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1408-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1403-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1406-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1402-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1399-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1395-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1391-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1392-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1393-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1400-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1394-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1398-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1396-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1397-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/09/29/suran/",
-   "publicado": "2026-09-29T16:05:48",
-   "modificado": "2026-10-01T17:25:05",
-   "agencia": "maipu",
-   "alta": "2026-09-29T16:05:48",
-   "guia": {
-    "min": 10898000,
-    "med": 13067000,
-    "max": 15382000,
-    "n": 12,
-    "mejor": {
-     "version": "SURAN 5P 1,6 HIGHLINE CRO 2014",
-     "valor": 13067000,
-     "coincidencias": 2,
-     "empate": 12
-    },
-    "versiones": [
-     [
-      "SURAN 5P 1,6 COMFORTLINE 2014",
-      10898000
-     ],
-     [
-      "SURAN 5P 1,6 COMFORTLINE + ABS 2014",
-      11003000
-     ],
-     [
-      "SURAN 5P 1,6 MSI COMFORTLINE 2015",
-      12073000
-     ],
-     [
-      "SURAN 5P 1,6 TRENDLINE 2014",
-      12154000
-     ],
-     [
-      "SURAN 5P 1,6 HIGHLINE 2014",
-      12567000
-     ],
-     [
-      "SURAN 5P 1,6 MSI TRENDLINE 2015",
-      12824000
-     ],
-     [
-      "SURAN 5P 1,6 HIGHLINE CRO 2014",
-      13067000
-     ],
-     [
-      "SURAN 5P 1,6 HIGHLINE I MOTION 2014",
-      13318000
-     ],
-     [
-      "SURAN 5P 1,6 MSI 16V HIGHLINE 2015",
-      13736000
-     ],
-     [
-      "SURAN CROSS 5P 1,6 HIGHLINE 2014",
-      14105000
-     ],
-     [
-      "SURAN 5P 1,6 MSI 16V HIGHLINE I MOTION 2015",
-      14541000
-     ],
-     [
-      "SURAN CROSS 5P 1,6 MSI 16V HIGHLINE 2015",
-      15382000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "maipu-179415",
-   "tipo": "auto",
-   "marca": "Toyota",
-   "modelo": "Corolla",
-   "version": "2.0 Xli Cvt",
-   "anio": 2025,
-   "km": 59235,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
-   "precio": 35000000,
-   "precio_sin_imp": 27650000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1335-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1338-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1337-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1336-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1333-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1334-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1332-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1328-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1326-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1322-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1323-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1324-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1331-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1325-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1330-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1327-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1329-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/09/29/corolla/",
-   "publicado": "2026-09-29T09:53:50",
-   "modificado": "2026-09-29T10:47:13",
-   "agencia": "maipu",
-   "alta": "2026-09-29T09:53:50",
-   "guia": {
-    "min": 28733000,
-    "med": 37790000,
-    "max": 45244000,
-    "n": 18,
-    "mejor": {
-     "version": "COROLLA 4P 2,0 XLI CVT SAFETY 2025",
-     "valor": 30170000,
-     "coincidencias": 3,
-     "empate": 3
-    },
-    "versiones": [
-     [
-      "COROLLA 4P 2,0 XLI CVT 2024",
-      28733000
-     ],
-     [
-      "COROLLA 4P 2,0 XLI CVT SAFETY 2025",
-      30170000
-     ],
-     [
-      "COROLLA 4P 2,0 XEI CVT 2024",
-      31993000
-     ],
-     [
-      "COROLLA CROSS 5P 2,0 XLI CVT 2024",
-      32466000
-     ],
-     [
-      "COROLLA 4P 2,0 XEI CVT SAFETY 2025",
-      33593000
-     ],
-     [
-      "COROLLA 4P HEV 1,8 XEI eCVT 2024",
-      33959000
-     ],
-     [
-      "COROLLA 4P HEV 1,8 XEI eCVT SAFETY 2025",
-      35657000
-     ],
-     [
-      "COROLLA 4P 2,0 GR-S 10CVT 2024",
-      35990000
-     ],
-     [
-      "COROLLA CROSS 5P HEV 1,8 XEI eCVT 2024",
-      36383000
-     ],
-     [
-      "COROLLA 4P 2,0 GR-S 10CVT SAFETY 2025",
-      37790000
-     ],
-     [
-      "COROLLA 4P 2,0 SEG CVT 2024",
-      38415000
-     ],
-     [
-      "COROLLA 4P HEV 1,8 SEG eCVT 2024",
-      38724000
-     ],
-     [
-      "COROLLA CROSS 5P 2,0 XEI CVT 2024",
-      40096000
-     ],
-     [
-      "COROLLA 4P 2,0 SEG CVT SAFETY 2025",
-      40336000
-     ],
-     [
-      "COROLLA 4P HEV 1,8 SEG eCVT SAFETY 2025",
-      40660000
-     ],
-     [
-      "COROLLA CROSS 5P HEV 1,8 SEG eCVT 2024",
-      41797000
-     ],
-     [
-      "COROLLA CROSS 5P 2,0 SEG CVT 2024",
-      43173000
-     ],
-     [
-      "COROLLA CROSS 5P 2,0 GR-SPORT CVT 2024",
-      45244000
-     ]
-    ]
-   }
-  },
-  {
    "id": "maipu-179367",
    "tipo": "auto",
    "marca": "Nissan",
@@ -4370,68 +3838,6 @@
    }
   },
   {
-   "id": "maipu-178602",
-   "tipo": "auto",
-   "marca": "Renault",
-   "modelo": "Captur",
-   "version": "Zen 2.0",
-   "anio": 2017,
-   "km": 155370,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Gris",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 19500000,
-   "precio_sin_imp": 15405000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0775-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0776-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0778-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0779-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0774-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0777-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0773-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0771-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0767-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0763-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0764-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0765-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0772-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0766-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0770-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0768-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0769-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/09/21/captur-2/",
-   "publicado": "2026-09-21T08:55:28",
-   "modificado": "2026-09-21T09:08:35",
-   "agencia": "maipu",
-   "alta": "2026-09-21T08:55:28",
-   "guia": {
-    "min": 16726000,
-    "med": 17273000,
-    "max": 17273000,
-    "n": 2,
-    "mejor": {
-     "version": "CAPTUR 5P 2,0 ZEN",
-     "valor": 16726000,
-     "coincidencias": 2,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "CAPTUR 5P 2,0 ZEN",
-      16726000
-     ],
-     [
-      "CAPTUR 5P 2,0 INTENS",
-      17273000
-     ]
-    ]
-   }
-  },
-  {
    "id": "maipu-178476",
    "tipo": "auto",
    "marca": "Ford",
@@ -4765,76 +4171,6 @@
      [
       "NIVUS 5P 1,0 TSI 200 6AT OUTFIT 2025",
       56496000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "maipu-177016",
-   "tipo": "auto",
-   "marca": "Fiat",
-   "modelo": "Pulse",
-   "version": "Impetus 1.0T Cvt",
-   "anio": 2023,
-   "km": 74150,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Gris",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 26000000,
-   "precio_sin_imp": 21487600,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4400-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4401-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4403-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4404-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4399-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4402-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4398-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4396-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4391-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4393-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4388-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4389-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4397-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4395-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4390-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4392-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4394-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/09/07/pulse/",
-   "publicado": "2026-09-07T17:33:40",
-   "modificado": "2026-10-07T14:32:00",
-   "agencia": "maipu",
-   "alta": "2026-09-07T17:33:40",
-   "guia": {
-    "min": 21048000,
-    "med": 24700000,
-    "max": 26972000,
-    "n": 4,
-    "mejor": {
-     "version": "PULSE 5P 1,0 T IMPETUS CVT",
-     "valor": 24700000,
-     "coincidencias": 2,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "PULSE 5P 1,3 DRIVE GSE CVT",
-      21048000
-     ],
-     [
-      "PULSE 5P 1,0 T AUDACE CVT",
-      22495000
-     ],
-     [
-      "PULSE 5P 1,0 T IMPETUS CVT",
-      24700000
-     ],
-     [
-      "PULSE 5P 270 TURBO ABARTH 6AT",
-      26972000
      ]
     ]
    }
@@ -5974,87 +5310,6 @@
    }
   },
   {
-   "id": "maipu-167218",
-   "tipo": "auto",
-   "marca": "Ford",
-   "modelo": "Focus",
-   "version": "1.6L N Mt S",
-   "anio": 2016,
-   "km": 193545,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Plata",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Cruze 2023 Automatica 151475 26500000 Precio sugerido al público 20935000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar oportunidades Pulse 2023 Automatica 74150 26000000 Precio sugerido al público 21487600 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
-   "precio": 16180000,
-   "precio_sin_imp": 12782200,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7783-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7784-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7786-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7787-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7782-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7785-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7781-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7778-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7769-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7765-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7766-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7767-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7777-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7768-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7780-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7770-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/06/APC_7779-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/06/02/focus/",
-   "publicado": "2026-06-02T12:42:35",
-   "modificado": "2026-09-02T16:26:17",
-   "agencia": "maipu",
-   "alta": "2026-06-02T12:42:35",
-   "guia": {
-    "min": 12754000,
-    "med": 15204000,
-    "max": 16370000,
-    "n": 8,
-    "mejor": null,
-    "versiones": [
-     [
-      "FOCUS KINETIC DESIGN ATTRACTION 4P 1,6 S 2016",
-      12754000
-     ],
-     [
-      "FOCUS KINETIC DESIGN ATTRACTION 5P 1,6 S 2016",
-      13170000
-     ],
-     [
-      "FOCUS KINETIC DESIGN ATTRACTION 4P 2,0 SE 2016",
-      13562000
-     ],
-     [
-      "FOCUS KINETIC DESIGN ATTRACTION 5P 2,0 SE 2016",
-      13993000
-     ],
-     [
-      "FOCUS KINETIC DESIGN ATTRACTION 4P 2,0 SE PLUS 2016",
-      15204000
-     ],
-     [
-      "FOCUS KINETIC DESIGN ATTRACTION 5P 2,0 SE PLUS 2016",
-      15367000
-     ],
-     [
-      "FOCUS KINETIC DESIGN ATTRACTION 4P 2,0 TITANIUM 2016",
-      16271000
-     ],
-     [
-      "FOCUS KINETIC DESIGN ATTRACTION 5P 2,0 TITANIUM 2016",
-      16370000
-     ]
-    ]
-   }
-  },
-  {
    "id": "maipu-166768",
    "tipo": "auto",
    "marca": "Volkswagen",
@@ -6065,7 +5320,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Cruze 2023 Automatica 151475 26500000 Precio sugerido al público 20935000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar oportunidades Pulse 2023 Automatica 74150 26000000 Precio sugerido al público 21487600 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar premium, unidades-test-drive Q2 2025 Automática 11025 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar premium, oportunidades A3 2024 Automatica 3870 U$S 48900 Precio sugerido al público U$S 40415 Precio sin impuestos nacionales + Precio a confirmar premium, oportunidades E-Tron 2023 Automática 2970 U$S 83.700 Precio sugerido al público U$S 69.173 Precio sin impuestos nacionales + Precio a confirmar premium X3 2022 Automática 75395 U$S 62.000 Precio sugerido al público U$S 51.240 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -6137,7 +5392,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Cruze 2023 Automatica 151475 26500000 Precio sugerido al público 20935000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar oportunidades Pulse 2023 Automatica 74150 26000000 Precio sugerido al público 21487600 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar premium, unidades-test-drive Q2 2025 Automática 11025 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar premium, oportunidades A3 2024 Automatica 3870 U$S 48900 Precio sugerido al público U$S 40415 Precio sin impuestos nacionales + Precio a confirmar premium, oportunidades E-Tron 2023 Automática 2970 U$S 83.700 Precio sugerido al público U$S 69.173 Precio sin impuestos nacionales + Precio a confirmar premium X3 2022 Automática 75395 U$S 62.000 Precio sugerido al público U$S 51.240 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6179,144 +5434,6 @@
      [
       "CAPTIVA 5P 1,5 T PHEV PREMIER",
       54872000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "maipu-165632",
-   "tipo": "auto",
-   "marca": "Fiat",
-   "modelo": "Palio",
-   "version": "Fire 1.4",
-   "anio": 2014,
-   "km": 83035,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Rojo",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Cruze 2023 Automatica 151475 26500000 Precio sugerido al público 20935000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar oportunidades Pulse 2023 Automatica 74150 26000000 Precio sugerido al público 21487600 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
-   "precio": 11110000,
-   "precio_sin_imp": 8776900,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6545-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6546-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6548-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6549-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6544-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6547-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6543-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6539-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6537-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6533-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6534-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6535-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6542-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6536-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6541-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6538-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6540-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/05/19/palio-2/",
-   "publicado": "2026-05-19T10:03:38",
-   "modificado": "2026-07-02T15:58:08",
-   "agencia": "maipu",
-   "alta": "2026-05-19T10:03:38",
-   "guia": {
-    "min": 8830000,
-    "med": 11426000,
-    "max": 13885000,
-    "n": 21,
-    "mejor": {
-     "version": "PALIO 3P 1,4 FIRE TOP",
-     "valor": 9758000,
-     "coincidencias": 2,
-     "empate": 6
-    },
-    "versiones": [
-     [
-      "PALIO 3P 1,4 FIRE",
-      8830000
-     ],
-     [
-      "PALIO 5P 1,4 FIRE",
-      9135000
-     ],
-     [
-      "PALIO 3P 1,4 FIRE CONFORT",
-      9481000
-     ],
-     [
-      "PALIO 3P 1,4 FIRE TOP",
-      9758000
-     ],
-     [
-      "PALIO 5P 1,4 FIRE CONFORT",
-      9785000
-     ],
-     [
-      "PALIO 5P 1,4 FIRE TOP",
-      10062000
-     ],
-     [
-      "PALIO 5P 1,4 ATTRACTIVE PACK SEG",
-      10689000
-     ],
-     [
-      "PALIO WEEKEND 1,4 ATTRACTIVE",
-      10956000
-     ],
-     [
-      "PALIO 5P 1,6 ESSENCE PACK SEG",
-      10998000
-     ],
-     [
-      "PALIO WEEKEND 1,4 ATTRACTIVE ACTIVE",
-      11272000
-     ],
-     [
-      "PALIO WEEKEND 1,4 ATTRACTIVE SEG",
-      11426000
-     ],
-     [
-      "PALIO 5P 1,6 ESSENCE DUALOGIC PACK SEG",
-      11537000
-     ],
-     [
-      "PALIO 5P 1,6 SPORTING PACK SEG",
-      11555000
-     ],
-     [
-      "PALIO WEEKEND 1,4 TREKKING",
-      11721000
-     ],
-     [
-      "PALIO WEEKEND 1,4 TREKKING SEG",
-      12024000
-     ],
-     [
-      "PALIO WEEKEND 1,6 ADVENTURE",
-      13079000
-     ],
-     [
-      "PALIO WEEKEND 1,6 ADVENTURE SEG",
-      13360000
-     ],
-     [
-      "PALIO WEEKEND 1,6 ADVENTURE LOCKER",
-      13428000
-     ],
-     [
-      "PALIO WEEKEND 1,6 ADVENTURE LOCKER SEG",
-      13562000
-     ],
-     [
-      "PALIO WEEKEND 1,6 ADVENTURE SEG XTREME",
-      13768000
-     ],
-     [
-      "PALIO WEEKEND 1,6 ADVENTURE LOCKER SEG XTREME",
-      13885000
      ]
     ]
    }
@@ -6541,7 +5658,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Cruze 2023 Automatica 151475 26500000 Precio sugerido al público 20935000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tracker 2023 Automática 60605 27000000 Precio sugerido al público 21330000 Precio sin impuestos nacionales + Precio a confirmar oportunidades T-Cross 2020 Manual 116620 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + Precio a confirmar oportunidades Pulse 2023 Automatica 74150 26000000 Precio sugerido al público 21487600 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar premium, unidades-test-drive Q2 2025 Automática 11025 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar premium, oportunidades A3 2024 Automatica 3870 U$S 48900 Precio sugerido al público U$S 40415 Precio sin impuestos nacionales + Precio a confirmar premium, oportunidades E-Tron 2023 Automática 2970 U$S 83.700 Precio sugerido al público U$S 69.173 Precio sin impuestos nacionales + Precio a confirmar premium X3 2022 Automática 75395 U$S 62.000 Precio sugerido al público U$S 51.240 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",
