@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-29T17:03:58.526Z",
+ "actualizado": "2026-10-29T21:58:19.391Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 72,
-   "revisado": "2026-10-29T17:03:58.526Z",
-   "actualizado": "2026-10-29T17:03:58.526Z"
+   "autos": 74,
+   "revisado": "2026-10-29T21:58:19.391Z",
+   "actualizado": "2026-10-29T21:58:19.391Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,227 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 257,
-   "revisado": "2026-10-29T17:03:58.526Z",
-   "actualizado": "2026-10-29T17:03:58.526Z"
+   "revisado": "2026-10-29T21:58:19.391Z",
+   "actualizado": "2026-10-29T21:58:19.391Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-182509",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Sandero",
+   "version": "Stepway Ph2 Intens 1.6",
+   "anio": 2022,
+   "km": 84480,
+   "combustible": "Gas/Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 23000000,
+   "precio_sin_imp": 18170000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3281-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3282-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3284-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3285-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3280-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3283-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3279-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3277-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3273-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3269-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3270-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3271-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3278-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3272-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3276-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3274-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3275-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/29/sandero-4/",
+   "publicado": "2026-10-29T17:40:10",
+   "modificado": "2026-10-29T17:46:37",
+   "agencia": "maipu",
+   "alta": "2026-10-29T21:58:19.391Z",
+   "guia": {
+    "min": 17059000,
+    "med": 20349000,
+    "max": 23791000,
+    "n": 13,
+    "mejor": {
+     "version": "SANDERO STEPWAY 5P 1,6 16V INTENS PH2",
+     "valor": 22209000,
+     "coincidencias": 3,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "SANDERO 5P 1,6 16V LIFE PH2",
+      17059000
+     ],
+     [
+      "SANDERO 5P 1,6 16V LIFE 2022",
+      17912000
+     ],
+     [
+      "SANDERO 5P 1,6 16V ZEN PH2",
+      18396000
+     ],
+     [
+      "SANDERO 5P 1,6 16V GT LINE 2020",
+      19149000
+     ],
+     [
+      "SANDERO 5P 1,6 16V ZEN 2022",
+      19316000
+     ],
+     [
+      "SANDERO 5P 1,6 16V INTENS PH2",
+      19730000
+     ],
+     [
+      "SANDERO STEPWAY 5P 1,6 16V ZEN PH2",
+      20349000
+     ],
+     [
+      "SANDERO 5P 1,6 16V INTENS 2022",
+      20717000
+     ],
+     [
+      "SANDERO STEPWAY 5P 1,6 16V ZEN 2022",
+      20960000
+     ],
+     [
+      "SANDERO STEPWAY 5P 1,6 16V INTENS PH2",
+      22209000
+     ],
+     [
+      "SANDERO STEPWAY 5P 1,6 16V INTENS SL",
+      22875000
+     ],
+     [
+      "SANDERO STEPWAY 5P 1,6 16V C.A.B.",
+      23171000
+     ],
+     [
+      "SANDERO 5P 2,0 RS 2020",
+      23791000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-182485",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Sandero",
+   "version": "Stepway Dynamique",
+   "anio": 2017,
+   "km": null,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 15700000,
+   "precio_sin_imp": 12403000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3264-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3265-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3267-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3268-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3263-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3266-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3262-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3260-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3256-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3252-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3253-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3254-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3261-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3255-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3259-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3257-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3258-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/29/sandero-3/",
+   "publicado": "2026-10-29T17:29:43",
+   "modificado": "2026-10-29T17:38:03",
+   "agencia": "maipu",
+   "alta": "2026-10-29T21:58:19.391Z",
+   "guia": {
+    "min": 10821000,
+    "med": 12662000,
+    "max": 15787000,
+    "n": 14,
+    "mejor": {
+     "version": "SANDERO STEPWAY 5P 1,6 16V DYNAMIQUE 2015",
+     "valor": 13253000,
+     "coincidencias": 1,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "SANDERO 5P 1,6 SL TECH RUN",
+      10821000
+     ],
+     [
+      "SANDERO 5P 1,6 EXPRESSION 2015",
+      10993000
+     ],
+     [
+      "SANDERO 5P 1,6 EXPRESSION PACK 2015",
+      11252000
+     ],
+     [
+      "SANDERO 5P 1,6 16V GT LINE",
+      11544000
+     ],
+     [
+      "SANDERO 5P 1,6 DYNAMIQUE 2015",
+      12009000
+     ],
+     [
+      "SANDERO 5P 1,6 16V PRIVILEGE 2015",
+      12333000
+     ],
+     [
+      "SANDERO 5P 1,6 16V GT LINE 2016",
+      12471000
+     ],
+     [
+      "SANDERO STEPWAY 5P 1,6 16V EXPRESSION 2017",
+      12662000
+     ],
+     [
+      "SANDERO 5P 1,6 16V PRIVILEGE PACK 2015",
+      12666000
+     ],
+     [
+      "SANDERO STEPWAY 5P 1,6 16V DYNAMIQUE 2015",
+      13253000
+     ],
+     [
+      "SANDERO STEPWAY 5P 1,6 16V PRIVILEGE 2015",
+      14313000
+     ],
+     [
+      "SANDERO STEPWAY 5P 1,6 16V RIP CURL 2016",
+      14348000
+     ],
+     [
+      "SANDERO 5P 2,0 RS",
+      15560000
+     ],
+     [
+      "SANDERO 5P 2,0 RS RACING SPIRIT",
+      15787000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-182422",
    "tipo": "auto",
@@ -4984,7 +5200,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar premium, oportunidades A3 2024 Automatica 3870 U$S 48900 Precio sugerido al público U$S 40415 Precio sin impuestos nacionales + Precio a confirmar premium, oportunidades E-Tron 2023 Automática 2970 U$S 83.700 Precio sugerido al público U$S 69.173 Precio sin impuestos nacionales + Precio a confirmar premium X3 2022 Automática 75395 U$S 62.000 Precio sugerido al público U$S 51.240 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Captur 2017 Manual 140225 21500000 Precio sugerido al público 17768595 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2019 Automatica 131140 20000000 Precio sugerido al público 15800000 Precio sin impuestos nacionales + Precio a confirmar destacados Sandero 2021 Manual 132520 20500000 Precio sugerido al público 16195000 Precio sin impuestos nacionales + Precio a confirmar destacados Onix 2022 Manual 63230 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -5056,7 +5272,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar premium, oportunidades A3 2024 Automatica 3870 U$S 48900 Precio sugerido al público U$S 40415 Precio sin impuestos nacionales + Precio a confirmar premium, oportunidades E-Tron 2023 Automática 2970 U$S 83.700 Precio sugerido al público U$S 69.173 Precio sin impuestos nacionales + Precio a confirmar premium X3 2022 Automática 75395 U$S 62.000 Precio sugerido al público U$S 51.240 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Captur 2017 Manual 140225 21500000 Precio sugerido al público 17768595 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2019 Automatica 131140 20000000 Precio sugerido al público 15800000 Precio sin impuestos nacionales + Precio a confirmar destacados Sandero 2021 Manual 132520 20500000 Precio sugerido al público 16195000 Precio sin impuestos nacionales + Precio a confirmar destacados Onix 2022 Manual 63230 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -5322,7 +5538,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar premium, oportunidades A3 2024 Automatica 3870 U$S 48900 Precio sugerido al público U$S 40415 Precio sin impuestos nacionales + Precio a confirmar premium, oportunidades E-Tron 2023 Automática 2970 U$S 83.700 Precio sugerido al público U$S 69.173 Precio sin impuestos nacionales + Precio a confirmar premium X3 2022 Automática 75395 U$S 62.000 Precio sugerido al público U$S 51.240 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Captur 2017 Manual 140225 21500000 Precio sugerido al público 17768595 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2019 Automatica 131140 20000000 Precio sugerido al público 15800000 Precio sin impuestos nacionales + Precio a confirmar destacados Sandero 2021 Manual 132520 20500000 Precio sugerido al público 16195000 Precio sin impuestos nacionales + Precio a confirmar destacados Onix 2022 Manual 63230 23500000 Precio sugerido al público 19421500 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",

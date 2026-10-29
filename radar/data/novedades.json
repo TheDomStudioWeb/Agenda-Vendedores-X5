@@ -1,6 +1,22 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-29T21:58:19.391Z",
+   "tipo": "nuevo",
+   "id": "maipu-182509",
+   "auto": "Renault Sandero 2022",
+   "precio": 23000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-29T21:58:19.391Z",
+   "tipo": "nuevo",
+   "id": "maipu-182485",
+   "auto": "Renault Sandero 2017",
+   "precio": 15700000,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-10-29T17:03:58.526Z",
    "tipo": "precio",
    "id": "maipu-180886",
