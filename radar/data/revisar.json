@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-29T21:58:19.391Z",
+ "actualizado": "2026-10-30T16:48:45.474Z",
  "autos": [
   {
    "id": "maipu-182422",
@@ -11,12 +11,6 @@
    "id": "autocity-a39f9f89-7a2f-49fb-bb6c-03617ff56a6f",
    "auto": "Nissan Sentra",
    "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-sentra/1-8-sr-pure-drive-cvt-l14/",
-   "texto": "publicación incompleta (sin año o sin fotos)"
-  },
-  {
-   "id": "autocity-b49bcee7-d8c2-4817-a491-06cebb313ec9",
-   "auto": "Renault Duster",
-   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-duster/1-6-4x2-dynamique-l15/",
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
@@ -56,12 +50,6 @@
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
-   "id": "autocity-e2892c96-23d5-4dba-a1fc-442847dc003c",
-   "auto": "Jeep Renegade",
-   "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-renegade/1-8-4x2-sport-at-l18/",
-   "texto": "publicación incompleta (sin año o sin fotos)"
-  },
-  {
    "id": "autocity-c2b349f8-9eb8-4c70-a64b-0c090ddac9e4",
    "auto": "Fiat Cronos",
    "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-cronos/1-3-gse-drive-pack-plus-cvt-l26-2/",
@@ -83,6 +71,12 @@
    "id": "autocity-bc5a72e2-9074-4924-8468-1d17b755ccc4",
    "auto": "Volkswagen Polo",
    "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-polo/1-0-170-tsi-highline-tiptronic-2/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-97ae14ab-821a-45f5-836f-57521471abdb",
+   "auto": "Nissan Frontier",
+   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-frontier/2-3-td-4x2-cd-s-l22/",
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
