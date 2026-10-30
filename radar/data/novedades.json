@@ -1,6 +1,46 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-30T21:41:53.760Z",
+   "tipo": "nuevo",
+   "id": "maipu-182685",
+   "auto": "Fiat Toro 2023",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-30T21:41:53.760Z",
+   "tipo": "nuevo",
+   "id": "maipu-182661",
+   "auto": "Toyota Hilux 2024",
+   "precio": 70500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-30T21:41:53.760Z",
+   "tipo": "nuevo",
+   "id": "maipu-182639",
+   "auto": "Fiat Cronos 2024",
+   "precio": 23000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-30T21:41:53.760Z",
+   "tipo": "nuevo",
+   "id": "maipu-182613",
+   "auto": "BMW Z4 2020",
+   "precio": 93000,
+   "moneda": "USD"
+  },
+  {
+   "fecha": "2026-10-30T21:41:53.760Z",
+   "tipo": "nuevo",
+   "id": "maipu-182589",
+   "auto": "Renault Fluence 2016",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-10-30T16:48:45.474Z",
    "tipo": "nuevo",
    "id": "maipu-182533",

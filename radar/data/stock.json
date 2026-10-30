@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-30T16:48:45.474Z",
+ "actualizado": "2026-10-30T21:41:53.760Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 69,
-   "revisado": "2026-10-30T16:48:45.474Z",
-   "actualizado": "2026-10-30T16:48:45.474Z"
+   "autos": 74,
+   "revisado": "2026-10-30T21:41:53.760Z",
+   "actualizado": "2026-10-30T21:41:53.760Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,449 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 245,
-   "revisado": "2026-10-30T16:48:45.474Z",
-   "actualizado": "2026-10-30T16:48:45.474Z"
+   "revisado": "2026-10-30T21:41:53.760Z",
+   "actualizado": "2026-10-30T21:41:53.760Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-182685",
+   "tipo": "auto",
+   "marca": "Fiat",
+   "modelo": "Toro",
+   "version": "Freedom 1.8 Cd 4X2",
+   "anio": 2023,
+   "km": 98110,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Negro",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": null,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3412-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3413-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3415-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3416-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3411-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3414-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3410-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3409-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3405-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3400-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3401-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3402-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3403-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3408-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3406-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3407-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/30/toro/",
+   "publicado": "2026-10-30T17:27:03",
+   "modificado": "2026-10-30T17:29:36",
+   "agencia": "maipu",
+   "alta": "2026-10-30T21:41:53.760Z",
+   "guia": {
+    "min": 21766000,
+    "med": 30895000,
+    "max": 36949000,
+    "n": 13,
+    "mejor": {
+     "version": "TORO PICK UP D/C 1,8 FREEDOM 4X2 6AT S-DESIGN",
+     "valor": 24199000,
+     "coincidencias": 3,
+     "empate": 4
+    },
+    "versiones": [
+     [
+      "TORO PICK UP D/C 1,8 FREEDOM 4X2 6AT 2021",
+      21766000
+     ],
+     [
+      "TORO PICK UP D/C 1,8 FREEDOM 4X2 6AT 2023",
+      22637000
+     ],
+     [
+      "TORO PICK UP D/C 1,8 FREEDOM 4X2 6AT S-DESIGN",
+      24199000
+     ],
+     [
+      "TORO PICK UP D/C 1,8 FREEDOM 4X2 6AT S-DESIGN 2023",
+      25167000
+     ],
+     [
+      "TORO PICK UP D/C 1,3 T VOLCANO 4X2 6AT 2021",
+      29707000
+     ],
+     [
+      "TORO PICK UP D/C 2,0 TD FREEDOM 4X4 9AT 2021",
+      30018000
+     ],
+     [
+      "TORO PICK UP D/C 1,3 T VOLCANO 4X2 6AT 2023",
+      30895000
+     ],
+     [
+      "TORO PICK UP D/C 2,0 16V TD FREEDOM 4X4 9AT 2023",
+      31218000
+     ],
+     [
+      "TORO PICK UP D/C 2,0 TD VOLCANO 4X4 9AT 2021",
+      33190000
+     ],
+     [
+      "TORO PICK UP D/C 2,0 16V TD VOLCANO 4X4 9AT 2023",
+      34518000
+     ],
+     [
+      "TORO PICK UP D/C 2,0 16V TD MULTIJET ULTRA 4X4 9AT 2023",
+      35836000
+     ],
+     [
+      "TORO PICK UP D/C 2,0 16V TD MULTIJET ULTRA 4X4 9AT 2021",
+      36272000
+     ],
+     [
+      "TORO PICK UP D/C 2,0 16V TD MULTIJET RANCH 4X4 9AT 2023",
+      36949000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-182661",
+   "tipo": "auto",
+   "marca": "Toyota",
+   "modelo": "Hilux",
+   "version": "L/16 2.8 Dc 4X4 Tdi Srx",
+   "anio": 2024,
+   "km": 60915,
+   "combustible": "Diésel",
+   "caja": "Automática",
+   "color": "Rojo",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS",
+   "precio": 70500000,
+   "precio_sin_imp": 63097500,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3394-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3395-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3397-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3398-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3393-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3396-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3392-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3388-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3386-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3381-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3383-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3384-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3391-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3385-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3390-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3387-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3389-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/30/hilux/",
+   "publicado": "2026-10-30T17:22:16",
+   "modificado": "2026-10-30T17:25:21",
+   "agencia": "maipu",
+   "alta": "2026-10-30T21:41:53.760Z",
+   "guia": {
+    "min": 38730000,
+    "med": 59781000,
+    "max": 78782000,
+    "n": 20,
+    "mejor": {
+     "version": "HILUX SW4 5P 2,8 TDi SRX 4X4 6AT 7A 2024",
+     "valor": 72515000,
+     "coincidencias": 4,
+     "empate": 4
+    },
+    "versiones": [
+     [
+      "HILUX PICK - UP D/C 2,4 TDi 4X2 DX 6AT HAR 2025",
+      38730000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,4 TDi 4X2 SR 6AT 2024",
+      43259000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,4 TDi 4X2 SR 6AT HAR 2025",
+      44557000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,4 TDi 4X4 DX 6AT HAR 2025",
+      45027000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X2 SRV 6AT 2024",
+      51283000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X4 SR 6AT 2024",
+      51840000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X2 SRV 6AT HAR 2025",
+      52822000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X4 SR 6AT HAR 2025",
+      53395000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X2 SRX 6AT 2024",
+      58040000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X4 SRV 6AT 2024",
+      58187000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X2 SRX 6AT HAR 2025",
+      59781000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X4 SRV 6AT HAR 2025",
+      59932000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X4 SRX 6AT 2024",
+      64928000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X4 SRX 6AT HAR 2025",
+      66876000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X4 GR-S IV 6AT 2024",
+      71659000
+     ],
+     [
+      "HILUX SW4 5P 2,8 TDi SRX 4X4 6AT 7A 2024",
+      72515000
+     ],
+     [
+      "HILUX PICK - UP D/C 2,8 TDi 4X4 GR-S IV 6AT HAR 2025",
+      73809000
+     ],
+     [
+      "HILUX SW4 5P 2,8 TDi SRX 4X4 6AT 7A HAR 2025",
+      74292000
+     ],
+     [
+      "HILUX SW4 5P 2,8 TDi DIAMOND 4X4 6AT 7A HAR 2025",
+      75036000
+     ],
+     [
+      "HILUX SW4 5P 2,8 TDi GR-SPORT 4X4 6AT 7A HAR 2025",
+      78782000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-182639",
+   "tipo": "auto",
+   "marca": "Fiat",
+   "modelo": "Cronos",
+   "version": "Drive 1.3 Gse Cvt Bz",
+   "anio": 2024,
+   "km": 35105,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 23000000,
+   "precio_sin_imp": 18170000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3376-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3377-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3379-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3380-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3375-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3378-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3374-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3373-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3369-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3365-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3366-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3367-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3368-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3372-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3370-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3371-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/30/cronos-2/",
+   "publicado": "2026-10-30T17:17:52",
+   "modificado": "2026-10-30T17:20:14",
+   "agencia": "maipu",
+   "alta": "2026-10-30T21:41:53.760Z",
+   "guia": {
+    "min": 20958000,
+    "med": 23068000,
+    "max": 23068000,
+    "n": 2,
+    "mejor": {
+     "version": "CRONOS 4P 1,3 DRIVE GSE PACK PLUS CVT 2023",
+     "valor": 20958000,
+     "coincidencias": 4,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "CRONOS 4P 1,3 DRIVE GSE PACK PLUS CVT 2023",
+      20958000
+     ],
+     [
+      "CRONOS 4P 1,3 PRECISION GSE CVT 2023",
+      23068000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-182613",
+   "tipo": "auto",
+   "marca": "BMW",
+   "modelo": "Z4",
+   "version": "3.0I",
+   "anio": 2020,
+   "km": 1970,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS",
+   "precio": 93000,
+   "precio_sin_imp": 76859,
+   "moneda": "USD",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3359-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3360-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3362-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3363-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3358-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3361-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3357-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3355-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3352-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3349-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3350-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3364-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3354-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3351-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3353-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3356-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/30/z4/",
+   "publicado": "2026-10-30T17:12:10",
+   "modificado": "2026-10-30T17:16:23",
+   "agencia": "maipu",
+   "alta": "2026-10-30T21:41:53.760Z",
+   "guia": {
+    "min": 114320000,
+    "med": 114320000,
+    "max": 114320000,
+    "n": 1,
+    "mejor": null,
+    "versiones": [
+     [
+      "Z4 ROADSTER 2,0 T SDRIVE 3,0 i M SPORT 8AT",
+      114320000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-182589",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Fluence",
+   "version": "Ph2 2.0 Luxe",
+   "anio": 2016,
+   "km": 166400,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": null,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3344-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3345-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3347-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3348-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3343-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3346-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3342-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3340-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3336-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3332-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3333-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3334-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3341-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3335-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3339-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3337-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3338-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/10/30/fluence/",
+   "publicado": "2026-10-30T17:05:31",
+   "modificado": "2026-10-30T17:08:26",
+   "agencia": "maipu",
+   "alta": "2026-10-30T21:41:53.760Z",
+   "guia": {
+    "min": 12473000,
+    "med": 15278000,
+    "max": 18630000,
+    "n": 8,
+    "mejor": {
+     "version": "FLUENCE 4P 2,0 LUXE PACK",
+     "valor": 15278000,
+     "coincidencias": 2,
+     "empate": 3
+    },
+    "versiones": [
+     [
+      "FLUENCE 4P 1,6 DYNAMIQUE",
+      12473000
+     ],
+     [
+      "FLUENCE 4P 1,6 DYNAMIQUE PACK",
+      12731000
+     ],
+     [
+      "FLUENCE 4P 1,6 LUXE",
+      13325000
+     ],
+     [
+      "FLUENCE 4P 2,0 LUXE 2014",
+      14558000
+     ],
+     [
+      "FLUENCE 4P 2,0 LUXE PACK",
+      15278000
+     ],
+     [
+      "FLUENCE 4P 2,0 LUXE RLINK CUIR",
+      15823000
+     ],
+     [
+      "FLUENCE 4P 2,0 PRIVILEGE 2015",
+      16442000
+     ],
+     [
+      "FLUENCE 4P 2,0 16V GT 2 2015",
+      18630000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-182533",
    "tipo": "auto",
@@ -63,7 +501,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/30/kardian/",
    "publicado": "2026-10-30T09:50:04",
-   "modificado": "2026-10-30T10:03:58",
+   "modificado": "2026-10-30T17:08:39",
    "agencia": "maipu",
    "alta": "2026-10-30T16:48:45.474Z",
    "guia": {
@@ -4728,7 +5166,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Sandero 2022 Manual 84480 23000000 Precio sugerido al público 18170000 Precio sin impuestos nacionales + Precio a confirmar destacados Sandero 2017 Manual 15700000 Precio sugerido al público 12403000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar destacados Duster 2023 Automática 79970 28830000 Precio sugerido al público 22775700 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Amarok 2024 Automática 122370 45000000 Precio sugerido al público 40275000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automática 51970 65000000 Precio sugerido al público 58175000 Precio sin impuestos nacionales + Precio a confirmar outlet Amarok 2021 Automática 200650 37000000 Precio sugerido al público 33115000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automatica 52500 98000000 Precio sugerido al público 88687800 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -4800,7 +5238,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Sandero 2022 Manual 84480 23000000 Precio sugerido al público 18170000 Precio sin impuestos nacionales + Precio a confirmar destacados Sandero 2017 Manual 15700000 Precio sugerido al público 12403000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar destacados Duster 2023 Automática 79970 28830000 Precio sugerido al público 22775700 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Amarok 2024 Automática 122370 45000000 Precio sugerido al público 40275000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automática 51970 65000000 Precio sugerido al público 58175000 Precio sin impuestos nacionales + Precio a confirmar outlet Amarok 2021 Automática 200650 37000000 Precio sugerido al público 33115000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automatica 52500 98000000 Precio sugerido al público 88687800 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -5066,7 +5504,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Sandero 2022 Manual 84480 23000000 Precio sugerido al público 18170000 Precio sin impuestos nacionales + Precio a confirmar destacados Sandero 2017 Manual 15700000 Precio sugerido al público 12403000 Precio sin impuestos nacionales + Precio a confirmar destacados Kicks 2023 Automatica 46805 32500000 Precio sugerido al público 25675000 Precio sin impuestos nacionales + Precio a confirmar destacados Duster 2023 Automática 79970 28830000 Precio sugerido al público 22775700 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Amarok 2024 Automática 122370 45000000 Precio sugerido al público 40275000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automática 51970 65000000 Precio sugerido al público 58175000 Precio sin impuestos nacionales + Precio a confirmar outlet Amarok 2021 Automática 200650 37000000 Precio sugerido al público 33115000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automatica 52500 98000000 Precio sugerido al público 88687800 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",
