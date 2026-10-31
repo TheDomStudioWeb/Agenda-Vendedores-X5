@@ -1,6 +1,138 @@
 {
  "eventos": [
   {
+   "fecha": "2026-10-31T15:51:16.184Z",
+   "tipo": "nuevo",
+   "id": "autocity-4df525e9-1610-45aa-bee4-69b7b870ceb0",
+   "auto": "Chery Qq 2018",
+   "precio": 14900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-31T15:51:16.184Z",
+   "tipo": "precio",
+   "id": "autocity-01d21539-f67f-4883-be79-58574824e146",
+   "auto": "Volkswagen Polo 2018",
+   "antes": 20299999,
+   "precio": 19899999,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-31T15:51:16.184Z",
+   "tipo": "nuevo",
+   "id": "autocity-d51fd30e-3527-4faf-995a-d967648f9ae8",
+   "auto": "Peugeot 208 2022",
+   "precio": 24500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-31T15:51:16.184Z",
+   "tipo": "precio",
+   "id": "autocity-0238fa64-9ddb-4779-9c25-4f940bb410aa",
+   "auto": "Volkswagen Polo 2025",
+   "antes": 28200000,
+   "precio": 27200000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-31T15:51:16.184Z",
+   "tipo": "precio",
+   "id": "autocity-9a51722f-e57b-463c-bf11-4bc1d7f15793",
+   "auto": "Volkswagen Polo 2025",
+   "antes": 28200000,
+   "precio": 27200000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-31T15:51:16.184Z",
+   "tipo": "nuevo",
+   "id": "autocity-5ef7c917-d758-4cd6-b083-d74db52857e1",
+   "auto": "Volkswagen Taos 2022",
+   "precio": 40450000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-31T15:51:16.184Z",
+   "tipo": "precio",
+   "id": "autocity-4a8a09bc-4eb6-42bf-b38f-e16f7dc969c9",
+   "auto": "Toyota Corolla Cross 2023",
+   "antes": 46350000,
+   "precio": 44900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-10-31T15:51:16.184Z",
+   "tipo": "baja",
+   "id": "autocity-2295002c-526d-4f01-86f7-015475bc4d4d",
+   "auto": "Nissan Sentra 2017",
+   "precio": 17900000,
+   "moneda": "ARS",
+   "dias": 2
+  },
+  {
+   "fecha": "2026-10-31T15:51:16.184Z",
+   "tipo": "baja",
+   "id": "autocity-4d57e0d1-7dda-4200-98f7-1d2fdc738f7d",
+   "auto": "Ford Fiesta 2016",
+   "precio": 18250000,
+   "moneda": "ARS",
+   "dias": 8
+  },
+  {
+   "fecha": "2026-10-31T15:51:16.184Z",
+   "tipo": "baja",
+   "id": "autocity-ed954e04-d828-43f9-b440-31527b1c4611",
+   "auto": "Nissan Versa 2021",
+   "precio": 25000000,
+   "moneda": "ARS",
+   "dias": 17
+  },
+  {
+   "fecha": "2026-10-31T15:51:16.184Z",
+   "tipo": "baja",
+   "id": "autocity-5757431a-3a38-4816-8775-7b62f1d14b14",
+   "auto": "Peugeot Partner 2023",
+   "precio": 26700000,
+   "moneda": "ARS",
+   "dias": 17
+  },
+  {
+   "fecha": "2026-10-31T15:51:16.184Z",
+   "tipo": "baja",
+   "id": "autocity-6452d956-8c62-4a65-b257-df0656a39774",
+   "auto": "Chery Tiggo 2 2026",
+   "precio": 32850000,
+   "moneda": "ARS",
+   "dias": 17
+  },
+  {
+   "fecha": "2026-10-31T15:51:16.184Z",
+   "tipo": "baja",
+   "id": "autocity-7ecdc235-a2a3-4507-9a91-ceb83686889c",
+   "auto": "Chevrolet Tracker 2025",
+   "precio": 36750000,
+   "moneda": "ARS",
+   "dias": 2
+  },
+  {
+   "fecha": "2026-10-31T15:51:16.184Z",
+   "tipo": "baja",
+   "id": "autocity-bc25696a-bb15-48bf-9304-9410221ba608",
+   "auto": "BYD Yuan Pro 2025",
+   "precio": 45350000,
+   "moneda": "ARS",
+   "dias": 9
+  },
+  {
+   "fecha": "2026-10-31T15:51:16.184Z",
+   "tipo": "baja",
+   "id": "autocity-6766bd48-b6b3-41bb-89cf-20f1dda37780",
+   "auto": "Nissan Frontier 2023",
+   "precio": 51000000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
    "fecha": "2026-10-30T21:41:53.760Z",
    "tipo": "nuevo",
    "id": "maipu-182685",
