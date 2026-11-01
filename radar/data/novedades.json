@@ -1,6 +1,150 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-1e8e04f7-d5f5-4aa1-8b43-8ea1fef8ea0c",
+   "auto": "Volkswagen Suran 2015",
+   "precio": 15750000,
+   "moneda": "ARS",
+   "dias": 3
+  },
+  {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-82b7752e-49b5-422f-b824-17d0f76b4e5d",
+   "auto": "Peugeot 208 2016",
+   "precio": 16599999,
+   "moneda": "ARS",
+   "dias": 9
+  },
+  {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-c533b915-9d8c-457c-b14d-7fc0082c7bf2",
+   "auto": "Toyota Etios 2015",
+   "precio": 17900000,
+   "moneda": "ARS",
+   "dias": 2
+  },
+  {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-79e5331f-e01a-4302-a13d-0300fcb3d2fe",
+   "auto": "Toyota Yaris 2016",
+   "precio": 19899999,
+   "moneda": "ARS",
+   "dias": 2
+  },
+  {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-c90c4d7d-1ec6-4c4a-b6b6-2f5dff913f76",
+   "auto": "Nissan Note 2018",
+   "precio": 20300000,
+   "moneda": "ARS",
+   "dias": 2
+  },
+  {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-ee0e46e3-cad0-4f43-adf9-29cf3626d3b9",
+   "auto": "Peugeot 308 2020",
+   "precio": 21750000,
+   "moneda": "ARS",
+   "dias": 18
+  },
+  {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-8bb92af9-021a-4cc0-94f7-aa68d92db6c6",
+   "auto": "Renault Sandero 2023",
+   "precio": 21950000,
+   "moneda": "ARS",
+   "dias": 10
+  },
+  {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-6bfb3723-7160-4738-90b2-f876b224813b",
+   "auto": "Peugeot 208 2022",
+   "precio": 23350000,
+   "moneda": "ARS",
+   "dias": 9
+  },
+  {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-f75f7828-3c46-455c-8876-59f15e088108",
+   "auto": "Peugeot 208 2023",
+   "precio": 23499999,
+   "moneda": "ARS",
+   "dias": 5
+  },
+  {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-dd22968e-444d-43bf-96a1-d729d07996ae",
+   "auto": "Peugeot 208 2021",
+   "precio": 23950000,
+   "moneda": "ARS",
+   "dias": 15
+  },
+  {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-c77ade3c-c0d2-4cd3-9eec-0a13044ea599",
+   "auto": "Nissan Kicks 2020",
+   "precio": 24749999,
+   "moneda": "ARS",
+   "dias": 18
+  },
+  {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-642c81b7-b186-455b-8dc8-4a8645ad2f50",
+   "auto": "Fiat Toro 2021",
+   "precio": 27899999,
+   "moneda": "ARS",
+   "dias": 3
+  },
+  {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-cd1ab077-3204-4d89-8174-504038053dce",
+   "auto": "Volkswagen Nivus 2025",
+   "precio": 40550000,
+   "moneda": "ARS",
+   "dias": 18
+  },
+  {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-ad07050f-0bd9-45b6-8c32-6efe586cc624",
+   "auto": "Volkswagen Taos 2024",
+   "precio": 43950000,
+   "moneda": "ARS",
+   "dias": 18
+  },
+  {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-b4fb978e-3585-4cb5-a0c2-04267a71c43b",
+   "auto": "Volkswagen T-cross 2025",
+   "precio": 47350000,
+   "moneda": "ARS",
+   "dias": 15
+  },
+  {
+   "fecha": "2026-11-01T16:54:27.999Z",
+   "tipo": "baja",
+   "id": "autocity-fe41d80c-4b58-465d-b37a-9d739a886bc5",
+   "auto": "Volkswagen Taos 2024",
+   "precio": 47900000,
+   "moneda": "ARS",
+   "dias": 3
+  },
+  {
    "fecha": "2026-10-31T15:51:16.184Z",
    "tipo": "nuevo",
    "id": "autocity-4df525e9-1610-45aa-bee4-69b7b870ceb0",
