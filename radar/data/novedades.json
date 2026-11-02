@@ -1,6 +1,31 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-02T20:29:35.625Z",
+   "tipo": "nuevo",
+   "id": "maipu-182738",
+   "auto": "Volkswagen Amarok 2021",
+   "precio": 37500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-02T20:29:35.625Z",
+   "tipo": "nuevo",
+   "id": "maipu-182709",
+   "auto": "Renault Kardian 2024",
+   "precio": 32500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-02T20:29:35.625Z",
+   "tipo": "baja",
+   "id": "maipu-181190",
+   "auto": "Volkswagen Tiguan 2018",
+   "precio": 28500000,
+   "moneda": "ARS",
+   "dias": 19
+  },
+  {
    "fecha": "2026-11-01T16:54:27.999Z",
    "tipo": "baja",
    "id": "autocity-1e8e04f7-d5f5-4aa1-8b43-8ea1fef8ea0c",

@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-01T21:21:37.323Z",
+ "actualizado": "2026-11-02T20:29:35.625Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 74,
-   "revisado": "2026-11-01T21:21:37.323Z",
-   "actualizado": "2026-11-01T21:21:37.323Z"
+   "autos": 75,
+   "revisado": "2026-11-02T20:29:35.625Z",
+   "actualizado": "2026-11-02T20:29:35.625Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,175 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 224,
-   "revisado": "2026-11-01T21:21:37.323Z",
-   "actualizado": "2026-11-01T21:21:37.323Z"
+   "revisado": "2026-11-02T20:29:35.625Z",
+   "actualizado": "2026-11-02T20:29:35.625Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-182738",
+   "tipo": "auto",
+   "marca": "Volkswagen",
+   "modelo": "Amarok",
+   "version": "Dc 2.0L Tdi 180Cv Highline 4X2",
+   "anio": 2021,
+   "km": 146710,
+   "combustible": "Diésel",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS",
+   "precio": 37500000,
+   "precio_sin_imp": 33562500,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3465-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3466-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3468-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3469-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3464-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3467-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3463-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3459-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3457-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3453-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3454-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3455-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3462-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3456-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3461-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3458-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3460-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/11/02/amarok/",
+   "publicado": "2026-11-02T15:07:58",
+   "modificado": "2026-11-02T15:17:04",
+   "agencia": "maipu",
+   "alta": "2026-11-02T20:29:35.625Z",
+   "guia": {
+    "min": 30925000,
+    "med": 42318000,
+    "max": 50395000,
+    "n": 11,
+    "mejor": {
+     "version": "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 HIGH AT 2017",
+     "valor": 34849000,
+     "coincidencias": 3,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 COMF AT 2017",
+      30925000
+     ],
+     [
+      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 HIGH AT 2017",
+      34849000
+     ],
+     [
+      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X4 COMF AT 2017",
+      35760000
+     ],
+     [
+      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 COMF AT 224CV",
+      38982000
+     ],
+     [
+      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 COMF AT 258CV",
+      39435000
+     ],
+     [
+      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X4 HIGH AT 2017",
+      42318000
+     ],
+     [
+      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT HIGH 258CV",
+      46560000
+     ],
+     [
+      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT 224CV",
+      46682000
+     ],
+     [
+      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT EXTREME 224CV",
+      48544000
+     ],
+     [
+      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT EXTREME 258CV",
+      48638000
+     ],
+     [
+      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT BLACK STYLE 258CV",
+      50395000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-182709",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Kardian",
+   "version": "Premiere Edition 200 Edc",
+   "anio": 2024,
+   "km": 15030,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Naranja",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
+   "precio": 32500000,
+   "precio_sin_imp": 26675000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3433-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3434-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3431-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3432-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3429-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3430-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3428-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3424-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3422-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3418-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3419-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3420-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3425-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3421-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3427-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3423-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3426-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/11/02/kardian-2/",
+   "publicado": "2026-11-02T09:54:49",
+   "modificado": "2026-11-02T10:05:13",
+   "agencia": "maipu",
+   "alta": "2026-11-02T20:29:35.625Z",
+   "guia": {
+    "min": 26736000,
+    "med": 28367000,
+    "max": 29854000,
+    "n": 3,
+    "mejor": {
+     "version": "KARDIAN 5P 1,0 T AT6 PREMIERE EDITION",
+     "valor": 29854000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "KARDIAN 5P 1,0 T AT6 EVOLUTION",
+      26736000
+     ],
+     [
+      "KARDIAN 5P 1,0 T AT6 TECHNO",
+      28367000
+     ],
+     [
+      "KARDIAN 5P 1,0 T AT6 PREMIERE EDITION",
+      29854000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-182685",
    "tipo": "auto",
@@ -332,7 +496,7 @@
    "tipo": "auto",
    "marca": "BMW",
    "modelo": "Z4",
-   "version": "3.0I",
+   "version": "2.0 T",
    "anio": 2020,
    "km": 1970,
    "combustible": "Nafta",
@@ -362,7 +526,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/30/z4/",
    "publicado": "2026-10-30T17:12:10",
-   "modificado": "2026-10-30T17:16:23",
+   "modificado": "2026-11-02T09:06:37",
    "agencia": "maipu",
    "alta": "2026-10-30T21:41:53.760Z",
    "guia": {
@@ -370,7 +534,12 @@
     "med": 114320000,
     "max": 114320000,
     "n": 1,
-    "mejor": null,
+    "mejor": {
+     "version": "Z4 ROADSTER 2,0 T SDRIVE 3,0 i M SPORT 8AT",
+     "valor": 114320000,
+     "coincidencias": 1,
+     "empate": 1
+    },
     "versiones": [
      [
       "Z4 ROADSTER 2,0 T SDRIVE 3,0 i M SPORT 8AT",
@@ -2155,76 +2324,6 @@
      [
       "RENEGADE 5P 2,4 AT9 LONGITUDE 4X4",
       26074000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "maipu-181190",
-   "tipo": "auto",
-   "marca": "Volkswagen",
-   "modelo": "Tiguan",
-   "version": "1.4 Tsi Dsg",
-   "anio": 2018,
-   "km": 136200,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS",
-   "precio": 28500000,
-   "precio_sin_imp": 22515000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2357-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2358-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2360-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2362-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2356-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2359-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2355-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2349-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2353-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2345-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2346-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2347-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2354-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2348-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2352-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2350-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2351-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/10/14/tiguan-4/",
-   "publicado": "2026-10-14T16:23:41",
-   "modificado": "2026-10-14T17:21:34",
-   "agencia": "maipu",
-   "alta": "2026-10-14T19:25:58.122Z",
-   "guia": {
-    "min": 27030000,
-    "med": 31906000,
-    "max": 35655000,
-    "n": 4,
-    "mejor": {
-     "version": "TIGUAN ALLSPACE 5P 1,4 TSI TRENDLINE DSG6",
-     "valor": 27030000,
-     "coincidencias": 2,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "TIGUAN ALLSPACE 5P 1,4 TSI TRENDLINE DSG6",
-      27030000
-     ],
-     [
-      "TIGUAN ALLSPACE 5P 2,0 TSI COMFORTLINE DSG7 4MOTION",
-      31007000
-     ],
-     [
-      "TIGUAN ALLSPACE 5P 2,0 TSI COMFORTLINE DSG7 4MOTION T/SOLAR",
-      31906000
-     ],
-     [
-      "TIGUAN ALLSPACE 5P 2,0 TSI HIGHLINE DSG7 4MOTION",
-      35655000
      ]
     ]
    }
@@ -5166,7 +5265,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Amarok 2024 Automática 122370 45000000 Precio sugerido al público 40275000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automática 51970 65000000 Precio sugerido al público 58175000 Precio sin impuestos nacionales + Precio a confirmar outlet Amarok 2021 Automática 200650 37000000 Precio sugerido al público 33115000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automatica 52500 98000000 Precio sugerido al público 88687800 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Gixxer 150 2025 Manual 1765 4390000 Precio sugerido al público 3628100 Precio sin impuestos nacionales + Precio a confirmar destacados CB300F Twister 2024 Manual 705 6390000 Precio sugerido al público 5281000 Precio sin impuestos nacionales + Precio a confirmar destacados 180 S 2025 Manual 17060 3790000 Precio sugerido al público 3132200 Precio sin impuestos nacionales + Precio a confirmar oportunidades Xr 190 2024 Manual 17565 4790000 Precio sugerido al público 3958680 Precio sin impuestos nacionales + Precio a confirmar oportunidades FZ25 Abs 2025 Manual 4585 5990000 Precio sugerido al público 4950415 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -5238,7 +5337,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Amarok 2024 Automática 122370 45000000 Precio sugerido al público 40275000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automática 51970 65000000 Precio sugerido al público 58175000 Precio sin impuestos nacionales + Precio a confirmar outlet Amarok 2021 Automática 200650 37000000 Precio sugerido al público 33115000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automatica 52500 98000000 Precio sugerido al público 88687800 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Gixxer 150 2025 Manual 1765 4390000 Precio sugerido al público 3628100 Precio sin impuestos nacionales + Precio a confirmar destacados CB300F Twister 2024 Manual 705 6390000 Precio sugerido al público 5281000 Precio sin impuestos nacionales + Precio a confirmar destacados 180 S 2025 Manual 17060 3790000 Precio sugerido al público 3132200 Precio sin impuestos nacionales + Precio a confirmar oportunidades Xr 190 2024 Manual 17565 4790000 Precio sugerido al público 3958680 Precio sin impuestos nacionales + Precio a confirmar oportunidades FZ25 Abs 2025 Manual 4585 5990000 Precio sugerido al público 4950415 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -5504,7 +5603,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Amarok 2024 Automática 122370 45000000 Precio sugerido al público 40275000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automática 51970 65000000 Precio sugerido al público 58175000 Precio sin impuestos nacionales + Precio a confirmar outlet Amarok 2021 Automática 200650 37000000 Precio sugerido al público 33115000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automatica 52500 98000000 Precio sugerido al público 88687800 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Gixxer 150 2025 Manual 1765 4390000 Precio sugerido al público 3628100 Precio sin impuestos nacionales + Precio a confirmar destacados CB300F Twister 2024 Manual 705 6390000 Precio sugerido al público 5281000 Precio sin impuestos nacionales + Precio a confirmar destacados 180 S 2025 Manual 17060 3790000 Precio sugerido al público 3132200 Precio sin impuestos nacionales + Precio a confirmar oportunidades Xr 190 2024 Manual 17565 4790000 Precio sugerido al público 3958680 Precio sin impuestos nacionales + Precio a confirmar oportunidades FZ25 Abs 2025 Manual 4585 5990000 Precio sugerido al público 4950415 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",
