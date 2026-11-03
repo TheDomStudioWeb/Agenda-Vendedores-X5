@@ -184,7 +184,7 @@ let user = null, token = null, D = { contratos: [], personal: [], ambito: [] };
 const F = { est: '', resp: '', q: '' }, sel = new Set(); let tope = 120;
 const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }, del(k) { try { localStorage.removeItem(k); } catch (e) {} } };
 const post = async (b) => { const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(Object.assign({ token }, b)) }); return r.json(); };
-const supervisa = () => SUP.includes(user.rol), gerente = () => user.rol === 'Gerente Comercial', control = () => user.rol === 'Control', veTodo = () => gerente() || control();
+const supervisa = () => SUP.includes(user.rol), gerente = () => user.rol === 'Gerente Comercial', control = () => user.rol === 'Control' || user.rol === 'Supervisor', veTodo = () => gerente() || control();
 const fch = (s) => s ? X5.fechaLarga(s) : '';
 const natural = (a, b) => String(a).localeCompare(String(b), 'es', { numeric: true });
 
@@ -211,7 +211,7 @@ $('btn-act').onclick = () => cargar(true);
 
 async function entrar() {
   $('login').style.display = 'none'; $('top').hidden = false; $('app').hidden = false;
-  $('quien').textContent = user.nombre + ' · ' + (control() ? 'Solo lectura' : user.rol);
+  $('quien').textContent = user.nombre + ' · ' + (user.rol === 'Supervisor' ? 'Supervisor · solo lectura' : control() ? 'Solo lectura' : user.rol);
   $('p-ger').hidden = !gerente(); $('p-pre').hidden = !gerente(); $('p-res').hidden = !(supervisa() || control());
   await cargar(false);
 }

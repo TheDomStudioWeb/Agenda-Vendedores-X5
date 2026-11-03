@@ -19,6 +19,9 @@
   .arch select { margin: 10px 0 4px; }
   .arch-it { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: .85rem; }
   .arch-it small { display: block; color: var(--muted); font-size: .72rem; margin-top: 2px; }
+  /* Supervisor: solo lectura. Se ocultan los controles que modifican; el servidor además rechaza cualquier cambio */
+  body.ro .item-tools, body.ro #det-agenda, body.ro #panel-asignar, body.ro [data-agendar], body.ro #btn-avisos, body.ro .acc, body.ro #panel-arch, body.ro .ger-only { display: none !important; }
+  body.ro [data-campo]:disabled { opacity: .85; -webkit-text-fill-color: currentColor; }
   /* Resumen semanal */
   .wk { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
   .wk .wk-t { flex: 1; text-align: center; font-weight: 700; font-size: .92rem; }
@@ -372,7 +375,9 @@
 (() => {
 'use strict';
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
-const SUPERVISION = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
+const SUPERVISION = ['Gerente Comercial', 'Jefe de Ventas', 'Referente', 'Supervisor']; // Supervisor: ve todo, solo lectura
+const SOLO_LECTURA = () => !!user && user.rol === 'Supervisor';
+const VE_TODO = () => !!user && (user.rol === 'Gerente Comercial' || user.rol === 'Supervisor');
 const $ = (id) => document.getElementById(id);
 const esc = X5.esc;
 
@@ -404,6 +409,7 @@ let outbox = store.get('x5_outbox', []);
 let enviando = false;
 
 function encolar(accion, tabla, data) {
+  if (SOLO_LECTURA()) { X5.toast('Cuenta de solo lectura: no se puede modificar nada.', 'bad', 3500); return; }
   // Si ya hay un update pendiente del mismo registro, se reemplaza por el más nuevo
   if (accion === 'update') {
     const i = outbox.findIndex(o => o.action === 'update' && o.tabla === tabla && String(o.data.id) === String(data.id));
@@ -558,7 +564,9 @@ function iniciarApp() {
   llenarDesplegables();
   prepararFiltros();
   $('ag-fecha').value = X5.hoyISO();
-  $('btn-avisos').classList.toggle('hidden', !token);
+  $('btn-avisos').classList.toggle('hidden', !token || SOLO_LECTURA());
+  document.body.classList.toggle('ro', SOLO_LECTURA());
+  if (SOLO_LECTURA()) $('user-role').textContent = 'Supervisor · solo lectura';
   render();
   aplicarEnlace();
   procesarCola();
@@ -580,6 +588,7 @@ function aplicarEnlace() {
 
 /* ── Avisos por Telegram ─────────────────────────────────── */
 async function activarAvisos() {
+  if (SOLO_LECTURA()) return;
   const btn = $('btn-avisos'); btn.disabled = true;
   try {
     const r = await apiPost({ action: 'telegram_link', token });
@@ -595,7 +604,7 @@ async function activarAvisos() {
 /* ── Permisos de vista ─────────────────────────────────────── */
 function puedeVer(nombre) {
   if (!user) return false;
-  if (user.rol === 'Gerente Comercial' || nombre === user.nombre) return true;
+  if (VE_TODO() || nombre === user.nombre) return true;
   return (db.personal || []).some(p => p.reporta_a === user.nombre && p.nombre === nombre);
 }
 
@@ -683,7 +692,7 @@ function llenarPersona() {
   db.leads.forEach(l => { if (l.asignado_a && puedeVer(l.asignado_a)) vis.add(l.asignado_a); });
   const orden = (a, b) => String(a).localeCompare(String(b), 'es');
   const jefes = [...vis].filter(n => n !== user.nombre && (db.personal || []).some(p => p.reporta_a === n && vis.has(p.nombre))).sort(orden);
-  let html = `<option value="">${user.rol === 'Gerente Comercial' ? 'Todo el equipo' : 'Todo mi equipo'}</option>`;
+  let html = `<option value="">${VE_TODO() ? 'Todo el equipo' : 'Todo mi equipo'}</option>`;
   if (jefes.length) html += '<optgroup label="Equipos">' + jefes.map(j => `<option value="e:${esc(j)}">Equipo de ${esc(j)}</option>`).join('') + '</optgroup>';
   html += '<optgroup label="Personas">' + [...vis].sort(orden).map(n => `<option value="p:${esc(n)}">${esc(n)}${n === user.nombre ? ' (yo)' : ''}</option>`).join('') + '</optgroup>';
   if (html !== personaHtml) {
@@ -757,7 +766,8 @@ function sincronizarPanel(t) {
 }
 
 /* ── Render ────────────────────────────────────────────────── */
-function render() { if (user) llenarPersona(); renderAgenda(); renderLeads(); resumen(); pintarDup(); pintarArch(); if (SUPERVISION.includes(user.rol) && $('tab-dashboard').classList.contains('active')) renderDashboard(); if (SUPERVISION.includes(user.rol) && $('tab-resumen').classList.contains('active')) renderResumen(); }
+function bloquearEdicion() { if (!SOLO_LECTURA()) return; document.querySelectorAll('[data-campo]').forEach(el => { el.disabled = true; }); }
+function render() { if (user) llenarPersona(); renderAgenda(); renderLeads(); resumen(); pintarDup(); pintarArch(); bloquearEdicion(); if (SUPERVISION.includes(user.rol) && $('tab-dashboard').classList.contains('active')) renderDashboard(); if (SUPERVISION.includes(user.rol) && $('tab-resumen').classList.contains('active')) renderResumen(); }
 
 function resumen() {
   const hoy = X5.hoyISO();
@@ -892,6 +902,7 @@ function registro(el) {
 }
 
 function guardarCampo(tabla, item, campo, valor) {
+  if (SOLO_LECTURA()) return false;
   if (String(item[campo] ?? '') === String(valor ?? '')) return false;
   item[campo] = valor;
   if (tabla === 'leads' && campo === 'estado' && !item.hora_contacto) marcarContacto(item);
@@ -1570,7 +1581,7 @@ function reporteHtml(d, pdf) {
 
 function alcance() {
   const v = F.persona;
-  if (!v) return user.rol === 'Gerente Comercial' ? 'Todo el equipo' : 'Mi equipo';
+  if (!v) return VE_TODO() ? 'Todo el equipo' : 'Mi equipo';
   return v.startsWith('e:') ? 'Equipo de ' + v.slice(2) : v.slice(2);
 }
 

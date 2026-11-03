@@ -12,6 +12,7 @@ function hoja(nombre) {
 function crear(personal) {
   const libro = {}, ss = { getSheetByName: n => libro[n] || null, insertSheet: n => (libro[n] = hoja(n)) };
   libro.Personal = hoja('Personal'); libro.Personal.filas = [['nombre', 'rol', 'estado', 'reporta_a', 'clave', 'telegram']].concat(personal);
+  libro['Hoja 1'] = hoja('Hoja 1'); libro['Hoja 1'].filas = [['id']]; libro.Leads = hoja('Leads'); libro.Leads.filas = [['id']]; // hojas del CRM (vacías) para probar permisos
   const cache = {}, props = {}; let fecha = new Date('2026-10-26T15:00:00-03:00');
   const ctx = { console, Date: class extends Date { constructor(...a) { if (a.length) super(...a); else super(fecha); } },
     SpreadsheetApp: { getActiveSpreadsheet: () => ss }, LockService: { getScriptLock: () => ({ waitLock() {}, releaseLock() {} }) },

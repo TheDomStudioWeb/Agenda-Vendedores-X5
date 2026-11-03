@@ -19,6 +19,8 @@ Pantalla: **Hub → Ventas → Control de contratos** (`contratos.html`). Es sol
 
 **Cuenta de solo lectura (rol «Control»):** para quien envía los contratos a sucursal. Ve todos los contratos, equipos y estados (incluidos los que están en gerencia), pero no puede modificar nada. Tampoco puede entrar al Mini CRM: si lo intenta, la pantalla lo deriva al Control de contratos. Se crea en la hoja «Personal» con rol «Control».
 
+**Rol «Supervisor»:** ve el Control de contratos completo igual que «Control», y además todo el CRM y las herramientas, siempre en solo lectura (ver el manual interno del Hub).
+
 ## Flujo
 1. Gerencia carga los números disponibles (lista o rangos: `1001-1050`).
 2. Gerencia asigna a jefes; los jefes reparten a vendedores (tildar contratos → "Asignar a…"). Se puede devolver a gerencia.

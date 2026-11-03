@@ -141,4 +141,30 @@ T('rol Control: ve todo el gestor de contratos, no modifica nada y no entra al C
   assert(m.post({ action: 'contratos_datos', token: tok.token }).ok);
   ['datos', 'add', 'update', 'delete', 'archivar', 'telegram_link', 'contratos_estado'].forEach(a => assert.strictEqual(m.post({ action: a, token: tok.token, tabla: 'Hoja 1', data: { id: 'x' } }).error, 'sin_permiso', a));
 });
+T('rol Supervisor: ve todo el CRM y los contratos, y el servidor rechaza cualquier cambio', () => {
+  const m = crear(personal.concat([['Super Visor', 'Supervisor', 'Activo', '', 'x', '']])); const SUP = { nombre: 'Super Visor', rol: 'Supervisor' };
+  const tg = m.post({ action: 'login', nombre: 'Gerente Uno', clave: 'x' }).token, ts = m.post({ action: 'login', nombre: 'Super Visor', clave: 'x' }).token, tj = m.post({ action: 'login', nombre: 'Jefe Beto', clave: 'x' }).token;
+  assert(tg && ts && tj);
+  const fecha = '2026-11-03';
+  assert(m.post({ action: 'add', token: tg, tabla: 'Leads', data: { id: 'L1', cliente: 'Ana', telefono: '261111', interes: 'Auto', origen: 'web', asignado_a: 'Vendedor Carlos', fecha_asignacion: fecha, hora_limite: '18:00', estado: 'pendiente' } }).ok);
+  assert(m.post({ action: 'add', token: tg, tabla: 'Leads', data: { id: 'L2', cliente: 'Beto', telefono: '261222', interes: 'Auto', origen: 'web', asignado_a: 'Vendedor Eli', fecha_asignacion: fecha, hora_limite: '18:00', estado: 'pendiente' } }).ok);
+  assert(m.post({ action: 'add', token: tg, tabla: 'Hoja 1', data: { id: 'A1', cliente: 'Cami', vehiculo: 'Auto', asesor: 'Vendedora Dana', fecha, hora: '10:00', estado: 'pendiente' } }).ok);
+  // Ve todo (como gerencia), a diferencia de un jefe de otro equipo
+  const d = m.post({ action: 'datos', token: ts }); assert(d.ok && d.leads.length === 2 && d.agenda.length === 1, JSON.stringify(d).slice(0, 200));
+  assert.strictEqual(m.post({ action: 'datos', token: tj }).leads.length, 1);
+  // Contratos: ve todo, no modifica
+  m.llamar(GER, { action: 'contratos_cargar', numeros: '100-102' });
+  const c = datos(m, SUP); assert(c.ok && c.contratos.length === 3 && c.contratos.some(x => x.estado === 'Disponible'));
+  assert(m.post({ action: 'contratos_precios', token: ts }).ok);
+  const id = idDe(m, '101');
+  ['contratos_cargar:{"numeros":"200"}', 'contratos_asignar:{"ids":["' + id + '"],"responsable":"Jefe Ana"}', 'contratos_estado:{"ids":["' + id + '"],"estado":"Anulado"}', 'contratos_eliminar:{"ids":["' + id + '"]}', 'contratos_importar:{"texto":"91;Gerente Uno;Vacío"}', 'contratos_vincular:{"numero":"100","cliente":"X"}'].forEach(x => {
+    const i = x.indexOf(':'); const r = m.llamar(SUP, Object.assign({ action: x.slice(0, i) }, JSON.parse(x.slice(i + 1)))); assert.strictEqual(r.error, 'sin_permiso', x);
+  });
+  // Por HTTP: ninguna escritura ni acción de configuración pasa, ni sobre lo propio ni sobre lo ajeno
+  ['add', 'update', 'delete', 'archivar', 'restaurar', 'archivo_listar', 'telegram_link', 'contratos_estado', 'contratos_cargar', 'accion_rara'].forEach(a => {
+    ['Leads', 'Hoja 1'].forEach(t => assert.strictEqual(m.post({ action: a, token: ts, tabla: t, data: { id: 'L1', cliente: 'HACKEADO', asignado_a: 'Super Visor', asesor: 'Super Visor' } }).error, 'sin_permiso', a + ' ' + t));
+  });
+  const d2 = m.post({ action: 'datos', token: tg }); assert(d2.leads.find(l => l.id === 'L1').cliente === 'Ana' && d2.leads.length === 2 && d2.agenda.length === 1);
+  assert.strictEqual(datos(m, GER).contratos.length, 3);
+});
 console.log(`\n${ok} bien, ${fail} con error`); process.exit(fail ? 1 : 0);

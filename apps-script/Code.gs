@@ -38,6 +38,7 @@ const MIN_BLOQUEO_LOGIN = 10;   // minutos de bloqueo tras superarlos
 const ROLES_SUPERVISION = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
 const ROL_ARCHIVO = 'Gerente Comercial'; // único rol que archiva y restaura
 const ROL_CONTROL = 'Control';           // solo lectura: ve todo el gestor de contratos y nada más
+const ROL_SUPERVISOR = 'Supervisor';     // solo lectura en todo el Hub: ve el CRM completo y los contratos, no modifica nada
 
 const HOJAS = {
   agenda: 'Hoja 1',
@@ -95,6 +96,8 @@ function doPost(e) {
 
     // Rol «Control»: únicamente mira el gestor de contratos (ver todo, sin modificar nada ni entrar al CRM)
     if (esControl_(usuario) && ['contratos_datos', 'contratos_precios'].indexOf(String(body.action)) < 0) return json_({ ok: false, error: 'sin_permiso' });
+    // Rol «Supervisor»: mira todo (CRM completo y contratos) y nada más. Solo se aceptan pedidos de lectura; cualquier otra acción se rechaza acá, antes de tocar la planilla
+    if (esSupervisor_(usuario) && ['datos', 'contratos_datos', 'contratos_precios'].indexOf(String(body.action)) < 0) return json_({ ok: false, error: 'sin_permiso' });
 
     // Lectura de datos y enlace de Telegram (la sesión viaja en el cuerpo, no en la dirección)
     if (body.action === 'datos') { if (!usuario) return json_({ ok: false, error: 'sesion_vencida' }); return json_(armarDatos_(usuario)); }
@@ -487,7 +490,7 @@ function armarDatos_(usuario) {
 }
 
 function visibilidad_(usuario, personal) {
-  if (usuario.rol === 'Gerente Comercial') return () => true;
+  if (usuario.rol === 'Gerente Comercial' || esSupervisor_(usuario)) return () => true;
   const equipo = personal.filter(p => p.reporta_a === usuario.nombre).map(p => p.nombre);
   return nombre => nombre === usuario.nombre || equipo.includes(nombre);
 }
@@ -903,9 +906,11 @@ function hojaContratos_(nombre, cols) {
 }
 function esGerente_(u) { return u.rol === 'Gerente Comercial'; }
 function esControl_(u) { return u.rol === ROL_CONTROL; }
+function esSupervisor_(u) { return u.rol === ROL_SUPERVISOR; }
+function veTodoContratos_(u) { return esGerente_(u) || esControl_(u) || esSupervisor_(u); }
 // Personas a las que este usuario puede asignar o ver: él mismo y quienes le reportan (gerente: todos los activos)
 function ambitoContratos_(u, personal) {
-  if (esGerente_(u) || esControl_(u)) return personal.filter(p => String(p.estado) === 'Activo').map(p => String(p.nombre));
+  if (veTodoContratos_(u)) return personal.filter(p => String(p.estado) === 'Activo').map(p => String(p.nombre));
   return [String(u.nombre)].concat(personal.filter(p => String(p.reporta_a) === String(u.nombre) && String(p.estado) === 'Activo').map(p => String(p.nombre)));
 }
 function nuevoIdContrato_() { return 'C' + Utilities.getUuid().replace(/-/g, '').slice(0, 10); }
@@ -950,7 +955,7 @@ function despacharContratos_(body, u) {
   const a = body.action;
   if (a === 'contratos_datos') return contratosDatos_(u);
   if (a === 'contratos_precios') return { ok: true, precios: leerPrecios_() };
-  if (esControl_(u)) return { ok: false, error: 'sin_permiso' }; // solo lectura
+  if (esControl_(u) || esSupervisor_(u)) return { ok: false, error: 'sin_permiso' }; // solo lectura
   const lock = LockService.getScriptLock(); lock.waitLock(15000);
   try {
     if (a === 'contratos_cargar') return contratosCargar_(body, u);
@@ -967,7 +972,7 @@ function despacharContratos_(body, u) {
 function contratosDatos_(u) {
   const personal = personalLimpio_(), ambito = ambitoContratos_(u, personal);
   const todos = leerContratos_();
-  const visibles = (esGerente_(u) || esControl_(u)) ? todos : todos.filter(c => ambito.indexOf(String(c.responsable)) > -1);
+  const visibles = veTodoContratos_(u) ? todos : todos.filter(c => ambito.indexOf(String(c.responsable)) > -1);
   const gente = personal.filter(p => String(p.estado) === 'Activo').map(p => ({ nombre: p.nombre, rol: p.rol, reporta_a: p.reporta_a }));
   return { ok: true, usuario: { nombre: u.nombre, rol: u.rol }, contratos: visibles, personal: gente, ambito: ambito, estados: ESTADOS_CONTRATO, precios: leerPrecios_(), servidor: new Date().toISOString() };
 }

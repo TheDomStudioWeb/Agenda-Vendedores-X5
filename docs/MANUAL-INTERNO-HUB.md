@@ -154,6 +154,18 @@ Pestaña **Resumen** en el menú inferior. Solo la ven Gerente Comercial, Jefe d
 - Botón **Descargar PDF**: arma una hoja A4 clara con el título del período elegido (por ejemplo "Resumen trimestral"), de una o más páginas. En el celular abre "Compartir" (WhatsApp, mail); en la compu lo descarga.
 - Cómo se calcula: lead contactado = estado distinto de "pendiente" o con tiempo de contacto cargado. Los leads se cuentan por su fecha de asignación y las entrevistas por su fecha. No hay cambios en el script ni en la planilla.
 
+## Usuario Supervisor, solo lectura (03/11/2026)
+
+Cuenta para quien necesita **mirar todo el Hub sin poder cambiar nada** (por ejemplo, un directivo o un auditor).
+
+- **Qué ve:** toda la agenda y todos los leads de todo el equipo, Métricas, Resumen por período, el gestor de **Control de contratos** completo (incluidos los contratos que están en gerencia) y todas las herramientas del Hub. Puede filtrar por asesor o equipo y descargar el PDF del resumen.
+- **Qué no puede hacer:** cargar ni editar entrevistas o leads, cambiar estados u observaciones, asignar, eliminar, buscar y limpiar duplicados, archivar, tocar contratos ni listas de precios, ni activar avisos de Telegram. Esos botones no aparecen, y además **el script rechaza cualquier cambio** aunque alguien lo intente por otra vía.
+- **Cómo se crea (2 pasos):**
+  1. Pegar el `apps-script/Code.gs` nuevo en Apps Script y desplegarlo con **Implementar > Administrar implementaciones > Editar > Nueva versión** (la URL no cambia).
+  2. En la hoja **Personal** agregar una fila: `nombre` (lo que va a escribir al entrar), `rol` = **Supervisor** (exacto, con esa mayúscula), `estado` = **Activo**, `reporta_a` vacío y una `clave`. La columna `telegram` queda vacía.
+- **Importante:** sin el paso 1 el rol no se reconoce y la cuenta vería la app como un asesor sin datos. La baja funciona como siempre: poner `estado` distinto de Activo corta su sesión en un minuto.
+- **Diferencia con el rol Control:** «Control» ve solo el gestor de contratos y no entra al CRM. «Supervisor» ve todo.
+
 ## Limpiar / archivar descartados (19/10/2026)
 
 Botón **Limpiar / archivar** al lado de "Buscar duplicados", en las pestañas Agenda y Leads. Lo ve solo el **Gerente Comercial** (el script también lo exige: nadie más puede archivar ni restaurar).
