@@ -1,6 +1,74 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-03T18:00:23.078Z",
+   "tipo": "nuevo",
+   "id": "maipu-182975",
+   "auto": "Volkswagen Tiguan 2023",
+   "precio": 56000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-03T18:00:23.078Z",
+   "tipo": "nuevo",
+   "id": "maipu-182951",
+   "auto": "Ford Kuga 2017",
+   "precio": 27500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-03T18:00:23.078Z",
+   "tipo": "nuevo",
+   "id": "maipu-182843",
+   "auto": "Renault Duster 2016",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-03T18:00:23.078Z",
+   "tipo": "nuevo",
+   "id": "maipu-182817",
+   "auto": "Chevrolet Cruze 2023",
+   "precio": 24500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-03T18:00:23.078Z",
+   "tipo": "baja",
+   "id": "maipu-182395",
+   "auto": "Chevrolet Tracker 2018",
+   "precio": 18500000,
+   "moneda": "ARS",
+   "dias": 6
+  },
+  {
+   "fecha": "2026-11-03T18:00:23.078Z",
+   "tipo": "baja",
+   "id": "maipu-178476",
+   "auto": "Ford Ka 2013",
+   "precio": 11500000,
+   "moneda": "ARS",
+   "dias": 47
+  },
+  {
+   "fecha": "2026-11-03T18:00:23.078Z",
+   "tipo": "baja",
+   "id": "maipu-176866",
+   "auto": "Audi A1 2026",
+   "precio": 36900,
+   "moneda": "USD",
+   "dias": 60
+  },
+  {
+   "fecha": "2026-11-03T18:00:23.078Z",
+   "tipo": "baja",
+   "id": "maipu-175230",
+   "auto": "Audi A1 2026",
+   "precio": 36600,
+   "moneda": "USD",
+   "dias": 76
+  },
+  {
    "fecha": "2026-11-02T20:29:35.625Z",
    "tipo": "nuevo",
    "id": "maipu-182738",
