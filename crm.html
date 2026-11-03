@@ -332,11 +332,22 @@
   <!-- RESUMEN SEMANAL -->
   <section id="tab-resumen" class="tab">
     <div class="wk">
-      <button type="button" id="wk-prev" aria-label="Semana anterior">‹</button>
+      <button type="button" id="wk-prev" aria-label="Período anterior">‹</button>
       <div class="wk-t" id="wk-titulo"></div>
-      <button type="button" id="wk-next" aria-label="Semana siguiente">›</button>
+      <button type="button" id="wk-next" aria-label="Período siguiente">›</button>
     </div>
     <div class="card" style="margin-bottom:12px">
+      <div class="row" style="align-items:center;margin-bottom:10px">
+        <div><div class="lbl" style="margin:0">Período del informe</div></div>
+        <select id="per-tipo" style="max-width:220px" aria-label="Período del informe">
+          <option value="semana">Semanal</option>
+          <option value="quincena">Quincenal</option>
+          <option value="mes">Mensual</option>
+          <option value="trimestre">Trimestral</option>
+          <option value="semestre">Semestral</option>
+          <option value="anio">Anual</option>
+        </select>
+      </div>
       <div class="row" style="align-items:center">
         <div><div class="lbl" style="margin:0">Asesor o equipo</div></div>
         <select class="f-persona" style="max-width:220px"></select>
@@ -1394,21 +1405,64 @@ function renderDashboard() {
 }
 
 
-/* ── Resumen semanal ───────────────────────────────────────── */
-let semOff = -1; // 0 = esta semana (parcial) · -1 = semana pasada completa
+/* ── Resumen por período (semanal a anual) ───────────────────────────────────────── */
+const PERIODOS = {
+  semana:    { nombre: 'semanal',    actual: 'Esta semana',     previo: 'Semana pasada',    sust: 'la semana',    deste: 'de la semana' },
+  quincena:  { nombre: 'quincenal',  actual: 'Esta quincena',   previo: 'Quincena pasada',  sust: 'la quincena',  deste: 'de la quincena' },
+  mes:       { nombre: 'mensual',    actual: 'Este mes',        previo: 'Mes pasado',       sust: 'el mes',       deste: 'del mes' },
+  trimestre: { nombre: 'trimestral', actual: 'Este trimestre',  previo: 'Trimestre pasado', sust: 'el trimestre', deste: 'del trimestre' },
+  semestre:  { nombre: 'semestral',  actual: 'Este semestre',   previo: 'Semestre pasado',  sust: 'el semestre',  deste: 'del semestre' },
+  anio:      { nombre: 'anual',      actual: 'Este año',        previo: 'Año pasado',       sust: 'el año',       deste: 'del año' }
+};
+let perTipo = store.get('x5_per_tipo', 'semana'); if (!PERIODOS[perTipo]) perTipo = 'semana';
+let perOff = -1; // 0 = período en curso (parcial) · -1 = el anterior, completo
 const MES_L = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-function semanaRango(off) {
-  const d = new Date(); d.setHours(12, 0, 0, 0);
-  const dow = (d.getDay() + 6) % 7;
-  const lun = new Date(d); lun.setDate(d.getDate() - dow + off * 7);
-  const dom = new Date(lun); dom.setDate(lun.getDate() + 6);
-  return { desde: X5.hoyISO(lun), hasta: X5.hoyISO(dom), lun, dom };
+const ORD_F = ['1ª', '2ª'];
+function periodoRango(tipo, off) {
+  const h = new Date(); h.setHours(12, 0, 0, 0);
+  let ini, fin, etiqueta;
+  if (tipo === 'semana') {
+    const dow = (h.getDay() + 6) % 7;
+    ini = new Date(h); ini.setDate(h.getDate() - dow + off * 7);
+    fin = new Date(ini); fin.setDate(ini.getDate() + 6);
+  } else if (tipo === 'quincena') {
+    const n = h.getFullYear() * 24 + h.getMonth() * 2 + (h.getDate() > 15 ? 1 : 0) + off;
+    const a = Math.floor(n / 24), m = Math.floor((n % 24) / 2), q = n % 2;
+    ini = new Date(a, m, q ? 16 : 1, 12);
+    fin = q ? new Date(a, m + 1, 0, 12) : new Date(a, m, 15, 12);
+    etiqueta = `${ORD_F[q]} quincena de ${MES_L[m]} de ${a}`;
+  } else if (tipo === 'mes') {
+    const n = h.getFullYear() * 12 + h.getMonth() + off, a = Math.floor(n / 12), m = n % 12;
+    ini = new Date(a, m, 1, 12); fin = new Date(a, m + 1, 0, 12);
+    etiqueta = `${MES_L[m][0].toUpperCase() + MES_L[m].slice(1)} de ${a}`;
+  } else if (tipo === 'trimestre') {
+    const n = h.getFullYear() * 4 + Math.floor(h.getMonth() / 3) + off, a = Math.floor(n / 4), t = n % 4;
+    ini = new Date(a, t * 3, 1, 12); fin = new Date(a, t * 3 + 3, 0, 12);
+    etiqueta = `${t + 1}.º trimestre de ${a}`;
+  } else if (tipo === 'semestre') {
+    const n = h.getFullYear() * 2 + Math.floor(h.getMonth() / 6) + off, a = Math.floor(n / 2), t = n % 2;
+    ini = new Date(a, t * 6, 1, 12); fin = new Date(a, t * 6 + 6, 0, 12);
+    etiqueta = `${t + 1}.º semestre de ${a}`;
+  } else {
+    const a = h.getFullYear() + off;
+    ini = new Date(a, 0, 1, 12); fin = new Date(a, 11, 31, 12);
+    etiqueta = `Año ${a}`;
+  }
+  return { tipo, off, desde: X5.hoyISO(ini), hasta: X5.hoyISO(fin), ini, fin, etiqueta };
 }
-function textoSemana(r) {
-  const a = r.lun, b = r.dom;
-  return a.getMonth() === b.getMonth()
+function textoRango(r) {
+  const a = r.ini, b = r.fin;
+  return a.getMonth() === b.getMonth() && a.getFullYear() === b.getFullYear()
     ? `${a.getDate()} al ${b.getDate()} de ${MES_L[b.getMonth()]} de ${b.getFullYear()}`
-    : `${a.getDate()} de ${MES_L[a.getMonth()]} al ${b.getDate()} de ${MES_L[b.getMonth()]} de ${b.getFullYear()}`;
+    : a.getFullYear() === b.getFullYear()
+      ? `${a.getDate()} de ${MES_L[a.getMonth()]} al ${b.getDate()} de ${MES_L[b.getMonth()]} de ${b.getFullYear()}`
+      : `${a.getDate()} de ${MES_L[a.getMonth()]} de ${a.getFullYear()} al ${b.getDate()} de ${MES_L[b.getMonth()]} de ${b.getFullYear()}`;
+}
+function tituloRango(r) {
+  const P = PERIODOS[r.tipo];
+  if (r.off === 0) return P.actual;
+  if (r.off === -1) return P.previo;
+  return r.etiqueta || 'Semana del ' + r.ini.getDate() + '/' + (r.ini.getMonth() + 1);
 }
 const fmtMin = (m) => m == null ? '–' : (m < 60 ? m + ' min' : (m / 60).toFixed(1).replace('.', ',') + ' h');
 const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
@@ -1416,7 +1470,7 @@ const numMin = (l) => (l.hora_contacto !== '' && l.hora_contacto != null && !isN
 const contactado = (l) => (l.estado && l.estado !== 'pendiente') || numMin(l) != null;
 const recorte = (t, n) => { t = String(t || '').replace(/\s+/g, ' ').trim(); return t.length > n ? t.slice(0, n - 1) + '…' : t; };
 
-function datosSemana(r) {
+function datosPeriodo(r) {
   const ver = filtroPersona();
   const hoy = X5.hoyISO();
   const L = db.leads.filter(l => ver(l.asignado_a) && soloFecha(l.fecha_asignacion) >= r.desde && soloFecha(l.fecha_asignacion) <= r.hasta);
@@ -1450,7 +1504,7 @@ function datosSemana(r) {
 }
 
 function frase(d) {
-  if (!d.L.length && !d.A.length) return 'No hay leads ni entrevistas cargados en esta semana.';
+  if (!d.L.length && !d.A.length) return 'No hay leads ni entrevistas cargados en ' + PERIODOS[d.r.tipo].sust + '.';
   const p = [];
   p.push(`${d.L.length} lead${d.L.length === 1 ? '' : 's'} recibido${d.L.length === 1 ? '' : 's'}, ${pct(d.cont.length, d.L.length)}% contactado${d.prom != null ? ' con respuesta promedio de ' + fmtMin(d.prom) : ''}.`);
   p.push(`${d.real.length} entrevista${d.real.length === 1 ? '' : 's'} realizada${d.real.length === 1 ? '' : 's'}${d.canc.length ? ' y ' + d.canc.length + ' cancelada' + (d.canc.length === 1 ? '' : 's') : ''}, ${d.ventas.length} venta${d.ventas.length === 1 ? '' : 's'}${d.fact ? ' (' + X5.money(d.fact) + ')' : ''}.`);
@@ -1459,7 +1513,7 @@ function frase(d) {
 
 function avisos(d) {
   const a = [];
-  if (d.sinCont.length) a.push(`${d.sinCont.length} lead${d.sinCont.length === 1 ? '' : 's'} de la semana sin contactar: ${d.sinCont.slice(0, 5).map(l => esc(l.cliente) + ' (' + esc(l.asignado_a) + ')').join(', ')}${d.sinCont.length > 5 ? '…' : ''}.`);
+  if (d.sinCont.length) a.push(`${d.sinCont.length} lead${d.sinCont.length === 1 ? '' : 's'} ${PERIODOS[d.r.tipo].deste} sin contactar: ${d.sinCont.slice(0, 5).map(l => esc(l.cliente) + ' (' + esc(l.asignado_a) + ')').join(', ')}${d.sinCont.length > 5 ? '…' : ''}.`);
   if (d.abiertas.length) a.push(`${d.abiertas.length} entrevista${d.abiertas.length === 1 ? '' : 's'} ya pasada${d.abiertas.length === 1 ? '' : 's'} sin marcar como realizada o cancelada: ${d.abiertas.slice(0, 5).map(x => esc(x.cliente) + ' (' + esc(x.asesor) + ')').join(', ')}${d.abiertas.length > 5 ? '…' : ''}.`);
   const conT = d.filas.filter(f => f.prom != null);
   if (conT.length > 1) {
@@ -1490,10 +1544,10 @@ function reporteHtml(d, pdf) {
       <div class="legend">${items.map(x => `<div><i style="background:${x[2]}"></i><span>${x[0]}</span><b>${x[1]}</b></div>`).join('')}</div></div>`;
   })();
   const av = avisos(d);
-  const obsMax = pdf ? 14 : 8;
-  const obsHtml = d.obs.length ? d.obs.slice(0, obsMax).map(o => `<div><b>${esc(o.n)}</b> · ${esc(o.q)}<small>${o.t} · ${X5.fechaCorta(o.f)}${o.r ? ' · ' + esc(String(o.r).replace(/_/g, ' ')) : ''}</small>${esc(recorte(o.x, 220))}</div>`).join('') + (d.obs.length > obsMax ? `<small style="color:var(--muted)">y ${d.obs.length - obsMax} observaciones más</small>` : '') : '<div class="empty">No se cargaron observaciones en la semana</div>';
+  const obsMax = pdf ? 14 : 8; // en períodos largos se muestran las más recientes
+  const obsHtml = d.obs.length ? d.obs.slice(0, obsMax).map(o => `<div><b>${esc(o.n)}</b> · ${esc(o.q)}<small>${o.t} · ${X5.fechaCorta(o.f)}${o.r ? ' · ' + esc(String(o.r).replace(/_/g, ' ')) : ''}</small>${esc(recorte(o.x, 220))}</div>`).join('') + (d.obs.length > obsMax ? `<small style="color:var(--muted)">y ${d.obs.length - obsMax} observaciones más</small>` : '') : `<div class="empty">No se cargaron observaciones ${PERIODOS[r.tipo].deste}</div>`;
   return `
-  <div class="rep-head"><div><h2>Resumen semanal · X5 Cuyo</h2><small>Semana del ${textoSemana(r)}${r.hasta >= X5.hoyISO() ? ' (en curso)' : ''} · ${esc(alcance())}</small></div><div class="rep-brand">HUB COMERCIAL</div></div>
+  <div class="rep-head"><div><h2>Resumen ${PERIODOS[r.tipo].nombre} · X5 Cuyo</h2><small>${r.tipo === 'semana' ? 'Semana del ' : (r.etiqueta ? r.etiqueta + ' · ' : '')}${textoRango(r)}${r.hasta >= X5.hoyISO() ? ' (en curso)' : ''} · ${esc(alcance())}</small></div><div class="rep-brand">HUB COMERCIAL</div></div>
   <div class="rep-lead">${esc(frase(d))}</div>
   <div class="kpis">
     <div class="kpi"><span>Leads</span><b class="num">${d.L.length}</b><small>recibidos</small></div>
@@ -1509,8 +1563,8 @@ function reporteHtml(d, pdf) {
     <table class="rep-tabla"><thead><tr><th>Asesor</th><th>Leads</th><th>Contact.</th><th>Resp.</th><th>Entrev.</th><th>Ventas</th></tr></thead><tbody>
     ${d.filas.map(f => `<tr><td>${esc(f.n)}</td><td>${f.leads}</td><td class="${mal(f)}">${f.cont}/${f.leads}</td><td>${fmtMin(f.prom)}</td><td>${f.real}${f.canc ? ' <span style="color:var(--faint)">(-' + f.canc + ')</span>' : ''}</td><td><b>${f.ventas}</b></td></tr>`).join('')}
     </tbody></table></div>
-  <div class="card"><div class="card-title">Para atender</div>${av.length ? '<div class="rep-aviso">' + av.map(x => '<div>' + x + '</div>').join('') + '</div>' : '<div class="rep-aviso"><div class="ok">Todo al día: no hay pendientes de la semana.</div></div>'}</div>
-  <div class="card"><div class="card-title">Observaciones de la semana</div><div class="rep-obs">${obsHtml}</div></div>`}
+  <div class="card"><div class="card-title">Para atender</div>${av.length ? '<div class="rep-aviso">' + av.map(x => '<div>' + x + '</div>').join('') + '</div>' : `<div class="rep-aviso"><div class="ok">Todo al día: no hay pendientes ${PERIODOS[r.tipo].deste}.</div></div>`}</div>
+  <div class="card"><div class="card-title">Observaciones ${PERIODOS[r.tipo].deste}</div><div class="rep-obs">${obsHtml}</div></div>`}
   <div class="rep-foot">Generado el ${new Date().toLocaleDateString('es-AR')} · X5 Cuyo Hub Comercial · The DOM Studio Web · thedomstudioweb.github.io</div>`;
 }
 
@@ -1521,13 +1575,15 @@ function alcance() {
 }
 
 function renderResumen() {
-  const r = semanaRango(semOff);
-  $('wk-titulo').innerHTML = `${semOff === 0 ? 'Esta semana' : semOff === -1 ? 'Semana pasada' : 'Semana del ' + r.lun.getDate() + '/' + (r.lun.getMonth() + 1)}<small>${textoSemana(r)}</small>`;
-  $('wk-next').disabled = semOff >= 0;
-  $('rep').innerHTML = reporteHtml(datosSemana(r), false);
+  const r = periodoRango(perTipo, perOff);
+  $('wk-titulo').innerHTML = `${tituloRango(r)}<small>${textoRango(r)}</small>`;
+  $('wk-next').disabled = perOff >= 0;
+  $('per-tipo').value = perTipo;
+  $('rep').innerHTML = reporteHtml(datosPeriodo(r), false);
 }
-$('wk-prev').addEventListener('click', () => { semOff--; renderResumen(); });
-$('wk-next').addEventListener('click', () => { if (semOff < 0) { semOff++; renderResumen(); } });
+$('wk-prev').addEventListener('click', () => { perOff--; renderResumen(); });
+$('wk-next').addEventListener('click', () => { if (perOff < 0) { perOff++; renderResumen(); } });
+$('per-tipo').addEventListener('change', () => { perTipo = $('per-tipo').value; perOff = -1; store.set('x5_per_tipo', perTipo); renderResumen(); });
 
 function cargarScriptLocal(src, global) {
   return new Promise((res, rej) => { if (window[global]) return res(); const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
@@ -1538,10 +1594,10 @@ $('btn-rep-pdf').addEventListener('click', async () => {
   let nodo = null;
   try {
     await Promise.all([cargarScriptLocal('libs/html2canvas.min.js', 'html2canvas'), cargarScriptLocal('libs/pdf-lib.min.js', 'PDFLib')]);
-    const r = semanaRango(semOff);
+    const r = periodoRango(perTipo, perOff);
     nodo = document.createElement('div');
     nodo.className = 'rep-pdf';
-    nodo.innerHTML = `<div class="rep">${reporteHtml(datosSemana(r), true)}</div>`;
+    nodo.innerHTML = `<div class="rep">${reporteHtml(datosPeriodo(r), true)}</div>`;
     document.body.appendChild(nodo);
     await new Promise(res => setTimeout(res, 300));
     // Acomodar bloques para que no queden cortados entre páginas (A4 a 794 px de ancho = 1123 px de alto)
@@ -1566,10 +1622,10 @@ $('btn-rep-pdf').addEventListener('click', async () => {
       const pg = pdf.addPage([595.28, 841.89]);
       pg.drawImage(img, { x: 0, y: 0, width: 595.28, height: 841.89 });
     }
-    pdf.setTitle('Resumen semanal X5 Cuyo ' + r.desde);
+    pdf.setTitle('Resumen ' + PERIODOS[r.tipo].nombre + ' X5 Cuyo ' + r.desde);
     const bytes = await pdf.save();
     const blob = new Blob([bytes], { type: 'application/pdf' });
-    await X5.compartirArchivo(blob, `Resumen_semanal_X5_${r.desde}.pdf`, 'Resumen semanal X5 Cuyo');
+    await X5.compartirArchivo(blob, `Resumen_${PERIODOS[r.tipo].nombre}_X5_${r.desde}.pdf`, 'Resumen ' + PERIODOS[r.tipo].nombre + ' X5 Cuyo');
   } catch (e) {
     X5.toast('No se pudo generar el PDF. Probá de nuevo con conexión.', 'bad');
   } finally {

@@ -139,19 +139,20 @@ Para Claudio: explicalo en lenguaje simple.
 - **Requiere actualizar el script:** para que "Eliminar" funcione hay que pegar el `apps-script/Code.gs` nuevo y desplegarlo con "Nueva versión" (la URL no cambia). Sin eso, editar funciona pero eliminar avisa "Falta actualizar el script".
 - **Si dos personas son distintas pero comparten teléfono** (por ejemplo, de la misma familia), el sistema las propone como posible duplicado: hay que mirar antes de eliminar.
 
-## Resumen semanal (19/10/2026)
+## Resumen por período (semanal a anual) (19/10/2026, ampliado 03/11/2026)
 
 Pestaña **Resumen** en el menú inferior. Solo la ven Gerente Comercial, Jefe de Ventas y Referente.
 
-- Muestra una semana de lunes a domingo. Abre en la **semana pasada** (completa). Las flechas ‹ › cambian de semana; "Esta semana" es parcial.
+- **Período del informe:** se elige arriba con el selector. Opciones: **semanal** (lunes a domingo), **quincenal** (del 1 al 15 y del 16 a fin de mes), **mensual**, **trimestral** (ene-mar, abr-jun, jul-sep, oct-dic), **semestral** (ene-jun, jul-dic) y **anual**. Lo elegido queda recordado en el teléfono; por defecto abre en semanal.
+- Al elegir un período abre en el **anterior, completo** (semana pasada, mes pasado, etc.). Las flechas ‹ › cambian de período hacia atrás y adelante; el primero es el período en curso, que es parcial y aparece marcado "(en curso)".
 - El selector "Asesor o equipo" filtra igual que en Métricas.
 - Arriba: una frase con el resumen y 4 números (leads, % contactados, respuesta promedio, ventas con monto).
 - Gráficos: respuesta a los leads (recibidos / contactados / sin contactar) y resultado de las entrevistas realizadas (venta, seguimiento, descartado, sin resultado).
 - **Por asesor**: leads, contactados, tiempo de respuesta, entrevistas realizadas (entre paréntesis las canceladas) y ventas.
-- **Para atender**: leads de la semana sin contactar, entrevistas pasadas sin marcar, asesor más rápido y más lento.
-- **Observaciones**: las notas cargadas en leads y entrevistas de esa semana.
-- Botón **Descargar PDF**: arma una hoja A4 clara de una o dos páginas. En el celular abre "Compartir" (WhatsApp, mail); en la compu lo descarga.
-- Cómo se calcula: lead contactado = estado distinto de "pendiente" o con tiempo de contacto cargado. Entrevista según su fecha. No hay cambios en el script ni en la planilla.
+- **Para atender**: leads del período sin contactar, entrevistas pasadas sin marcar, asesor más rápido y más lento.
+- **Observaciones**: las notas cargadas en leads y entrevistas del período. En períodos largos se muestran las más recientes y se indica cuántas más hay.
+- Botón **Descargar PDF**: arma una hoja A4 clara con el título del período elegido (por ejemplo "Resumen trimestral"), de una o más páginas. En el celular abre "Compartir" (WhatsApp, mail); en la compu lo descarga.
+- Cómo se calcula: lead contactado = estado distinto de "pendiente" o con tiempo de contacto cargado. Los leads se cuentan por su fecha de asignación y las entrevistas por su fecha. No hay cambios en el script ni en la planilla.
 
 ## Limpiar / archivar descartados (19/10/2026)
 
