@@ -1,11 +1,203 @@
 {
- "actualizado": "2026-11-03T18:00:23.078Z",
+ "actualizado": "2026-11-04T18:13:01.327Z",
  "autos": [
+  {
+   "id": "maipu-183034",
+   "auto": "Renault Sandero",
+   "url": "https://maipuusados.com.ar/2026/11/04/sandero/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
   {
    "id": "maipu-182422",
    "auto": "BMW M235I 2015",
    "url": "https://maipuusados.com.ar/2026/10/28/m235i/",
    "texto": "2015 - 4965 M235I U$S 43.000 Precio sugerido al público U$S 35.540 Precio sin impuestos nacionales FORMULARIO WHATSAPP COMPARTIR Ficha Técnica Marca: BMW Kilometraje: 4965 Combustible: Nafta Transmisión: Automática Color: Blanco Incluye: AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS Ver legales FINANCIACIONES BNA Financiá hasta $100 millones en hasta 72 meses. BANCOR Financiá hasta el 100% del valor del vehículo en 72 cuotas. BBVA Financiá hasta el 70% del va"
+  },
+  {
+   "id": "autocity-79a56576-6364-443e-8efb-9aae02f2ca13",
+   "auto": "Ford Eco Sport",
+   "url": "https://autocity.com.ar/catalogo/usados/m-ford/m-eco-sport/1-6-titanium-l13/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-3cd2c445-4cb2-4e93-b9bd-f36124adbae8",
+   "auto": "Ford Eco Sport",
+   "url": "https://autocity.com.ar/catalogo/usados/m-ford/m-eco-sport/2-0-titanium-l13/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-a39f9f89-7a2f-49fb-bb6c-03617ff56a6f",
+   "auto": "Nissan Sentra",
+   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-sentra/1-8-sr-pure-drive-cvt-l14/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-e2727276-b50b-4c30-b1cb-a145cd21292c",
+   "auto": "Ford Eco Sport",
+   "url": "https://autocity.com.ar/catalogo/usados/m-ford/m-eco-sport/1-5-freestyle-l18/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-8081b829-20d2-4954-a419-001b244beea1",
+   "auto": "Peugeot 208",
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-active-tiptronic-l20/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-9b7d46ee-505e-458d-887a-42784a1a6043",
+   "auto": "Renault Stepway",
+   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-stepway/1-6-intens-cvt-l19-2/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-9b183d3e-3190-47aa-8fe3-80b051207d34",
+   "auto": "Renault Stepway",
+   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-stepway/1-6-zen-l19-2/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-d3b67bd6-70c2-4787-aba2-449010167099",
+   "auto": "Fiat Cronos",
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-cronos/1-3-drive-pack-conectividad-l21-2/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-718cf78f-5f88-410d-9f4b-4af5221c2cd0",
+   "auto": "Peugeot 208",
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-allure-l20-2/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-2295faa1-86de-4fc0-95b8-72a4146ea0b6",
+   "auto": "Citroen Berlingo",
+   "url": "https://autocity.com.ar/catalogo/usados/m-citroen/m-berlingo/1-6-business-l18/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-2782475c-f12c-4ef2-b27f-cf918da59a5f",
+   "auto": "Fiat Fiorino",
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-fiorino/1-4-endurance-l24/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-12ae42f4-c8a5-4da4-9d0d-730870a75bf4",
+   "auto": "Renault Captur",
+   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-captur/1-6-intens-cvt/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-62770fcc-fb1a-4a97-bc74-3b077953fc2d",
+   "auto": "Peugeot 208",
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-style/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-c48efdfe-6d1b-4582-9924-34204c4dada3",
+   "auto": "Ford Eco Sport",
+   "url": "https://autocity.com.ar/catalogo/usados/m-ford/m-eco-sport/1-5-titanium-at/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-71e02b4b-7694-48e0-a25e-e30e70f45adc",
+   "auto": "Toyota Corolla",
+   "url": "https://autocity.com.ar/catalogo/usados/m-toyota/m-corolla/1-8-xei-pack-cvt-l17/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-9f1012ea-47eb-4927-994d-9e045326bcf1",
+   "auto": "Fiat Cronos",
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-cronos/1-3-gse-drive-pack-plus-l26-2/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-c2b349f8-9eb8-4c70-a64b-0c090ddac9e4",
+   "auto": "Fiat Cronos",
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-cronos/1-3-gse-drive-pack-plus-cvt-l26-2/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-28a26c3a-52fd-4a1f-affb-0e7666e180d2",
+   "auto": "Jeep Renegade",
+   "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-renegade/1-8-4x2-sport-l22-2/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-f4da1a8a-b643-4f60-94a8-2d10e2a90b28",
+   "auto": "Jeep Renegade",
+   "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-renegade/1-8-4x2-longitude-at-l18-3/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-3d0dcf49-083d-472a-af87-9120f2321dfe",
+   "auto": "Renault Kardian",
+   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-kardian/1-6-evolution-l24-2/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-842e045d-d353-4194-b458-86dea90eee99",
+   "auto": "Chevrolet Cruze",
+   "url": "https://autocity.com.ar/catalogo/usados/m-chevrolet/m-cruze/1-4t-rs-at-5p-2/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-0627f20f-ede9-4264-9152-f06e34b775f1",
+   "auto": "Chery Tiggo 2",
+   "url": "https://autocity.com.ar/catalogo/usados/m-chery/m-tiggo-2/1-5-pro-max-comfort-cvt/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-45a04f27-1034-4b32-94b1-0790fd19fc37",
+   "auto": "Jeep Renegade",
+   "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-renegade/1-8-4x2-sport-at6-l22-3/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-7a70431c-1e12-40f7-bdbc-678829bb8901",
+   "auto": "Chevrolet Tracker",
+   "url": "https://autocity.com.ar/catalogo/usados/m-chevrolet/m-tracker/1-2-t-premier-at6-l23-2/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-97ae14ab-821a-45f5-836f-57521471abdb",
+   "auto": "Nissan Frontier",
+   "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-frontier/2-3-td-4x2-cd-s-l22/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-1eb8dca3-3d3e-4b96-a2b4-b15e9e2fb48f",
+   "auto": "BYD Yuan Pro",
+   "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-yuan-pro/gl-5/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-54a6a3db-69b9-4c46-8938-e9174d066e81",
+   "auto": "Jeep Compass",
+   "url": "https://autocity.com.ar/catalogo/usados/m-jeep/m-compass/1-3-t-270-limited-l21/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-794628ec-b8ed-4df1-997c-7a98ab078fc5",
+   "auto": "Toyota Hilux",
+   "url": "https://autocity.com.ar/catalogo/usados/m-toyota/m-hilux/2-8-tdi-4x2-dc-srv-l16/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-6dc87f22-c88c-49a8-8593-bfb08c33423e",
+   "auto": "Volkswagen Polo",
+   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-polo/1-4-250-tsi-gts-tiptronic/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-302f572e-b3e1-4628-af86-fc075709ae55",
+   "auto": "Volkswagen Amarok",
+   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-amarok/3-0-td-v6-258hp-4x4-dc-highline-at-l20-2/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-3859eb67-077c-43d4-aa48-1b37d57de99c",
+   "auto": "Mitsubishi L200",
+   "url": "https://autocity.com.ar/catalogo/usados/m-mitsubishi/m-l200/2-4l-gls-6at-4wd-full/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
   }
  ]
 }
