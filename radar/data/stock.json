@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-06T17:39:53.488Z",
+ "actualizado": "2026-11-06T22:31:08.283Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 82,
-   "revisado": "2026-11-06T17:39:53.488Z",
-   "actualizado": "2026-11-06T17:39:53.488Z"
+   "autos": 85,
+   "revisado": "2026-11-06T22:31:08.283Z",
+   "actualizado": "2026-11-06T22:31:08.283Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,239 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 246,
-   "revisado": "2026-11-06T17:39:53.488Z",
-   "actualizado": "2026-11-06T17:39:53.488Z"
+   "revisado": "2026-11-06T22:31:08.283Z",
+   "actualizado": "2026-11-06T22:31:08.283Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-183420",
+   "tipo": "auto",
+   "marca": "Fiat",
+   "modelo": "Pulse",
+   "version": "Impetus 1.0T",
+   "anio": 2026,
+   "km": 6350,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS",
+   "precio": 41000000,
+   "precio_sin_imp": 32390000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3916-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3917-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3919-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3920-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3915-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3918-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3914-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3913-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3908-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3903-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3905-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3912-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3906-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3907-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3911-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3909-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3910-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/11/06/pulse/",
+   "publicado": "2026-11-06T17:00:36",
+   "modificado": "2026-11-06T17:09:01",
+   "agencia": "maipu",
+   "alta": "2026-11-06T22:31:08.283Z",
+   "guia": {
+    "min": 42830000,
+    "med": 47400000,
+    "max": 48270000,
+    "n": 4,
+    "mejor": {
+     "version": "PULSE 5P 1,0 T IMPETUS CVT 2026",
+     "valor": 47400000,
+     "coincidencias": 1,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "PULSE 5P 1,3 DRIVE GSE CVT 2026",
+      42830000
+     ],
+     [
+      "PULSE 5P 1,0 T AUDACE CVT 2026",
+      45820000
+     ],
+     [
+      "PULSE 5P 1,0 T IMPETUS CVT 2026",
+      47400000
+     ],
+     [
+      "PULSE 5P 270 TURBO ABARTH 6AT 2026",
+      48270000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-183396",
+   "tipo": "auto",
+   "marca": "Chevrolet",
+   "modelo": "Cruze",
+   "version": "1.4 Turbo Premier",
+   "anio": 2024,
+   "km": 63380,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS",
+   "precio": 31000000,
+   "precio_sin_imp": 24490000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3898-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3899-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3901-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3902-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3897-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3900-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3896-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3894-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3890-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3886-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3887-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3888-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3895-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3889-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3893-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3891-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3892-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/11/06/cruze-3/",
+   "publicado": "2026-11-06T16:50:37",
+   "modificado": "2026-11-06T16:57:31",
+   "agencia": "maipu",
+   "alta": "2026-11-06T22:31:08.283Z",
+   "guia": {
+    "min": 22526000,
+    "med": 24803000,
+    "max": 27490000,
+    "n": 6,
+    "mejor": {
+     "version": "CRUZE 4P 1,4 T PREMIER 6AT 2021",
+     "valor": 27490000,
+     "coincidencias": 2,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "CRUZE 4P 1,4 T LT 6AT 2022",
+      22526000
+     ],
+     [
+      "CRUZE 5P 1,4 T LT 6AT 2022",
+      22526000
+     ],
+     [
+      "CRUZE 4P 1,4 T LTZ 6AT 2021",
+      23216000
+     ],
+     [
+      "CRUZE 5P 1,4 T RS 6AT 2022",
+      24803000
+     ],
+     [
+      "CRUZE 5P 1,4 T PREMIER 6AT 2021",
+      27284000
+     ],
+     [
+      "CRUZE 4P 1,4 T PREMIER 6AT 2021",
+      27490000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-183374",
+   "tipo": "auto",
+   "marca": "Volkswagen",
+   "modelo": "Saveiro",
+   "version": "Trendline Cs Msi",
+   "anio": 2024,
+   "km": 33465,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Plata",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 27000000,
+   "precio_sin_imp": 24165000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3881-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3882-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3884-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3885-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3880-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3883-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3879-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3877-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3878-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3875-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3871-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3872-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3873-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3874-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3876-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/11/06/saveiro/",
+   "publicado": "2026-11-06T15:04:51",
+   "modificado": "2026-11-06T15:20:36",
+   "agencia": "maipu",
+   "alta": "2026-11-06T22:31:08.283Z",
+   "guia": {
+    "min": 20610000,
+    "med": 22723000,
+    "max": 24368000,
+    "n": 7,
+    "mejor": {
+     "version": "SAVEIRO PICK - UP D/C 1,6 MSI EXTREME 2024",
+     "valor": 22723000,
+     "coincidencias": 1,
+     "empate": 7
+    },
+    "versiones": [
+     [
+      "SAVEIRO PICK - UP C/S 1,6 MSI TREND 2022",
+      20610000
+     ],
+     [
+      "SAVEIRO PICK - UP C/S 1,6 MSI TREND 2024",
+      21641000
+     ],
+     [
+      "SAVEIRO PICK - UP D/C 1,6 MSI COMF 2022",
+      22103000
+     ],
+     [
+      "SAVEIRO PICK - UP D/C 1,6 MSI EXTREME 2024",
+      22723000
+     ],
+     [
+      "SAVEIRO PICK - UP D/C 1,6 MSI COMF 2024",
+      23208000
+     ],
+     [
+      "SAVEIRO PICK - UP D/C 1,6 MSI HIGH 2022",
+      23951000
+     ],
+     [
+      "SAVEIRO PICK - UP D/C 1,6 MSI EXTREME 2025",
+      24368000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-183349",
    "tipo": "auto",
@@ -5916,7 +6144,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Amarok 2021 Automatica 146710 37880000 Precio sugerido al público 33902600 Precio sin impuestos nacionales + Precio a confirmar destacados Amarok 2024 Automática 122370 45000000 Precio sugerido al público 40275000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automática 51970 65650000 Precio sugerido al público 58756750 Precio sin impuestos nacionales + Precio a confirmar outlet Amarok 2021 Automática 200650 37000000 Precio sugerido al público 33115000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Sentra 2025 Automática 39425 41000000 Precio sugerido al público 32390000 Precio sin impuestos nacionales + Precio a confirmar destacados Spark 2026 Automatica 4165 36000000 Precio sugerido al público 29752000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2018 Automatica 113700 40000000 Precio sugerido al público 31600000 Precio sin impuestos nacionales + Precio a confirmar destacados Compass 2025 Automatica 21685 40500000 Precio sugerido al público 31995000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -5988,7 +6216,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Amarok 2021 Automatica 146710 37880000 Precio sugerido al público 33902600 Precio sin impuestos nacionales + Precio a confirmar destacados Amarok 2024 Automática 122370 45000000 Precio sugerido al público 40275000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automática 51970 65650000 Precio sugerido al público 58756750 Precio sin impuestos nacionales + Precio a confirmar outlet Amarok 2021 Automática 200650 37000000 Precio sugerido al público 33115000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Sentra 2025 Automática 39425 41000000 Precio sugerido al público 32390000 Precio sin impuestos nacionales + Precio a confirmar destacados Spark 2026 Automatica 4165 36000000 Precio sugerido al público 29752000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2018 Automatica 113700 40000000 Precio sugerido al público 31600000 Precio sin impuestos nacionales + Precio a confirmar destacados Compass 2025 Automatica 21685 40500000 Precio sugerido al público 31995000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6254,7 +6482,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Amarok 2021 Automatica 146710 37880000 Precio sugerido al público 33902600 Precio sin impuestos nacionales + Precio a confirmar destacados Amarok 2024 Automática 122370 45000000 Precio sugerido al público 40275000 Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2025 Automática 51970 65650000 Precio sugerido al público 58756750 Precio sin impuestos nacionales + Precio a confirmar outlet Amarok 2021 Automática 200650 37000000 Precio sugerido al público 33115000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Sentra 2025 Automática 39425 41000000 Precio sugerido al público 32390000 Precio sin impuestos nacionales + Precio a confirmar destacados Spark 2026 Automatica 4165 36000000 Precio sugerido al público 29752000 Precio sin impuestos nacionales + Precio a confirmar destacados Tiguan 2018 Automatica 113700 40000000 Precio sugerido al público 31600000 Precio sin impuestos nacionales + Precio a confirmar destacados Compass 2025 Automatica 21685 40500000 Precio sugerido al público 31995000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",

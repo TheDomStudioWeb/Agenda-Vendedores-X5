@@ -1,6 +1,30 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-06T22:31:08.283Z",
+   "tipo": "nuevo",
+   "id": "maipu-183420",
+   "auto": "Fiat Pulse 2026",
+   "precio": 41000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-06T22:31:08.283Z",
+   "tipo": "nuevo",
+   "id": "maipu-183396",
+   "auto": "Chevrolet Cruze 2024",
+   "precio": 31000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-06T22:31:08.283Z",
+   "tipo": "nuevo",
+   "id": "maipu-183374",
+   "auto": "Volkswagen Saveiro 2024",
+   "precio": 27000000,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-11-06T17:39:53.488Z",
    "tipo": "nuevo",
    "id": "maipu-183349",
