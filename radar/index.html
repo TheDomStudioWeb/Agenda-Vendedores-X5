@@ -18,7 +18,13 @@
   .estado { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
   .estado .chip { font-size: .72rem; }
   .barra { display: grid; gap: 10px; margin-bottom: 14px; }
-  .filtros { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; }
+  .filtros { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 8px; }
+  .ordenar { display: flex; gap: 8px; align-items: center; overflow-x: auto; padding: 10px 0 2px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .ordenar[hidden] { display: none; }
+  .ordenar::-webkit-scrollbar { display: none; }
+  .ordenar .lbl { flex: none; font: 700 .72rem var(--font); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .ordenar button { flex: none; font: 600 .82rem var(--font); color: var(--text); background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: 999px; padding: 8px 14px; cursor: pointer; white-space: nowrap; }
+  .ordenar button.active { background: var(--x5, #E3182D); border-color: var(--x5, #E3182D); color: #fff; }
   .filtros input, .filtros select, .cfg input, .cfg select { width: 100%; min-width: 0; font: 500 .85rem var(--font); color: var(--text); background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: var(--radius-sm); padding: 10px 12px; }
   .cfg { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; align-items: end; }
   .cfg label { display: grid; gap: 5px; font-size: .66rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
@@ -143,7 +149,7 @@
       <input class="q" id="q" type="search" placeholder="Buscar: Amarok, Hilux 2021, diésel…" aria-label="Buscar">
       <select id="marca" aria-label="Marca"><option value="">Todas las marcas</option></select>
       <select id="caja" aria-label="Caja"><option value="">Manual y automática</option><option value="man">Manual</option><option value="aut">Automática</option></select>
-      <select id="orden" aria-label="Ordenar">
+      <select id="orden" aria-label="Ordenar" hidden>
         <option value="nuevo">Recién publicados</option>
         <option value="barato">Precio: menor a mayor</option>
         <option value="caro">Precio: mayor a menor</option>
@@ -151,6 +157,15 @@
         <option value="km">Menos km</option>
         <option value="guia">Mejor frente a guía</option>
       </select>
+    </div>
+    <div class="ordenar" id="ordenar" role="group" aria-label="Ordenar por">
+      <span class="lbl">Ordenar</span>
+      <button type="button" data-o="barato">Más barato</button>
+      <button type="button" data-o="caro">Más caro</button>
+      <button type="button" data-o="anio">Año más nuevo</button>
+      <button type="button" data-o="km">Menos km</button>
+      <button type="button" data-o="nuevo">Recién publicados</button>
+      <button type="button" data-o="guia" data-int="1">Mejor frente a guía</button>
     </div>
   </div>
 
@@ -231,6 +246,10 @@
     document.querySelectorAll('.seg button').forEach(b => b.classList.toggle('active', b.dataset.v === vista));
     ['cliente', 'interno', 'compra', 'novedades'].forEach(v => $('#v-' + v).hidden = v !== vista);
     $('#filtros').hidden = vista === 'compra' || vista === 'novedades';
+    $('#ordenar').hidden = vista === 'compra' || vista === 'novedades';
+    $('#ordenar [data-int]').hidden = vista === 'cliente';
+    if (vista === 'cliente' && $('#orden').value === 'guia') $('#orden').value = 'nuevo';
+    document.querySelectorAll('#ordenar button').forEach(b => b.classList.toggle('active', b.dataset.o === $('#orden').value));
     $('#cfg-box').hidden = vista === 'cliente';
     $('#estado').hidden = vista === 'cliente';
     if (vista === 'compra') return prepararCompra();
@@ -331,6 +350,7 @@
   document.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.matches('.fila')) abrirFicha(e.target.dataset.id); });
   ['regla', 'fijo', 'pct', 'papeles', 'usd'].forEach(id => $('#' + id).addEventListener('input', () => { guardar(id, $('#' + id).value); render(); }));
   ['q', 'marca', 'caja', 'orden'].forEach(id => $('#' + id).addEventListener('input', render));
+  document.querySelectorAll('#ordenar button').forEach(b => b.addEventListener('click', () => { $('#orden').value = b.dataset.o; render(); }));
 
   /* ══ Compra: buscar un modelo en sitios públicos y analizar si conviene ══ */
   const BUSCADOR_URL = 'https://script.google.com/macros/s/AKfycbw6ohUpR016N1P1rHk0W3E6PR0FlIoWZdrm2S7Fjf6MWqkwfT5xNb72MT_MobD9yrLLpg/exec'; // URL /exec del Apps Script Buscador.gs (si queda vacío, se pide en pantalla)
