@@ -1139,7 +1139,7 @@ function eliminarRegistro(tabla, id) {
   store.set('x5_outbox', outbox);
   encolar('delete', hoja, { id });
 }
-/* Duplicados: mismo teléfono o mismo nombre+interés (leads); mismo nombre en el mismo día y hora o con el mismo vehículo (entrevistas) */
+/* Duplicados: mismo teléfono (leads); mismo nombre en el mismo día y hora o con el mismo vehículo (entrevistas) */
 const normTxt = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 const normTel = (t) => { const d = String(t || '').replace(/\D/g, ''); return d.length >= 8 ? d.slice(-8) : ''; };
 function gruposDuplicados(tabla) {
@@ -1147,7 +1147,7 @@ function gruposDuplicados(tabla) {
   const find = (i) => par[i] === i ? i : (par[i] = find(par[i]));
   arr.forEach((r, i) => {
     const keys = [], n = normTxt(r.cliente);
-    if (tabla === 'leads') { const t = normTel(r.telefono); if (t) keys.push('t' + t); if (n) keys.push('n' + n + '|' + normTxt(r.interes)); }
+    if (tabla === 'leads') { const t = normTel(r.telefono); if (t) keys.push('t' + t); }
     else if (n) { keys.push('h' + n + '|' + soloFecha(r.fecha) + '|' + String(r.hora || '').slice(0, 5)); keys.push('v' + n + '|' + soloFecha(r.fecha) + '|' + normTxt(r.vehiculo)); }
     keys.forEach(k => { if (k in idx) par[find(i)] = find(idx[k]); else idx[k] = i; });
   });
