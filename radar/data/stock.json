@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-07T21:04:12.959Z",
+ "actualizado": "2026-11-08T16:46:32.988Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -12,8 +12,8 @@
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
    "autos": 85,
-   "revisado": "2026-11-07T21:04:12.959Z",
-   "actualizado": "2026-11-07T21:04:12.959Z"
+   "revisado": "2026-11-08T16:46:32.988Z",
+   "actualizado": "2026-11-08T16:46:32.988Z"
   },
   {
    "id": "autocity",
@@ -21,9 +21,9 @@
    "ciudad": "Córdoba",
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
-   "autos": 237,
-   "revisado": "2026-11-07T21:04:12.959Z",
-   "actualizado": "2026-11-07T21:04:12.959Z"
+   "autos": 233,
+   "revisado": "2026-11-08T16:46:32.988Z",
+   "actualizado": "2026-11-08T16:46:32.988Z"
   }
  ],
  "autos": [
@@ -11252,91 +11252,6 @@
    }
   },
   {
-   "id": "autocity-516d8a19-0329-4b1e-8dc4-227f1fcc9e96",
-   "tipo": "auto",
-   "marca": "Peugeot",
-   "modelo": "208",
-   "version": "1.6 Feline Tiptronic L23",
-   "anio": 2023,
-   "km": 64100,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Gris",
-   "equipamiento": "",
-   "precio": 26150000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793019985765.IMG_8292.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793019986301.IMG_8293.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793019986874.IMG_8296.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793019989338.IMG_8294.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793019991747.IMG_8295.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-feline-tiptronic-l23-5/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-27T15:59:56.420Z",
-   "guia": {
-    "min": 18876000,
-    "med": 20944000,
-    "max": 23386000,
-    "n": 10,
-    "mejor": {
-     "version": "208 5P 1,6 FELINE TIPT6 2023",
-     "valor": 22735000,
-     "coincidencias": 2,
-     "empate": 2
-    },
-    "versiones": [
-     [
-      "208 5P 1,6 ACTIVE TIPT6 2020",
-      18876000
-     ],
-     [
-      "208 5P 1,6 ACTIVE TIPT6 2023",
-      19226000
-     ],
-     [
-      "208 5P 1,6 ACTIVE TIPT6 PACK 2023",
-      20187000
-     ],
-     [
-      "208 5P 1,6 ALLURE TIPT6 2020",
-      20487000
-     ],
-     [
-      "208 5P 1,6 ALLURE TIPT6 2023",
-      20866000
-     ],
-     [
-      "208 5P 1,6 STYLE TIPT6",
-      20944000
-     ],
-     [
-      "208 5P 1,6 ALLURE TIPT6 PACK 2023",
-      21909000
-     ],
-     [
-      "208 5P 1,6 FELINE TIPT6 2020",
-      22323000
-     ],
-     [
-      "208 5P 1,6 FELINE TIPT6 2023",
-      22735000
-     ],
-     [
-      "208 5P 1,6 ROADTRIP TIPT6",
-      23386000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-abd82e58-1d36-4c4d-b954-cdecd786119b",
    "tipo": "auto",
    "marca": "Peugeot",
@@ -11649,57 +11564,6 @@
      [
       "KICKS 5P 1,6 X-PLAY",
       27126000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-c0fdf6b6-55b9-4ca8-ae8b-93e028700b89",
-   "tipo": "auto",
-   "marca": "Fiat",
-   "modelo": "Fiorino",
-   "version": "1.3 Firefly Endurance",
-   "anio": 2026,
-   "km": 100,
-   "combustible": "Nafta",
-   "caja": "Manual",
-   "color": "Blanco",
-   "equipamiento": "",
-   "precio": 26800000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171911071.IMG_6739.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171911826.IMG_6740.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171912351.IMG_6750.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171912968.IMG_6747.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171913792.IMG_6754.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171915039.IMG_6742.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792171917366.IMG_6751.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-fiorino/1-3-firefly-endurance/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": true,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-17T13:54:19.025Z",
-   "guia": {
-    "min": 33180000,
-    "med": 33180000,
-    "max": 33180000,
-    "n": 1,
-    "mejor": {
-     "version": "FIORINO FURGON 1,3 8V ENDURANCE FIREFLY 2025",
-     "valor": 33180000,
-     "coincidencias": 3,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "FIORINO FURGON 1,3 8V ENDURANCE FIREFLY 2025",
-      33180000
      ]
     ]
    }
@@ -15161,7 +15025,7 @@
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793649169467.IMG_0247.jpeg",
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793649172881.IMG_0248.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-fastback/1-3-t-gse-at6-l24-3/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-fastback/1-3-t-gse-at6-l24/",
    "sucursal": "Córdoba",
    "provincia": "Córdoba",
    "oportunidad": false,
@@ -15961,59 +15825,6 @@
      [
       "2008 5P T200 CVT GT 2024",
       30279000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-a8be6d2e-e192-46bf-be26-2961dd3c20f8",
-   "tipo": "auto",
-   "marca": "Fiat",
-   "modelo": "Fastback",
-   "version": "1.3 T Gse At6 L24",
-   "anio": 2024,
-   "km": 23700,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Gris",
-   "equipamiento": "",
-   "precio": 35250000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793116376626.IMG_9557.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793116377227.IMG_9558.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793116377869.IMG_9561.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793116379131.IMG_9559.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793116380418.IMG_9560.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-fastback/1-3-t-gse-at6-l24/",
-   "sucursal": "Villa María",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-28T16:48:48.357Z",
-   "guia": {
-    "min": 25840000,
-    "med": 28365000,
-    "max": 28365000,
-    "n": 2,
-    "mejor": {
-     "version": "FASTBACK 5P 1,3 TURBO 270 AT6 ABARTH",
-     "valor": 28365000,
-     "coincidencias": 2,
-     "empate": 2
-    },
-    "versiones": [
-     [
-      "FASTBACK 5P 1,3 TURBO 270 AT6",
-      25840000
-     ],
-     [
-      "FASTBACK 5P 1,3 TURBO 270 AT6 ABARTH",
-      28365000
      ]
     ]
    }
@@ -17367,79 +17178,6 @@
      [
       "COMPASS 5P 2,0 TD AT9 TRAILHAWK 4X4",
       35286000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-8481a665-7bb5-40eb-b191-6ac03867cc7c",
-   "tipo": "auto",
-   "marca": "Chevrolet",
-   "modelo": "Tracker",
-   "version": "1.2 T Rs At6 L24",
-   "anio": 2024,
-   "km": 13300,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Blanco",
-   "equipamiento": "",
-   "precio": 38300000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690781022.IMG_7972.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690781738.IMG_7973.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690782262.IMG_7976.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690783175.IMG_7974.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792690784320.IMG_7975.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-chevrolet/m-tracker/1-2-t-rs-at6-l24/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-23T15:31:22.702Z",
-   "guia": {
-    "min": 22917000,
-    "med": 24926000,
-    "max": 29523000,
-    "n": 7,
-    "mejor": {
-     "version": "TRACKER 5P 1,2 T 6AT RS",
-     "valor": 28663000,
-     "coincidencias": 2,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "TRACKER 5P 1,2 T 6AT",
-      22917000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT 2024",
-      23604000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT LTZ",
-      24139000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT LTZ 2024",
-      24926000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT PREMIER 2024",
-      28663000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT RS",
-      28663000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT PREMIER 170 2024",
-      29523000
      ]
     ]
    }

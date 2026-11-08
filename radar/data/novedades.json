@@ -1,6 +1,42 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-08T16:46:32.988Z",
+   "tipo": "baja",
+   "id": "autocity-516d8a19-0329-4b1e-8dc4-227f1fcc9e96",
+   "auto": "Peugeot 208 2023",
+   "precio": 26150000,
+   "moneda": "ARS",
+   "dias": 12
+  },
+  {
+   "fecha": "2026-11-08T16:46:32.988Z",
+   "tipo": "baja",
+   "id": "autocity-c0fdf6b6-55b9-4ca8-ae8b-93e028700b89",
+   "auto": "Fiat Fiorino 2026",
+   "precio": 26800000,
+   "moneda": "ARS",
+   "dias": 22
+  },
+  {
+   "fecha": "2026-11-08T16:46:32.988Z",
+   "tipo": "baja",
+   "id": "autocity-a8be6d2e-e192-46bf-be26-2961dd3c20f8",
+   "auto": "Fiat Fastback 2024",
+   "precio": 35250000,
+   "moneda": "ARS",
+   "dias": 11
+  },
+  {
+   "fecha": "2026-11-08T16:46:32.988Z",
+   "tipo": "baja",
+   "id": "autocity-8481a665-7bb5-40eb-b191-6ac03867cc7c",
+   "auto": "Chevrolet Tracker 2024",
+   "precio": 38300000,
+   "moneda": "ARS",
+   "dias": 16
+  },
+  {
    "fecha": "2026-11-07T16:36:30.768Z",
    "tipo": "nuevo",
    "id": "autocity-01d21539-f67f-4883-be79-58574824e146",
