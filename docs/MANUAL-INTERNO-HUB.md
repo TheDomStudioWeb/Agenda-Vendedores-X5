@@ -213,3 +213,25 @@ Cambio solo visual: no cambia ningún dato, permiso ni cálculo.
 - Referencia de estilo: videos "Admin Dashboard V5" y "Glassy Navigation Tabs V5" guardados por Daniel.
 
 **Para responder por voz:** "¿Qué significa MEJOR en las barras?" → Es el asesor que más facturó (o el auto de flota con más ventas) en el período y equipo elegidos. "¿Y MÁS RÁPIDO?" → El asesor que, en promedio, tardó menos en contactar a sus leads.
+
+## Radar, Auditoría y X5 Check con el nuevo estilo (09/11/2026)
+Cambio visual y de lectura rápida, sin tocar cálculos ni datos. Referencias: videos "Admin Dashboard V5", "Glassy Dashboard V24" y "OTP Verification v3".
+
+**Radar de Usados**
+- *Interno:* arriba aparece una tarjeta roja con un anillo: **cuántos usados del filtro tienen precio de agencia igual o debajo de guía** (por ejemplo "21 de 274", 8 %). Debajo: el **mejor margen** (tocarlo abre la ficha) y el margen promedio. En la lista, esa unidad lleva borde rojo y la etiqueta **MEJOR MARGEN**.
+  - Para no recomendar datos falsos, el cálculo deja afuera los 0 km y los precios que no llegan a la mitad de la guía (suelen ser anticipos o errores de carga).
+- *Novedades:* una tira con los últimos 7 días y tres barritas por día: verde = autos nuevos, ámbar = cambios de precio, rojo = autos que salieron. Debajo, el total de la semana. Tocar un día muestra solo las novedades de ese día; tocarlo de nuevo vuelve a todo.
+- *Cliente:* sin cambios de contenido (no se empuja ninguna unidad), solo una entrada suave de las tarjetas.
+
+**Auditoría de Inversión**
+- *Falta para la meta* va en una tarjeta roja brillante; cuando el capital alcanza la meta pasa a **verde** y dice "¡Cubierta!".
+- Los montos (valor, capital, falta) cuentan hasta el nuevo valor al cambiar un dato o mover la inyección.
+- Al quedar calificado aparece **"Calificado para programar entrega" con una tilde que se dibuja**.
+- En la proyección, el punto del mes en que se llega a la meta tiene un pulso de luz.
+
+**X5 Check**
+- En el pie hay un **anillo de avance del reporte** (no de ítems, porque todos arrancan en "Bueno"): dominio, marca y modelo, responsable, observaciones obligatorias, fotos y firma. Al lado dice qué falta ("Falta: la firma"). Al completarse se pone verde con ✓.
+- Cada sección muestra sus R y M junto al título; las que tienen Regular se marcan en ámbar y las que tienen Malo en rojo, para encontrar los problemas sin recorrer todo.
+- Al generar el DOCX aparece una tarjeta verde con una **tilde que se dibuja**: "Checklist generado".
+
+**Para responder por voz:** "¿Qué es el porcentaje del Radar?" → La proporción de usados del filtro que la agencia publica a precio de guía o menos. "¿Qué mide el anillo de X5 Check?" → Cuánto del reporte está completo: datos, observaciones, fotos y firma.

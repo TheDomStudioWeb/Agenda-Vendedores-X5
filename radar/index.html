@@ -113,6 +113,43 @@
     .fila .c-x5 { text-align: right; }
     .fila .c-guia, .fila .c-ag { display: none; }
   }
+
+  /* ── Estilo "Admin Dashboard" X5 (tarjeta roja, anillo, líder resaltado, semana) ── */
+  .rx-hero { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; padding: 18px 16px; margin: 0 0 12px; border-radius: 20px; overflow: hidden; isolation: isolate; color: #fff;
+    background: radial-gradient(120% 140% at 100% 0%, rgba(255,255,255,.22), transparent 45%), linear-gradient(140deg, #F0283D 0%, #E3182D 40%, #8E0C1A 100%);
+    box-shadow: 0 14px 30px rgba(227,24,45,.28), inset 0 1px 0 rgba(255,255,255,.25); animation: rx-in .5s cubic-bezier(.2,.8,.2,1) both; }
+  .rx-hero::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.14) 50%, transparent 65%); transform: translateX(-100%); animation: rx-sheen 2.4s .5s ease-in-out; }
+  .rx-eye { font-size: .68rem; letter-spacing: 1.4px; text-transform: uppercase; font-weight: 700; opacity: .85; margin: 0 0 6px; }
+  .rx-big { font-size: 1.7rem; font-weight: 800; line-height: 1.1; margin: 0; }
+  .rx-lbl { font-size: .85rem; opacity: .9; margin: 3px 0 0; }
+  .rx-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .rx-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 999px; border: 1px solid rgba(255,255,255,.3); background: rgba(0,0,0,.2); color: #fff; font: 600 .74rem var(--font); cursor: pointer; }
+  .rx-chip b { font-weight: 800; }
+  .rx-mejor { flex-direction: column; align-items: flex-start; gap: 1px; border-radius: 14px; text-align: left; }
+  .rx-mejor span { font-size: .6rem; letter-spacing: 1px; text-transform: uppercase; opacity: .85; }
+  .rx-ring { position: relative; width: 112px; height: 112px; }
+  .rx-ring svg { width: 100%; height: 100%; } .rx-ring circle { fill: none; stroke-width: 9; stroke-linecap: round; }
+  .rx-ring .tr { stroke: rgba(255,255,255,.22); } .rx-ring .v { stroke: #fff; transition: stroke-dashoffset 1.1s cubic-bezier(.2,.8,.2,1); filter: drop-shadow(0 0 6px rgba(255,255,255,.55)); }
+  .rx-pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; } .rx-pct b { font-size: 1.6rem; font-weight: 800; } .rx-pct small { font-weight: 700; opacity: .85; margin-top: 6px; }
+  .fila.lead { border-color: color-mix(in srgb, var(--x5) 60%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--x5) 35%, transparent), 0 10px 26px color-mix(in srgb, var(--x5) 18%, transparent); position: relative; }
+  .fila.lead .c-x5 .pos { color: var(--x5-text); }
+  .tag-lead { display: inline-block; font-size: .58rem; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; color: #fff; background: var(--x5); padding: 2px 7px; border-radius: 999px; margin-left: 6px; vertical-align: 2px; box-shadow: 0 0 10px color-mix(in srgb, var(--x5) 60%, transparent); }
+  .rx-sem { margin: 0 0 12px; padding: 12px; border-radius: 16px; border: 1px solid var(--line); background: linear-gradient(160deg, rgba(255,255,255,.04), transparent 70%), var(--surface); animation: rx-in .5s cubic-bezier(.2,.8,.2,1) both; }
+  .rx-dias { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .rx-d { all: unset; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 0 6px; border-radius: 12px; }
+  .rx-d span { font-size: .62rem; color: var(--muted); font-weight: 700; text-transform: uppercase; } .rx-d b { font-size: 1rem; font-weight: 800; }
+  .rx-d.sel { background: linear-gradient(160deg, #E3182D, #8E0C1A); box-shadow: 0 6px 16px rgba(227,24,45,.3); } .rx-d.sel span { color: #fff; }
+  .rx-bars { display: flex; gap: 2px; align-items: flex-end; height: 22px; }
+  .rx-bars i { width: 5px; border-radius: 2px; min-height: 2px; }
+  .rx-ley { display: flex; gap: 12px; justify-content: center; margin-top: 8px; font-size: .68rem; color: var(--muted); flex-wrap: wrap; }
+  .rx-ley span { display: inline-flex; gap: 5px; align-items: center; } .rx-ley i { width: 8px; height: 8px; border-radius: 2px; }
+  .b-nuevo { background: var(--ok); } .b-precio { background: var(--warn); } .b-baja { background: var(--bad); }
+  .grilla .auto, .lista .fila { animation: rx-in .45s cubic-bezier(.2,.8,.2,1) both; }
+  .grilla .auto:nth-child(2), .lista .fila:nth-child(2) { animation-delay: .04s; } .grilla .auto:nth-child(3), .lista .fila:nth-child(3) { animation-delay: .08s; } .grilla .auto:nth-child(n+4), .lista .fila:nth-child(n+4) { animation-delay: .12s; }
+  @keyframes rx-in { from { opacity: 0; filter: blur(8px); transform: translateY(8px); } to { opacity: 1; filter: none; transform: none; } }
+  @keyframes rx-sheen { to { transform: translateX(100%); } }
+  @media (max-width: 360px) { .rx-hero { grid-template-columns: 1fr; } .rx-ring { justify-self: center; } }
+  @media (prefers-reduced-motion: reduce) { .rx-hero, .rx-hero::after, .rx-sem, .grilla .auto, .lista .fila { animation: none; } .rx-ring .v { transition: none; } }
 </style>
 </head>
 <body>
@@ -169,6 +206,7 @@
     </div>
   </div>
 
+  <div id="r-hero"></div>
   <div class="cuenta" id="cuenta"></div>
   <section id="v-cliente" class="grilla"></section>
   <section id="v-interno" class="lista" hidden></section>
@@ -252,11 +290,13 @@
     document.querySelectorAll('#ordenar button').forEach(b => b.classList.toggle('active', b.dataset.o === $('#orden').value));
     $('#cfg-box').hidden = vista === 'cliente';
     $('#estado').hidden = vista === 'cliente';
+    $('#r-hero').innerHTML = '';
     if (vista === 'compra') return prepararCompra();
     if (!DATA) return;
     if (vista === 'novedades') return renderNovedades();
     const L = filtrados().filter(x => vista === 'interno' || x.k.x5 != null);
     $('#cuenta').textContent = `${L.length} ${L.length === 1 ? 'unidad' : 'unidades'}${vista === 'cliente' ? ' disponibles' : ''}`;
+    const lider = vista === 'interno' ? heroInterno(L) : null;
     if (!L.length) { $('#v-' + vista).innerHTML = '<div class="vacio">Ninguna unidad coincide con la búsqueda.</div>'; return; }
     if (vista === 'cliente') {
       $('#v-cliente').innerHTML = L.map(({ a, k }) => `
@@ -273,9 +313,10 @@
       $('#v-interno').innerHTML = L.map(({ a, k }) => {
         const ag = AG[a.agencia]?.nombre || a.agencia;
         const vs = k.vsGuia;
-        return `<div class="fila" data-id="${esc(a.id)}" tabindex="0">
+        const esL = lider && a.id === lider;
+        return `<div class="fila${esL ? ' lead' : ''}" data-id="${esc(a.id)}" tabindex="0">
           <div class="foto">${img(a.fotos[0], a.modelo)}</div>
-          <div><div class="t">${esc(a.marca)} ${esc(a.modelo)} ${a.anio}</div><div class="s">${esc(a.version)} · ${a.km != null ? nf.format(a.km) + ' km' : ''} · ${esc(a.caja)}<br>${esc(ag)}${a.sucursal ? ' · ' + esc(a.sucursal) : ''} · publicado ${fecha(a.alta || a.publicado).split(',')[0]}${a.oportunidad ? ' · <b style="color:var(--dom)">Oportunidad</b>' : ''}</div></div>
+          <div><div class="t">${esc(a.marca)} ${esc(a.modelo)} ${a.anio}${esL ? '<span class="tag-lead">Mejor margen</span>' : ''}</div><div class="s">${esc(a.version)} · ${a.km != null ? nf.format(a.km) + ' km' : ''} · ${esc(a.caja)}<br>${esc(ag)}${a.sucursal ? ' · ' + esc(a.sucursal) : ''} · publicado ${fecha(a.alta || a.publicado).split(',')[0]}${a.oportunidad ? ' · <b style="color:var(--dom)">Oportunidad</b>' : ''}</div></div>
           <div class="c-ag"><div class="k">Agencia</div><div class="v num">${a.precio == null ? 'A confirmar' : a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio) : mill(a.precio)}</div></div>
           <div class="c-guia"><div class="k">Guía${a.guia?.mejor ? '' : ' (mediana)'}</div><div class="v num">${mill(k.ref)}</div></div>
           <div class="c-x5"><div class="k">Precio X5</div><div class="v num">${mill(k.x5)}</div><div class="s num">${k.margen != null ? `<span class="${k.margen >= 0 ? 'pos' : 'neg'}">${k.margen >= 0 ? '+' : '−'}${mill(Math.abs(k.margen))}</span>` : ''}</div>
@@ -293,10 +334,54 @@
     const ev = NOV.eventos;
     if (!ev.length) { $('#v-novedades').innerHTML = '<div class="vacio">Todavía no hay novedades. A partir de la próxima lectura vas a ver acá los autos nuevos, los que se vendieron y los cambios de precio.</div>'; return; }
     const tipo = { nuevo: ['ok', 'Nuevo'], baja: ['bad', 'Salió'], precio: ['warn', 'Precio'] };
+    $('#r-hero').innerHTML = semanaNov(ev);
+    document.querySelectorAll('.rx-d').forEach(b => b.onclick = () => { diaNov = diaNov === b.dataset.f ? '' : b.dataset.f; renderNovedades(); });
+    const evd = diaNov ? ev.filter(e => diaLocal(e.fecha) === diaNov) : ev;
+    $('#cuenta').textContent = diaNov ? `${evd.length} ${evd.length === 1 ? 'novedad' : 'novedades'} del ${+diaNov.slice(8)}/${+diaNov.slice(5, 7)} · tocá el día de nuevo para ver todo` : 'Últimos 90 días';
+    if (!evd.length) { $('#v-novedades').innerHTML = '<div class="vacio">Sin novedades ese día.</div>'; return; }
     const fmt = (e, v) => v == null ? '—' : e.moneda === 'USD' ? 'U$S ' + nf.format(v) : mill(v);
-    $('#v-novedades').innerHTML = ev.map(e => `<div class="ev"><span class="chip ${tipo[e.tipo][0]}">${tipo[e.tipo][1]}</span>
+    $('#v-novedades').innerHTML = evd.map(e => `<div class="ev"><span class="chip ${tipo[e.tipo][0]}">${tipo[e.tipo][1]}</span>
       <div><b>${esc(e.auto)}</b><div class="f">${fecha(e.fecha)}${e.tipo === 'baja' && e.dias != null ? ` · estuvo ${e.dias} días publicado` : ''}</div></div>
       <div class="num">${e.tipo === 'precio' ? `${fmt(e, e.antes)} → ${fmt(e, e.precio)}` : fmt(e, e.precio)}</div></div>`).join('');
+  }
+
+  // ── Tarjeta del Interno: anillo de unidades bajo guía y mejor margen (ref. "Admin Dashboard V5") ──
+  let pctAnt = null, diaNov = '';
+  const RMOV = () => window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function heroInterno(L) {
+    // Se descartan los 0 km y los precios que no llegan a la mitad de la guía (suelen ser anticipos o errores de carga)
+    const fiable = x => !x.k.cero && !(x.k.ref && x.k.costo != null && x.k.costo < x.k.ref * .5);
+    const conGuia = L.filter(x => x.k.costo != null && x.k.ref && fiable(x));
+    const bajo = conGuia.filter(x => x.k.costo <= x.k.ref);
+    const conM = L.filter(x => x.k.margen != null && fiable(x));
+    const mejor = conM.length > 1 ? conM.reduce((b, x) => x.k.margen > b.k.margen ? x : b) : null;
+    const prom = conM.length ? conM.reduce((s, x) => s + x.k.margen, 0) / conM.length : null;
+    const pct = conGuia.length ? Math.round(bajo.length / conGuia.length * 100) : 0, R = 46, C = 2 * Math.PI * R;
+    $('#r-hero').innerHTML = `<section class="rx-hero" aria-label="Resumen del stock"><div>
+      <p class="rx-eye">Stock filtrado · ${L.length} ${L.length === 1 ? 'unidad' : 'unidades'}</p>
+      ${conGuia.length ? `<p class="rx-big num">${bajo.length} de ${conGuia.length}</p><p class="rx-lbl">usados con precio de agencia igual o debajo de guía</p>` : '<p class="rx-big">Sin guía</p><p class="rx-lbl">No hay unidades con guía para comparar.</p>'}
+      <div class="rx-chips">${mejor ? `<button class="rx-chip rx-mejor" data-id="${esc(mejor.a.id)}"><span>Mejor margen</span><b>${esc(mejor.a.marca)} ${esc(mejor.a.modelo)} ${mejor.a.anio} · +${mill(mejor.k.margen)}</b></button>` : ''}${prom != null ? `<span class="rx-chip">Margen promedio <b>${prom >= 0 ? '+' : '−'}${mill(Math.abs(prom))}</b></span>` : ''}</div></div>
+      <div class="rx-ring" role="img" aria-label="${pct}% bajo guía"><svg viewBox="-60 -60 120 120"><circle r="${R}" class="tr"/><circle r="${R}" class="v" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C * (1 - (pctAnt ?? 0) / 100)).toFixed(1)}" data-off="${(C * (1 - pct / 100)).toFixed(1)}" transform="rotate(-90)"/></svg><span class="rx-pct"><b data-p="${pct}">${pctAnt ?? 0}</b><small>%</small></span></div></section>`;
+    const v = $('#r-hero .v'), b = $('#r-hero .rx-pct b'), ini = pctAnt ?? 0; pctAnt = pct;
+    if (RMOV() || ini === pct) { v.style.transition = 'none'; v.setAttribute('stroke-dashoffset', v.dataset.off); b.textContent = pct; }
+    else {
+      requestAnimationFrame(() => requestAnimationFrame(() => v.setAttribute('stroke-dashoffset', v.dataset.off)));
+      const t0 = performance.now(), paso = t => { const q = Math.min(1, (t - t0) / 1000), e = 1 - Math.pow(1 - q, 3); b.textContent = Math.round(ini + (pct - ini) * e); if (q < 1) requestAnimationFrame(paso); };
+      requestAnimationFrame(paso);
+    }
+    return mejor ? mejor.a.id : null;
+  }
+  // ── Novedades: últimos 7 días con barras por tipo (nuevos, precio, salieron) ──
+  const diaLocal = iso => { const d = new Date(iso); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+  function semanaNov(ev) {
+    const DC = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'], dias = [];
+    for (let i = 6; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); dias.push(diaLocal(d.toISOString())); }
+    const cnt = {}; ev.forEach(e => { const f = diaLocal(e.fecha); if (!dias.includes(f)) return; (cnt[f] = cnt[f] || { nuevo: 0, precio: 0, baja: 0 })[e.tipo]++; });
+    const max = Math.max(1, ...dias.flatMap(f => Object.values(cnt[f] || {})));
+    const tot = t => dias.reduce((s, f) => s + ((cnt[f] || {})[t] || 0), 0);
+    return `<section class="rx-sem" aria-label="Novedades de los últimos 7 días"><div class="rx-dias">${dias.map((f, i) => { const c = cnt[f] || { nuevo: 0, precio: 0, baja: 0 }, d = new Date(f + 'T12:00:00');
+      return `<button class="rx-d${f === diaNov ? ' sel' : ''}" data-f="${f}" aria-label="${d.getDate()}/${d.getMonth() + 1}: ${c.nuevo} nuevos, ${c.precio} cambios de precio, ${c.baja} salieron"><span>${i === 6 ? 'Hoy' : DC[d.getDay()]}</span><b>${d.getDate()}</b><span class="rx-bars">${['nuevo', 'precio', 'baja'].map(t => `<i class="b-${t}" style="height:${c[t] ? Math.max(3, c[t] / max * 22) : 2}px;opacity:${c[t] ? 1 : .25}"></i>`).join('')}</span></button>`; }).join('')}</div>
+      <div class="rx-ley"><span><i class="b-nuevo"></i>${tot('nuevo')} nuevos</span><span><i class="b-precio"></i>${tot('precio')} cambios de precio</span><span><i class="b-baja"></i>${tot('baja')} salieron</span></div></section>`;
   }
 
   function textoCliente(a, k) {
