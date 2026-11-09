@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="x5-theme.css">
 <style>
-  body { padding-bottom: calc(76px + var(--safe-bottom)); }
+  body { padding-bottom: calc(92px + var(--safe-bottom)); }
 
 
   .arch label { display: flex; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
@@ -136,10 +136,17 @@
   .fsum .chip button { border: 0; background: none; color: inherit; cursor: pointer; font-size: .9rem; line-height: 1; padding: 0 2px; }
 
   /* Navegación inferior */
-  .bnav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: flex; padding: 6px 8px calc(6px + var(--safe-bottom)); background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid var(--line); }
-  .bnav button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 7px 0; border: 0; background: none; color: var(--faint); font-size: .68rem; font-weight: 600; cursor: pointer; border-radius: 12px; position: relative; }
-  .bnav button svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; }
-  .bnav button.active { color: var(--x5); }
+  .bnav { position: fixed; left: 10px; right: 10px; bottom: calc(10px + var(--safe-bottom)); z-index: 60; display: flex; padding: 6px; border-radius: 22px; overflow: hidden;
+    background: color-mix(in srgb, var(--surface) 74%, transparent); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    border: 1px solid var(--line-strong); box-shadow: 0 12px 34px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06); }
+  .bnav button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 0 7px; border: 0; background: none; color: var(--faint); font-size: .68rem; font-weight: 600; cursor: pointer; border-radius: 16px; position: relative; z-index: 1; transition: color .25s; }
+  .bnav button svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; transition: transform .3s, filter .3s; }
+  .bnav button.active { color: var(--x5-text); }
+  .bnav button.active svg { transform: translateY(-1px); filter: drop-shadow(0 0 6px color-mix(in srgb, var(--x5) 75%, transparent)); }
+  /* Haz de luz que sigue a la pestaña activa (ref. "Glassy Navigation Tabs") */
+  .bnav-ind { position: absolute; top: 0; left: 0; height: 100%; width: 0; pointer-events: none; transition: transform .45s cubic-bezier(.3,1.25,.4,1), width .3s; }
+  .bnav-ind::before { content: ''; position: absolute; top: 0; left: 50%; width: 34px; height: 3px; margin-left: -17px; border-radius: 0 0 4px 4px; background: var(--x5); box-shadow: 0 0 12px 2px color-mix(in srgb, var(--x5) 80%, transparent); }
+  .bnav-ind::after { content: ''; position: absolute; top: 3px; left: 50%; width: 70px; height: 78%; margin-left: -35px; clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%); background: linear-gradient(180deg, color-mix(in srgb, var(--x5) 32%, transparent), transparent 85%); }
   .bnav .badge { position: absolute; top: 2px; left: calc(50% + 6px); min-width: 17px; height: 17px; padding: 0 4px; border-radius: 9px; background: var(--bad); color: #fff; font-size: .62rem; display: grid; place-items: center; }
 
   /* Métricas */
@@ -176,6 +183,36 @@
   .dup small { display: block; color: var(--muted); }
   .item-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
   .danger { color: var(--bad) !important; }
+  /* ── Métricas: estilo "Admin Dashboard" rojo X5 ─────────── */
+  .tab.active { animation: x5-blurin .35s ease-out; }
+  @keyframes x5-blurin { from { opacity: 0; filter: blur(8px); transform: translateY(6px); } to { opacity: 1; filter: none; transform: none; } }
+  #tab-dashboard .kpi, #tab-dashboard .card { animation: x5-blurin .5s cubic-bezier(.2,.8,.2,1) both; }
+  #tab-dashboard .kpi:nth-child(2) { animation-delay: .06s; } #tab-dashboard .kpi:nth-child(3) { animation-delay: .12s; }
+  #tab-dashboard .kpi:nth-child(4) { animation-delay: .18s; } #tab-dashboard .kpi:nth-child(5) { animation-delay: .24s; }
+  #tab-dashboard > .card:nth-of-type(n+2) { animation-delay: .2s; }
+  .kpi.hero { position: relative; overflow: hidden; border: 0; color: #fff;
+    background: radial-gradient(120% 140% at 100% 0%, rgba(255,255,255,.22), transparent 45%), linear-gradient(140deg, #F0283D 0%, #E3182D 40%, #8E0C1A 100%);
+    box-shadow: 0 14px 30px rgba(227,24,45,.28), inset 0 1px 0 rgba(255,255,255,.25); }
+  .kpi.hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.14) 50%, transparent 65%); transform: translateX(-100%); animation: x5-sheen 2.6s .5s ease-in-out; pointer-events: none; }
+  @keyframes x5-sheen { to { transform: translateX(100%); } }
+  .kpi.hero span { color: rgba(255,255,255,.82); }
+  .kpi.hero b { color: #fff; font-size: 2rem; text-shadow: 0 2px 12px rgba(0,0,0,.2); }
+  .kpi { background: linear-gradient(160deg, rgba(255,255,255,.04), transparent 60%), var(--surface); }
+  .gauge { display: block; width: 100%; max-width: 150px; margin: 6px auto -4px; overflow: visible; }
+  .gauge .g-tr { stroke: var(--surface-3); }
+  .gauge .g-v { stroke: var(--x5); transition: stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1); filter: drop-shadow(0 0 5px color-mix(in srgb, var(--x5) 55%, transparent)); }
+  .kpi-conv b { text-align: center; }
+  .bars.hl .bar-fill:not(.lead) { opacity: .38; }
+  .bar-fill.lead { background: linear-gradient(90deg, var(--x5-strong), #FF3B50); box-shadow: 0 0 14px color-mix(in srgb, var(--x5) 60%, transparent); }
+  .bar-row.lead .name { color: var(--text); font-weight: 700; }
+  .bar-row.lead .val { color: var(--x5-text); }
+  .bar-row .tag-lead { font-size: .6rem; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--x5-text); margin-left: 4px; }
+  .donut-wrap circle.seg { animation: x5-draw .9s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes x5-draw { from { stroke-dasharray: 0 999; } }
+  @media (prefers-reduced-motion: reduce) {
+    .tab.active, #tab-dashboard .kpi, #tab-dashboard .card, .kpi.hero::after, .donut-wrap circle.seg { animation: none; }
+    .bnav-ind, .gauge .g-v { transition: none; }
+  }
 </style>
 </head>
 <body>
@@ -322,7 +359,7 @@
     <div class="kpis">
       <div class="kpi hero"><span>Facturación del período</span><b class="num" id="k-fact">$0</b></div>
       <div class="kpi"><span>Cierres</span><b class="num" id="k-ventas">0</b></div>
-      <div class="kpi"><span>Conversión leads</span><b class="num" id="k-conv">0%</b></div>
+      <div class="kpi kpi-conv"><span>Conversión leads</span><svg class="gauge" viewBox="0 0 100 56" aria-hidden="true"><path class="g-tr" d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke-width="9" stroke-linecap="round"/><path class="g-v" id="g-conv" d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke-width="9" stroke-linecap="round" stroke-dasharray="125.7" stroke-dashoffset="125.7"/></svg><b class="num" id="k-conv">0%</b></div>
       <div class="kpi"><span>Leads recibidos</span><b class="num" id="k-leads">0</b></div>
       <div class="kpi"><span>Respuesta prom.</span><b class="num" id="k-resp">–</b></div>
     </div>
@@ -364,6 +401,7 @@
 </main>
 
 <nav class="bnav hidden" id="bnav">
+  <span class="bnav-ind" id="bnav-ind" aria-hidden="true"></span>
   <button data-tab="agenda" class="active"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>Agenda</button>
   <button data-tab="leads"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3"/></svg>Leads<span class="badge hidden" id="badge-leads">0</span></button>
   <button data-tab="dashboard" class="hidden" id="nav-dashboard"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Métricas</button>
@@ -560,6 +598,7 @@ function iniciarApp() {
   document.querySelectorAll('.sup-only').forEach(el => { el.classList.toggle('hidden', !supervisa); el.querySelectorAll('select,input').forEach(c => { c.required = supervisa; }); });
   $('nav-dashboard').classList.toggle('hidden', !supervisa);
   $('nav-resumen').classList.toggle('hidden', !supervisa);
+  requestAnimationFrame(moverInd);
   document.querySelectorAll('.ger-only').forEach(el => el.classList.toggle('hidden', user.rol !== 'Gerente Comercial'));
   llenarDesplegables();
   prepararFiltros();
@@ -1325,10 +1364,19 @@ $('q-leads').addEventListener('input', renderLeads);
 function cambiarTab(id) {
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.id === 'tab-' + id));
   document.querySelectorAll('.bnav button').forEach(b => b.classList.toggle('active', b.dataset.tab === id));
+  moverInd();
   if (id === 'dashboard') renderDashboard();
   if (id === 'resumen') renderResumen();
   window.scrollTo(0, 0);
 }
+/* Mueve el haz de luz de la barra inferior a la pestaña activa */
+function moverInd() {
+  const b = document.querySelector('.bnav button.active'), ind = $('bnav-ind');
+  if (!b || !ind || !b.offsetWidth) return;
+  ind.style.width = b.offsetWidth + 'px';
+  ind.style.transform = `translateX(${b.offsetLeft}px)`;
+}
+window.addEventListener('resize', moverInd);
 $('bnav').addEventListener('click', (e) => { const b = e.target.closest('button[data-tab]'); if (b) cambiarTab(b.dataset.tab); });
 
 /* ── Métricas (sin librerías: más livianas y nítidas) ──────── */
@@ -1345,14 +1393,33 @@ function llenarMeses() {
   sel.addEventListener('change', renderDashboard);
 }
 
-function barras(el, obj, fmt, clase = '') {
+/* mejor: 'max' resalta el valor más alto (facturación, ventas); 'min' el más bajo (tiempos de respuesta) */
+function barras(el, obj, fmt, clase = '', mejor = 'max') {
   const arr = Object.entries(obj).sort((a, b) => b[1] - a[1]);
   if (!arr.length) { el.innerHTML = '<div class="empty">Sin datos en el período</div>'; return; }
   const max = Math.max(...arr.map(x => x[1])) || 1;
-  el.innerHTML = arr.map(([k, v]) => `
-    <div class="bar-row"><span class="name" title="${esc(k)}">${esc(k)}</span>
-      <div class="bar-track"><div class="bar-fill ${clase}" style="width:${Math.max(3, v / max * 100)}%"></div></div>
-      <span class="val">${fmt(v)}</span></div>`).join('');
+  const lider = arr.length > 1 ? (mejor === 'min' ? arr[arr.length - 1][0] : arr[0][0]) : null;
+  el.classList.toggle('hl', !!lider);
+  el.innerHTML = arr.map(([k, v]) => { const l = k === lider; return `
+    <div class="bar-row${l ? ' lead' : ''}"><span class="name" title="${esc(k)}">${esc(k)}</span>
+      <div class="bar-track"><div class="bar-fill ${l ? 'lead' : clase}" style="width:${Math.max(3, v / max * 100)}%"></div></div>
+      <span class="val">${fmt(v)}${l ? '<span class="tag-lead">' + (mejor === 'min' ? 'Más rápido' : 'Mejor') + '</span>' : ''}</span></div>`; }).join('');
+}
+
+/* Contador animado: solo anima si el valor cambió (las sincronizaciones no lo repiten) */
+const RED_MOV = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+function contar(el, valor, fmt) {
+  const desde = parseFloat(el.dataset.v || '0');
+  el.dataset.v = valor;
+  if (RED_MOV || desde === valor) { el.textContent = fmt(valor); return; }
+  const t0 = performance.now(), dur = 900;
+  cancelAnimationFrame(el._raf);
+  const paso = (t) => {
+    const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = fmt(desde + (valor - desde) * e);
+    if (k < 1) el._raf = requestAnimationFrame(paso);
+  };
+  el._raf = requestAnimationFrame(paso);
 }
 
 function dona(el, obj) {
@@ -1363,7 +1430,7 @@ function dona(el, obj) {
   const R = 42, C = 2 * Math.PI * R; let off = 0;
   const segs = arr.map(([k, v], i) => {
     const len = v / total * C;
-    const s = `<circle r="${R}" cx="60" cy="60" fill="none" stroke="${cols[i % cols.length]}" stroke-width="16" stroke-dasharray="${Math.max(0, len - 2)} ${C}" stroke-dashoffset="${-off}" transform="rotate(-90 60 60)"/>`;
+    const s = `<circle class="seg" style="animation-delay:${i * .12}s" r="${R}" cx="60" cy="60" fill="none" stroke="${cols[i % cols.length]}" stroke-width="16" stroke-dasharray="${Math.max(0, len - 2)} ${C}" stroke-dashoffset="${-off}" transform="rotate(-90 60 60)"/>`;
     off += len; return s;
   }).join('');
   el.innerHTML = `<div class="donut-wrap">
@@ -1402,16 +1469,17 @@ function renderDashboard() {
   const totalN = Object.values(tN).reduce((a, b) => a + b, 0);
   const promGlobal = totalN ? Math.round(Object.values(tSum).reduce((a, b) => a + b, 0) / totalN) : null;
 
-  $('k-fact').textContent = X5.money(fact);
-  $('k-ventas').textContent = ventas.length;
-  $('k-leads').textContent = leads.length;
+  contar($('k-fact'), fact, X5.money);
+  contar($('k-ventas'), ventas.length, v => Math.round(v));
+  contar($('k-leads'), leads.length, v => Math.round(v));
   const conv = leads.length ? ventas.filter(v => leads.some(l => String(l.cliente).trim().toLowerCase() === String(v.cliente).trim().toLowerCase())).length / leads.length * 100 : 0;
-  $('k-conv').textContent = conv.toFixed(1).replace('.', ',') + '%';
+  contar($('k-conv'), Math.round(conv * 10) / 10, v => v.toFixed(1).replace('.', ',') + '%');
+  $('g-conv').style.strokeDashoffset = (125.7 * (1 - Math.min(100, conv) / 100)).toFixed(1);
   $('k-resp').textContent = promGlobal == null ? '–' : (promGlobal < 60 ? promGlobal + ' min' : (promGlobal / 60).toFixed(1).replace('.', ',') + ' h');
 
   barras($('ch-asesores'), porAsesor, X5.moneyShort, 'dom');
   dona($('ch-origen'), origen);
-  barras($('ch-tiempos'), tProm, v => v + ' min', 'warn');
+  barras($('ch-tiempos'), tProm, v => v + ' min', 'warn', 'min');
   barras($('ch-flota'), flota, v => v);
 }
 
