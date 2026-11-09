@@ -198,3 +198,18 @@ Es una tarjeta del Hub, entre Mini CRM y Auditoría. Muestra el stock de usados 
 - **Dar o cambiar una clave:** escribirla normal en la celda de esa persona (ej. 4821). Se protege sola en su primer ingreso. Si alguien la olvida, no se puede «ver»: se le asigna una nueva.
 - **La sesión ya no viaja en la dirección.** Los datos y el enlace de Telegram se piden por POST, así que el token no queda en los registros del servidor. El widget del launcher sigue usando su clave de solo lectura (`LAUNCHER_KEY`).
 - Limitación: si las claves son cortas y solo números, la huella protege de la lectura casual pero no de quien tenga la planilla y pruebe combinaciones. Conviene claves de 6 caracteres o más.
+
+## Nueva imagen del mini CRM: barra inferior y Métricas (09/11/2026)
+Cambio solo visual: no cambia ningún dato, permiso ni cálculo.
+- **Barra inferior flotante.** El menú de abajo (Agenda, Leads, Métricas, Resumen) ahora flota como una píldora de vidrio. Sobre la pestaña activa cae un haz de luz rojo X5 que se desliza al cambiar de pestaña, y el ícono activo brilla. Los nombres siguen debajo de cada ícono.
+- **Métricas (gerencia, jefes, referentes y supervisor):**
+  - *Facturación del período* va en una tarjeta roja brillante con un reflejo que la cruza al entrar.
+  - Los números (facturación, cierres, leads, conversión) suben contando desde el valor anterior. Solo se animan si el número cambió; las sincronizaciones automáticas no los repiten.
+  - *Conversión de leads* tiene un medidor semicircular que se llena según el porcentaje.
+  - En *Facturación por asesor* y *Ventas por auto de flota*, el primero se resalta en rojo con la etiqueta **MEJOR** y los demás quedan más tenues. En *Minutos hasta el primer contacto* se resalta el **MÁS RÁPIDO** (el menor tiempo), porque ahí menos es mejor.
+  - La dona de *Origen de las ventas* se dibuja por partes y las tarjetas entran con un desenfoque suave.
+- Si el teléfono tiene activado "reducir movimiento", todo se muestra sin animaciones.
+- La APK abre la web publicada, así que el cambio llega solo, sin recompilar (se subió la versión de caché a x5-os-v32).
+- Referencia de estilo: videos "Admin Dashboard V5" y "Glassy Navigation Tabs V5" guardados por Daniel.
+
+**Para responder por voz:** "¿Qué significa MEJOR en las barras?" → Es el asesor que más facturó (o el auto de flota con más ventas) en el período y equipo elegidos. "¿Y MÁS RÁPIDO?" → El asesor que, en promedio, tardó menos en contactar a sus leads.
