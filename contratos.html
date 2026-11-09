@@ -93,6 +93,10 @@
   :root[data-theme="light"] .e-Completo { color: #b3121f; }
   .foot { text-align: center; color: var(--faint); font-size: .72rem; margin: 24px 0 6px; }
   .mas { width: 100%; margin-top: 6px; }
+
+  /* Ingreso líquido (dom-login.js) en rojo X5 */
+  #dl-host .dl{--dl-pill-a:#ff4a5c;--dl-pill-b:#b80f22;--dl-pill-tx:#fff;--dl-field:var(--surface-2);--dl-field-bd:var(--line-strong);--dl-tx:var(--text);--dl-mut:var(--muted);--dl-accent:var(--x5);--dl-ok:#2fd18a;--dl-bad:#ff6b61;font-family:var(--font)}
+  #dl-host .dl-go{color:#fff}
 </style>
 </head>
 <body>
@@ -101,9 +105,7 @@
   <img class="logo" src="brand/x5-logo-blanco.png" alt="X5 Argentina" style="width:112px;margin-bottom:10px">
   <div class="tag">Control de contratos</div>
   <div class="card" id="login-box" hidden>
-    <div class="field"><label for="user-select">Usuario</label><select id="user-select"><option value="">Seleccioná tu usuario…</option></select></div>
-    <div class="field"><label for="user-pass">Clave</label><input type="password" id="user-pass" autocomplete="current-password" placeholder="Tu clave de acceso"></div>
-    <button class="btn" id="btn-login">Ingresar</button>
+    <div id="dl-host"></div>
     <a href="index.html" class="btn btn-ghost" style="margin-top:10px">Volver al Hub</a>
   </div>
   <div id="login-loading" class="center muted"><span class="spinner"></span><p>Conectando…</p></div>
@@ -169,6 +171,7 @@
 <dialog id="dlg"></dialog>
 
 <script src="x5-core.js"></script>
+<script src="dom-login.js"></script>
 <script>
 (() => {
 'use strict';
@@ -194,18 +197,25 @@ async function prepararLogin() {
   if (s && s.token) { token = s.token; user = s.user; return entrar(); }
   try {
     const r = await (await fetch(SCRIPT_URL + '?action=usuarios', { cache: 'no-store' })).json();
-    $('user-select').innerHTML = '<option value="">Seleccioná tu usuario…</option>' + r.usuarios.map(u => `<option value="${esc(u.nombre)}">${esc(u.nombre)}</option>`).join('');
     $('login-loading').hidden = true; $('login-box').hidden = false;
+    // Ingreso "líquido" (dom-login.js), igual que el Mini CRM
+    DomLogin.mount($('dl-host'), {
+      campos: [
+        { nombre: 'nombre', etiqueta: 'Usuario', tipo: 'select', vacio: 'Elegí tu usuario…', opciones: r.usuarios.map(u => u.nombre), valor: store.get('x5_ultimo_usuario', '') },
+        { nombre: 'clave', etiqueta: 'Clave', tipo: 'password', autocomplete: 'current-password' }
+      ],
+      boton: 'Ingresar', enviando: 'Verificando…', listo: 'Bienvenido',
+      enviar: async ({ nombre, clave }) => {
+        let r;
+        try { r = await (await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'login', nombre, clave }) })).json(); }
+        catch (e) { throw new Error('No se pudo verificar tu clave. Revisá la conexión.'); }
+        if (!r.ok || !r.token) throw new Error({ clave_incorrecta: 'Clave incorrecta', demasiados_intentos: 'Demasiados intentos. Esperá 10 minutos.' }[r.error] || 'Usuario no habilitado');
+        token = r.token; user = r.usuario; store.set('x5_session', { user, token }); store.set('x5_ultimo_usuario', nombre);
+      },
+      hecho: () => entrar()
+    });
   } catch (e) { $('login-loading').innerHTML = '<p>No hay conexión. Probá de nuevo en un momento.</p><button class="btn" onclick="location.reload()">Reintentar</button>'; }
 }
-$('btn-login').onclick = async () => {
-  const nombre = $('user-select').value, clave = $('user-pass').value; if (!nombre || !clave) return X5.toast('Elegí tu usuario y escribí tu clave', 'bad');
-  const b = $('btn-login'); b.disabled = true; b.textContent = 'Verificando…';
-  try { const r = await (await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'login', nombre, clave }) })).json();
-    if (!r.ok || !r.token) throw new Error({ clave_incorrecta: 'Clave incorrecta', demasiados_intentos: 'Demasiados intentos. Esperá 10 minutos.' }[r.error] || 'Usuario no habilitado');
-    token = r.token; user = r.usuario; store.set('x5_session', { user, token }); entrar();
-  } catch (e) { X5.toast(e.message || 'No se pudo ingresar', 'bad'); } finally { b.disabled = false; b.textContent = 'Ingresar'; }
-};
 $('btn-salir').onclick = () => { store.del('x5_session'); location.reload(); };
 $('btn-act').onclick = () => cargar(true);
 

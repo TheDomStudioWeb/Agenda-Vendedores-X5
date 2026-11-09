@@ -213,6 +213,10 @@
     .tab.active, #tab-dashboard .kpi, #tab-dashboard .card, .kpi.hero::after, .donut-wrap circle.seg { animation: none; }
     .bnav-ind, .gauge .g-v { transition: none; }
   }
+
+  /* Ingreso líquido (dom-login.js) en rojo X5 */
+  #dl-host .dl{--dl-pill-a:#ff4a5c;--dl-pill-b:#b80f22;--dl-pill-tx:#fff;--dl-field:var(--surface-2);--dl-field-bd:var(--line-strong);--dl-tx:var(--text);--dl-mut:var(--muted);--dl-accent:var(--x5);--dl-ok:#2fd18a;--dl-bad:#ff6b61;font-family:var(--font)}
+  #dl-host .dl-go{color:#fff}
 </style>
 </head>
 <body>
@@ -222,9 +226,7 @@
   <img class="logo" src="brand/x5-logo-blanco.png" alt="X5 Argentina" style="width:112px;margin-bottom:10px">
   <div class="tag">Mini CRM comercial</div>
   <div class="card" id="login-box" hidden>
-    <div class="field"><label for="user-select">Usuario</label><select id="user-select"><option value="">Seleccioná tu usuario…</option></select></div>
-    <div class="field"><label for="user-pass">Clave</label><input type="password" id="user-pass" autocomplete="current-password" placeholder="Tu clave de acceso"></div>
-    <button class="btn" id="btn-login">Ingresar</button>
+    <div id="dl-host"></div>
     <a href="index.html" class="btn btn-ghost" style="margin-top:10px">Volver al Hub</a>
   </div>
   <div id="login-loading" class="center muted"><span class="spinner"></span><p>Conectando con la base de datos…</p></div>
@@ -409,6 +411,7 @@
 </nav>
 
 <script src="x5-core.js"></script>
+<script src="dom-login.js"></script>
 <script>
 (() => {
 'use strict';
@@ -544,18 +547,23 @@ async function prepararLogin() {
   }
   $('login-loading').hidden = true;
   if (!usuarios) { $('login-loading').hidden = false; $('login-loading').innerHTML = '<p>No hay conexión. Probá de nuevo en un momento.</p><button class="btn btn-ghost" onclick="location.reload()">Reintentar</button>'; return; }
-  $('user-select').innerHTML = '<option value="">Seleccioná tu usuario…</option>' +
-    usuarios.map(u => `<option value="${esc(u.nombre)}">${esc(u.nombre)}</option>`).join('');
   $('login-box').hidden = false;
+  // Ingreso "líquido" (dom-login.js): el botón se divide en Usuario y Clave y al entrar se vuelve a unir
+  DomLogin.mount($('dl-host'), {
+    campos: [
+      { nombre: 'nombre', etiqueta: 'Usuario', tipo: 'select', vacio: 'Elegí tu usuario…', opciones: usuarios.map(u => u.nombre), valor: store.get('x5_ultimo_usuario', '') },
+      { nombre: 'clave', etiqueta: 'Clave', tipo: 'password', autocomplete: 'current-password' }
+    ],
+    boton: 'Ingresar', enviando: 'Verificando…', listo: 'Bienvenido',
+    enviar: iniciarSesion,
+    hecho: () => iniciarApp()
+  });
 }
 
-async function iniciarSesion() {
-  const nombre = $('user-select').value, clave = $('user-pass').value;
-  if (!nombre) return X5.toast('Seleccioná tu usuario', 'bad');
-  if (!clave) return X5.toast('Ingresá tu clave', 'bad');
-  const btn = $('btn-login'); btn.disabled = true; btn.textContent = 'Verificando…';
-  try {
-    const r = await apiPost({ action: 'login', nombre, clave });
+async function iniciarSesion({ nombre, clave }) {
+  {
+    let r;
+    try { r = await apiPost({ action: 'login', nombre, clave }); } catch (e) { throw new Error('No se pudo verificar tu clave. Revisá la conexión.'); }
     if (r && r.ok && r.token && r.usuario && r.usuario.rol === 'Control') {
       throw new Error('Esta cuenta es solo para el Control de contratos.');
     } else if (r && r.ok && r.token) {
@@ -566,12 +574,9 @@ async function iniciarSesion() {
     } else {
       throw new Error('No se pudo verificar tu clave. Revisá la conexión.');
     }
-    store.set('x5_session', { user, token });
+    store.set('x5_session', { user, token }); store.set('x5_ultimo_usuario', nombre);
     await sincronizar();
-    iniciarApp();
-  } catch (e) {
-    X5.toast(e.message || 'No se pudo ingresar', 'bad');
-  } finally { btn.disabled = false; btn.textContent = 'Ingresar'; }
+  }
 }
 
 function sesionVencida() {
@@ -1714,8 +1719,6 @@ $('btn-rep-pdf').addEventListener('click', async () => {
 });
 
 /* ── Arranque ──────────────────────────────────────────────── */
-$('btn-login').addEventListener('click', iniciarSesion);
-$('user-pass').addEventListener('keydown', e => { if (e.key === 'Enter') iniciarSesion(); });
 $('btn-logout').addEventListener('click', cerrarSesion);
 $('btn-avisos').addEventListener('click', activarAvisos);
 $('sync-pill').addEventListener('click', async () => { await procesarCola(); await sincronizar(true); });
