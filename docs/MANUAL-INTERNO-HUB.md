@@ -235,3 +235,10 @@ Cambio visual y de lectura rápida, sin tocar cálculos ni datos. Referencias: v
 - Al generar el DOCX aparece una tarjeta verde con una **tilde que se dibuja**: "Checklist generado".
 
 **Para responder por voz:** "¿Qué es el porcentaje del Radar?" → La proporción de usados del filtro que la agencia publica a precio de guía o menos. "¿Qué mide el anillo de X5 Check?" → Cuánto del reporte está completo: datos, observaciones, fotos y firma.
+
+## Ingreso "líquido" en el Mini CRM y en Control de contratos (09/11/2026)
+- La pantalla de ingreso muestra un solo botón rojo **Ingresar**. Al tocarlo se divide como un líquido en **Usuario** (lista para elegir) y **Clave**.
+- La lista ya viene con el **último usuario que entró** en ese teléfono, así no hay que buscarlo cada vez.
+- Para entrar: Enter o la flecha roja dentro de la clave. El botón se vuelve a unir con "Verificando…", trae los datos y muestra **✓ Bienvenido**.
+- Clave incorrecta: se sacude en rojo, dice el motivo ("Clave incorrecta", "Demasiados intentos…") y se vuelve a abrir sin borrar el usuario.
+- Componente `dom-login.js`, el mismo de las apps DOMino. Caché x5-os-v34.
