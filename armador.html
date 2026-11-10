@@ -142,12 +142,12 @@
     <details class="cfg">
       <summary>Parámetros de los planes</summary>
       <div class="row">
-        <div class="field"><label for="p10min">10 adelantos: cuota desde</label><div class="money"><input id="p10min" inputmode="numeric"></div></div>
-        <div class="field"><label for="p10max">hasta</label><div class="money"><input id="p10max" inputmode="numeric"></div></div>
+        <div class="field"><label for="p10min">Cuota mínima</label><div class="money"><input id="p10min" inputmode="numeric"></div></div>
+        <div class="field"><label for="cuotaMax">Cuota máxima por contrato</label><div class="money"><input id="cuotaMax" inputmode="numeric"></div><span class="hint">Si paga más, se hacen 2 contratos o más.</span></div>
       </div>
       <div class="row">
-        <div class="field"><label for="p5min">5 adelantos: cuota desde</label><div class="money"><input id="p5min" inputmode="numeric"></div></div>
-        <div class="field"><label for="p5max">hasta</label><div class="money"><input id="p5max" inputmode="numeric"></div></div>
+        <div class="field"><label for="p5min">5 adelantos: cuota desde</label><div class="money"><input id="p5min" inputmode="numeric"></div><span class="hint">Y capital por encima del mínimo de abajo.</span></div>
+        <div class="field"></div>
       </div>
       <div class="row">
         <div class="field"><label for="cap5">5 adelantos: capital desde</label><div class="money"><input id="cap5" inputmode="numeric"></div><span class="hint">Por debajo va a 10 adelantos.</span></div>
@@ -188,9 +188,9 @@
   const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
 
   // ── Parámetros (editables y guardados en el teléfono) ──
-  const DEF = { p10min: 90000, p10max: 300000, p5min: 350000, p5max: 700000, cap5: 6000000, progCap: 10000000, progContrato: 3500000, admision: 4, intUsado: 50, int0km: 35,
+  const DEF = { p10min: 90000, cuotaMax: 700000, p5min: 350000, cap5: 6000000, progCap: 10000000, progContrato: 3500000, admision: 4, intUsado: 50, int0km: 35,
     vector: '90000 40000\n130000 50000\n200000 50000\n250000 50000\n300000 55000\n350000 55000\n400000 65000\n450000 65000\n500000 65000\n550000 65000\n600000 100000\n700000 150000' };
-  const MONEY_P = ['p10min', 'p10max', 'p5min', 'p5max', 'cap5', 'progCap', 'progContrato'];
+  const MONEY_P = ['p10min', 'cuotaMax', 'p5min', 'cap5', 'progCap', 'progContrato'];
   Object.keys(DEF).forEach(k => {
     const v = lsGet('armador.' + k) ?? DEF[k];
     $(k).value = MONEY_P.includes(k) ? (+v).toLocaleString('es-AR') : v;
@@ -201,7 +201,7 @@
       .filter(n => n.length).map(n => ({ cuota: n[0], sellado: n[1] || 0 })).sort((a, b) => a.cuota - b.cuota);
   }
   const P = () => ({
-    p10min: num($('p10min')), p10max: num($('p10max')), p5min: num($('p5min')), p5max: num($('p5max')),
+    p10min: num($('p10min')), cuotaMax: num($('cuotaMax')), p5min: num($('p5min')),
     cap5: num($('cap5')), progCap: num($('progCap')), progContrato: num($('progContrato')),
     ga: (+$('admision').value || 0) / 100, iu: (+$('intUsado').value || 50) / 100, i0: (+$('int0km').value || 35) / 100,
     vector: leerVector($('vector').value),
@@ -230,12 +230,15 @@
 
   // ── Sistemas ──
   // Plan por cuotas (10 o 5 adelantos): 1 o 2 cuotas por mes del mismo plan. Si la cuota supera el máximo, se hacen 2 contratos del mismo monto.
+  // Un solo contrato del valor que puede pagar; 2 contratos o más solo si supera la cuota máxima del vector.
+  // Lo que define 5 o 10 adelantos es el capital (anexo de cuota 5), no el valor de la cuota.
   function planCuotas(id, nombre, n, min, max, mes, K, p, urg) {
     if (mes < min) return { id, nombre, n, ok: false, motivo: `Necesita cuota de al menos ${M(min)}` };
     const ritmo = sel.ritmo === '2' && mes / 2 >= min ? 2 : 1;
-    let contratos = 1, objetivo = mes / ritmo;
-    if (objetivo > max && objetivo / 2 >= min) { contratos = 2; objetivo = objetivo / 2; }
-    // Se toma el valor del vector más alto que entre en lo que puede pagar, dentro del rango del plan
+    let objetivo = mes / ritmo;
+    const contratos = objetivo > max ? Math.ceil(objetivo / max) : 1;
+    objetivo = objetivo / contratos;
+    // Se toma el valor del vector más alto que entre en lo que puede pagar, dentro del rango
     const v = p.vector.filter(x => x.cuota >= min && x.cuota <= max && x.cuota <= objetivo).pop();
     if (!v) return { id, nombre, n, ok: false, motivo: `No hay valor de cuota del vector entre ${M(min)} y ${M(Math.min(max, objetivo))}` };
     const cuota = v.cuota, sellado = v.sellado;
@@ -244,7 +247,7 @@
     return { id, nombre, n, ok: true, ritmo, contratos, cuota, sellado, bruto, capital: K, meses,
       poder: disponible(bruto, K, p), poder0: disponible0(bruto, K, p),
       plazo: meses <= 2.5 ? '45 a 60 días' : `${Math.ceil(meses)} meses`,
-      detalle: `${n} adelantos de ${M(cuota)}${contratos > 1 ? ' en 2 contratos iguales' : ''} · ${ritmo === 2 ? '2 cuotas por mes' : '1 cuota por mes'}`
+      detalle: `${n} adelantos de ${M(cuota)}${contratos > 1 ? ` en ${contratos} contratos iguales` : ''} · ${ritmo === 2 ? '2 cuotas por mes' : '1 cuota por mes'}`
         + (sellado ? ` · pagos 1 y 2: ${M(cuota + sellado)}${contratos > 1 ? ' c/u' : ''} (con sellado)` : '') };
   }
   // Entrega programada (plan especial): capital alto y contrato de 5 adelantos (1.º como seña + 4 juntos) desde el valor mínimo.
@@ -330,9 +333,9 @@
     const p = P(), usado = num($('usado')), efectivo = num($('efectivo')), mes = num($('cuota')), K = usado + efectivo;
     if (!mes) { $('crm-box').hidden = true; $('salida').innerHTML = '<section class="card"><div class="empty muted" style="text-align:center;padding:12px;font-size:.85rem">Cargá cuánto puede pagar por mes para ver el sistema y el monto disponible.</div></section>'; ultimo = null; return; }
 
-    const L = [planCuotas('p10', '10 adelantos', 10, p.p10min, p.p10max, mes, K, p, sel.urg)];
+    const L = [planCuotas('p10', '10 adelantos', 10, p.p10min, p.cuotaMax, mes, K, p, sel.urg)];
     if (sel.tipo === 'moto') L.push({ id: 'p5', nombre: '5 adelantos', n: 5, ok: false, motivo: 'Para motos solo hay plan de 10 adelantos' }, { id: 'prog', nombre: 'Entrega programada', n: 5, ok: false, motivo: 'Solo autos y camionetas' });
-    else L.push(K > p.cap5 ? planCuotas('p5', '5 adelantos', 5, p.p5min, p.p5max, mes, K, p, sel.urg)
+    else L.push(K > p.cap5 ? planCuotas('p5', '5 adelantos', 5, p.p5min, p.cuotaMax, mes, K, p, sel.urg)
       : { id: 'p5', nombre: '5 adelantos', n: 5, ok: false, motivo: `Necesita capital de más de ${M(p.cap5)}` }, programado(usado, efectivo, mes, p));
 
     ajustarAlMinimo(L, p);
@@ -359,7 +362,7 @@
 
     if (s) {
       h += `<section class="card"><div class="card-title"><span><span class="dot"></span>Cómo se arma</span></div><div class="desg">
-        <span>${s.k ? 'Cuotas pagas al retirar' : 'Adelantos del plan'}</span><b class="num">${s.contratos > 1 ? '2 × ' : ''}${s.k || s.n} × ${M(s.cuota)}</b>
+        <span>${s.k ? 'Cuotas pagas al retirar' : 'Adelantos del plan'}</span><b class="num">${s.contratos > 1 ? s.contratos + ' × ' : ''}${s.k || s.n} × ${M(s.cuota)}</b>
         <span>Capital que aporta${s.id === 'prog' && s.delCapital ? ' (además de los adelantos)' : ''}</span><b class="num">${M(s.capital)}</b>
         <span class="tot">Disponible en usados${sel.tipo === 'moto' ? ' y motos' : ''}</span><b class="tot num">${M(s.poder)}</b>
         ${s.poder0 ? `<span class="tot" style="border:0;padding-top:0">Disponible en 0 km</span><b class="tot num" style="border:0;padding-top:0">${M(s.poder0)}</b>` : ''}</div></section>`;
