@@ -122,7 +122,11 @@
       </div>
       <div class="row">
         <div class="field"><label for="admision">Gastos de admisión % del valor del bien</label><input id="admision" type="number" inputmode="decimal" step="0.5"><span class="hint">Según contrato (cláusula 2.ª c). Se descuentan por dentro: no se muestran.</span></div>
-        <div class="field"><label for="mult">Multiplicador de negociación</label><input id="mult" type="number" inputmode="decimal" step="0.1"><span class="hint">2 = hasta el doble.</span></div>
+        <div class="field"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="intUsado">Integración mínima usados y motos %</label><input id="intUsado" type="number" inputmode="decimal" step="1"><span class="hint">Contrato, cláusula 3.ª a.1. 50% = hasta el doble.</span></div>
+        <div class="field"><label for="int0km">Integración mínima 0 km %</label><input id="int0km" type="number" inputmode="decimal" step="1"><span class="hint">35% = hasta 2,85 veces lo integrado.</span></div>
       </div>
       <div class="aviso">Uso interno. El monto disponible ya descuenta los gastos de admisión; en pantalla y en los mensajes solo aparece el monto final.</div>
     </details>
@@ -144,7 +148,7 @@
   const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
 
   // ── Parámetros (editables y guardados en el teléfono) ──
-  const DEF = { p10min: 90000, p10max: 300000, p5min: 350000, p5max: 700000, cap5: 6000000, progCap: 10000000, progCuota: 800000, admision: 4, mult: 2 };
+  const DEF = { p10min: 90000, p10max: 300000, p5min: 350000, p5max: 700000, cap5: 6000000, progCap: 10000000, progCuota: 800000, admision: 4, intUsado: 50, int0km: 35 };
   const MONEY_P = ['p10min', 'p10max', 'p5min', 'p5max', 'cap5', 'progCap', 'progCuota'];
   Object.keys(DEF).forEach(k => {
     const v = lsGet('armador.' + k) ?? DEF[k];
@@ -153,7 +157,7 @@
   const P = () => ({
     p10min: num($('p10min')), p10max: num($('p10max')), p5min: num($('p5min')), p5max: num($('p5max')),
     cap5: num($('cap5')), progCap: num($('progCap')), progCuota: num($('progCuota')),
-    ga: (+$('admision').value || 0) / 100, mult: +$('mult').value || 1,
+    ga: (+$('admision').value || 0) / 100, iu: (+$('intUsado').value || 50) / 100, i0: (+$('int0km').value || 35) / 100,
   });
 
   // ── Opciones (botones) ──
@@ -167,9 +171,13 @@
   bindOpts('o-tipo', 'tipo'); bindOpts('o-ritmo', 'ritmo'); bindOpts('o-urg', 'urg'); bindOpts('o-uso', 'uso', true);
 
   // ── Monto total disponible ──
-  // Valor del bien T = mult × (adelantos − gastos de admisión + capital), con gastos = ga × T (contrato, cláusula 2.ª c).
-  // → T = mult × (adelantos + capital) / (1 + mult × ga). Los gastos no se muestran en pantalla ni en los mensajes.
-  const disponible = (bruto, capital, p) => r100k(p.mult * (bruto + capital) / (1 + p.mult * p.ga));
+  // Contrato: para negociar hay que integrar al menos el 35% del precio (0 km) o el 50% (usados y motos) — cláusula 3.ª a.1.
+  // Lo integrado = adelantos − gastos de admisión (4% del valor del bien, cláusula 2.ª c) + capital.
+  // Valor máximo T: adelantos + capital − ga·T = i·T  →  T = (adelantos + capital) / (i + ga).
+  // Los gastos no se muestran en pantalla ni en los mensajes: solo el monto final.
+  const tope = (bruto, capital, i, p) => r100k((bruto + capital) / (i + p.ga));
+  const disponible = (bruto, capital, p) => tope(bruto, capital, p.iu, p);
+  const disponible0 = (bruto, capital, p) => sel.tipo === 'moto' ? null : tope(bruto, capital, p.i0, p);
 
   // ── Sistemas ──
   // Plan por cuotas (10 o 5 adelantos): 1 o 2 cuotas por mes del mismo plan. Si la cuota supera el máximo, se hacen 2 contratos del mismo monto.
@@ -182,7 +190,7 @@
     const bruto = n * cuota * contratos;
     const meses = n / ritmo;
     return { id, nombre, n, ok: true, ritmo, contratos, cuota, bruto, capital: K, meses,
-      poder: disponible(bruto, K, p),
+      poder: disponible(bruto, K, p), poder0: disponible0(bruto, K, p),
       plazo: meses <= 2.5 ? '45 a 60 días' : `${Math.ceil(meses)} meses`,
       detalle: `${n} adelantos de ${M(cuota)}${contratos > 1 ? ' en 2 contratos iguales' : ''} · ${ritmo === 2 ? '2 cuotas por mes' : '1 cuota por mes'}` };
   }
@@ -194,7 +202,7 @@
     if (mes < p.progCuota) return { ...base, ok: false, motivo: `Necesita poder pagar cuotas de ${M(p.progCuota)} o más` };
     const cuota = mes, bruto = cuota * 5, delCapital = Math.min(efectivo, bruto), resto = K - delCapital;
     return { ...base, ok: true, ritmo: 5, contratos: 1, cuota, bruto, capital: resto, delCapital, meses: .8,
-      poder: disponible(bruto, resto, p), plazo: '20 a 25 días',
+      poder: disponible(bruto, resto, p), poder0: disponible0(bruto, resto, p), plazo: '20 a 25 días',
       detalle: `1.º adelanto de ${M(cuota)} como seña + 4 juntos (${M(cuota * 4)})` };
   }
 
@@ -246,6 +254,7 @@
     let h = '';
     if (s) {
       h += `<section class="card poder"><div class="k">Monto total disponible</div><div class="v num">${M(s.poder)}</div>
+        ${s.poder0 ? `<div class="s" style="margin-bottom:6px">en usados · <b style="color:var(--text)">hasta ${M(s.poder0)} en 0 km</b></div>` : ''}
         <div class="s">Con <b>${esc(s.nombre)}</b> negocia desde <b>${s.plazo}</b>.<br>Papeles aparte. Sujeto a aprobación crediticia del negociador.</div></section>`;
     } else {
       h += `<section class="card"><div class="card-title"><span><span class="dot"></span>Sin sistema posible</span></div><div class="muted" style="font-size:.85rem">Con ${M(mes)} por mes no llega a la cuota mínima (${M(p.p10min)}). Revisar si puede sumar algo más por mes.</div></section>`;
@@ -253,7 +262,7 @@
 
     h += `<section class="card"><div class="card-title"><span><span class="dot"></span>Sistemas</span><span class="muted" style="font-size:.7rem;text-transform:none;letter-spacing:0">tocá para comparar</span></div><div class="sis">` +
       L.map(x => x.ok
-        ? `<button class="s-card${s && x.id === s.id ? ' sel' : ''}" data-id="${x.id}"><div class="t"><span>${esc(x.nombre)} ${rec && x.id === rec.id ? '<span class="chip x5">Recomendado</span>' : ''}</span><span class="p num">${MS(x.poder)}</span></div>
+        ? `<button class="s-card${s && x.id === s.id ? ' sel' : ''}" data-id="${x.id}"><div class="t"><span>${esc(x.nombre)} ${rec && x.id === rec.id ? '<span class="chip x5">Recomendado</span>' : ''}</span><span class="p num">${MS(x.poder)}${x.poder0 ? `<small style="display:block;font-size:.66rem;color:var(--muted);font-weight:600;text-align:right">0 km ${MS(x.poder0)}</small>` : ''}</span></div>
             <div class="d">${esc(x.detalle)}<br>Negocia desde <b>${x.plazo}</b></div></button>`
         : `<div class="s-card off"><div class="t"><span>${esc(x.nombre)}</span><span class="chip">No aplica</span></div><div class="d">${esc(x.motivo)}</div></div>`).join('') + '</div></section>';
 
@@ -261,9 +270,9 @@
       h += `<section class="card"><div class="card-title"><span><span class="dot"></span>Cómo se arma</span></div><div class="desg">
         <span>Adelantos del plan</span><b class="num">${s.contratos > 1 ? '2 × ' : ''}${s.n} × ${M(s.cuota)}</b>
         <span>Capital que aporta${s.id === 'prog' && s.delCapital ? ' (además de los adelantos)' : ''}</span><b class="num">${M(s.capital)}</b>
-        <span>Negociación</span><b>hasta el doble</b>
-        <span class="tot">Monto total disponible</span><b class="tot num">${M(s.poder)}</b></div></section>`;
-      h += canasta(s.poder);
+        <span class="tot">Disponible en usados${sel.tipo === 'moto' ? ' y motos' : ''}</span><b class="tot num">${M(s.poder)}</b>
+        ${s.poder0 ? `<span class="tot" style="border:0;padding-top:0">Disponible en 0 km</span><b class="tot num" style="border:0;padding-top:0">${M(s.poder0)}</b>` : ''}</div></section>`;
+      h += canasta(s.poder, s.poder0);
       h += `<section class="card acciones">
         <button class="btn btn-wsp" id="b-wsp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20l1.3-5.2A8.4 8.4 0 1 1 21 11.5z"/></svg>Mensaje para el cliente</button>
         <button class="btn btn-ghost" id="b-neg">Copiar resumen para el negociador</button></section>`;
@@ -273,7 +282,7 @@
     if (s) { $('b-wsp').onclick = mensajeCliente; $('b-neg').onclick = resumenNegociador; }
   }
 
-  function canasta(poder) {
+  function canasta(poder, poder0) {
     if (sel.tipo === 'moto') return `<section class="card"><div class="card-title"><span><span class="dot"></span>Opciones</span></div><div class="muted" style="font-size:.82rem">El catálogo de motos todavía no está cargado. Con este monto, el negociador le arma las opciones de motos hasta ${M(poder)}.</div></section>`;
     let h = '';
     const pref = new Set([...sel.uso].flatMap(u => USO_CATS[u] || []));
@@ -283,8 +292,8 @@
         <table class="cats"><tr><th>Categoría</th>${RANGOS.map(r => `<th>${r[1]}</th>`).join('')}</tr>` +
         filas.map(c => `<tr class="${pref.has(c) ? 'pref' : ''}"><td>${CATS[c]}</td>${RANGOS.map(([k]) => {
           const v = BASE.base[c]?.[k]; if (!v) return '<td class="no">—</td>';
-          const precio = k === '0km' ? v : v * 1.2; // usados a guía + 20%, 0 km a valor de guía
-          return `<td class="${precio <= poder ? 'si' : 'no'}">${precio <= poder ? '✓ ' : ''}${MS(precio)}</td>`; }).join('')}</tr>`).join('') +
+          const precio = k === '0km' ? v : v * 1.2, lim = k === '0km' ? poder0 : poder; // usados a guía + 20% (tope usados); 0 km a valor de guía (tope 0 km)
+          return `<td class="${precio <= lim ? 'si' : 'no'}">${precio <= lim ? '✓ ' : ''}${MS(precio)}</td>`; }).join('')}</tr>`).join('') +
         `</table><span class="hint">Valores de referencia promedio por categoría. En verde, lo que entra en su monto disponible.</span></section>`;
     }
     if (STOCK?.autos) {
@@ -305,7 +314,8 @@
     const { s } = ultimo; const n = nombre();
     const t = [`Hola${n ? ' ' + n : ''}! Te paso lo que charlamos 👇`, '',
       `📋 *Plan ${s.nombre}*`, s.detalle, `⏱ Podés negociar tu vehículo desde ${s.plazo}`, '',
-      `🚗 Con lo que tenés y lo que vas pagando, llegás a vehículos de hasta *${M(s.poder)}* (usados o 0 km, autos o camionetas).`,
+      s.poder0 ? `🚗 Con lo que tenés y lo que vas pagando, llegás a usados de hasta *${M(s.poder)}* y a 0 km de hasta *${M(s.poder0)}*.`
+        : `🛵 Con lo que tenés y lo que vas pagando, llegás a motos de hasta *${M(s.poder)}*.`,
       'La opción final la elegís con el asesor según lo que más te convenga.', '',
       '_Valores estimados. La financiación está sujeta a aprobación crediticia. Papeles aparte._', '', 'X5 Argentina · Región Cuyo'].join('\n');
     window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank', 'noopener');
@@ -316,13 +326,13 @@
       `Busca: ${sel.tipo === 'moto' ? 'moto' : 'auto o camioneta'}${sel.uso.size ? ' · uso: ' + [...sel.uso].join(', ') : ''} · urgencia: ${{ ya: 'menos de 1 mes', medio: '1 a 5 meses', tiempo: 'tiene tiempo' }[sel.urg]}`,
       `Capital: usado ${M(usado)} + efectivo ${M(efectivo)} · paga ${M(mes)} por mes`,
       `Sistema: ${s.nombre} · ${s.detalle} · negocia desde ${s.plazo}`,
-      `MONTO TOTAL DISPONIBLE: ${M(s.poder)} (falta verificar crédito)`].join('\n');
+      `MONTO TOTAL DISPONIBLE: usados ${M(s.poder)}${s.poder0 ? ' · 0 km ' + M(s.poder0) : ''} (falta verificar crédito)`].join('\n');
     try { await navigator.clipboard.writeText(t); X5.toast('Resumen copiado', 'ok'); } catch (e) { prompt('Copiá el resumen:', t); }
   }
 
   // ── Eventos ──
   ['usado', 'efectivo', 'cuota', ...MONEY_P].forEach(id => $(id).addEventListener('input', () => { fmt($(id)); if (MONEY_P.includes(id)) lsSet('armador.' + id, num($(id))); calcular(); }));
-  ['admision', 'mult'].forEach(id => $(id).addEventListener('input', () => { lsSet('armador.' + id, $(id).value); calcular(); }));
+  ['admision', 'intUsado', 'int0km'].forEach(id => $(id).addEventListener('input', () => { lsSet('armador.' + id, $(id).value); calcular(); }));
   $('cliente').addEventListener('input', () => {});
   calcular();
 })();

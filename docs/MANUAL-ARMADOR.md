@@ -25,17 +25,18 @@
 **Cuál recomienda:** urgente → programado, si no 5 adelantos, si no 10. De 1 a 5 meses → 5 adelantos, si no programado, si no 10. Tiene tiempo → el que da mayor monto disponible. Tocando cada sistema se puede comparar.
 
 ## Monto total disponible
-Es lo que el cliente puede negociar: adelantos del plan más su capital, hasta el doble, **siempre sujeto a aprobación crediticia** (lo verifica el **negociador**, no el vendedor del plan). Papeles aparte.
+Es lo que el cliente puede negociar con lo integrado (adelantos del plan más su capital), **siempre sujeto a aprobación crediticia** (lo verifica el **negociador**, no el vendedor del plan). Papeles aparte.
 
 - **Por dentro** (uso interno, no se muestra): según el contrato (cláusula 2.ª c), los primeros pagos incluyen los gastos de admisión, el 4% del valor del bien elegido. La herramienta los descuenta sola. En el sistema, lo que vale es la columna de cuota pura (capitalización).
 - **En pantalla y en los mensajes** no aparecen gastos ni descuentos: solo el monto final total disponible. Así lo presenta el vendedor y no se entorpece la venta.
-- Según el contrato, para negociar hay que integrar como mínimo el 35% del precio en 0 km y el 50% en usados y motos. Hoy la herramienta usa "hasta el doble" para todo.
+- Contrato, cláusula 3.ª a.1: para negociar hay que integrar como mínimo el **50% en usados y motos** (hasta el doble de lo integrado) y el **35% en 0 km** (hasta unas 2,85 veces). Por eso la herramienta da dos montos: disponible en usados y disponible en 0 km. El 0 km permite financiar más.
+- Plan de 5 adelantos y entrega programada: mismo contrato, con un anexo que permite negociar desde la cuota 5 paga. El resto del funcionamiento (devolución o derivación de capital) rige recién después de la cuota 10 paga.
 
 ## Qué muestra
-- **Monto total disponible** y desde cuándo negocia.
+- **Monto total disponible** en usados y en 0 km, y desde cuándo negocia.
 - **Sistemas:** los tres, con el recomendado marcado y los que no aplican con el motivo.
-- **Cómo se arma:** adelantos del plan, capital que aporta y el monto final (sin gastos).
-- **¿A qué llega?:** tabla por categoría (auto chico, familiar, utilitario, SUV, camioneta) y antigüedad (2010-15, 2015-20, 2020-25, 0 km) con valores de la guía CCA. Usados a guía + 20%, 0 km a valor de guía. En verde lo que entra.
+- **Cómo se arma:** adelantos del plan, capital que aporta y los dos montos finales (sin gastos).
+- **¿A qué llega?:** tabla por categoría (auto chico, familiar, utilitario, SUV, camioneta) y antigüedad (2010-15, 2015-20, 2020-25, 0 km) con valores de la guía CCA. Usados a guía + 20% contra el monto de usados; 0 km a valor de guía contra el monto de 0 km. En verde lo que entra.
 - **Opciones en stock:** hasta 6 modelos distintos del Radar de Usados dentro del rango, con el precio X5 de la regla «El mayor».
 - **Mensaje para el cliente** por WhatsApp (sin prometer crédito) y **resumen para el negociador** (se copia).
 - Los parámetros de los planes se cambian en «Parámetros de los planes» y quedan guardados en el teléfono.
@@ -45,7 +46,7 @@ Es lo que el cliente puede negociar: adelantos del plan más su capital, hasta e
 - Después: la misma lógica dentro de DOMino, como setter automático por WhatsApp.
 
 **Para responder por voz:**
-- "¿Cómo se calcula el monto disponible?" → Los adelantos del plan más el capital del cliente, hasta el doble, sujeto a crédito. La herramienta descuenta por dentro los gastos de admisión del contrato; al cliente se le dice solo el monto final.
+- "¿Cómo se calcula el monto disponible?" → Con lo integrado (adelantos más capital) llega hasta el doble en usados y motos, y hasta unas 2,85 veces en 0 km, sujeto a crédito. La herramienta descuenta por dentro los gastos de admisión del contrato; al cliente se le dice solo el monto final.
 - "¿Quién puede ir a 5 adelantos?" → Quien tenga capital de más de 6 millones y pueda pagar cuotas de 350 mil o más. Si no, va a 10 adelantos.
 - "¿Qué sistema le conviene a alguien urgente?" → Entrega programada, si tiene capital de 10 millones o más y puede pagar cuotas de más de 800 mil; negocia en 20 a 25 días.
 - "¿Las motos pueden ir a 5 adelantos?" → No, las motos solo van a 10 adelantos.
