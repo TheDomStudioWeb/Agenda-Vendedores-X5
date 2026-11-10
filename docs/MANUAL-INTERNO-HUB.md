@@ -253,3 +253,6 @@ El precio que da el Radar a veces no era realista: la agencia a la que se le com
 - Pendiente: los porcentajes por agencia son provisorios hasta que gerencia confirme los montos. Ojo con el salto en el corte: un auto de $29 millones queda en $34,8 millones y uno de $30 millones en $33 millones.
 
 **Para responder por voz:** "¿Cómo calcula el Radar el precio X5?" → Toma el mayor entre guía más 20% y precio de la agencia más 20% (menos de 30 millones) o más 10% (desde 30 millones). Papeles aparte. "¿Por qué dice 'por agencia'?" → Porque la agencia vende tan caro que su precio con recargo supera a la guía con recargo.
+
+## Armador de Plan (10/11/2026)
+Tarjeta nueva en Ventas, después de Control de contratos. Califica al cliente (qué busca, para qué, usado y efectivo, cuánto paga por mes, cuotas por mes y urgencia), elige el sistema (10 adelantos, 5 adelantos o entrega programada), calcula el poder de compra ((pagado − gastos + capital) × 2, sujeto a crédito) y muestra a qué categorías llega y qué unidades del Radar entran en el rango. Manual completo: `docs/MANUAL-ARMADOR.md`.
