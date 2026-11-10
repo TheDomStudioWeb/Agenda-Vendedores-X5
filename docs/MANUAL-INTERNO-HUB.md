@@ -242,3 +242,14 @@ Cambio visual y de lectura rápida, sin tocar cálculos ni datos. Referencias: v
 - Para entrar: Enter o la flecha roja dentro de la clave. El botón se vuelve a unir con "Verificando…", trae los datos y muestra **✓ Bienvenido**.
 - Clave incorrecta: se sacude en rojo, dice el motivo ("Clave incorrecta", "Demasiados intentos…") y se vuelve a abrir sin borrar el usuario.
 - Componente `dom-login.js`, el mismo de las apps DOMino. Caché x5-os-v34.
+
+## Radar: regla «El mayor» para el precio X5 (10/11/2026)
+El precio que da el Radar a veces no era realista: la agencia a la que se le compra vende por encima de guía + 20%. Por eso ahora la regla predeterminada del desplegable «Precio X5» es **El mayor**: se calculan dos precios y se toma el más alto.
+- **Por guía:** guía CCA + 20% (los papeles van aparte, + 10%). Es lo mismo que la vieja cuenta de guía + 32% con papeles incluidos.
+- **Por agencia:** precio publicado por la agencia + 20% si vale menos de $30 millones, o + 10% si vale $30 millones o más. Reemplaza al monto fijo de $6 millones, que no servía igual para un auto de $14 millones que para una camioneta de $50 millones.
+- Los 0 km con guía siguen yendo al valor de guía. Si una unidad no tiene guía, se usa la base de agencia.
+- En las vistas Interno y Compra, cada unidad muestra qué base ganó: «por guía» o «por agencia». En la ficha interna aparece la base con su porcentaje. La vista Cliente solo ve el precio final.
+- El corte ($30 millones) y los dos porcentajes se pueden cambiar en el mismo desplegable. Las reglas viejas (solo guía, o agencia + monto fijo) siguen disponibles en el selector.
+- Pendiente: los porcentajes por agencia son provisorios hasta que gerencia confirme los montos. Ojo con el salto en el corte: un auto de $29 millones queda en $34,8 millones y uno de $30 millones en $33 millones.
+
+**Para responder por voz:** "¿Cómo calcula el Radar el precio X5?" → Toma el mayor entre guía más 20% y precio de la agencia más 20% (menos de 30 millones) o más 10% (desde 30 millones). Papeles aparte. "¿Por qué dice 'por agencia'?" → Porque la agencia vende tan caro que su precio con recargo supera a la guía con recargo.

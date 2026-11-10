@@ -173,8 +173,11 @@
     <details class="card" id="cfg-box">
       <summary>Precio X5</summary>
       <div class="cfg">
-        <label>Regla<select id="regla"><option value="guia">Guía CCA + %</option><option value="fijo">Precio agencia + monto fijo</option></select></label>
+        <label>Regla<select id="regla"><option value="mayor">El mayor: guía + % o agencia + %</option><option value="guia">Guía CCA + %</option><option value="fijo">Precio agencia + monto fijo</option></select></label>
         <label id="l-fijo"><span id="t-fijo">Monto fijo $</span><input id="fijo" type="number" inputmode="numeric" step="500000" value="6000000"></label>
+        <label id="l-corte">Corte agencia $<input id="corte" type="number" inputmode="numeric" step="1000000" value="30000000"></label>
+        <label id="l-pbajo">Agencia bajo el corte %<input id="pbajo" type="number" inputmode="decimal" step="1" value="20"></label>
+        <label id="l-palto">Agencia desde el corte %<input id="palto" type="number" inputmode="decimal" step="1" value="10"></label>
         <label id="l-pct">Margen sobre guía %<input id="pct" type="number" inputmode="decimal" step="1" value="20"></label>
         <label>Papeles % (aparte)<input id="papeles" type="number" inputmode="decimal" step="1" value="10"></label>
         <label>Dólar $<input id="usd" type="number" inputmode="numeric" step="10" value="1540"></label>
@@ -243,21 +246,35 @@
   let DATA = null, NOV = null, vista = leer('vista') || 'cliente';
   const AG = {};
 
-  ['regla', 'fijo', 'pct', 'papeles', 'usd'].forEach(id => { const v = leer(id); if (v != null) $('#' + id).value = v; });
+  const LS = (id) => id === 'regla' ? 'regla2' : id; // regla2: la regla "El mayor" pasa a ser la predeterminada
+  ['regla', 'fijo', 'pct', 'corte', 'pbajo', 'palto', 'papeles', 'usd'].forEach(id => { const v = leer(LS(id)); if (v != null) $('#' + id).value = v; });
 
   const P = () => ({
     regla: $('#regla').value, fijo: +$('#fijo').value || 0, pct: (+$('#pct').value || 0) / 100,
     papeles: (+$('#papeles').value || 0) / 100, usd: +$('#usd').value || 1,
+    corte: +$('#corte').value || 0, pbajo: (+$('#pbajo').value || 0) / 100, palto: (+$('#palto').value || 0) / 100,
   });
+
+  // Regla "El mayor": se toma el más alto entre guía + % y precio de agencia + % (20% bajo el corte, 10% desde el corte)
+  const porAgencia = (costo, p) => costo == null ? null : r100k(costo * (1 + (costo < p.corte ? p.pbajo : p.palto)));
+  function precioMayor(costo, ref, cero, p) {
+    const g = ref != null ? r100k(cero ? ref : ref * (1 + p.pct)) : null;
+    const ag = porAgencia(costo, p);
+    if (g == null && ag == null) return { x5: null, base: null };
+    if (ag == null || (g != null && g >= ag)) return { x5: g, base: 'guía' };
+    return { x5: ag, base: 'agencia' };
+  }
 
   function calcular(a, p) {
     const costo = a.precio == null ? null : (a.moneda === 'USD' ? a.precio * p.usd : a.precio);
     const ref = a.guia ? (a.guia.mejor?.valor ?? a.guia.med) : null;
-    let x5 = null;
+    let x5 = null, base = null;
     if (p.regla === 'fijo' && costo != null) x5 = r100k(costo + p.fijo);
     const cero = a.anio >= new Date().getFullYear(); // 0 km: valor de guía, sin margen ni papeles
     if (p.regla === 'guia') x5 = ref != null ? r100k(cero ? ref : ref * (1 + p.pct)) : costo != null ? r100k(costo + p.fijo) : null; // sin guía (autos anteriores a 2012): agencia + monto fijo
-    return { costo, ref, x5, cero, calle: x5 != null ? (cero && p.regla === 'guia' && ref != null ? x5 : r100k(x5 * (1 + p.papeles))) : null,
+    if (p.regla === 'mayor') ({ x5, base } = precioMayor(costo, ref, cero, p));
+    const sinPapeles = cero && ref != null && (p.regla === 'guia' || base === 'guía');
+    return { costo, ref, x5, cero, base, calle: x5 != null ? (sinPapeles ? x5 : r100k(x5 * (1 + p.papeles))) : null,
       margen: x5 != null && costo != null ? x5 - costo : null, vsGuia: x5 != null && ref ? x5 / ref - 1 : null };
   }
 
@@ -276,9 +293,13 @@
   function render() {
     const p = P();
     $('#t-fijo').textContent = p.regla === 'fijo' ? 'Monto fijo $' : 'Autos sin guía: agencia + $';
-    $('#l-pct').hidden = p.regla !== 'guia';
+    $('#l-pct').hidden = p.regla === 'fijo';
+    $('#l-fijo').hidden = p.regla === 'mayor';
+    ['l-corte', 'l-pbajo', 'l-palto'].forEach(id => $('#' + id).hidden = p.regla !== 'mayor');
     const pc = Math.round((1 + p.pct) * (1 + p.papeles) * 1000 - 1000) / 10;
-    $('#formula').innerHTML = p.regla === 'fijo'
+    $('#formula').innerHTML = p.regla === 'mayor'
+      ? `Precio X5 = <b>el mayor</b> entre guía + <b>${Math.round(p.pct * 100)}%</b> y precio de la agencia + <b>${Math.round(p.pbajo * 100)}%</b> (si vale menos de ${mill(p.corte)}) o + <b>${Math.round(p.palto * 100)}%</b> (desde ${mill(p.corte)}). Papeles aparte: + ${Math.round(p.papeles * 100)}%. Los 0 km con guía van al valor de guía. Cada unidad indica qué base ganó.`
+      : p.regla === 'fijo'
       ? `Precio X5 = precio de la agencia + <b>${plata(p.fijo)}</b>. Puesto en calle = precio X5 + ${Math.round(p.papeles * 100)}% de papeles.`
       : `Precio X5 = guía + <b>${Math.round(p.pct * 100)}%</b>. Con ${Math.round(p.papeles * 100)}% de papeles, puesto en calle queda en guía + <b>${pc.toLocaleString('es-AR')}%</b>. Los 0 km van al valor de guía, sin recargo. Los autos que no figuran en la guía (anteriores a 2012) usan precio de agencia + ${plata(p.fijo)}.`;
     document.querySelectorAll('.seg button').forEach(b => b.classList.toggle('active', b.dataset.v === vista));
@@ -319,7 +340,7 @@
           <div><div class="t">${esc(a.marca)} ${esc(a.modelo)} ${a.anio}${esL ? '<span class="tag-lead">Mejor margen</span>' : ''}</div><div class="s">${esc(a.version)} · ${a.km != null ? nf.format(a.km) + ' km' : ''} · ${esc(a.caja)}<br>${esc(ag)}${a.sucursal ? ' · ' + esc(a.sucursal) : ''} · publicado ${fecha(a.alta || a.publicado).split(',')[0]}${a.oportunidad ? ' · <b style="color:var(--dom)">Oportunidad</b>' : ''}</div></div>
           <div class="c-ag"><div class="k">Agencia</div><div class="v num">${a.precio == null ? 'A confirmar' : a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio) : mill(a.precio)}</div></div>
           <div class="c-guia"><div class="k">Guía${a.guia?.mejor ? '' : ' (mediana)'}</div><div class="v num">${mill(k.ref)}</div></div>
-          <div class="c-x5"><div class="k">Precio X5</div><div class="v num">${mill(k.x5)}</div><div class="s num">${k.margen != null ? `<span class="${k.margen >= 0 ? 'pos' : 'neg'}">${k.margen >= 0 ? '+' : '−'}${mill(Math.abs(k.margen))}</span>` : ''}</div>
+          <div class="c-x5"><div class="k">Precio X5${k.base ? ` <span class="chip ${k.base === 'agencia' ? 'warn' : 'x5'}" title="Base que ganó en la regla El mayor">por ${k.base}</span>` : ''}</div><div class="v num">${mill(k.x5)}</div><div class="s num">${k.margen != null ? `<span class="${k.margen >= 0 ? 'pos' : 'neg'}">${k.margen >= 0 ? '+' : '−'}${mill(Math.abs(k.margen))}</span>` : ''}</div>
             ${a.precio == null && P().regla === 'fijo' ? '<span class="chip">sin precio</span>' : vs == null ? '<span class="chip">sin guía</span>' : `<span class="chip ${vs <= 0 ? 'ok' : vs <= .15 ? 'x5' : vs <= .3 ? 'warn' : 'bad'}">guía ${vs >= 0 ? '+' : '−'}${Math.abs(Math.round(vs * 100))}%</span>`}</div>
         </div>`;
       }).join('');
@@ -407,7 +428,7 @@
         ${interno ? `<div class="interno">
           <div><b>${esc(AG[a.agencia]?.nombre || a.agencia)}</b> (${esc(a.sucursal || AG[a.agencia]?.ciudad || '')}) · precio publicado ${a.precio == null ? 'a confirmar' : a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio) : plata(a.precio)}${a.precio_sin_imp ? ` · sin impuestos ${a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio_sin_imp) : plata(a.precio_sin_imp)}` : ''}</div>
           <div>Guía ${esc(DATA.guia?.fuente || '')}: ${a.guia ? (a.guia.mejor ? `${esc(a.guia.mejor.version)} → <b>${plata(a.guia.mejor.valor)}</b>` : 'versión no identificada') + ` · rango ${mill(a.guia.min)} – ${mill(a.guia.max)} (${a.guia.n} versiones)` : 'sin coincidencia'}</div>
-          <div>Margen X5: <b>${k.margen != null ? plata(k.margen) : '—'}</b>${k.vsGuia != null ? ` · precio X5 a guía ${k.vsGuia >= 0 ? '+' : '−'}${Math.abs(Math.round(k.vsGuia * 100))}%` : ''}</div>
+          <div>${k.base ? `Base del precio: <b>${k.base === 'agencia' ? 'agencia + ' + Math.round((k.costo < P().corte ? P().pbajo : P().palto) * 100) + '%' : 'guía + ' + Math.round(P().pct * 100) + '%'}</b> · ` : ''}Margen X5: <b>${k.margen != null ? plata(k.margen) : '—'}</b>${k.vsGuia != null ? ` · precio X5 a guía ${k.vsGuia >= 0 ? '+' : '−'}${Math.abs(Math.round(k.vsGuia * 100))}%` : ''}</div>
           <div><a href="${esc(a.url)}" target="_blank" rel="noopener">Ver publicación original</a></div>
         </div>` : ''}
         <div class="acciones">
@@ -433,7 +454,7 @@
     const c = e.target.closest('[data-id]'); if (c && !e.target.closest('dialog')) abrirFicha(c.dataset.id);
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.matches('.fila')) abrirFicha(e.target.dataset.id); });
-  ['regla', 'fijo', 'pct', 'papeles', 'usd'].forEach(id => $('#' + id).addEventListener('input', () => { guardar(id, $('#' + id).value); render(); }));
+  ['regla', 'fijo', 'pct', 'corte', 'pbajo', 'palto', 'papeles', 'usd'].forEach(id => $('#' + id).addEventListener('input', () => { guardar(LS(id), $('#' + id).value); render(); }));
   ['q', 'marca', 'caja', 'orden'].forEach(id => $('#' + id).addEventListener('input', render));
   document.querySelectorAll('#ordenar button').forEach(b => b.addEventListener('click', () => { $('#orden').value = b.dataset.o; render(); }));
 
@@ -485,7 +506,7 @@
     const g = GUIA && a.anio ? cruzarGuia({ ...a, caja }, GUIA) : null;
     const ref = g ? (g.mejor?.valor ?? g.med) : null;
     const cero = a.anio >= new Date().getFullYear();
-    const venta = ref ? r100k(cero ? ref : ref * (1 + p.pct)) : null;
+    const venta = p.regla === 'mayor' ? precioMayor(ars, ref, cero, p).x5 : ref ? r100k(cero ? ref : ref * (1 + p.pct)) : null;
     return { ars, ref, g, venta, margen: venta != null && ars != null ? venta - ars : null, ratio: ref && ars ? ars / ref : null };
   }
 
@@ -544,7 +565,7 @@
         <div><span>Guía mediana</span><b class="num">${mill(med(refs))}</b></div>
         <div><span>A guía o menos</span><b>${buenas}</b></div>
       </div>
-      <div class="cuenta">${esc(titulo2)} · ordenado por margen para X5 (venta a guía + ${Math.round(p.pct * 100)}%)</div>
+      <div class="cuenta">${esc(titulo2)} · ordenado por margen para X5 (${p.regla === 'mayor' ? 'venta al mayor entre guía + ' + Math.round(p.pct * 100) + '% y agencia + %' : 'venta a guía + ' + Math.round(p.pct * 100) + '%'})</div>
       <div class="lista">${L.map(({ a, k }) => `
         <a class="fila" href="${esc(a.url)}" target="_blank" rel="noopener">
           <div class="foto">${img(a.foto, a.modelo)}</div>
