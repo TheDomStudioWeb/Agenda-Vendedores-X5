@@ -60,6 +60,22 @@
   details.cfg .row { margin-top: 10px; }
   .aviso { font-size: .72rem; color: var(--warn); background: var(--warn-soft); border-radius: 10px; padding: 8px 10px; margin-top: 10px; line-height: 1.45; }
   .acciones { display: grid; gap: 8px; }
+  .modo { display: flex; background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; padding: 4px; margin-bottom: 14px; }
+  .modo button { flex: 1; border: 0; background: transparent; color: var(--muted); font: 700 .85rem var(--font); padding: 10px; border-radius: 10px; cursor: pointer; }
+  .modo button.on { background: var(--x5); color: #fff; }
+  .g-prog { display: flex; gap: 5px; margin-bottom: 14px; }
+  .g-prog i { flex: 1; height: 4px; border-radius: 3px; background: var(--surface-3); }
+  .g-prog i.ok { background: var(--x5); } .g-prog i.act { background: var(--x5-text); }
+  .g-paso { font-size: .7rem; color: var(--muted); letter-spacing: 1.4px; text-transform: uppercase; font-weight: 700; }
+  .g-preg { font-size: 1.15rem; font-weight: 800; line-height: 1.35; margin: 6px 0 4px; }
+  .g-decir { font-size: .82rem; color: var(--muted); line-height: 1.5; margin-bottom: 12px; font-style: italic; }
+  .g-ctrl { display: grid; gap: 8px; margin-bottom: 14px; }
+  .g-ctrl .opts button { padding: 14px 12px; font-size: .9rem; }
+  .g-ctrl .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .g-ctrl .chips button { border: 1px solid var(--line-strong); background: var(--surface-2); color: var(--text); border-radius: 999px; padding: 7px 12px; font: 600 .78rem var(--font); cursor: pointer; }
+  .g-nav { display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center; }
+  .g-nav .btn { width: auto; }
+  .g-copy { margin-top: 10px; }
   .foot { margin-top: 26px; text-align: center; font-size: .7rem; color: var(--faint); line-height: 1.7; }
 </style>
 </head>
@@ -73,7 +89,13 @@
 
 <main class="x5-wrap">
 
-  <section class="card">
+  <div class="modo" role="tablist" aria-label="Modo de carga">
+    <button data-m="form" class="on">Formulario</button><button data-m="guia">Guiado</button>
+  </div>
+
+  <section class="card" id="guia" hidden></section>
+
+  <section class="card" id="form-card">
     <div class="card-title"><span><span class="dot"></span>Datos del cliente</span></div>
     <div class="field"><label for="cliente">Nombre (opcional)</label><input id="cliente" autocomplete="off" placeholder="Para el resumen"></div>
 
@@ -414,6 +436,95 @@
     $('crm-tel').value = '';
   }
   $('b-crm').onclick = guardarLead;
+
+  // ── Modo guiado: una pregunta por pantalla, completa el formulario; todo opcional ──
+  // "decir" es la frase sugerida para el cliente (también se copia para pegar en Messenger, WhatsApp o Instagram)
+  const clickOpt = (grupo, v) => { const b = document.querySelector(`#${grupo} button[data-v="${v}"]`); if (b) b.click(); };
+  const setMoney = (id, n) => { $(id).value = n ? (+n).toLocaleString('es-AR') : ''; calcular(); };
+  const PASOS = [
+    { k: 'nombre', preg: '¿Cómo se llama?', decir: '¡Hola! Para armarte una propuesta a tu medida, ¿me decís tu nombre?', tipo: 'texto', campo: 'cliente', ph: 'Nombre del cliente' },
+    { k: 'tipo', preg: '¿Qué está buscando?', decir: '¿Estás buscando un auto o camioneta, o una moto?', tipo: 'opc', grupo: 'o-tipo', ops: [['auto', 'Auto o camioneta'], ['moto', 'Moto']] },
+    { k: 'uso', preg: '¿Para qué lo va a usar?', decir: '¿Para qué lo usarías principalmente? Trabajo, familia, ciudad, ruta… puede ser más de uno.', tipo: 'multi', grupo: 'o-uso', ops: [['trabajo', 'Trabajo'], ['familia', 'Familia'], ['ciudad', 'Ciudad'], ['ruta', 'Ruta o campo']] },
+    { k: 'usado', preg: '¿Tiene un usado para entregar?', decir: '¿Tenés algún vehículo para entregar como parte de pago? Si querés, decime cuál es y más o menos cuánto vale.', tipo: 'plata', campo: 'usado', no: 'No tiene' },
+    { k: 'efectivo', preg: '¿Cuenta con algo de efectivo?', decir: 'Además, ¿contás con algún ahorro o efectivo para sumar? No hace falta que sea mucho.', tipo: 'plata', campo: 'efectivo', no: 'No tiene' },
+    { k: 'cuota', preg: '¿Cuánto puede pagar por mes?', decir: 'Pensando en tu presupuesto, ¿cuánto te quedaría cómodo pagar por mes sin ajustarte?', tipo: 'plata', campo: 'cuota', chips: [100000, 150000, 200000, 250000, 300000, 400000, 500000, 700000] },
+    { k: 'urg', preg: '¿Para cuándo lo necesita?', decir: '¿Para cuándo lo necesitás? ¿Es urgente o tenés unos meses para verlo con tranquilidad?', tipo: 'opc', grupo: 'o-urg', ops: [['ya', 'Urgente (menos de 1 mes)'], ['medio', '1 a 5 meses'], ['tiempo', 'Tiene tiempo']] },
+    { k: 'ritmo', preg: '¿Podría pagar 2 cuotas juntas?', decir: 'Si te interesa llegar antes, ¿podrías pagar dos cuotas juntas algunos meses?', tipo: 'opc', grupo: 'o-ritmo', ops: [['1', 'No, 1 por mes'], ['2', 'Sí, 2 juntas']] },
+  ];
+  let paso = 0;
+  function valorPaso(p) {
+    if (p.tipo === 'texto') return $(p.campo).value.trim();
+    if (p.tipo === 'plata') return num($(p.campo));
+    if (p.tipo === 'multi') return sel.uso.size ? [...sel.uso] : null;
+    return document.querySelector(`#${p.grupo} button.on`)?.dataset.v;
+  }
+  function pintarGuia() {
+    const p = PASOS[paso], fin = paso >= PASOS.length;
+    let h = `<div class="g-prog">${PASOS.map((_, i) => `<i class="${i < paso ? 'ok' : i === paso ? 'act' : ''}"></i>`).join('')}</div>`;
+    if (fin) {
+      h += `<div class="g-paso">Listo</div><div class="g-preg">Calificación completa</div>
+        <div class="g-decir">Abajo está el sistema recomendado, el monto disponible y el botón para guardarlo en el CRM.</div>
+        <div class="g-nav"><button class="btn btn-ghost btn-sm" data-g="atras">‹ Atrás</button><span></span><button class="btn btn-ghost btn-sm" data-g="reiniciar">Nuevo cliente</button></div>`;
+      $('guia').innerHTML = h; bindGuia();
+      const out = $('salida').firstElementChild; if (out) out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    h += `<div class="g-paso">Pregunta ${paso + 1} de ${PASOS.length} · opcional</div><div class="g-preg">${esc(p.preg)}</div><div class="g-decir">“${esc(p.decir)}”</div><div class="g-ctrl">`;
+    const actual = valorPaso(p);
+    if (p.tipo === 'texto') h += `<input id="g-in" autocomplete="off" placeholder="${esc(p.ph)}" value="${esc(actual || '')}">`;
+    if (p.tipo === 'plata') {
+      h += `<div class="money"><input id="g-in" inputmode="numeric" placeholder="0" value="${actual ? actual.toLocaleString('es-AR') : ''}"></div>`;
+      if (p.chips) h += `<div class="chips">${p.chips.map(c => `<button data-chip="${c}">${MS(c)}</button>`).join('')}</div>`;
+      if (p.no) h += `<div class="opts"><button data-no="1">${esc(p.no)}</button></div>`;
+    }
+    if (p.tipo === 'opc' || p.tipo === 'multi') {
+      const on = (v) => p.tipo === 'multi' ? sel.uso.has(v) : actual === v;
+      h += `<div class="opts${p.tipo === 'multi' ? ' multi' : ''}">${p.ops.map(([v, t]) => `<button data-op="${v}" class="${on(v) ? 'on' : ''}">${esc(t)}</button>`).join('')}</div>`;
+    }
+    h += `</div><div class="g-nav"><button class="btn btn-ghost btn-sm" data-g="atras" ${paso ? '' : 'disabled'}>‹ Atrás</button>
+      <button class="btn btn-ghost btn-sm" data-g="saltar" style="justify-self:center">Saltar</button>
+      <button class="btn btn-sm" data-g="sig" style="background:var(--x5);color:#fff">Siguiente ›</button></div>
+      <button class="btn btn-ghost btn-sm g-copy" data-g="copiar" style="width:100%">Copiar pregunta para el chat</button>`;
+    $('guia').innerHTML = h; bindGuia();
+    const inp = $('g-in'); if (inp) setTimeout(() => inp.focus(), 50);
+  }
+  function bindGuia() {
+    const p = PASOS[paso];
+    const inp = $('g-in');
+    if (inp && p) inp.oninput = () => {
+      if (p.tipo === 'plata') { fmt(inp); setMoney(p.campo, num(inp)); }
+      else { $(p.campo).value = inp.value; }
+    };
+    if (inp) inp.onkeydown = (e) => { if (e.key === 'Enter') { e.preventDefault(); ir(1); } };
+    $('guia').querySelectorAll('[data-chip]').forEach(b => b.onclick = () => { setMoney(p.campo, +b.dataset.chip); ir(1); });
+    $('guia').querySelectorAll('[data-no]').forEach(b => b.onclick = () => { setMoney(p.campo, 0); ir(1); });
+    $('guia').querySelectorAll('[data-op]').forEach(b => b.onclick = () => {
+      if (p.tipo === 'multi') { clickOpt(p.grupo, b.dataset.op); b.classList.toggle('on', sel.uso.has(b.dataset.op)); }
+      else { clickOpt(p.grupo, b.dataset.op); ir(1); }
+    });
+    $('guia').querySelectorAll('[data-g]').forEach(b => b.onclick = async () => {
+      const g = b.dataset.g;
+      if (g === 'atras') ir(-1);
+      else if (g === 'saltar' || g === 'sig') ir(1);
+      else if (g === 'reiniciar') nuevoCliente();
+      else if (g === 'copiar') { try { await navigator.clipboard.writeText(p.decir); X5.toast('Pregunta copiada: pegala en el chat', 'ok'); } catch (e) { prompt('Copiá la pregunta:', p.decir); } }
+    });
+  }
+  function ir(d) { paso = Math.max(0, Math.min(PASOS.length, paso + d)); pintarGuia(); }
+  function nuevoCliente() {
+    ['cliente', 'usado', 'efectivo', 'cuota', 'crm-tel'].forEach(id => $(id).value = '');
+    [...sel.uso].forEach(u => clickOpt('o-uso', u));
+    clickOpt('o-tipo', 'auto'); clickOpt('o-urg', 'medio'); clickOpt('o-ritmo', '1');
+    paso = 0; calcular(); pintarGuia(); window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function ponerModo(m) {
+    document.querySelectorAll('.modo button').forEach(b => b.classList.toggle('on', b.dataset.m === m));
+    $('guia').hidden = m !== 'guia'; $('form-card').hidden = m === 'guia';
+    if (m === 'guia') pintarGuia();
+    lsSet('armador.modo', m);
+  }
+  document.querySelectorAll('.modo button').forEach(b => b.onclick = () => ponerModo(b.dataset.m));
+  ponerModo(lsGet('armador.modo') === 'guia' ? 'guia' : 'form');
 
   // ── Eventos ──
   ['usado', 'efectivo', 'cuota', ...MONEY_P].forEach(id => $(id).addEventListener('input', () => { fmt($(id)); if (MONEY_P.includes(id)) lsSet('armador.' + id, num($(id))); calcular(); }));

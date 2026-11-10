@@ -10,6 +10,12 @@
 5. **Cuotas por mes:** 1 por mes (lo normal) o 2 juntas del mismo plan (se fuerza a mano para llegar antes).
 6. **Para cuándo lo necesita:** urgente (menos de 1 mes), 1 a 5 meses, o tiene tiempo.
 
+## Formulario o Guiado (a elección)
+Arriba hay un selector **Formulario / Guiado**. Es opcional: cada asesor usa el que le quede cómodo y puede cambiar en cualquier momento sin perder lo cargado.
+- **Guiado:** una pregunta por pantalla (8 en total), con la frase sugerida para decirle al cliente y botones grandes para responder. Cada respuesta completa el formulario. Todas se pueden saltar. Para la cuota hay montos rápidos.
+- **Copiar pregunta para el chat:** copia la frase para pegarla en Messenger, WhatsApp o el chat de Instagram. El cliente responde y el asesor toca la respuesta. Así se atienden los chats con el mismo guion, sin permisos de Meta.
+- Al terminar, aparece el resultado (sistema, monto disponible, guardar en el CRM) y el botón **Nuevo cliente** limpia todo para el siguiente.
+
 ## Los tres sistemas
 | Sistema | Cuota | Adelantos | Negocia desde | Para |
 |---|---|---|---|---|
@@ -56,4 +62,5 @@ Con el usuario del Mini CRM abierto en el mismo teléfono, el Armador muestra «
 - "¿Quién puede ir a 5 adelantos?" → Quien tenga capital de más de 6 millones y pueda pagar cuotas de 350 mil o más. Si no, va a 10 adelantos.
 - "¿Qué sistema le conviene a alguien urgente?" → Entrega programada, si tiene capital de 10 millones o más y puede pagar un contrato desde 3 millones y medio; negocia en 20 a 25 días.
 - "¿Dónde quedan los clientes calificados?" → En el Mini CRM, en la lista de leads del asesor, con la etiqueta Calificado.
+- "¿Cómo atiendo una consulta por Messenger con el Armador?" → En modo Guiado, tocá «Copiar pregunta para el chat», pegala en Messenger y cargá la respuesta del cliente. Al final, guardalo como lead calificado.
 - "¿Las motos pueden ir a 5 adelantos?" → No, las motos solo van a 10 adelantos.
