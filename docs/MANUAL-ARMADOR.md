@@ -56,8 +56,13 @@ Antes de dar el monto, el Armador busca el **usado más económico del Radar** (
 - **Mensaje para el cliente** por WhatsApp (sin prometer crédito) y **«Copiar cómo se armó»**: una consulta interna del negocio, por si alguien pregunta cómo se llegó al monto (no es un pase al negociador).
 - Los parámetros de los planes se cambian en «Parámetros de los planes» y quedan guardados en el teléfono.
 
+## Mensaje de calificación (anti-ghosting)
+El botón principal es **«Mensaje de calificación»**: le dice al cliente que califica para un plan X5, **sin montos ni detalle del plan**, y le pide elegir cómo lo contactamos (llamada hoy por la tarde, mañana por la mañana, visita en su casa o trabajo, o pasar por la oficina). Va con voseo, para generar confianza. El detalle se da en la llamada o en la visita, para que el cliente no use la propuesta para salir a comparar. Si se cargó el teléfono, abre directamente el chat de ese cliente.
+- **«Mensaje con el detalle del plan»** queda como segunda opción, para cuando el asesor ya habló con el cliente.
+- Al guardar el lead, el próximo paso por defecto es **Esperando horario**. En el Mini CRM ese lead avisa cuándo toca cada recordatorio: el 1 a las 24 h y el 2 a las 72 h, con botón para mandarlo por WhatsApp. Después del segundo, no se insiste. El día que toca, el lead aparece en la vista «Hoy».
+
 ## Guardar en el CRM
-Con el usuario del Mini CRM abierto en el mismo teléfono, el Armador muestra «Guardar en el CRM»: teléfono, origen y próximo paso (seguimiento o entrevista pactada). Guarda el lead en la lista del asesor con el interés, la urgencia, el sistema, la cuota, el capital y los dos montos disponibles. En el Mini CRM, ese lead aparece con la etiqueta **Calificado**. Sin señal, queda en cola y se envía al abrir el CRM. Los usuarios de solo lectura (Supervisor, Control) no pueden guardar.
+Con el usuario del Mini CRM abierto en el mismo teléfono, el Armador muestra «Guardar en el CRM»: teléfono, origen y próximo paso (esperando horario, seguimiento o entrevista pactada). Guarda el lead en la lista del asesor con el interés, la urgencia, el sistema, la cuota, el capital y los dos montos disponibles. En el Mini CRM, ese lead aparece con la etiqueta **Calificado**. Sin señal, queda en cola y se envía al abrir el CRM. Los usuarios de solo lectura (Supervisor, Control) no pueden guardar.
 
 ## Pendientes
 - Catálogo de motos y listado de 0 km por plan.
@@ -71,4 +76,5 @@ Con el usuario del Mini CRM abierto en el mismo teléfono, el Armador muestra «
 - "¿Dónde quedan los clientes calificados?" → En el Mini CRM, en la lista de leads del asesor, con la etiqueta Calificado.
 - "¿Cómo atiendo una consulta por Messenger con el Armador?" → En modo Guiado, tocá «Copiar pregunta para el chat», pegala en Messenger y cargá la respuesta del cliente. Al final, guardalo como lead calificado.
 - "¿Qué pasa si el cliente no llega a ningún vehículo con los adelantos?" → El Armador calcula desde qué cuota llega al usado más económico del Radar y lo informa; si no llega al 0 km más barato, no menciona el 0 km.
+- "¿Qué le mando al cliente al terminar?" → El mensaje de calificación: le avisa que califica y le pide un horario, sin montos. Si no responde, el CRM recuerda mandar un recordatorio a las 24 horas y otro a las 72; después no se insiste.
 - "¿Las motos pueden ir a 5 adelantos?" → No, las motos solo van a 10 adelantos.

@@ -256,3 +256,6 @@ El precio que da el Radar a veces no era realista: la agencia a la que se le com
 
 ## Armador de Plan (10/11/2026)
 Tarjeta nueva en Ventas, después de Control de contratos. Califica al cliente (qué busca, para qué, usado y efectivo, cuánto paga por mes, cuotas por mes y urgencia), elige el sistema (10 adelantos, 5 adelantos o entrega programada), calcula el monto total disponible (adelantos + capital, hasta el doble, sujeto a crédito; los gastos de admisión del contrato se descuentan por dentro y no se muestran) y muestra a qué categorías llega y qué unidades del Radar entran en el rango. Tiene modo Formulario o Guiado (una pregunta por pantalla, con frase sugerida y botón para copiar la pregunta al chat de Messenger, WhatsApp o Instagram). Manual completo: `docs/MANUAL-ARMADOR.md`.
+
+## Estado «Esperando horario» y recordatorios (10/11/2026)
+Estado nuevo de los leads en el Mini CRM: el asesor mandó el mensaje de calificación del Armador y espera que el cliente elija horario. La tarjeta muestra cuándo toca el recordatorio 1 (24 h) y el 2 (72 h) y un botón para enviarlo por WhatsApp; después del segundo, indica no insistir. El día que toca, el lead aparece en «Hoy». La hoja Leads suma la columna `recordatorios` (la crea el script solo).

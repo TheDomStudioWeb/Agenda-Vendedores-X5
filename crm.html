@@ -98,6 +98,8 @@
   .item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--warn); }
   .item.realizado::before, .item.entrevista_pactada::before { background: var(--ok); }
   .item.en_seguimiento::before { background: var(--x5); }
+  .item.esperando_horario::before { background: var(--warn); }
+  .recor { margin-top: 8px; font-size: .76rem; color: var(--warn); background: var(--warn-soft); border-radius: 10px; padding: 8px 10px; line-height: 1.45; }
   .item.cancelado::before, .item.descartado::before { background: var(--faint); }
   .item.vencido::before { background: var(--bad); }
   .item.vencido { border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
@@ -674,7 +676,7 @@ function vencido(fecha, hora) {
 const F = { persona: '', agenda: { estado: '', fecha: '', desde: '', hasta: '' }, leads: { estado: '', fecha: '', desde: '', hasta: '' } };
 const ESTADOS_F = {
   agenda: [['', 'Todos'], ['pendiente', 'Pendiente'], ['atrasada', 'Atrasada'], ['realizado', 'Realizada'], ['cancelado', 'Cancelada'], ['venta', 'Venta'], ['seguimiento', 'Seguimiento'], ['descartado', 'Descartado']],
-  leads: [['', 'Todos'], ['pendiente', 'Pendiente'], ['vencido', 'Vencido'], ['entrevista_pactada', 'Entrevista'], ['en_seguimiento', 'Seguimiento'], ['descartado', 'Descartado']]
+  leads: [['', 'Todos'], ['pendiente', 'Pendiente'], ['vencido', 'Vencido'], ['esperando_horario', 'Esperando horario'], ['entrevista_pactada', 'Entrevista'], ['en_seguimiento', 'Seguimiento'], ['descartado', 'Descartado']]
 };
 const FECHAS_F = [['', 'Todas'], ['hoy', 'Hoy'], ['ayer', 'Ayer'], ['semana', 'Esta semana'], ['semana_ant', 'Semana pasada'], ['mes', 'Este mes'], ['mes_ant', 'Mes anterior'], ['rango', 'Elegir fechas…']];
 const etiqueta = (lista, v) => (lista.find(x => x[0] === v) || ['', v])[1];
@@ -819,7 +821,7 @@ function resumen() {
   const ag = db.agenda.filter(a => ver(a.asesor));
   const ld = db.leads.filter(l => ver(l.asignado_a));
   const entrevistasHoy = ag.filter(a => soloFecha(a.fecha) === hoy && a.estado !== 'cancelado').length;
-  const leadsHoy = ld.filter(l => soloFecha(l.fecha_asignacion) === hoy || (l.estado === 'pendiente' && soloFecha(l.fecha_asignacion) < hoy)).length;
+  const leadsHoy = ld.filter(l => soloFecha(l.fecha_asignacion) === hoy || (l.estado === 'pendiente' && soloFecha(l.fecha_asignacion) < hoy) || recorToca(l)).length;
   const venc = ld.filter(l => l.estado === 'pendiente' && vencido(l.fecha_asignacion, l.hora_limite)).length
              + ag.filter(a => a.estado === 'pendiente' && vencido(a.fecha, a.hora) && soloFecha(a.fecha) < hoy).length;
   $('sum-entrevistas').textContent = entrevistasHoy;
@@ -831,7 +833,7 @@ function resumen() {
 
 const estadosAgenda = [['pendiente', 'Pendiente'], ['realizado', 'Realizada'], ['cancelado', 'Cancelada']];
 const resultados = [['', 'Resultado…'], ['venta', 'Venta cerrada'], ['seguimiento', 'En seguimiento'], ['descartado', 'Descartado']];
-const estadosLead = [['pendiente', 'Pendiente'], ['entrevista_pactada', 'Entrevista pactada'], ['en_seguimiento', 'En seguimiento'], ['descartado', 'Descartado / frío']];
+const estadosLead = [['pendiente', 'Pendiente'], ['esperando_horario', 'Esperando horario'], ['entrevista_pactada', 'Entrevista pactada'], ['en_seguimiento', 'En seguimiento'], ['descartado', 'Descartado / frío']];
 const opciones = (lista, actual) => lista.map(([v, t]) => `<option value="${v}" ${String(actual || '') === v ? 'selected' : ''}>${t}</option>`).join('');
 
 function coincide(item, q, campos) {
@@ -901,7 +903,7 @@ function renderLeads() {
   let data = db.leads.filter(l => ver(l.asignado_a));
   if (rangoL) data = data.filter(l => { const x = soloFecha(l.fecha_asignacion); return x >= rangoL[0] && x <= rangoL[1]; });
   if (fl.estado) data = data.filter(l => estadoLeadOk(l, fl.estado));
-  if (filtro.leads === 'hoy') data = data.filter(l => soloFecha(l.fecha_asignacion) === hoy || (l.estado === 'pendiente' && soloFecha(l.fecha_asignacion) < hoy));
+  if (filtro.leads === 'hoy') data = data.filter(l => soloFecha(l.fecha_asignacion) === hoy || (l.estado === 'pendiente' && soloFecha(l.fecha_asignacion) < hoy) || recorToca(l));
   if (filtro.leads === 'abiertos') data = data.filter(l => l.estado !== 'descartado');
   if (filtro.leads === 'vencidos') data = data.filter(l => l.estado === 'pendiente' && vencido(l.fecha_asignacion, l.hora_limite));
   data = data.filter(l => coincide(l, q, ['cliente', 'telefono', 'interes', 'asignado_a', 'origen']));
@@ -925,6 +927,7 @@ function renderLeads() {
       </div>
       <div class="meta"><span>Interés: <b>${esc(l.interes)}</b></span><span>${esc(l.asignado_a)}</span><span>${esc(l.telefono)}</span></div>
       ${l.calif_sistema ? `<div class="meta" style="margin-top:6px"><span class="chip x5">Calificado</span><span><b>${esc(l.calif_sistema)}</b>${l.calif_cuota ? ' · cuota ' + X5.moneyShort(l.calif_cuota) : ''}</span><span>Usados <b>${X5.moneyShort(l.calif_usado)}</b>${l.calif_0km ? ` · 0 km <b>${X5.moneyShort(l.calif_0km)}</b>` : ''}</span><span>${esc(l.calif_urgencia)}</span></div>` : ''}
+      ${l.estado === 'esperando_horario' ? recordatorioHTML(l) : ''}
       <select data-campo="estado">${opciones(estadosLead, l.estado || 'pendiente')}</select>
       <textarea data-campo="notas" rows="2" placeholder="Notas de la llamada o motivo del estado…" style="margin-top:8px">${esc(l.notas)}</textarea>
       <div class="note-state"></div>
@@ -937,6 +940,37 @@ function renderLeads() {
     </article>`;
   }).join('') : `<div class="empty">${filtrosActivos('leads').length ? 'No hay leads con estos filtros.' : filtro.leads === 'hoy' ? 'Sin leads para hoy. ¡Bien ahí!' : 'No hay leads en esta vista.'}</div>`;
 }
+
+/* ── Recordatorios para leads «Esperando horario» ─────────────
+   Se envió el mensaje de calificación desde el Armador. Recordatorio 1 a las 24 h, recordatorio 2 a las 72 h. Después, no se insiste. */
+const RECOR_H = [24, 72];
+// ¿Le toca hoy un recordatorio? (aparece en la vista «Hoy»)
+function recorToca(l) { const env = +l.recordatorios || 0, t0 = parseInt(l.id, 10); return l.estado === 'esperando_horario' && env < 2 && t0 > 1e12 && Date.now() >= t0 + RECOR_H[env] * 3600e3; }
+function textoRecordatorio(l, n) {
+  const nom = String(l.cliente || '').split(' ')[0];
+  return n === 1
+    ? `Hola ${nom} 😊 Te escribo solo para que tu consulta no quede en el aire. Tu calificación queda guardada esta semana. ¿Te llamamos o preferís pasarme un horario?`
+    : `Hola ${nom}, último mensaje para no molestarte. Cuando quieras retomar, escribime *PLAN* y seguimos donde quedamos. ¡Que tengas un lindo día!`;
+}
+function recordatorioHTML(l) {
+  const env = +l.recordatorios || 0, t0 = parseInt(l.id, 10);
+  if (env >= 2) return `<div class="recor">Ya se enviaron los 2 recordatorios: no insistir. Si responde, cambiá el estado.</div>`;
+  if (!(t0 > 1e12)) return '';
+  const toca = t0 + RECOR_H[env] * 3600e3, n = env + 1;
+  if (Date.now() < toca) {
+    const d = new Date(toca), hoy = new Date().toDateString() === d.toDateString();
+    return `<div class="recor">Esperando que elija horario. Recordatorio ${n}: ${hoy ? 'hoy' : X5.fechaCorta(d.toISOString().slice(0, 10))} a las ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}.</div>`;
+  }
+  return `<div class="recor"><b>Toca el recordatorio ${n} de 2.</b> <button class="btn btn-wsp btn-sm" data-recor="${n}" style="margin-top:6px;width:100%">Enviar recordatorio ${n} por WhatsApp</button></div>`;
+}
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-recor]'); if (!b) return;
+  const r = registro(b); if (!r) return;
+  const n = +b.dataset.recor, wa = telAR(r.item.telefono);
+  window.open(`https://wa.me/${wa}?text=${encodeURIComponent(textoRecordatorio(r.item, n))}`, '_blank', 'noopener');
+  guardarCampo('leads', r.item, 'recordatorios', n);
+  render();
+});
 
 /* ── Edición (delegación de eventos) ───────────────────────── */
 function registro(el) {
