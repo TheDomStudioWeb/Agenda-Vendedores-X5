@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-09T21:04:33.401Z",
+ "actualizado": "2026-11-10T18:10:45.834Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -12,8 +12,8 @@
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
    "autos": 85,
-   "revisado": "2026-11-09T21:04:33.401Z",
-   "actualizado": "2026-11-09T21:04:33.401Z"
+   "revisado": "2026-11-10T18:10:45.834Z",
+   "actualizado": "2026-11-10T18:10:45.834Z"
   },
   {
    "id": "autocity",
@@ -21,9 +21,9 @@
    "ciudad": "Córdoba",
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
-   "autos": 233,
-   "revisado": "2026-11-09T21:04:33.401Z",
-   "actualizado": "2026-11-09T21:04:33.401Z"
+   "autos": 232,
+   "revisado": "2026-11-10T18:10:45.834Z",
+   "actualizado": "2026-11-10T18:10:45.834Z"
   }
  ],
  "autos": [
@@ -19662,61 +19662,6 @@
      [
       "COMPASS 5P 2,0 TD 350 AT9 TRAILHAWK 4X4",
       44303000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-db31bfba-23a5-4796-ae36-86aa53a2ba47",
-   "tipo": "auto",
-   "marca": "BYD",
-   "modelo": "Yuan Pro",
-   "version": "Gl",
-   "anio": 2025,
-   "km": 5000,
-   "combustible": "Electrico",
-   "caja": "Automática",
-   "color": "Gris",
-   "equipamiento": "",
-   "precio": 43800000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792175363019.20261008_145547.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792175364069.20261008_145442.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792175365304.20261008_145621.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792175366577.20261008_145824.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792175367938.20261008_145849.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792175369180.20261008_145836.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792175370640.20261008_145734.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-yuan-pro/gl-4/",
-   "sucursal": "Río Cuarto",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-11-04T18:13:01.327Z",
-   "guia": {
-    "min": 33481000,
-    "med": 34597000,
-    "max": 34597000,
-    "n": 2,
-    "mejor": {
-     "version": "YUAN PRO 5P GL ELECTRICO AT",
-     "valor": 33481000,
-     "coincidencias": 1,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "YUAN PRO 5P GL ELECTRICO AT",
-      33481000
-     ],
-     [
-      "YUAN PRO 5P GS ELECTRICO AT",
-      34597000
      ]
     ]
    }

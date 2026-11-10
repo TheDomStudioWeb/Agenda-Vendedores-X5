@@ -1,6 +1,15 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-10T18:10:45.834Z",
+   "tipo": "baja",
+   "id": "autocity-db31bfba-23a5-4796-ae36-86aa53a2ba47",
+   "auto": "BYD Yuan Pro 2025",
+   "precio": 43800000,
+   "moneda": "ARS",
+   "dias": 6
+  },
+  {
    "fecha": "2026-11-08T16:46:32.988Z",
    "tipo": "baja",
    "id": "autocity-516d8a19-0329-4b1e-8dc4-227f1fcc9e96",
