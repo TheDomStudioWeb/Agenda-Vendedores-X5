@@ -924,6 +924,7 @@ function renderLeads() {
         ${venc ? '<span class="chip bad">Vencido</span>' : `<span class="chip">${esc(l.origen)}</span>`}
       </div>
       <div class="meta"><span>Interés: <b>${esc(l.interes)}</b></span><span>${esc(l.asignado_a)}</span><span>${esc(l.telefono)}</span></div>
+      ${l.calif_sistema ? `<div class="meta" style="margin-top:6px"><span class="chip x5">Calificado</span><span><b>${esc(l.calif_sistema)}</b>${l.calif_cuota ? ' · cuota ' + X5.moneyShort(l.calif_cuota) : ''}</span><span>Usados <b>${X5.moneyShort(l.calif_usado)}</b>${l.calif_0km ? ` · 0 km <b>${X5.moneyShort(l.calif_0km)}</b>` : ''}</span><span>${esc(l.calif_urgencia)}</span></div>` : ''}
       <select data-campo="estado">${opciones(estadosLead, l.estado || 'pendiente')}</select>
       <textarea data-campo="notas" rows="2" placeholder="Notas de la llamada o motivo del estado…" style="margin-top:8px">${esc(l.notas)}</textarea>
       <div class="note-state"></div>

@@ -101,6 +101,21 @@
 
   <div id="salida"></div>
 
+  <section class="card" id="crm-box" hidden>
+    <div class="card-title"><span><span class="dot"></span>Guardar en el CRM</span><span class="muted" id="crm-quien" style="font-size:.7rem;text-transform:none;letter-spacing:0"></span></div>
+    <div id="crm-form">
+      <div class="row">
+        <div class="field"><label for="crm-tel">Teléfono</label><input id="crm-tel" type="tel" inputmode="tel" placeholder="261xxxxxxx" autocomplete="off"></div>
+        <div class="field"><label for="crm-origen">Origen</label><select id="crm-origen"><option value="">Origen…</option><option>Meta Ads</option><option>Web X5</option><option>Referido</option><option>Redes Asesor</option><option>Salón / Espontáneo</option></select></div>
+      </div>
+      <div class="field"><label>Próximo paso</label>
+        <div class="opts" id="o-paso"><button data-v="en_seguimiento" class="on">Seguimiento</button><button data-v="entrevista_pactada">Entrevista pactada</button></div></div>
+      <button class="btn btn-x5" id="b-crm" style="background:var(--x5);color:#fff">Guardar como lead calificado</button>
+      <span class="hint">Queda en tu lista de leads con el sistema y el monto disponible. Sin señal, se envía solo cuando vuelva.</span>
+    </div>
+    <div id="crm-login" hidden class="muted" style="font-size:.84rem">Para guardar, primero ingresá al <a href="crm.html" style="color:var(--x5-text)">Mini CRM</a> con tu usuario en este teléfono.</div>
+  </section>
+
   <section class="card">
     <details class="cfg">
       <summary>Parámetros de los planes</summary>
@@ -178,6 +193,8 @@
     else { sel[key] = b.dataset.v; [...$(id).children].forEach(x => x.classList.toggle('on', x === b)); }
     elegido = null; calcular();
   });
+  sel.paso = 'en_seguimiento';
+  $('o-paso').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; sel.paso = b.dataset.v; [...$('o-paso').children].forEach(x => x.classList.toggle('on', x === b)); });
   bindOpts('o-tipo', 'tipo'); bindOpts('o-ritmo', 'ritmo'); bindOpts('o-urg', 'urg'); bindOpts('o-uso', 'uso', true);
 
   // ── Monto total disponible ──
@@ -257,7 +274,7 @@
 
   function calcular() {
     const p = P(), usado = num($('usado')), efectivo = num($('efectivo')), mes = num($('cuota')), K = usado + efectivo;
-    if (!mes) { $('salida').innerHTML = '<section class="card"><div class="empty muted" style="text-align:center;padding:12px;font-size:.85rem">Cargá cuánto puede pagar por mes para ver el sistema y el monto disponible.</div></section>'; ultimo = null; return; }
+    if (!mes) { $('crm-box').hidden = true; $('salida').innerHTML = '<section class="card"><div class="empty muted" style="text-align:center;padding:12px;font-size:.85rem">Cargá cuánto puede pagar por mes para ver el sistema y el monto disponible.</div></section>'; ultimo = null; return; }
 
     const L = [planCuotas('p10', '10 adelantos', 10, p.p10min, p.p10max, mes, K, p, sel.urg)];
     if (sel.tipo === 'moto') L.push({ id: 'p5', nombre: '5 adelantos', n: 5, ok: false, motivo: 'Para motos solo hay plan de 10 adelantos' }, { id: 'prog', nombre: 'Entrega programada', n: 5, ok: false, motivo: 'Solo autos y camionetas' });
@@ -272,7 +289,7 @@
     if (s) {
       h += `<section class="card poder"><div class="k">Monto total disponible</div><div class="v num">${M(s.poder)}</div>
         ${s.poder0 ? `<div class="s" style="margin-bottom:6px">en usados · <b style="color:var(--text)">hasta ${M(s.poder0)} en 0 km</b></div>` : ''}
-        <div class="s">Con <b>${esc(s.nombre)}</b> negocia desde <b>${s.plazo}</b>.<br>Papeles aparte. Sujeto a aprobación crediticia del negociador.</div></section>`;
+        <div class="s">Con <b>${esc(s.nombre)}</b> negocia desde <b>${s.plazo}</b>.<br>Papeles aparte. Sujeto a aprobación crediticia.</div></section>`;
     } else {
       h += `<section class="card"><div class="card-title"><span><span class="dot"></span>Sin sistema posible</span></div><div class="muted" style="font-size:.85rem">Con ${M(mes)} por mes no llega a la cuota mínima (${M(p.p10min)}). Revisar si puede sumar algo más por mes.</div></section>`;
     }
@@ -292,15 +309,16 @@
       h += canasta(s.poder, s.poder0);
       h += `<section class="card acciones">
         <button class="btn btn-wsp" id="b-wsp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20l1.3-5.2A8.4 8.4 0 1 1 21 11.5z"/></svg>Mensaje para el cliente</button>
-        <button class="btn btn-ghost" id="b-neg">Copiar resumen para el negociador</button></section>`;
+        <button class="btn btn-ghost" id="b-neg">Copiar cómo se armó (consulta interna)</button></section>`;
     }
     $('salida').innerHTML = h;
+    $('crm-box').hidden = !s;
     document.querySelectorAll('.s-card[data-id]').forEach(b => b.onclick = () => { elegido = b.dataset.id; calcular(); });
-    if (s) { $('b-wsp').onclick = mensajeCliente; $('b-neg').onclick = resumenNegociador; }
+    if (s) { $('b-wsp').onclick = mensajeCliente; $('b-neg').onclick = resumenInterno; }
   }
 
   function canasta(poder, poder0) {
-    if (sel.tipo === 'moto') return `<section class="card"><div class="card-title"><span><span class="dot"></span>Opciones</span></div><div class="muted" style="font-size:.82rem">El catálogo de motos todavía no está cargado. Con este monto, el negociador le arma las opciones de motos hasta ${M(poder)}.</div></section>`;
+    if (sel.tipo === 'moto') return `<section class="card"><div class="card-title"><span><span class="dot"></span>Opciones</span></div><div class="muted" style="font-size:.82rem">El catálogo de motos todavía no está cargado. Con este monto, el asesor le arma las opciones de motos hasta ${M(poder)}.</div></section>`;
     let h = '';
     const pref = new Set([...sel.uso].flatMap(u => USO_CATS[u] || []));
     if (BASE?.base) {
@@ -337,15 +355,65 @@
       '_Valores estimados. La financiación está sujeta a aprobación crediticia. Papeles aparte._', '', 'X5 Argentina · Región Cuyo'].join('\n');
     window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank', 'noopener');
   }
-  async function resumenNegociador() {
+  // Consulta interna del negocio: por si alguien pregunta cómo se armó el plan
+  async function resumenInterno() {
     const { s, usado, efectivo, mes } = ultimo; const p = P();
     const t = [`ARMADOR DE PLAN · ${nombre() || 'Cliente'} · ${X5.fechaLarga(X5.hoyISO())}`,
       `Busca: ${sel.tipo === 'moto' ? 'moto' : 'auto o camioneta'}${sel.uso.size ? ' · uso: ' + [...sel.uso].join(', ') : ''} · urgencia: ${{ ya: 'menos de 1 mes', medio: '1 a 5 meses', tiempo: 'tiene tiempo' }[sel.urg]}`,
       `Capital: usado ${M(usado)} + efectivo ${M(efectivo)} · paga ${M(mes)} por mes`,
       `Sistema: ${s.nombre} · ${s.detalle} · negocia desde ${s.plazo}`,
-      `MONTO TOTAL DISPONIBLE: usados ${M(s.poder)}${s.poder0 ? ' · 0 km ' + M(s.poder0) : ''} (falta verificar crédito)`].join('\n');
+      `MONTO TOTAL DISPONIBLE: usados ${M(s.poder)}${s.poder0 ? ' · 0 km ' + M(s.poder0) : ''} (sujeto a crédito)`].join('\n');
     try { await navigator.clipboard.writeText(t); X5.toast('Resumen copiado', 'ok'); } catch (e) { prompt('Copiá el resumen:', t); }
   }
+
+  // ── Guardar en el Mini CRM (misma sesión y misma cola sin señal que el CRM) ──
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
+  const lsJSON = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
+  const sesion = () => { const x = lsJSON('x5_session', null); return x && x.user && x.token ? x : null; };
+  const SOLO_LECTURA = ['Supervisor', 'Control'];
+  const normTel = (t) => String(t || '').replace(/\D/g, '').slice(-10);
+  const URG_TXT = { ya: 'Urgente', medio: '1 a 5 meses', tiempo: 'Tiene tiempo' };
+  function pintarSesion() {
+    const x = sesion(), puede = x && !SOLO_LECTURA.includes(x.user.rol);
+    $('crm-form').hidden = !puede; $('crm-login').hidden = !!puede;
+    if (x && !puede) $('crm-login').textContent = 'Tu usuario es de solo lectura: no puede cargar leads.';
+    $('crm-quien').textContent = puede ? x.user.nombre : '';
+  }
+  pintarSesion();
+  window.addEventListener('focus', pintarSesion);
+
+  async function guardarLead() {
+    const x = sesion(); if (!x || !ultimo) return pintarSesion();
+    const { s, K } = ultimo, cliente = nombre(), tel = $('crm-tel').value.trim();
+    if (!cliente) { X5.toast('Falta el nombre del cliente (arriba de todo)', 'bad'); $('cliente').focus(); return; }
+    if (normTel(tel).length < 10) { X5.toast('Revisá el teléfono: 261xxxxxxx', 'bad'); $('crm-tel').focus(); return; }
+    const dup = (lsJSON('x5_db', {}).leads || []).find(l => normTel(l.telefono) === normTel(tel));
+    if (dup && !confirm(`Ya hay un lead con ese teléfono: ${dup.cliente} (${dup.asignado_a}). ¿Guardarlo igual?`)) return;
+    const busca = (sel.tipo === 'moto' ? 'Moto' : 'Auto o camioneta') + (sel.uso.size ? ' (' + [...sel.uso].join(', ') + ')' : '');
+    const ahora = new Date(), hh = String(ahora.getHours()).padStart(2, '0') + ':' + String(ahora.getMinutes()).padStart(2, '0');
+    const item = {
+      id: Date.now().toString(), cliente, telefono: tel, interes: busca, origen: $('crm-origen').value,
+      asignado_a: x.user.nombre, fecha_asignacion: X5.hoyISO(), hora_limite: '', estado: sel.paso, resultado: '', hora_contacto: hh,
+      notas: `Armador: ${s.nombre} · ${s.detalle} · capital ${MS(K)} · ${URG_TXT[sel.urg]} · disponible usados ${MS(s.poder)}${s.poder0 ? ' · 0 km ' + MS(s.poder0) : ''}`,
+      calif_sistema: s.nombre, calif_cuota: s.cuota, calif_capital: K, calif_urgencia: URG_TXT[sel.urg], calif_usado: s.poder, calif_0km: s.poder0 || ''
+    };
+    const b = $('b-crm'); b.disabled = true; b.textContent = 'Guardando…';
+    let enviado = false;
+    try {
+      const r = await (await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'add', tabla: 'Leads', data: item, token: x.token }) })).json();
+      if (r && r.error === 'sesion_vencida') { X5.toast('Tu sesión venció: entrá al Mini CRM y volvé a guardar', 'bad', 4000); b.disabled = false; b.textContent = 'Guardar como lead calificado'; return; }
+      if (r && r.error) throw new Error(r.error);
+      enviado = !!(r && r.ok);
+    } catch (e) { if (String(e.message) === 'sin_permiso') { X5.toast('Sin permiso para cargar este lead', 'bad'); b.disabled = false; b.textContent = 'Guardar como lead calificado'; return; } }
+    // Copia local para que el CRM lo muestre al instante; sin señal, queda en la cola del CRM
+    const db = lsJSON('x5_db', null);
+    if (db && Array.isArray(db.leads)) { db.leads.push(item); lsSet('x5_db', JSON.stringify(db)); }
+    if (!enviado) { const ob = lsJSON('x5_outbox', []); ob.push({ action: 'add', tabla: 'Leads', data: item, t: Date.now() }); lsSet('x5_outbox', JSON.stringify(ob)); }
+    X5.toast(enviado ? 'Lead calificado guardado en el CRM' : 'Sin señal: se envía al abrir el CRM', enviado ? 'ok' : '', 3500);
+    b.textContent = '✓ Guardado'; setTimeout(() => { b.disabled = false; b.textContent = 'Guardar como lead calificado'; }, 2500);
+    $('crm-tel').value = '';
+  }
+  $('b-crm').onclick = guardarLead;
 
   // ── Eventos ──
   ['usado', 'efectivo', 'cuota', ...MONEY_P].forEach(id => $(id).addEventListener('input', () => { fmt($(id)); if (MONEY_P.includes(id)) lsSet('armador.' + id, num($(id))); calcular(); }));
