@@ -18,6 +18,7 @@
 | Entrega programada | más de $800.000, con capital de $10 M o más | 5: el 1.º como seña y los 4 siguientes juntos | 20 a 25 días | autos y camionetas |
 
 - Las motos solo van a 10 adelantos.
+- **Vector de cuotas:** solo se ofrecen los valores de la lista de precios: $90.000, $130.000, $200.000, $250.000, $300.000 (10 adelantos) y $350.000, $400.000, $450.000, $500.000, $550.000, $600.000, $700.000 (5 adelantos). Se toma el valor más alto que entra en lo que el cliente puede pagar. Los pagos 1 y 2 llevan el sellado sumado (por ejemplo, cuota de $300.000 + sellado de $55.000 = $355.000) y la herramienta lo muestra. El vector se edita en «Parámetros de los planes» y se puede pegar desde la lista de precios.
 - Si la cuota que puede pagar supera el máximo del plan, se arman **2 contratos del mismo monto**.
 - Los límites de contrato son la cuota y el capital. Con capital de $6 M o menos, va directo a 10 adelantos.
 - En entrega programada, lo ideal es que los 5 adelantos salgan del efectivo del cliente; si no alcanza, se pagan por fuera del capital.

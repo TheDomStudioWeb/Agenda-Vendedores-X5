@@ -128,6 +128,9 @@
         <div class="field"><label for="intUsado">Integración mínima usados y motos %</label><input id="intUsado" type="number" inputmode="decimal" step="1"><span class="hint">Contrato, cláusula 3.ª a.1. 50% = hasta el doble.</span></div>
         <div class="field"><label for="int0km">Integración mínima 0 km %</label><input id="int0km" type="number" inputmode="decimal" step="1"><span class="hint">35% = hasta 2,85 veces lo integrado.</span></div>
       </div>
+      <div class="field"><label for="vector">Vector de cuotas (adelanto y sellado, uno por renglón)</label>
+        <textarea id="vector" rows="7" style="font-family:ui-monospace,monospace;font-size:.8rem"></textarea>
+        <span class="hint">Solo se ofrecen estos valores de cuota. Los pagos 1 y 2 llevan el sellado sumado. Se puede pegar desde la lista de precios.</span></div>
       <div class="aviso">Uso interno. El monto disponible ya descuenta los gastos de admisión; en pantalla y en los mensajes solo aparece el monto final.</div>
     </details>
   </section>
@@ -148,16 +151,23 @@
   const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
 
   // ── Parámetros (editables y guardados en el teléfono) ──
-  const DEF = { p10min: 90000, p10max: 300000, p5min: 350000, p5max: 700000, cap5: 6000000, progCap: 10000000, progCuota: 800000, admision: 4, intUsado: 50, int0km: 35 };
+  const DEF = { p10min: 90000, p10max: 300000, p5min: 350000, p5max: 700000, cap5: 6000000, progCap: 10000000, progCuota: 800000, admision: 4, intUsado: 50, int0km: 35,
+    vector: '90000 40000\n130000 50000\n200000 50000\n250000 50000\n300000 55000\n350000 55000\n400000 65000\n450000 65000\n500000 65000\n550000 65000\n600000 100000\n700000 150000' };
   const MONEY_P = ['p10min', 'p10max', 'p5min', 'p5max', 'cap5', 'progCap', 'progCuota'];
   Object.keys(DEF).forEach(k => {
     const v = lsGet('armador.' + k) ?? DEF[k];
     $(k).value = MONEY_P.includes(k) ? (+v).toLocaleString('es-AR') : v;
   });
+  // Vector de cuotas: cada renglón «adelanto sellado» (acepta $, puntos y texto en el medio, como la lista de precios)
+  function leerVector(txt) {
+    return String(txt).split(/\n/).map(l => (l.match(/\$?\s?\d[\d.]{3,}/g) || []).map(x => +x.replace(/\D/g, '')).filter(n => n >= 10000))
+      .filter(n => n.length).map(n => ({ cuota: n[0], sellado: n[1] || 0 })).sort((a, b) => a.cuota - b.cuota);
+  }
   const P = () => ({
     p10min: num($('p10min')), p10max: num($('p10max')), p5min: num($('p5min')), p5max: num($('p5max')),
     cap5: num($('cap5')), progCap: num($('progCap')), progCuota: num($('progCuota')),
     ga: (+$('admision').value || 0) / 100, iu: (+$('intUsado').value || 50) / 100, i0: (+$('int0km').value || 35) / 100,
+    vector: leerVector($('vector').value),
   });
 
   // ── Opciones (botones) ──
@@ -184,15 +194,19 @@
   function planCuotas(id, nombre, n, min, max, mes, K, p, urg) {
     if (mes < min) return { id, nombre, n, ok: false, motivo: `Necesita cuota de al menos ${M(min)}` };
     const ritmo = sel.ritmo === '2' && mes / 2 >= min ? 2 : 1;
-    let contratos = 1, cuota = mes / ritmo;
-    if (cuota > max && cuota / 2 >= min) { contratos = 2; cuota = cuota / 2; }
-    cuota = Math.min(max, cuota);
+    let contratos = 1, objetivo = mes / ritmo;
+    if (objetivo > max && objetivo / 2 >= min) { contratos = 2; objetivo = objetivo / 2; }
+    // Se toma el valor del vector más alto que entre en lo que puede pagar, dentro del rango del plan
+    const v = p.vector.filter(x => x.cuota >= min && x.cuota <= max && x.cuota <= objetivo).pop();
+    if (!v) return { id, nombre, n, ok: false, motivo: `No hay valor de cuota del vector entre ${M(min)} y ${M(Math.min(max, objetivo))}` };
+    const cuota = v.cuota, sellado = v.sellado;
     const bruto = n * cuota * contratos;
     const meses = n / ritmo;
-    return { id, nombre, n, ok: true, ritmo, contratos, cuota, bruto, capital: K, meses,
+    return { id, nombre, n, ok: true, ritmo, contratos, cuota, sellado, bruto, capital: K, meses,
       poder: disponible(bruto, K, p), poder0: disponible0(bruto, K, p),
       plazo: meses <= 2.5 ? '45 a 60 días' : `${Math.ceil(meses)} meses`,
-      detalle: `${n} adelantos de ${M(cuota)}${contratos > 1 ? ' en 2 contratos iguales' : ''} · ${ritmo === 2 ? '2 cuotas por mes' : '1 cuota por mes'}` };
+      detalle: `${n} adelantos de ${M(cuota)}${contratos > 1 ? ' en 2 contratos iguales' : ''} · ${ritmo === 2 ? '2 cuotas por mes' : '1 cuota por mes'}`
+        + (sellado ? ` · pagos 1 y 2: ${M(cuota + sellado)}${contratos > 1 ? ' c/u' : ''} (con sellado)` : '') };
   }
   // Entrega programada: 5 adelantos (1.º como seña + 4 juntos). En el mejor caso salen del efectivo del cliente; si no alcanza, se pagan por fuera.
   function programado(usado, efectivo, mes, p) {
@@ -332,6 +346,7 @@
 
   // ── Eventos ──
   ['usado', 'efectivo', 'cuota', ...MONEY_P].forEach(id => $(id).addEventListener('input', () => { fmt($(id)); if (MONEY_P.includes(id)) lsSet('armador.' + id, num($(id))); calcular(); }));
+  $('vector').addEventListener('input', () => { lsSet('armador.vector', $('vector').value); calcular(); });
   ['admision', 'intUsado', 'int0km'].forEach(id => $(id).addEventListener('input', () => { lsSet('armador.' + id, $(id).value); calcular(); }));
   $('cliente').addEventListener('input', () => {});
   calcular();
