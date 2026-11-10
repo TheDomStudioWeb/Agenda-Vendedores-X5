@@ -40,6 +40,13 @@ Es lo que el cliente puede negociar con lo integrado (adelantos del plan más su
 - Contrato, cláusula 3.ª a.1: para negociar hay que integrar como mínimo el **50% en usados y motos** (hasta el doble de lo integrado) y el **35% en 0 km** (hasta unas 2,85 veces). Por eso la herramienta da dos montos: disponible en usados y disponible en 0 km. El 0 km permite financiar más.
 - Plan de 5 adelantos y entrega programada: mismo contrato, con un anexo que permite negociar desde la cuota 5 paga. El resto del funcionamiento (devolución o derivación de capital) rige recién después de la cuota 10 paga.
 
+## Validación contra el vehículo más económico
+Antes de dar el monto, el Armador busca el **usado más económico del Radar** (con precio X5) y el **0 km más económico** (stock 0 km del Radar o valor de guía por categoría).
+- Si el monto al terminar los adelantos **no llega al usado más económico**, calcula con la misma regla del contrato **desde qué cuota llega** y lo informa: "retira desde la cuota 20 (unos 20 meses)", con el monto en usados en esa cuota. El mensaje al cliente dice "podés retirar tu vehículo a partir de la cuota 20".
+- Si ni en 84 cuotas llega, avisa que con esa cuota no alcanza y que conviene subir la cuota o sumar capital.
+- **0 km:** si el monto para 0 km no llega al 0 km más económico, no se dice nada del 0 km (ni en pantalla ni en el mensaje).
+- Ejemplo: cliente sin capital ni usado que paga $400.000 por mes (dos contratos de $200.000). A los 10 adelantos no llega al usado más barato del Radar; retira desde la cuota 20 con usados de hasta unos $14,8 M. No se muestra 0 km.
+
 ## Qué muestra
 - **Monto total disponible** en usados y en 0 km, y desde cuándo negocia.
 - **Sistemas:** los tres, con el recomendado marcado y los que no aplican con el motivo.
@@ -63,4 +70,5 @@ Con el usuario del Mini CRM abierto en el mismo teléfono, el Armador muestra «
 - "¿Qué sistema le conviene a alguien urgente?" → Entrega programada, si tiene capital de 10 millones o más y puede pagar un contrato desde 3 millones y medio; negocia en 20 a 25 días.
 - "¿Dónde quedan los clientes calificados?" → En el Mini CRM, en la lista de leads del asesor, con la etiqueta Calificado.
 - "¿Cómo atiendo una consulta por Messenger con el Armador?" → En modo Guiado, tocá «Copiar pregunta para el chat», pegala en Messenger y cargá la respuesta del cliente. Al final, guardalo como lead calificado.
+- "¿Qué pasa si el cliente no llega a ningún vehículo con los adelantos?" → El Armador calcula desde qué cuota llega al usado más económico del Radar y lo informa; si no llega al 0 km más barato, no menciona el 0 km.
 - "¿Las motos pueden ir a 5 adelantos?" → No, las motos solo van a 10 adelantos.

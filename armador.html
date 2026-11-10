@@ -288,6 +288,38 @@
     return g == null ? ag : ag == null ? g : Math.max(g, ag);
   }
 
+  // ── Validación contra el vehículo más económico ──
+  // Si el monto no llega al usado más barato del Radar, se calcula desde qué cuota llega (misma regla del contrato).
+  // Si el monto 0 km no llega al 0 km más barato, no se informa 0 km.
+  const MAX_CUOTA = 84;
+  function minimos() {
+    let usado = null, cero = null;
+    const anio = new Date().getFullYear();
+    (STOCK?.autos || []).forEach(a => {
+      const x = precioX5(a); if (!x) return;
+      if (a.anio >= anio) cero = cero == null ? x : Math.min(cero, x);
+      else usado = usado == null ? x : Math.min(usado, x);
+    });
+    Object.values(BASE?.base || {}).forEach(c => { if (c?.['0km']) cero = cero == null ? c['0km'] : Math.min(cero, c['0km']); });
+    return { usado, cero };
+  }
+  function ajustarAlMinimo(L, p) {
+    const m = minimos();
+    L.filter(x => x.ok).forEach(x => {
+      x.minU = m.usado;
+      if (m.usado && x.poder < m.usado && x.id !== 'prog') {
+        const porCuota = x.cuota * x.contratos;
+        const k = Math.max(x.n + 1, Math.ceil(((p.iu + p.ga) * m.usado - x.capital) / porCuota));
+        if (k > MAX_CUOTA) { x.noLlega = true; x.poder0 = null; return; }
+        x.k = k; x.meses = k / x.ritmo;
+        x.poder = tope(k * porCuota, x.capital, p.iu, p);
+        x.poder0 = sel.tipo === 'moto' ? null : tope(k * porCuota, x.capital, p.i0, p);
+        x.plazo = `la cuota ${k} (${Math.ceil(x.meses)} meses)`;
+      }
+      if (x.poder0 && (!m.cero || x.poder0 < m.cero)) x.poder0 = null; // 0 km: solo si llega al más económico
+    });
+  }
+
   const CATS = { pequeno: 'Auto chico', familiar: 'Familiar / sedán', utilitario: 'Utilitario', suv: 'SUV', camioneta: 'Camioneta' };
   const USO_CATS = { trabajo: ['utilitario', 'camioneta'], familia: ['familiar', 'suv'], ciudad: ['pequeno'], ruta: ['camioneta', 'suv'] };
   const RANGOS = [['2010_2015', '2010-15'], ['2015_2020', '2015-20'], ['2020_2025', '2020-25'], ['0km', '0 km']];
@@ -303,6 +335,7 @@
     else L.push(K > p.cap5 ? planCuotas('p5', '5 adelantos', 5, p.p5min, p.p5max, mes, K, p, sel.urg)
       : { id: 'p5', nombre: '5 adelantos', n: 5, ok: false, motivo: `Necesita capital de más de ${M(p.cap5)}` }, programado(usado, efectivo, mes, p));
 
+    ajustarAlMinimo(L, p);
     const rec = recomendar(L);
     const s = L.find(x => x.id === elegido && x.ok) || rec;
     ultimo = s ? { s, rec, K, usado, efectivo, mes } : null;
@@ -311,7 +344,9 @@
     if (s) {
       h += `<section class="card poder"><div class="k">Monto total disponible</div><div class="v num">${M(s.poder)}</div>
         ${s.poder0 ? `<div class="s" style="margin-bottom:6px">en usados · <b style="color:var(--text)">hasta ${M(s.poder0)} en 0 km</b></div>` : ''}
-        <div class="s">Con <b>${esc(s.nombre)}</b> negocia desde <b>${s.plazo}</b>.<br>Papeles aparte. Sujeto a aprobación crediticia.</div></section>`;
+        <div class="s">${s.noLlega ? `Con esta cuota no llega al usado más económico (${M(s.minU)}) en un plazo razonable. Conviene subir la cuota o sumar capital.`
+          : s.k ? `Con <b>${esc(s.nombre)}</b> retira <b>desde la cuota ${s.k}</b> (unos ${Math.ceil(s.meses)} meses): antes no llega al usado más económico.`
+          : `Con <b>${esc(s.nombre)}</b> negocia desde <b>${s.plazo}</b>.`}<br>Papeles aparte. Sujeto a aprobación crediticia.</div></section>`;
     } else {
       h += `<section class="card"><div class="card-title"><span><span class="dot"></span>Sin sistema posible</span></div><div class="muted" style="font-size:.85rem">Con ${M(mes)} por mes no llega a la cuota mínima (${M(p.p10min)}). Revisar si puede sumar algo más por mes.</div></section>`;
     }
@@ -319,12 +354,12 @@
     h += `<section class="card"><div class="card-title"><span><span class="dot"></span>Sistemas</span><span class="muted" style="font-size:.7rem;text-transform:none;letter-spacing:0">tocá para comparar</span></div><div class="sis">` +
       L.map(x => x.ok
         ? `<button class="s-card${s && x.id === s.id ? ' sel' : ''}" data-id="${x.id}"><div class="t"><span>${esc(x.nombre)} ${rec && x.id === rec.id ? '<span class="chip x5">Recomendado</span>' : ''}</span><span class="p num">${MS(x.poder)}${x.poder0 ? `<small style="display:block;font-size:.66rem;color:var(--muted);font-weight:600;text-align:right">0 km ${MS(x.poder0)}</small>` : ''}</span></div>
-            <div class="d">${esc(x.detalle)}<br>Negocia desde <b>${x.plazo}</b></div></button>`
+            <div class="d">${esc(x.detalle)}<br>${x.noLlega ? '<b style="color:var(--warn)">No llega al usado más económico</b>' : x.k ? `Retira desde <b>${x.plazo}</b>` : `Negocia desde <b>${x.plazo}</b>`}</div></button>`
         : `<div class="s-card off"><div class="t"><span>${esc(x.nombre)}</span><span class="chip">No aplica</span></div><div class="d">${esc(x.motivo)}</div></div>`).join('') + '</div></section>';
 
     if (s) {
       h += `<section class="card"><div class="card-title"><span><span class="dot"></span>Cómo se arma</span></div><div class="desg">
-        <span>Adelantos del plan</span><b class="num">${s.contratos > 1 ? '2 × ' : ''}${s.n} × ${M(s.cuota)}</b>
+        <span>${s.k ? 'Cuotas pagas al retirar' : 'Adelantos del plan'}</span><b class="num">${s.contratos > 1 ? '2 × ' : ''}${s.k || s.n} × ${M(s.cuota)}</b>
         <span>Capital que aporta${s.id === 'prog' && s.delCapital ? ' (además de los adelantos)' : ''}</span><b class="num">${M(s.capital)}</b>
         <span class="tot">Disponible en usados${sel.tipo === 'moto' ? ' y motos' : ''}</span><b class="tot num">${M(s.poder)}</b>
         ${s.poder0 ? `<span class="tot" style="border:0;padding-top:0">Disponible en 0 km</span><b class="tot num" style="border:0;padding-top:0">${M(s.poder0)}</b>` : ''}</div></section>`;
@@ -370,9 +405,10 @@
   function mensajeCliente() {
     const { s } = ultimo; const n = nombre();
     const t = [`Hola${n ? ' ' + n : ''}! Te paso lo que charlamos 👇`, '',
-      `📋 *Plan ${s.nombre}*`, s.detalle, `⏱ Podés negociar tu vehículo desde ${s.plazo}`, '',
+      `📋 *Plan ${s.nombre}*`, s.detalle, s.k ? `⏱ Podés retirar tu vehículo a partir de la cuota ${s.k}` : `⏱ Podés negociar tu vehículo desde ${s.plazo}`, '',
       s.poder0 ? `🚗 Con lo que tenés y lo que vas pagando, llegás a usados de hasta *${M(s.poder)}* y a 0 km de hasta *${M(s.poder0)}*.`
-        : `🛵 Con lo que tenés y lo que vas pagando, llegás a motos de hasta *${M(s.poder)}*.`,
+        : sel.tipo === 'moto' ? `🛵 Con lo que tenés y lo que vas pagando, llegás a motos de hasta *${M(s.poder)}*.`
+        : `🚗 Con lo que tenés y lo que vas pagando, llegás a usados de hasta *${M(s.poder)}*.`,
       'La opción final la elegís con el asesor según lo que más te convenga.', '',
       '_Valores estimados. La financiación está sujeta a aprobación crediticia. Papeles aparte._', '', 'X5 Argentina · Región Cuyo'].join('\n');
     window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank', 'noopener');
@@ -416,7 +452,7 @@
     const item = {
       id: Date.now().toString(), cliente, telefono: tel, interes: busca, origen: $('crm-origen').value,
       asignado_a: x.user.nombre, fecha_asignacion: X5.hoyISO(), hora_limite: '', estado: sel.paso, resultado: '', hora_contacto: hh,
-      notas: `Armador: ${s.nombre} · ${s.detalle} · capital ${MS(K)} · ${URG_TXT[sel.urg]} · disponible usados ${MS(s.poder)}${s.poder0 ? ' · 0 km ' + MS(s.poder0) : ''}`,
+      notas: `Armador: ${s.nombre} · ${s.detalle}${s.k ? ' · retira desde la cuota ' + s.k : ''} · capital ${MS(K)} · ${URG_TXT[sel.urg]} · disponible usados ${MS(s.poder)}${s.poder0 ? ' · 0 km ' + MS(s.poder0) : ''}`,
       calif_sistema: s.nombre, calif_cuota: s.cuota, calif_capital: K, calif_urgencia: URG_TXT[sel.urg], calif_usado: s.poder, calif_0km: s.poder0 || ''
     };
     const b = $('b-crm'); b.disabled = true; b.textContent = 'Guardando…';
