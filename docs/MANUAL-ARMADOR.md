@@ -51,6 +51,7 @@ Con el usuario del Mini CRM abierto en el mismo teléfono, el Armador muestra «
 - Después: la misma lógica dentro de DOMino, como setter automático por WhatsApp.
 
 **Para responder por voz:**
+
 - "¿Cómo se calcula el monto disponible?" → Con lo integrado (adelantos más capital) llega hasta el doble en usados y motos, y hasta unas 2,85 veces en 0 km, sujeto a crédito. La herramienta descuenta por dentro los gastos de admisión del contrato; al cliente se le dice solo el monto final.
 - "¿Quién puede ir a 5 adelantos?" → Quien tenga capital de más de 6 millones y pueda pagar cuotas de 350 mil o más. Si no, va a 10 adelantos.
 - "¿Qué sistema le conviene a alguien urgente?" → Entrega programada, si tiene capital de 10 millones o más y puede pagar un contrato desde 3 millones y medio; negocia en 20 a 25 días.
