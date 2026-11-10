@@ -318,6 +318,9 @@
         x.poder = tope(k * porCuota, x.capital, p.iu, p);
         x.poder0 = sel.tipo === 'moto' ? null : tope(k * porCuota, x.capital, p.i0, p);
         x.plazo = `la cuota ${k} (${Math.ceil(x.meses)} meses)`;
+        x.nombre = 'Plan de financiación X5';
+        x.detalle = `Cuota de ${M(x.cuota)}${x.contratos > 1 ? ` en ${x.contratos} contratos iguales` : ''} · ${x.ritmo === 2 ? '2 cuotas por mes' : '1 cuota por mes'}`
+          + (x.sellado ? ` · pagos 1 y 2: ${M(x.cuota + x.sellado)}${x.contratos > 1 ? ' c/u' : ''} (con sellado)` : '');
       }
       if (x.poder0 && (!m.cero || x.poder0 < m.cero)) x.poder0 = null; // 0 km: solo si llega al más económico
     });
@@ -348,8 +351,9 @@
       h += `<section class="card poder"><div class="k">Monto total disponible</div><div class="v num">${M(s.poder)}</div>
         ${s.poder0 ? `<div class="s" style="margin-bottom:6px">en usados · <b style="color:var(--text)">hasta ${M(s.poder0)} en 0 km</b></div>` : ''}
         <div class="s">${s.noLlega ? `Con esta cuota no llega al usado más económico (${M(s.minU)}) en un plazo razonable. Conviene subir la cuota o sumar capital.`
-          : s.k ? `Con <b>${esc(s.nombre)}</b> retira <b>desde la cuota ${s.k}</b> (unos ${Math.ceil(s.meses)} meses): antes no llega al usado más económico.`
-          : `Con <b>${esc(s.nombre)}</b> negocia desde <b>${s.plazo}</b>.`}<br>Papeles aparte. Sujeto a aprobación crediticia.</div></section>`;
+          : s.k ? `Su plan permite retirar a partir de la <b>cuota ${s.k}</b> (unos ${Math.ceil(s.meses)} meses), con cuota de <b>${M(s.cuota)}</b>${s.contratos > 1 ? ` en ${s.contratos} contratos` : ''}.`
+          : `Con <b>${esc(s.nombre)}</b> negocia desde <b>${s.plazo}</b>.`}<br>Papeles aparte. Sujeto a aprobación crediticia.</div>
+        ${s.k ? `<div class="aviso" style="text-align:left;font-size:.78rem;margin-top:12px">💡 <b>¿Lo quiere antes?</b> Puede subir el valor de la cuota o sumar capital cuando quiera (ahorros, un usado, un aguinaldo) y así adelantar la entrega a una cuota anterior.</div>` : ''}</section>`;
     } else {
       h += `<section class="card"><div class="card-title"><span><span class="dot"></span>Sin sistema posible</span></div><div class="muted" style="font-size:.85rem">Con ${M(mes)} por mes no llega a la cuota mínima (${M(p.p10min)}). Revisar si puede sumar algo más por mes.</div></section>`;
     }
@@ -408,10 +412,13 @@
   function mensajeCliente() {
     const { s } = ultimo; const n = nombre();
     const t = [`Hola${n ? ' ' + n : ''}! Te paso lo que charlamos 👇`, '',
-      `📋 *Plan ${s.nombre}*`, s.detalle, s.k ? `⏱ Podés retirar tu vehículo a partir de la cuota ${s.k}` : `⏱ Podés negociar tu vehículo desde ${s.plazo}`, '',
+      ...(s.k
+        ? ['📋 *Plan de financiación X5*', `Con tu cuota de ${M(s.cuota)}${s.contratos > 1 ? ` (${s.contratos} contratos)` : ''} podés retirar tu vehículo a partir de la *cuota ${s.k}*.`, s.sellado ? `Los pagos 1 y 2 son de ${M(s.cuota + s.sellado)}${s.contratos > 1 ? ' c/u' : ''} (incluyen el sellado).` : '', '']
+        : [`📋 *Plan ${s.nombre}*`, s.detalle, `⏱ Podés negociar tu vehículo desde ${s.plazo}`, '']),
       s.poder0 ? `🚗 Con lo que tenés y lo que vas pagando, llegás a usados de hasta *${M(s.poder)}* y a 0 km de hasta *${M(s.poder0)}*.`
         : sel.tipo === 'moto' ? `🛵 Con lo que tenés y lo que vas pagando, llegás a motos de hasta *${M(s.poder)}*.`
         : `🚗 Con lo que tenés y lo que vas pagando, llegás a usados de hasta *${M(s.poder)}*.`,
+      ...(s.k ? ['', '💡 *¿Lo querés antes?* Podés subir el valor de tu cuota o sumar capital cuando quieras (ahorros, un usado, un aguinaldo) y así adelantar la entrega.', ''] : []),
       'La opción final la elegís con el asesor según lo que más te convenga.', '',
       '_Valores estimados. La financiación está sujeta a aprobación crediticia. Papeles aparte._', '', 'X5 Argentina · Región Cuyo'].join('\n');
     window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank', 'noopener');
