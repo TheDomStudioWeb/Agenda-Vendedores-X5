@@ -118,7 +118,7 @@
       </div>
       <div class="row">
         <div class="field"><label for="progCap">Programado: capital desde</label><div class="money"><input id="progCap" inputmode="numeric"></div></div>
-        <div class="field"><label for="progCuota">cuota desde</label><div class="money"><input id="progCuota" inputmode="numeric"></div></div>
+        <div class="field"><label for="progContrato">valor de contrato desde</label><div class="money"><input id="progContrato" inputmode="numeric"></div><span class="hint">Los 5 adelantos juntos. Plan especial: puede quedar fuera del vector.</span></div>
       </div>
       <div class="row">
         <div class="field"><label for="admision">Gastos de admisión % del valor del bien</label><input id="admision" type="number" inputmode="decimal" step="0.5"><span class="hint">Según contrato (cláusula 2.ª c). Se descuentan por dentro: no se muestran.</span></div>
@@ -151,9 +151,9 @@
   const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
 
   // ── Parámetros (editables y guardados en el teléfono) ──
-  const DEF = { p10min: 90000, p10max: 300000, p5min: 350000, p5max: 700000, cap5: 6000000, progCap: 10000000, progCuota: 800000, admision: 4, intUsado: 50, int0km: 35,
+  const DEF = { p10min: 90000, p10max: 300000, p5min: 350000, p5max: 700000, cap5: 6000000, progCap: 10000000, progContrato: 3500000, admision: 4, intUsado: 50, int0km: 35,
     vector: '90000 40000\n130000 50000\n200000 50000\n250000 50000\n300000 55000\n350000 55000\n400000 65000\n450000 65000\n500000 65000\n550000 65000\n600000 100000\n700000 150000' };
-  const MONEY_P = ['p10min', 'p10max', 'p5min', 'p5max', 'cap5', 'progCap', 'progCuota'];
+  const MONEY_P = ['p10min', 'p10max', 'p5min', 'p5max', 'cap5', 'progCap', 'progContrato'];
   Object.keys(DEF).forEach(k => {
     const v = lsGet('armador.' + k) ?? DEF[k];
     $(k).value = MONEY_P.includes(k) ? (+v).toLocaleString('es-AR') : v;
@@ -165,7 +165,7 @@
   }
   const P = () => ({
     p10min: num($('p10min')), p10max: num($('p10max')), p5min: num($('p5min')), p5max: num($('p5max')),
-    cap5: num($('cap5')), progCap: num($('progCap')), progCuota: num($('progCuota')),
+    cap5: num($('cap5')), progCap: num($('progCap')), progContrato: num($('progContrato')),
     ga: (+$('admision').value || 0) / 100, iu: (+$('intUsado').value || 50) / 100, i0: (+$('int0km').value || 35) / 100,
     vector: leerVector($('vector').value),
   });
@@ -208,16 +208,19 @@
       detalle: `${n} adelantos de ${M(cuota)}${contratos > 1 ? ' en 2 contratos iguales' : ''} · ${ritmo === 2 ? '2 cuotas por mes' : '1 cuota por mes'}`
         + (sellado ? ` · pagos 1 y 2: ${M(cuota + sellado)}${contratos > 1 ? ' c/u' : ''} (con sellado)` : '') };
   }
-  // Entrega programada: 5 adelantos (1.º como seña + 4 juntos). En el mejor caso salen del efectivo del cliente; si no alcanza, se pagan por fuera.
+  // Entrega programada (plan especial): capital alto y contrato de 5 adelantos (1.º como seña + 4 juntos) desde el valor mínimo.
+  // Se arma con el contrato más bajo válido. Se paga con el efectivo y, si no alcanza, con lo que pone por fuera ese mes.
   function programado(usado, efectivo, mes, p) {
     const K = usado + efectivo, base = { id: 'prog', nombre: 'Entrega programada', n: 5 };
     if (sel.tipo === 'moto') return { ...base, ok: false, motivo: 'Solo autos y camionetas' };
     if (K < p.progCap) return { ...base, ok: false, motivo: `Necesita capital de al menos ${M(p.progCap)}` };
-    if (mes < p.progCuota) return { ...base, ok: false, motivo: `Necesita poder pagar cuotas de ${M(p.progCuota)} o más` };
-    const cuota = mes, bruto = cuota * 5, delCapital = Math.min(efectivo, bruto), resto = K - delCapital;
+    const enVector = p.vector.find(x => x.cuota * 5 >= p.progContrato);
+    const cuota = enVector ? enVector.cuota : Math.ceil(p.progContrato / 5 / 1e4) * 1e4, bruto = cuota * 5;
+    if (efectivo + mes < bruto) return { ...base, ok: false, motivo: `Necesita poder pagar el contrato de ${M(bruto)} (efectivo + lo que paga por mes)` };
+    const delCapital = Math.min(efectivo, bruto), resto = K - delCapital;
     return { ...base, ok: true, ritmo: 5, contratos: 1, cuota, bruto, capital: resto, delCapital, meses: .8,
       poder: disponible(bruto, resto, p), poder0: disponible0(bruto, resto, p), plazo: '20 a 25 días',
-      detalle: `1.º adelanto de ${M(cuota)} como seña + 4 juntos (${M(cuota * 4)})` };
+      detalle: `Contrato de ${M(bruto)}: 1.º adelanto de ${M(cuota)} como seña + 4 juntos (${M(cuota * 4)})` };
   }
 
   function recomendar(L) {

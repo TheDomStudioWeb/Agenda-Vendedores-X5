@@ -15,13 +15,14 @@
 |---|---|---|---|---|
 | 10 adelantos | $90.000 a $300.000 | 10, hasta 2 por mes | 5 a 10 meses | autos, camionetas y motos |
 | 5 adelantos | $350.000 a $700.000 (luego hasta $1 M), con capital de más de $6 M | 5, hasta 2 por mes | 45-60 días a 5 meses | autos y camionetas |
-| Entrega programada | más de $800.000, con capital de $10 M o más | 5: el 1.º como seña y los 4 siguientes juntos | 20 a 25 días | autos y camionetas |
+| Entrega programada (plan especial) | contrato desde $3.500.000, con capital de $10 M o más | 5: el 1.º como seña y los 4 siguientes juntos | 20 a 25 días | autos y camionetas |
 
 - Las motos solo van a 10 adelantos.
 - **Vector de cuotas:** solo se ofrecen los valores de la lista de precios: $90.000, $130.000, $200.000, $250.000, $300.000 (10 adelantos) y $350.000, $400.000, $450.000, $500.000, $550.000, $600.000, $700.000 (5 adelantos). Se toma el valor más alto que entra en lo que el cliente puede pagar. Los pagos 1 y 2 llevan el sellado sumado (por ejemplo, cuota de $300.000 + sellado de $55.000 = $355.000) y la herramienta lo muestra. El vector se edita en «Parámetros de los planes» y se puede pegar desde la lista de precios.
 - Si la cuota que puede pagar supera el máximo del plan, se arman **2 contratos del mismo monto**.
 - Los límites de contrato son la cuota y el capital. Con capital de $6 M o menos, va directo a 10 adelantos.
-- En entrega programada, lo ideal es que los 5 adelantos salgan del efectivo del cliente; si no alcanza, se pagan por fuera del capital.
+- Entrega programada: es un plan especial y puede quedar fuera del rango del vector. Se arma con el **contrato más bajo válido** ($3.500.000 = 5 adelantos de $700.000). Lo ideal es pagarlo con el efectivo del cliente; si no alcanza, se completa con lo que paga por fuera ese mes.
+- El sellado siempre queda por fuera de la cuota: se suma solo en los pagos 1 y 2.
 
 **Cuál recomienda:** urgente → programado, si no 5 adelantos, si no 10. De 1 a 5 meses → 5 adelantos, si no programado, si no 10. Tiene tiempo → el que da mayor monto disponible. Tocando cada sistema se puede comparar.
 
@@ -49,5 +50,5 @@ Es lo que el cliente puede negociar con lo integrado (adelantos del plan más su
 **Para responder por voz:**
 - "¿Cómo se calcula el monto disponible?" → Con lo integrado (adelantos más capital) llega hasta el doble en usados y motos, y hasta unas 2,85 veces en 0 km, sujeto a crédito. La herramienta descuenta por dentro los gastos de admisión del contrato; al cliente se le dice solo el monto final.
 - "¿Quién puede ir a 5 adelantos?" → Quien tenga capital de más de 6 millones y pueda pagar cuotas de 350 mil o más. Si no, va a 10 adelantos.
-- "¿Qué sistema le conviene a alguien urgente?" → Entrega programada, si tiene capital de 10 millones o más y puede pagar cuotas de más de 800 mil; negocia en 20 a 25 días.
+- "¿Qué sistema le conviene a alguien urgente?" → Entrega programada, si tiene capital de 10 millones o más y puede pagar un contrato desde 3 millones y medio; negocia en 20 a 25 días.
 - "¿Las motos pueden ir a 5 adelantos?" → No, las motos solo van a 10 adelantos.
