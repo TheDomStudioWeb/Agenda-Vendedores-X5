@@ -1,6 +1,155 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "nuevo",
+   "id": "maipu-183475",
+   "auto": "Ford Fiesta 2017",
+   "precio": 18690000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "nuevo",
+   "id": "maipu-183445",
+   "auto": "Volkswagen Virtus 2023",
+   "precio": 33000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "precio",
+   "id": "maipu-181115",
+   "auto": "Volkswagen Tiguan 2018",
+   "antes": 40000000,
+   "precio": 37000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "baja",
+   "id": "maipu-183214",
+   "auto": "Renault Sandero 2024",
+   "precio": 25250000,
+   "moneda": "ARS",
+   "dias": 6
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "baja",
+   "id": "maipu-183004",
+   "auto": "Chevrolet Tracker 2023",
+   "precio": 23500000,
+   "moneda": "ARS",
+   "dias": 7
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "baja",
+   "id": "maipu-182318",
+   "auto": "Kia Sorento 2017",
+   "precio": 25500000,
+   "moneda": "ARS",
+   "dias": 14
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "baja",
+   "id": "maipu-178698",
+   "auto": "Volkswagen T-Cross 2020",
+   "precio": 23500000,
+   "moneda": "ARS",
+   "dias": 51
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "baja",
+   "id": "maipu-176677",
+   "auto": "Volkswagen Tiguan 2021",
+   "precio": 32000000,
+   "moneda": "ARS",
+   "dias": 69
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "baja",
+   "id": "maipu-176436",
+   "auto": "Ford Ranger 2025",
+   "precio": 98000000,
+   "moneda": "ARS",
+   "dias": 70
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "baja",
+   "id": "maipu-174725",
+   "auto": "Volkswagen Amarok 2022",
+   "precio": 36500000,
+   "moneda": "ARS",
+   "dias": 90
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "nuevo",
+   "id": "autocity-510817a1-6f1d-4706-907e-55faf14108ac",
+   "auto": "Chevrolet Cruze 2019",
+   "precio": 23900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "nuevo",
+   "id": "autocity-ed954e04-d828-43f9-b440-31527b1c4611",
+   "auto": "Nissan Versa 2021",
+   "precio": 25000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "baja",
+   "id": "autocity-55bc7d61-6975-4c06-a8bc-86f482bee175",
+   "auto": "Peugeot 208 2019",
+   "precio": 18899999,
+   "moneda": "ARS",
+   "dias": 7
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "baja",
+   "id": "autocity-01d21539-f67f-4883-be79-58574824e146",
+   "auto": "Volkswagen Polo 2018",
+   "precio": 19899999,
+   "moneda": "ARS",
+   "dias": 4
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "baja",
+   "id": "autocity-df992c46-6186-4194-b9c4-919749cd8c73",
+   "auto": "Renault Kwid 2025",
+   "precio": 21000000,
+   "moneda": "ARS",
+   "dias": 28
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "baja",
+   "id": "autocity-07f01d10-b39e-42b0-9817-8f8b87afe075",
+   "auto": "Volkswagen Gol 2022",
+   "precio": 23350000,
+   "moneda": "ARS",
+   "dias": 5
+  },
+  {
+   "fecha": "2026-11-11T18:00:47.754Z",
+   "tipo": "baja",
+   "id": "autocity-2519a065-472f-4266-91fa-a1ec4ccc4632",
+   "auto": "Jeep Compass 2020",
+   "precio": 37300000,
+   "moneda": "ARS",
+   "dias": 28
+  },
+  {
    "fecha": "2026-11-10T18:10:45.834Z",
    "tipo": "baja",
    "id": "autocity-db31bfba-23a5-4796-ae36-86aa53a2ba47",
