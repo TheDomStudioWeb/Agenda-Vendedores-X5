@@ -393,7 +393,7 @@ function guardarClave_(nombre, valor) {
     const iN = headers.indexOf('nombre'), iC = headers.indexOf('clave');
     if (iN < 0 || iC < 0) return;
     for (let i = 1; i < datos.length; i++) {
-      if (String(datos[i][iN]) === String(nombre)) { sheet.getRange(i + 1, iC + 1).setValue(valor); return; }
+      if (mismoNombre_(datos[i][iN], nombre)) { sheet.getRange(i + 1, iC + 1).setValue(valor); return; }
     }
   } finally { lock.releaseLock(); }
 }
@@ -527,13 +527,43 @@ function leerHoja_(nombre) {
   if (data.length <= 1) return [];
   const headers = data.shift().map(h => String(h).trim().toLowerCase());
   const tz = Session.getScriptTimeZone();
-  return data
+  const filas = data
     .filter(row => row.some(c => c !== '' && c !== null))
     .map(row => {
       const obj = {};
       headers.forEach((h, i) => { if (h) obj[h] = normalizar_(row[i], tz, h); });
       return obj;
     });
+  return nombre === HOJAS.personal ? filas.map(personaNormalizada_) : filas;
+}
+
+// Personal: tolera espacios de más y mayúsculas al cargar a mano ("activo", "Activo ", " Juan Pérez")
+function personaNormalizada_(p) {
+  ['nombre', 'rol', 'reporta_a', 'estado'].forEach(k => { if (typeof p[k] === 'string') p[k] = p[k].replace(/\s+/g, ' ').trim(); });
+  if (/^activ[oa]$/i.test(p.estado || '')) p.estado = 'Activo';
+  return p;
+}
+const mismoNombre_ = (a, b) => String(a).replace(/\s+/g, ' ').trim() === String(b).replace(/\s+/g, ' ').trim();
+const esActivo_ = (v) => /^activ[oa]$/i.test(String(v).trim());
+
+// Ejecutar desde Apps Script: lista quién de Personal NO aparece en el Hub y por qué
+function revisarPersonal() {
+  const sheet = obtenerHoja_(HOJAS.personal);
+  const datos = sheet.getDataRange().getValues();
+  const h = datos[0].map(x => String(x).trim().toLowerCase());
+  const iN = h.indexOf('nombre'), iE = h.indexOf('estado');
+  const vistos = {}, problemas = [];
+  for (let r = 1; r < datos.length; r++) {
+    const fila = datos[r];
+    if (!fila.some(c => c !== '' && c !== null)) continue;
+    const nom = String(fila[iN] || '').replace(/\s+/g, ' ').trim(), est = String(fila[iE] || '').trim();
+    if (!nom) problemas.push(`Fila ${r + 1}: sin nombre en la columna «nombre»`);
+    else if (!esActivo_(est)) problemas.push(`Fila ${r + 1} (${nom}): estado «${est || 'vacío'}» — tiene que decir Activo`);
+    if (nom && vistos[nom.toLowerCase()]) problemas.push(`Fila ${r + 1} (${nom}): nombre repetido con la fila ${vistos[nom.toLowerCase()]} — se muestra una sola vez`);
+    if (nom) vistos[nom.toLowerCase()] = r + 1;
+  }
+  console.log(problemas.length ? problemas.join('\n') : 'Todo bien: todas las filas de Personal aparecen en el Hub.');
+  return problemas;
 }
 
 // Fechas y horas de Sheets → texto estable ("2026-10-13", "14:30")
@@ -710,7 +740,7 @@ function guardarChat_(nombre, chatId) {
   const data = sheet.getDataRange().getValues();
   const iN = headers.indexOf('nombre'), iT = headers.indexOf('telegram'), iE = headers.indexOf('estado');
   for (let r = 1; r < data.length; r++) {
-    if (String(data[r][iN]) === nombre && String(data[r][iE]) === 'Activo') {
+    if (mismoNombre_(data[r][iN], nombre) && esActivo_(data[r][iE])) {
       sheet.getRange(r + 1, iT + 1).setValue("'" + chatId);
       return true;
     }

@@ -21,7 +21,7 @@ function crear(personal) {
     Utilities: { base64EncodeWebSafe: x => (Array.isArray(x) || Buffer.isBuffer(x) ? Buffer.from(x) : Buffer.from(String(x))).toString('base64url'), base64DecodeWebSafe: t => Array.from(Buffer.from(String(t), 'base64url')), newBlob: x => { const b = Buffer.from(Array.isArray(x) ? x : String(x)); return { getBytes: () => Array.from(b), getDataAsString: () => b.toString() }; }, computeHmacSha256Signature: (t, k) => Array.from(require('crypto').createHmac('sha256', String(k)).update(String(t)).digest()), getUuid: () => require('crypto').randomUUID(), formatDate: (d, tz, f) => { const p = new Intl.DateTimeFormat('sv-SE', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false }).format(d); return f === 'HH:mm' ? p.slice(11) : p.slice(0, 10); } },
     PropertiesService: { getScriptProperties: () => ({ getProperty: k => props[k] || null, setProperty(k, v) { props[k] = v; } }) }, ContentService: { MimeType: { JSON: 'json' }, createTextOutput: t => ({ texto: t, setMimeType() { return this; } }) }, ScriptApp: {}, UrlFetchApp: {} };
   vm.createContext(ctx);
-  vm.runInContext(fs.readFileSync(__dirname + '/../Code.gs', 'utf8') + '\n;globalThis.__c={despacharContratos_,expandirNumeros_,doPost};', ctx);
+  vm.runInContext(fs.readFileSync(__dirname + '/../Code.gs', 'utf8') + '\n;globalThis.__c={despacharContratos_,expandirNumeros_,doPost,listarUsuarios_,revisarPersonal};', ctx);
   return { api: ctx.__c, libro, llamar: (u, body) => ctx.__c.despacharContratos_(body, u), post: b => JSON.parse(ctx.__c.doPost({ postData: { contents: JSON.stringify(b) } }).texto) };
 }
 module.exports = { crear };

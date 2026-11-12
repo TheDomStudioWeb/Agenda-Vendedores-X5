@@ -167,4 +167,12 @@ T('rol Supervisor: ve todo el CRM y los contratos, y el servidor rechaza cualqui
   const d2 = m.post({ action: 'datos', token: tg }); assert(d2.leads.find(l => l.id === 'L1').cliente === 'Ana' && d2.leads.length === 2 && d2.agenda.length === 1);
   assert.strictEqual(datos(m, GER).contratos.length, 3);
 });
+T('Personal cargado a mano con «activo», espacios de más o nombre repetido: aparecen igual y revisarPersonal lo avisa', () => {
+  const m = crear(personal.concat([['  Vendedor   Nuevo ', 'Asesor', 'activo ', 'Jefe Ana', 'x', ''], ['Vendedor Sin Estado', 'Asesor', '', 'Jefe Ana', 'x', '']]));
+  const u = m.api.listarUsuarios_().map(x => x.nombre);
+  assert(u.includes('Vendedor Nuevo'), 'falta Vendedor Nuevo: ' + u.join(', '));
+  assert(!u.includes('Vendedor Sin Estado'));
+  const p = m.api.revisarPersonal(); assert(p.some(t => t.includes('Vendedor Sin Estado') && t.includes('vacío')));
+});
+
 console.log(`\n${ok} bien, ${fail} con error`); process.exit(fail ? 1 : 0);
