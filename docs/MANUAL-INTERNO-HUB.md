@@ -259,3 +259,10 @@ Tarjeta nueva en Ventas, después de Control de contratos. Califica al cliente (
 
 ## Estado «Esperando horario» y recordatorios (10/11/2026)
 Estado nuevo de los leads en el Mini CRM: el asesor mandó el mensaje de calificación del Armador y espera que el cliente elija horario. La tarjeta muestra cuándo toca el recordatorio 1 (24 h) y el 2 (72 h) y un botón para enviarlo por WhatsApp; después del segundo, indica no insistir. El día que toca, el lead aparece en «Hoy». La hoja Leads suma la columna `recordatorios` (la crea el script solo).
+
+## Personal cargado a mano y manual del vendedor (12/11/2026)
+- **Vendedores que no aparecían en la lista:** el Hub solo muestra a quien tiene `estado` exactamente «Activo». Ahora el script tolera «activo», «Activo » con espacio de más y nombres con espacios sobrantes. Una fila con `estado` vacío o con otra palabra sigue sin aparecer (es una baja).
+- **Diagnóstico:** en Apps Script, ejecutar la función `revisarPersonal`. En el registro lista cada fila que no aparece en el Hub y por qué: sin nombre, estado distinto de Activo o nombre repetido (con nombre repetido se muestra una sola vez).
+- **Manual para vendedores nuevos:** `docs/MANUAL-VENDEDORES.md` (v3.0), sin datos técnicos ni de gerencia.
+
+**Para responder por voz:** "Cargué un vendedor y no aparece" → Revisá en la hoja Personal que en `estado` diga Activo y que el nombre no esté repetido. Si no lo encontrás, ejecutá `revisarPersonal` en Apps Script.
