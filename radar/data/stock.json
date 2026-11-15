@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-14T21:39:58.768Z",
+ "actualizado": "2026-11-15T17:22:58.112Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -12,8 +12,8 @@
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
    "autos": 80,
-   "revisado": "2026-11-14T21:39:58.768Z",
-   "actualizado": "2026-11-14T21:39:58.768Z"
+   "revisado": "2026-11-15T17:22:58.112Z",
+   "actualizado": "2026-11-15T17:22:58.112Z"
   },
   {
    "id": "autocity",
@@ -21,9 +21,9 @@
    "ciudad": "Córdoba",
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
-   "autos": 246,
-   "revisado": "2026-11-14T21:39:58.768Z",
-   "actualizado": "2026-11-14T21:39:58.768Z"
+   "autos": 239,
+   "revisado": "2026-11-15T17:22:58.112Z",
+   "actualizado": "2026-11-15T17:22:58.112Z"
   }
  ],
  "autos": [
@@ -12324,95 +12324,6 @@
    }
   },
   {
-   "id": "autocity-066284c5-31ad-4e20-9945-12e2863f8372",
-   "tipo": "auto",
-   "marca": "Citroen",
-   "modelo": "C4 Cactus",
-   "version": "1.6 Thp Shine At6 Bt L18",
-   "anio": 2022,
-   "km": 65300,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Gris",
-   "equipamiento": "",
-   "precio": 27150000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792592330695.IMG_8151.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792592331848.IMG_8153.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792592332356.IMG_8158.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792592333604.IMG_8156.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792592335221.IMG_8157.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-citroen/m-c4-cactus/1-6-thp-shine-at6-bt-l18/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-11-13T18:00:12.161Z",
-   "guia": {
-    "min": 19746000,
-    "med": 21994000,
-    "max": 23039000,
-    "n": 11,
-    "mejor": {
-     "version": "C 4 CACTUS 5P 1,6 THP 165 SHINE E6AT BITONO 2021",
-     "valor": 22839000,
-     "coincidencias": 3,
-     "empate": 2
-    },
-    "versiones": [
-     [
-      "C 4 CACTUS 5P 1,6 VTi 115 FEEL 2021",
-      19746000
-     ],
-     [
-      "C 4 CACTUS 5P 1,6 VTi 115 FEEL PACK 2021",
-      20700000
-     ],
-     [
-      "C 4 CACTUS 5P 1,6 VTi 115 FEEL PACK PLUS 2021",
-      21036000
-     ],
-     [
-      "C 4 CACTUS 5P 1,6 VTi 115 FEEL PACK PLUS BITONO 2021",
-      21195000
-     ],
-     [
-      "C 4 CACTUS 5P 1,6 VTi 115 FEEL PACK E6AT 2021",
-      21735000
-     ],
-     [
-      "C 4 CACTUS 5P 1,6 VTi 115 FEEL PACK E6AT PLUS 2021",
-      21994000
-     ],
-     [
-      "C 4 CACTUS 5P 1,6 VTi 115 FEEL PACK E6AT PLUS BITONO 2021",
-      22154000
-     ],
-     [
-      "C 4 CACTUS 5P 1,6 VTi 115 X-SERIES 2021",
-      22615000
-     ],
-     [
-      "C 4 CACTUS 5P 1,6 THP 165 SHINE E6AT 2021",
-      22678000
-     ],
-     [
-      "C 4 CACTUS 5P 1,6 THP 165 SHINE E6AT BITONO 2021",
-      22839000
-     ],
-     [
-      "C 4 CACTUS 5P 1,6 VTi 115 X-SERIES E6AT 2021",
-      23039000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-9a51722f-e57b-463c-bf11-4bc1d7f15793",
    "tipo": "auto",
    "marca": "Volkswagen",
@@ -12962,62 +12873,6 @@
      [
       "208 5P T200 CVT GT 2025",
       25185000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-914527fa-a3b7-4a86-a625-5fd698a781eb",
-   "tipo": "auto",
-   "marca": "Citroen",
-   "modelo": "C4 Cactus",
-   "version": "1.6 Vti Feel At",
-   "anio": 2024,
-   "km": 45900,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Gris",
-   "equipamiento": "",
-   "precio": 27900000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793020687010.IMG_8651.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793020689356.IMG_8660.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793020695220.IMG_8652.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793020702954.IMG_8659.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-citroen/m-c4-cactus/1-6-vti-feel-at/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-27T15:59:56.420Z",
-   "guia": {
-    "min": 25167000,
-    "med": 25575000,
-    "max": 25769000,
-    "n": 3,
-    "mejor": {
-     "version": "C 4 CACTUS 5P 1,6 VTi 115 FEEL + AT 2023",
-     "valor": 25575000,
-     "coincidencias": 4,
-     "empate": 3
-    },
-    "versiones": [
-     [
-      "C 4 CACTUS 5P 1,6 VTi 115 FEEL AT 2023",
-      25167000
-     ],
-     [
-      "C 4 CACTUS 5P 1,6 VTi 115 FEEL + AT 2023",
-      25575000
-     ],
-     [
-      "C 4 CACTUS 5P 1,6 VTi 115 FEEL + AT BITONO 2023",
-      25769000
      ]
     ]
    }
@@ -14586,97 +14441,6 @@
    }
   },
   {
-   "id": "autocity-cfd52e93-7cce-47cd-bc2f-ce72d000332a",
-   "tipo": "auto",
-   "marca": "Renault",
-   "modelo": "Kangoo",
-   "version": "Express 1.6 Sce Emotion 5as L18",
-   "anio": 2023,
-   "km": 112400,
-   "combustible": "Gnc",
-   "caja": "Manual",
-   "color": "Blanco",
-   "equipamiento": "",
-   "precio": 32200000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172423627.IMG_7428.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172424471.IMG_7430.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1792172427472.IMG_7429.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-kangoo/express-1-6-sce-emotion-5as-l18/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-17T13:54:19.025Z",
-   "guia": {
-    "min": 24333000,
-    "med": 27530000,
-    "max": 34331000,
-    "n": 12,
-    "mejor": {
-     "version": "KANGOO II EXPRESS FURGON 1,6 SCe EMOTION 5A",
-     "valor": 27530000,
-     "coincidencias": 3,
-     "empate": 2
-    },
-    "versiones": [
-     [
-      "KANGOO II EXPRESS FURGON 1,6 SCe CONFORT STD",
-      24333000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON 1,6 SCe EMOTION",
-      25409000
-     ],
-     [
-      "KANGOO II VERSION PASAJEROS 1,6 SCe LIFE",
-      25471000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON 1,5 dCi CONFORT STD",
-      26164000
-     ],
-     [
-      "KANGOO II VERSION PASAJEROS 1,6 SCe ZEN",
-      26734000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON 1,6 SCe CONFORT STD 5A",
-      26889000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON 1,6 SCe EMOTION 5A",
-      27530000
-     ],
-     [
-      "KANGOO II VERSION PASAJEROS 1,6 SCe STEPWAY",
-      27981000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON 1,5 dCi CONFORT STD 5A",
-      28739000
-     ],
-     [
-      "KANGOO II VERSION PASAJEROS 1,5 dCi STEPWAY",
-      28824000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON ZE 2A",
-      33864000
-     ],
-     [
-      "KANGOO II EXPRESS FURGON ZE MAXI 2A",
-      34331000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-c0fa2de2-b3dc-4ceb-96be-5df8ee9893b9",
    "tipo": "auto",
    "marca": "Peugeot",
@@ -14801,62 +14565,6 @@
      [
       "208 5P T200 CVT GT 2025",
       25185000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-fee5e36f-7207-4071-8e3a-e0f2a1bb83a8",
-   "tipo": "auto",
-   "marca": "Honda",
-   "modelo": "Civic",
-   "version": "2.0 Exl L17",
-   "anio": 2018,
-   "km": 77900,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Blanco",
-   "equipamiento": "",
-   "precio": 32900000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793034763593.IMG_9466.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793034764706.IMG_9470.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793034767340.IMG_9467.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793034770114.IMG_9468.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-honda/m-civic/2-0-exl-l17/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-27T15:59:56.420Z",
-   "guia": {
-    "min": 25970000,
-    "med": 28150000,
-    "max": 32517000,
-    "n": 3,
-    "mejor": {
-     "version": "CIVIC 4P 2,0 EXL CVT 2017",
-     "valor": 28150000,
-     "coincidencias": 2,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "CIVIC 4P 2,0 EX CVT 2017",
-      25970000
-     ],
-     [
-      "CIVIC 4P 2,0 EXL CVT 2017",
-      28150000
-     ],
-     [
-      "CIVIC 4P 1,5 EXT CVT PADDLE-SHIFT 7 2017",
-      32517000
      ]
     ]
    }
@@ -15909,37 +15617,6 @@
    }
   },
   {
-   "id": "autocity-9ee16d8a-a812-42a5-a65c-d160b2701bb9",
-   "tipo": "auto",
-   "marca": "BYD",
-   "modelo": "Dolphin Mini",
-   "version": "Gl",
-   "anio": 2026,
-   "km": 200,
-   "combustible": "Electrico",
-   "caja": "Automática",
-   "color": "Beige",
-   "equipamiento": "",
-   "precio": 34250000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793211794498.IMG_9958.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793211795560.IMG_9962.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793211796506.IMG_9959.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793211798624.IMG_9960.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-dolphin-mini/gl-4/",
-   "sucursal": "Villa María",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-11-12T18:33:48.064Z",
-   "guia": null
-  },
-  {
    "id": "autocity-712cb342-6dfd-48bc-a8dd-9f0dd2abbfe4",
    "tipo": "auto",
    "marca": "Jeep",
@@ -16539,58 +16216,6 @@
    }
   },
   {
-   "id": "autocity-0add35c3-797f-46dc-a2ca-c5f5609430b7",
-   "tipo": "auto",
-   "marca": "Renault",
-   "modelo": "Duster",
-   "version": "1.3 T 4×2 Iconic Cvt",
-   "anio": 2024,
-   "km": 60000,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Gris",
-   "equipamiento": "",
-   "precio": 35950000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788183226732.IMG_8713.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788183229207.IMG_8716.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788183233819.IMG_8714.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1788183239940.IMG_8715.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-duster/1-3-t-4x2-iconic-cvt-2/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-10-14T20:44:18.592Z",
-   "guia": {
-    "min": 29124000,
-    "med": 30273000,
-    "max": 30273000,
-    "n": 2,
-    "mejor": {
-     "version": "DUSTER OROCH PICK - UP D/C 1,3 TCE ICONIC 163 2WD CVT",
-     "valor": 30273000,
-     "coincidencias": 3,
-     "empate": 2
-    },
-    "versiones": [
-     [
-      "DUSTER 5P 1,3 T 4X2 ICONIC CVT 2024",
-      29124000
-     ],
-     [
-      "DUSTER OROCH PICK - UP D/C 1,3 TCE ICONIC 163 2WD CVT",
-      30273000
-     ]
-    ]
-   }
-  },
-  {
    "id": "autocity-064adb66-d797-41c7-9c30-186e6543cde8",
    "tipo": "auto",
    "marca": "Renault",
@@ -17063,78 +16688,6 @@
      [
       "2008 5P T200 CVT GT 2026",
       35316000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-7a70431c-1e12-40f7-bdbc-678829bb8901",
-   "tipo": "auto",
-   "marca": "Chevrolet",
-   "modelo": "Tracker",
-   "version": "1.2 T Premier At6 L23",
-   "anio": 2024,
-   "km": 40400,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Azul",
-   "equipamiento": "",
-   "precio": 37500000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793816758689.IMG_9631.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793816758869.IMG_9637.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793816760135.IMG_9633.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1793816761071.IMG_9636.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-chevrolet/m-tracker/1-2-t-premier-at6-l23-2/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-11-05T18:15:26.490Z",
-   "guia": {
-    "min": 22917000,
-    "med": 24926000,
-    "max": 29523000,
-    "n": 7,
-    "mejor": {
-     "version": "TRACKER 5P 1,2 T 6AT PREMIER 170 2024",
-     "valor": 29523000,
-     "coincidencias": 2,
-     "empate": 2
-    },
-    "versiones": [
-     [
-      "TRACKER 5P 1,2 T 6AT",
-      22917000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT 2024",
-      23604000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT LTZ",
-      24139000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT LTZ 2024",
-      24926000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT PREMIER 2024",
-      28663000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT RS",
-      28663000
-     ],
-     [
-      "TRACKER 5P 1,2 T 6AT PREMIER 170 2024",
-      29523000
      ]
     ]
    }
@@ -20522,7 +20075,7 @@
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794490254223.IMG_0850.jpeg",
     "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794490256543.IMG_0852.jpeg"
    ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-yuan-pro/gl-6/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-yuan-pro/gl-4/",
    "sucursal": "Córdoba",
    "provincia": "Córdoba",
    "oportunidad": false,

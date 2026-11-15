@@ -1,6 +1,69 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-15T17:22:58.112Z",
+   "tipo": "baja",
+   "id": "autocity-066284c5-31ad-4e20-9945-12e2863f8372",
+   "auto": "Citroen C4 Cactus 2022",
+   "precio": 27150000,
+   "moneda": "ARS",
+   "dias": 2
+  },
+  {
+   "fecha": "2026-11-15T17:22:58.112Z",
+   "tipo": "baja",
+   "id": "autocity-914527fa-a3b7-4a86-a625-5fd698a781eb",
+   "auto": "Citroen C4 Cactus 2024",
+   "precio": 27900000,
+   "moneda": "ARS",
+   "dias": 19
+  },
+  {
+   "fecha": "2026-11-15T17:22:58.112Z",
+   "tipo": "baja",
+   "id": "autocity-cfd52e93-7cce-47cd-bc2f-ce72d000332a",
+   "auto": "Renault Kangoo 2023",
+   "precio": 32200000,
+   "moneda": "ARS",
+   "dias": 29
+  },
+  {
+   "fecha": "2026-11-15T17:22:58.112Z",
+   "tipo": "baja",
+   "id": "autocity-fee5e36f-7207-4071-8e3a-e0f2a1bb83a8",
+   "auto": "Honda Civic 2018",
+   "precio": 32900000,
+   "moneda": "ARS",
+   "dias": 19
+  },
+  {
+   "fecha": "2026-11-15T17:22:58.112Z",
+   "tipo": "baja",
+   "id": "autocity-9ee16d8a-a812-42a5-a65c-d160b2701bb9",
+   "auto": "BYD Dolphin Mini 2026",
+   "precio": 34250000,
+   "moneda": "ARS",
+   "dias": 3
+  },
+  {
+   "fecha": "2026-11-15T17:22:58.112Z",
+   "tipo": "baja",
+   "id": "autocity-0add35c3-797f-46dc-a2ca-c5f5609430b7",
+   "auto": "Renault Duster 2024",
+   "precio": 35950000,
+   "moneda": "ARS",
+   "dias": 32
+  },
+  {
+   "fecha": "2026-11-15T17:22:58.112Z",
+   "tipo": "baja",
+   "id": "autocity-7a70431c-1e12-40f7-bdbc-678829bb8901",
+   "auto": "Chevrolet Tracker 2024",
+   "precio": 37500000,
+   "moneda": "ARS",
+   "dias": 10
+  },
+  {
    "fecha": "2026-11-14T16:42:42.011Z",
    "tipo": "nuevo",
    "id": "maipu-183708",
