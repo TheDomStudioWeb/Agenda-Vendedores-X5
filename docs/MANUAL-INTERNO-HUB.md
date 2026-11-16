@@ -266,3 +266,6 @@ Estado nuevo de los leads en el Mini CRM: el asesor mandó el mensaje de calific
 - **Manual para vendedores nuevos:** `docs/MANUAL-VENDEDORES.md` (v3.0), sin datos técnicos ni de gerencia.
 
 **Para responder por voz:** "Cargué un vendedor y no aparece" → Revisá en la hoja Personal que en `estado` diga Activo y que el nombre no esté repetido. Si no lo encontrás, ejecutá `revisarPersonal` en Apps Script.
+
+## Ingreso y egreso del personal (16/11/2026)
+Tarjeta «Ingreso y egreso» (`asistencia.html`) para el personal que cobra por horas: botones Ingreso y Salida con la hora del servidor, semana con totales y PDF para quien cuenta las horas. Rol nuevo **Personal** en la hoja Personal: solo ve esta herramienta. Gerencia corrige, borra o carga turnos a mano con motivo. Detalle y puesta en marcha en `docs/MANUAL-ASISTENCIA.md`.

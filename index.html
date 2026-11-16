@@ -83,6 +83,16 @@
     </div>
   </section>
 
+  <section class="group" id="g-personal">
+    <h2>Personal</h2>
+    <div class="tools">
+      <a href="asistencia.html" class="tool x5 wide">
+        <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <div><h3>Ingreso y egreso</h3><p>Marcá tu llegada y tu salida. Horas de la semana en PDF.</p></div><span class="go">›</span>
+      </a>
+    </div>
+  </section>
+
   <section class="group">
     <h2>Documentos y unidades</h2>
     <div class="tools">
@@ -115,6 +125,16 @@
   const dia = d.toLocaleDateString('es-AR', { weekday: 'long' });
   const h = d.getHours(), saludo = h < 13 ? 'Buen día' : h < 20 ? 'Buenas tardes' : 'Buenas noches';
   document.getElementById('fecha').innerHTML = `${saludo} <span>· ${dia.charAt(0).toUpperCase() + dia.slice(1)} ${d.getDate()} de ${d.toLocaleDateString('es-AR', { month: 'long' })}</span>`;
+
+  // Personal por horas: solo ve la tarjeta de ingreso y egreso
+  try {
+    const ses = JSON.parse(localStorage.getItem('x5_session') || 'null');
+    if (ses && ses.user && ses.user.rol === 'Personal') {
+      document.querySelectorAll('.group').forEach(g => { if (g.id !== 'g-personal') g.hidden = true; });
+      const gp = document.getElementById('g-personal'); gp.querySelector('h2').textContent = 'Hola, ' + String(ses.user.nombre).split(' ')[0];
+      document.querySelector('main').insertBefore(gp, document.querySelector('.group'));
+    }
+  } catch (e) {}
 
   // Botón de instalación (Android/Chrome)
   let promptInstalar = null;

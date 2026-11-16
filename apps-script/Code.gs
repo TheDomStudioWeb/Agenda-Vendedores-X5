@@ -14,6 +14,8 @@
  *  - Respuestas con { ok: true/false } para que la app sepa si se guardó.
  *
  *
+ * v2.6: registro de ingreso y egreso del personal (hoja «Asistencia», rol «Personal»).
+ *
  * v2.4: claves protegidas en la planilla (huella con sal; protegerClaves() o primer ingreso) y sesión por POST, nunca en la dirección.
  *
  * v2.3: edición validada en el servidor (un asesor solo modifica lo propio), lista de
@@ -98,14 +100,19 @@ function doPost(e) {
     const usuario = body.token ? validarToken_(body.token) : null;
     if (!usuario) return json_({ ok: false, error: 'sesion_vencida' });
 
+    // Rol «Personal» (cobra por horas): solo marca su ingreso y su salida
+    if (esPersonal_(usuario) && String(body.action).indexOf('asistencia_') !== 0) return json_({ ok: false, error: 'sin_permiso' });
     // Rol «Control»: únicamente mira el gestor de contratos (ver todo, sin modificar nada ni entrar al CRM)
     if (esControl_(usuario) && ['contratos_datos', 'contratos_precios'].indexOf(String(body.action)) < 0) return json_({ ok: false, error: 'sin_permiso' });
     // Rol «Supervisor»: mira todo (CRM completo y contratos) y nada más. Solo se aceptan pedidos de lectura; cualquier otra acción se rechaza acá, antes de tocar la planilla
-    if (esSupervisor_(usuario) && ['datos', 'contratos_datos', 'contratos_precios'].indexOf(String(body.action)) < 0) return json_({ ok: false, error: 'sin_permiso' });
+    if (esSupervisor_(usuario) && ['datos', 'contratos_datos', 'contratos_precios', 'asistencia_datos'].indexOf(String(body.action)) < 0) return json_({ ok: false, error: 'sin_permiso' });
 
     // Lectura de datos y enlace de Telegram (la sesión viaja en el cuerpo, no en la dirección)
     if (body.action === 'datos') { if (!usuario) return json_({ ok: false, error: 'sesion_vencida' }); return json_(armarDatos_(usuario)); }
     if (body.action === 'telegram_link') { if (!usuario) return json_({ ok: false, error: 'sesion_vencida' }); return json_(linkTelegram_(usuario.nombre)); }
+
+    // Ingreso y egreso del personal (la hora la pone el servidor)
+    if (String(body.action).indexOf('asistencia_') === 0) return json_(despacharAsistencia_(body, usuario));
 
     // Control de contratos (solo números y estados; no guarda archivos)
     if (String(body.action).indexOf('contratos_') === 0) return json_(despacharContratos_(body, usuario));
@@ -475,7 +482,7 @@ function firma_(texto) {
 
 // ── Armado de datos según quién pide ─────────────────────────────
 function armarDatos_(usuario) {
-  const personal = personalLimpio_();
+  const personal = personalLimpio_().filter(p => p.rol !== 'Personal'); // el personal por horas no vende ni recibe leads
   let agenda = leerHoja_(HOJAS.agenda);
   let leads = leerHoja_(HOJAS.leads);
   const flota = leerHoja_(HOJAS.flota);
@@ -944,7 +951,7 @@ function esSupervisor_(u) { return u.rol === ROL_SUPERVISOR; }
 function veTodoContratos_(u) { return esGerente_(u) || esControl_(u) || esSupervisor_(u); }
 // Personas a las que este usuario puede asignar o ver: él mismo y quienes le reportan (gerente: todos los activos)
 function ambitoContratos_(u, personal) {
-  if (veTodoContratos_(u)) return personal.filter(p => String(p.estado) === 'Activo').map(p => String(p.nombre));
+  if (veTodoContratos_(u)) return personal.filter(p => String(p.estado) === 'Activo' && p.rol !== 'Personal').map(p => String(p.nombre));
   return [String(u.nombre)].concat(personal.filter(p => String(p.reporta_a) === String(u.nombre) && String(p.estado) === 'Activo').map(p => String(p.nombre)));
 }
 function nuevoIdContrato_() { return 'C' + Utilities.getUuid().replace(/-/g, '').slice(0, 10); }
@@ -1242,4 +1249,163 @@ function contratosEliminar_(body, u) {
   borrar.sort((a, b) => b - a).forEach(r => sh.deleteRow(r));
   registrarLogContratos_(logs);
   return { ok: true, eliminados: borrar.length, omitidos: omitidos };
+}
+
+
+// =====================================================================
+//  ASISTENCIA — ingreso y egreso del personal que cobra por horas
+//  La hora la pone el SERVIDOR (no el teléfono), así no se puede adelantar ni atrasar.
+//  Cada persona marca «Ingreso» y «Salida»; puede haber más de un turno por día.
+//  Gerencia ve a todos, corrige olvidos (queda registrado quién y por qué) y exporta la semana en PDF.
+//  Rol «Personal»: solo entra a esta herramienta.
+// =====================================================================
+const HOJA_ASISTENCIA = 'Asistencia';
+const COL_ASISTENCIA = ['id', 'nombre', 'fecha', 'entrada', 'salida', 'minutos', 'entrada_ts', 'salida_ts', 'nota', 'editado_por', 'actualizado'];
+const ROL_PERSONAL = 'Personal';
+const MAX_TURNO_HORAS = 16;   // una salida marcada más tarde que esto queda señalada para revisar
+function esPersonal_(u) { return u.rol === ROL_PERSONAL; }
+function veTodaAsistencia_(u) { return esGerente_(u) || esSupervisor_(u); }
+
+function hojaAsistencia_() { return hojaContratos_(HOJA_ASISTENCIA, COL_ASISTENCIA); }
+function tzA_() { return Session.getScriptTimeZone(); }
+function diaA_(d) { return Utilities.formatDate(d, tzA_(), 'yyyy-MM-dd'); }
+function horaA_(d) { return Utilities.formatDate(d, tzA_(), 'HH:mm'); }
+function textoA_(v) { return String(v == null ? '' : v).replace(/^'/, ''); }
+function celdaA_(h, v) {
+  if (v === undefined || v === null) return '';
+  if (v instanceof Date || typeof v === 'number') return v;
+  let s = String(v); if (/^[=+\-@]/.test(s)) s = "'" + s;
+  if (['fecha', 'entrada', 'salida'].indexOf(h) > -1 && s !== '' && s[0] !== "'") s = "'" + s;
+  return s;
+}
+function leerAsistencia_() {
+  const sh = hojaAsistencia_();
+  const datos = sh.getDataRange().getValues(); if (datos.length < 2) return [];
+  const h = datos[0].map(x => String(x).trim().toLowerCase());
+  const out = [];
+  for (let i = 1; i < datos.length; i++) {
+    const f = datos[i]; if (!f.some(c => c !== '' && c !== null)) continue;
+    const o = { _fila: i + 1 };
+    h.forEach((k, j) => {
+      let v = f[j];
+      if (v instanceof Date) v = (k === 'entrada_ts' || k === 'salida_ts' || k === 'actualizado') ? v.toISOString() : (k === 'fecha' ? diaA_(v) : horaA_(v));
+      o[k] = typeof v === 'string' ? textoA_(v) : v;
+    });
+    o.minutos = Number(o.minutos) || 0;
+    out.push(o);
+  }
+  return out;
+}
+function publicoA_(r) { const o = Object.assign({}, r); delete o._fila; return o; }
+function escribirFilaA_(sh, fila, r) {
+  const h = asegurarColumnas_(sh, COL_ASISTENCIA);
+  sh.getRange(fila, 1, 1, h.length).setValues([h.map(k => celdaA_(k, r[k]))]);
+}
+// Minutos entre dos horas del mismo turno («08:00» → «12:30»); si la salida es menor, el turno pasó la medianoche
+function minutosEntre_(ent, sal) {
+  const m = (t) => { const p = String(t).split(':'); return Number(p[0]) * 60 + Number(p[1]); };
+  if (!/^\d{1,2}:\d{2}$/.test(ent || '') || !/^\d{1,2}:\d{2}$/.test(sal || '')) return 0;
+  let d = m(sal) - m(ent); if (d < 0) d += 1440; return d;
+}
+function lunesDe_(iso) {
+  const p = String(iso).split('-').map(Number); const d = new Date(Date.UTC(p[0], p[1] - 1, p[2]));
+  const dow = (d.getUTCDay() + 6) % 7; d.setUTCDate(d.getUTCDate() - dow);
+  return d.toISOString().slice(0, 10);
+}
+function sumarDias_(iso, n) { const p = String(iso).split('-').map(Number); const d = new Date(Date.UTC(p[0], p[1] - 1, p[2] + n)); return d.toISOString().slice(0, 10); }
+
+function despacharAsistencia_(body, u) {
+  const a = body.action;
+  if (a === 'asistencia_datos') return asistenciaDatos_(body, u);
+  if (esSupervisor_(u)) return { ok: false, error: 'sin_permiso' }; // solo lectura
+  const lock = LockService.getScriptLock(); lock.waitLock(15000);
+  try {
+    if (a === 'asistencia_marcar') return asistenciaMarcar_(body, u);
+    if (a === 'asistencia_corregir') return asistenciaCorregir_(body, u);
+    return { ok: false, error: 'accion_invalida' };
+  } finally { lock.releaseLock(); }
+}
+
+function asistenciaDatos_(body, u) {
+  const todos = leerAsistencia_();
+  const hoy = diaA_(new Date());
+  const desde = /^\d{4}-\d{2}-\d{2}$/.test(body.desde || '') ? lunesDe_(body.desde) : lunesDe_(hoy);
+  const hasta = sumarDias_(desde, 6);
+  let quien = String(u.nombre);
+  if (veTodaAsistencia_(u) && body.nombre) quien = String(body.nombre);
+  const mios = todos.filter(r => String(r.nombre) === quien);
+  const abierto = mios.filter(r => r.entrada_ts && !r.salida_ts).pop() || null;
+  const semana = mios.filter(r => r.fecha >= desde && r.fecha <= hasta).sort((x, y) => (x.fecha + x.entrada).localeCompare(y.fecha + y.entrada));
+  const out = { ok: true, ahora: new Date().toISOString(), hoy: hoy, desde: desde, hasta: hasta, nombre: quien, abierto: abierto ? publicoA_(abierto) : null, semana: semana.map(publicoA_) };
+  if (veTodaAsistencia_(u)) {
+    const personal = personalLimpio_().filter(p => String(p.estado) === 'Activo');
+    const conRegistros = {}; todos.forEach(r => { conRegistros[r.nombre] = 1; });
+    out.personas = personal.filter(p => p.rol === ROL_PERSONAL || conRegistros[p.nombre]).map(p => p.nombre);
+    if (out.personas.indexOf(quien) < 0) out.personas.unshift(quien);
+    // quién está adentro ahora
+    out.adentro = todos.filter(r => r.entrada_ts && !r.salida_ts).map(r => ({ nombre: r.nombre, desde: r.entrada, fecha: r.fecha }));
+  }
+  return out;
+}
+
+function asistenciaMarcar_(body, u) {
+  const tipo = body.tipo === 'salida' ? 'salida' : body.tipo === 'entrada' ? 'entrada' : '';
+  if (!tipo) return { ok: false, error: 'tipo_invalido' };
+  const sh = hojaAsistencia_();
+  const mios = leerAsistencia_().filter(r => String(r.nombre) === String(u.nombre));
+  const abierto = mios.filter(r => r.entrada_ts && !r.salida_ts).pop();
+  const ahora = new Date();
+  if (tipo === 'entrada') {
+    if (abierto) return { ok: false, error: 'ya_adentro', abierto: publicoA_(abierto) };
+    const r = { id: 'A' + Utilities.getUuid().replace(/-/g, '').slice(0, 10), nombre: u.nombre, fecha: diaA_(ahora), entrada: horaA_(ahora), salida: '', minutos: '', entrada_ts: ahora, salida_ts: '', nota: '', editado_por: '', actualizado: ahora };
+    const h = asegurarColumnas_(sh, COL_ASISTENCIA);
+    sh.appendRow(h.map(k => celdaA_(k, r[k])));
+    return { ok: true, registro: { id: r.id, nombre: r.nombre, fecha: r.fecha, entrada: r.entrada, salida: '', minutos: 0, entrada_ts: ahora.toISOString() } };
+  }
+  if (!abierto) return { ok: false, error: 'sin_entrada' };
+  const ini = new Date(abierto.entrada_ts);
+  const min = Math.max(0, Math.round((ahora - ini) / 60000));
+  const r = Object.assign({}, abierto, { salida: horaA_(ahora), salida_ts: ahora, minutos: min, actualizado: ahora, entrada_ts: ini });
+  if (min > MAX_TURNO_HORAS * 60) r.nota = (r.nota ? r.nota + ' · ' : '') + 'Revisar: la salida se marcó ' + Math.round(min / 60) + ' h después del ingreso';
+  escribirFilaA_(sh, abierto._fila, r);
+  const pub = publicoA_(r); pub.salida_ts = ahora.toISOString(); pub.entrada_ts = ini.toISOString();
+  return { ok: true, registro: pub, revisar: min > MAX_TURNO_HORAS * 60 };
+}
+
+// Solo gerencia: corregir un turno (olvido de marcar), cargar uno a mano o anularlo. Siempre con motivo.
+function asistenciaCorregir_(body, u) {
+  if (!esGerente_(u)) return { ok: false, error: 'sin_permiso' };
+  const motivo = String(body.motivo || '').trim().slice(0, 200);
+  if (!motivo) return { ok: false, error: 'falta_motivo' };
+  const sh = hojaAsistencia_();
+  const todos = leerAsistencia_();
+  const ahora = new Date();
+  const hora = (v) => /^\d{1,2}:\d{2}$/.test(String(v || '')) ? String(v).padStart(5, '0') : '';
+  const firma = u.nombre + ' (' + Utilities.formatDate(ahora, tzA_(), 'dd/MM HH:mm') + '): ' + motivo;
+  if (body.borrar) {
+    const r = todos.find(x => x.id === body.id); if (!r) return { ok: false, error: 'no_encontrado' };
+    archivarEliminado_(HOJA_ASISTENCIA, Object.assign(publicoA_(r), { cliente: r.nombre + ' ' + r.fecha }), u);
+    sh.deleteRow(r._fila);
+    return { ok: true, borrado: r.id };
+  }
+  const fecha = /^\d{4}-\d{2}-\d{2}$/.test(body.fecha || '') ? body.fecha : '';
+  const ent = hora(body.entrada), sal = hora(body.salida);
+  if (!ent) return { ok: false, error: 'falta_entrada' };
+  if (body.id) {
+    const r = todos.find(x => x.id === body.id); if (!r) return { ok: false, error: 'no_encontrado' };
+    const nuevo = Object.assign({}, r, { fecha: fecha || r.fecha, entrada: ent, salida: sal, minutos: sal ? minutosEntre_(ent, sal) : '', nota: (r.nota ? r.nota + ' · ' : '') + 'Corregido por ' + firma, editado_por: u.nombre, actualizado: ahora });
+    if (sal && !r.salida_ts) nuevo.salida_ts = ahora; // se cierra el turno abierto
+    if (r.entrada_ts) nuevo.entrada_ts = new Date(r.entrada_ts);
+    if (nuevo.salida_ts && !(nuevo.salida_ts instanceof Date)) nuevo.salida_ts = new Date(nuevo.salida_ts);
+    escribirFilaA_(sh, r._fila, nuevo);
+    return { ok: true };
+  }
+  const nombre = String(body.nombre || '');
+  if (!nombre || !personalLimpio_().some(p => p.nombre === nombre)) return { ok: false, error: 'persona_invalida' };
+  if (!fecha) return { ok: false, error: 'falta_fecha' };
+  if (!sal) return { ok: false, error: 'falta_salida' };
+  const r = { id: 'A' + Utilities.getUuid().replace(/-/g, '').slice(0, 10), nombre, fecha, entrada: ent, salida: sal, minutos: minutosEntre_(ent, sal), entrada_ts: ahora, salida_ts: ahora, nota: 'Cargado a mano por ' + firma, editado_por: u.nombre, actualizado: ahora };
+  const h = asegurarColumnas_(sh, COL_ASISTENCIA);
+  sh.appendRow(h.map(k => celdaA_(k, r[k])));
+  return { ok: true, id: r.id };
 }
