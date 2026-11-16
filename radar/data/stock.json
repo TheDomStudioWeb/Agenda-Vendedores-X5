@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-15T22:02:27.773Z",
+ "actualizado": "2026-11-16T20:40:05.691Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-10"
@@ -12,8 +12,8 @@
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
    "autos": 80,
-   "revisado": "2026-11-15T22:02:27.773Z",
-   "actualizado": "2026-11-15T22:02:27.773Z"
+   "revisado": "2026-11-16T20:40:05.691Z",
+   "actualizado": "2026-11-16T20:40:05.691Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,225 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 239,
-   "revisado": "2026-11-15T22:02:27.773Z",
-   "actualizado": "2026-11-15T22:02:27.773Z"
+   "revisado": "2026-11-16T20:40:05.691Z",
+   "actualizado": "2026-11-16T20:40:05.691Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-183864",
+   "tipo": "auto",
+   "marca": "Chevrolet",
+   "modelo": "Onix",
+   "version": "1.0T Premier",
+   "anio": 2024,
+   "km": 78895,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Gris",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 25500000,
+   "precio_sin_imp": 20145000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4269-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4270-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4272-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4271-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4267-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4268-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4266-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4262-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4260-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4256-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4257-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4258-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4263-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4259-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4265-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4261-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4264-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/11/16/onix-6/",
+   "publicado": "2026-11-16T17:29:09",
+   "modificado": "2026-11-16T17:36:40",
+   "agencia": "maipu",
+   "alta": "2026-11-16T20:40:05.691Z",
+   "guia": {
+    "min": 21435000,
+    "med": 22623000,
+    "max": 23093000,
+    "n": 4,
+    "mejor": {
+     "version": "ONIX 5P 1,0 T PREMIER II AT",
+     "valor": 23093000,
+     "coincidencias": 1,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "ONIX 5P 1,0 T LTZ AT",
+      21435000
+     ],
+     [
+      "ONIX 4P 1,0 T PLUS LTZ AT",
+      21581000
+     ],
+     [
+      "ONIX 4P 1,0 T PLUS PREMIER II AT",
+      22623000
+     ],
+     [
+      "ONIX 5P 1,0 T PREMIER II AT",
+      23093000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-183840",
+   "tipo": "auto",
+   "marca": "Chevrolet",
+   "modelo": "Cruze",
+   "version": "1.4T Ltz At",
+   "anio": 2024,
+   "km": 102365,
+   "combustible": "Nafta",
+   "caja": "Automática",
+   "color": "Azul",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS",
+   "precio": 28500000,
+   "precio_sin_imp": 22515000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4251-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4252-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4254-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4255-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4250-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4253-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4249-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4247-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4243-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4238-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4239-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4240-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4248-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4241-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4246-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4244-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4245-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/11/16/cruze-2/",
+   "publicado": "2026-11-16T17:10:07",
+   "modificado": "2026-11-16T17:16:34",
+   "agencia": "maipu",
+   "alta": "2026-11-16T20:40:05.691Z",
+   "guia": {
+    "min": 22526000,
+    "med": 24803000,
+    "max": 27490000,
+    "n": 6,
+    "mejor": {
+     "version": "CRUZE 4P 1,4 T LTZ 6AT 2021",
+     "valor": 23216000,
+     "coincidencias": 1,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "CRUZE 4P 1,4 T LT 6AT 2022",
+      22526000
+     ],
+     [
+      "CRUZE 5P 1,4 T LT 6AT 2022",
+      22526000
+     ],
+     [
+      "CRUZE 4P 1,4 T LTZ 6AT 2021",
+      23216000
+     ],
+     [
+      "CRUZE 5P 1,4 T RS 6AT 2022",
+      24803000
+     ],
+     [
+      "CRUZE 5P 1,4 T PREMIER 6AT 2021",
+      27284000
+     ],
+     [
+      "CRUZE 4P 1,4 T PREMIER 6AT 2021",
+      27490000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-183816",
+   "tipo": "auto",
+   "marca": "Chevrolet",
+   "modelo": "Onix",
+   "version": "1.0T Lt Mt",
+   "anio": 2026,
+   "km": 6455,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
+   "precio": null,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4234-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4237-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4236-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4235-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4232-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4233-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4231-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4227-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4225-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4221-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4222-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4223-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4228-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4224-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4230-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4226-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4229-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/11/16/onix-5/",
+   "publicado": "2026-11-16T16:56:35",
+   "modificado": "2026-11-16T17:16:51",
+   "agencia": "maipu",
+   "alta": "2026-11-16T20:40:05.691Z",
+   "guia": {
+    "min": 32783000,
+    "med": 32783000,
+    "max": 39569000,
+    "n": 3,
+    "mejor": {
+     "version": "ONIX 4P 1,0 T PLUS LT 2026",
+     "valor": 32783000,
+     "coincidencias": 1,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "ONIX 5P 1,0 T LT 2026",
+      32783000
+     ],
+     [
+      "ONIX 4P 1,0 T PLUS LT 2026",
+      32783000
+     ],
+     [
+      "ONIX 5P 1,0 T RS 2026",
+      39569000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-183708",
    "tipo": "auto",
@@ -536,92 +750,6 @@
    }
   },
   {
-   "id": "maipu-183553",
-   "tipo": "auto",
-   "marca": "Nissan",
-   "modelo": "Kicks",
-   "version": "Exclusive Bt",
-   "anio": 2021,
-   "km": 38990,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Plata",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 27500000,
-   "precio_sin_imp": 21725000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4016-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4017-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4019-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4020-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4015-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4018-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4014-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4013-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4008-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4003-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4005-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4006-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4012-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4007-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4011-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4009-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4010-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/11/12/kicks-2/",
-   "publicado": "2026-11-12T17:42:07",
-   "modificado": "2026-11-12T17:49:13",
-   "agencia": "maipu",
-   "alta": "2026-11-13T18:00:12.161Z",
-   "guia": {
-    "min": 23910000,
-    "med": 25130000,
-    "max": 28824000,
-    "n": 8,
-    "mejor": {
-     "version": "KICKS 5P 1,6 EXCLUSIVE CVT TBT 2019",
-     "valor": 27497000,
-     "coincidencias": 1,
-     "empate": 4
-    },
-    "versiones": [
-     [
-      "KICKS 5P 1,6 ADVANCE CVT 2019",
-      23910000
-     ],
-     [
-      "KICKS 5P 1,6 ADVANCE CVT UCL 2020",
-      23910000
-     ],
-     [
-      "KICKS 5P 1,6 ADVANCE CVT 2021",
-      24164000
-     ],
-     [
-      "KICKS 5P 1,6 EXCLUSIVE CVT 2019",
-      24867000
-     ],
-     [
-      "KICKS 5P 1,6 ADVANCE CVT PLUS 2021",
-      25130000
-     ],
-     [
-      "KICKS 5P 1,6 EXCLUSIVE CVT 2021",
-      26136000
-     ],
-     [
-      "KICKS 5P 1,6 EXCLUSIVE CVT TBT 2019",
-      27497000
-     ],
-     [
-      "KICKS 5P 1,6 EXCLUSIVE CVT TBT 2021",
-      28824000
-     ]
-    ]
-   }
-  },
-  {
    "id": "maipu-183529",
    "tipo": "auto",
    "marca": "Ford",
@@ -633,8 +761,8 @@
    "caja": "Manual",
    "color": "Plata",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": null,
-   "precio_sin_imp": null,
+   "precio": 18000000,
+   "precio_sin_imp": 14220000,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3997-1600x1200-1.jpg",
@@ -657,7 +785,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/11/12/focus/",
    "publicado": "2026-11-12T12:33:40",
-   "modificado": "2026-11-12T12:38:38",
+   "modificado": "2026-11-16T12:04:28",
    "agencia": "maipu",
    "alta": "2026-11-12T18:33:48.064Z",
    "guia": {
@@ -719,8 +847,8 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
-   "precio": null,
-   "precio_sin_imp": null,
+   "precio": 16000000,
+   "precio_sin_imp": 12640000,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3974-1600x1200-1.jpg",
@@ -743,7 +871,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/11/11/301/",
    "publicado": "2026-11-11T17:04:13",
-   "modificado": "2026-11-12T11:31:28",
+   "modificado": "2026-11-16T15:53:53",
    "agencia": "maipu",
    "alta": "2026-11-12T18:33:48.064Z",
    "guia": {
@@ -1443,8 +1571,8 @@
    "caja": "Manual",
    "color": "Plata",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": null,
-   "precio_sin_imp": null,
+   "precio": 18500000,
+   "precio_sin_imp": 14615000,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3813-1600x1200-1.jpg",
@@ -1467,7 +1595,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/11/05/captur-2/",
    "publicado": "2026-11-05T17:16:04",
-   "modificado": "2026-11-05T17:23:31",
+   "modificado": "2026-11-16T15:58:45",
    "agencia": "maipu",
    "alta": "2026-11-06T17:39:53.488Z",
    "guia": {
@@ -2389,8 +2517,8 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": null,
-   "precio_sin_imp": null,
+   "precio": 16160000,
+   "precio_sin_imp": 12766400,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3344-1600x1200-1.jpg",
@@ -2413,7 +2541,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/30/fluence/",
    "publicado": "2026-10-30T17:05:31",
-   "modificado": "2026-10-30T17:08:26",
+   "modificado": "2026-11-16T16:10:29",
    "agencia": "maipu",
    "alta": "2026-10-30T21:41:53.760Z",
    "guia": {
@@ -2941,8 +3069,8 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 21000000,
-   "precio_sin_imp": 16590000,
+   "precio": 19250000,
+   "precio_sin_imp": 15909100,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2926-1600x1200-1.jpg",
@@ -2965,7 +3093,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/23/captur/",
    "publicado": "2026-10-23T10:20:16",
-   "modificado": "2026-11-05T10:18:53",
+   "modificado": "2026-11-16T10:22:47",
    "agencia": "maipu",
    "alta": "2026-10-23T15:31:22.702Z",
    "guia": {
@@ -3159,8 +3287,8 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
-   "precio": 45000000,
-   "precio_sin_imp": 40275000,
+   "precio": 44000000,
+   "precio_sin_imp": 39819000,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2711-1600x1200-1.jpg",
@@ -3183,7 +3311,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/20/amarok-2/",
    "publicado": "2026-10-20T09:52:35",
-   "modificado": "2026-10-20T12:39:02",
+   "modificado": "2026-11-16T11:09:25",
    "agencia": "maipu",
    "alta": "2026-10-20T20:49:50.229Z",
    "guia": {
@@ -3347,8 +3475,8 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 14000000,
-   "precio_sin_imp": 11060000,
+   "precio": 13000000,
+   "precio_sin_imp": 10743800,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2547-1600x1200-1.jpg",
@@ -3371,7 +3499,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/16/ka/",
    "publicado": "2026-10-16T15:06:22",
-   "modificado": "2026-10-21T14:36:50",
+   "modificado": "2026-11-16T09:56:14",
    "agencia": "maipu",
    "alta": "2026-10-16T20:03:09.733Z",
    "guia": {
@@ -3585,8 +3713,8 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 37000000,
-   "precio_sin_imp": 30578500,
+   "precio": 33000000,
+   "precio_sin_imp": 27272700,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2304-1600x1200-1.jpg",
@@ -3609,7 +3737,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/14/tiguan-2/",
    "publicado": "2026-10-14T10:13:23",
-   "modificado": "2026-11-11T09:18:07",
+   "modificado": "2026-11-16T11:02:53",
    "agencia": "maipu",
    "alta": "2026-10-14T10:13:23",
    "guia": {
@@ -3733,8 +3861,8 @@
    "caja": "Manual",
    "color": "Rojo",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 20500000,
-   "precio_sin_imp": 16195000,
+   "precio": 19500000,
+   "precio_sin_imp": 16115700,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2232-1600x1200-1.jpg",
@@ -3757,7 +3885,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/09/sandero-2/",
    "publicado": "2026-10-09T15:14:12",
-   "modificado": "2026-10-09T15:21:11",
+   "modificado": "2026-11-16T10:24:46",
    "agencia": "maipu",
    "alta": "2026-10-09T15:14:12",
    "guia": {
@@ -3877,8 +4005,8 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 23500000,
-   "precio_sin_imp": 19421500,
+   "precio": 24000000,
+   "precio_sin_imp": 19834710,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2143-1600x1200-1.jpg",
@@ -3901,7 +4029,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/08/onix-3/",
    "publicado": "2026-10-08T17:56:12",
-   "modificado": "2026-10-29T09:43:44",
+   "modificado": "2026-11-16T09:42:45",
    "agencia": "maipu",
    "alta": "2026-10-08T17:56:12",
    "guia": {
@@ -4037,8 +4165,8 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 21950000,
-   "precio_sin_imp": 18140500,
+   "precio": 22000000,
+   "precio_sin_imp": 18181800,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2055-1600x1200-1.jpg",
@@ -4061,7 +4189,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/07/kwid/",
    "publicado": "2026-10-07T16:41:37",
-   "modificado": "2026-11-12T10:37:39",
+   "modificado": "2026-11-16T10:59:05",
    "agencia": "maipu",
    "alta": "2026-10-07T16:41:37",
    "guia": {
@@ -4321,104 +4449,6 @@
    }
   },
   {
-   "id": "maipu-180175",
-   "tipo": "auto",
-   "marca": "Volkswagen",
-   "modelo": "Amarok",
-   "version": "Dc V6 3.0L 258 Cv Tdi 4X4",
-   "anio": 2021,
-   "km": 200650,
-   "combustible": "Diésel",
-   "caja": "Automática",
-   "color": "Gris",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
-   "precio": 37000000,
-   "precio_sin_imp": 33115000,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1679-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1680-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1682-1600x1200-3.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1681-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1677-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1678-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1676-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1664-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1669-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1665-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1666-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1667-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1674-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1668-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1672-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1670-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1671-1600x1200-2.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/10/02/amarok-6/",
-   "publicado": "2026-10-02T12:57:31",
-   "modificado": "2026-10-05T09:38:49",
-   "agencia": "maipu",
-   "alta": "2026-10-02T12:57:31",
-   "guia": {
-    "min": 30925000,
-    "med": 42318000,
-    "max": 50395000,
-    "n": 11,
-    "mejor": {
-     "version": "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT 224CV",
-     "valor": 46682000,
-     "coincidencias": 3,
-     "empate": 7
-    },
-    "versiones": [
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 COMF AT 2017",
-      30925000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X2 HIGH AT 2017",
-      34849000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X4 COMF AT 2017",
-      35760000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 COMF AT 224CV",
-      38982000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 COMF AT 258CV",
-      39435000
-     ],
-     [
-      "AMAROK PICK - UP D/C 2,0 TDi 180CV 4X4 HIGH AT 2017",
-      42318000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT HIGH 258CV",
-      46560000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT 224CV",
-      46682000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT EXTREME 224CV",
-      48544000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT EXTREME 258CV",
-      48638000
-     ],
-     [
-      "AMAROK PICK - UP D/C 3,0 TDi V6 4X4 8AT BLACK STYLE 258CV",
-      50395000
-     ]
-    ]
-   }
-  },
-  {
    "id": "maipu-179758",
    "tipo": "auto",
    "marca": "Fiat",
@@ -4430,8 +4460,8 @@
    "caja": "Manual",
    "color": "Rojo",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 12000000,
-   "precio_sin_imp": 9480000,
+   "precio": 9900000,
+   "precio_sin_imp": 8181800,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1592-1600x1200-1.jpg",
@@ -4453,7 +4483,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/10/01/siena-2/",
    "publicado": "2026-10-01T16:24:12",
-   "modificado": "2026-10-05T09:56:50",
+   "modificado": "2026-11-16T09:49:13",
    "agencia": "maipu",
    "alta": "2026-10-01T16:24:12",
    "guia": {
@@ -4515,8 +4545,8 @@
    "caja": "Manual",
    "color": "Blanco",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Duplicado de llave",
-   "precio": 17200000,
-   "precio_sin_imp": 13588000,
+   "precio": 16500000,
+   "precio_sin_imp": 13636300,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1524-1600x1200-1.jpg",
@@ -4539,7 +4569,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/09/30/suran-2/",
    "publicado": "2026-09-30T17:40:40",
-   "modificado": "2026-10-01T11:37:55",
+   "modificado": "2026-11-16T11:06:51",
    "agencia": "maipu",
    "alta": "2026-09-30T17:40:40",
    "guia": {
@@ -4609,8 +4639,8 @@
    "caja": "Automática",
    "color": "Blanco",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
-   "precio": 28500000,
-   "precio_sin_imp": 23553720,
+   "precio": 27350000,
+   "precio_sin_imp": 22603300,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1508-1600x1200-1.jpg",
@@ -4633,7 +4663,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/09/30/duster/",
    "publicado": "2026-09-30T16:58:06",
-   "modificado": "2026-11-05T10:03:19",
+   "modificado": "2026-11-16T10:39:00",
    "agencia": "maipu",
    "alta": "2026-09-30T16:58:06",
    "guia": {
@@ -4756,8 +4786,8 @@
    "caja": "Automática",
    "color": "Rojo",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 30500000,
-   "precio_sin_imp": 24095000,
+   "precio": 29500000,
+   "precio_sin_imp": 24380165,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1298-1600x1200-1.jpg",
@@ -4779,7 +4809,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/09/28/sentra/",
    "publicado": "2026-09-28T15:49:32",
-   "modificado": "2026-09-28T15:56:08",
+   "modificado": "2026-11-16T10:17:18",
    "agencia": "maipu",
    "alta": "2026-09-28T15:49:32",
    "guia": {
@@ -4879,8 +4909,8 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 17200000,
-   "precio_sin_imp": 13588000,
+   "precio": 13500000,
+   "precio_sin_imp": 11157000,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1094-1600x1200-1.jpg",
@@ -4903,7 +4933,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/09/24/ka-7/",
    "publicado": "2026-09-24T11:29:19",
-   "modificado": "2026-09-24T11:35:38",
+   "modificado": "2026-11-16T09:54:19",
    "agencia": "maipu",
    "alta": "2026-09-24T11:29:19",
    "guia": {
@@ -5117,8 +5147,8 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
-   "precio": 47000000,
-   "precio_sin_imp": 38843000,
+   "precio": 45000000,
+   "precio_sin_imp": 37190000,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0257-1600x1200-1.jpg",
@@ -5141,7 +5171,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/09/10/vento-2/",
    "publicado": "2026-09-10T16:51:03",
-   "modificado": "2026-10-07T12:51:26",
+   "modificado": "2026-11-16T11:05:12",
    "agencia": "maipu",
    "alta": "2026-09-10T16:51:03",
    "guia": {
@@ -5222,76 +5252,6 @@
    }
   },
   {
-   "id": "maipu-177100",
-   "tipo": "auto",
-   "marca": "Volkswagen",
-   "modelo": "Nivus",
-   "version": "Outfit 200 Tsi G1",
-   "anio": 2026,
-   "km": 1805,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
-   "precio": 41000000,
-   "precio_sin_imp": 33884300,
-   "moneda": "ARS",
-   "fotos": [
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4469-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4470-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4472-1600x1200-2.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4473-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4468-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4471-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4467-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4463-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4461-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4457-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4458-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4459-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4464-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4460-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4466-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4462-1600x1200-1.jpg",
-    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4465-1600x1200-1.jpg"
-   ],
-   "url": "https://maipuusados.com.ar/2026/09/08/nivus-7/",
-   "publicado": "2026-09-08T11:57:49",
-   "modificado": "2026-09-08T12:08:43",
-   "agencia": "maipu",
-   "alta": "2026-09-08T11:57:49",
-   "guia": {
-    "min": 48343000,
-    "med": 55227000,
-    "max": 56496000,
-    "n": 4,
-    "mejor": {
-     "version": "NIVUS 5P 1,0 TSI 200 6AT OUTFIT 2025",
-     "valor": 56496000,
-     "coincidencias": 3,
-     "empate": 1
-    },
-    "versiones": [
-     [
-      "NIVUS 5P 1,0 TSI 200 6AT TRENDLINE 2025",
-      48343000
-     ],
-     [
-      "NIVUS 5P 1,0 TSI 200 6AT COMFORTLINE 2025",
-      51147000
-     ],
-     [
-      "NIVUS 5P 1,0 TSI 200 6AT HIGHLINE 2025",
-      55227000
-     ],
-     [
-      "NIVUS 5P 1,0 TSI 200 6AT OUTFIT 2025",
-      56496000
-     ]
-    ]
-   }
-  },
-  {
    "id": "maipu-176960",
    "tipo": "auto",
    "marca": "Ford",
@@ -5303,8 +5263,8 @@
    "caja": "Automática",
    "color": "Gris",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
-   "precio": 21000000,
-   "precio_sin_imp": 17355400,
+   "precio": 20500000,
+   "precio_sin_imp": 16942150,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4364-1600x1200-1.jpg",
@@ -5327,7 +5287,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/09/07/focus-2/",
    "publicado": "2026-09-07T09:38:47",
-   "modificado": "2026-10-07T12:52:22",
+   "modificado": "2026-11-16T09:51:42",
    "agencia": "maipu",
    "alta": "2026-09-07T09:38:47",
    "guia": {
@@ -5381,8 +5341,8 @@
    "caja": "Automática",
    "color": "Plata",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 78000000,
-   "precio_sin_imp": 61620000,
+   "precio": 73500000,
+   "precio_sin_imp": 60743800,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4074-1600x1200-1.jpg",
@@ -5403,7 +5363,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/09/02/vito/",
    "publicado": "2026-09-02T15:38:46",
-   "modificado": "2026-09-02T15:47:21",
+   "modificado": "2026-11-16T10:15:01",
    "agencia": "maipu",
    "alta": "2026-09-02T15:38:46",
    "guia": {
@@ -5445,8 +5405,8 @@
    "caja": "Manual",
    "color": "Gris",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 20000000,
-   "precio_sin_imp": 16528900,
+   "precio": 19500000,
+   "precio_sin_imp": 16115700,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3372-1600x1200-1.jpg",
@@ -5469,7 +5429,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/08/21/kwid-3/",
    "publicado": "2026-08-21T16:27:06",
-   "modificado": "2026-10-07T14:35:25",
+   "modificado": "2026-11-16T10:20:17",
    "agencia": "maipu",
    "alta": "2026-08-21T16:27:06",
    "guia": {
@@ -5685,8 +5645,8 @@
    "caja": "Automática",
    "color": "Plata",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": 27000000,
-   "precio_sin_imp": 22314050,
+   "precio": 26500000,
+   "precio_sin_imp": 21900800,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1027-1600x1200-1.jpg",
@@ -5709,7 +5669,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/07/13/virtus/",
    "publicado": "2026-07-13T09:22:44",
-   "modificado": "2026-10-07T12:44:45",
+   "modificado": "2026-11-16T11:01:16",
    "agencia": "maipu",
    "alta": "2026-07-13T09:22:44",
    "guia": {
@@ -5766,7 +5726,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar unidades-test-drive Sonic 2026 Automatica 4090 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Onix 2025 Manual 4940 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Duster 2023 Automática 79970 28500000 Precio sugerido al público 23553720 Precio sin impuestos nacionales + Precio a confirmar destacados Argo 2026 Automatica 9845 31000000 Precio sugerido al público 24490000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Onix 2026 Manual 6455 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Amarok 2017 Manual 161775 25000000 Precio sugerido al público 22375000 Precio sin impuestos nacionales + Precio a confirmar destacados Saveiro 2024 Manual 33465 27000000 Precio sugerido al público 24165000 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2023 Manual 75275 23230000 Precio sugerido al público 18351700 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -5838,7 +5798,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar unidades-test-drive Sonic 2026 Automatica 4090 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Onix 2025 Manual 4940 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Duster 2023 Automática 79970 28500000 Precio sugerido al público 23553720 Precio sin impuestos nacionales + Precio a confirmar destacados Argo 2026 Automatica 9845 31000000 Precio sugerido al público 24490000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Onix 2026 Manual 6455 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Amarok 2017 Manual 161775 25000000 Precio sugerido al público 22375000 Precio sin impuestos nacionales + Precio a confirmar destacados Saveiro 2024 Manual 33465 27000000 Precio sugerido al público 24165000 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2023 Manual 75275 23230000 Precio sugerido al público 18351700 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6104,7 +6064,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar unidades-test-drive Sonic 2026 Automatica 4090 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Onix 2025 Manual 4940 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Duster 2023 Automática 79970 28500000 Precio sugerido al público 23553720 Precio sin impuestos nacionales + Precio a confirmar destacados Argo 2026 Automatica 9845 31000000 Precio sugerido al público 24490000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Onix 2026 Manual 6455 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Amarok 2017 Manual 161775 25000000 Precio sugerido al público 22375000 Precio sin impuestos nacionales + Precio a confirmar destacados Saveiro 2024 Manual 33465 27000000 Precio sugerido al público 24165000 Precio sin impuestos nacionales + Precio a confirmar destacados Etios 2023 Manual 75275 23230000 Precio sugerido al público 18351700 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",
@@ -6329,6 +6289,136 @@
      [
       "QQ 5P 1,0 COMFORT SECURITY (LN)",
       10539000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "autocity-0ac65d4a-8c43-4c70-af4e-4a433c8784ac",
+   "tipo": "auto",
+   "marca": "Volkswagen",
+   "modelo": "Up!",
+   "version": "1.0 Move 3p L14",
+   "anio": 2017,
+   "km": 81300,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "",
+   "precio": 15700000,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794407634066.IMG_1126.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794407635467.IMG_1127.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794407638241.IMG_1130.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794407640920.IMG_1133.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794407644009.IMG_1134.jpeg",
+    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794407647197.IMG_1135.jpeg"
+   ],
+   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-up/1-0-move-3p-l14/",
+   "sucursal": "Córdoba",
+   "provincia": "Córdoba",
+   "oportunidad": false,
+   "publicado": null,
+   "modificado": null,
+   "agencia": "autocity",
+   "alta": "2026-11-16T20:40:05.691Z",
+   "guia": {
+    "min": 10894000,
+    "med": 12378000,
+    "max": 15510000,
+    "n": 21,
+    "mejor": {
+     "version": "UP! 3P 1,0 MOVE 2017",
+     "valor": 12078000,
+     "coincidencias": 3,
+     "empate": 2
+    },
+    "versiones": [
+     [
+      "UP! 3P 1,0 TAKE A/C",
+      10894000
+     ],
+     [
+      "UP! 3P 1,0 MOVE",
+      11112000
+     ],
+     [
+      "UP! 5P 1,0 TAKE A/C",
+      11439000
+     ],
+     [
+      "UP! 3P 1,0 HIGH",
+      11445000
+     ],
+     [
+      "UP! 5P 1,0 MOVE",
+      11668000
+     ],
+     [
+      "UP! 5P 1,0 MOVE I MOTION",
+      11668000
+     ],
+     [
+      "UP! 3P 1,0 TAKE A/C 2017",
+      11841000
+     ],
+     [
+      "UP! 5P 1,0 HIGH",
+      12018000
+     ],
+     [
+      "UP! 5P 1,0 HIGH I MOTION",
+      12018000
+     ],
+     [
+      "UP! 3P 1,0 MOVE 2017",
+      12078000
+     ],
+     [
+      "UP! 5P 1,0 BLACK",
+      12378000
+     ],
+     [
+      "UP! 5P 1,0 WHITE",
+      12378000
+     ],
+     [
+      "UP! 5P 1,0 TAKE A/C 2017",
+      12433000
+     ],
+     [
+      "UP! 3P 1,0 HIGH 2017",
+      12441000
+     ],
+     [
+      "UP! 5P 1,0 CROSS",
+      12626000
+     ],
+     [
+      "UP! 5P 1,0 MOVE 2017",
+      12682000
+     ],
+     [
+      "UP! 5P 1,0 MOVE I MOTION 2017",
+      12682000
+     ],
+     [
+      "UP! 5P 1,0 HIGH 2017",
+      13063000
+     ],
+     [
+      "UP! 5P 1,0 HIGH I MOTION 2017",
+      13063000
+     ],
+     [
+      "UP! 5P 1,0 CROSS 2017",
+      13398000
+     ],
+     [
+      "UP! 5P 1,0 TSi PEPPER 2017",
+      15510000
      ]
     ]
    }
@@ -19021,102 +19111,6 @@
      [
       "COMPASS 5P 2,0 TD AT9 TRAILHAWK 4X4",
       35286000
-     ]
-    ]
-   }
-  },
-  {
-   "id": "autocity-58dd8928-3316-49de-9ff9-265bd2b54bfc",
-   "tipo": "auto",
-   "marca": "Volkswagen",
-   "modelo": "T-cross",
-   "version": "1.0 200 Tsi Comfortline At L25",
-   "anio": 2025,
-   "km": 18700,
-   "combustible": "Nafta",
-   "caja": "Automática",
-   "color": "Gris Plata",
-   "equipamiento": "",
-   "precio": 41900000,
-   "precio_sin_imp": null,
-   "moneda": "ARS",
-   "fotos": [
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794496361067.IMG_1548.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794496361779.IMG_1549.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794496362134.IMG_1559.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794496362364.IMG_1562.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794496363303.IMG_1555.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794496364220.IMG_1560.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794496364592.IMG_1558.jpeg",
-    "https://cdn.asofix.com/companies/13d2ec10-5ef5-11ea-8eed-536328ae2266/products/th-1794496365642.IMG_1556.jpeg"
-   ],
-   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-t-cross/1-0-200-tsi-comfortline-at-l25-2/",
-   "sucursal": "Córdoba",
-   "provincia": "Córdoba",
-   "oportunidad": false,
-   "publicado": null,
-   "modificado": null,
-   "agencia": "autocity",
-   "alta": "2026-11-13T18:00:12.161Z",
-   "guia": {
-    "min": 28761000,
-    "med": 32239000,
-    "max": 34947000,
-    "n": 12,
-    "mejor": {
-     "version": "T-CROSS 5P 1,0 TSI 200 COMFORTLINE 6AT + PACK SAFE 2025",
-     "valor": 31300000,
-     "coincidencias": 4,
-     "empate": 3
-    },
-    "versiones": [
-     [
-      "T-CROSS 5P 1,0 TSI 200 TRENDILINE 6AT",
-      28761000
-     ],
-     [
-      "T-CROSS 5P 1,0 TSI 200 TRENDILINE 6AT + PACK SAFE",
-      29095000
-     ],
-     [
-      "T-CROSS 5P 1,0 TSI 200 TRENDILINE 6AT 2026",
-      29624000
-     ],
-     [
-      "T-CROSS 5P 1,0 TSI 200 COMFORTLINE 6AT 2025",
-      30966000
-     ],
-     [
-      "T-CROSS 5P 1,0 TSI 200 COMFORTLINE 6AT + PACK SAFE 2025",
-      31300000
-     ],
-     [
-      "T-CROSS 5P 1,0 TSI 200 COMFORTLINE 6AT 2026",
-      31895000
-     ],
-     [
-      "T-CROSS 5P 1,0 TSI 200 EXTREME 6AT",
-      32239000
-     ],
-     [
-      "T-CROSS 5P 1,0 TSI 200 HIGHLINE 6AT 2025",
-      33929000
-     ],
-     [
-      "T-CROSS 5P 1,0 TSI 200 HIGHLINE 6AT + PACK SAFE 2025",
-      34263000
-     ],
-     [
-      "T-CROSS 5P 1,0 TSI 200 HIGHLINE 6AT BITONO 2025",
-      34476000
-     ],
-     [
-      "T-CROSS 5P 1,0 TSI 200 HIGHLINE 6AT BITONO + PACK SAFE 2025",
-      34809000
-     ],
-     [
-      "T-CROSS 5P 1,0 TSI 200 HIGHLINE 6AT 2026",
-      34947000
      ]
     ]
    }

@@ -1,6 +1,227 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "nuevo",
+   "id": "maipu-183864",
+   "auto": "Chevrolet Onix 2024",
+   "precio": 25500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "nuevo",
+   "id": "maipu-183840",
+   "auto": "Chevrolet Cruze 2024",
+   "precio": 28500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "nuevo",
+   "id": "maipu-183816",
+   "auto": "Chevrolet Onix 2026",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-182021",
+   "auto": "Renault Captur 2017",
+   "antes": 21000000,
+   "precio": 19250000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-181712",
+   "auto": "Volkswagen Amarok 2024",
+   "antes": 45000000,
+   "precio": 44000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-181468",
+   "auto": "Ford Ka 2018",
+   "antes": 14000000,
+   "precio": 13000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-181115",
+   "auto": "Volkswagen Tiguan 2018",
+   "antes": 37000000,
+   "precio": 33000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-181018",
+   "auto": "Renault Sandero 2021",
+   "antes": 20500000,
+   "precio": 19500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-180886",
+   "auto": "Chevrolet Onix 2022",
+   "antes": 23500000,
+   "precio": 24000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-180748",
+   "auto": "Renault Kwid 2026",
+   "antes": 21950000,
+   "precio": 22000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-179758",
+   "auto": "Fiat Siena 2014",
+   "antes": 12000000,
+   "precio": 9900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-179686",
+   "auto": "Volkswagen Suran 2017",
+   "antes": 17200000,
+   "precio": 16500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-179635",
+   "auto": "Renault Duster 2023",
+   "antes": 28500000,
+   "precio": 27350000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-179367",
+   "auto": "Nissan Sentra 2022",
+   "antes": 30500000,
+   "precio": 29500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-179089",
+   "auto": "Ford Ka 2020",
+   "antes": 17200000,
+   "precio": 13500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-177678",
+   "auto": "Volkswagen Vento 2024",
+   "antes": 47000000,
+   "precio": 45000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-176960",
+   "auto": "Ford Focus 2019",
+   "antes": 21000000,
+   "precio": 20500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-176523",
+   "auto": "Mercedes Benz Vito 2025",
+   "antes": 78000000,
+   "precio": 73500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-175563",
+   "auto": "Renault Kwid 2025",
+   "antes": 20000000,
+   "precio": 19500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "precio",
+   "id": "maipu-171586",
+   "auto": "Volkswagen Virtus 2021",
+   "antes": 27000000,
+   "precio": 26500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "baja",
+   "id": "maipu-183553",
+   "auto": "Nissan Kicks 2021",
+   "precio": 27500000,
+   "moneda": "ARS",
+   "dias": 3
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "baja",
+   "id": "maipu-180175",
+   "auto": "Volkswagen Amarok 2021",
+   "precio": 37000000,
+   "moneda": "ARS",
+   "dias": 45
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "baja",
+   "id": "maipu-177100",
+   "auto": "Volkswagen Nivus 2026",
+   "precio": 41000000,
+   "moneda": "ARS",
+   "dias": 69
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "nuevo",
+   "id": "autocity-0ac65d4a-8c43-4c70-af4e-4a433c8784ac",
+   "auto": "Volkswagen Up! 2017",
+   "precio": 15700000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-16T20:40:05.691Z",
+   "tipo": "baja",
+   "id": "autocity-58dd8928-3316-49de-9ff9-265bd2b54bfc",
+   "auto": "Volkswagen T-cross 2025",
+   "precio": 41900000,
+   "moneda": "ARS",
+   "dias": 3
+  },
+  {
    "fecha": "2026-11-15T17:22:58.112Z",
    "tipo": "baja",
    "id": "autocity-066284c5-31ad-4e20-9945-12e2863f8372",
