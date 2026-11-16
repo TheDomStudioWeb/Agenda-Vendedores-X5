@@ -8,7 +8,7 @@ Manual interno (también para Claudio). Herramienta del Hub para el personal que
 - **La hora la pone el servidor** (Google), no el teléfono: aunque alguien cambie la hora del celular, se registra la real.
 - Se pueden marcar varios turnos en el mismo día (por ejemplo, mañana y tarde).
 - Abajo se ve la semana (lunes a domingo): cada día con sus turnos, las horas de cada uno, el total de horas de la semana y los días trabajados. Con las flechas se ven semanas anteriores.
-- **Exportar semana en PDF**: hoja A4 con la marca X5, día por día (ingreso, salida, horas y observaciones), total en horas y minutos y en horas con decimales (por ejemplo «22:33 h (22,55 horas)»), lugar para la firma del empleado y del responsable. En el teléfono se abre «Compartir» para mandarlo por WhatsApp o mail.
+- **Exportar semana en PDF**: primero aparecen dos recuadros para **firmar con el dedo en el teléfono**: la persona que informa las horas y el responsable (con su nombre y aclaración). Las firmas pasan al PDF con la fecha y hora en que se firmaron. Si alguien no está, se deja vacío y queda la línea para firmar en papel. El PDF es una hoja A4 con la marca X5, día por día (ingreso, salida, horas y observaciones), total en horas y minutos y en horas con decimales (por ejemplo «22:33 h (22,55 horas)»). En el teléfono se abre «Compartir» para mandarlo por WhatsApp o mail.
 
 ## Quién ve qué
 - **Rol «Personal»** (por ejemplo, la persona de limpieza): al entrar al Hub solo ve la tarjeta de Ingreso y egreso. No entra al CRM, a contratos ni al resto, y no aparece en las listas de vendedores ni de responsables.
@@ -33,7 +33,7 @@ Manual interno (también para Claudio). Herramienta del Hub para el personal que
 
 ## Frases para Claudio
 - «Para marcar la llegada: Hub → Ingreso y egreso → Ingreso → Confirmar.»
-- «Para mandar las horas de la semana: Ingreso y egreso → Exportar semana en PDF → elegí WhatsApp.»
+- «Para mandar las horas de la semana: Ingreso y egreso → Exportar semana en PDF → firman los dos en el teléfono → Armar PDF → elegí WhatsApp.»
 - «Si se olvidó de marcar la salida, gerencia la corrige desde Ingreso y egreso: tocá Corregir en el turno y escribí el motivo.»
 - «La hora la pone el sistema, no el teléfono.»
 

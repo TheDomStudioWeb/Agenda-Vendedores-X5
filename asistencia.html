@@ -70,10 +70,16 @@
   dialog::backdrop { background: rgba(0,0,0,.6); }
   .dx-h { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--line); }
   .dx-h h2 { margin: 0; font-size: 1.05rem; }
-  .dx-b { padding: 14px 16px 18px; }
+  .dx-b { padding: 14px 16px 18px; overflow: auto; max-height: calc(88vh - 60px); }
   .nota { color: var(--muted); font-size: .78rem; }
   .err { background: rgba(255,122,133,.12); color: var(--bad); border-radius: 10px; padding: 9px 11px; font-size: .85rem; margin: 8px 0; }
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sig { margin-bottom: 14px; }
+  .sig-h { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .sig-h b { font-size: .86rem; }
+  .sig-wrap { position: relative; border-radius: 14px; overflow: hidden; border: 1.5px dashed var(--line-strong); background: #fff; }
+  .sig-wrap canvas { display: block; width: 100%; height: 150px; touch-action: none; }
+  .sig-wrap span { position: absolute; left: 0; right: 0; bottom: 30px; text-align: center; color: #b5bcc6; font-size: .74rem; pointer-events: none; border-top: 1px solid #e3e7ec; margin: 0 24px; padding-top: 4px; }
   .foot { text-align: center; color: var(--faint); font-size: .7rem; margin: 26px 0 6px; line-height: 1.6; }
 </style>
 </head>
@@ -294,7 +300,8 @@ $('b-man').onclick = () => {
 
 /* ── PDF de la semana (para quien cuenta las horas) ── */
 const cargarScript = (src, glob) => new Promise((res, rej) => { if (window[glob]) return res(); const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
-async function pdfSemana() {
+async function pdfSemana(firmas) {
+  firmas = firmas || {};
   await cargarScript('libs/pdf-lib.min.js', 'PDFLib');
   const { PDFDocument, StandardFonts, rgb } = PDFLib;
   const doc = await PDFDocument.create();
@@ -351,7 +358,16 @@ async function pdfSemana() {
   txt('Las horas de ingreso y salida las registró el servidor del Hub en el momento de marcar. Las correcciones indican quién las hizo y por qué.', M, y, { size: 7.5, color: GRIS });
   // Firmas
   const yf = 150;
-  [[M, 'Firma del empleado'], [W / 2 + 20, 'Firma y aclaración del responsable']].forEach(([x, t]) => { pg.drawLine({ start: { x, y: yf }, end: { x: x + (W / 2 - M - 20), y: yf }, thickness: .8, color: GRIS }); txt(t, x, yf - 14, { size: 8.5, color: GRIS }); });
+  const anchoF = W / 2 - M - 20;
+  for (const [x, t, fi] of [[M, 'Firma de quien informa las horas', firmas.empleado], [W / 2 + 20, 'Firma del responsable', firmas.responsable]]) {
+    if (fi && fi.png) {
+      try { const im = await doc.embedPng(fi.png); const h = Math.min(64, anchoF * .85 * im.height / im.width), w = im.width / im.height * h; pg.drawImage(im, { x: x + (anchoF - w) / 2, y: yf + 2, width: w, height: h }); } catch (e) {}
+    }
+    pg.drawLine({ start: { x, y: yf }, end: { x: x + anchoF, y: yf }, thickness: .8, color: GRIS });
+    txt(t, x, yf - 14, { size: 8.5, color: GRIS });
+    if (fi && fi.nombre) txt(fi.nombre, x, yf - 27, { bold: true, size: 9.5 });
+    if (fi && fi.png) txt('Firmado en el teléfono el ' + new Date().toLocaleString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }), x, yf - 39, { size: 7, color: GRIS });
+  }
   // Pie
   const gen = new Date().toLocaleString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
   txt('Generado el ' + gen + ' por ' + user.nombre + ' · Hub Comercial X5 Cuyo', M, 70, { size: 7.5, color: GRIS });
@@ -360,15 +376,59 @@ async function pdfSemana() {
   const bytes = await doc.save();
   return new Blob([bytes], { type: 'application/pdf' });
 }
-$('b-pdf').onclick = async (ev) => {
-  const b = ev.target; b.disabled = true; const t = b.textContent; b.textContent = 'Armando PDF…';
+/* ── Firmas en el teléfono (como en X5 Check) ── */
+function padFirma(cv) {
+  const g = cv.getContext('2d'); let firmado = false, dib = false, last = null;
+  const r = cv.getBoundingClientRect(), dpr = Math.max(2, window.devicePixelRatio || 1);
+  cv.width = r.width * dpr; cv.height = r.height * dpr;
+  g.setTransform(dpr, 0, 0, dpr, 0, 0); g.lineWidth = 2.4; g.lineCap = 'round'; g.lineJoin = 'round'; g.strokeStyle = '#0d1b2a';
+  const pos = (e) => { const b = cv.getBoundingClientRect(); return [e.clientX - b.left, e.clientY - b.top]; };
+  cv.addEventListener('pointerdown', (e) => { cv.setPointerCapture(e.pointerId); dib = true; last = pos(e); firmado = true; e.preventDefault(); });
+  cv.addEventListener('pointermove', (e) => { if (!dib) return; const p = pos(e), mid = [(last[0] + p[0]) / 2, (last[1] + p[1]) / 2]; g.beginPath(); g.moveTo(last[0], last[1]); g.quadraticCurveTo(last[0], last[1], mid[0], mid[1]); g.lineTo(p[0], p[1]); g.stroke(); last = p; });
+  ['pointerup', 'pointercancel'].forEach(t => cv.addEventListener(t, () => { dib = false; }));
+  return {
+    firmado: () => firmado,
+    borrar: () => { g.clearRect(0, 0, cv.width, cv.height); firmado = false; },
+    png: async () => {
+      if (!firmado) return null;
+      // recorta al trazo para que la firma salga grande en el PDF
+      const d = g.getImageData(0, 0, cv.width, cv.height).data; let x0 = cv.width, y0 = cv.height, x1 = 0, y1 = 0;
+      for (let y = 0; y < cv.height; y += 2) for (let x = 0; x < cv.width; x += 2) if (d[(y * cv.width + x) * 4 + 3] > 20) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+      if (x1 <= x0) return null;
+      const pad = 12, c2 = document.createElement('canvas'); c2.width = x1 - x0 + pad * 2; c2.height = y1 - y0 + pad * 2;
+      c2.getContext('2d').drawImage(cv, x0 - pad, y0 - pad, c2.width, c2.height, 0, 0, c2.width, c2.height);
+      const b = await new Promise(res => c2.toBlob(res, 'image/png')); return new Uint8Array(await b.arrayBuffer());
+    }
+  };
+}
+$('b-pdf').onclick = () => {
+  const resp = gerente() ? user.nombre : '';
+  dialogo('Firmas del PDF', `<p class="nota" style="margin-top:0">Firmen con el dedo. Si alguien no está, dejá su recuadro vacío y queda la línea para firmar en papel.</p>
+    <div class="sig"><div class="sig-h"><b>Quien informa las horas</b><button class="btn btn-ghost btn-sm" id="f1-b" style="width:auto">Borrar</button></div>
+      <div class="field" style="margin-bottom:6px"><input id="f1-n" value="${esc(D.nombre)}" maxlength="60" aria-label="Nombre de quien informa"></div>
+      <div class="sig-wrap"><canvas id="f1"></canvas><span>Firmá dentro del recuadro</span></div></div>
+    <div class="sig"><div class="sig-h"><b>Responsable</b><button class="btn btn-ghost btn-sm" id="f2-b" style="width:auto">Borrar</button></div>
+      <div class="field" style="margin-bottom:6px"><input id="f2-n" value="${esc(resp)}" maxlength="60" placeholder="Nombre y aclaración del responsable" aria-label="Nombre del responsable"></div>
+      <div class="sig-wrap"><canvas id="f2"></canvas><span>Firmá dentro del recuadro</span></div></div>
+    <button class="btn" id="f-ok">Armar PDF</button>`);
+  const p1 = padFirma($('f1')), p2 = padFirma($('f2'));
+  $('f1-b').onclick = () => p1.borrar(); $('f2-b').onclick = () => p2.borrar();
+  $('f-ok').onclick = async (ev) => {
+    const b = ev.target; b.disabled = true; b.textContent = 'Armando PDF…';
+    const firmas = { empleado: { nombre: $('f1-n').value.trim(), png: await p1.png() }, responsable: { nombre: $('f2-n').value.trim(), png: await p2.png() } };
+    dlg.close();
+    await exportar(firmas);
+  };
+};
+async function exportar(firmas) {
+  const b = $('b-pdf'); b.disabled = true; const t = b.textContent; b.textContent = 'Armando PDF…';
   try {
-    const blob = await pdfSemana();
+    const blob = await pdfSemana(firmas);
     const nombre = 'Asistencia ' + D.nombre + ' ' + D.desde + '.pdf';
     await X5.compartirArchivo(blob, nombre, 'Registro de asistencia de ' + D.nombre + ', semana del ' + X5.fechaLarga(D.desde) + ' al ' + X5.fechaLarga(D.hasta));
   } catch (e) { X5.toast('No se pudo armar el PDF.', 'bad'); console.error(e); }
   b.disabled = false; b.textContent = t;
-};
+}
 
 prepararLogin();
 })();
