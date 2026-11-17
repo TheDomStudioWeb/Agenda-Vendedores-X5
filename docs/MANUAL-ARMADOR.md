@@ -24,6 +24,12 @@ Arriba hay un selector **Formulario / Guiado**. Es opcional: cada asesor usa el 
 | Entrega programada (plan especial) | contrato desde $3.500.000, con capital de $10 M o más | 5: el 1.º como seña y los 4 siguientes juntos | 20 a 25 días | autos y camionetas |
 
 - Las motos solo van a 10 adelantos.
+- **Reglas de motos (el catálogo todavía no está cargado, se razona con valores de referencia):** 110 cc: $2.000.000 a $3.500.000 · 125 cc: $3.000.000 a $4.500.000 · 150 cc: $3.000.000 a $4.000.000 · 200 cc: desde $4.500.000. La moto más económica arranca en $2.000.000.
+  - El retiro es **siempre desde la cuota 10**.
+  - Para retirar hay que integrar el **60% del valor de la moto**; se financia hasta el **40%** (ejemplo: moto de $1.000.000 → mínimo $600.000, se financian $400.000).
+  - **Mínimo absoluto para negociar: $2.000.000 entre cuotas y capital**, sin contar gastos de admisión. Si con 10 cuotas no llega, la herramienta calcula desde qué cuota llega.
+  - Los gastos de admisión se descuentan por dentro y no se muestran; al cliente solo se le informa el monto final y la cuota de retiro.
+  - Los valores (60% y $2.000.000) se editan en «Parámetros de los planes».
 - **Vector de cuotas:** solo se ofrecen los valores de la lista de precios: $90.000, $130.000, $200.000, $250.000, $300.000, $350.000, $400.000, $450.000, $500.000, $550.000, $600.000 y $700.000. Se toma el valor más alto que entra en lo que el cliente puede pagar. Los pagos 1 y 2 llevan el sellado sumado (por ejemplo, cuota de $300.000 + sellado de $55.000 = $355.000) y la herramienta lo muestra. El vector se edita en «Parámetros de los planes» y se puede pegar desde la lista de precios.
 - **Lo que define 5 o 10 adelantos es el capital**, no el valor de la cuota. Con capital de más de $6 M y cuota de $350.000 o más, puede ir al anexo de cuota 5. Sin ese capital va a 10 adelantos, aunque pague $700.000.
 - Se hace **un solo contrato** del valor que el cliente puede pagar (por ejemplo, uno de $400.000). Solo se hacen **2 contratos o más** cuando lo que paga supera la cuota máxima del vector ($700.000): por ejemplo, $1.000.000 por mes son 2 contratos de $500.000.
