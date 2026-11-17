@@ -28,6 +28,14 @@ with pdfplumber.open(pdf_path) as pdf:
                     if mm: mes = mm.group(2) + '-' + str(['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'].index(mm.group(1)) + 1).zfill(2)
                 break
         if not cab: continue
+        # Tipografía de las versiones en esta página (desde nov-2026 los nombres de fuente ya no dicen «Italic»: el modelo es la otra fuente)
+        fuentes = {}
+        for y, l in lineas.items():
+            if y <= y_cab: continue
+            l.sort(key=lambda w: w['x0'])
+            t0 = [w for w in l if w['x0'] < 300]
+            if t0 and any(w['x0'] >= 300 and NUM.match(w['text']) for w in l): fuentes[t0[0]['fontname']] = fuentes.get(t0[0]['fontname'], 0) + 1
+        f_ver = max(fuentes, key=fuentes.get) if fuentes else None
         for y, l in sorted(lineas.items()):
             if y <= y_cab: continue
             l.sort(key=lambda w: w['x0'])
@@ -36,7 +44,7 @@ with pdfplumber.open(pdf_path) as pdf:
             nombre = ' '.join(w['text'] for w in texto)
             if not nombre: continue
             if not nums:
-                if 'Italic' in texto[0]['fontname']: modelo = nombre
+                if 'Italic' in texto[0]['fontname'] or (f_ver and texto[0]['fontname'] != f_ver): modelo = nombre
                 elif not re.search(r'\d', nombre): marca, modelo = nombre, None
                 continue
             valores = {}
