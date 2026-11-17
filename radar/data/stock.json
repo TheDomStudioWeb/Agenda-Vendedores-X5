@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-17T18:24:22.184Z",
+ "actualizado": "2026-11-17T19:19:40.986Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-11"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 83,
-   "revisado": "2026-11-17T18:24:22.184Z",
-   "actualizado": "2026-11-17T18:24:22.184Z"
+   "autos": 85,
+   "revisado": "2026-11-17T19:19:40.986Z",
+   "actualizado": "2026-11-17T19:19:40.986Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,131 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 242,
-   "revisado": "2026-11-17T18:24:22.184Z",
-   "actualizado": "2026-11-17T18:24:22.184Z"
+   "revisado": "2026-11-17T19:19:40.986Z",
+   "actualizado": "2026-11-17T19:19:40.986Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-183988",
+   "tipo": "auto",
+   "marca": "Fiat",
+   "modelo": "Pulse",
+   "version": "Drive 1.3 Mt5",
+   "anio": 2022,
+   "km": 153440,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Gris",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
+   "precio": 19000000,
+   "precio_sin_imp": 15010000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4358-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4360-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4362-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4361-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4356-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4357-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4355-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4351-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4349-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4345-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4346-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4347-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4352-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4348-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4354-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4350-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4353-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/11/17/pulse-2/",
+   "publicado": "2026-11-17T15:42:18",
+   "modificado": "2026-11-17T16:02:55",
+   "agencia": "maipu",
+   "alta": "2026-11-17T19:19:40.986Z",
+   "guia": {
+    "min": 21217000,
+    "med": 21217000,
+    "max": 21217000,
+    "n": 1,
+    "mejor": {
+     "version": "PULSE 5P 1,3 DRIVE GSE MT",
+     "valor": 21217000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "PULSE 5P 1,3 DRIVE GSE MT",
+      21217000
+     ]
+    ]
+   }
+  },
+  {
+   "id": "maipu-183964",
+   "tipo": "auto",
+   "marca": "Renault",
+   "modelo": "Captur",
+   "version": "Intens 2.0",
+   "anio": 2017,
+   "km": 108090,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Rojo",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave",
+   "precio": 17500000,
+   "precio_sin_imp": 13825000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4341-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4342-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4339-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4340-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4344-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4343-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4338-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4334-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4332-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4328-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4329-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4330-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4335-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4331-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4337-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4333-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4336-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/11/17/captur-3/",
+   "publicado": "2026-11-17T15:23:06",
+   "modificado": "2026-11-17T15:39:02",
+   "agencia": "maipu",
+   "alta": "2026-11-17T19:19:40.986Z",
+   "guia": {
+    "min": 16893000,
+    "med": 17446000,
+    "max": 17446000,
+    "n": 2,
+    "mejor": {
+     "version": "CAPTUR 5P 2,0 INTENS",
+     "valor": 17446000,
+     "coincidencias": 2,
+     "empate": 1
+    },
+    "versiones": [
+     [
+      "CAPTUR 5P 2,0 ZEN",
+      16893000
+     ],
+     [
+      "CAPTUR 5P 2,0 INTENS",
+      17446000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-183940",
    "tipo": "auto",
@@ -5968,7 +6088,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar unidades-test-drive Sonic 2026 Automatica 4090 35000000 Precio sugerido al público 27650000 Precio sin impuestos nacionales + Precio a confirmar destacados Kuga 2017 Automática 64410 27780000 Precio sugerido al público 21946200 Precio sin impuestos nacionales + Precio a confirmar destacados Kardian 2024 Automática 15030 32500000 Precio sugerido al público 26675000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tiguan 2018 Automatica 113700 33000000 Precio sugerido al público 27272700 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Scrambler 2024 Manual 8795 19800000 Precio sugerido al público 16363600 Precio sin impuestos nacionales + Precio a confirmar premium Multistrada V2 S 2025 Manual 9980 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados T250 2026 Manual 555 5490000 Precio sugerido al público 4337100 Precio sin impuestos nacionales + Precio a confirmar premium Multistrada V2 S 2024 Manual 14850 Precio sugerido al público Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 56700000,
    "precio_sin_imp": 46859504,
    "moneda": "ARS",
@@ -6040,7 +6160,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar unidades-test-drive Sonic 2026 Automatica 4090 35000000 Precio sugerido al público 27650000 Precio sin impuestos nacionales + Precio a confirmar destacados Kuga 2017 Automática 64410 27780000 Precio sugerido al público 21946200 Precio sin impuestos nacionales + Precio a confirmar destacados Kardian 2024 Automática 15030 32500000 Precio sugerido al público 26675000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tiguan 2018 Automatica 113700 33000000 Precio sugerido al público 27272700 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Scrambler 2024 Manual 8795 19800000 Precio sugerido al público 16363600 Precio sin impuestos nacionales + Precio a confirmar premium Multistrada V2 S 2025 Manual 9980 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados T250 2026 Manual 555 5490000 Precio sugerido al público 4337100 Precio sin impuestos nacionales + Precio a confirmar premium Multistrada V2 S 2024 Manual 14850 Precio sugerido al público Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6306,7 +6426,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar unidades-test-drive Sonic 2026 Automatica 4090 35000000 Precio sugerido al público 27650000 Precio sin impuestos nacionales + Precio a confirmar destacados Kuga 2017 Automática 64410 27780000 Precio sugerido al público 21946200 Precio sin impuestos nacionales + Precio a confirmar destacados Kardian 2024 Automática 15030 32500000 Precio sugerido al público 26675000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Tiguan 2018 Automatica 113700 33000000 Precio sugerido al público 27272700 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Scrambler 2024 Manual 8795 19800000 Precio sugerido al público 16363600 Precio sin impuestos nacionales + Precio a confirmar premium Multistrada V2 S 2025 Manual 9980 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados T250 2026 Manual 555 5490000 Precio sugerido al público 4337100 Precio sin impuestos nacionales + Precio a confirmar premium Multistrada V2 S 2024 Manual 14850 Precio sugerido al público Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",

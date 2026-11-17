@@ -1,6 +1,22 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-17T19:19:40.986Z",
+   "tipo": "nuevo",
+   "id": "maipu-183988",
+   "auto": "Fiat Pulse 2022",
+   "precio": 19000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-17T19:19:40.986Z",
+   "tipo": "nuevo",
+   "id": "maipu-183964",
+   "auto": "Renault Captur 2017",
+   "precio": 17500000,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-11-17T18:24:22.184Z",
    "tipo": "nuevo",
    "id": "maipu-183940",
