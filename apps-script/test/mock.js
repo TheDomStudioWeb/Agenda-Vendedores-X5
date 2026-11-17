@@ -6,6 +6,7 @@ function hoja(nombre) {
     setFrozenRows() {}, deleteRow(n) { this.filas.splice(n - 1, 1); }, appendRow(f) { this.filas.push(f); },
     getRange(r, c, nr = 1, nc = 1) { const s = this; return {
       getValues: () => { const o = []; for (let i = 0; i < nr; i++) { const f = s.filas[r - 1 + i] || []; const row = []; for (let j = 0; j < nc; j++) row.push(f[c - 1 + j] === undefined ? '' : f[c - 1 + j]); o.push(row); } return o; },
+      setValue: x => { while (s.filas.length < r) s.filas.push([]); s.filas[r - 1][c - 1] = typeof x === 'string' && x[0] === "'" ? x.slice(1) : x; },
       setValues: v => { v.forEach((fila, i) => { while (s.filas.length < r + i) s.filas.push([]); const dst = s.filas[r - 1 + i]; fila.forEach((x, j) => { dst[c - 1 + j] = typeof x === 'string' && x[0] === "'" && !/^'[=+\-@]/.test(x) ? x.slice(1) : x; }); }); } }; } };
   return h;
 }
@@ -13,15 +14,15 @@ function crear(personal) {
   const libro = {}, ss = { getSheetByName: n => libro[n] || null, insertSheet: n => (libro[n] = hoja(n)) };
   libro.Personal = hoja('Personal'); libro.Personal.filas = [['nombre', 'rol', 'estado', 'reporta_a', 'clave', 'telegram']].concat(personal);
   libro['Hoja 1'] = hoja('Hoja 1'); libro['Hoja 1'].filas = [['id']]; libro.Leads = hoja('Leads'); libro.Leads.filas = [['id']]; // hojas del CRM (vacías) para probar permisos
-  const cache = {}, props = {}; let fecha = new Date('2026-10-26T15:00:00-03:00');
+  const cache = {}, props = { TELEGRAM_TOKEN: 'tok' }; let fecha = new Date('2026-10-26T15:00:00-03:00'); const enviados = [];
   const ctx = { console, Date: class extends Date { constructor(...a) { if (a.length) super(...a); else super(fecha); } },
     SpreadsheetApp: { getActiveSpreadsheet: () => ss }, LockService: { getScriptLock: () => ({ waitLock() {}, releaseLock() {} }) },
     CacheService: { getScriptCache: () => ({ get: k => cache[k] || null, put: (k, v) => { cache[k] = v; }, remove: k => { delete cache[k]; } }) },
     Session: { getScriptTimeZone: () => 'America/Argentina/Mendoza' },
-    Utilities: { base64EncodeWebSafe: x => (Array.isArray(x) || Buffer.isBuffer(x) ? Buffer.from(x) : Buffer.from(String(x))).toString('base64url'), base64DecodeWebSafe: t => Array.from(Buffer.from(String(t), 'base64url')), newBlob: x => { const b = Buffer.from(Array.isArray(x) ? x : String(x)); return { getBytes: () => Array.from(b), getDataAsString: () => b.toString() }; }, computeHmacSha256Signature: (t, k) => Array.from(require('crypto').createHmac('sha256', String(k)).update(String(t)).digest()), getUuid: () => require('crypto').randomUUID(), formatDate: (d, tz, f) => { const p = new Intl.DateTimeFormat('sv-SE', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false }).format(d); return f === 'HH:mm' ? p.slice(11) : p.slice(0, 10); } },
-    PropertiesService: { getScriptProperties: () => ({ getProperty: k => props[k] || null, setProperty(k, v) { props[k] = v; } }) }, ContentService: { MimeType: { JSON: 'json' }, createTextOutput: t => ({ texto: t, setMimeType() { return this; } }) }, ScriptApp: {}, UrlFetchApp: {} };
+    Utilities: { base64EncodeWebSafe: x => (Array.isArray(x) || Buffer.isBuffer(x) ? Buffer.from(x) : Buffer.from(String(x))).toString('base64url'), base64DecodeWebSafe: t => Array.from(Buffer.from(String(t), 'base64url')), newBlob: x => { const b = Buffer.from(Array.isArray(x) ? x : String(x)); return { getBytes: () => Array.from(b), getDataAsString: () => b.toString() }; }, computeHmacSha256Signature: (t, k) => Array.from(require('crypto').createHmac('sha256', String(k)).update(String(t)).digest()), parseDate: (t) => new Date(String(t).replace(' ', 'T') + ':00-03:00'), getUuid: () => require('crypto').randomUUID(), formatDate: (d, tz, f) => { const p = new Intl.DateTimeFormat('sv-SE', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false }).format(d); return f === 'HH:mm' ? p.slice(11) : p.slice(0, 10); } },
+    PropertiesService: { getScriptProperties: () => ({ getProperty: k => props[k] || null, setProperty(k, v) { props[k] = v; } }) }, ContentService: { MimeType: { JSON: 'json' }, createTextOutput: t => ({ texto: t, setMimeType() { return this; } }) }, ScriptApp: {}, UrlFetchApp: { fetch: (u, o) => { enviados.push(JSON.parse(o.payload || '{}')); return { getContentText: () => JSON.stringify({ ok: true, result: [] }) }; } } };
   vm.createContext(ctx);
-  vm.runInContext(fs.readFileSync(__dirname + '/../Code.gs', 'utf8') + '\n;globalThis.__c={despacharAsistencia_,minutosEntre_,lunesDe_,despacharContratos_,expandirNumeros_,doPost,listarUsuarios_,revisarPersonal};', ctx);
-  return { api: ctx.__c, libro, reloj: d => { fecha = new Date(d); }, asis: (u, body) => ctx.__c.despacharAsistencia_(body, u), llamar: (u, body) => ctx.__c.despacharContratos_(body, u), post: b => JSON.parse(ctx.__c.doPost({ postData: { contents: JSON.stringify(b) } }).texto) };
+  vm.runInContext(fs.readFileSync(__dirname + '/../Code.gs', 'utf8') + '\n;globalThis.__c={despacharAsistencia_,minutosEntre_,lunesDe_,despacharContratos_,expandirNumeros_,doPost,listarUsuarios_,revisarPersonal,revisarSeguimientosViejos_};', ctx);
+  return { api: ctx.__c, enviados, libro, reloj: d => { fecha = new Date(d); }, asis: (u, body) => ctx.__c.despacharAsistencia_(body, u), llamar: (u, body) => ctx.__c.despacharContratos_(body, u), post: b => JSON.parse(ctx.__c.doPost({ postData: { contents: JSON.stringify(b) } }).texto) };
 }
 module.exports = { crear };

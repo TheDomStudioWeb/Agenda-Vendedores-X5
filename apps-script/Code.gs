@@ -52,7 +52,7 @@ const HOJAS = {
 // Columnas esperadas (se crean si faltan, en este orden al final de la hoja)
 const COLUMNAS = {
   'Hoja 1': ['id', 'cliente', 'vehiculo', 'asesor', 'fecha', 'hora', 'estado', 'resultado', 'notas', 'lugar', 'auto_usado', 'nro_contrato', 'monto', 'actualizado', 'aviso_venta', 'codigo_plan'],
-  'Leads': ['id', 'cliente', 'telefono', 'interes', 'origen', 'asignado_a', 'fecha_asignacion', 'hora_limite', 'estado', 'resultado', 'hora_contacto', 'notas', 'actualizado', 'aviso_vencido',
+  'Leads': ['id', 'cliente', 'telefono', 'interes', 'origen', 'asignado_a', 'fecha_asignacion', 'hora_limite', 'estado', 'resultado', 'hora_contacto', 'notas', 'actualizado', 'aviso_vencido', 'aviso_seguimiento',
     // Calificación del Armador de Plan (se completan solo cuando el lead se guarda desde el Armador)
     'calif_sistema', 'calif_cuota', 'calif_capital', 'calif_urgencia', 'calif_usado', 'calif_0km',
     // Recordatorios enviados a un lead «Esperando horario» (0, 1 o 2)
@@ -62,9 +62,9 @@ const COLUMNAS = {
 // Campos que se guardan como texto (con apóstrofo) para que Sheets no los convierta
 const CAMPOS_TEXTO = ['telefono', 'fecha', 'hora', 'fecha_asignacion', 'hora_limite', 'hora_contacto', 'nro_contrato'];
 // Campos que el cliente nunca puede pisar
-const CAMPOS_PROTEGIDOS = ['id', 'actualizado', 'aviso_venta', 'aviso_vencido'];
+const CAMPOS_PROTEGIDOS = ['id', 'actualizado', 'aviso_venta', 'aviso_vencido', 'aviso_seguimiento'];
 // Campos con fecha y hora completas (el resto de las fechas se leen como día)
-const CAMPOS_MARCA_TIEMPO = ['actualizado', 'aviso_venta', 'aviso_vencido'];
+const CAMPOS_MARCA_TIEMPO = ['actualizado', 'aviso_venta', 'aviso_vencido', 'aviso_seguimiento'];
 // Dirección pública del Hub (para los enlaces de los avisos y del widget)
 const HUB_URL = 'https://thedomstudioweb.github.io/Agenda-Vendedores-X5/';
 
@@ -635,6 +635,8 @@ function json_(obj) {
 // =====================================================================
 
 const MINUTOS_REVISION_VENCIDOS = 10;   // cada cuánto se revisan los leads vencidos
+const DIAS_SEGUIMIENTO = 15;            // leads «En seguimiento» con más de estos días de antigüedad
+const DIAS_RECORDATORIO_SEGUIMIENTO = 3; // cada cuánto se repite la consulta si el lead sigue sin movimiento
 const MINUTOS_GRACIA_VENTA = 30;        // si una venta queda sin monto, se avisa igual pasado este tiempo
 
 /** Ejecutar UNA vez desde el editor después de guardar TELEGRAM_TOKEN. */
@@ -698,6 +700,7 @@ function revisarTelegram() {
       props.setProperty('ULTIMA_REVISION', String(Date.now()));
       revisarLeadsVencidos_();
       revisarVentasSinAviso_();
+      revisarSeguimientosViejos_();
     }
   } catch (e) {
     console.warn('revisarTelegram: ' + e);
@@ -818,6 +821,42 @@ function revisarLeadsVencidos_() {
     enviarA_([lead.asignado_a], base + '\n\nContactalo cuanto antes 💪', HUB_URL + 'crm.html?tab=leads&ver=vencidos', 'Ver vencidos');
     enviarA_(supervisoresDe_(lead.asignado_a), base + `\n👤 Asignado a <b>${esc_(lead.asignado_a)}</b>`, HUB_URL + 'crm.html?tab=leads&ver=vencidos', 'Ver vencidos');
     sheet.getRange(r + 1, c('aviso_vencido') + 1).setValue(new Date());
+  }
+}
+
+/**
+ * Leads «En seguimiento» con más de DIAS_SEGUIMIENTO días desde que se asignaron:
+ *  - sin observaciones → pasan solos a «descartado» (sin preguntar);
+ *  - con observaciones → se le pregunta al asesor por Telegram cómo está el seguimiento. Si no hay
+ *    movimiento, lo pasa él a descartado en el momento. Si el lead sigue sin tocarse, se repite la consulta cada DIAS_RECORDATORIO_SEGUIMIENTO días.
+ */
+function revisarSeguimientosViejos_() {
+  const sheet = obtenerHoja_(HOJAS.leads);
+  const headers = asegurarColumnas_(sheet, COLUMNAS[HOJAS.leads]);
+  const data = sheet.getDataRange().getValues();
+  const tz = Session.getScriptTimeZone(), ahora = new Date(), DIA = 86400000;
+  const c = (h) => headers.indexOf(h);
+  for (let r = 1; r < data.length; r++) {
+    const row = data[r];
+    if (String(row[c('estado')]) !== 'en_seguimiento') continue;
+    const desde = fechaHora_(row[c('fecha_asignacion')], '00:00', tz);
+    if (!desde || (ahora - desde) <= DIAS_SEGUIMIENTO * DIA) continue;
+    const notas = String(row[c('notas')] == null ? '' : row[c('notas')]).trim();
+    if (!notas) {
+      sheet.getRange(r + 1, c('estado') + 1).setValue('descartado');
+      sheet.getRange(r + 1, c('actualizado') + 1).setValue(ahora);
+      continue;
+    }
+    const aviso = row[c('aviso_seguimiento')] ? new Date(row[c('aviso_seguimiento')]) : null;
+    const act = row[c('actualizado')] ? new Date(row[c('actualizado')]) : null;
+    const sinMovimiento = !act || !aviso || act <= aviso;          // nadie lo tocó desde el último aviso
+    if (aviso && (!sinMovimiento || (ahora - aviso) < DIAS_RECORDATORIO_SEGUIMIENTO * DIA)) continue;
+    const lead = {}; headers.forEach((h, i) => lead[h] = normalizar_(row[i], tz, h));
+    const dias = Math.floor((ahora - desde) / DIA);
+    const html = `🔎 <b>¿Cómo sigue este lead?</b>\n\n<b>${esc_(lead.cliente)}</b> · ${esc_(lead.interes)}\n📞 ${esc_(lead.telefono)}\n📅 En seguimiento hace ${dias} días\n📝 ${esc_(notas.slice(0, 300))}` +
+      `\n\nConfirmá en qué estado está. Si no tiene ningún movimiento, pasalo a <b>Descartado</b> ahora mismo.`;
+    if (enviarA_([lead.asignado_a], html, HUB_URL + 'crm.html?tab=leads', 'Abrir mis leads') > 0)
+      sheet.getRange(r + 1, c('aviso_seguimiento') + 1).setValue(ahora);
   }
 }
 

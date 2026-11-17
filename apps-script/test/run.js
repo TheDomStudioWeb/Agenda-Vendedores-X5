@@ -175,4 +175,18 @@ T('Personal cargado a mano con «activo», espacios de más o nombre repetido: a
   const p = m.api.revisarPersonal(); assert(p.some(t => t.includes('Vendedor Sin Estado') && t.includes('vacío')));
 });
 
+T('seguimiento de más de 15 días: sin observaciones pasa solo a descartado; con observaciones avisa por Telegram al asesor', () => {
+  const m = crear(personal.concat([['Vendedor Tel', 'Asesor', 'Activo', 'Jefe Ana', 'x', "'777"]]));
+  const H = ['id', 'cliente', 'telefono', 'interes', 'origen', 'asignado_a', 'fecha_asignacion', 'hora_limite', 'estado', 'resultado', 'hora_contacto', 'notas', 'actualizado', 'aviso_vencido', 'aviso_seguimiento'];
+  const f = (id, fecha, estado, notas) => [id, 'Cli' + id, '2615', 'Moto', 'IG', 'Vendedor Tel', fecha, '', estado, '', '', notas, '', '', ''];
+  m.libro.Leads.filas = [H, f('1', '2026-10-05', 'en_seguimiento', ''), f('2', '2026-10-05', 'en_seguimiento', 'quiere ver precios'), f('3', '2026-10-20', 'en_seguimiento', ''), f('4', '2026-10-05', 'pendiente', ''), f('5', '2026-10-05', 'en_seguimiento', '   ')];
+  m.api.revisarSeguimientosViejos_();
+  const L = m.libro.Leads.filas, est = id => L.find(r => r[0] === id)[8];
+  assert.strictEqual(est('1'), 'descartado'); assert.strictEqual(est('5'), 'descartado');
+  assert.strictEqual(est('2'), 'en_seguimiento'); assert.strictEqual(est('3'), 'en_seguimiento'); assert.strictEqual(est('4'), 'pendiente');
+  assert.strictEqual(m.enviados.length, 1); assert(m.enviados[0].text.includes('Cli2') && m.enviados[0].chat_id === '777', JSON.stringify(m.enviados));
+  m.api.revisarSeguimientosViejos_(); assert.strictEqual(m.enviados.length, 1, 'no repite antes de 3 días');
+  m.reloj('2026-10-30T15:00:00-03:00'); m.api.revisarSeguimientosViejos_(); assert.strictEqual(m.enviados.length, 2, 'repite a los 3 días si no hubo movimiento');
+});
+
 console.log(`\n${ok} bien, ${fail} con error`); process.exit(fail ? 1 : 0);

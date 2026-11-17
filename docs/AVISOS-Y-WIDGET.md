@@ -134,3 +134,10 @@ setInterval(actualizarWidgetX5, 3 * 60 * 1000);
 
 ## Lectura cerrada
 Desde la v2.2 el backend está cerrado: nadie puede leer la base sin iniciar sesión o sin la clave del widget (`LAUNCHER_KEY`). El widget usa `action=widget&key=...`.
+
+## Leads en seguimiento con más de 15 días
+Se revisa junto con los vencidos (cada 10 minutos, con el mismo disparador de Telegram). Cuenta los días desde la fecha de asignación del lead.
+- **Sin observaciones:** pasa solo a «Descartado», sin preguntar.
+- **Con observaciones:** el asesor recibe un mensaje por Telegram con el lead y sus observaciones, pidiendo que confirme en qué estado está. Si no tiene ningún movimiento, el asesor lo pasa a «Descartado» en el momento. Si el lead sigue sin tocarse, la consulta se repite cada 3 días.
+- Usa una columna nueva «aviso_seguimiento» en la hoja Leads (se crea sola). Los valores (15 y 3 días) están al principio de la sección de Telegram del script: DIAS_SEGUIMIENTO y DIAS_RECORDATORIO_SEGUIMIENTO.
+- Para activarlo hay que pegar el Code.gs nuevo en Apps Script e implementar una nueva versión.
