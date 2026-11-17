@@ -21,7 +21,7 @@ Agenda de entrevistas y seguimiento de leads. Es la única herramienta que pide 
 
 - **Pestañas:** Agenda, Leads y Métricas. Métricas la ven solo los roles Gerente Comercial, Jefe de Ventas y Referente.
 - **Resumen del día:** entrevistas de hoy, leads de hoy y vencidos.
-- **Agenda:** se carga prospecto, vehículo, lugar (agencia o domicilio con auto de flota o vehículo particular; en domicilio se carga la dirección y se ubica en el mapa con «Ubicar en el mapa» o «Usar mi ubicación actual», y la entrevista muestra «Cómo llegar»), asesor, fecha y hora. Después de la entrevista se marca el estado (Pendiente, Realizada o Cancelada) y el resultado (Venta cerrada, En seguimiento o Descartado). Si hubo venta, se cargan N° de contrato y monto.
+- **Agenda:** se carga prospecto, vehículo, lugar (agencia o domicilio con auto de flota o vehículo particular; en domicilio se carga la dirección y hay un botón «Ver en Google Maps» con la dirección escrita (también se puede pegar un enlace de Maps) o «Usar mi ubicación actual» para guardar el punto exacto, y la entrevista muestra «Abrir en Google Maps»), asesor, fecha y hora. Después de la entrevista se marca el estado (Pendiente, Realizada o Cancelada) y el resultado (Venta cerrada, En seguimiento o Descartado). Si hubo venta, se cargan N° de contrato y monto.
 - **Leads:** posibles clientes asignados por un jefe, con hora límite de contacto. Los asesores también pueden **cargar sus propios leads** (botón «Cargar un lead propio»): piden prospecto, teléfono, interés, origen y observaciones; el lead queda asignado al propio asesor, sin hora límite (no se marca vencido ni avisa al jefe). Si el teléfono ya existe en su lista, la app lo avisa antes de cargarlo. Un asesor no puede asignar leads a otra persona: eso es de jefes y gerencia (el script también lo exige). Estados: Pendiente, Entrevista pactada, En seguimiento y Descartado/frío. Filtros: Para hoy, Abiertos, Vencidos y Todos.
 - **Observaciones y notas:** se guardan solas mientras se escribe. Si no hay señal, quedan en una cola del teléfono y se envían al volver la conexión.
 - **Indicador de conexión:** "Al día" (verde), "Guardando" (amarillo) o "Sin señal" (rojo).
@@ -269,3 +269,7 @@ Estado nuevo de los leads en el Mini CRM: el asesor mandó el mensaje de calific
 
 ## Ingreso y egreso del personal (16/11/2026)
 Tarjeta «Ingreso y egreso» (`asistencia.html`) para el personal que cobra por horas: botones Ingreso y Salida con la hora del servidor, semana con totales y PDF para quien cuenta las horas. Rol nuevo **Personal** en la hoja Personal: solo ve esta herramienta. Gerencia corrige, borra o carga turnos a mano con motivo. Detalle y puesta en marcha en `docs/MANUAL-ASISTENCIA.md`.
+
+
+## Guía CCA en el Radar (consulta de valores de usados)
+En el Radar de Usados hay una pestaña **Guía CCA**: se elige marca y año (0 km o 2012 en adelante) y, para afinar, modelo y versión. Muestra solo el valor de la planilla CCA del mes (sin recargos ni papeles), para usarlo como referencia de toma de un usado.

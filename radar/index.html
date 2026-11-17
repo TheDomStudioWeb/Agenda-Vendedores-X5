@@ -167,6 +167,7 @@
       <button class="active" data-v="cliente">Cliente</button>
       <button data-v="interno">Interno</button>
       <button data-v="compra">Compra</button>
+      <button data-v="guia">Guía CCA</button>
       <button data-v="novedades">Novedades</button>
     </div>
 
@@ -224,6 +225,16 @@
       <datalist id="c-modelos"></datalist>
     </form>
     <div id="c-res"></div>
+  </section>
+  <section id="v-guia" hidden>
+    <form class="card buscador" id="f-guia" autocomplete="off" style="grid-template-columns:1.2fr 1.4fr .8fr 1.2fr">
+      <label>Marca<select id="g-marca"><option value="">Elegí…</option></select></label>
+      <label>Modelo<input id="g-modelo" list="g-modelos" placeholder="Gol Trend, Hilux…"></label>
+      <label>Año<select id="g-anio"></select></label>
+      <label>Versión (filtro)<input id="g-ver" placeholder="Ej.: 1.6, SRV, Automática"></label>
+      <datalist id="g-modelos"></datalist>
+    </form>
+    <div id="g-res"></div>
   </section>
   <section id="v-novedades" class="card" hidden style="padding:0"></section>
 </main>
@@ -303,9 +314,9 @@
       ? `Precio X5 = precio de la agencia + <b>${plata(p.fijo)}</b>. Puesto en calle = precio X5 + ${Math.round(p.papeles * 100)}% de papeles.`
       : `Precio X5 = guía + <b>${Math.round(p.pct * 100)}%</b>. Con ${Math.round(p.papeles * 100)}% de papeles, puesto en calle queda en guía + <b>${pc.toLocaleString('es-AR')}%</b>. Los 0 km van al valor de guía, sin recargo. Los autos que no figuran en la guía (anteriores a 2012) usan precio de agencia + ${plata(p.fijo)}.`;
     document.querySelectorAll('.seg button').forEach(b => b.classList.toggle('active', b.dataset.v === vista));
-    ['cliente', 'interno', 'compra', 'novedades'].forEach(v => $('#v-' + v).hidden = v !== vista);
-    $('#filtros').hidden = vista === 'compra' || vista === 'novedades';
-    $('#ordenar').hidden = vista === 'compra' || vista === 'novedades';
+    ['cliente', 'interno', 'compra', 'guia', 'novedades'].forEach(v => $('#v-' + v).hidden = v !== vista);
+    $('#filtros').hidden = ['compra', 'guia', 'novedades'].includes(vista);
+    $('#ordenar').hidden = ['compra', 'guia', 'novedades'].includes(vista);
     $('#ordenar [data-int]').hidden = vista === 'cliente';
     if (vista === 'cliente' && $('#orden').value === 'guia') $('#orden').value = 'nuevo';
     document.querySelectorAll('#ordenar button').forEach(b => b.classList.toggle('active', b.dataset.o === $('#orden').value));
@@ -313,6 +324,7 @@
     $('#estado').hidden = vista === 'cliente';
     $('#r-hero').innerHTML = '';
     if (vista === 'compra') return prepararCompra();
+    if (vista === 'guia') return prepararGuia();
     if (!DATA) return;
     if (vista === 'novedades') return renderNovedades();
     const L = filtrados().filter(x => vista === 'interno' || x.k.x5 != null);
@@ -471,6 +483,42 @@
     if (GUIA) return;
     const [g, m] = await Promise.all([fetch('data/guia-cca.json', { cache: 'no-store' }).then(r => r.json()), import('./scraper/guia.mjs')]);
     GUIA = g; cruzarGuia = m.cruzar;
+  }
+
+  // ── Consulta de la guía CCA: solo el valor de la planilla (sin recargos), como referencia de toma ──
+  let guiaLista = false;
+  async function prepararGuia() {
+    $('#cuenta').textContent = '';
+    if (!guiaLista) {
+      try { await cargarGuia(); } catch (e) { $('#g-res').innerHTML = '<div class="vacio">No se pudo cargar la guía de precios.</div>'; return; }
+      guiaLista = true;
+      $('#g-marca').insertAdjacentHTML('beforeend', Object.keys(GUIA.marcas).sort().map(m => `<option value="${esc(m)}">${esc(titulo(m))}</option>`).join(''));
+      const anio = new Date().getFullYear();
+      $('#g-anio').innerHTML = '<option value="">Elegí…</option><option value="0km">0 km</option>' + Array.from({ length: anio - 2011 }, (_, i) => anio - 1 - i).map(a => `<option>${a}</option>`).join('');
+      $('#g-marca').addEventListener('input', () => {
+        $('#g-modelo').value = '';
+        $('#g-modelos').innerHTML = Object.keys(GUIA.marcas[$('#g-marca').value] || {}).sort().map(m => `<option value="${esc(titulo(m))}">`).join('');
+        consultarGuia();
+      });
+      ['#g-modelo', '#g-anio', '#g-ver'].forEach(id => $(id).addEventListener('input', consultarGuia));
+    }
+    consultarGuia();
+  }
+  function consultarGuia() {
+    const marca = $('#g-marca').value, anio = $('#g-anio').value, mod = sinTilde($('#g-modelo').value).trim(), ver = sinTilde($('#g-ver').value).trim();
+    const out = $('#g-res');
+    if (!marca || !anio) { out.innerHTML = `<div class="vacio">Elegí marca y año${GUIA ? ' (guía ' + esc(GUIA.mes) + ')' : ''}. El modelo y la versión son para afinar. Se muestra el valor de la planilla CCA, sin recargos.</div>`; return; }
+    const modelos = GUIA.marcas[marca] || {};
+    const filas = [];
+    Object.entries(modelos).forEach(([m, vers]) => {
+      if (mod && !sinTilde(m).includes(mod)) return;
+      vers.forEach(([v, p]) => { if (p[anio] && (!ver || sinTilde(m + ' ' + v).includes(ver))) filas.push([titulo(m), v, p[anio]]); });
+    });
+    if (!filas.length) { out.innerHTML = '<div class="vacio">No hay valores en la guía para esa combinación. Probá con otro año o sin el filtro de versión.</div>'; return; }
+    filas.sort((a, b) => a[0].localeCompare(b[0]) || a[2] - b[2]);
+    const tope = filas.slice(0, 80);
+    out.innerHTML = `<div class="card" style="padding:0"><div style="padding:10px 14px;font-size:.78rem;color:var(--muted)">${filas.length} ${filas.length === 1 ? 'versión' : 'versiones'} · ${anio === '0km' ? '0 km' : anio} · guía CCA ${esc(GUIA.mes)}${filas.length > tope.length ? ' · mostrando las primeras 80, afiná con modelo o versión' : ''}</div>` +
+      tope.map(([m, v, p]) => `<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-top:1px solid var(--line)"><span><b>${esc(m)}</b> <span style="color:var(--muted)">${esc(v)}</span></span><b style="white-space:nowrap">${plata(p)}</b></div>`).join('') + '</div>';
   }
 
   async function prepararCompra() {

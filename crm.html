@@ -267,7 +267,7 @@
           <div class="field hidden" id="wrap-auto"><select id="ag-auto"><option value="">Vehículo de flota…</option></select></div>
           <div class="field hidden" id="wrap-dir">
             <input id="ag-dir" placeholder="Domicilio de la entrevista (calle, número, localidad)">
-            <div class="row" style="margin-top:6px"><button type="button" class="btn btn-ghost btn-sm" id="ag-ubicar">📍 Ubicar en el mapa</button><button type="button" class="btn btn-ghost btn-sm" id="ag-gps">Usar mi ubicación actual</button></div>
+            <div class="row" style="margin-top:6px"><a class="btn btn-ghost btn-sm" id="ag-ubicar" target="_blank" rel="noopener">📍 Ver en Google Maps</a><button type="button" class="btn btn-ghost btn-sm" id="ag-gps">Usar mi ubicación actual</button></div>
             <div class="muted" id="ag-geo" style="font-size:.78rem;margin-top:4px"></div>
             <input type="hidden" id="ag-lat"><input type="hidden" id="ag-lng">
           </div>
@@ -866,8 +866,8 @@ function renderAgenda() {
     const atrasada = it.estado === 'pendiente' && soloFecha(it.fecha) < hoy;
     const esVenta = it.resultado === 'venta';
     const lugar = it.lugar === 'Domicilio' ? `Domicilio${it.auto_usado ? ' · ' + esc(it.auto_usado) : ''}` : 'En agencia';
-    const dest = it.lat && it.lng ? `${it.lat},${it.lng}` : it.domicilio ? encodeURIComponent(it.domicilio + ', Mendoza, Argentina') : '';
-    const dom = it.lugar === 'Domicilio' && (it.domicilio || dest) ? `<div class="meta"><span>📍 ${esc(it.domicilio || 'Ubicación marcada')}</span>${dest ? `<a href="https://www.google.com/maps/dir/?api=1&destination=${dest}" target="_blank" rel="noopener">Cómo llegar</a>` : ''}</div>` : '';
+    const dest = mapsUrl(it.domicilio, it.lat, it.lng);
+    const dom = it.lugar === 'Domicilio' && (it.domicilio || dest) ? `<div class="meta"><span>📍 ${esc(it.domicilio || 'Ubicación marcada')}</span>${dest ? `<a href="${esc(dest)}" target="_blank" rel="noopener">Abrir en Google Maps</a>` : ''}</div>` : '';
     return `
     <article class="item ${esc(it.estado || 'pendiente')} ${atrasada ? 'vencido' : ''}" data-tabla="agenda" data-id="${esc(it.id)}">
       <div class="item-head">
@@ -1119,26 +1119,20 @@ $('ag-lugar').addEventListener('change', (e) => {
   $('wrap-auto').classList.toggle('hidden', !dom); $('ag-auto').required = dom;
   $('wrap-dir').classList.toggle('hidden', !dom); $('ag-dir').required = dom;
 });
-// Geolocalización del domicilio (OpenStreetMap / Nominatim; si falla, igual se guarda la dirección escrita)
+// Domicilio: enlace a Google Maps con la dirección escrita (o un enlace de Maps pegado). Con GPS se guardan las coordenadas exactas.
+const mapsUrl = (dir, lat, lng) => lat && lng ? `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`
+  : /^https?:\/\//i.test(dir || '') ? dir : dir ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dir + ', Mendoza, Argentina')}` : '';
 const geoMsg = (t, ok) => { $('ag-geo').textContent = t; $('ag-geo').style.color = ok ? 'var(--ok)' : ''; };
-$('ag-dir').addEventListener('input', () => { $('ag-lat').value = ''; $('ag-lng').value = ''; geoMsg(''); });
-$('ag-ubicar').addEventListener('click', async () => {
-  const q = $('ag-dir').value.trim(); if (!q) return geoMsg('Escribí primero el domicilio.');
-  geoMsg('Buscando…');
-  try {
-    const r = await (await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=ar&q=' + encodeURIComponent(q + ', Mendoza'), { headers: { 'Accept-Language': 'es' } })).json();
-    if (!r.length) return geoMsg('No encontré esa dirección. Probá con calle, número y localidad, o usá tu ubicación actual.');
-    $('ag-lat').value = (+r[0].lat).toFixed(6); $('ag-lng').value = (+r[0].lon).toFixed(6);
-    geoMsg('✓ Ubicado: ' + String(r[0].display_name).split(',').slice(0, 3).join(','), true);
-  } catch (e) { geoMsg('Sin conexión para ubicarlo: se guarda igual con la dirección escrita.'); }
-});
+function pintarEnlaceMapa() { const u = mapsUrl($('ag-dir').value.trim(), $('ag-lat').value, $('ag-lng').value); if (u) $('ag-ubicar').href = u; else $('ag-ubicar').removeAttribute('href'); $('ag-ubicar').style.opacity = u ? 1 : .5; }
+$('ag-dir').addEventListener('input', () => { $('ag-lat').value = ''; $('ag-lng').value = ''; geoMsg(''); pintarEnlaceMapa(); });
+$('ag-ubicar').addEventListener('click', (e) => { if (!$('ag-ubicar').href) { e.preventDefault(); geoMsg('Escribí primero el domicilio.'); } });
 $('ag-gps').addEventListener('click', () => {
   if (!navigator.geolocation) return geoMsg('Este teléfono no permite ubicación.');
   geoMsg('Obteniendo ubicación…');
   navigator.geolocation.getCurrentPosition(p => {
     $('ag-lat').value = p.coords.latitude.toFixed(6); $('ag-lng').value = p.coords.longitude.toFixed(6);
     if (!$('ag-dir').value.trim()) $('ag-dir').value = 'Ubicación marcada en el mapa';
-    geoMsg('✓ Ubicación actual guardada', true);
+    geoMsg('✓ Ubicación actual guardada', true); pintarEnlaceMapa();
   }, () => geoMsg('No se pudo obtener la ubicación (revisá el permiso).'), { enableHighAccuracy: true, timeout: 12000 });
 });
 
