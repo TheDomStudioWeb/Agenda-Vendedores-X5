@@ -1,6 +1,12 @@
 {
- "actualizado": "2026-11-16T20:40:05.691Z",
+ "actualizado": "2026-11-17T18:24:22.184Z",
  "autos": [
+  {
+   "id": "maipu-183964",
+   "auto": " Captur",
+   "url": "https://maipuusados.com.ar/2026/11/17/captur-3/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
   {
    "id": "maipu-182422",
    "auto": "BMW M235I 2015",
@@ -17,12 +23,6 @@
    "id": "autocity-058decc7-ef2f-4a63-8b2a-b07a1c72a50e",
    "auto": "Fiat Argo",
    "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-argo/1-3-gse-drive-pack-conectividad-l17/",
-   "texto": "publicación incompleta (sin año o sin fotos)"
-  },
-  {
-   "id": "autocity-cfce4569-8744-449d-9168-7a23509fa96a",
-   "auto": "Peugeot 301",
-   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-301/1-6-allure-plus-tiptronic-l17/",
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
@@ -64,7 +64,7 @@
   {
    "id": "autocity-4f5a3f36-3c32-4929-8f24-3da326b772c3",
    "auto": "Peugeot 208",
-   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-active-pack-l24-5/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-6-active-pack-l24-2/",
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
@@ -128,12 +128,6 @@
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
-   "id": "autocity-5f57cf53-e4fa-4773-aba4-81fccbd5ac72",
-   "auto": "Renault Kardian",
-   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-kardian/1-6-evolution-l25-2/",
-   "texto": "publicación incompleta (sin año o sin fotos)"
-  },
-  {
    "id": "autocity-b57be155-88ea-4d5c-aa9b-302d83f90edd",
    "auto": "Nissan Frontier",
    "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-frontier/2-3-4x4-dc-s-l19/",
@@ -152,9 +146,21 @@
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
+   "id": "autocity-a9e9be87-6234-42b8-bc56-f6ec834cda47",
+   "auto": "Renault Kardian",
+   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-kardian/1-0-t-iconic-edc-l25-2/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
    "id": "autocity-60cf7bd4-ce04-4756-a989-61ffc6e5a9b6",
    "auto": "Nissan Frontier",
    "url": "https://autocity.com.ar/catalogo/usados/m-nissan/m-frontier/2-3-bi-turbo-d-4x2-cd-xe/",
+   "texto": "publicación incompleta (sin año o sin fotos)"
+  },
+  {
+   "id": "autocity-e6f5ce56-8f46-4bc9-97fa-339efa945500",
+   "auto": "Volkswagen Taos",
+   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-taos/1-4-250-tsi-comfortline-tiptronic-l24/",
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
