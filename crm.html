@@ -265,6 +265,12 @@
             <select id="ag-lugar"><option value="Agencia">En agencia</option><option value="Domicilio">En domicilio</option></select>
           </div>
           <div class="field hidden" id="wrap-auto"><select id="ag-auto"><option value="">Vehículo de flota…</option></select></div>
+          <div class="field hidden" id="wrap-dir">
+            <input id="ag-dir" placeholder="Domicilio de la entrevista (calle, número, localidad)">
+            <div class="row" style="margin-top:6px"><button type="button" class="btn btn-ghost btn-sm" id="ag-ubicar">📍 Ubicar en el mapa</button><button type="button" class="btn btn-ghost btn-sm" id="ag-gps">Usar mi ubicación actual</button></div>
+            <div class="muted" id="ag-geo" style="font-size:.78rem;margin-top:4px"></div>
+            <input type="hidden" id="ag-lat"><input type="hidden" id="ag-lng">
+          </div>
           <div class="field"><select id="ag-asesor" required></select></div>
           <div class="row field"><input type="date" id="ag-fecha" required><input type="time" id="ag-hora" required></div>
           <div class="field"><textarea id="ag-notas" rows="2" placeholder="Observaciones (opcional)"></textarea></div>
@@ -654,13 +660,14 @@ function puedeVer(nombre) {
   return (db.personal || []).some(p => p.reporta_a === user.nombre && p.nombre === nombre);
 }
 
+const VEH_PARTICULAR = 'Vehículo particular';
 function llenarDesplegables() {
   const opts = (db.personal || []).filter(p => p.estado === 'Activo' && puedeVer(p.nombre))
     .map(p => `<option value="${esc(p.nombre)}" ${p.nombre === user.nombre ? 'selected' : ''}>${esc(p.nombre)}</option>`).join('');
   $('ag-asesor').innerHTML = '<option value="">Asesor…</option>' + opts;
   $('ld-asignado').innerHTML = '<option value="">Asignar a…</option>' + opts;
   $('ag-auto').innerHTML = '<option value="">Vehículo de flota…</option>' + (db.flota || []).filter(f => f.estado === 'Activo')
-    .map(f => `<option value="${esc(f.vehiculo)} (${esc(f.patente)})">${esc(f.vehiculo)} · ${esc(f.patente)}</option>`).join('');
+    .map(f => `<option value="${esc(f.vehiculo)} (${esc(f.patente)})">${esc(f.vehiculo)} · ${esc(f.patente)}</option>`).join('') + `<option value="${VEH_PARTICULAR}">${VEH_PARTICULAR}</option>`;
 }
 
 /* ── Utilidades de fecha ───────────────────────────────────── */
@@ -859,13 +866,15 @@ function renderAgenda() {
     const atrasada = it.estado === 'pendiente' && soloFecha(it.fecha) < hoy;
     const esVenta = it.resultado === 'venta';
     const lugar = it.lugar === 'Domicilio' ? `Domicilio${it.auto_usado ? ' · ' + esc(it.auto_usado) : ''}` : 'En agencia';
+    const dest = it.lat && it.lng ? `${it.lat},${it.lng}` : it.domicilio ? encodeURIComponent(it.domicilio + ', Mendoza, Argentina') : '';
+    const dom = it.lugar === 'Domicilio' && (it.domicilio || dest) ? `<div class="meta"><span>📍 ${esc(it.domicilio || 'Ubicación marcada')}</span>${dest ? `<a href="https://www.google.com/maps/dir/?api=1&destination=${dest}" target="_blank" rel="noopener">Cómo llegar</a>` : ''}</div>` : '';
     return `
     <article class="item ${esc(it.estado || 'pendiente')} ${atrasada ? 'vencido' : ''}" data-tabla="agenda" data-id="${esc(it.id)}">
       <div class="item-head">
         <div><h3>${esc(it.cliente)}</h3><div class="time">${esc(String(it.hora || '').slice(0, 5))} hs · ${X5.fechaCorta(it.fecha)}</div></div>
         ${atrasada ? '<span class="chip bad">Atrasada</span>' : esVenta ? '<span class="chip ok">Venta</span>' : ''}
       </div>
-      <div class="meta"><span><b>${esc(it.vehiculo)}</b></span><span>${esc(it.asesor)}</span><span>${lugar}</span></div>
+      <div class="meta"><span><b>${esc(it.vehiculo)}</b></span><span>${esc(it.asesor)}</span><span>${lugar}</span></div>${dom}
       <select data-campo="estado">${opciones(estadosAgenda, it.estado || 'pendiente')}</select>
       <div class="${it.estado === 'realizado' ? '' : 'hidden'}" style="margin-top:8px">
         <select data-campo="resultado">${opciones(resultados, it.resultado)}</select>
@@ -1108,6 +1117,29 @@ document.addEventListener('click', (e) => {
 $('ag-lugar').addEventListener('change', (e) => {
   const dom = e.target.value === 'Domicilio';
   $('wrap-auto').classList.toggle('hidden', !dom); $('ag-auto').required = dom;
+  $('wrap-dir').classList.toggle('hidden', !dom); $('ag-dir').required = dom;
+});
+// Geolocalización del domicilio (OpenStreetMap / Nominatim; si falla, igual se guarda la dirección escrita)
+const geoMsg = (t, ok) => { $('ag-geo').textContent = t; $('ag-geo').style.color = ok ? 'var(--ok)' : ''; };
+$('ag-dir').addEventListener('input', () => { $('ag-lat').value = ''; $('ag-lng').value = ''; geoMsg(''); });
+$('ag-ubicar').addEventListener('click', async () => {
+  const q = $('ag-dir').value.trim(); if (!q) return geoMsg('Escribí primero el domicilio.');
+  geoMsg('Buscando…');
+  try {
+    const r = await (await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=ar&q=' + encodeURIComponent(q + ', Mendoza'), { headers: { 'Accept-Language': 'es' } })).json();
+    if (!r.length) return geoMsg('No encontré esa dirección. Probá con calle, número y localidad, o usá tu ubicación actual.');
+    $('ag-lat').value = (+r[0].lat).toFixed(6); $('ag-lng').value = (+r[0].lon).toFixed(6);
+    geoMsg('✓ Ubicado: ' + String(r[0].display_name).split(',').slice(0, 3).join(','), true);
+  } catch (e) { geoMsg('Sin conexión para ubicarlo: se guarda igual con la dirección escrita.'); }
+});
+$('ag-gps').addEventListener('click', () => {
+  if (!navigator.geolocation) return geoMsg('Este teléfono no permite ubicación.');
+  geoMsg('Obteniendo ubicación…');
+  navigator.geolocation.getCurrentPosition(p => {
+    $('ag-lat').value = p.coords.latitude.toFixed(6); $('ag-lng').value = p.coords.longitude.toFixed(6);
+    if (!$('ag-dir').value.trim()) $('ag-dir').value = 'Ubicación marcada en el mapa';
+    geoMsg('✓ Ubicación actual guardada', true);
+  }, () => geoMsg('No se pudo obtener la ubicación (revisá el permiso).'), { enableHighAccuracy: true, timeout: 12000 });
 });
 
 $('form-agenda').addEventListener('submit', (e) => {
@@ -1117,11 +1149,12 @@ $('form-agenda').addEventListener('submit', (e) => {
     id: Date.now().toString(), cliente: $('ag-cliente').value.trim(), vehiculo: $('ag-vehiculo').value.trim(),
     asesor: $('ag-asesor').value, fecha: $('ag-fecha').value, hora: $('ag-hora').value,
     estado: 'pendiente', resultado: '', notas: $('ag-notas').value.trim(), lugar,
-    auto_usado: lugar === 'Domicilio' ? $('ag-auto').value : '', nro_contrato: '', monto: ''
+    auto_usado: lugar === 'Domicilio' ? $('ag-auto').value : '', nro_contrato: '', monto: '',
+    domicilio: lugar === 'Domicilio' ? $('ag-dir').value.trim() : '', lat: lugar === 'Domicilio' ? $('ag-lat').value : '', lng: lugar === 'Domicilio' ? $('ag-lng').value : ''
   };
   db.agenda.push(item); store.set('x5_db', db);
   encolar('add', 'Hoja 1', item);
-  e.target.reset(); $('ag-fecha').value = X5.hoyISO(); $('wrap-auto').classList.add('hidden'); $('det-agenda').open = false;
+  e.target.reset(); $('ag-fecha').value = X5.hoyISO(); $('wrap-auto').classList.add('hidden'); $('wrap-dir').classList.add('hidden'); geoMsg(''); $('det-agenda').open = false;
   $('ag-asesor').value = user.nombre; $('ag-lead-id').value = '';
   X5.toast('Entrevista agendada', 'ok');
   render();
@@ -1155,7 +1188,7 @@ const HOJAS_X = { agenda: 'Hoja 1', leads: 'Leads' };
 const ORIGENES = ['Meta Ads', 'Web X5', 'Referido', 'Redes Asesor', 'Salón / Espontáneo'];
 const CAMPOS_EDIT = {
   leads: [['cliente', 'Prospecto', 'text'], ['telefono', 'Teléfono', 'tel'], ['interes', 'Interés', 'text'], ['origen', 'Origen', 'origen'], ['asignado_a', 'Asignado a', 'persona'], ['fecha_asignacion', 'Fecha de asignación', 'date'], ['hora_limite', 'Contactar antes de', 'time'], ['notas', 'Observaciones', 'area']],
-  agenda: [['cliente', 'Prospecto', 'text'], ['vehiculo', 'Vehículo de interés', 'text'], ['asesor', 'Asesor', 'persona'], ['lugar', 'Lugar', 'lugar'], ['fecha', 'Fecha', 'date'], ['hora', 'Hora', 'time'], ['nro_contrato', 'N° de contrato', 'text'], ['monto', 'Monto', 'number'], ['notas', 'Observaciones', 'area']]
+  agenda: [['cliente', 'Prospecto', 'text'], ['vehiculo', 'Vehículo de interés', 'text'], ['asesor', 'Asesor', 'persona'], ['lugar', 'Lugar', 'lugar'], ['auto_usado', 'Vehículo para ir (domicilio)', 'auto'], ['domicilio', 'Domicilio de la entrevista', 'text'], ['fecha', 'Fecha', 'date'], ['hora', 'Hora', 'time'], ['nro_contrato', 'N° de contrato', 'text'], ['monto', 'Monto', 'number'], ['notas', 'Observaciones', 'area']]
 };
 function puedeEliminar(tabla, it) { return SUPERVISION.includes(user.rol) || String(tabla === 'leads' ? it.asignado_a : it.asesor) === String(user.nombre); }
 function accionesItem(tabla, it) {
@@ -1184,6 +1217,7 @@ function dEditar(tabla, id) {
     if (tipo === 'area') ctl = `<textarea id="ed-${k}" rows="3">${esc(v)}</textarea>`;
     else if (tipo === 'origen') ctl = `<select id="ed-${k}">${opcionesTxt(ORIGENES.concat(v && !ORIGENES.includes(v) ? [v] : []), v)}</select>`;
     else if (tipo === 'persona') ctl = `<select id="ed-${k}">${opcionesTxt(nombresPersonal(v), v)}</select>`;
+    else if (tipo === 'auto') ctl = `<select id="ed-${k}"><option value="">—</option>${opcionesTxt((db.flota || []).filter(x => x.estado === 'Activo').map(x => `${x.vehiculo} (${x.patente})`).concat([VEH_PARTICULAR]).concat(v && !String(v).includes('(') && v !== VEH_PARTICULAR ? [v] : []), v)}</select>`;
     else if (tipo === 'lugar') ctl = `<select id="ed-${k}">${opcionesTxt(['Agencia', 'Domicilio'], v || 'Agencia')}</select>`;
     else ctl = `<input id="ed-${k}" type="${tipo === 'number' ? 'number' : tipo}" ${tipo === 'number' ? 'inputmode="numeric"' : ''} value="${esc(v)}">`;
     return `<div class="field"><label for="ed-${k}">${esc(et)}</label>${ctl}</div>`;
@@ -1197,6 +1231,7 @@ function guardarEdicion(tabla, id) {
   if (!nuevo.cliente) { $('ed-err').textContent = 'El nombre del prospecto no puede quedar vacío.'; return; }
   if (tabla === 'agenda' && it.resultado === 'venta' && 'nro_contrato' in nuevo && !nuevo.nro_contrato) { $('ed-err').textContent = 'La venta necesita el número de contrato.'; return; }
   const nroAntes = String(it.nro_contrato || '').trim();
+  if (tabla === 'agenda' && 'domicilio' in nuevo && String(it.domicilio ?? '') !== nuevo.domicilio) { it.lat = ''; it.lng = ''; } // dirección nueva: se vuelve a ubicar por texto
   let cambio = false;
   Object.keys(nuevo).forEach(k => { if (String(it[k] ?? '') !== String(nuevo[k])) { it[k] = nuevo[k]; cambio = true; } });
   if (tabla === 'agenda' && it.resultado === 'venta' && String(it.nro_contrato || '').trim() !== nroAntes) vincularContrato(it, nroAntes);

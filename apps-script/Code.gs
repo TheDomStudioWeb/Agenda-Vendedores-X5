@@ -51,7 +51,7 @@ const HOJAS = {
 
 // Columnas esperadas (se crean si faltan, en este orden al final de la hoja)
 const COLUMNAS = {
-  'Hoja 1': ['id', 'cliente', 'vehiculo', 'asesor', 'fecha', 'hora', 'estado', 'resultado', 'notas', 'lugar', 'auto_usado', 'nro_contrato', 'monto', 'actualizado', 'aviso_venta', 'codigo_plan'],
+  'Hoja 1': ['id', 'cliente', 'vehiculo', 'asesor', 'fecha', 'hora', 'estado', 'resultado', 'notas', 'lugar', 'auto_usado', 'nro_contrato', 'monto', 'actualizado', 'aviso_venta', 'codigo_plan', 'domicilio', 'lat', 'lng'],
   'Leads': ['id', 'cliente', 'telefono', 'interes', 'origen', 'asignado_a', 'fecha_asignacion', 'hora_limite', 'estado', 'resultado', 'hora_contacto', 'notas', 'actualizado', 'aviso_vencido', 'aviso_seguimiento',
     // Calificación del Armador de Plan (se completan solo cuando el lead se guarda desde el Armador)
     'calif_sistema', 'calif_cuota', 'calif_capital', 'calif_urgencia', 'calif_usado', 'calif_0km',

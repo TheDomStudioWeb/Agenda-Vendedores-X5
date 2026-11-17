@@ -49,7 +49,7 @@ Cuando llega el momento, aparece el botón **«Enviar recordatorio por WhatsApp�
 
 ### Agenda
 
-- Cargá cada entrevista con prospecto, vehículo, lugar (agencia o domicilio, con auto de flota), fecha y hora.
+- Cargá cada entrevista con prospecto, vehículo, lugar (agencia o domicilio, con auto de flota o vehículo particular; en domicilio cargá la dirección y tocá «Ubicar en el mapa» o «Usar mi ubicación actual»; después la entrevista tiene el botón «Cómo llegar»), fecha y hora.
 - Después de la entrevista, marcá el **estado** (Realizada o Cancelada) y el **resultado** (Venta cerrada, En seguimiento o Descartado).
 - **Venta cerrada:** el **N.º de contrato** y el **código del plan** son obligatorios. Al guardarlos, el contrato pasa solo a **Completo** en Control de contratos y vas a ver el sellado a rendir.
 
