@@ -1,7 +1,10 @@
 name: Guía de precios CCA
-# Cada mes: subí el PDF de la guía a la carpeta radar/guia/ con el nombre cca-AAAA-MM.pdf (ej. cca-2026-11.pdf).
-# Este proceso lo convierte, actualiza el Simulador y el Radar, y guarda todo en el Hub.
+# Automático: todos los días baja la guía de https://cca.org.ar/descargas/precios/Autos.pdf, lee el mes del encabezado
+# y, si es nueva o cambió, la guarda como radar/guia/cca-AAAA-MM.pdf. Después la convierte y actualiza el Simulador y el Radar.
+# A mano también sirve: subir el PDF a radar/guia/ con el nombre cca-AAAA-MM.pdf.
 on:
+  schedule:
+    - cron: '17 9 * * *'   # todos los días, 06:17 hora de Argentina
   push:
     branches: [main, radar-usados]
     paths: ['radar/guia/*.pdf', 'radar/scraper/guia_cca.py', '.github/workflows/guia-cca.yml']
@@ -20,6 +23,23 @@ jobs:
         with: { node-version: 20 }
       - run: npm i --no-save --no-package-lock playwright@1.47.2 && npx playwright install --with-deps chromium
       - run: pip install pdfplumber==0.11.4 2>&1 | tail -3 | tee guia-log.txt
+      - name: Bajar la guía vigente de la CCA
+        run: |
+          mkdir -p radar/guia
+          if curl -fsSL --retry 3 -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36" -H "Referer: https://cca.org.ar/lista-de-precios/" -o /tmp/cca-nueva.pdf https://cca.org.ar/descargas/precios/Autos.pdf && head -c 4 /tmp/cca-nueva.pdf | grep -q '%PDF'; then
+            MES=$(python3 - <<'PY'
+          import re, pdfplumber
+          meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre']
+          t = (pdfplumber.open('/tmp/cca-nueva.pdf').pages[0].extract_text() or '').lower()
+          m = re.search(r'(' + '|'.join(meses) + r')\s+(20\d\d)', t)
+          print(f"{m.group(2)}-{meses.index(m.group(1)) + 1:02d}" if m else '')
+          PY
+            )
+            echo "Guía descargada: mes '$MES'" | tee -a guia-log.txt
+            if [ -n "$MES" ]; then cp /tmp/cca-nueva.pdf "radar/guia/cca-$MES.pdf"; else echo "No se pudo leer el mes del encabezado: no se guarda" | tee -a guia-log.txt; fi
+          else
+            echo "No se pudo bajar la guía de la CCA (se usa la última guardada)" | tee -a guia-log.txt
+          fi
       - name: Convertir la guía más reciente
         run: |
           set -o pipefail
@@ -32,7 +52,7 @@ jobs:
           cp guia-log.txt radar/data/guia-log.txt || true
           git config user.name "radar-bot"
           git config user.email "radar-bot@users.noreply.github.com"
-          git add radar/data
+          git add radar/data radar/guia
           git diff --cached --quiet && exit 0
           git commit -m "Guía CCA: datos actualizados"
           git pull --rebase
