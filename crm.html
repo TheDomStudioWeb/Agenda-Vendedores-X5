@@ -96,6 +96,9 @@
   /* Tarjetas de agenda / leads */
   .item { position: relative; background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; padding: 14px 14px 14px 18px; margin-bottom: 10px; overflow: hidden; }
   .item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--warn); }
+  .item.con-entrevista { background: color-mix(in srgb, var(--ok) 10%, var(--surface-2)); border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); }
+  .item.con-entrevista .lead-bloq { margin-top: 8px; font-size: .86rem; }
+  .item.con-entrevista select, .item.con-entrevista textarea { opacity: .65; }
   .item.realizado::before, .item.entrevista_pactada::before { background: var(--ok); }
   .item.en_seguimiento::before { background: var(--x5); }
   .item.esperando_horario::before { background: var(--warn); }
@@ -925,11 +928,12 @@ function renderLeads() {
   });
 
   $('lista-leads').innerHTML = data.length ? data.map(l => {
+    const ent = entrevistaDeLead(l);
     const venc = l.estado === 'pendiente' && vencido(l.fecha_asignacion, l.hora_limite);
     const wa = telAR(l.telefono);
     const msgCliente = `Hola ${String(l.cliente).split(' ')[0]}, te escribe ${String(user.nombre).split(' ')[0]} de X5. Te contacto por tu consulta sobre ${l.interes}.`;
     return `
-    <article class="item ${esc(l.estado || 'pendiente')} ${venc ? 'vencido' : ''}" data-tabla="leads" data-id="${esc(l.id)}">
+    <article class="item ${esc(l.estado || 'pendiente')} ${venc ? 'vencido' : ''} ${ent ? 'con-entrevista' : ''}" data-tabla="leads" data-id="${esc(l.id)}">
       <div class="item-head">
         <div><h3>${esc(l.cliente)}</h3><div class="time">${l.hora_limite ? `Contactar antes de ${esc(String(l.hora_limite).slice(0, 5))} hs · ${X5.fechaCorta(l.fecha_asignacion)}` : `Lead propio · cargado el ${X5.fechaCorta(l.fecha_asignacion)}`}</div></div>
         ${venc ? '<span class="chip bad">Vencido</span>' : `<span class="chip">${esc(l.origen)}</span>`}
@@ -937,18 +941,35 @@ function renderLeads() {
       <div class="meta"><span>Interés: <b>${esc(l.interes)}</b></span><span>${esc(l.asignado_a)}</span><span>${esc(l.telefono)}</span></div>
       ${l.calif_sistema ? `<div class="meta" style="margin-top:6px"><span class="chip x5">Calificado</span><span><b>${esc(l.calif_sistema)}</b>${l.calif_cuota ? ' · cuota ' + X5.moneyShort(l.calif_cuota) : ''}</span><span>Usados <b>${X5.moneyShort(l.calif_usado)}</b>${l.calif_0km ? ` · 0 km <b>${X5.moneyShort(l.calif_0km)}</b>` : ''}</span><span>${esc(l.calif_urgencia)}</span></div>` : ''}
       ${l.estado === 'esperando_horario' ? recordatorioHTML(l) : ''}
-      <select data-campo="estado">${opciones(estadosLead, l.estado || 'pendiente')}</select>
-      <textarea data-campo="notas" rows="2" placeholder="Notas de la llamada o motivo del estado…" style="margin-top:8px">${esc(l.notas)}</textarea>
+      ${ent ? `<div class="lead-bloq">${ent.resultado === 'venta' ? '✅ <b>Venta cerrada</b> en la entrevista' : '📅 <b>Entrevista pactada</b>'} · ${X5.fechaCorta(ent.fecha)} ${esc(String(ent.hora || '').slice(0, 5))} hs · ${esc(ent.asesor)}<br><span class="muted">Este lead ya está en la agenda: se sigue desde la entrevista. Se vuelve a habilitar si la entrevista queda en seguimiento, descartada o cancelada.</span> <button type="button" class="btn btn-ghost btn-sm" data-ver-entrevista="${esc(ent.id)}" style="margin-top:6px">Ver la entrevista</button></div>` : ''}
+      <select data-campo="estado" ${ent ? 'disabled' : ''}>${opciones(estadosLead, l.estado || 'pendiente')}</select>
+      <textarea data-campo="notas" rows="2" ${ent ? 'disabled' : ''} placeholder="Notas de la llamada o motivo del estado…" style="margin-top:8px">${esc(l.notas)}</textarea>
       <div class="note-state"></div>
       <div class="actions">
         <a class="btn btn-ghost btn-sm" href="tel:${esc(String(l.telefono).replace(/[^\d+]/g, ''))}" data-contacto="1">Llamar</a>
         <a class="btn btn-wsp btn-sm" target="_blank" rel="noopener" data-contacto="1" href="${wa ? `https://wa.me/${wa}?text=${encodeURIComponent(msgCliente)}` : '#'}">WhatsApp</a>
-        ${l.estado === 'entrevista_pactada' ? `<button class="btn btn-sm full" data-agendar="1">Agendar la entrevista</button>` : ''}
+        ${l.estado === 'entrevista_pactada' && !ent ? `<button class="btn btn-sm full" data-agendar="1">Agendar la entrevista</button>` : ''}
       </div>
-      ${accionesItem('leads', l)}
+      ${ent ? '' : accionesItem('leads', l)}
     </article>`;
   }).join('') : `<div class="empty">${filtrosActivos('leads').length ? 'No hay leads con estos filtros.' : filtro.leads === 'hoy' ? 'Sin leads para hoy. ¡Bien ahí!' : 'No hay leads en esta vista.'}</div>`;
 }
+
+/* ── Lead ↔ entrevista: un lead con entrevista activa queda bloqueado (no se duplica ni se edita) ──
+   Se habilita de nuevo si la entrevista se cancela o queda en seguimiento / descartada. */
+function entrevistaDeLead(l) {
+  return db.agenda.find(a => String(a.lead_id || '') === String(l.id) && a.estado !== 'cancelado' && !['seguimiento', 'descartado'].includes(a.resultado)) || null;
+}
+function sincronizarLead(a) {
+  const lead = a.lead_id && db.leads.find(l => String(l.id) === String(a.lead_id)); if (!lead) return;
+  const nuevo = (a.estado === 'cancelado' || a.resultado === 'seguimiento') ? 'en_seguimiento' : a.resultado === 'descartado' ? 'descartado' : 'entrevista_pactada';
+  guardarCampo('leads', lead, 'estado', nuevo);
+}
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-ver-entrevista]'); if (!b) return;
+  cambiarTab('agenda');
+  setTimeout(() => { const c = document.querySelector(`#lista-agenda .item[data-id="${CSS.escape(b.dataset.verEntrevista)}"]`); if (c) { c.scrollIntoView({ behavior: 'smooth', block: 'center' }); c.style.outline = '2px solid var(--ok)'; setTimeout(() => c.style.outline = '', 2500); } }, 150);
+});
 
 /* ── Recordatorios para leads «Esperando horario» ─────────────
    Se envió el mensaje de calificación desde el Armador. Recordatorio 1 a las 24 h, recordatorio 2 a las 72 h. Después, no se insiste. */
@@ -996,6 +1017,7 @@ function guardarCampo(tabla, item, campo, valor) {
   if (tabla === 'leads' && campo === 'estado' && !item.hora_contacto) marcarContacto(item);
   store.set('x5_db', db);
   encolar('update', tabla === 'agenda' ? 'Hoja 1' : 'Leads', item);
+  if (tabla === 'agenda' && (campo === 'estado' || campo === 'resultado')) sincronizarLead(item);
   return true;
 }
 
@@ -1011,6 +1033,7 @@ document.addEventListener('change', (e) => {
   const el = e.target, campo = el.dataset && el.dataset.campo;
   if (!campo || el.tagName === 'TEXTAREA') return;
   const r = registro(el); if (!r) return;
+  if (r.tabla === 'leads' && entrevistaDeLead(r.item)) return;
   // Venta cerrada: el N.º de contrato es obligatorio. Hasta que lo carguen, la venta no se guarda.
   if (r.tabla === 'agenda' && campo === 'resultado' && el.value === 'venta' && (!String(r.item.nro_contrato || '').trim() || !String(r.item.codigo_plan || '').trim())) { pedirContrato(r.item); el.value = r.item.resultado || ''; return; }
   if (r.tabla === 'agenda' && campo === 'codigo_plan') {
@@ -1103,6 +1126,7 @@ document.addEventListener('click', (e) => {
   const ag = e.target.closest('[data-agendar]');
   if (ag) {
     const r = registro(ag); if (!r) return;
+    if (entrevistaDeLead(r.item)) return X5.toast('Este lead ya tiene una entrevista agendada.', 'bad', 3000);
     cambiarTab('agenda');
     $('det-agenda').open = true;
     $('ag-cliente').value = r.item.cliente; $('ag-vehiculo').value = r.item.interes || '';
@@ -1144,10 +1168,12 @@ $('form-agenda').addEventListener('submit', (e) => {
     asesor: $('ag-asesor').value, fecha: $('ag-fecha').value, hora: $('ag-hora').value,
     estado: 'pendiente', resultado: '', notas: $('ag-notas').value.trim(), lugar,
     auto_usado: lugar === 'Domicilio' ? $('ag-auto').value : '', nro_contrato: '', monto: '',
+    lead_id: $('ag-lead-id').value || '',
     domicilio: lugar === 'Domicilio' ? $('ag-dir').value.trim() : '', lat: lugar === 'Domicilio' ? $('ag-lat').value : '', lng: lugar === 'Domicilio' ? $('ag-lng').value : ''
   };
   db.agenda.push(item); store.set('x5_db', db);
   encolar('add', 'Hoja 1', item);
+  if (item.lead_id) sincronizarLead(item); // el lead queda archivado en la entrevista
   e.target.reset(); $('ag-fecha').value = X5.hoyISO(); $('wrap-auto').classList.add('hidden'); $('wrap-dir').classList.add('hidden'); geoMsg(''); $('det-agenda').open = false;
   $('ag-asesor').value = user.nombre; $('ag-lead-id').value = '';
   X5.toast('Entrevista agendada', 'ok');

@@ -273,3 +273,6 @@ Tarjeta «Ingreso y egreso» (`asistencia.html`) para el personal que cobra por 
 
 ## Guía CCA en el Radar (consulta de valores de usados)
 En el Radar de Usados hay una pestaña **Guía CCA**: se elige marca y año (0 km o 2012 en adelante) y, para afinar, modelo y versión. Muestra solo el valor de la planilla CCA del mes (sin recargos ni papeles), para usarlo como referencia de toma de un usado.
+
+## Lead con entrevista pactada
+Cuando en un lead se toca «Agendar la entrevista» y se guarda, la entrevista queda vinculada al lead (columna lead_id). El lead no se descarta ni se duplica: sigue en el listado pero con otro color, con el aviso «Entrevista pactada» (fecha, hora y asesor), sin poder editarse y con el botón «Ver la entrevista». Si la entrevista queda en **Seguimiento**, el lead vuelve a «En seguimiento» y se habilita de nuevo; si queda **Descartada**, pasa a Descartado; si se **cancela**, vuelve a seguimiento. Si se cierra la venta, el lead queda bloqueado como «Venta cerrada».
