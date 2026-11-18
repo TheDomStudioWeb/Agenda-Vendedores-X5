@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-18T18:05:00.336Z",
+ "actualizado": "2026-11-18T19:00:19.448Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-11"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 81,
-   "revisado": "2026-11-18T18:05:00.336Z",
-   "actualizado": "2026-11-18T18:05:00.336Z"
+   "autos": 82,
+   "revisado": "2026-11-18T19:00:19.448Z",
+   "actualizado": "2026-11-18T19:00:19.448Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,85 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 255,
-   "revisado": "2026-11-18T18:05:00.336Z",
-   "actualizado": "2026-11-18T18:05:00.336Z"
+   "revisado": "2026-11-18T19:00:19.448Z",
+   "actualizado": "2026-11-18T19:00:19.448Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-184120",
+   "tipo": "auto",
+   "marca": "Fiat",
+   "modelo": "Mobi",
+   "version": "1.0 8V Easy",
+   "anio": 2018,
+   "km": 111030,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Blanco",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 13500000,
+   "precio_sin_imp": 10665000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4452-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4453-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4455-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4456-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4451-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4454-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4450-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4448-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4444-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4440-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4441-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4442-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4449-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4443-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4447-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4445-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4446-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/11/18/mobi/",
+   "publicado": "2026-11-18T15:05:19",
+   "modificado": "2026-11-18T15:12:48",
+   "agencia": "maipu",
+   "alta": "2026-11-18T19:00:19.448Z",
+   "guia": {
+    "min": 11957000,
+    "med": 12803000,
+    "max": 13349000,
+    "n": 5,
+    "mejor": {
+     "version": "MOBI 5P 1,0 EASY TOP",
+     "valor": 12665000,
+     "coincidencias": 2,
+     "empate": 3
+    },
+    "versiones": [
+     [
+      "MOBI 5P 1,0 EASY",
+      11957000
+     ],
+     [
+      "MOBI 5P 1,0 EASY TOP",
+      12665000
+     ],
+     [
+      "MOBI 5P 1,0 EASY TOP LIVE ON",
+      12803000
+     ],
+     [
+      "MOBI 5P 1,0 WAY",
+      13211000
+     ],
+     [
+      "MOBI 5P 1,0 WAY LIVE ON",
+      13349000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-184093",
    "tipo": "auto",
@@ -782,7 +856,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/11/13/polo/",
    "publicado": "2026-11-13T17:33:30",
-   "modificado": "2026-11-17T11:15:53",
+   "modificado": "2026-11-18T15:14:01",
    "agencia": "maipu",
    "alta": "2026-11-14T16:42:42.011Z",
    "guia": {
@@ -882,8 +956,8 @@
    "caja": "Automática",
    "color": "Rojo",
    "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
-   "precio": null,
-   "precio_sin_imp": null,
+   "precio": 33000000,
+   "precio_sin_imp": 26070000,
    "moneda": "ARS",
    "fotos": [
     "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4086-1600x1200-1.jpg",
@@ -906,7 +980,7 @@
    ],
    "url": "https://maipuusados.com.ar/2026/11/13/tracker/",
    "publicado": "2026-11-13T16:59:57",
-   "modificado": "2026-11-13T17:04:28",
+   "modificado": "2026-11-18T15:12:39",
    "agencia": "maipu",
    "alta": "2026-11-14T16:42:42.011Z",
    "guia": {
@@ -5787,7 +5861,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar premium, oportunidades A4 2024 Automatica 50935 U$S 45300 Precio sugerido al público U$S 37438 Precio sin impuestos nacionales + Precio a confirmar premium A1 2026 Automatica 40 U$S 37200 Precio sugerido al público U$S 30743 Precio sin impuestos nacionales + Precio a confirmar premium, oportunidades A3 2024 Automatica 3870 U$S 48900 Precio sugerido al público U$S 40415 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Duster 2016 Manual 105385 16000000 Precio sugerido al público 12640000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Ka 2018 Manual 152270 13000000 Precio sugerido al público 10743800 Precio sin impuestos nacionales + Precio a confirmar oportunidades Suran 2017 Manual 101950 16500000 Precio sugerido al público 13636300 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 51400000,
    "precio_sin_imp": 42479340,
    "moneda": "ARS",
@@ -5859,7 +5933,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar premium, oportunidades A4 2024 Automatica 50935 U$S 45300 Precio sugerido al público U$S 37438 Precio sin impuestos nacionales + Precio a confirmar premium A1 2026 Automatica 40 U$S 37200 Precio sugerido al público U$S 30743 Precio sin impuestos nacionales + Precio a confirmar premium, oportunidades A3 2024 Automatica 3870 U$S 48900 Precio sugerido al público U$S 40415 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Duster 2016 Manual 105385 16000000 Precio sugerido al público 12640000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Ka 2018 Manual 152270 13000000 Precio sugerido al público 10743800 Precio sin impuestos nacionales + Precio a confirmar oportunidades Suran 2017 Manual 101950 16500000 Precio sugerido al público 13636300 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6125,7 +6199,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar premium, oportunidades A4 2024 Automatica 50935 U$S 45300 Precio sugerido al público U$S 37438 Precio sin impuestos nacionales + Precio a confirmar premium A1 2026 Automatica 40 U$S 37200 Precio sugerido al público U$S 30743 Precio sin impuestos nacionales + Precio a confirmar premium, oportunidades A3 2024 Automatica 3870 U$S 48900 Precio sugerido al público U$S 40415 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Duster 2016 Manual 105385 16000000 Precio sugerido al público 12640000 Precio sin impuestos nacionales + Precio a confirmar oportunidades Ka 2018 Manual 152270 13000000 Precio sugerido al público 10743800 Precio sin impuestos nacionales + Precio a confirmar oportunidades Suran 2017 Manual 101950 16500000 Precio sugerido al público 13636300 Precio sin impuestos nacionales + Precio a confirmar destacados Siena 2015 Manual 126830 13000000 Precio sugerido al público 10270000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",

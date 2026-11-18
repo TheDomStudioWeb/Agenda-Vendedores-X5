@@ -1,6 +1,14 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-18T19:00:19.448Z",
+   "tipo": "nuevo",
+   "id": "maipu-184120",
+   "auto": "Fiat Mobi 2018",
+   "precio": 13500000,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-11-18T18:05:00.336Z",
    "tipo": "nuevo",
    "id": "maipu-184093",
