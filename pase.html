@@ -207,10 +207,17 @@ function error(t, p) { $('nav').hidden = true; $('cargando').hidden = true; $('p
 
 async function cargar() {
   if (!codigo || !llave) return error('Link incompleto', 'Pedile a tu asesor de X5 que te reenvíe el link de tu pase.');
-  let d = null;
-  try { d = await (await fetch(`${SCRIPT_URL}?action=pase&c=${encodeURIComponent(codigo)}&k=${encodeURIComponent(llave)}`, { cache: 'no-store' })).json(); }
-  catch (e) { try { d = JSON.parse(localStorage.getItem(CACHE)); if (d) d._offline = true; } catch (x) {} }
-  if (!d) return error('Sin conexión', 'No pudimos cargar tu pase. Probá de nuevo en un momento.');
+  let d = null, detalle = '';
+  const url = `${SCRIPT_URL}?action=pase&c=${encodeURIComponent(codigo)}&k=${encodeURIComponent(llave)}`;
+  for (let intento = 0; intento < 2 && !d; intento++) {
+    try {
+      const res = await fetch(url, { cache: 'no-store' }), txt = await res.text();
+      try { d = JSON.parse(txt); } catch (x) { detalle = 'Respuesta ' + res.status + ': ' + txt.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 140); }
+    } catch (e) { detalle = navigator.onLine ? 'No se pudo conectar con el servidor (' + (e && e.message || e) + ')' : 'El teléfono está sin internet'; }
+    if (!d && intento === 0) await new Promise(r => setTimeout(r, 1500));
+  }
+  if (!d) { try { d = JSON.parse(localStorage.getItem(CACHE)); if (d) d._offline = true; } catch (x) {} }
+  if (!d) { error('No pudimos cargar tu pase', 'Probá de nuevo en un momento.'); $('e-p').insertAdjacentHTML('afterend', `<button class="btn line" onclick="location.reload()">Reintentar</button><p style="font-size:11px;color:#8A8E95;margin-top:14px;word-break:break-word">${esc(detalle)}</p>`); return; }
   if (!d.ok) {
     try { localStorage.removeItem(CACHE); } catch (x) {}
     if (d.error === 'pase_baja') return error('Pase inactivo', 'Este pase ya no está activo. Consultá con tu asesor de X5.');
