@@ -14,6 +14,8 @@
  *  - Respuestas con { ok: true/false } para que la app sepa si se guardó.
  *
  *
+ * v2.7: Padrinos X5, club de referidos (hojas «Padrinos», «Referidos» y «PadrinosLog»; el referido entra como lead).
+ *
  * v2.6: registro de ingreso y egreso del personal (hoja «Asistencia», rol «Personal»).
  *
  * v2.4: claves protegidas en la planilla (huella con sal; protegerClaves() o primer ingreso) y sesión por POST, nunca en la dirección.
@@ -105,7 +107,7 @@ function doPost(e) {
     // Rol «Control»: únicamente mira el gestor de contratos (ver todo, sin modificar nada ni entrar al CRM)
     if (esControl_(usuario) && ['contratos_datos', 'contratos_precios'].indexOf(String(body.action)) < 0) return json_({ ok: false, error: 'sin_permiso' });
     // Rol «Supervisor»: mira todo (CRM completo y contratos) y nada más. Solo se aceptan pedidos de lectura; cualquier otra acción se rechaza acá, antes de tocar la planilla
-    if (esSupervisor_(usuario) && ['datos', 'contratos_datos', 'contratos_precios', 'asistencia_datos'].indexOf(String(body.action)) < 0) return json_({ ok: false, error: 'sin_permiso' });
+    if (esSupervisor_(usuario) && ['datos', 'contratos_datos', 'contratos_precios', 'asistencia_datos', 'padrinos_datos'].indexOf(String(body.action)) < 0) return json_({ ok: false, error: 'sin_permiso' });
 
     // Lectura de datos y enlace de Telegram (la sesión viaja en el cuerpo, no en la dirección)
     if (body.action === 'datos') { if (!usuario) return json_({ ok: false, error: 'sesion_vencida' }); return json_(armarDatos_(usuario)); }
@@ -113,6 +115,9 @@ function doPost(e) {
 
     // Ingreso y egreso del personal (la hora la pone el servidor)
     if (String(body.action).indexOf('asistencia_') === 0) return json_(despacharAsistencia_(body, usuario));
+
+    // Padrinos X5: club de referidos
+    if (/^(padrinos|referidos)_/.test(String(body.action))) return json_(despacharPadrinos_(body, usuario));
 
     // Control de contratos (solo números y estados; no guarda archivos)
     if (String(body.action).indexOf('contratos_') === 0) return json_(despacharContratos_(body, usuario));
@@ -1447,4 +1452,200 @@ function asistenciaCorregir_(body, u) {
   const h = asegurarColumnas_(sh, COL_ASISTENCIA);
   sh.appendRow(h.map(k => celdaA_(k, r[k])));
   return { ok: true, id: r.id };
+}
+
+// =====================================================================
+//  PADRINOS X5 — club de referidos y fidelización (v2.7)
+//  Cada cliente con plan puede ser «padrino»: recibe un código y suma puntos cuando alguien
+//  que él recomienda avanza (entrevista, firma, cuota 3, retiro). Los puntos se calculan en la app;
+//  acá se guardan los padrinos, los referidos y cada cambio de estado (con quién y cuándo).
+//  Al cargar un referido se crea el lead en el CRM (origen «Referido») y se avisa al asesor.
+//  Reglas: cuota 3, retiro y baja los confirma supervisión (gerente, jefe, referente).
+//  Rol «Supervisor»: solo lectura. Rol «Control» y «Personal»: sin acceso.
+// =====================================================================
+const HOJA_PADRINOS = 'Padrinos';
+const HOJA_REFERIDOS = 'Referidos';
+const HOJA_PADRINOS_LOG = 'PadrinosLog';
+const COL_PADRINOS = ['id', 'codigo', 'nombre', 'telefono', 'cumple', 'nro_contrato', 'asesor', 'cuotas_al_dia', 'retiro', 'fecha_retiro', 'resena', 'estado', 'alta', 'notas', 'actualizado'];
+const COL_REFERIDOS = ['id', 'padrino_id', 'padrino_codigo', 'cliente', 'telefono', 'interes', 'sistema', 'asesor', 'estado', 'nro_contrato', 'lead_id', 'alta', 'fecha_entrevista', 'fecha_firma', 'fecha_cuota3', 'fecha_retiro', 'fecha_baja', 'notas', 'actualizado'];
+const COL_PADRINOS_LOG = ['fecha', 'usuario', 'accion', 'detalle'];
+const ESTADOS_REFERIDO = ['camino', 'entrevista', 'firmo', 'cuota3', 'retiro'];
+const ESTADOS_SOLO_SUPERVISION = ['cuota3', 'retiro', 'baja'];
+const SISTEMAS_PLAN = ['10 adelantos', '5 adelantos', 'Entrega programada'];
+
+function hojaPadrinos_() { return hojaContratos_(HOJA_PADRINOS, COL_PADRINOS); }
+function hojaReferidos_() { return hojaContratos_(HOJA_REFERIDOS, COL_REFERIDOS); }
+function hoyP_() { return Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd'); }
+function txtP_(v) { return String(v == null ? '' : v).replace(/^'/, '').trim(); }
+// Teléfono argentino normalizado a 10 dígitos (sin 54, 9, 0 ni 15), igual que el botón de WhatsApp del CRM
+function telP_(v) {
+  let d = txtP_(v).replace(/\D/g, '');
+  if (d.indexOf('54') === 0 && d.length > 10) { d = d.slice(2); if (d.charAt(0) === '9') d = d.slice(1); }
+  if (d.charAt(0) === '0') d = d.slice(1);
+  if (d.length === 12) d = d.replace(/^(\d{2,4})15(\d{6,8})$/, '$1$2');
+  return d;
+}
+function celdaP_(h, v) {
+  if (v === undefined || v === null) return '';
+  if (v instanceof Date || typeof v === 'number' || typeof v === 'boolean') return v;
+  let s = String(v);
+  if (/^[=+\-@]/.test(s)) s = "'" + s;
+  if (['telefono', 'cumple', 'nro_contrato', 'codigo', 'alta'].indexOf(h) > -1 || h.indexOf('fecha_') === 0) { if (s !== '' && s[0] !== "'") s = "'" + s; }
+  return s;
+}
+function leerP_(sh, cols) {
+  asegurarColumnas_(sh, cols);
+  const datos = sh.getDataRange().getValues(); if (datos.length < 2) return [];
+  const h = datos[0].map(x => String(x).trim().toLowerCase()), tz = Session.getScriptTimeZone();
+  const out = [];
+  for (let i = 1; i < datos.length; i++) {
+    const f = datos[i]; if (!f.some(c => c !== '' && c !== null)) continue;
+    const o = { _fila: i + 1 };
+    h.forEach((k, j) => {
+      if (!k) return;
+      let v = f[j];
+      if (v instanceof Date) v = k === 'actualizado' ? v.toISOString() : Utilities.formatDate(v, tz, 'yyyy-MM-dd');
+      o[k] = typeof v === 'string' ? txtP_(v) : v;
+    });
+    out.push(o);
+  }
+  return out;
+}
+function escribirP_(sh, cols, fila, obj) {
+  const h = asegurarColumnas_(sh, cols);
+  const vals = h.map(k => k === 'actualizado' ? new Date() : celdaP_(k, obj[k]));
+  if (fila > 0) sh.getRange(fila, 1, 1, h.length).setValues([vals]); else sh.appendRow(vals);
+}
+function publicoP_(o) { const c = Object.assign({}, o); delete c._fila; return c; }
+function logP_(u, accion, detalle) {
+  try { hojaContratos_(HOJA_PADRINOS_LOG, COL_PADRINOS_LOG).appendRow([new Date(), u.nombre, accion, detalle]); } catch (e) {}
+}
+function nuevoCodigoPadrino_(existentes) {
+  const abc = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // sin 0/O ni 1/I para que se dicte sin errores
+  for (let n = 0; n < 50; n++) {
+    let c = 'X5-'; for (let i = 0; i < 5; i++) c += abc.charAt(Math.floor(Math.random() * abc.length));
+    if (existentes.indexOf(c) < 0) return c;
+  }
+  throw new Error('sin_codigo');
+}
+
+function despacharPadrinos_(body, u) {
+  if (esControl_(u) || esPersonal_(u)) return { ok: false, error: 'sin_permiso' };
+  const a = body.action;
+  if (a === 'padrinos_datos') return padrinosDatos_(u);
+  if (esSupervisor_(u)) return { ok: false, error: 'sin_permiso' }; // solo lectura
+  const lock = LockService.getScriptLock(); lock.waitLock(15000);
+  const avisos = [];
+  try {
+    if (a === 'padrinos_guardar') return padrinosGuardar_(body, u);
+    if (a === 'referidos_guardar') return referidosGuardar_(body, u, avisos);
+    if (a === 'referidos_estado') return referidosEstado_(body, u);
+    return { ok: false, error: 'accion_invalida' };
+  } finally {
+    lock.releaseLock();
+    avisos.forEach(fn => { try { fn(); } catch (e) { console.warn('Aviso no enviado: ' + e); } });
+  }
+}
+
+function padrinosDatos_(u) {
+  const personal = personalLimpio_().filter(p => p.rol !== 'Personal');
+  const ve = visibilidad_(u, personal);
+  const padrinos = leerP_(hojaPadrinos_(), COL_PADRINOS);
+  const referidos = leerP_(hojaReferidos_(), COL_REFERIDOS);
+  // Un asesor ve los padrinos que atiende él o su equipo, y todos los referidos de esos padrinos (para que el puntaje sea completo)
+  const visibles = padrinos.filter(p => ve(p.asesor));
+  const ids = visibles.map(p => String(p.id));
+  return {
+    ok: true, usuario: { nombre: u.nombre, rol: u.rol },
+    padrinos: visibles.map(publicoP_),
+    referidos: referidos.filter(r => ids.indexOf(String(r.padrino_id)) > -1 || ve(r.asesor)).map(publicoP_),
+    personal: personal.filter(p => String(p.estado) === 'Activo').map(p => ({ nombre: p.nombre, rol: p.rol })),
+    sistemas: SISTEMAS_PLAN, servidor: new Date().toISOString()
+  };
+}
+
+function padrinosGuardar_(body, u) {
+  const d = body.data || {}, sup = esSupervision_(u);
+  const sh = hojaPadrinos_(), todos = leerP_(sh, COL_PADRINOS);
+  const nombre = txtP_(d.nombre), tel = telP_(d.telefono);
+  if (!nombre) return { ok: false, error: 'falta_nombre' };
+  if (tel.length < 8) return { ok: false, error: 'falta_telefono' };
+  const asesor = txtP_(d.asesor) || u.nombre;
+  if (!sup && asesor !== u.nombre) return { ok: false, error: 'sin_permiso' };
+  let p = d.id ? todos.find(x => String(x.id) === String(d.id)) : null;
+  if (d.id && !p) return { ok: false, error: 'no_encontrado' };
+  if (p && !sup && p.asesor !== u.nombre) return { ok: false, error: 'sin_permiso' };
+  const dup = todos.find(x => telP_(x.telefono) === tel && (!p || String(x.id) !== String(p.id)) && x.estado !== 'baja');
+  if (dup) return { ok: false, error: 'padrino_existe', detalle: dup.nombre + ' · ' + dup.codigo };
+  const nuevo = !p;
+  if (nuevo) p = { id: 'P' + Utilities.getUuid().replace(/-/g, '').slice(0, 10), codigo: nuevoCodigoPadrino_(todos.map(x => x.codigo)), alta: hoyP_(), estado: 'activo', cuotas_al_dia: 0, retiro: '', resena: '', _fila: -1 };
+  Object.assign(p, { nombre: nombre, telefono: tel, cumple: txtP_(d.cumple), nro_contrato: txtP_(d.nro_contrato), asesor: asesor, notas: txtP_(d.notas).slice(0, 500) });
+  // Lo que suma puntos lo carga supervisión
+  if (sup) {
+    if (d.cuotas_al_dia !== undefined) p.cuotas_al_dia = Math.max(0, Math.min(300, parseInt(d.cuotas_al_dia, 10) || 0));
+    if (d.retiro !== undefined) { const r = d.retiro === true || d.retiro === 'si'; if (r && p.retiro !== 'si') p.fecha_retiro = hoyP_(); if (!r) p.fecha_retiro = ''; p.retiro = r ? 'si' : ''; }
+    if (d.resena !== undefined) p.resena = (d.resena === true || d.resena === 'si') ? 'si' : '';
+    if (d.estado === 'baja' || d.estado === 'activo') p.estado = d.estado;
+  }
+  escribirP_(sh, COL_PADRINOS, p._fila, p);
+  logP_(u, nuevo ? 'alta_padrino' : 'edicion_padrino', p.codigo + ' · ' + p.nombre);
+  return { ok: true, padrino: publicoP_(p) };
+}
+
+function referidosGuardar_(body, u, avisos) {
+  const d = body.data || {};
+  const padrinos = leerP_(hojaPadrinos_(), COL_PADRINOS);
+  const pad = padrinos.find(x => String(x.id) === String(d.padrino_id));
+  if (!pad || pad.estado === 'baja') return { ok: false, error: 'padrino_invalido' };
+  const cliente = txtP_(d.cliente), tel = telP_(d.telefono);
+  if (!cliente) return { ok: false, error: 'falta_nombre' };
+  if (tel.length < 8) return { ok: false, error: 'falta_telefono' };
+  if (tel === telP_(pad.telefono)) return { ok: false, error: 'autorreferido' };
+  const asesor = txtP_(d.asesor) || pad.asesor || u.nombre;
+  if (!esSupervision_(u) && asesor !== u.nombre) return { ok: false, error: 'sin_permiso' };
+  const sistema = SISTEMAS_PLAN.indexOf(d.sistema) > -1 ? d.sistema : '';
+  const shR = hojaReferidos_(), refs = leerP_(shR, COL_REFERIDOS);
+  // Un referido, un padrino: el primero que lo trae
+  const ya = refs.find(r => telP_(r.telefono) === tel && r.estado !== 'baja');
+  if (ya) return { ok: false, error: 'referido_existe', detalle: ya.cliente + ' (padrino ' + ya.padrino_codigo + ')' };
+  // Si ya estaba cargado como lead en el CRM, no suma (regla de duplicados)
+  const leadPrevio = leerHoja_(HOJAS.leads).find(l => telP_(l.telefono) === tel);
+  if (leadPrevio) return { ok: false, error: 'lead_existe', detalle: leadPrevio.cliente + ' · ' + (leadPrevio.asignado_a || '') };
+  // 1) Lead en el CRM
+  const shL = obtenerHoja_(HOJAS.leads), hL = asegurarColumnas_(shL, COLUMNAS[HOJAS.leads]);
+  const lead = { id: String(Date.now()), cliente: cliente, telefono: tel, interes: txtP_(d.interes) || (sistema ? 'Plan ' + sistema : ''), origen: 'Referido',
+    asignado_a: asesor, fecha_asignacion: hoyP_(), hora_limite: '', estado: 'pendiente', resultado: '', hora_contacto: '',
+    notas: ('Referido por ' + pad.nombre + ' (padrino ' + pad.codigo + ')' + (d.notas ? ' · ' + txtP_(d.notas) : '')).slice(0, 500) };
+  shL.appendRow(hL.map(h => valorParaCelda_(h, h === 'actualizado' ? new Date() : lead[h])));
+  if (asesor !== u.nombre) avisos.push(() => avisarLeadAsignado_(lead, u));
+  // 2) Referido
+  const r = { id: 'R' + Utilities.getUuid().replace(/-/g, '').slice(0, 10), padrino_id: pad.id, padrino_codigo: pad.codigo, cliente: cliente, telefono: tel,
+    interes: txtP_(d.interes), sistema: sistema, asesor: asesor, estado: 'camino', nro_contrato: '', lead_id: lead.id, alta: hoyP_(), notas: txtP_(d.notas).slice(0, 500) };
+  escribirP_(shR, COL_REFERIDOS, -1, r);
+  logP_(u, 'alta_referido', cliente + ' → padrino ' + pad.codigo);
+  return { ok: true, referido: r, lead_id: lead.id };
+}
+
+function referidosEstado_(body, u) {
+  const sh = hojaReferidos_(), refs = leerP_(sh, COL_REFERIDOS);
+  const r = refs.find(x => String(x.id) === String(body.id));
+  if (!r) return { ok: false, error: 'no_encontrado' };
+  const nuevo = String(body.estado || ''), sup = esSupervision_(u);
+  if (ESTADOS_REFERIDO.indexOf(nuevo) < 0 && nuevo !== 'baja') return { ok: false, error: 'estado_invalido' };
+  if (ESTADOS_SOLO_SUPERVISION.indexOf(nuevo) > -1 && !sup) return { ok: false, error: 'solo_supervision' };
+  if (!sup && r.asesor !== u.nombre) return { ok: false, error: 'sin_permiso' };
+  if (r.estado === 'baja') return { ok: false, error: 'referido_baja' };
+  if (nuevo !== 'baja') {
+    const iA = ESTADOS_REFERIDO.indexOf(r.estado), iN = ESTADOS_REFERIDO.indexOf(nuevo);
+    if (iN !== iA + 1 && !(sup && body.corregir)) return { ok: false, error: 'orden_invalido' }; // se avanza de a un paso
+  } else if (ESTADOS_REFERIDO.indexOf(r.estado) >= 3) return { ok: false, error: 'baja_tarde' }; // pasada la cuota 3 los puntos ya están ganados
+  if (body.sistema && SISTEMAS_PLAN.indexOf(body.sistema) > -1) r.sistema = body.sistema;
+  if (body.nro_contrato) r.nro_contrato = txtP_(body.nro_contrato).slice(0, 20);
+  if (nuevo === 'firmo' && !r.sistema) return { ok: false, error: 'falta_sistema' };
+  const campoFecha = { entrevista: 'fecha_entrevista', firmo: 'fecha_firma', cuota3: 'fecha_cuota3', retiro: 'fecha_retiro', baja: 'fecha_baja' }[nuevo];
+  const antes = r.estado;
+  r.estado = nuevo; if (campoFecha) r[campoFecha] = hoyP_();
+  escribirP_(sh, COL_REFERIDOS, r._fila, r);
+  logP_(u, 'estado_referido', r.cliente + ': ' + antes + ' → ' + nuevo + (r.nro_contrato ? ' · contrato ' + r.nro_contrato : ''));
+  return { ok: true, referido: publicoP_(r) };
 }

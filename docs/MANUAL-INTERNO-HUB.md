@@ -32,7 +32,7 @@ Agenda de entrevistas y seguimiento de leads. Es la única herramienta que pide 
   - **Fecha:** hoy, ayer, esta semana, semana pasada, este mes, mes anterior o un rango a elección. Al elegir una fecha, la vista pasa sola a Historial/Todos.
   - Debajo aparece un resumen, por ejemplo "12 entrevistas · Equipo de X · Venta". Cada filtro se quita con la ×.
 - **Visibilidad:** cada vendedor ve lo suyo, un jefe ve lo suyo y lo de su equipo (`reporta_a`), y el Gerente Comercial ve todo.
-- **Tiempo de respuesta:** al tocar Llamar o WhatsApp en un lead, o al cambiarle el estado por primera vez, se registran los minutos desde que fue asignado.
+- **Tiempo de respuesta:** al tocar Llamar o WhatsApp en un lead, o al cambiarle el estado por primera vez, se registra el momento del contacto. El atraso que se informa se cuenta **desde el vencimiento** (fecha de asignación + «Contactar antes de») hasta ese contacto; si se contactó antes de vencer, cuenta 0. Los leads propios (sin hora límite) se miden desde que se cargaron. (Corregido el 18/11/2026; los datos anteriores se recalculan solos.)
 
 ### Auditoría de Inversión (`simulador.html`)
 Muestra al cliente qué porcentaje del vehículo tiene cubierto, cuánto le falta para la meta de entrega y en cuántos meses llega.
@@ -276,3 +276,9 @@ En el Radar de Usados hay una pestaña **Guía CCA**: se elige marca y año (0 k
 
 ## Lead con entrevista pactada
 Cuando en un lead se toca «Agendar la entrevista» y se guarda, la entrevista queda vinculada al lead (columna lead_id). El lead no se descarta ni se duplica: sigue en el listado pero con otro color, con el aviso «Entrevista pactada» (fecha, hora y asesor), sin poder editarse y con el botón «Ver la entrevista». Si la entrevista queda en **Seguimiento**, el lead vuelve a «En seguimiento» y se habilita de nuevo; si queda **Descartada**, pasa a Descartado; si se **cancela**, vuelve a seguimiento. Si se cierra la venta, el lead queda bloqueado como «Venta cerrada».
+
+## Tiempo de contacto desde el vencimiento (18/11/2026)
+Antes se medía desde que se cargaba el lead hasta el contacto, aunque el vencimiento fuera días después: un lead cargado ayer para hoy a las 12:00 y contactado a las 12:07 figuraba con unos 1.400 minutos. Ahora cuenta 7. La planilla sigue guardando lo mismo en `hora_contacto` (minutos desde la carga); el CRM calcula el atraso real con la fecha y hora límite, así que los datos viejos también quedan bien sin tocar nada. Cambia en Métricas («Minutos promedio de atraso desde el vencimiento»), en el KPI de respuesta y en el resumen por período («% hasta 1 h del vencimiento»). No requiere cargar Code.gs.
+
+## Padrinos X5: club de referidos (18/11/2026)
+Tarjeta «Padrinos X5» (`padrinos.html`) en Ventas. Cada cliente con plan puede ser padrino: recibe un código (X5-XXXXX) y suma puntos cuando un referido suyo avanza (entrevista, firma, cuota 3, retiro). Al cargar un referido se crea el lead en el CRM con origen «Referido» y se avisa al asesor. Cuota 3, retiro y bajas los confirma supervisión. Hojas nuevas (se crean solas): «Padrinos», «Referidos» y «PadrinosLog». Requiere cargar el Code.gs v2.7 en Apps Script (Nueva versión de la misma implementación). Premios y puntos están en revisión con el directorio; los canjes se habilitan a los 3 meses. Detalle en `docs/MANUAL-PADRINOS.md`.

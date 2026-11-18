@@ -378,7 +378,7 @@
     </div>
     <div class="card"><div class="card-title">Facturación por asesor</div><div class="bars" id="ch-asesores"></div></div>
     <div class="card"><div class="card-title">Origen de las ventas</div><div id="ch-origen"></div></div>
-    <div class="card"><div class="card-title">Minutos promedio hasta el primer contacto</div><div class="bars" id="ch-tiempos"></div></div>
+    <div class="card"><div class="card-title">Minutos promedio de atraso desde el vencimiento</div><div class="bars" id="ch-tiempos"></div></div>
     <div class="card"><div class="card-title">Ventas cerradas por auto de flota</div><div class="bars" id="ch-flota"></div></div>
   </section>
 
@@ -680,6 +680,22 @@ function vencido(fecha, hora) {
   if (!fecha || !hora) return false; // lead propio, sin hora límite
   const d = new Date(`${soloFecha(fecha)}T${hora.toString().slice(0, 5)}`);
   return !isNaN(d) && d < ahora();
+}
+/* Momento del vencimiento de un lead (fecha de asignación + hora límite); null si es lead propio */
+function limiteLead(l) {
+  const h = String(l.hora_limite || '').replace(/^'/, '').slice(0, 5);
+  if (!l.fecha_asignacion || !/^\d{1,2}:\d{2}$/.test(h)) return null;
+  const d = new Date(`${soloFecha(l.fecha_asignacion)}T${h.padStart(5, '0')}`);
+  return isNaN(d) ? null : d.getTime();
+}
+/* Tiempo de respuesta real en minutos: desde el vencimiento hasta el contacto (0 si se contactó antes de vencer).
+   Lead propio (sin hora límite): desde la carga. Sirve también para los datos ya guardados, sin tocar la planilla. */
+function demoraContacto(l) {
+  const raw = parseInt(l.hora_contacto, 10);
+  if (isNaN(raw)) return null;
+  const t0 = parseInt(l.id, 10), lim = limiteLead(l);
+  if (lim == null || isNaN(t0) || t0 < 1e12) return raw;
+  return Math.max(0, Math.round((t0 + raw * 60000 - lim) / 60000));
 }
 
 /* ── Filtros: asesor/equipo (compartido) + estado y fecha por pestaña ── */
@@ -1014,20 +1030,23 @@ function guardarCampo(tabla, item, campo, valor) {
   if (SOLO_LECTURA()) return false;
   if (String(item[campo] ?? '') === String(valor ?? '')) return false;
   item[campo] = valor;
-  if (tabla === 'leads' && campo === 'estado' && !item.hora_contacto) marcarContacto(item);
+  if (tabla === 'leads' && campo === 'estado' && sinContactoMarcado(item)) marcarContacto(item);
   store.set('x5_db', db);
   encolar('update', tabla === 'agenda' ? 'Hoja 1' : 'Leads', item);
   if (tabla === 'agenda' && (campo === 'estado' || campo === 'resultado')) sincronizarLead(item);
   return true;
 }
 
+/* hora_contacto guarda los minutos desde la CARGA del lead hasta el contacto (dato crudo, igual que siempre).
+   El tiempo de respuesta que se informa lo calcula demoraContacto(): cuenta desde el vencimiento (día y hora límite). */
 function marcarContacto(lead) {
   const t0 = parseInt(lead.id, 10);
   if (!isNaN(t0) && t0 > 1e12) {
     const min = Math.round((Date.now() - t0) / 60000);
-    lead.hora_contacto = (min > 0 && min < 10080) ? min : '';
+    lead.hora_contacto = (min >= 0 && min < 43200) ? min : '';
   }
 }
+const sinContactoMarcado = (l) => l.hora_contacto === '' || l.hora_contacto == null;
 
 document.addEventListener('change', (e) => {
   const el = e.target, campo = el.dataset && el.dataset.campo;
@@ -1122,7 +1141,7 @@ window.addEventListener('pagehide', volcarNotas);
 // Llamar / WhatsApp: si el lead seguía pendiente, se registra el tiempo de respuesta
 document.addEventListener('click', (e) => {
   const c = e.target.closest('[data-contacto]');
-  if (c) { const r = registro(c); if (r && !r.item.hora_contacto) { marcarContacto(r.item); encolar('update', 'Leads', r.item); } }
+  if (c) { const r = registro(c); if (r && sinContactoMarcado(r.item)) { marcarContacto(r.item); encolar('update', 'Leads', r.item); } }
   const ag = e.target.closest('[data-agendar]');
   if (ag) {
     const r = registro(ag); if (!r) return;
@@ -1557,8 +1576,9 @@ function renderDashboard() {
   });
 
   const tSum = {}, tN = {};
-  leads.filter(l => l.hora_contacto !== '' && l.hora_contacto != null && !isNaN(parseInt(l.hora_contacto))).forEach(l => {
-    tSum[l.asignado_a] = (tSum[l.asignado_a] || 0) + parseInt(l.hora_contacto); tN[l.asignado_a] = (tN[l.asignado_a] || 0) + 1;
+  leads.forEach(l => {
+    const m = demoraContacto(l); if (m == null) return;
+    tSum[l.asignado_a] = (tSum[l.asignado_a] || 0) + m; tN[l.asignado_a] = (tN[l.asignado_a] || 0) + 1;
   });
   const tProm = {}; Object.keys(tSum).forEach(k => tProm[k] = Math.round(tSum[k] / tN[k]));
   const totalN = Object.values(tN).reduce((a, b) => a + b, 0);
@@ -1640,7 +1660,7 @@ function tituloRango(r) {
 }
 const fmtMin = (m) => m == null ? '–' : (m < 60 ? m + ' min' : (m / 60).toFixed(1).replace('.', ',') + ' h');
 const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
-const numMin = (l) => (l.hora_contacto !== '' && l.hora_contacto != null && !isNaN(parseInt(l.hora_contacto))) ? parseInt(l.hora_contacto) : null;
+const numMin = (l) => demoraContacto(l);
 const contactado = (l) => (l.estado && l.estado !== 'pendiente') || numMin(l) != null;
 const recorte = (t, n) => { t = String(t || '').replace(/\s+/g, ' ').trim(); return t.length > n ? t.slice(0, n - 1) + '…' : t; };
 
@@ -1726,7 +1746,7 @@ function reporteHtml(d, pdf) {
   <div class="kpis">
     <div class="kpi"><span>Leads</span><b class="num">${d.L.length}</b><small>recibidos</small></div>
     <div class="kpi ${d.L.length && kCont < 100 ? '' : 'ok'}"><span>Contactados</span><b class="num">${d.L.length ? kCont + '%' : '–'}</b><small>${d.cont.length} de ${d.L.length}</small></div>
-    <div class="kpi"><span>Respuesta</span><b class="num">${kRes}</b><small>${d.nMins ? pct(d.rapidos, d.nMins) + '% en menos de 1 h' : 'promedio'}</small></div>
+    <div class="kpi"><span>Respuesta</span><b class="num">${kRes}</b><small>${d.nMins ? pct(d.rapidos, d.nMins) + '% hasta 1 h del vencimiento' : 'promedio'}</small></div>
     <div class="kpi ${d.ventas.length ? 'ok' : ''}"><span>Ventas</span><b class="num">${d.ventas.length}</b><small>${d.fact ? X5.money(d.fact) : 'cerradas'}</small></div>
   </div>
   ${vacio ? '' : `<div class="rep-2">
