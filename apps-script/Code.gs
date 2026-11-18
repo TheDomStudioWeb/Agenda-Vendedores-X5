@@ -14,6 +14,8 @@
  *  - Respuestas con { ok: true/false } para que la app sepa si se guardó.
  *
  *
+ * v2.11: el padrino carga referidos desde su tarjeta (pase_referido): entran al CRM como lead «Referido» con plazo de 2 h y aviso al asesor.
+ *
  * v2.10: la tarjeta del padrino también se pide por POST, igual que el resto del Hub (más estable que GET).
  *
  * v2.9: una venta no puede usar un contrato que ya figura con otro cliente (contratos_verificar); si gerencia lo marcó
@@ -109,6 +111,12 @@ function doPost(e) {
     if (body.action === 'login') return json_(login_(body.nombre, body.clave));
     // Tarjeta del padrino para el cliente (sin sesión: solo con su código y su llave secreta)
     if (body.action === 'pase') return json_(paseCliente_(body.c, body.k));
+    if (body.action === 'pase_referido') {
+      const avisos = [], lk = LockService.getScriptLock(); lk.waitLock(15000); let r;
+      try { r = paseReferido_(body, avisos); } finally { lk.releaseLock(); }
+      avisos.forEach(fn => { try { fn(); } catch (e) { console.warn('Aviso no enviado: ' + e); } });
+      return json_(r);
+    }
 
     const usuario = body.token ? validarToken_(body.token) : null;
     if (!usuario) return json_({ ok: false, error: 'sesion_vencida' });
@@ -1503,7 +1511,7 @@ const HOJA_PADRINOS = 'Padrinos';
 const HOJA_REFERIDOS = 'Referidos';
 const HOJA_PADRINOS_LOG = 'PadrinosLog';
 const COL_PADRINOS = ['id', 'codigo', 'nombre', 'telefono', 'cumple', 'nro_contrato', 'asesor', 'cuotas_al_dia', 'retiro', 'fecha_retiro', 'resena', 'estado', 'alta', 'notas', 'actualizado', 'llave'];
-const COL_REFERIDOS = ['id', 'padrino_id', 'padrino_codigo', 'cliente', 'telefono', 'interes', 'sistema', 'asesor', 'estado', 'nro_contrato', 'lead_id', 'alta', 'fecha_entrevista', 'fecha_firma', 'fecha_cuota3', 'fecha_retiro', 'fecha_baja', 'notas', 'actualizado'];
+const COL_REFERIDOS = ['id', 'padrino_id', 'padrino_codigo', 'cliente', 'telefono', 'interes', 'sistema', 'asesor', 'estado', 'nro_contrato', 'lead_id', 'alta', 'fecha_entrevista', 'fecha_firma', 'fecha_cuota3', 'fecha_retiro', 'fecha_baja', 'notas', 'actualizado', 'cargado_por'];
 const COL_PADRINOS_LOG = ['fecha', 'usuario', 'accion', 'detalle'];
 const ESTADOS_REFERIDO = ['camino', 'entrevista', 'firmo', 'cuota3', 'retiro'];
 const ESTADOS_SOLO_SUPERVISION = ['cuota3', 'retiro', 'baja'];
@@ -1636,33 +1644,65 @@ function referidosGuardar_(body, u, avisos) {
   const padrinos = leerP_(hojaPadrinos_(), COL_PADRINOS);
   const pad = padrinos.find(x => String(x.id) === String(d.padrino_id));
   if (!pad || pad.estado === 'baja') return { ok: false, error: 'padrino_invalido' };
-  const cliente = txtP_(d.cliente), tel = telP_(d.telefono);
-  if (!cliente) return { ok: false, error: 'falta_nombre' };
-  if (tel.length < 8) return { ok: false, error: 'falta_telefono' };
-  if (tel === telP_(pad.telefono)) return { ok: false, error: 'autorreferido' };
   const asesor = txtP_(d.asesor) || pad.asesor || u.nombre;
   if (!esSupervision_(u) && asesor !== u.nombre) return { ok: false, error: 'sin_permiso' };
+  return altaReferido_(pad, d, asesor, { nombre: u.nombre, desdeTarjeta: false }, avisos);
+}
+
+// Alta de un referido (desde el Hub o desde la tarjeta del padrino): crea el lead en el CRM y la fila en «Referidos»
+function altaReferido_(pad, d, asesor, quien, avisos) {
+  const cliente = txtP_(d.cliente).slice(0, 80), tel = telP_(d.telefono);
+  if (!cliente) return { ok: false, error: 'falta_nombre' };
+  if (tel.length < 10 || tel.length > 11) return { ok: false, error: 'falta_telefono' };
+  if (tel === telP_(pad.telefono)) return { ok: false, error: 'autorreferido' };
   const sistema = SISTEMAS_PLAN.indexOf(d.sistema) > -1 ? d.sistema : '';
   const shR = hojaReferidos_(), refs = leerP_(shR, COL_REFERIDOS);
   // Un referido, un padrino: el primero que lo trae
   const ya = refs.find(r => telP_(r.telefono) === tel && r.estado !== 'baja');
-  if (ya) return { ok: false, error: 'referido_existe', detalle: ya.cliente + ' (padrino ' + ya.padrino_codigo + ')' };
+  if (ya) return { ok: false, error: 'referido_existe', detalle: quien.desdeTarjeta ? '' : ya.cliente + ' (padrino ' + ya.padrino_codigo + ')' };
   // Si ya estaba cargado como lead en el CRM, no suma (regla de duplicados)
   const leadPrevio = leerHoja_(HOJAS.leads).find(l => telP_(l.telefono) === tel);
-  if (leadPrevio) return { ok: false, error: 'lead_existe', detalle: leadPrevio.cliente + ' · ' + (leadPrevio.asignado_a || '') };
-  // 1) Lead en el CRM
+  if (leadPrevio) return { ok: false, error: 'lead_existe', detalle: quien.desdeTarjeta ? '' : leadPrevio.cliente + ' · ' + (leadPrevio.asignado_a || '') };
+  const interes = txtP_(d.interes).slice(0, 60), notas = txtP_(d.notas).slice(0, 300);
+  // Lo que carga el padrino entra con plazo de contacto (2 h dentro del horario comercial); lo que carga el asesor, como lead propio
+  const plazo = quien.desdeTarjeta ? plazoReferido_(new Date()) : null;
   const shL = obtenerHoja_(HOJAS.leads), hL = asegurarColumnas_(shL, COLUMNAS[HOJAS.leads]);
-  const lead = { id: String(Date.now()), cliente: cliente, telefono: tel, interes: txtP_(d.interes) || (sistema ? 'Plan ' + sistema : ''), origen: 'Referido',
-    asignado_a: asesor, fecha_asignacion: hoyP_(), hora_limite: '', estado: 'pendiente', resultado: '', hora_contacto: '',
-    notas: ('Referido por ' + pad.nombre + ' (padrino ' + pad.codigo + ')' + (d.notas ? ' · ' + txtP_(d.notas) : '')).slice(0, 500) };
+  const lead = { id: String(Date.now()), cliente: cliente, telefono: tel, interes: interes || (sistema ? 'Plan ' + sistema : ''), origen: 'Referido',
+    asignado_a: asesor, fecha_asignacion: plazo ? plazo.fecha : hoyP_(), hora_limite: plazo ? plazo.hora : '', estado: 'pendiente', resultado: '', hora_contacto: '',
+    notas: ('Referido por ' + pad.nombre + ' (padrino ' + pad.codigo + ')' + (quien.desdeTarjeta ? ' · lo cargó el padrino desde su tarjeta' : '') + (notas ? ' · ' + notas : '')).slice(0, 500) };
   shL.appendRow(hL.map(h => valorParaCelda_(h, h === 'actualizado' ? new Date() : lead[h])));
-  if (asesor !== u.nombre) avisos.push(() => avisarLeadAsignado_(lead, u));
-  // 2) Referido
+  if (asesor !== quien.nombre) avisos.push(() => avisarLeadAsignado_(lead, { nombre: quien.desdeTarjeta ? 'el padrino ' + pad.nombre + ' desde su tarjeta' : quien.nombre }));
   const r = { id: 'R' + Utilities.getUuid().replace(/-/g, '').slice(0, 10), padrino_id: pad.id, padrino_codigo: pad.codigo, cliente: cliente, telefono: tel,
-    interes: txtP_(d.interes), sistema: sistema, asesor: asesor, estado: 'camino', nro_contrato: '', lead_id: lead.id, alta: hoyP_(), notas: txtP_(d.notas).slice(0, 500) };
+    interes: interes, sistema: sistema, asesor: asesor, estado: 'camino', nro_contrato: '', lead_id: lead.id, alta: hoyP_(), notas: notas, cargado_por: quien.desdeTarjeta ? 'padrino' : quien.nombre };
   escribirP_(shR, COL_REFERIDOS, -1, r);
-  logP_(u, 'alta_referido', cliente + ' → padrino ' + pad.codigo);
+  logP_({ nombre: quien.desdeTarjeta ? 'Padrino ' + pad.codigo : quien.nombre }, 'alta_referido', cliente + ' → padrino ' + pad.codigo + (quien.desdeTarjeta ? ' (desde la tarjeta)' : ''));
   return { ok: true, referido: r, lead_id: lead.id };
+}
+// Plazo para contactar un referido que cargó el padrino: 2 h; fuera de 9 a 20 h, a las 11 del día hábil siguiente
+function plazoReferido_(ahora) {
+  const tz = Session.getScriptTimeZone(), f = (d, p) => Utilities.formatDate(d, tz, p);
+  let lim = new Date(ahora.getTime() + 2 * 3600000);
+  const h = Number(f(ahora, 'HH'));
+  if (h >= 18 || h < 9) {
+    lim = new Date(ahora.getTime() + (h >= 18 ? 86400000 : 0));
+    while (['6', '7'].indexOf(f(lim, 'u')) > -1) lim = new Date(lim.getTime() + 86400000);
+    return { fecha: f(lim, 'yyyy-MM-dd'), hora: '11:00' };
+  }
+  return { fecha: f(lim, 'yyyy-MM-dd'), hora: f(lim, 'HH:mm') };
+}
+// El cliente carga un referido desde su tarjeta (sin sesión: con su código y su llave). Máximo 5 por día.
+function paseReferido_(body, avisos) {
+  const codigo = txtP_(body.c).toUpperCase(), llave = txtP_(body.k);
+  if (!codigo || llave.length < 20) return { ok: false, error: 'pase_invalido' };
+  const pad = leerP_(hojaPadrinos_(), COL_PADRINOS).find(x => x.codigo === codigo);
+  if (!pad || !pad.llave || !iguales_(String(pad.llave), llave)) return { ok: false, error: 'pase_invalido' };
+  if (pad.estado === 'baja') return { ok: false, error: 'pase_baja' };
+  if (!body.acepta) return { ok: false, error: 'falta_consentimiento' };
+  const cache = CacheService.getScriptCache(), clave = 'pref_' + pad.codigo + '_' + hoyP_(), n = Number(cache.get(clave) || 0);
+  if (n >= 5) return { ok: false, error: 'demasiados' };
+  const r = altaReferido_(pad, { cliente: body.cliente, telefono: body.telefono, interes: body.interes, notas: body.notas }, pad.asesor, { nombre: '', desdeTarjeta: true }, avisos);
+  if (r.ok) cache.put(clave, String(n + 1), 21600);
+  return r.ok ? { ok: true } : { ok: false, error: r.error };
 }
 
 function referidosEstado_(body, u) {

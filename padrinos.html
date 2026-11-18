@@ -373,7 +373,7 @@ function pintarPase() {
     const puedeBaja = supervision() && r.estado !== 'baja' && i < 3;
     const pts = r.estado === 'baja' ? '<span class="chip">Baja</span>' : r._pend ? `<span class="chip warn">${r._pend} pend.</span>` : `<span class="chip ok">+${r._pts}</span>`;
     return `<div class="ref ${r.estado === 'baja' ? 'baja' : ''}"><div class="t"><b>${esc(r.cliente)}</b>${pts}</div>
-      <div class="m">${esc(r.sistema || 'Sistema a definir')}${r.nro_contrato ? ' · contrato ' + esc(r.nro_contrato) : ''} · ${esc(r.asesor)} · desde ${X5.fechaCorta(r.alta)}</div>
+      <div class="m">${esc(r.sistema || 'Sistema a definir')}${r.nro_contrato ? ' · contrato ' + esc(r.nro_contrato) : ''} · ${esc(r.asesor)} · desde ${X5.fechaCorta(r.alta)}${r.cargado_por === 'padrino' ? ' · lo cargó el padrino' : ''}</div>
       <div class="steps">${EST.map((e, k) => `<div class="${r.estado !== 'baja' && k <= i ? 'on' : ''}"><i></i>${EST_TXT[e]}</div>`).join('')}</div>
       ${puedeAvanzar || puedeBaja ? `<div class="acts">${puedeAvanzar ? `<button class="btn btn-sm" data-av="${esc(r.id)}" data-nx="${nx}">Marcar: ${EST_TXT[nx]}</button>` : ''}${puedeBaja ? `<button class="btn btn-ghost btn-sm" data-baja="${esc(r.id)}">Baja</button>` : ''}</div>` : ''}</div>`;
   }).join('') : '<div class="empty" style="padding:14px">Sin referidos todavía.</div>';

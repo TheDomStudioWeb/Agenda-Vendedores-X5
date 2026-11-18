@@ -75,4 +75,27 @@ T('un padrino sin llave (cargado antes) la recibe al abrir el Hub y no cambia de
   assert.strictEqual(m.pad(V1, { action: 'padrinos_datos' }).padrinos[0].llave, k1);
   assert(m.api.paseCliente_(p.codigo, k1).ok);
 });
+T('el padrino carga un referido desde su tarjeta: entra como lead «Referido» con plazo de 2 h y aviso al asesor', () => {
+  const m = m0(); const p = alta(m, GER, { nombre: 'Lucía Gómez', telefono: '2615551234', asesor: 'Vendedor Carlos' }).padrino;
+  const post = b => m.post(Object.assign({ c: p.codigo, k: p.llave, acepta: true }, b));
+  assert.strictEqual(post({ action: 'pase_referido', cliente: 'Martín', telefono: '2614440000', acepta: false }).error, 'falta_consentimiento');
+  assert.strictEqual(m.post({ action: 'pase_referido', c: p.codigo, k: 'x'.repeat(40), acepta: true, cliente: 'M', telefono: '2614440000' }).error, 'pase_invalido');
+  const antes = m.enviados.length;
+  const r = post({ action: 'pase_referido', cliente: 'Martín Ruiz', telefono: '261 444-0000', interes: 'Moto' }); assert(r.ok, JSON.stringify(r)); assert(!r.referido); // no devuelve datos
+  const L = m.libro.Leads.filas, h = L[0], lead = L[L.length - 1], v = k => lead[h.indexOf(k)];
+  assert.strictEqual(v('origen'), 'Referido'); assert.strictEqual(v('asignado_a'), 'Vendedor Carlos'); assert.strictEqual(v('hora_limite'), '12:00'); assert.strictEqual(v('fecha_asignacion'), '2026-11-18'); assert(/desde su tarjeta/.test(v('notas')));
+  const d = m.pad(V1, { action: 'padrinos_datos' }); assert.strictEqual(d.referidos[0].cargado_por, 'padrino'); assert.strictEqual(d.referidos[0].estado, 'camino');
+  const dup = post({ action: 'pase_referido', cliente: 'Otro', telefono: '2614440000' }); assert.strictEqual(dup.error, 'referido_existe'); assert(!dup.detalle); // no revela datos de otros
+  assert.strictEqual(post({ action: 'pase_referido', cliente: 'Yo', telefono: '2615551234' }).error, 'autorreferido');
+  assert.strictEqual(post({ action: 'pase_referido', cliente: 'Corto', telefono: '12345' }).error, 'falta_telefono');
+  for (let i = 0; i < 4; i++) assert(post({ action: 'pase_referido', cliente: 'R' + i, telefono: '261400000' + i }).ok);
+  assert.strictEqual(post({ action: 'pase_referido', cliente: 'Sexto', telefono: '2614000009' }).error, 'demasiados');
+});
+T('fuera de horario, el plazo del referido pasa a las 11 del día hábil siguiente', () => {
+  const m = crear(personal); m.reloj('2026-11-20T21:30:00-03:00'); // viernes a la noche
+  const p = alta(m, GER, { nombre: 'Lucía', telefono: '2615551234', asesor: 'Vendedor Carlos' }).padrino;
+  assert(m.post({ action: 'pase_referido', c: p.codigo, k: p.llave, acepta: true, cliente: 'Martín', telefono: '2614440000' }).ok);
+  const L = m.libro.Leads.filas, h = L[0], lead = L[L.length - 1];
+  assert.strictEqual(lead[h.indexOf('fecha_asignacion')], '2026-11-23'); assert.strictEqual(lead[h.indexOf('hora_limite')], '11:00');
+});
 console.log(`\n${ok} bien, ${fail} con error`); process.exit(fail ? 1 : 0);

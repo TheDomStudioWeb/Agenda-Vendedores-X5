@@ -20,7 +20,7 @@ Propuesta completa para el directorio: https://claude.ai/artifact/BTFvRDEJACoBjq
 ## Tarjeta del cliente (link personal)
 Cada padrino tiene su propia tarjeta en un link único (`pase.html?c=CÓDIGO&k=LLAVE`). El botón **Enviarle su pase por WhatsApp** ya manda el mensaje con ese link, y **Copiar el link de su tarjeta** lo copia para pegarlo donde quieras.
 - El cliente no necesita usuario ni clave. La tarjeta tiene 4 pantallas con una barra abajo: **Mi pase** (bienvenida, tarjeta con puntos, nivel y código, cumpleaños, recomendar, acceso a sus referidos y su plan), **Referidos** (cada uno con sus pasos, solo el nombre de pila), **Premios** y **Cómo sumo**. La parte de gerencia no aparece: eso queda solo en el Hub.
-- Tiene un botón **Recomendar a un amigo** que arma el mensaje de WhatsApp con su código, y otro para copiar el código.
+- Tiene un botón **Recomendar a un amigo** que arma el mensaje de WhatsApp con su código, y otro **+ Cargar un referido**: el cliente pone nombre, teléfono, qué busca y un comentario, y confirma que le avisó a esa persona. Entra solo al Mini CRM como lead con origen «Referido», asignado a su asesor, con **plazo de contacto de 2 horas** (si lo carga después de las 18 o antes de las 9, vence a las 11 del día hábil siguiente) y aviso por Telegram. En el Hub se ve «lo cargó el padrino». Máximo 5 por día por padrino. Si esa persona ya era lead o ya fue referida, no se carga y no se le muestran datos de otros.
 - Puede guardarla en la pantalla de inicio del teléfono.
 - Es de solo lectura y no muestra teléfonos ni datos de otros clientes. La llave del link es secreta y no se puede adivinar; si el padrino se da de baja, el link deja de funcionar.
 - Billetera (Google/Apple Wallet): no hace falta por ahora. No es para pagar; solo suma avisos en el teléfono y un QR para escanear. Se evalúa si Gangas Club valida beneficios con QR.
@@ -52,6 +52,7 @@ Hojas nuevas, se crean solas con el Code.gs v2.7: **Padrinos** (id, codigo, nomb
 - **¿El referido va al CRM?** Sí, se crea solo como lead con origen «Referido» y el asesor recibe el aviso.
 - **¿Por qué los puntos están pendientes?** Porque el referido firmó pero todavía no pagó la cuota 3; la confirma supervisión.
 - **¿Cómo ve el cliente su tarjeta?** Con el link que le llega por WhatsApp desde «Enviarle su pase». No necesita clave.
+- **¿El cliente puede cargar referidos solo?** Sí, desde su tarjeta con «+ Cargar un referido». Entra al CRM como lead referido con plazo de 2 horas.
 - **¿Cuándo se canjean?** A los 3 meses del lanzamiento; los premios se están definiendo.
 
 Desarrollado por The DOM Studio Web · WhatsApp 261-3431216 · thedomstudioweb@gmail.com
