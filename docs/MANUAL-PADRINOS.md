@@ -19,7 +19,7 @@ Propuesta completa para el directorio: https://claude.ai/artifact/BTFvRDEJACoBjq
 
 ## Tarjeta del cliente (link personal)
 Cada padrino tiene su propia tarjeta en un link único (`pase.html?c=CÓDIGO&k=LLAVE`). El botón **Enviarle su pase por WhatsApp** ya manda el mensaje con ese link, y **Copiar el link de su tarjeta** lo copia para pegarlo donde quieras.
-- El cliente no necesita usuario ni clave: abre el link y ve sus puntos al día, su nivel, sus referidos (solo el nombre de pila), su plan, los premios y cómo sumar.
+- El cliente no necesita usuario ni clave. La tarjeta tiene 4 pantallas con una barra abajo: **Mi pase** (bienvenida, tarjeta con puntos, nivel y código, cumpleaños, recomendar, acceso a sus referidos y su plan), **Referidos** (cada uno con sus pasos, solo el nombre de pila), **Premios** y **Cómo sumo**. La parte de gerencia no aparece: eso queda solo en el Hub.
 - Tiene un botón **Recomendar a un amigo** que arma el mensaje de WhatsApp con su código, y otro para copiar el código.
 - Puede guardarla en la pantalla de inicio del teléfono.
 - Es de solo lectura y no muestra teléfonos ni datos de otros clientes. La llave del link es secreta y no se puede adivinar; si el padrino se da de baja, el link deja de funcionar.
