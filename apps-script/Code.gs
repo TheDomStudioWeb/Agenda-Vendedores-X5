@@ -14,6 +14,8 @@
  *  - Respuestas con { ok: true/false } para que la app sepa si se guardó.
  *
  *
+ * v2.8: tarjeta pública del padrino (pase.html?c=CÓDIGO&k=LLAVE, solo lectura, sin datos de contacto).
+ *
  * v2.7: Padrinos X5, club de referidos (hojas «Padrinos», «Referidos» y «PadrinosLog»; el referido entra como lead).
  *
  * v2.6: registro de ingreso y egreso del personal (hoja «Asistencia», rol «Personal»).
@@ -75,6 +77,8 @@ function doGet(e) {
   const p = (e && e.parameter) || {};
   try {
     if (p.action === 'usuarios') return json_({ ok: true, usuarios: listarUsuarios_() });
+    // Tarjeta del padrino para el cliente: solo con su código y su llave secreta, solo lectura
+    if (p.action === 'pase') return json_(paseCliente_(p.c, p.k));
 
     // Clave de solo lectura para widgets (Propiedades del script > LAUNCHER_KEY)
     const launcherKey = PropertiesService.getScriptProperties().getProperty('LAUNCHER_KEY');
@@ -1466,7 +1470,7 @@ function asistenciaCorregir_(body, u) {
 const HOJA_PADRINOS = 'Padrinos';
 const HOJA_REFERIDOS = 'Referidos';
 const HOJA_PADRINOS_LOG = 'PadrinosLog';
-const COL_PADRINOS = ['id', 'codigo', 'nombre', 'telefono', 'cumple', 'nro_contrato', 'asesor', 'cuotas_al_dia', 'retiro', 'fecha_retiro', 'resena', 'estado', 'alta', 'notas', 'actualizado'];
+const COL_PADRINOS = ['id', 'codigo', 'nombre', 'telefono', 'cumple', 'nro_contrato', 'asesor', 'cuotas_al_dia', 'retiro', 'fecha_retiro', 'resena', 'estado', 'alta', 'notas', 'actualizado', 'llave'];
 const COL_REFERIDOS = ['id', 'padrino_id', 'padrino_codigo', 'cliente', 'telefono', 'interes', 'sistema', 'asesor', 'estado', 'nro_contrato', 'lead_id', 'alta', 'fecha_entrevista', 'fecha_firma', 'fecha_cuota3', 'fecha_retiro', 'fecha_baja', 'notas', 'actualizado'];
 const COL_PADRINOS_LOG = ['fecha', 'usuario', 'accion', 'detalle'];
 const ESTADOS_REFERIDO = ['camino', 'entrevista', 'firmo', 'cuota3', 'retiro'];
@@ -1554,6 +1558,8 @@ function padrinosDatos_(u) {
   const referidos = leerP_(hojaReferidos_(), COL_REFERIDOS);
   // Un asesor ve los padrinos que atiende él o su equipo, y todos los referidos de esos padrinos (para que el puntaje sea completo)
   const visibles = padrinos.filter(p => ve(p.asesor));
+  const sinLlave = visibles.filter(p => !p.llave);
+  if (sinLlave.length) { const sh = hojaPadrinos_(); sinLlave.forEach(p => { p.llave = nuevaLlave_(); escribirP_(sh, COL_PADRINOS, p._fila, p); }); }
   const ids = visibles.map(p => String(p.id));
   return {
     ok: true, usuario: { nombre: u.nombre, rol: u.rol },
@@ -1578,7 +1584,8 @@ function padrinosGuardar_(body, u) {
   const dup = todos.find(x => telP_(x.telefono) === tel && (!p || String(x.id) !== String(p.id)) && x.estado !== 'baja');
   if (dup) return { ok: false, error: 'padrino_existe', detalle: dup.nombre + ' · ' + dup.codigo };
   const nuevo = !p;
-  if (nuevo) p = { id: 'P' + Utilities.getUuid().replace(/-/g, '').slice(0, 10), codigo: nuevoCodigoPadrino_(todos.map(x => x.codigo)), alta: hoyP_(), estado: 'activo', cuotas_al_dia: 0, retiro: '', resena: '', _fila: -1 };
+  if (!nuevo && !p.llave) p.llave = nuevaLlave_();
+  if (nuevo) p = { id: 'P' + Utilities.getUuid().replace(/-/g, '').slice(0, 10), codigo: nuevoCodigoPadrino_(todos.map(x => x.codigo)), alta: hoyP_(), estado: 'activo', cuotas_al_dia: 0, retiro: '', resena: '', llave: nuevaLlave_(), _fila: -1 };
   Object.assign(p, { nombre: nombre, telefono: tel, cumple: txtP_(d.cumple), nro_contrato: txtP_(d.nro_contrato), asesor: asesor, notas: txtP_(d.notas).slice(0, 500) });
   // Lo que suma puntos lo carga supervisión
   if (sup) {
@@ -1648,4 +1655,23 @@ function referidosEstado_(body, u) {
   escribirP_(sh, COL_REFERIDOS, r._fila, r);
   logP_(u, 'estado_referido', r.cliente + ': ' + antes + ' → ' + nuevo + (r.nro_contrato ? ' · contrato ' + r.nro_contrato : ''));
   return { ok: true, referido: publicoP_(r) };
+}
+
+function nuevaLlave_() { return Utilities.getUuid().replace(/-/g, '') + Utilities.getUuid().replace(/-/g, '').slice(0, 8); }
+
+// Lo que ve el cliente en su tarjeta: sus datos de puntos y sus referidos solo con nombre de pila. Nada de teléfonos ni datos de otros.
+function paseCliente_(codigo, llave) {
+  codigo = txtP_(codigo).toUpperCase(); llave = txtP_(llave);
+  if (!codigo || llave.length < 20) return { ok: false, error: 'pase_invalido' };
+  const p = leerP_(hojaPadrinos_(), COL_PADRINOS).find(x => x.codigo === codigo);
+  if (!p || !p.llave || !iguales_(String(p.llave), llave)) return { ok: false, error: 'pase_invalido' };
+  if (p.estado === 'baja') return { ok: false, error: 'pase_baja' };
+  const refs = leerP_(hojaReferidos_(), COL_REFERIDOS).filter(r => String(r.padrino_id) === String(p.id));
+  const pila = (n) => String(n || '').trim().split(/\s+/)[0] || 'Referido';
+  return {
+    ok: true,
+    padrino: { id: p.id, codigo: p.codigo, nombre: p.nombre, cumple: p.cumple, alta: p.alta, cuotas_al_dia: p.cuotas_al_dia, retiro: p.retiro, fecha_retiro: p.fecha_retiro, resena: p.resena, estado: p.estado, asesor: p.asesor },
+    referidos: refs.map(r => ({ padrino_id: r.padrino_id, cliente: pila(r.cliente), sistema: r.sistema, estado: r.estado, alta: r.alta, fecha_cuota3: r.fecha_cuota3 })),
+    servidor: new Date().toISOString()
+  };
 }

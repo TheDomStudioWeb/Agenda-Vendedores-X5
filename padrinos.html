@@ -171,6 +171,7 @@
       <a class="btn btn-wsp full" id="p-wa" target="_blank" rel="noopener">Enviarle su pase por WhatsApp</a>
       <button class="btn" id="p-ref">+ Cargar referido</button>
       <button class="btn btn-ghost" id="p-edit">Editar padrino</button>
+      <button class="btn btn-ghost full" id="p-link">Copiar el link de su tarjeta</button>
     </div>
     <div class="bloque"><h3>Referidos <span id="p-nref" class="chip">0</span></h3><div id="p-refs"></div></div>
     <div class="bloque"><h3>Su plan</h3><div id="p-own"></div></div>
@@ -239,6 +240,7 @@
 
 <script src="x5-core.js"></script>
 <script src="dom-login.js"></script>
+<script src="padrinos-core.js"></script>
 <script>
 (() => {
 'use strict';
@@ -253,60 +255,15 @@ const ERR = {
   falta_sistema: 'Elegí el sistema del plan que firmó.', baja_tarde: 'Pasada la cuota 3 ya no se puede dar de baja.', referido_baja: 'Ese referido está dado de baja.', no_encontrado: 'No se encontró el registro. Actualizá la pantalla.'
 };
 
-/* ── Reglas del programa (valores propuestos, en revisión con el directorio) ── */
-const R = {
-  entrevista: 10, firma: 100, cuota3: 50, retiroRef: 100, bienvenida: 20, racha: 30, rachaCada: 6, retiroPropio: 150, cumple: 50, resena: 20,
-  mult: { '10 adelantos': 1, '5 adelantos': 1.5, 'Entrega programada': 2 },
-  niveles: [{ n: 'Cliente X5', min: 0, x: 1 }, { n: 'Padrino', min: 1, x: 1 }, { n: 'Padrino Oro', min: 3, x: 1.25 }, { n: 'Embajador X5', min: 6, x: 1.5 }]
-};
-const PREMIOS = [
-  { t: 'Voucher de Gangas Club', d: 'En un comercio aliado', p: 50 },
-  { t: 'Lavado completo', d: 'Para quien ya retiró su vehículo', p: 80 },
-  { t: 'Kit de seguridad', d: 'Matafuego, balizas y botiquín · quien ya retiró', p: 120 },
-  { t: 'Bonificación en una cuota', d: 'Desde nivel Padrino', p: 150 },
-  { t: 'Sellado bonificado', d: 'Si contrata otro plan', p: 200 },
-  { t: 'Polarizado', d: 'Para quien ya retiró su vehículo', p: 250 }
-];
-const EST = ['camino', 'entrevista', 'firmo', 'cuota3', 'retiro'];
-const EST_TXT = { camino: 'En camino', entrevista: 'Entrevista', firmo: 'Firmó', cuota3: 'Cuota 3', retiro: 'Retiró', baja: 'Baja' };
+const { R, PREMIOS, EST, EST_TXT } = window.Padrinos;
 const SUP = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
 
 let user = null, token = null, D = { padrinos: [], referidos: [], personal: [], sistemas: [] }, sel = null, vista = 'lista';
 const supervision = () => SUP.includes(user.rol), soloLectura = () => user.rol === 'Supervisor';
 
-/* ── Motor de puntos ── */
-function multNivel(k) { let x = 1; R.niveles.forEach(l => { if (k >= l.min) x = l.x; }); return x; }
-function cumplesDesde(alta, cumple) {
-  if (!cumple || !/^\d{4}-\d{2}-\d{2}/.test(cumple)) return 0;
-  const hoy = X5.hoyISO(), md = cumple.slice(5, 10), a0 = Number((alta || hoy).slice(0, 4)), a1 = Number(hoy.slice(0, 4));
-  let n = 0; for (let a = a0; a <= a1; a++) { const f = a + '-' + md; if (f >= (alta || hoy) && f <= hoy) n++; } return n;
-}
-function calcular(p) {
-  const refs = D.referidos.filter(r => String(r.padrino_id) === String(p.id));
-  const ok = refs.filter(r => EST.indexOf(r.estado) >= 3).sort((a, b) => String(a.fecha_cuota3 || a.alta).localeCompare(String(b.fecha_cuota3 || b.alta)));
-  let av = 0, pe = 0;
-  refs.forEach(r => {
-    r._pts = 0; r._pend = 0; if (r.estado === 'baja') return;
-    const i = EST.indexOf(r.estado), m = R.mult[r.sistema] || 1, k = ok.indexOf(r), L = multNivel(k >= 0 ? k : ok.length);
-    if (i >= 1) r._pts += R.entrevista;
-    if (i === 2) r._pend += Math.round(R.firma * m * L);
-    if (i >= 3) r._pts += Math.round((R.firma + R.cuota3) * m * L);
-    if (i >= 4) r._pts += R.retiroRef;
-    av += r._pts; pe += r._pend;
-  });
-  const cuotas = Number(p.cuotas_al_dia) || 0, rachas = Math.floor(cuotas / R.rachaCada), nCum = cumplesDesde(p.alta, p.cumple);
-  const own = [
-    { t: 'Bienvenida', d: 'Alta el ' + X5.fechaLarga(p.alta), v: R.bienvenida },
-    { t: 'Cuotas al día', d: cuotas + ' seguidas · ' + (R.rachaCada - cuotas % R.rachaCada) + ' para el próximo premio', v: rachas * R.racha },
-    { t: 'Retiro de su vehículo', d: p.retiro === 'si' ? 'Retiró el ' + X5.fechaLarga(p.fecha_retiro) + ' · subió un nivel' : 'Al retirar suma 150 y sube un nivel', v: p.retiro === 'si' ? R.retiroPropio : 0 },
-    { t: 'Cumpleaños', d: p.cumple ? X5.fechaCorta(p.cumple) : 'Sin fecha cargada', v: nCum * R.cumple },
-    { t: 'Reseña en Google', d: p.resena === 'si' ? 'Cargada' : 'Con foto de la entrega', v: p.resena === 'si' ? R.resena : 0 }
-  ];
-  own.forEach(o => av += o.v);
-  let li = 0; R.niveles.forEach((l, i) => { if (ok.length >= l.min) li = i; });
-  if (p.retiro === 'si') li = Math.min(li + 1, R.niveles.length - 1);
-  return { refs, ok: ok.length, av, pe, own, li };
-}
+const calcular = (p) => window.Padrinos.calcular(p, D.referidos);
+const HUB = 'https://thedomstudioweb.github.io/Agenda-Vendedores-X5/';
+const linkPase = (p) => p.llave ? `${HUB}pase.html?c=${encodeURIComponent(p.codigo)}&k=${encodeURIComponent(p.llave)}` : '';
 
 /* ── Ingreso (comparte la sesión del Hub) ── */
 async function prepararLogin() {
@@ -404,9 +361,11 @@ function pintarPase() {
   const mes = X5.hoyISO().slice(5, 7);
   $('p-bday').innerHTML = p.cumple && p.cumple.slice(5, 7) === mes ? `<div class="bday"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><path d="M4 21h16M5 21v-7h14v7M12 14V9M12 6.5a1.5 1.5 0 0 0 0-3"/></svg><div><b>Mes de su cumpleaños (${X5.fechaCorta(p.cumple)})</b>Mandale un saludo: ese día suma 50 puntos y en su mes sus puntos nuevos valen doble.</div></div>` : '';
   const tel = telAR(p.telefono);
-  const msg = `¡Hola ${String(p.nombre).split(' ')[0]}! Ya sos parte de *Padrinos X5*.\n\nTu código de padrino es *${p.codigo}*.\n\nCuando alguien que conozcas quiera su auto, su moto o su camioneta, pasale mi número y que me diga tu código. Cuando firma su plan, vos sumás puntos para canjear por premios.\n\nHoy tenés ${c.av} puntos disponibles${c.pe ? ' y ' + c.pe + ' pendientes' : ''}. Nivel: ${lvl.n}.\n\n${user.nombre} · X5 Argentina`;
+  const msg = `¡Hola ${String(p.nombre).split(' ')[0]}! Ya sos parte de *Padrinos X5*.\n\nTu código de padrino es *${p.codigo}*.\n\nCuando alguien que conozcas quiera su auto, su moto o su camioneta, pasale mi número y que me diga tu código. Cuando firma su plan, vos sumás puntos para canjear por premios.\n\nHoy tenés ${c.av} puntos disponibles${c.pe ? ' y ' + c.pe + ' pendientes' : ''}. Nivel: ${lvl.n}.${linkPase(p) ? `\n\nTu tarjeta de padrino, siempre al día (guardala en la pantalla de inicio):\n${linkPase(p)}` : ''}\n\n${user.nombre} · X5 Argentina`;
   $('p-wa').href = tel ? `https://wa.me/${tel}?text=${encodeURIComponent(msg)}` : `https://wa.me/?text=${encodeURIComponent(msg)}`;
-  $('p-ref').hidden = soloLectura() || p.estado === 'baja'; $('p-edit').hidden = soloLectura();
+  $('p-ref').hidden = soloLectura() || p.estado === 'baja';
+  $('p-link').hidden = !linkPase(p) || p.estado === 'baja';
+  $('p-link').onclick = async () => { try { await navigator.clipboard.writeText(linkPase(p)); X5.toast('Link copiado ✓', 'ok'); } catch (e) { dialogo('Link de su tarjeta', `<input readonly value="${esc(linkPase(p))}" onclick="this.select()">`); } }; $('p-edit').hidden = soloLectura();
   $('p-nref').textContent = c.refs.filter(r => r.estado !== 'baja').length;
   $('p-refs').innerHTML = c.refs.length ? c.refs.slice().sort((a, b) => String(b.alta).localeCompare(String(a.alta))).map(r => {
     const i = EST.indexOf(r.estado), nx = EST[i + 1], propio = r.asesor === user.nombre;

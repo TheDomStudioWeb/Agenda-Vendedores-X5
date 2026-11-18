@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#E3182D">
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Pase X5">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="icon-192.png">
+<title>Mi pase · Padrinos X5</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;0,800;1,500&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+<style>
+  :root { --red: #E3182D; --graphite: #1B1B1D; --steel: #55595F; --silver: #D6D8DB; --smoke: #F2F2F3; --coal: #161618; --ok: #1B7A43; --gold: #a8841f;
+    --safe-top: env(safe-area-inset-top, 0px); --safe-bottom: env(safe-area-inset-bottom, 0px); }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { margin: 0; background: var(--smoke); color: var(--graphite); font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif; font-size: 16px; line-height: 1.5; }
+  .app { max-width: 480px; margin: 0 auto; min-height: 100vh; background: #fff; padding: calc(16px + var(--safe-top)) 20px calc(28px + var(--safe-bottom)); }
+  .top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .top img { width: 64px; height: auto; display: block; }
+  .chip { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--steel); border: 1px solid var(--silver); border-radius: 999px; padding: 4px 10px; letter-spacing: .4px; }
+  .ttl { display: flex; align-items: center; gap: 12px; margin: 14px 0 2px; }
+  .ttl::before { content: ""; width: 8px; height: 34px; background: var(--red); transform: skewX(-20deg); border-radius: 1px; flex: none; }
+  .ttl h1 { margin: 0; font-size: 26px; line-height: 1.1; font-weight: 800; text-transform: uppercase; }
+  .ttl h2 { margin: 0; font-size: 17px; line-height: 1.2; font-weight: 800; text-transform: uppercase; }
+  .sub { color: var(--steel); font-size: 13px; margin: 2px 0 16px; text-transform: uppercase; font-weight: 500; }
+  .card { background: var(--coal); color: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,.18); }
+  .card .h { display: flex; justify-content: space-between; align-items: flex-start; padding: 18px 20px 10px; position: relative; }
+  .card .h::after { content: ""; position: absolute; right: -32px; top: -46px; width: 120px; height: 210px; background: var(--red); transform: skewX(-20deg); }
+  .card .who { position: relative; z-index: 1; }
+  .card .who small, .card .pts small { display: block; color: #C9CBCF; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .card .who strong { display: block; font-size: 21px; font-weight: 800; text-transform: uppercase; margin: 2px 0 8px; }
+  .lv { display: inline-block; background: var(--red); color: #fff; font-size: 12px; font-weight: 700; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; }
+  .card .cod { position: relative; z-index: 1; text-align: right; font-size: 11px; font-weight: 700; letter-spacing: .06em; }
+  .card .cod b { display: block; font-size: 15px; letter-spacing: .1em; }
+  .card .pts { display: flex; gap: 26px; padding: 6px 20px 14px; }
+  .card .pts b { font-size: 34px; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .card .pts .pend b { font-size: 22px; color: #C9CBCF; }
+  .card .lvl { padding: 0 20px 18px; }
+  .bar { height: 10px; border-radius: 999px; background: #3A3C40; overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--red); border-radius: 999px; width: 0; transition: width .8s cubic-bezier(.2,.8,.2,1); }
+  .card .lvl p { margin: 8px 0 0; font-size: 13px; color: #E6E7E9; }
+  .btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; border: 0; border-radius: 999px; padding: 14px 16px; font: inherit; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: .02em; text-decoration: none; cursor: pointer; margin-top: 16px; }
+  .btn.wa { background: #1fb855; color: #fff; }
+  .btn.line { background: #fff; color: var(--graphite); border: 1px solid var(--silver); margin-top: 8px; }
+  .bday { background: var(--red); color: #fff; border-radius: 18px; padding: 14px 16px; margin-top: 16px; display: flex; gap: 12px; align-items: center; font-size: 13px; }
+  .bday b { text-transform: uppercase; font-weight: 800; display: block; font-size: 14px; }
+  .block { border: 1px solid var(--silver); border-radius: 18px; padding: 16px; margin-top: 16px; background: #fff; }
+  .block h3 { font-size: 13px; font-weight: 800; margin: 0 0 6px; text-transform: uppercase; letter-spacing: .04em; }
+  .row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--smoke); font-size: 14px; }
+  .row:first-of-type { border-top: 0; }
+  .row small { display: block; color: var(--steel); font-size: 12px; }
+  .row .v { font-weight: 800; white-space: nowrap; }
+  .ok { color: var(--ok); }
+  .ref { padding: 12px 0; border-top: 1px solid var(--smoke); }
+  .ref:first-of-type { border-top: 0; }
+  .ref .t { display: flex; justify-content: space-between; align-items: center; }
+  .ref .t b { text-transform: uppercase; font-weight: 800; font-size: 14px; }
+  .ref .t span { font-weight: 800; font-size: 13px; }
+  .steps { display: flex; gap: 4px; margin-top: 10px; }
+  .steps div { flex: 1; text-align: center; font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--steel); }
+  .steps div i { display: block; height: 6px; border-radius: 999px; background: var(--silver); margin-bottom: 6px; }
+  .steps div.on i { background: var(--red); }
+  .steps div.on { color: var(--graphite); }
+  .ref.baja { opacity: .5; }
+  .prize { display: flex; gap: 12px; align-items: center; padding: 10px 0; border-top: 1px solid var(--smoke); }
+  .prize:first-of-type { border-top: 0; }
+  .prize .ic { width: 38px; height: 38px; border-radius: 999px; background: var(--red); flex: none; display: grid; place-items: center; }
+  .prize .ic svg { width: 19px; height: 19px; stroke: #fff; fill: none; stroke-width: 2; }
+  .prize .tx { flex: 1; } .prize .tx b { display: block; font-size: 14px; font-weight: 700; } .prize .tx small { color: var(--steel); font-size: 12px; }
+  .prize .p { font-weight: 800; font-size: 14px; white-space: nowrap; }
+  .note { background: var(--smoke); border-radius: 10px; padding: 10px 12px; font-size: 12px; color: var(--steel); margin-bottom: 8px; }
+  .quote { border: 1px solid var(--silver); border-radius: 18px; padding: 14px 16px; font-style: italic; font-weight: 500; margin-top: 16px; }
+  .empty { color: var(--steel); font-size: 13px; padding: 6px 0; }
+  .estado { text-align: center; padding: 60px 10px; }
+  .estado h1 { font-size: 20px; text-transform: uppercase; font-weight: 800; margin: 16px 0 8px; }
+  .estado p { color: var(--steel); }
+  .spin { width: 28px; height: 28px; border-radius: 50%; border: 3px solid var(--silver); border-top-color: var(--red); animation: g .8s linear infinite; display: inline-block; }
+  @keyframes g { to { transform: rotate(360deg); } }
+  footer { text-align: center; font-size: 12px; color: var(--steel); margin-top: 28px; line-height: 1.6; }
+  footer .web { font-weight: 700; color: var(--graphite); }
+  .dom-sign { font-family: 'Playfair Display', Georgia, serif; font-style: italic; color: var(--gold); }
+  .fade { animation: in .45s ease both; }
+  @keyframes in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .fade, .spin { animation: none; } .bar i { transition: none; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top"><img src="brand/x5-logo-rojo.png" alt="X5 Argentina"><span class="chip">Padrinos X5</span></div>
+
+  <div id="cargando" class="estado"><span class="spin"></span><p>Cargando tu pase…</p></div>
+  <div id="error" class="estado" hidden><h1 id="e-t"></h1><p id="e-p"></p></div>
+
+  <div id="pase" hidden>
+    <div class="ttl fade"><h1 id="hola"></h1></div>
+    <p class="sub">Sumá puntos cada vez que alguien que recomendás saca su plan.</p>
+
+    <div class="card fade">
+      <div class="h">
+        <div class="who"><small>Padrino X5</small><strong id="c-nom"></strong><span class="lv" id="c-lv"></span></div>
+        <div class="cod">TU CÓDIGO<b id="c-cod"></b></div>
+      </div>
+      <div class="pts">
+        <div><small>Disponibles</small><b id="c-av">0</b></div>
+        <div class="pend"><small>Pendientes</small><b id="c-pe">0</b></div>
+      </div>
+      <div class="lvl"><div class="bar"><i id="c-bar"></i></div><p id="c-next"></p></div>
+    </div>
+
+    <div id="bday"></div>
+
+    <a class="btn wa" id="recomendar" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.9-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>
+      Recomendar a un amigo</a>
+    <button class="btn line" id="copiar">Copiar mi código</button>
+
+    <div class="block"><h3>Tus referidos</h3><div id="refs"></div></div>
+    <div class="block"><h3>Tu plan</h3><div id="own"></div></div>
+    <div class="block">
+      <h3>Premios</h3>
+      <div class="note">Los canjes se habilitan a los 3 meses del lanzamiento del club. Los premios pueden cambiar.</div>
+      <div id="premios"></div>
+    </div>
+    <div class="block">
+      <h3>Cómo sumás</h3>
+      <div class="row"><div>Tu referido hace la entrevista</div><div class="v">+10</div></div>
+      <div class="row"><div>Firma su plan<small>Quedan pendientes hasta que paga la cuota 3</small></div><div class="v">+100 ×</div></div>
+      <div class="row"><div>Paga la cuota 3<small>Se liberan tus puntos</small></div><div class="v">+50 ×</div></div>
+      <div class="row"><div>Retira su vehículo</div><div class="v">+100</div></div>
+      <p style="font-size:12px;color:var(--steel);margin:8px 0 0">× según su plan: 10 adelantos ×1 · 5 adelantos ×1,5 · entrega programada ×2. Subís de nivel con cada referido que paga la cuota 3.</p>
+    </div>
+    <div class="quote">“Tus amigos confían en vos. Nosotros te lo agradecemos.”</div>
+    <p style="font-size:12px;color:var(--steel);text-align:center;margin-top:16px">Guardá esta página en la pantalla de inicio de tu teléfono para tenerla siempre a mano.</p>
+  </div>
+
+  <footer>
+    <div class="web">www.x5argentina.com</div>
+    <div style="margin-top:6px">Desarrollado por <span class="dom-sign">The DOM Studio Web</span> · WhatsApp 261-3431216 · thedomstudioweb@gmail.com</div>
+  </footer>
+</div>
+
+<script src="padrinos-core.js"></script>
+<script>
+(() => {
+'use strict';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
+const $ = (id) => document.getElementById(id);
+const esc = (v) => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const { R, PREMIOS, EST, EST_TXT, calcular } = window.Padrinos;
+const q = new URLSearchParams(location.search), codigo = q.get('c') || '', llave = q.get('k') || '';
+const CACHE = 'x5_pase_' + codigo;
+
+function error(t, p) { $('cargando').hidden = true; $('pase').hidden = true; $('error').hidden = false; $('e-t').textContent = t; $('e-p').textContent = p; }
+
+async function cargar() {
+  if (!codigo || !llave) return error('Link incompleto', 'Pedile a tu asesor de X5 que te reenvíe el link de tu pase.');
+  let d = null;
+  try { d = await (await fetch(`${SCRIPT_URL}?action=pase&c=${encodeURIComponent(codigo)}&k=${encodeURIComponent(llave)}`, { cache: 'no-store' })).json(); }
+  catch (e) { try { d = JSON.parse(localStorage.getItem(CACHE)); if (d) d._offline = true; } catch (x) {} }
+  if (!d) return error('Sin conexión', 'No pudimos cargar tu pase. Probá de nuevo en un momento.');
+  if (!d.ok) {
+    try { localStorage.removeItem(CACHE); } catch (x) {}
+    if (d.error === 'pase_baja') return error('Pase inactivo', 'Este pase ya no está activo. Consultá con tu asesor de X5.');
+    return error('Link no válido', 'Pedile a tu asesor de X5 que te reenvíe el link de tu pase.');
+  }
+  if (!d._offline) { try { localStorage.setItem(CACHE, JSON.stringify(d)); } catch (x) {} }
+  pintar(d);
+}
+
+function pintar(d) {
+  const p = d.padrino, c = calcular(p, d.referidos), lvl = R.niveles[c.li], next = R.niveles[c.li + 1];
+  const nombre = String(p.nombre).trim().split(/\s+/)[0];
+  $('hola').textContent = '¡Hola, ' + nombre + '!';
+  $('c-nom').textContent = p.nombre; $('c-lv').textContent = lvl.n; $('c-cod').textContent = p.codigo;
+  contar($('c-av'), c.av); contar($('c-pe'), c.pe);
+  let pct = 100;
+  if (next) {
+    const falta = Math.max(next.min - c.ok, 0);
+    pct = falta > 0 ? Math.max(5, Math.min(100, (c.ok - lvl.min) / (next.min - lvl.min) * 100)) : 100;
+    $('c-next').textContent = falta > 0 ? `Te ${falta === 1 ? 'falta 1 referido' : 'faltan ' + falta + ' referidos'} con la cuota 3 paga para ${next.n}.` : 'Ya alcanzaste el próximo nivel.';
+  } else $('c-next').textContent = 'Llegaste al nivel más alto del club. ¡Gracias por recomendarnos!';
+  requestAnimationFrame(() => setTimeout(() => { $('c-bar').style.width = pct + '%'; }, 120));
+
+  const hoy = new Date(), mes = String(hoy.getMonth() + 1).padStart(2, '0');
+  if (p.cumple && p.cumple.slice(5, 7) === mes) {
+    const dia = Number(p.cumple.slice(8, 10)), faltan = dia - hoy.getDate();
+    $('bday').innerHTML = `<div class="bday"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><path d="M4 21h16M5 21v-7h14v7M12 14V9M12 6.5a1.5 1.5 0 0 0 0-3"/></svg><div><b>${faltan === 0 ? '¡Feliz cumpleaños!' : 'Es tu mes de cumpleaños'}</b>${faltan > 0 ? 'Faltan ' + faltan + ' días. ' : ''}Ese día te regalamos 50 puntos.</div></div>`;
+  }
+
+  const msg = `¡Hola! Te recomiendo X5 Argentina: yo saqué mi plan con ellos y me fue muy bien. Si estás pensando en un auto, una moto o una camioneta, escribiles y deciles que vas de parte mía, con mi código *${p.codigo}*. Te atiende ${p.asesor || 'un asesor'}.\n\nwww.x5argentina.com`;
+  $('recomendar').href = 'https://wa.me/?text=' + encodeURIComponent(msg);
+  $('copiar').onclick = async (e) => { try { await navigator.clipboard.writeText(p.codigo); e.target.textContent = 'Código copiado ✓'; } catch (x) { e.target.textContent = p.codigo; } setTimeout(() => { e.target.textContent = 'Copiar mi código'; }, 2200); };
+
+  $('refs').innerHTML = c.refs.length ? c.refs.slice().sort((a, b) => String(b.alta).localeCompare(String(a.alta))).map(r => {
+    const i = EST.indexOf(r.estado);
+    const pts = r.estado === 'baja' ? '<span style="color:var(--steel)">Sin puntos</span>' : r._pend ? `<span style="color:var(--steel)">${r._pend} pendientes</span>` : r._pts ? `<span class="ok">+${r._pts}</span>` : '<span style="color:var(--steel)">En camino</span>';
+    return `<div class="ref ${r.estado === 'baja' ? 'baja' : ''}"><div class="t"><b>${esc(r.cliente)}</b>${pts}</div><div class="steps">${EST.map((e, k) => `<div class="${r.estado !== 'baja' && k <= i ? 'on' : ''}"><i></i>${EST_TXT[e]}</div>`).join('')}</div></div>`;
+  }).join('') : '<div class="empty">Todavía no tenés referidos. Tocá «Recomendar a un amigo» y empezá a sumar.</div>';
+
+  $('own').innerHTML = c.own.map(o => `<div class="row"><div>${esc(o.t)}<small>${esc(o.d)}</small></div><div class="v ${o.v ? 'ok' : ''}">${o.v ? '+' + o.v : '—'}</div></div>`).join('');
+  $('premios').innerHTML = PREMIOS.map(x => `<div class="prize"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 12h18"/></svg></span><span class="tx"><b>${esc(x.t)}</b><small>${esc(x.d)}</small></span><span class="p">${x.p} pts</span></div>`).join('');
+
+  $('cargando').hidden = true; $('error').hidden = true; $('pase').hidden = false;
+  if (d._offline) { const n = document.createElement('p'); n.className = 'note'; n.textContent = 'Sin conexión: estás viendo los últimos datos guardados.'; $('pase').prepend(n); }
+}
+function contar(el, to) {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = to.toLocaleString('es-AR'); return; }
+  const t0 = performance.now(), dur = 700;
+  (function paso(t) { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = Math.round(to * e).toLocaleString('es-AR'); if (k < 1) requestAnimationFrame(paso); })(t0);
+}
+cargar();
+})();
+</script>
+</body>
+</html>

@@ -17,6 +17,14 @@ Propuesta completa para el directorio: https://claude.ai/artifact/BTFvRDEJACoBjq
 4. A medida que avanza: **Marcar: Entrevista** y **Marcar: Firmó** (con sistema y número de contrato).
 5. Supervisión confirma **Cuota 3** (ahí se liberan los puntos), **Retiró** y las **bajas**.
 
+## Tarjeta del cliente (link personal)
+Cada padrino tiene su propia tarjeta en un link único (`pase.html?c=CÓDIGO&k=LLAVE`). El botón **Enviarle su pase por WhatsApp** ya manda el mensaje con ese link, y **Copiar el link de su tarjeta** lo copia para pegarlo donde quieras.
+- El cliente no necesita usuario ni clave: abre el link y ve sus puntos al día, su nivel, sus referidos (solo el nombre de pila), su plan, los premios y cómo sumar.
+- Tiene un botón **Recomendar a un amigo** que arma el mensaje de WhatsApp con su código, y otro para copiar el código.
+- Puede guardarla en la pantalla de inicio del teléfono.
+- Es de solo lectura y no muestra teléfonos ni datos de otros clientes. La llave del link es secreta y no se puede adivinar; si el padrino se da de baja, el link deja de funcionar.
+- Billetera (Google/Apple Wallet): no hace falta por ahora. No es para pagar; solo suma avisos en el teléfono y un QR para escanear. Se evalúa si Gangas Club valida beneficios con QR.
+
 ## Puntos (propuesta)
 Por referido: entrevista 10 · firma 100 × multiplicador (pendientes) · cuota 3 50 × multiplicador (se liberan) · retiro 100. Multiplicador por sistema: 10 adelantos ×1, 5 adelantos ×1,5, entrega programada ×2.
 Por el plan propio: bienvenida 20 · cada 6 cuotas al día 30 · retiro de su vehículo 150 (y sube un nivel) · cumpleaños 50 · reseña en Google 20. Cuotas al día, retiro y reseña los carga supervisión en «Editar padrino».
@@ -37,12 +45,13 @@ Hojas nuevas, se crean solas con el Code.gs v2.7: **Padrinos** (id, codigo, nomb
 ## Pendiente
 - Definir con el directorio el valor del punto, los premios, el premio del referido y la integración con Gangas Club.
 - Canjes (a los 3 meses), vencimiento de puntos a 12 meses y puntos dobles del mes de cumpleaños (hoy solo se avisan).
-- Más adelante: pase propio para el cliente (link o Google Wallet) y que la venta cerrada en el CRM marque sola la firma del referido.
+- Más adelante: Google/Apple Wallet si hace falta, y que la venta cerrada en el CRM marque sola la firma del referido.
 
 ## Preguntas frecuentes (para Claudio)
 - **¿Cómo cargo un padrino?** En el Hub, Padrinos X5 → + Padrino. Nombre, teléfono y cumpleaños; el código sale solo.
 - **¿El referido va al CRM?** Sí, se crea solo como lead con origen «Referido» y el asesor recibe el aviso.
 - **¿Por qué los puntos están pendientes?** Porque el referido firmó pero todavía no pagó la cuota 3; la confirma supervisión.
+- **¿Cómo ve el cliente su tarjeta?** Con el link que le llega por WhatsApp desde «Enviarle su pase». No necesita clave.
 - **¿Cuándo se canjean?** A los 3 meses del lanzamiento; los premios se están definiendo.
 
 Desarrollado por The DOM Studio Web · WhatsApp 261-3431216 · thedomstudioweb@gmail.com

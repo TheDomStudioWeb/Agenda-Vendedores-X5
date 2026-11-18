@@ -56,4 +56,23 @@ T('supervisor solo mira; control no entra', () => {
   assert.strictEqual(alta(m, SUP, { nombre: 'X', telefono: '2610000000' }).error, 'sin_permiso');
   assert.strictEqual(m.pad(CTL, { action: 'padrinos_datos' }).error, 'sin_permiso');
 });
+T('la tarjeta pública solo abre con código + llave y no muestra teléfonos', () => {
+  const m = m0(); const p = alta(m, V1, { nombre: 'Lucía Gómez', telefono: '2615551234' }).padrino;
+  assert(p.llave && p.llave.length >= 32);
+  m.pad(V1, { action: 'referidos_guardar', data: { padrino_id: p.id, cliente: 'Martín Ruiz', telefono: '2614440000' } });
+  const r = m.api.paseCliente_(p.codigo.toLowerCase(), p.llave); assert(r.ok, JSON.stringify(r));
+  assert.strictEqual(r.padrino.nombre, 'Lucía Gómez'); assert.strictEqual(r.referidos[0].cliente, 'Martín');
+  const txt = JSON.stringify(r); assert(!/2615551234|2614440000|llave|Ruiz/.test(txt), txt);
+  assert.strictEqual(m.api.paseCliente_(p.codigo, p.llave.slice(0, -1) + 'x').error, 'pase_invalido');
+  assert.strictEqual(m.api.paseCliente_(p.codigo, '').error, 'pase_invalido');
+  alta(m, GER, { id: p.id, nombre: 'Lucía Gómez', telefono: '2615551234', asesor: 'Vendedor Carlos', estado: 'baja' });
+  assert.strictEqual(m.api.paseCliente_(p.codigo, p.llave).error, 'pase_baja');
+});
+T('un padrino sin llave (cargado antes) la recibe al abrir el Hub y no cambia después', () => {
+  const m = m0(); const p = alta(m, V1, { nombre: 'Lucía', telefono: '2615551234' }).padrino;
+  const sh = m.libro.Padrinos, h = sh.filas[0]; sh.filas[1][h.indexOf('llave')] = '';
+  const k1 = m.pad(V1, { action: 'padrinos_datos' }).padrinos[0].llave; assert(k1 && k1.length >= 32);
+  assert.strictEqual(m.pad(V1, { action: 'padrinos_datos' }).padrinos[0].llave, k1);
+  assert(m.api.paseCliente_(p.codigo, k1).ok);
+});
 console.log(`\n${ok} bien, ${fail} con error`); process.exit(fail ? 1 : 0);

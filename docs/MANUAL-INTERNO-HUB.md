@@ -282,3 +282,6 @@ Antes se medía desde que se cargaba el lead hasta el contacto, aunque el vencim
 
 ## Padrinos X5: club de referidos (18/11/2026)
 Tarjeta «Padrinos X5» (`padrinos.html`) en Ventas. Cada cliente con plan puede ser padrino: recibe un código (X5-XXXXX) y suma puntos cuando un referido suyo avanza (entrevista, firma, cuota 3, retiro). Al cargar un referido se crea el lead en el CRM con origen «Referido» y se avisa al asesor. Cuota 3, retiro y bajas los confirma supervisión. Hojas nuevas (se crean solas): «Padrinos», «Referidos» y «PadrinosLog». Requiere cargar el Code.gs v2.7 en Apps Script (Nueva versión de la misma implementación). Premios y puntos están en revisión con el directorio; los canjes se habilitan a los 3 meses. Detalle en `docs/MANUAL-PADRINOS.md`.
+
+## Tarjeta del cliente de Padrinos X5 (v2.8, 18/11/2026)
+Cada padrino recibe por WhatsApp un link a su tarjeta (`pase.html`), sin clave y de solo lectura: puntos, nivel, referidos con nombre de pila, premios y botón para recomendar. La llave del link se guarda en la columna «llave» de la hoja Padrinos (se crea sola). Requiere cargar el Code.gs v2.8. Las reglas de puntos quedaron en `padrinos-core.js`, compartido entre el Hub y la tarjeta.
