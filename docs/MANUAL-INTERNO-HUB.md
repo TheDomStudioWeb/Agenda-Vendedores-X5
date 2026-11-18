@@ -285,3 +285,10 @@ Tarjeta «Padrinos X5» (`padrinos.html`) en Ventas. Cada cliente con plan puede
 
 ## Tarjeta del cliente de Padrinos X5 (v2.8, 18/11/2026)
 Cada padrino recibe por WhatsApp un link a su tarjeta (`pase.html`), sin clave y de solo lectura: puntos, nivel, referidos con nombre de pila, premios y botón para recomendar. La llave del link se guarda en la columna «llave» de la hoja Padrinos (se crea sola). Requiere cargar el Code.gs v2.8. Las reglas de puntos quedaron en `padrinos-core.js`, compartido entre el Hub y la tarjeta.
+
+## Venta con un contrato ya usado (v2.9, 18/11/2026)
+Al cerrar una venta en el Mini CRM, antes de guardarla se consulta el contrato en el Control de contratos:
+- **Vacío:** pasa a Completo con el cliente, el plan, la cuota y el sellado (como siempre).
+- **Ya Completo (o más avanzado) sin cliente, o con el mismo cliente:** se le completan el cliente, el plan, la cuota y el sellado, sin cambiar su estado. Sirve cuando gerencia lo marcó Completo antes de que el vendedor cargue la venta. El nombre se compara sin importar mayúsculas, tildes, espacios ni el orden («Pérez Juan» = «juan perez»).
+- **Ya figura con otro cliente:** la venta **no se guarda** y aparece el aviso «El contrato N ya está usado por …». Hay que revisar el número.
+Vale al elegir «Venta» en el resultado, al cambiar el N.º de contrato de una venta y al editarla. Sin señal no se puede consultar: la venta se guarda, pero el servidor no pisa el contrato y avisa al sincronizar. Requiere cargar el Code.gs v2.9.

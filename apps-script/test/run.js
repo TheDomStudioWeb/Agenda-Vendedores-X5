@@ -87,7 +87,7 @@ T('venta en el CRM: el número pasa Vacío → Completo; avisa sin romper si no 
   const vi = (u, b) => m.llamar(u, Object.assign({ action: 'contratos_vincular' }, b)); const est = n => datos(m, GER).contratos.find(c => c.numero === n);
   assert.strictEqual(vi(V1, { numero: '40', cliente: 'Pérez' }).resultado, 'completado'); assert(est('40').estado === 'Completo' && est('40').cliente === 'Pérez');
   const r = vi(V1, { numero: '41', anterior: '40', cliente: 'Pérez' }); assert(r.resultado === 'completado' && r.revertido === '40'); assert(est('40').estado === 'Vacío' && est('41').estado === 'Completo');
-  assert.strictEqual(vi(V1, { numero: '41', cliente: 'Otro' }).resultado, 'sin_cambio');
+  assert.strictEqual(vi(V1, { numero: '41', cliente: 'Otro' }).resultado, 'usado'); assert.strictEqual(est('41').cliente, 'Pérez');
   assert.strictEqual(vi(V1, { numero: '42', cliente: 'X' }).resultado, 'no_es_suyo'); assert.strictEqual(est('42').estado, 'Vacío');
   assert.strictEqual(vi(V1, { numero: '43', cliente: 'X' }).resultado, 'no_es_suyo');
   assert.strictEqual(vi(V1, { numero: '999', cliente: 'X' }).resultado, 'no_existe');
@@ -115,6 +115,22 @@ T('venta con código: copia cuota y sellado al contrato; código inválido no ca
   r = vi({ numero: '61', anterior: '60', codigo: 'PX61' }); assert(est('60').estado === 'Vacío' && est('60').sellado_debido === '' && est('61').sellado_debido === 40000);
   m.llamar(V1, { action: 'contratos_estado', ids: [ids[1]], estado: 'Cargado' }); m.llamar(JEF, { action: 'contratos_estado', ids: [ids[1]], estado: 'Recibido' });
   assert(m.llamar(GER, { action: 'contratos_estado', ids: [ids[1]], estado: 'Rendido', sellado: { forma: 'Contado', referencia: 'Ana OK' } }).ok); assert.strictEqual(est('61').sellado_monto, 40000);
+});
+T('contrato marcado Completo por gerencia: sin cliente la venta lo completa; con el mismo cliente también; con otro cliente queda bloqueado', () => {
+  const m = nuevo(); m.llamar(GER, { action: 'contratos_precios_cargar', modo: 'reemplazar', texto: LISTA }); m.llamar(GER, { action: 'contratos_cargar', numeros: '70-73' });
+  const ids = ['70', '71', '72', '73'].map(n => idDe(m, n)); m.llamar(GER, { action: 'contratos_asignar', ids, responsable: 'Vendedor Carlos' });
+  const est = n => datos(m, GER).contratos.find(c => c.numero === n), vi = b => m.llamar(V1, Object.assign({ action: 'contratos_vincular' }, b)), ve = b => m.llamar(V1, Object.assign({ action: 'contratos_verificar' }, b));
+  m.llamar(GER, { action: 'contratos_estado', ids: [ids[0]], estado: 'Completo' });                       // sin cliente
+  m.llamar(GER, { action: 'contratos_estado', ids: [ids[1]], estado: 'Completo', cliente: 'Juan Pérez' }); // con cliente
+  m.llamar(GER, { action: 'contratos_estado', ids: [ids[2]], estado: 'Completo', cliente: 'Ana Gómez' });
+  assert.strictEqual(ve({ numero: '70', cliente: 'Carla Ruiz' }).resultado, 'libre');
+  let r = vi({ numero: '70', cliente: 'Carla Ruiz', codigo: 'PX64' }); assert(r.resultado === 'completado' && r.sellado === 50000); assert(est('70').cliente === 'Carla Ruiz' && est('70').estado === 'Completo' && est('70').sellado_debido === 50000);
+  assert.strictEqual(ve({ numero: '71', cliente: 'pérez  JUAN' }).resultado, 'libre');
+  r = vi({ numero: '71', cliente: 'pérez  JUAN', codigo: 'PX71' }); assert.strictEqual(r.resultado, 'completado'); assert(est('71').cliente === 'Juan Pérez' && est('71').sellado_debido === 100000);
+  const v = ve({ numero: '72', cliente: 'Otra Persona' }); assert(v.resultado === 'usado' && v.cliente === 'Ana Gómez');
+  r = vi({ numero: '72', cliente: 'Otra Persona', codigo: 'PX64' }); assert.strictEqual(r.resultado, 'usado'); assert(est('72').cliente === 'Ana Gómez' && est('72').sellado_debido === '');
+  m.llamar(V1, { action: 'contratos_estado', ids: [ids[1]], estado: 'Cargado' }); assert.strictEqual(vi({ numero: '71', cliente: 'Juan Pérez', codigo: 'PX61' }).resultado, 'completado'); assert.strictEqual(est('71').estado, 'Cargado'); // no retrocede
+  assert.strictEqual(ve({ numero: '73', cliente: 'X' }).resultado, 'libre'); assert.strictEqual(ve({ numero: '999', cliente: 'X' }).resultado, 'no_existe');
 });
 T('lista de precios pegada con comas y espacio (como llega desde Word)', () => {
   const m = nuevo(); const txt = 'PX61, Honda Tornado XR 250, 10, $ 90.000, $ 40.000, $ 130.000\nPX64, VW Polo MSI / Peug 208 All / Fiat Cronos, 10, $ 250.000, $ 50.000, $ 300.000\nPX72, Toyota SW4 4x4 SRX, 5, $ 700.000, $ 150.000, $ 850.000';

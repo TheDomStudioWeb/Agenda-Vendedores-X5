@@ -1063,7 +1063,18 @@ document.addEventListener('change', (e) => {
   if (r.tabla === 'agenda' && campo === 'nro_contrato') {
     const nuevo = el.value.trim(), antes = String(r.item.nro_contrato || '').trim();
     if (r.item.resultado === 'venta' && !nuevo) { el.value = antes; return X5.toast('La venta necesita el N.º de contrato.', 'bad', 3500); }
-    if (nuevo !== antes) { guardarCampo(r.tabla, r.item, campo, nuevo); vincularContrato(r.item, antes); }
+    if (nuevo !== antes) {
+      if (r.item.resultado === 'venta') { contratoUsado(nuevo, r.item.cliente).then(u => { if (u) { el.value = antes; return X5.toast(textoUsado(u), 'bad', 7000); } guardarCampo(r.tabla, r.item, campo, nuevo); vincularContrato(r.item, antes); }); return; }
+      guardarCampo(r.tabla, r.item, campo, nuevo); vincularContrato(r.item, antes);
+    }
+    return;
+  }
+  if (r.tabla === 'agenda' && campo === 'resultado' && el.value === 'venta' && r.item.resultado !== 'venta') {
+    const previo = r.item.resultado || '';
+    contratoUsado(r.item.nro_contrato, r.item.cliente).then(u => {
+      if (u) { el.value = previo; return X5.toast(textoUsado(u), 'bad', 7000); }
+      if (guardarCampo(r.tabla, r.item, campo, 'venta')) { X5.toast('¡Felicitaciones por la venta!', 'ok'); vincularContrato(r.item, ''); render(); }
+    });
     return;
   }
   if (guardarCampo(r.tabla, r.item, campo, el.value) && (campo === 'estado' || campo === 'resultado')) {
@@ -1077,11 +1088,17 @@ function vincularContrato(item, anterior) {
   const numero = String(item.nro_contrato || '').trim(); if (!numero) return;
   encolar('contratos_vincular', '', { numero, anterior: anterior || '', cliente: item.cliente || '', asesor: item.asesor || '', codigo: item.codigo_plan || '' });
 }
+/* Antes de guardar una venta: el contrato no puede figurar ya con otro cliente. Sin señal no se puede consultar y se deja pasar (el servidor igual no lo pisa). */
+async function contratoUsado(numero, cliente) {
+  numero = String(numero || '').trim(); if (!numero || !navigator.onLine) return null;
+  try { const r = await apiPost({ action: 'contratos_verificar', numero, cliente: cliente || '', token }); return r && r.ok && r.resultado === 'usado' ? r : null; } catch (e) { return null; }
+}
+const textoUsado = (u) => `El contrato ${u.numero} ya está usado por ${u.cliente} (${u.estado}). Revisá el número: la venta no se guardó.`;
 function avisoContrato(r) {
   const n = r.numero, tipo = { completado: 'ok', sin_cambio: '' }[r.resultado] ?? 'bad'; if (r.resultado === 'completado') cargarPrecios();
   const msg = { completado: `Contrato ${n} marcado como Completo.` + (r.sellado ? ` Sellado a rendir: ${X5.money(r.sellado)}.` : ''), codigo_invalido: `Ojo: el código ${r.codigo} no está en el listado de precios. Corregilo.`, sin_cambio: `El contrato ${n} ya figura como ${r.estado}; no se cambió.`,
     no_existe: `Ojo: el contrato ${n} no está en el gestor. Revisá el número.`, no_es_suyo: `Ojo: el contrato ${n} figura a nombre de otra persona. Revisá el número.`,
-    sin_asignar: `Ojo: el contrato ${n} todavía no fue asignado a nadie en el gestor.`, anulado: `Ojo: el contrato ${n} figura como Anulado. Revisá el número.` }[r.resultado];
+    sin_asignar: `Ojo: el contrato ${n} todavía no fue asignado a nadie en el gestor.`, usado: `Ojo: el contrato ${n} ya figura con otro cliente (${r.cliente || ''}). Corregí el número de la venta.`, anulado: `Ojo: el contrato ${n} figura como Anulado. Revisá el número.` }[r.resultado];
   if (msg) X5.toast(msg + (r.revertido ? ` El ${r.revertido} volvió a Vacío.` : ''), tipo, r.resultado === 'completado' ? 3500 : 7000);
 }
 /* Listado de precios (planes): se baja del servidor y queda guardado para usarlo sin señal */
@@ -1100,10 +1117,12 @@ function pedirContrato(item) {
     <div class="field"><label for="vc-m">Monto (opcional)</label><input id="vc-m" type="number" inputmode="numeric" value="${esc(item.monto)}"></div>
     <div id="vc-e"></div><button class="btn" id="vc-ok">Guardar venta</button>`);
   $('vc-c').onchange = () => { $('vc-i').innerHTML = infoPlan($('vc-c').value); };
-  $('vc-ok').onclick = () => {
+  $('vc-ok').onclick = async (ev) => {
     const n = $('vc-n').value.trim(), c = $('vc-c').value;
     if (!n) { $('vc-e').innerHTML = '<div class="chip bad" style="margin:6px 0">Falta el número de contrato.</div>'; return; }
     if (!c) { $('vc-e').innerHTML = '<div class="chip bad" style="margin:6px 0">Falta el código del plan.</div>'; return; }
+    ev.target.disabled = true; const usado = await contratoUsado(n, item.cliente); ev.target.disabled = false;
+    if (usado) { $('vc-e').innerHTML = `<div class="chip bad" style="margin:6px 0;white-space:normal;line-height:1.35">${esc(textoUsado(usado))}</div>`; return; }
     const antes = String(item.nro_contrato || '').trim();
     guardarCampo('agenda', item, 'nro_contrato', n); guardarCampo('agenda', item, 'codigo_plan', c); if ($('vc-m').value !== '') guardarCampo('agenda', item, 'monto', $('vc-m').value);
     guardarCampo('agenda', item, 'resultado', 'venta'); vincularContrato(item, antes); dlgX.close(); X5.toast('¡Felicitaciones por la venta!', 'ok'); render();
@@ -1263,13 +1282,16 @@ function dEditar(tabla, id) {
   }).join('');
   dialogo(tabla === 'leads' ? 'Editar lead' : 'Editar entrevista', `${html}<p class="note-state" id="ed-err" style="color:var(--bad)"></p><button class="btn" data-guardar-edit="${tabla}|${esc(id)}">Guardar cambios</button>`);
 }
-function guardarEdicion(tabla, id) {
+async function guardarEdicion(tabla, id) {
   const it = db[tabla].find(r => String(r.id) === String(id)); if (!it) return;
   const campos = CAMPOS_EDIT[tabla].filter(c => $('ed-' + c[0]));
   const nuevo = {}; campos.forEach(c => { nuevo[c[0]] = $('ed-' + c[0]).value.trim(); });
   if (!nuevo.cliente) { $('ed-err').textContent = 'El nombre del prospecto no puede quedar vacío.'; return; }
   if (tabla === 'agenda' && it.resultado === 'venta' && 'nro_contrato' in nuevo && !nuevo.nro_contrato) { $('ed-err').textContent = 'La venta necesita el número de contrato.'; return; }
   const nroAntes = String(it.nro_contrato || '').trim();
+  if (tabla === 'agenda' && it.resultado === 'venta' && 'nro_contrato' in nuevo && nuevo.nro_contrato !== nroAntes) {
+    const u = await contratoUsado(nuevo.nro_contrato, nuevo.cliente || it.cliente); if (u) { $('ed-err').textContent = textoUsado(u); return; }
+  }
   if (tabla === 'agenda' && 'domicilio' in nuevo && String(it.domicilio ?? '') !== nuevo.domicilio) { it.lat = ''; it.lng = ''; } // dirección nueva: se vuelve a ubicar por texto
   let cambio = false;
   Object.keys(nuevo).forEach(k => { if (String(it[k] ?? '') !== String(nuevo[k])) { it[k] = nuevo[k]; cambio = true; } });

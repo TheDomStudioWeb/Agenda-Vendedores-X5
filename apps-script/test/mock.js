@@ -3,7 +3,7 @@ const vm = require('vm'), fs = require('fs');
 function hoja(nombre) {
   const h = { nombre, filas: [], getLastRow() { return this.filas.length; }, getLastColumn() { return Math.max(1, ...this.filas.map(f => f.length)); },
     getDataRange() { const s = this; return { getValues: () => s.filas.map(f => f.slice()) }; },
-    setFrozenRows() {}, deleteRow(n) { this.filas.splice(n - 1, 1); }, appendRow(f) { this.filas.push(f); },
+    setFrozenRows() {}, deleteRow(n) { this.filas.splice(n - 1, 1); }, appendRow(f) { this.filas.push(f.map(x => typeof x === 'string' && x[0] === "'" && !/^'[=+\-@]/.test(x) ? x.slice(1) : x)); },
     getRange(r, c, nr = 1, nc = 1) { const s = this; return {
       getValues: () => { const o = []; for (let i = 0; i < nr; i++) { const f = s.filas[r - 1 + i] || []; const row = []; for (let j = 0; j < nc; j++) row.push(f[c - 1 + j] === undefined ? '' : f[c - 1 + j]); o.push(row); } return o; },
       setValue: x => { while (s.filas.length < r) s.filas.push([]); s.filas[r - 1][c - 1] = typeof x === 'string' && x[0] === "'" ? x.slice(1) : x; },

@@ -14,6 +14,9 @@
  *  - Respuestas con { ok: true/false } para que la app sepa si se guardó.
  *
  *
+ * v2.9: una venta no puede usar un contrato que ya figura con otro cliente (contratos_verificar); si gerencia lo marcó
+ *       Completo sin cliente, la venta le completa cliente, plan y sellado.
+ *
  * v2.8: tarjeta pública del padrino (pase.html?c=CÓDIGO&k=LLAVE, solo lectura, sin datos de contacto).
  *
  * v2.7: Padrinos X5, club de referidos (hojas «Padrinos», «Referidos» y «PadrinosLog»; el referido entra como lead).
@@ -1044,6 +1047,7 @@ function despacharContratos_(body, u) {
   const a = body.action;
   if (a === 'contratos_datos') return contratosDatos_(u);
   if (a === 'contratos_precios') return { ok: true, precios: leerPrecios_() };
+  if (a === 'contratos_verificar') return contratosVerificar_(body, u);
   if (esControl_(u) || esSupervisor_(u)) return { ok: false, error: 'sin_permiso' }; // solo lectura
   const lock = LockService.getScriptLock(); lock.waitLock(15000);
   try {
@@ -1204,6 +1208,28 @@ function contratosImportar_(body, u) {
 // Venta cerrada en el CRM: el N.º de contrato cargado marca el contrato como Completo (si estaba Vacío y es de quien vende).
 // Nunca pisa estados más avanzados. Si el número se corrigió, el anterior vuelve a Vacío (solo si estaba Completo por esa misma venta).
 // Devuelve ok:true con un "resultado" para que el CRM avise; no lanza error por números mal tipeados.
+// Mismo cliente aunque cambien mayúsculas, tildes, espacios o el orden («Pérez Juan» = «juan perez»)
+function mismoCliente_(a, b) {
+  const n = v => String(v || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9ñ ]/g, ' ').split(/\s+/).filter(Boolean).sort().join(' ');
+  return n(a) !== '' && n(a) === n(b);
+}
+// Qué pasa si una venta usa este contrato: libre (vacío), mismo (ya es de este cliente o no tiene cliente) o usado (otro cliente)
+function estadoContratoVenta_(c, cliente) {
+  if (c.estado === 'Vacío') return 'libre';
+  if (!String(c.cliente || '').trim() || mismoCliente_(c.cliente, cliente)) return 'mismo';
+  return 'usado';
+}
+// Consulta previa del CRM antes de guardar una venta (no cambia nada)
+function contratosVerificar_(body, u) {
+  const numero = limpiarNumero_(body.numero), cliente = String(body.cliente || '').slice(0, 80);
+  if (!numero) return { ok: true, resultado: 'sin_numero' };
+  const c = leerContratos_().filter(x => String(x.numero) === String(numero))[0];
+  if (!c) return { ok: true, resultado: 'no_existe', numero: numero };
+  if (c.estado === 'Anulado') return { ok: true, resultado: 'anulado', numero: numero };
+  if (c.estado === 'Disponible') return { ok: true, resultado: 'sin_asignar', numero: numero };
+  const e = estadoContratoVenta_(c, cliente);
+  return e === 'usado' ? { ok: true, resultado: 'usado', numero: numero, cliente: c.cliente, estado: c.estado } : { ok: true, resultado: 'libre', numero: numero };
+}
 function contratosVincular_(body, u) {
   const numero = limpiarNumero_(body.numero), anterior = limpiarNumero_(body.anterior), cliente = String(body.cliente || '').slice(0, 80);
   const asesor = String(body.asesor || u.nombre), codigo = String(body.codigo || '').trim().toUpperCase();
@@ -1217,17 +1243,19 @@ function contratosVincular_(body, u) {
   const cambios = [];
   if (anterior && anterior !== numero) {
     const a = hallar(anterior), mioA = a && (esGerente_(u) || String(a.responsable) === u.nombre || String(a.responsable) === asesor || ambito.indexOf(String(a.responsable)) > -1);
-    if (a && mioA && a.estado === 'Completo' && String(a.cliente) === cliente) { cambios.push({ id: a.id, numero: a.numero, campos: { estado: 'Vacío', fecha_estado: hoyContrato_(), cliente: '', plan_codigo: '', plan_cuota: '', sellado_debido: '' }, desde: 'Completo' }); res.revertido = anterior; }
+    if (a && mioA && a.estado === 'Completo' && mismoCliente_(a.cliente, cliente)) { cambios.push({ id: a.id, numero: a.numero, campos: { estado: 'Vacío', fecha_estado: hoyContrato_(), cliente: '', plan_codigo: '', plan_cuota: '', sellado_debido: '' }, desde: 'Completo' }); res.revertido = anterior; }
   }
   if (!c) res.resultado = 'no_existe';
   else if (!(esGerente_(u) || String(c.responsable) === u.nombre || String(c.responsable) === asesor || ambito.indexOf(String(c.responsable)) > -1)) res.resultado = 'no_es_suyo';
   else if (c.estado === 'Anulado') res.resultado = 'anulado';
   else if (c.estado === 'Disponible') res.resultado = 'sin_asignar';
-  else if (c.estado !== 'Vacío' && !(c.estado === 'Completo' && String(c.cliente) === cliente)) { res.resultado = 'sin_cambio'; res.estado = c.estado; }
+  else if (estadoContratoVenta_(c, cliente) === 'usado') { res.resultado = 'usado'; res.cliente = c.cliente; res.estado = c.estado; }
   else {
-    const campos = { estado: 'Completo', fecha_estado: c.estado === 'Completo' ? c.fecha_estado : hoyContrato_(), cliente: cliente };
+    // Vacío → Completo. Si ya estaba Completo o más avanzado (marcado por gerencia, sin cliente o con el mismo), se mantiene el estado y se completan los datos
+    const nuevoEstado = c.estado === 'Vacío' ? 'Completo' : c.estado;
+    const campos = { estado: nuevoEstado, fecha_estado: c.estado === 'Vacío' ? hoyContrato_() : c.fecha_estado, cliente: String(c.cliente || '').trim() ? c.cliente : cliente };
     if (plan) { campos.plan_codigo = plan.codigo; campos.plan_cuota = Number(plan.cuota) || ''; campos.sellado_debido = Number(plan.sellado) || ''; res.sellado = campos.sellado_debido; res.cuota = campos.plan_cuota; }
-    cambios.push({ id: c.id, numero: c.numero, campos: campos, desde: c.estado }); res.resultado = 'completado';
+    cambios.push({ id: c.id, numero: c.numero, campos: campos, desde: c.estado }); res.resultado = 'completado'; res.estado = nuevoEstado;
   }
   if (cambios.length) actualizarContratos_(cambios, u, 'venta_crm', cb => cb.desde + ' → ' + cb.campos.estado + ' (venta en el CRM' + (cliente ? ': ' + cliente : '') + ')');
   return res;
