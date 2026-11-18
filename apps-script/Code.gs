@@ -14,6 +14,8 @@
  *  - Respuestas con { ok: true/false } para que la app sepa si se guardó.
  *
  *
+ * v2.10: la tarjeta del padrino también se pide por POST, igual que el resto del Hub (más estable que GET).
+ *
  * v2.9: una venta no puede usar un contrato que ya figura con otro cliente (contratos_verificar); si gerencia lo marcó
  *       Completo sin cliente, la venta le completa cliente, plan y sellado.
  *
@@ -105,6 +107,8 @@ function doPost(e) {
     const body = JSON.parse(e.postData.contents || '{}');
 
     if (body.action === 'login') return json_(login_(body.nombre, body.clave));
+    // Tarjeta del padrino para el cliente (sin sesión: solo con su código y su llave secreta)
+    if (body.action === 'pase') return json_(paseCliente_(body.c, body.k));
 
     const usuario = body.token ? validarToken_(body.token) : null;
     if (!usuario) return json_({ ok: false, error: 'sesion_vencida' });

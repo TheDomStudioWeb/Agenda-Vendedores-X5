@@ -211,7 +211,10 @@ async function cargar() {
   const url = `${SCRIPT_URL}?action=pase&c=${encodeURIComponent(codigo)}&k=${encodeURIComponent(llave)}`;
   for (let intento = 0; intento < 2 && !d; intento++) {
     try {
-      const res = await fetch(url, { cache: 'no-store' }), txt = await res.text();
+      const res = intento === 0
+        ? await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'pase', c: codigo, k: llave }) })
+        : await fetch(url, { cache: 'no-store' });
+      const txt = await res.text();
       try { d = JSON.parse(txt); } catch (x) { detalle = 'Respuesta ' + res.status + ': ' + txt.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 140); }
     } catch (e) { detalle = navigator.onLine ? 'No se pudo conectar con el servidor (' + (e && e.message || e) + ')' : 'El teléfono está sin internet'; }
     if (!d && intento === 0) await new Promise(r => setTimeout(r, 1500));
