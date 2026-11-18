@@ -175,13 +175,15 @@
     </div>
     <div class="bloque"><h3>Referidos <span id="p-nref" class="chip">0</span></h3><div id="p-refs"></div></div>
     <div class="bloque"><h3>Su plan</h3><div id="p-own"></div></div>
+    <div class="bloque"><h3>Puntos</h3><div id="p-saldo"></div></div>
+    <div class="bloque"><h3>Canjes <span id="p-ncanje" class="chip">0</span></h3><div id="p-canjes"></div></div>
     <p class="muted" style="font-size:.74rem;margin-top:10px">Los puntos de la firma quedan pendientes hasta que el referido paga la cuota 3. Cuota 3, retiro y bajas los confirma supervisión.</p>
   </section>
 
   <!-- PREMIOS -->
   <section class="view" id="v-premios" hidden>
     <div class="ttl"><h2>Premios</h2></div>
-    <div class="aviso">Los canjes se habilitan a los 3 meses del lanzamiento. Premios y puntos en revisión con el directorio.</div>
+    <div class="aviso" id="canje-aviso">Los canjes se habilitan a los 3 meses del lanzamiento. Premios y puntos en revisión con el directorio.</div>
     <div id="premios"></div>
     <div class="bloque">
       <h3>Premio del referido</h3>
@@ -249,6 +251,7 @@ const $ = (id) => document.getElementById(id), esc = X5.esc, dlg = $('dlg');
 const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }, del(k) { try { localStorage.removeItem(k); } catch (e) {} } };
 const post = async (b) => { const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(Object.assign({ token }, b)) }); return r.json(); };
 const ERR = {
+  canjes_no_habilitados: 'Los canjes todavía no están habilitados.', orden_invalido_canje: 'Ese canje ya cambió de estado.',
   sin_permiso: 'No tenés permiso para esa acción.', solo_supervision: 'Ese paso lo confirma supervisión (gerente, jefe o referente).', falta_nombre: 'Falta el nombre.', falta_telefono: 'Falta un teléfono válido.',
   padrino_existe: 'Ese teléfono ya es padrino', referido_existe: 'Ese teléfono ya fue referido', lead_existe: 'Ese teléfono ya estaba cargado como lead en el CRM, no suma como referido',
   autorreferido: 'El padrino no puede referirse a sí mismo.', padrino_invalido: 'Padrino no encontrado o dado de baja.', orden_invalido: 'Los pasos se avanzan de a uno.',
@@ -258,10 +261,12 @@ const ERR = {
 const { R, PREMIOS, EST, EST_TXT } = window.Padrinos;
 const SUP = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
 
-let user = null, token = null, D = { padrinos: [], referidos: [], personal: [], sistemas: [] }, sel = null, vista = 'lista';
+let user = null, token = null, D = { padrinos: [], referidos: [], canjes: [], personal: [], sistemas: [] }, sel = null, vista = 'lista';
 const supervision = () => SUP.includes(user.rol), soloLectura = () => user.rol === 'Supervisor';
 
-const calcular = (p) => window.Padrinos.calcular(p, D.referidos);
+const calcular = (p) => window.Padrinos.calcular(p, D.referidos, D.canjes);
+const CANJE_TXT_HUB = { pendiente: 'Pendiente de aprobación', aprobado: 'Aprobado · falta entregar', entregado: 'Entregado', rechazado: 'Rechazado' };
+const gerente = () => user.rol === 'Gerente Comercial';
 const HUB = 'https://thedomstudioweb.github.io/Agenda-Vendedores-X5/';
 const linkPase = (p) => p.llave ? `${HUB}pase.html?c=${encodeURIComponent(p.codigo)}&k=${encodeURIComponent(p.llave)}` : '';
 
@@ -344,7 +349,7 @@ function pintarLista() {
   if (!lista.length) { $('lista').innerHTML = '<div class="empty">Sin resultados para esa búsqueda.</div>'; return; }
   $('lista').innerHTML = lista.map(({ p, c }) => {
     const enCurso = c.refs.filter(r => r.estado !== 'baja').length;
-    return `<button class="pad" data-id="${esc(p.id)}"><span class="av">${esc(String(p.nombre).trim().charAt(0).toUpperCase())}</span><span class="tx"><b>${esc(p.nombre)}${p.estado === 'baja' ? ' · baja' : ''}</b><small>${esc(p.codigo)} · ${esc(R.niveles[c.li].n)} · ${enCurso} referido${enCurso === 1 ? '' : 's'}${supervision() ? ' · ' + esc(p.asesor) : ''}</small></span><span class="pts"><b>${c.av}</b><small>${c.pe ? c.pe + ' pend.' : 'puntos'}</small></span></button>`;
+    return `<button class="pad" data-id="${esc(p.id)}"><span class="av">${esc(String(p.nombre).trim().charAt(0).toUpperCase())}</span><span class="tx"><b>${esc(p.nombre)}${p.estado === 'baja' ? ' · baja' : ''}</b><small>${esc(p.codigo)} · ${esc(R.niveles[c.li].n)} · ${enCurso} referido${enCurso === 1 ? '' : 's'}${supervision() ? ' · ' + esc(p.asesor) : ''}${c.canjes.some(k => k.estado === 'pendiente') ? ' · <b style="color:var(--warn)">canje pendiente</b>' : ''}</small></span><span class="pts"><b>${c.av}</b><small>${c.pe ? c.pe + ' pend.' : 'puntos'}</small></span></button>`;
   }).join('');
   document.querySelectorAll('.pad').forEach(b => b.onclick = () => { sel = b.dataset.id; ir('pase'); pintarPase(); });
 }
@@ -359,7 +364,7 @@ function pintarPase() {
     $('p-next').textContent = falta > 0 ? `Le ${falta === 1 ? 'falta 1 referido' : 'faltan ' + falta + ' referidos'} con cuota 3 para ${next.n}.` : 'Ya alcanzó el próximo nivel.';
   } else { $('p-bar').style.width = '100%'; $('p-next').textContent = 'Nivel más alto del club.'; }
   const mes = X5.hoyISO().slice(5, 7);
-  $('p-bday').innerHTML = p.cumple && p.cumple.slice(5, 7) === mes ? `<div class="bday"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><path d="M4 21h16M5 21v-7h14v7M12 14V9M12 6.5a1.5 1.5 0 0 0 0-3"/></svg><div><b>Mes de su cumpleaños (${X5.fechaCorta(p.cumple)})</b>Mandale un saludo: ese día suma 50 puntos y en su mes sus puntos nuevos valen doble.</div></div>` : '';
+  $('p-bday').innerHTML = p.cumple && p.cumple.slice(5, 7) === mes ? `<div class="bday"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><path d="M4 21h16M5 21v-7h14v7M12 14V9M12 6.5a1.5 1.5 0 0 0 0-3"/></svg><div><b>Mes de su cumpleaños (${X5.fechaCorta(p.cumple)})</b>Mandale un saludo: ese día suma 50 puntos y en su mes todo lo que gana vale doble.</div></div>` : '';
   const tel = telAR(p.telefono);
   const msg = `¡Hola ${String(p.nombre).split(' ')[0]}! Ya sos parte de *Padrinos X5*.\n\nTu código de padrino es *${p.codigo}*.\n\nCuando alguien que conozcas quiera su auto, su moto o su camioneta, pasale mi número y que me diga tu código. Cuando firma su plan, vos sumás puntos para canjear por premios.\n\nHoy tenés ${c.av} puntos disponibles${c.pe ? ' y ' + c.pe + ' pendientes' : ''}. Nivel: ${lvl.n}.${linkPase(p) ? `\n\nTu tarjeta de padrino, siempre al día (guardala en la pantalla de inicio):\n${linkPase(p)}` : ''}\n\n${user.nombre} · X5 Argentina`;
   $('p-wa').href = tel ? `https://wa.me/${tel}?text=${encodeURIComponent(msg)}` : `https://wa.me/?text=${encodeURIComponent(msg)}`;
@@ -377,11 +382,21 @@ function pintarPase() {
       <div class="steps">${EST.map((e, k) => `<div class="${r.estado !== 'baja' && k <= i ? 'on' : ''}"><i></i>${EST_TXT[e]}</div>`).join('')}</div>
       ${puedeAvanzar || puedeBaja ? `<div class="acts">${puedeAvanzar ? `<button class="btn btn-sm" data-av="${esc(r.id)}" data-nx="${nx}">Marcar: ${EST_TXT[nx]}</button>` : ''}${puedeBaja ? `<button class="btn btn-ghost btn-sm" data-baja="${esc(r.id)}">Baja</button>` : ''}</div>` : ''}</div>`;
   }).join('') : '<div class="empty" style="padding:14px">Sin referidos todavía.</div>';
+  $('p-saldo').innerHTML = [['Ganados', c.ganados], ['Canjeados', c.canjeados ? '−' + c.canjeados : 0], ['Vencidos (12 meses)', c.vencidos ? '−' + c.vencidos : 0], ['Disponibles', c.av]].map(([t, v], i) => `<div class="fila"><div>${t}${i === 3 && c.porVencer.pts ? `<small>${c.porVencer.pts} vencen el ${X5.fechaLarga(c.porVencer.fecha)}</small>` : ''}</div><div class="v ${i === 3 ? 'ok' : ''}">${v}</div></div>`).join('');
+  $('p-ncanje').textContent = c.canjes.length;
+  $('p-canjes').innerHTML = c.canjes.length ? c.canjes.slice().sort((a, b) => String(b.fecha).localeCompare(String(a.fecha))).map(k => {
+    const acts = gerente() ? (k.estado === 'pendiente' ? `<button class="btn btn-sm" data-canje="${esc(k.id)}" data-e="aprobado">Aprobar</button><button class="btn btn-ghost btn-sm" data-canje="${esc(k.id)}" data-e="rechazado">Rechazar</button>` : k.estado === 'aprobado' ? `<button class="btn btn-sm" data-canje="${esc(k.id)}" data-e="entregado">Marcar entregado</button><button class="btn btn-ghost btn-sm" data-canje="${esc(k.id)}" data-e="rechazado">Rechazar</button>` : '') : '';
+    const alcanza = k.estado !== 'pendiente' || !c.deficit;
+    return `<div class="ref"><div class="t"><b>${esc(k.premio)}</b><span class="chip ${k.estado === 'pendiente' ? 'warn' : k.estado === 'rechazado' ? '' : 'ok'}">${Number(k.puntos)} pts</span></div><div class="m">${CANJE_TXT_HUB[k.estado] || esc(k.estado)} · pedido el ${X5.fechaCorta(k.fecha)}${k.resuelto_por ? ' · ' + esc(k.resuelto_por) : ''}${!alcanza ? ' · <b style="color:var(--bad)">los canjes superan sus puntos (faltan ${c.deficit})</b>' : ''}</div>${acts ? `<div class="acts">${acts}</div>` : ''}</div>`;
+  }).join('') : '<div class="empty" style="padding:14px">Sin canjes.</div>';
+  document.querySelectorAll('[data-canje]').forEach(b => b.onclick = () => resolverCanje(b.dataset.canje, b.dataset.e, b));
   $('p-own').innerHTML = c.own.map(o => `<div class="fila"><div>${esc(o.t)}<small>${esc(o.d)}</small></div><div class="v ${o.v ? 'ok' : ''}">${o.v ? '+' + o.v : '—'}</div></div>`).join('');
   document.querySelectorAll('[data-av]').forEach(b => b.onclick = () => avanzar(b.dataset.av, b.dataset.nx, b));
   document.querySelectorAll('[data-baja]').forEach(b => b.onclick = () => baja(b.dataset.baja));
 }
 function pintarPremios() {
+  const desde = D.canjes_desde || R.canjesDesde, abiertos = X5.hoyISO() >= desde;
+  $('canje-aviso').textContent = abiertos ? 'Canjes habilitados: el cliente los pide desde su tarjeta y gerencia los aprueba acá, en el pase de cada padrino.' : 'Los canjes se habilitan el ' + X5.fechaLarga(desde) + '. Premios y puntos en revisión con el directorio.';
   $('premios').innerHTML = PREMIOS.map(x => `<div class="prem"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 12h18"/></svg></span><span class="tx"><b>${esc(x.t)}</b><small>${esc(x.d)}</small></span><span class="p">${x.p} pts</span></div>`).join('');
 }
 
@@ -408,7 +423,8 @@ function formPadrino(p) {
       <label class="chk"><input type="checkbox" id="f-res" ${p.resena === 'si' ? 'checked' : ''}> Dejó su reseña en Google</label>
       <label class="chk"><input type="checkbox" id="f-baja" ${p.estado === 'baja' ? 'checked' : ''}> Dar de baja del club</label>` : ''}
     <div class="field"><label for="f-not">Observaciones</label><textarea id="f-not">${esc(p ? p.notas : '')}</textarea></div>
-    <button class="btn" id="f-ok">${p ? 'Guardar cambios' : 'Crear padrino y generar su código'}</button>`);
+    <button class="btn" id="f-ok">${p ? 'Guardar cambios' : 'Crear padrino y generar su código'}</button>${p && gerente() ? '<button class="btn btn-ghost" id="f-del" style="margin-top:8px;color:var(--bad)">Eliminar padrino…</button>' : ''}`);
+  if ($('f-del')) $('f-del').onclick = () => eliminarPadrino(p);
   $('f-ok').onclick = async (e) => {
     const data = { id: p ? p.id : undefined, nombre: $('f-nom').value, telefono: $('f-tel').value, cumple: $('f-cum').value, nro_contrato: $('f-con').value, asesor: sup ? $('f-ase').value : user.nombre, notas: $('f-not').value };
     if (sup && p) Object.assign(data, { cuotas_al_dia: $('f-cuo').value, retiro: $('f-ret').checked ? 'si' : '', resena: $('f-res').checked ? 'si' : '', estado: $('f-baja').checked ? 'baja' : 'activo' });
@@ -458,6 +474,15 @@ function baja(id) {
   const r = D.referidos.find(x => String(x.id) === String(id)); if (!r) return;
   dialogo('Dar de baja', `<p style="margin:0 0 14px">${esc(r.cliente)} queda dado de baja y se anulan los puntos pendientes del padrino.</p><button class="btn btn-danger" id="a-ok">Dar de baja</button>`);
   $('a-ok').onclick = async (e) => { const res = await accion({ action: 'referidos_estado', id, estado: 'baja' }, e.target); if (!res) return; dlg.close(); X5.toast('Baja registrada', 'ok'); cargar(false); };
+}
+async function resolverCanje(id, estado, btn) {
+  const txt = { aprobado: 'Aprobar este canje', rechazado: 'Rechazar este canje (se devuelven los puntos)', entregado: 'Marcar como entregado' }[estado];
+  dialogo(txt, `<div class="field"><label for="k-not">Nota (opcional)</label><input id="k-not" maxlength="200"></div><button class="btn ${estado === 'rechazado' ? 'btn-danger' : ''}" id="k-ok">Confirmar</button>`);
+  $('k-ok').onclick = async (e) => { const r = await accion({ action: 'padrinos_canje', id, estado, notas: $('k-not').value }, e.target); if (!r) return; dlg.close(); X5.toast('Canje ' + estado + ' ✓', 'ok'); cargar(false); };
+}
+function eliminarPadrino(p) {
+  dialogo('Eliminar padrino', `<p style="margin:0 0 10px">Se borran <b>${esc(p.nombre)}</b> (${esc(p.codigo)}), sus referidos y sus canjes del club. Queda una copia en la hoja «Eliminados» y su link deja de funcionar.</p><p class="muted" style="font-size:.8rem;margin:0 0 14px">Los leads que ya se crearon en el Mini CRM no se borran: eliminalos desde ahí si eran de prueba.</p><button class="btn btn-danger" id="el-ok">Eliminar definitivamente</button>`);
+  $('el-ok').onclick = async (e) => { const r = await accion({ action: 'padrinos_eliminar', id: p.id }, e.target); if (!r) return; dlg.close(); X5.toast('Padrino eliminado', 'ok'); sel = null; ir('lista'); cargar(false); };
 }
 function telAR(t) {
   let d = String(t || '').replace(/\D/g, ''); if (!d) return '';

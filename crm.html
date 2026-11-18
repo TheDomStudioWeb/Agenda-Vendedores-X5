@@ -423,6 +423,7 @@
 
 <script src="x5-core.js"></script>
 <script src="dom-login.js"></script>
+<script src="padrinos-core.js"></script>
 <script>
 (() => {
 'use strict';
@@ -1779,6 +1780,7 @@ function reporteHtml(d, pdf) {
     <table class="rep-tabla"><thead><tr><th>Asesor</th><th>Leads</th><th>Contact.</th><th>Resp.</th><th>Entrev.</th><th>Ventas</th></tr></thead><tbody>
     ${d.filas.map(f => `<tr><td>${esc(f.n)}</td><td>${f.leads}</td><td class="${mal(f)}">${f.cont}/${f.leads}</td><td>${fmtMin(f.prom)}</td><td>${f.real}${f.canc ? ' <span style="color:var(--faint)">(-' + f.canc + ')</span>' : ''}</td><td><b>${f.ventas}</b></td></tr>`).join('')}
     </tbody></table></div>
+  ${padrinosHtml(r)}
   <div class="card"><div class="card-title">Para atender</div>${av.length ? '<div class="rep-aviso">' + av.map(x => '<div>' + x + '</div>').join('') + '</div>' : `<div class="rep-aviso"><div class="ok">Todo al día: no hay pendientes ${PERIODOS[r.tipo].deste}.</div></div>`}</div>
   <div class="card"><div class="card-title">Observaciones ${PERIODOS[r.tipo].deste}</div><div class="rep-obs">${obsHtml}</div></div>`}
   <div class="rep-foot">Generado el ${new Date().toLocaleDateString('es-AR')} · X5 Cuyo Hub Comercial · The DOM Studio Web · thedomstudioweb.github.io</div>`;
@@ -1790,7 +1792,51 @@ function alcance() {
   return v.startsWith('e:') ? 'Equipo de ' + v.slice(2) : v.slice(2);
 }
 
+/* ── Padrinos X5 en el resumen: se piden aparte, una vez por sesión de la pantalla ── */
+let padDB = null, padPidiendo = false;
+async function cargarPadrinos() {
+  if (padPidiendo) return; padPidiendo = true;
+  try { const r = await apiPost({ action: 'padrinos_datos', token }); if (r && r.ok) { padDB = r; if ($('rep')) renderResumen(); } } catch (e) {} finally { padPidiendo = false; }
+}
+function datosPadrinos(r) {
+  if (!padDB || !window.Padrinos) return null;
+  const ver = filtroPersona(), en = (f) => { f = soloFecha(f); return f && f >= r.desde && f <= r.hasta; };
+  const pads = padDB.padrinos.filter(p => ver(p.asesor)), ids = new Set(pads.map(p => String(p.id)));
+  const refs = padDB.referidos.filter(x => ids.has(String(x.padrino_id)) || ver(x.asesor));
+  const nuevos = refs.filter(x => en(x.alta)), tarjeta = nuevos.filter(x => x.cargado_por === 'padrino').length;
+  const paso = (campo) => refs.filter(x => en(x[campo])).length;
+  const firmaronDeNuevos = nuevos.filter(x => ['firmo', 'cuota3', 'retiro'].includes(x.estado)).length;
+  const leadsRef = db.leads.filter(l => ver(l.asignado_a) && l.origen === 'Referido' && en(l.fecha_asignacion));
+  const m = leadsRef.map(numMin).filter(v => v != null), prom = m.length ? Math.round(m.reduce((a, b) => a + b, 0) / m.length) : null;
+  let puntos = 0; pads.forEach(p => { const c = window.Padrinos.calcular(p, padDB.referidos, padDB.canjes); c.movimientos.forEach(mv => { if (en(mv.fecha)) puntos += mv.pts; }); });
+  const canjes = (padDB.canjes || []).filter(k => ids.has(String(k.padrino_id)) && en(k.fecha) && k.estado !== 'rechazado');
+  const porPad = {}; nuevos.forEach(x => { porPad[x.padrino_id] = (porPad[x.padrino_id] || 0) + 1; });
+  const top = Object.entries(porPad).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([id, n]) => { const p = pads.find(q => String(q.id) === String(id)); return p ? `${p.nombre} (${n})` : ''; }).filter(Boolean);
+  const porAsesor = {}; refs.forEach(x => { const a = porAsesor[x.asesor] = porAsesor[x.asesor] || { n: x.asesor, nuevos: 0, entrev: 0, firm: 0 }; if (en(x.alta)) a.nuevos++; if (en(x.fecha_entrevista)) a.entrev++; if (en(x.fecha_firma)) a.firm++; });
+  return { padNuevos: pads.filter(p => en(p.alta)).length, padActivos: pads.filter(p => p.estado !== 'baja').length, nuevos: nuevos.length, tarjeta,
+    entrev: paso('fecha_entrevista'), firmas: paso('fecha_firma'), cuota3: paso('fecha_cuota3'), retiros: paso('fecha_retiro'), bajas: paso('fecha_baja'),
+    conv: nuevos.length ? Math.round(firmaronDeNuevos / nuevos.length * 100) : null, leadsRef: leadsRef.length, prom, puntos, canjes: canjes.length, canjesPts: canjes.reduce((t, k) => t + (Number(k.puntos) || 0), 0),
+    top, filas: Object.values(porAsesor).filter(a => a.nuevos || a.entrev || a.firm).sort((a, b) => b.firm - a.firm || b.nuevos - a.nuevos) };
+}
+function padrinosHtml(r) {
+  const P = datosPadrinos(r);
+  if (!P) return padDB === null ? '<div class="card"><div class="card-title">Padrinos X5 · referidos</div><div class="empty">Cargando…</div></div>' : '';
+  if (!P.padActivos && !P.nuevos) return '<div class="card"><div class="card-title">Padrinos X5 · referidos</div><div class="empty">Todavía no hay padrinos cargados.</div></div>';
+  const fila = (t, v, d) => `<div class="bar-row"><span class="name">${t}</span><span class="val" style="margin-left:auto">${v}</span>${d ? `<small style="color:var(--muted);margin-left:8px">${d}</small>` : ''}</div>`;
+  return `<div class="card"><div class="card-title">Padrinos X5 · referidos</div>
+    <div class="kpis">
+      <div class="kpi"><span>Referidos</span><b class="num">${P.nuevos}</b><small>${P.tarjeta} desde la tarjeta</small></div>
+      <div class="kpi ${P.firmas ? 'ok' : ''}"><span>Firmaron</span><b class="num">${P.firmas}</b><small>${P.conv != null ? P.conv + '% de los nuevos' : 'en el período'}</small></div>
+      <div class="kpi"><span>Respuesta</span><b class="num">${fmtMin(P.prom)}</b><small>${P.leadsRef} leads referidos</small></div>
+      <div class="kpi"><span>Puntos</span><b class="num">${P.puntos.toLocaleString('es-AR')}</b><small>${P.canjes ? P.canjes + ' canjes · ' + P.canjesPts + ' pts' : 'emitidos'}</small></div>
+    </div>
+    <div class="bars">${fila('Padrinos activos', P.padActivos, P.padNuevos ? '+' + P.padNuevos + ' nuevos' : '')}${fila('Entrevistas de referidos', P.entrev)}${fila('Planes firmados', P.firmas)}${fila('Cuota 3 confirmada', P.cuota3)}${fila('Retiraron su vehículo', P.retiros)}${P.bajas ? fila('Bajas', P.bajas) : ''}</div>
+    ${P.top.length ? `<div style="margin-top:8px;color:var(--muted);font-size:.8rem">Padrinos que más recomendaron: ${esc(P.top.join(', '))}</div>` : ''}
+    ${P.filas.length ? `<table class="rep-tabla" style="margin-top:10px"><thead><tr><th>Asesor</th><th>Referidos</th><th>Entrev.</th><th>Firmas</th></tr></thead><tbody>${P.filas.map(f => `<tr><td>${esc(f.n)}</td><td>${f.nuevos}</td><td>${f.entrev}</td><td><b>${f.firm}</b></td></tr>`).join('')}</tbody></table>` : ''}
+  </div>`;
+}
 function renderResumen() {
+  if (padDB === null) cargarPadrinos();
   const r = periodoRango(perTipo, perOff);
   $('wk-titulo').innerHTML = `${tituloRango(r)}<small>${textoRango(r)}</small>`;
   $('wk-next').disabled = perOff >= 0;

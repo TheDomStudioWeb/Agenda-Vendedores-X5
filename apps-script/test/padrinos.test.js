@@ -98,4 +98,47 @@ T('fuera de horario, el plazo del referido pasa a las 11 del día hábil siguien
   const L = m.libro.Leads.filas, h = L[0], lead = L[L.length - 1];
   assert.strictEqual(lead[h.indexOf('fecha_asignacion')], '2026-11-23'); assert.strictEqual(lead[h.indexOf('hora_limite')], '11:00');
 });
+T('el CRM marca solo la entrevista y la firma del referido (por lead o por nombre), con sistema según el plan', () => {
+  const m = m0(); const t = m.post({ action: 'login', nombre: 'Gerente Uno', clave: 'x' }).token;
+  m.llamar(GER, { action: 'contratos_precios_cargar', modo: 'reemplazar', texto: 'PX64;VW Polo;10;250000;50000\nPX71;Vento;5;600000;100000' });
+  const p = alta(m, GER, { nombre: 'Lucía', telefono: '2615551234', asesor: 'Vendedor Carlos' }).padrino;
+  const r1 = m.pad(GER, { action: 'referidos_guardar', data: { padrino_id: p.id, cliente: 'Martín Ruiz', telefono: '2614440000' } });
+  const r2 = m.pad(GER, { action: 'referidos_guardar', data: { padrino_id: p.id, cliente: 'Ana Sosa', telefono: '2614440001' } });
+  const est = () => { const d = m.pad(GER, { action: 'padrinos_datos' }).referidos; return n => d.find(x => x.cliente === n); };
+  // entrevista vinculada por lead_id
+  assert(m.post({ token: t, action: 'add', tabla: 'Hoja 1', data: { id: 'A1', cliente: 'Martín Ruiz', asesor: 'Vendedor Carlos', fecha: '2026-11-18', hora: '10:00', estado: 'pendiente', lead_id: r1.lead_id } }).ok);
+  assert.strictEqual(est()('Martín Ruiz').estado, 'camino');
+  m.post({ token: t, action: 'update', tabla: 'Hoja 1', data: { id: 'A1', estado: 'realizado' } }); assert.strictEqual(est()('Martín Ruiz').estado, 'entrevista');
+  m.post({ token: t, action: 'update', tabla: 'Hoja 1', data: { id: 'A1', resultado: 'venta', nro_contrato: '777', codigo_plan: 'PX71' } });
+  let x = est()('Martín Ruiz'); assert(x.estado === 'firmo' && x.nro_contrato === '777' && x.sistema === '5 adelantos', JSON.stringify(x));
+  m.post({ token: t, action: 'update', tabla: 'Hoja 1', data: { id: 'A1', estado: 'realizado', resultado: '' } }); assert.strictEqual(est()('Martín Ruiz').estado, 'firmo'); // no retrocede
+  // por nombre (entrevista cargada sin vincular), venta directa
+  m.post({ token: t, action: 'add', tabla: 'Hoja 1', data: { id: 'A2', cliente: 'sosa ana', asesor: 'Vendedor Carlos', fecha: '2026-11-18', hora: '11:00', estado: 'realizado', resultado: 'venta', nro_contrato: '778', codigo_plan: 'PX64' } });
+  x = est()('Ana Sosa'); assert(x.estado === 'firmo' && x.sistema === '10 adelantos' && x.fecha_entrevista === '2026-11-18');
+  // otro asesor con el mismo nombre no lo toca
+  m.post({ token: t, action: 'add', tabla: 'Hoja 1', data: { id: 'A3', cliente: 'Martín Ruiz', asesor: 'Vendedora Dana', fecha: '2026-11-18', hora: '12:00', estado: 'realizado' } });
+  assert(m.libro.PadrinosLog.filas.some(f => /desde el CRM/.test(f[3])));
+});
+T('eliminar padrino: solo gerente, borra sus referidos y canjes y deja copia en Eliminados', () => {
+  const m = m0(); const p = alta(m, V1, { nombre: 'Prueba', telefono: '2615551234' }).padrino;
+  m.pad(V1, { action: 'referidos_guardar', data: { padrino_id: p.id, cliente: 'Ref', telefono: '2614440000' } });
+  assert.strictEqual(m.pad(V1, { action: 'padrinos_eliminar', id: p.id }).error, 'sin_permiso');
+  const r = m.pad(GER, { action: 'padrinos_eliminar', id: p.id }); assert(r.ok && r.referidos === 1);
+  const d = m.pad(GER, { action: 'padrinos_datos' }); assert.strictEqual(d.padrinos.length, 0); assert.strictEqual(d.referidos.length, 0);
+  assert(m.libro.Eliminados.filas.length >= 3);
+  assert.strictEqual(m.api.paseCliente_(p.codigo, p.llave).error, 'pase_invalido');
+});
+T('canjes: cerrados antes de la fecha; después el cliente pide, gerencia aprueba y entrega', () => {
+  const m = m0(); const p = alta(m, GER, { nombre: 'Lucía', telefono: '2615551234', asesor: 'Vendedor Carlos' }).padrino;
+  const pedir = () => m.post({ action: 'pase_canje', c: p.codigo, k: p.llave, premio_id: 'lavado', premio: 'Lavado completo', puntos: 80 });
+  assert.strictEqual(pedir().error, 'canjes_no_habilitados');
+  m.reloj('2027-02-20T10:00:00-03:00');
+  assert(pedir().ok); assert(pedir().ok); assert(pedir().ok); assert.strictEqual(pedir().error, 'demasiados_pendientes');
+  const d = m.pad(GER, { action: 'padrinos_datos' }); assert.strictEqual(d.canjes.length, 3); const id = d.canjes[0].id;
+  assert.strictEqual(m.pad(JEF_OR_V1(), { action: 'padrinos_canje', id, estado: 'aprobado' }).error, 'sin_permiso');
+  assert.strictEqual(m.pad(GER, { action: 'padrinos_canje', id, estado: 'entregado' }).error, 'orden_invalido');
+  assert(m.pad(GER, { action: 'padrinos_canje', id, estado: 'aprobado' }).ok); assert(m.pad(GER, { action: 'padrinos_canje', id, estado: 'entregado' }).ok);
+  const pase = m.api.paseCliente_(p.codigo, p.llave); assert.strictEqual(pase.canjes.length, 3); assert.strictEqual(pase.canjes_desde, '2027-02-18');
+});
+function JEF_OR_V1() { return V1; }
 console.log(`\n${ok} bien, ${fail} con error`); process.exit(fail ? 1 : 0);

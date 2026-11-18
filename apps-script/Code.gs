@@ -14,6 +14,9 @@
  *  - Respuestas con { ok: true/false } para que la app sepa si se guardó.
  *
  *
+ * v2.12: el CRM marca solo la entrevista y la firma del referido; eliminar padrino (gerencia); canjes (pedido desde la
+ *       tarjeta, aprobación en el Hub, habilitados desde CANJES_DESDE).
+ *
  * v2.11: el padrino carga referidos desde su tarjeta (pase_referido): entran al CRM como lead «Referido» con plazo de 2 h y aviso al asesor.
  *
  * v2.10: la tarjeta del padrino también se pide por POST, igual que el resto del Hub (más estable que GET).
@@ -111,6 +114,10 @@ function doPost(e) {
     if (body.action === 'login') return json_(login_(body.nombre, body.clave));
     // Tarjeta del padrino para el cliente (sin sesión: solo con su código y su llave secreta)
     if (body.action === 'pase') return json_(paseCliente_(body.c, body.k));
+    if (body.action === 'pase_canje') {
+      const lk = LockService.getScriptLock(); lk.waitLock(15000);
+      try { return json_(paseCanje_(body)); } finally { lk.releaseLock(); }
+    }
     if (body.action === 'pase_referido') {
       const avisos = [], lk = LockService.getScriptLock(); lk.waitLock(15000); let r;
       try { r = paseReferido_(body, avisos); } finally { lk.releaseLock(); }
@@ -172,6 +179,7 @@ function doPost(e) {
         if (!esSupervision_(usuario) && String(datos[colDuenio]) !== String(usuario.nombre)) return json_({ ok: false, error: 'sin_permiso' });
         const fila = headers.map(h => valorParaCelda_(h, h === 'actualizado' ? new Date() : datos[h]));
         sheet.appendRow(fila);
+        if (nombreHoja === HOJAS.agenda) { try { sincronizarReferidoAgenda_(datos); } catch (e) { console.warn('Padrinos: ' + e); } }
         if (nombreHoja === HOJAS.leads && String(datos.asignado_a) !== String(usuario.nombre)) avisos.push(() => avisarLeadAsignado_(datos, usuario)); // el lead propio no se avisa a uno mismo
         return json_({ ok: true });
       }
@@ -209,6 +217,7 @@ function doPost(e) {
           }
         }
         rango.setValues([actual]);
+        if (nombreHoja === HOJAS.agenda) { const ag = {}; headers.forEach((h, i) => ag[h] = actual[i]); try { sincronizarReferidoAgenda_(ag); } catch (e) { console.warn('Padrinos: ' + e); } }
         return json_({ ok: true });
       }
 
@@ -1510,7 +1519,7 @@ function asistenciaCorregir_(body, u) {
 const HOJA_PADRINOS = 'Padrinos';
 const HOJA_REFERIDOS = 'Referidos';
 const HOJA_PADRINOS_LOG = 'PadrinosLog';
-const COL_PADRINOS = ['id', 'codigo', 'nombre', 'telefono', 'cumple', 'nro_contrato', 'asesor', 'cuotas_al_dia', 'retiro', 'fecha_retiro', 'resena', 'estado', 'alta', 'notas', 'actualizado', 'llave'];
+const COL_PADRINOS = ['id', 'codigo', 'nombre', 'telefono', 'cumple', 'nro_contrato', 'asesor', 'cuotas_al_dia', 'retiro', 'fecha_retiro', 'resena', 'estado', 'alta', 'notas', 'actualizado', 'llave', 'fecha_resena'];
 const COL_REFERIDOS = ['id', 'padrino_id', 'padrino_codigo', 'cliente', 'telefono', 'interes', 'sistema', 'asesor', 'estado', 'nro_contrato', 'lead_id', 'alta', 'fecha_entrevista', 'fecha_firma', 'fecha_cuota3', 'fecha_retiro', 'fecha_baja', 'notas', 'actualizado', 'cargado_por'];
 const COL_PADRINOS_LOG = ['fecha', 'usuario', 'accion', 'detalle'];
 const ESTADOS_REFERIDO = ['camino', 'entrevista', 'firmo', 'cuota3', 'retiro'];
@@ -1584,6 +1593,8 @@ function despacharPadrinos_(body, u) {
     if (a === 'padrinos_guardar') return padrinosGuardar_(body, u);
     if (a === 'referidos_guardar') return referidosGuardar_(body, u, avisos);
     if (a === 'referidos_estado') return referidosEstado_(body, u);
+    if (a === 'padrinos_eliminar') return padrinosEliminar_(body, u);
+    if (a === 'padrinos_canje') return canjeResolver_(body, u);
     return { ok: false, error: 'accion_invalida' };
   } finally {
     lock.releaseLock();
@@ -1605,8 +1616,9 @@ function padrinosDatos_(u) {
     ok: true, usuario: { nombre: u.nombre, rol: u.rol },
     padrinos: visibles.map(publicoP_),
     referidos: referidos.filter(r => ids.indexOf(String(r.padrino_id)) > -1 || ve(r.asesor)).map(publicoP_),
+    canjes: leerP_(hojaCanjes_(), COL_CANJES).filter(c => ids.indexOf(String(c.padrino_id)) > -1).map(publicoP_),
     personal: personal.filter(p => String(p.estado) === 'Activo').map(p => ({ nombre: p.nombre, rol: p.rol })),
-    sistemas: SISTEMAS_PLAN, servidor: new Date().toISOString()
+    sistemas: SISTEMAS_PLAN, canjes_desde: CANJES_DESDE, servidor: new Date().toISOString()
   };
 }
 
@@ -1631,7 +1643,7 @@ function padrinosGuardar_(body, u) {
   if (sup) {
     if (d.cuotas_al_dia !== undefined) p.cuotas_al_dia = Math.max(0, Math.min(300, parseInt(d.cuotas_al_dia, 10) || 0));
     if (d.retiro !== undefined) { const r = d.retiro === true || d.retiro === 'si'; if (r && p.retiro !== 'si') p.fecha_retiro = hoyP_(); if (!r) p.fecha_retiro = ''; p.retiro = r ? 'si' : ''; }
-    if (d.resena !== undefined) p.resena = (d.resena === true || d.resena === 'si') ? 'si' : '';
+    if (d.resena !== undefined) { const rs = (d.resena === true || d.resena === 'si'); if (rs && p.resena !== 'si') p.fecha_resena = hoyP_(); if (!rs) p.fecha_resena = ''; p.resena = rs ? 'si' : ''; }
     if (d.estado === 'baja' || d.estado === 'activo') p.estado = d.estado;
   }
   escribirP_(sh, COL_PADRINOS, p._fila, p);
@@ -1742,8 +1754,90 @@ function paseCliente_(codigo, llave) {
   const pila = (n) => String(n || '').trim().split(/\s+/)[0] || 'Referido';
   return {
     ok: true,
-    padrino: { id: p.id, codigo: p.codigo, nombre: p.nombre, cumple: p.cumple, alta: p.alta, cuotas_al_dia: p.cuotas_al_dia, retiro: p.retiro, fecha_retiro: p.fecha_retiro, resena: p.resena, estado: p.estado, asesor: p.asesor },
-    referidos: refs.map(r => ({ padrino_id: r.padrino_id, cliente: pila(r.cliente), sistema: r.sistema, estado: r.estado, alta: r.alta, fecha_cuota3: r.fecha_cuota3 })),
+    padrino: { id: p.id, codigo: p.codigo, nombre: p.nombre, cumple: p.cumple, alta: p.alta, cuotas_al_dia: p.cuotas_al_dia, retiro: p.retiro, fecha_retiro: p.fecha_retiro, resena: p.resena, fecha_resena: p.fecha_resena, estado: p.estado, asesor: p.asesor },
+    referidos: refs.map(r => ({ padrino_id: r.padrino_id, cliente: pila(r.cliente), sistema: r.sistema, estado: r.estado, alta: r.alta, fecha_entrevista: r.fecha_entrevista, fecha_firma: r.fecha_firma, fecha_cuota3: r.fecha_cuota3, fecha_retiro: r.fecha_retiro })),
+    canjes: leerP_(hojaCanjes_(), COL_CANJES).filter(c => String(c.padrino_id) === String(p.id)).map(c => ({ id: c.id, padrino_id: c.padrino_id, premio: c.premio, puntos: Number(c.puntos) || 0, estado: c.estado, fecha: c.fecha, fecha_resuelto: c.fecha_resuelto })),
+    canjes_desde: CANJES_DESDE,
     servidor: new Date().toISOString()
   };
+}
+
+// ── Padrinos: sincronización con el CRM ─────────────────────────────
+// Cuando una entrevista del CRM es de un referido (por lead_id o, si no, por nombre y asesor), avanza su estado:
+// entrevista realizada → «Entrevista»; venta cerrada con N.º de contrato → «Firmó» (con contrato y sistema según el plan). Nunca retrocede.
+function sincronizarReferidoAgenda_(a) {
+  const realizada = String(a.estado) === 'realizado', venta = String(a.resultado) === 'venta' && txtP_(a.nro_contrato);
+  if (!realizada && !venta) return;
+  const ss = SpreadsheetApp.getActiveSpreadsheet(); if (!ss.getSheetByName(HOJA_REFERIDOS)) return;
+  const sh = hojaReferidos_(), refs = leerP_(sh, COL_REFERIDOS).filter(r => r.estado !== 'baja');
+  let r = a.lead_id ? refs.find(x => String(x.lead_id) === String(txtP_(a.lead_id))) : null;
+  if (!r) r = refs.find(x => ESTADOS_REFERIDO.indexOf(x.estado) < 2 && String(x.asesor) === String(a.asesor) && mismoCliente_(x.cliente, a.cliente));
+  if (!r) return;
+  const i = ESTADOS_REFERIDO.indexOf(r.estado), hoy = hoyP_(), antes = r.estado;
+  if (venta && i < 2) {
+    const plan = leerPrecios_().filter(p => String(p.codigo).toUpperCase() === txtP_(a.codigo_plan).toUpperCase())[0];
+    const ap = plan ? parseInt(plan.apertura, 10) : NaN;
+    if (!r.sistema && (ap === 10 || ap === 5)) r.sistema = ap === 10 ? '10 adelantos' : '5 adelantos';
+    if (!r.fecha_entrevista) r.fecha_entrevista = hoy;
+    r.estado = 'firmo'; r.fecha_firma = hoy; r.nro_contrato = txtP_(a.nro_contrato).slice(0, 20);
+  } else if (realizada && i < 1) { r.estado = 'entrevista'; r.fecha_entrevista = hoy; }
+  if (r.estado === antes) return;
+  escribirP_(sh, COL_REFERIDOS, r._fila, r);
+  logP_({ nombre: 'CRM' }, 'estado_referido', r.cliente + ': ' + antes + ' → ' + r.estado + ' (desde el CRM' + (r.nro_contrato ? ', contrato ' + r.nro_contrato : '') + ')');
+}
+
+// ── Padrinos: eliminar (solo Gerente Comercial; copia en «Eliminados») ──
+function padrinosEliminar_(body, u) {
+  if (!esGerente_(u)) return { ok: false, error: 'sin_permiso' };
+  const shP = hojaPadrinos_(), pads = leerP_(shP, COL_PADRINOS), p = pads.find(x => String(x.id) === String(body.id));
+  if (!p) return { ok: true, ya_no_existe: true };
+  const shR = hojaReferidos_(), refs = leerP_(shR, COL_REFERIDOS).filter(r => String(r.padrino_id) === String(p.id));
+  const shC = hojaCanjes_(), canjes = leerP_(shC, COL_CANJES).filter(c => String(c.padrino_id) === String(p.id));
+  archivarEliminado_('Padrinos', Object.assign(publicoP_(p), { cliente: p.nombre, llave: '' }), u);
+  refs.forEach(r => archivarEliminado_('Referidos', publicoP_(r), u));
+  canjes.forEach(c => archivarEliminado_('Canjes', Object.assign(publicoP_(c), { cliente: p.nombre }), u));
+  refs.map(r => r._fila).sort((a, b) => b - a).forEach(f => shR.deleteRow(f));
+  canjes.map(c => c._fila).sort((a, b) => b - a).forEach(f => shC.deleteRow(f));
+  shP.deleteRow(p._fila);
+  logP_(u, 'eliminar_padrino', p.codigo + ' · ' + p.nombre + ' (' + refs.length + ' referidos)');
+  return { ok: true, referidos: refs.length };
+}
+
+// ── Padrinos: canjes ──────────────────────────────────────────────
+// Se habilitan desde esta fecha (3 meses del lanzamiento). Cambiar acá y en padrinos-core.js.
+const CANJES_DESDE = '2027-02-18';
+const HOJA_CANJES = 'Canjes';
+const COL_CANJES = ['id', 'padrino_id', 'padrino_codigo', 'premio_id', 'premio', 'puntos', 'estado', 'fecha', 'resuelto_por', 'fecha_resuelto', 'notas', 'actualizado'];
+const MAX_CANJES_PENDIENTES = 3;
+function hojaCanjes_() { return hojaContratos_(HOJA_CANJES, COL_CANJES); }
+// El cliente pide un premio desde su tarjeta. Gerencia lo aprueba en el Hub, donde ve si le alcanzan los puntos.
+function paseCanje_(body) {
+  const codigo = txtP_(body.c).toUpperCase(), llave = txtP_(body.k);
+  const pad = leerP_(hojaPadrinos_(), COL_PADRINOS).find(x => x.codigo === codigo);
+  if (!pad || !pad.llave || !iguales_(String(pad.llave), llave)) return { ok: false, error: 'pase_invalido' };
+  if (pad.estado === 'baja') return { ok: false, error: 'pase_baja' };
+  if (hoyP_() < CANJES_DESDE) return { ok: false, error: 'canjes_no_habilitados' };
+  const premio = txtP_(body.premio).slice(0, 80), puntos = parseInt(body.puntos, 10);
+  if (!premio || !(puntos > 0) || puntos > 100000) return { ok: false, error: 'premio_invalido' };
+  const sh = hojaCanjes_(), pend = leerP_(sh, COL_CANJES).filter(c => String(c.padrino_id) === String(pad.id) && c.estado === 'pendiente');
+  if (pend.length >= MAX_CANJES_PENDIENTES) return { ok: false, error: 'demasiados_pendientes' };
+  const c = { id: 'K' + Utilities.getUuid().replace(/-/g, '').slice(0, 10), padrino_id: pad.id, padrino_codigo: pad.codigo, premio_id: txtP_(body.premio_id).slice(0, 30), premio: premio, puntos: puntos, estado: 'pendiente', fecha: hoyP_(), notas: '' };
+  escribirP_(sh, COL_CANJES, -1, c);
+  logP_({ nombre: 'Padrino ' + pad.codigo }, 'pedido_canje', premio + ' · ' + puntos + ' pts');
+  try { enviarA_([pad.asesor].concat(gerentes_()).filter((v, i, a) => v && a.indexOf(v) === i), '🎁 <b>Pedido de canje · Padrinos X5</b>\n\n<b>' + esc_(pad.nombre) + '</b> (' + esc_(pad.codigo) + ')\n' + esc_(premio) + ' · ' + puntos + ' puntos', HUB_URL + 'padrinos.html', 'Ver en el Hub'); } catch (e) {}
+  return { ok: true };
+}
+// Gerencia aprueba, rechaza o marca entregado un canje
+function canjeResolver_(body, u) {
+  if (!esGerente_(u)) return { ok: false, error: 'sin_permiso' };
+  const accion = String(body.estado || '');
+  if (['aprobado', 'rechazado', 'entregado'].indexOf(accion) < 0) return { ok: false, error: 'estado_invalido' };
+  const sh = hojaCanjes_(), c = leerP_(sh, COL_CANJES).find(x => String(x.id) === String(body.id));
+  if (!c) return { ok: false, error: 'no_encontrado' };
+  const permitido = { pendiente: ['aprobado', 'rechazado'], aprobado: ['entregado', 'rechazado'] }[c.estado] || [];
+  if (permitido.indexOf(accion) < 0) return { ok: false, error: 'orden_invalido' };
+  c.estado = accion; c.resuelto_por = u.nombre; c.fecha_resuelto = hoyP_(); if (body.notas) c.notas = txtP_(body.notas).slice(0, 200);
+  escribirP_(sh, COL_CANJES, c._fila, c);
+  logP_(u, 'canje_' + accion, c.padrino_codigo + ' · ' + c.premio + ' · ' + c.puntos + ' pts');
+  return { ok: true, canje: publicoP_(c) };
 }

@@ -295,3 +295,6 @@ Vale al elegir «Venta» en el resultado, al cambiar el N.º de contrato de una 
 
 ## El padrino carga referidos desde su tarjeta (v2.11, 18/11/2026)
 En la tarjeta del cliente, «+ Cargar un referido» (reemplaza a «Copiar mi código»). El referido entra al Mini CRM como lead «Referido» asignado al asesor del padrino, con plazo de 2 h dentro del horario comercial y aviso por Telegram; en Referidos queda `cargado_por = padrino`. Máximo 5 por día por padrino; no revela datos de otros clientes. Requiere el Code.gs v2.11.
+
+## Padrinos v2.12 (18/11/2026)
+El CRM marca solo la entrevista y la firma del referido; vencimiento de puntos a 12 meses y dobles en el mes del cumpleaños (motor en `padrinos-core.js`); canjes preparados (hoja «Canjes», habilitados desde el 18/02/2027); eliminar padrino (Gerente Comercial); bases y condiciones preliminares en la tarjeta; sección «Padrinos X5 · referidos» en el Resumen por período. Detalle en `docs/MANUAL-PADRINOS.md`. Requiere el Code.gs v2.12.

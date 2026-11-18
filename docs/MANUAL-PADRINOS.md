@@ -25,9 +25,37 @@ Cada padrino tiene su propia tarjeta en un link único (`pase.html?c=CÓDIGO&k=L
 - Es de solo lectura y no muestra teléfonos ni datos de otros clientes. La llave del link es secreta y no se puede adivinar; si el padrino se da de baja, el link deja de funcionar.
 - Billetera (Google/Apple Wallet): no hace falta por ahora. No es para pagar; solo suma avisos en el teléfono y un QR para escanear. Se evalúa si Gangas Club valida beneficios con QR.
 
+## Automático desde el Mini CRM (v2.12)
+- Cuando la entrevista de un referido se marca **realizada** en el CRM, su paso pasa solo a **Entrevista**.
+- Cuando se cierra la **venta** con N.º de contrato, pasa solo a **Firmó**, con el contrato y el sistema según el código del plan (apertura 10 = 10 adelantos, 5 = 5 adelantos).
+- La entrevista se reconoce por el lead del referido; si se cargó suelta, por el nombre del cliente y el asesor. Nunca hace retroceder un paso.
+- **Cuota 3 y retiro** los sigue confirmando supervisión a mano: el Hub no está conectado al sistema de cobranzas de X5 (Flexipyme).
+
 ## Puntos (propuesta)
 Por referido: entrevista 10 · firma 100 × multiplicador (pendientes) · cuota 3 50 × multiplicador (se liberan) · retiro 100. Multiplicador por sistema: 10 adelantos ×1, 5 adelantos ×1,5, entrega programada ×2.
 Por el plan propio: bienvenida 20 · cada 6 cuotas al día 30 · retiro de su vehículo 150 (y sube un nivel) · cumpleaños 50 · reseña en Google 20. Cuotas al día, retiro y reseña los carga supervisión en «Editar padrino».
+
+## Vencimiento y cumpleaños
+- Los puntos vencen a los **12 meses** de ganados. Cuando hay canjes, se usan primero los más viejos.
+- La tarjeta avisa cuántos puntos vencen en los próximos 30 días.
+- En el **mes del cumpleaños** del padrino, todo lo que gana vale **doble** (menos el regalo de 50 del día del cumpleaños). Los puntos pendientes de una firma se duplican si la cuota 3 se confirma en ese mes.
+- En el pase del Hub, el bloque «Puntos» muestra ganados, canjeados, vencidos y disponibles.
+
+## Canjes (preparados; se habilitan el 18/02/2027)
+- Antes de esa fecha, la tarjeta muestra los premios y la fecha en que se habilitan.
+- Desde esa fecha, el cliente toca **Canjear** en el premio (si le alcanzan los puntos y cumple el requisito: haber retirado o ser Padrino) y lo confirma. Puede tener hasta 3 pedidos pendientes.
+- Llega un aviso por Telegram al asesor y a gerencia. En el Hub, en el pase del padrino, bloque **Canjes**: el Gerente Comercial **Aprueba** o **Rechaza**, y después marca **Entregado**. Si los canjes superan sus puntos, el Hub lo marca.
+- Los pedidos, aprobados y entregados descuentan puntos; los rechazados los devuelven.
+- La fecha se cambia en dos lugares: `CANJES_DESDE` en Code.gs y `canjesDesde` en padrinos-core.js.
+
+## Eliminar un padrino (solo Gerente Comercial)
+En «Editar padrino» → **Eliminar padrino…**. Borra al padrino, sus referidos y sus canjes, deja una copia en la hoja «Eliminados» y su link deja de funcionar. Los leads que ya se crearon en el CRM no se borran.
+
+## Bases y condiciones
+Están en la tarjeta del cliente, pantalla «Cómo sumo», y con un enlace al pie de «Mi pase». Es una **versión preliminar**: la tiene que revisar alguien de X5 antes de salir con todos los clientes.
+
+## En el informe del CRM
+El Resumen por período tiene la sección **Padrinos X5 · referidos**: referidos nuevos (y cuántos cargó el padrino desde su tarjeta), cuántos firmaron y su porcentaje, tiempo de respuesta a los leads referidos, puntos emitidos, canjes, entrevistas, firmas, cuota 3, retiros, los padrinos que más recomendaron y una tabla por asesor. Sale también en el PDF.
 
 ## Niveles
 Cliente X5 (0 referidos con cuota 3) · Padrino (1) · Padrino Oro (3, ×1,25 en nuevos referidos) · Embajador X5 (6, ×1,5). Retirar el propio vehículo sube un nivel.
@@ -44,7 +72,6 @@ Hojas nuevas, se crean solas con el Code.gs v2.7: **Padrinos** (id, codigo, nomb
 
 ## Pendiente
 - Definir con el directorio el valor del punto, los premios, el premio del referido y la integración con Gangas Club.
-- Canjes (a los 3 meses), vencimiento de puntos a 12 meses y puntos dobles del mes de cumpleaños (hoy solo se avisan).
 - Más adelante: Google/Apple Wallet si hace falta, y que la venta cerrada en el CRM marque sola la firma del referido.
 
 ## Preguntas frecuentes (para Claudio)

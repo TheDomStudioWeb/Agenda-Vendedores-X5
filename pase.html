@@ -133,7 +133,7 @@
           <div><small>Disponibles</small><b id="c-av">0</b></div>
           <div class="pend"><small>Pendientes</small><b id="c-pe">0</b></div>
         </div>
-        <div class="lvl"><div class="bar"><i id="c-bar"></i></div><p id="c-next"></p></div>
+        <div class="lvl"><div class="bar"><i id="c-bar"></i></div><p id="c-next"></p><p id="c-vence" style="color:#FFB3BC;font-weight:600"></p></div>
       </div>
       <div id="bday"></div>
       <a class="btn wa" id="recomendar" target="_blank" rel="noopener">
@@ -142,7 +142,7 @@
       <button class="btn red" data-ir="cargar">+ Cargar un referido</button>
       <button class="atajo" data-ir="referidos"><span class="n" id="a-n">0</span><span><b>Tus referidos</b><small id="a-t">Mirá cómo avanzan</small></span><span class="go">›</span></button>
       <div class="block"><h3>Tu plan</h3><div id="own"></div></div>
-      <p style="font-size:12px;color:var(--steel);text-align:center;margin-top:16px">Guardá esta página en la pantalla de inicio de tu teléfono para tenerla siempre a mano.</p>
+      <p style="font-size:12px;color:var(--steel);text-align:center;margin-top:16px">Guardá esta página en la pantalla de inicio de tu teléfono para tenerla siempre a mano.<br><a href="#como" data-ir="como" style="color:var(--steel)">Bases y condiciones</a></p>
     </section>
 
     <!-- REFERIDOS -->
@@ -159,8 +159,10 @@
     <section class="view" id="v-premios">
       <div class="ttl"><h2>Premios</h2></div>
       <p class="sub">Canjeá tus puntos disponibles.</p>
-      <div class="note">Los canjes se habilitan a los 3 meses del lanzamiento del club. Los premios pueden cambiar.</div>
-      <div class="block" style="margin-top:8px"><div id="premios"></div></div>
+      <div class="note" id="canje-nota"></div>
+      <div class="block" style="margin-top:8px"><div class="row"><div><b>Tus puntos disponibles</b><small id="pv-txt"></small></div><div class="v ok" id="pm-av">0</div></div></div>
+      <div class="block"><div id="premios"></div></div>
+      <div class="block"><h3>Tus canjes</h3><div id="mis-canjes"></div></div>
     </section>
 
     <!-- CÓMO SUMO -->
@@ -188,6 +190,25 @@
         <div class="row"><div><b>Padrino</b><small>1 referido con la cuota 3 paga</small></div></div>
         <div class="row"><div><b>Padrino Oro</b><small>3 referidos · ×1,25 en los nuevos</small></div></div>
         <div class="row"><div><b>Embajador X5</b><small>6 referidos · ×1,5 y premio anual</small></div></div>
+      </div>
+      <div class="block">
+        <h3>Vencimiento y cumpleaños</h3>
+        <div class="row"><div>Tus puntos vencen a los 12 meses de ganados<small>Cuando canjeás, se usan primero los más viejos</small></div></div>
+        <div class="row"><div>En el mes de tu cumpleaños lo que ganás vale doble<small>Y ese día te regalamos 50 puntos</small></div></div>
+      </div>
+      <div class="block" id="bases">
+        <h3>Bases y condiciones</h3>
+        <ol style="margin:0;padding-left:18px;font-size:13px;color:var(--steel);line-height:1.55">
+          <li>Padrinos X5 es un programa de X5 Argentina para clientes con un plan vigente. Participar es gratis y voluntario.</li>
+          <li>Los puntos se suman cuando la persona recomendada avanza: entrevista, firma de su plan, pago de la cuota 3 y retiro de su vehículo. Los puntos de la firma quedan pendientes hasta que se paga la cuota 3.</li>
+          <li>No suman las personas que ya estaban en contacto con X5, ni referirse a uno mismo. Cada persona cuenta para un solo padrino: el primero que la recomienda.</li>
+          <li>Si la persona recomendada se da de baja antes de la cuota 3, los puntos pendientes se anulan.</li>
+          <li>Los puntos vencen a los 12 meses de ganados, no se transfieren y no se canjean por dinero.</li>
+          <li>Los canjes se piden desde esta tarjeta y los aprueba X5 Argentina. Los premios están sujetos a disponibilidad y pueden cambiar.</li>
+          <li>Al cargar a una persona, confirmás que le avisaste que la va a contactar un asesor de X5.</li>
+          <li>X5 Argentina puede modificar o finalizar el programa avisando en esta misma tarjeta.</li>
+        </ol>
+        <p style="font-size:11px;color:#8A8E95;margin:8px 0 0">Versión preliminar · noviembre 2026</p>
       </div>
       <div class="quote">“Tus amigos confían en vos. Nosotros te lo agradecemos.”</div>
     </section>
@@ -234,7 +255,8 @@
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
 const $ = (id) => document.getElementById(id);
 const esc = (v) => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const { R, PREMIOS, EST, EST_TXT, calcular } = window.Padrinos;
+const { R, PREMIOS, EST, EST_TXT, CANJE_TXT, calcular, motivoNoCanje, fechaLarga } = window.Padrinos;
+let ULT = null;
 const q = new URLSearchParams(location.search), codigo = q.get('c') || '', llave = q.get('k') || '';
 const CACHE = 'x5_pase_' + codigo;
 
@@ -270,7 +292,7 @@ async function actualizar() {
   try { const d = await (await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'pase', c: codigo, k: llave }) })).json(); if (d && d.ok) { try { localStorage.setItem(CACHE, JSON.stringify(d)); } catch (x) {} pintar(d); } } catch (x) {}
 }
 function pintar(d) {
-  const p = d.padrino, c = calcular(p, d.referidos), lvl = R.niveles[c.li], next = R.niveles[c.li + 1];
+  ULT = d; const p = d.padrino, c = calcular(p, d.referidos, d.canjes), lvl = R.niveles[c.li], next = R.niveles[c.li + 1];
   const nombre = String(p.nombre).trim().split(/\s+/)[0];
   $('hola').textContent = '¡Hola, ' + nombre + '!';
   $('c-nom').textContent = p.nombre; $('c-lv').textContent = lvl.n; $('c-cod').textContent = p.codigo;
@@ -281,6 +303,7 @@ function pintar(d) {
     pct = falta > 0 ? Math.max(5, Math.min(100, (c.ok - lvl.min) / (next.min - lvl.min) * 100)) : 100;
     $('c-next').textContent = falta > 0 ? `Te ${falta === 1 ? 'falta 1 referido' : 'faltan ' + falta + ' referidos'} con la cuota 3 paga para ${next.n}.` : 'Ya alcanzaste el próximo nivel.';
   } else $('c-next').textContent = 'Llegaste al nivel más alto del club. ¡Gracias por recomendarnos!';
+  $('c-vence').textContent = c.porVencer.pts ? `${c.porVencer.pts} puntos vencen el ${fechaLarga(c.porVencer.fecha)}. ¡Canjealos!` : '';
   requestAnimationFrame(() => setTimeout(() => { $('c-bar').style.width = pct + '%'; }, 120));
 
   const hoy = new Date(), mes = String(hoy.getMonth() + 1).padStart(2, '0');
@@ -299,7 +322,12 @@ function pintar(d) {
   }).join('') : '<div class="empty">Todavía no tenés referidos. Cargá uno o tocá «Recomendar a un amigo» y empezá a sumar.</div>';
 
   $('own').innerHTML = c.own.map(o => `<div class="row"><div>${esc(o.t)}<small>${esc(o.d)}</small></div><div class="v ${o.v ? 'ok' : ''}">${o.v ? '+' + o.v : '—'}</div></div>`).join('');
-  $('premios').innerHTML = PREMIOS.map(x => `<div class="prize"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 12h18"/></svg></span><span class="tx"><b>${esc(x.t)}</b><small>${esc(x.d)}</small></span><span class="p">${x.p} pts</span></div>`).join('');
+  const desde = d.canjes_desde || R.canjesDesde, abiertos = (() => { const t = new Date(); return `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')}`; })() >= desde;
+  $('canje-nota').textContent = abiertos ? 'Elegí un premio y pedilo: X5 te confirma y coordina la entrega con tu asesor.' : 'Los canjes se habilitan el ' + fechaLarga(desde) + '. Mientras tanto, seguí sumando. Los premios pueden cambiar.';
+  $('pm-av').textContent = c.av.toLocaleString('es-AR');
+  $('pv-txt').textContent = c.porVencer.pts ? `${c.porVencer.pts} vencen el ${fechaLarga(c.porVencer.fecha)}` : (c.vencidos ? `${c.vencidos} ya vencieron` : 'Vencen a los 12 meses de ganados');
+  $('premios').innerHTML = PREMIOS.map(x => { const no = motivoNoCanje(x, c, p, desde); return `<div class="prize"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 12h18"/></svg></span><span class="tx"><b>${esc(x.t)}</b><small>${esc(abiertos && no ? no : x.d)}</small></span><span class="p">${x.p} pts${abiertos ? `<br><button class="btn red" style="margin-top:6px;padding:7px 12px;font-size:11px;width:auto" data-pedir="${esc(x.id)}" ${no ? 'disabled' : ''}>Canjear</button>` : ''}</span></div>`; }).join('');
+  $('mis-canjes').innerHTML = c.canjes.length ? c.canjes.slice().sort((a, b) => String(b.fecha).localeCompare(String(a.fecha))).map(k => `<div class="row"><div>${esc(k.premio)}<small>${esc(CANJE_TXT[k.estado] || k.estado)} · ${fechaLarga(k.fecha)}</small></div><div class="v">${k.estado === 'rechazado' ? '' : '−' + k.puntos}</div></div>`).join('') : '<div class="empty">Todavía no canjeaste premios.</div>';
 
   const vivos = c.refs.filter(r => r.estado !== 'baja'), firmados = vivos.filter(r => EST.indexOf(r.estado) >= 2).length;
   $('a-n').textContent = vivos.length;
@@ -341,6 +369,19 @@ $('f-ref').addEventListener('submit', async (e) => {
   finally { btn.disabled = false; btn.textContent = 'Enviar referido'; }
 });
 $('f-ref').addEventListener('input', () => { $('r-err').innerHTML = ''; });
+document.addEventListener('click', async (e) => {
+  const b = e.target.closest('[data-pedir]'); if (!b || !ULT) return;
+  const x = PREMIOS.find(q => q.id === b.dataset.pedir); if (!x) return;
+  if (!confirmarCanje(x)) return;
+  b.disabled = true; b.textContent = 'Enviando…';
+  try {
+    const r = await (await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'pase_canje', c: codigo, k: llave, premio_id: x.id, premio: x.t, puntos: x.p }) })).json();
+    if (!r.ok) { b.textContent = ({ canjes_no_habilitados: 'Todavía no', demasiados_pendientes: 'Tenés pedidos pendientes' })[r.error] || 'No se pudo'; return; }
+    b.textContent = 'Pedido ✓'; actualizar();
+  } catch (x2) { b.disabled = false; b.textContent = 'Sin conexión'; }
+});
+let confirmando = null;
+function confirmarCanje(x) { if (confirmando === x.id) { confirmando = null; return true; } confirmando = x.id; const b = document.querySelector(`[data-pedir="${x.id}"]`); if (b) b.textContent = '¿Confirmás?'; setTimeout(() => { if (confirmando === x.id) { confirmando = null; if (b && !b.disabled) b.textContent = 'Canjear'; } }, 4000); return false; }
 $('r-otro').onclick = () => { $('f-ref').hidden = false; $('r-listo').hidden = true; $('r-nom').focus(); };
 
 function contar(el, to) {

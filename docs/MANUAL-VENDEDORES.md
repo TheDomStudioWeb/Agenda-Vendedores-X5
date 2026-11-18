@@ -160,3 +160,10 @@ En cada contrato ves el **sellado a rendir**. Si perdés un contrato, avisale en
 
 - **Usuario, clave o permisos:** tu jefe de ventas o la gerencia comercial.
 - **Problemas técnicos de la app:** The DOM Studio Web · WhatsApp 261-3431216 · thedomstudioweb@gmail.com
+
+## Padrinos X5 (club de referidos)
+Cada cliente con plan puede ser **padrino**: recomienda a alguien y, cuando esa persona compra su plan, suma puntos para premios.
+1. Cuando tu cliente firma: Hub → **Padrinos X5** → **+ Padrino** (nombre, teléfono, cumpleaños). El código sale solo.
+2. Tocá **Enviarle su pase por WhatsApp**: le llega el link a su tarjeta, donde ve sus puntos y puede **cargar referidos** él mismo.
+3. Los referidos entran a tu **Mini CRM** como leads con origen «Referido» y te llega el aviso por Telegram. Los que carga el padrino desde su tarjeta vienen con plazo de 2 horas: contactalos rápido.
+4. Trabajalos como cualquier lead. Al marcar la entrevista realizada y al cerrar la venta, el club se actualiza solo. La cuota 3 y el retiro los confirma gerencia.
