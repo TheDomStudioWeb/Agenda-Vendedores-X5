@@ -14,6 +14,10 @@
  *  - Respuestas con { ok: true/false } para que la app sepa si se guardó.
  *
  *
+ * v2.13: teléfono del asesor en la tarjeta del padrino (columna «telefono» de Personal) y reasignación automática:
+ *       al pasar a alguien a inactivo, sus leads abiertos, entrevistas pendientes, padrinos y referidos en curso pasan
+ *       a su jefe inmediato (reporta_a; si no hay, a gerencia) con aviso por Telegram. Corre cada 10 minutos.
+ *
  * v2.12: el CRM marca solo la entrevista y la firma del referido; eliminar padrino (gerencia); canjes (pedido desde la
  *       tarjeta, aprobación en el Hub, habilitados desde CANJES_DESDE).
  *
@@ -731,6 +735,7 @@ function revisarTelegram() {
     const ultima = Number(props.getProperty('ULTIMA_REVISION') || 0);
     if (Date.now() - ultima >= MINUTOS_REVISION_VENCIDOS * 60000) {
       props.setProperty('ULTIMA_REVISION', String(Date.now()));
+      try { reasignarInactivos_(); } catch (e) { console.warn('reasignarInactivos: ' + e); }
       revisarLeadsVencidos_();
       revisarVentasSinAviso_();
       revisarSeguimientosViejos_();
@@ -1752,9 +1757,11 @@ function paseCliente_(codigo, llave) {
   if (p.estado === 'baja') return { ok: false, error: 'pase_baja' };
   const refs = leerP_(hojaReferidos_(), COL_REFERIDOS).filter(r => String(r.padrino_id) === String(p.id));
   const pila = (n) => String(n || '').trim().split(/\s+/)[0] || 'Referido';
+  const ase = leerHoja_(HOJAS.personal).find(x => mismoNombre_(x.nombre, p.asesor) && String(x.estado) === 'Activo');
+  const telAse = ase ? telP_(ase.telefono) : '';
   return {
     ok: true,
-    padrino: { id: p.id, codigo: p.codigo, nombre: p.nombre, cumple: p.cumple, alta: p.alta, cuotas_al_dia: p.cuotas_al_dia, retiro: p.retiro, fecha_retiro: p.fecha_retiro, resena: p.resena, fecha_resena: p.fecha_resena, estado: p.estado, asesor: p.asesor },
+    padrino: { id: p.id, codigo: p.codigo, nombre: p.nombre, cumple: p.cumple, alta: p.alta, cuotas_al_dia: p.cuotas_al_dia, retiro: p.retiro, fecha_retiro: p.fecha_retiro, resena: p.resena, fecha_resena: p.fecha_resena, estado: p.estado, asesor: p.asesor, asesor_tel: telAse.length === 10 ? telAse : '' },
     referidos: refs.map(r => ({ padrino_id: r.padrino_id, cliente: pila(r.cliente), sistema: r.sistema, estado: r.estado, alta: r.alta, fecha_entrevista: r.fecha_entrevista, fecha_firma: r.fecha_firma, fecha_cuota3: r.fecha_cuota3, fecha_retiro: r.fecha_retiro })),
     canjes: leerP_(hojaCanjes_(), COL_CANJES).filter(c => String(c.padrino_id) === String(p.id)).map(c => ({ id: c.id, padrino_id: c.padrino_id, premio: c.premio, puntos: Number(c.puntos) || 0, estado: c.estado, fecha: c.fecha, fecha_resuelto: c.fecha_resuelto })),
     canjes_desde: CANJES_DESDE,
@@ -1840,4 +1847,100 @@ function canjeResolver_(body, u) {
   escribirP_(sh, COL_CANJES, c._fila, c);
   logP_(u, 'canje_' + accion, c.padrino_codigo + ' · ' + c.premio + ' · ' + c.puntos + ' pts');
   return { ok: true, canje: publicoP_(c) };
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+//  REASIGNACIÓN AL PASAR A INACTIVO (v2.13)
+//  Cuando en «Personal» alguien deja de estar Activo, lo que tenía en curso pasa a su jefe inmediato
+//  (reporta_a; si el jefe tampoco está activo, sube un nivel; si no hay nadie, al Gerente Comercial):
+//   - Leads abiertos (pendiente, esperando horario, entrevista pactada, en seguimiento; nunca ventas).
+//   - Entrevistas pendientes o realizadas «en seguimiento» (las ventas cerradas quedan con quien vendió).
+//   - Padrinos activos y referidos que todavía no firmaron.
+//  Deja una nota en cada registro y avisa al jefe por Telegram. Corre sola cada 10 minutos (revisarTelegram).
+// ══════════════════════════════════════════════════════════════════
+const ESTADOS_LEAD_ABIERTOS = ['pendiente', 'esperando_horario', 'entrevista_pactada', 'en_seguimiento'];
+
+function destinoInactivo_(nombre, gente) {
+  const por = {}; gente.forEach(p => { por[p.nombre] = p; });
+  let actual = por[nombre]; const vistos = {};
+  while (actual && actual.reporta_a && !vistos[actual.reporta_a]) {
+    vistos[actual.reporta_a] = true;
+    const jefe = por[actual.reporta_a];
+    if (jefe && String(jefe.estado) === 'Activo') return jefe.nombre;
+    actual = jefe;
+  }
+  const g = gente.find(p => String(p.estado) === 'Activo' && p.rol === 'Gerente Comercial');
+  return g ? g.nombre : '';
+}
+
+function reasignarInactivos_() {
+  asegurarColumnas_(obtenerHoja_(HOJAS.personal), ['telefono']);
+  const gente = leerHoja_(HOJAS.personal);
+  const destino = {};
+  gente.forEach(p => { if (p.nombre && p.estado && String(p.estado) !== 'Activo') { const d = destinoInactivo_(p.nombre, gente); if (d && d !== p.nombre) destino[p.nombre] = d; } });
+  const total = { leads: 0, entrevistas: 0, padrinos: 0, referidos: 0 };
+  if (!Object.keys(destino).length) return total;
+  const marca = '[' + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'dd/MM') + ' reasignado: ';
+  const resumen = {}; // jefe → { inactivo → { leads, entrevistas, padrinos, referidos } }
+  const sumar = (jefe, de, k) => { resumen[jefe] = resumen[jefe] || {}; const r = resumen[jefe][de] = resumen[jefe][de] || { leads: 0, entrevistas: 0, padrinos: 0, referidos: 0 }; r[k]++; total[k]++; };
+  const limpio = v => String(v == null ? '' : v).replace(/\s+/g, ' ').trim();
+
+  const pasar = (nombreHoja, colPersona, abierto, tipo) => {
+    const sheet = obtenerHoja_(nombreHoja);
+    const headers = asegurarColumnas_(sheet, COLUMNAS[nombreHoja]);
+    const data = sheet.getDataRange().getValues();
+    const iP = headers.indexOf(colPersona), iN = headers.indexOf('notas'), iA = headers.indexOf('actualizado');
+    for (let r = 1; r < data.length; r++) {
+      const quien = limpio(data[r][iP]), jefe = destino[quien];
+      if (!jefe) continue;
+      const fila = {}; headers.forEach((h, i) => { fila[h] = limpio(data[r][i]); });
+      if (!abierto(fila)) continue;
+      sheet.getRange(r + 1, iP + 1).setValue(jefe);
+      if (iN > -1) sheet.getRange(r + 1, iN + 1).setValue((fila.notas ? fila.notas + ' ' : '') + marca + quien + ' quedó inactivo]');
+      if (iA > -1) sheet.getRange(r + 1, iA + 1).setValue(new Date());
+      sumar(jefe, quien, tipo);
+    }
+  };
+  pasar(HOJAS.leads, 'asignado_a', l => ESTADOS_LEAD_ABIERTOS.indexOf(l.estado || 'pendiente') > -1 && l.resultado !== 'venta', 'leads');
+  pasar(HOJAS.agenda, 'asesor', a => (a.estado || 'pendiente') === 'pendiente' || (a.estado === 'realizado' && a.resultado === 'seguimiento'), 'entrevistas');
+
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (ss.getSheetByName(HOJA_PADRINOS)) {
+    const shP = hojaPadrinos_();
+    leerP_(shP, COL_PADRINOS).forEach(p => {
+      const jefe = destino[limpio(p.asesor)]; if (!jefe || p.estado === 'baja') return;
+      const de = limpio(p.asesor); p.asesor = jefe; escribirP_(shP, COL_PADRINOS, p._fila, p); sumar(jefe, de, 'padrinos');
+      logP_({ nombre: 'Hub' }, 'reasignar_padrino', p.codigo + ': ' + de + ' (inactivo) → ' + jefe);
+    });
+  }
+  if (ss.getSheetByName(HOJA_REFERIDOS)) {
+    const shR = hojaReferidos_();
+    leerP_(shR, COL_REFERIDOS).forEach(r => {
+      const jefe = destino[limpio(r.asesor)]; if (!jefe || ['camino', 'entrevista'].indexOf(r.estado) < 0) return;
+      const de = limpio(r.asesor); r.asesor = jefe; escribirP_(shR, COL_REFERIDOS, r._fila, r); sumar(jefe, de, 'referidos');
+      logP_({ nombre: 'Hub' }, 'reasignar_referido', r.cliente + ': ' + de + ' (inactivo) → ' + jefe);
+    });
+  }
+
+  Object.keys(resumen).forEach(jefe => {
+    const partes = Object.keys(resumen[jefe]).map(de => {
+      const r = resumen[jefe][de], det = [];
+      if (r.leads) det.push(r.leads + (r.leads === 1 ? ' lead' : ' leads'));
+      if (r.entrevistas) det.push(r.entrevistas + (r.entrevistas === 1 ? ' entrevista' : ' entrevistas'));
+      if (r.padrinos) det.push(r.padrinos + (r.padrinos === 1 ? ' padrino' : ' padrinos'));
+      if (r.referidos) det.push(r.referidos + (r.referidos === 1 ? ' referido' : ' referidos'));
+      return '👤 <b>' + esc_(de) + '</b>: ' + det.join(', ');
+    });
+    const html = '🔁 <b>Te pasaron trabajo de un asesor inactivo</b>\n\n' + partes.join('\n') + '\n\nQuedaron a tu nombre en el Hub. Reasignalos a quien corresponda.';
+    try { enviarA_([jefe], html, HUB_URL + 'crm.html?tab=leads', 'Abrir el Hub'); } catch (e) { console.warn('aviso reasignación: ' + e); }
+  });
+  console.log('Reasignación por inactivos: ' + JSON.stringify(total));
+  return total;
+}
+
+// Ejecutar a mano desde Apps Script si no querés esperar los 10 minutos
+function reasignarInactivos() {
+  const lock = LockService.getScriptLock(); lock.waitLock(20000);
+  try { console.log(JSON.stringify(reasignarInactivos_())); } finally { lock.releaseLock(); }
 }

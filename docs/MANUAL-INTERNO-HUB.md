@@ -298,3 +298,13 @@ En la tarjeta del cliente, «+ Cargar un referido» (reemplaza a «Copiar mi có
 
 ## Padrinos v2.12 (18/11/2026)
 El CRM marca solo la entrevista y la firma del referido; vencimiento de puntos a 12 meses y dobles en el mes del cumpleaños (motor en `padrinos-core.js`); canjes preparados (hoja «Canjes», habilitados desde el 18/02/2027); eliminar padrino (Gerente Comercial); bases y condiciones preliminares en la tarjeta; sección «Padrinos X5 · referidos» en el Resumen por período. Detalle en `docs/MANUAL-PADRINOS.md`. Requiere el Code.gs v2.12.
+
+## Teléfono del asesor y reasignación por inactivos (v2.13, 19/11/2026)
+- **Teléfono del asesor:** la hoja «Personal» tiene una columna nueva, `telefono` (se crea sola). Ahí va el WhatsApp de trabajo de cada asesor. La tarjeta del padrino lo usa en el mensaje «Recomendar a un amigo»: el amigo recibe un link directo al WhatsApp del asesor con el código del padrino ya escrito. Si el asesor no tiene teléfono cargado o está inactivo, el mensaje sale como antes, solo con el nombre.
+- **Pasar a alguien a inactivo:** en «Personal» se cambia `estado` a cualquier valor distinto de «Activo». Dentro de los 10 minutos siguientes, el Hub pasa a su jefe inmediato (`reporta_a`; si el jefe tampoco está activo, sube un nivel; si no hay nadie, al Gerente Comercial):
+  - leads abiertos (pendiente, esperando horario, entrevista pactada, en seguimiento);
+  - entrevistas pendientes y entrevistas realizadas «en seguimiento»;
+  - padrinos activos y referidos que todavía no firmaron.
+- Las ventas cerradas, los leads descartados y las entrevistas con venta **quedan a nombre de quien vendió** (para el historial y las comisiones).
+- Cada registro movido lleva una nota «[fecha reasignado: Nombre quedó inactivo]» y el jefe recibe un resumen por Telegram. Después el jefe reasigna desde el CRM a quien corresponda.
+- Para no esperar los 10 minutos: en Apps Script, ejecutar `reasignarInactivos`.

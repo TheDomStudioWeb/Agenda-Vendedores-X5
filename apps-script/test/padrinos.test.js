@@ -3,7 +3,7 @@ const assert = require('assert'), { crear } = require('./mock');
 const personal = [['Gerente Uno', 'Gerente Comercial', 'Activo', '', 'x', ''], ['Vendedor Carlos', 'Asesor', 'Activo', 'Gerente Uno', 'x', ''], ['Vendedora Dana', 'Asesor', 'Activo', 'Gerente Uno', 'x', ''], ['Sup Uno', 'Supervisor', 'Activo', '', 'x', ''], ['Ctrl Uno', 'Control', 'Activo', '', 'x', '']];
 const GER = { nombre: 'Gerente Uno', rol: 'Gerente Comercial' }, V1 = { nombre: 'Vendedor Carlos', rol: 'Asesor' }, V2 = { nombre: 'Vendedora Dana', rol: 'Asesor' }, SUP = { nombre: 'Sup Uno', rol: 'Supervisor' }, CTL = { nombre: 'Ctrl Uno', rol: 'Control' };
 let ok = 0, fail = 0;
-const T = (n, f) => { try { f(); ok++; console.log('  ✓ ' + n); } catch (e) { fail++; console.log('  ✗ ' + n + '\n    ' + (e.stack || e).split('\n').slice(0, 4).join('\n    ')); } };
+const T = (n, f) => { try { f(); ok++; console.log('  ✓ ' + n); } catch (e) { fail++; console.log('  ✗ ' + n + '\n    ' + (e.stack || e).split('\n').slice(0, 9).join('\n    ')); } };
 const m0 = () => { const m = crear(personal); m.reloj('2026-11-18T10:00:00-03:00'); return m; };
 const alta = (m, u, d) => m.pad(u, { action: 'padrinos_guardar', data: d });
 
@@ -141,4 +141,31 @@ T('canjes: cerrados antes de la fecha; después el cliente pide, gerencia aprueb
   const pase = m.api.paseCliente_(p.codigo, p.llave); assert.strictEqual(pase.canjes.length, 3); assert.strictEqual(pase.canjes_desde, '2027-02-18');
 });
 function JEF_OR_V1() { return V1; }
+T('la tarjeta trae el teléfono del asesor (de Personal) si está activo', () => {
+  const m = m0(); const P = m.libro.Personal; P.filas[0].push('telefono'); P.filas[2].push("'261 343-1216");
+  const p = alta(m, V1, { nombre: 'Lucía Gómez', telefono: '2615551234' }).padrino;
+  assert.strictEqual(m.api.paseCliente_(p.codigo, p.llave).padrino.asesor_tel, '2613431216');
+  P.filas[2][2] = 'Inactivo'; assert.strictEqual(m.api.paseCliente_(p.codigo, p.llave).padrino.asesor_tel, '');
+});
+T('al pasar a inactivo, leads abiertos, entrevistas pendientes, padrinos y referidos van al jefe', () => {
+  const m = m0(); const p = alta(m, V1, { nombre: 'Lucía', telefono: '2615551234' }).padrino;
+  const ref = m.pad(V1, { action: 'referidos_guardar', data: { padrino_id: p.id, cliente: 'Martín', telefono: '2614440000' } }).referido;
+  m.libro.Leads.filas = [['id', 'cliente', 'asignado_a', 'estado', 'resultado', 'notas', 'actualizado'],
+    ['1', 'Abierto', 'Vendedor Carlos', 'pendiente', '', '', ''], ['2', 'Seguimiento', 'Vendedor Carlos', 'en_seguimiento', '', 'llamar', ''],
+    ['3', 'Descartado', 'Vendedor Carlos', 'descartado', '', '', ''], ['4', 'De Dana', 'Vendedora Dana', 'pendiente', '', '', '']];
+  m.libro['Hoja 1'].filas = [['id', 'cliente', 'asesor', 'estado', 'resultado', 'notas', 'actualizado'],
+    ['a', 'Pendiente', 'Vendedor Carlos', 'pendiente', '', '', ''], ['b', 'Vendida', 'Vendedor Carlos', 'realizado', 'venta', '', ''], ['c', 'Seguir', 'Vendedor Carlos', 'realizado', 'seguimiento', '', '']];
+  assert.strictEqual(m.api.reasignarInactivos_().leads, 0); // todos activos: no toca nada
+  m.libro.Personal.filas[2][2] = 'Inactivo';
+  const t = m.api.reasignarInactivos_();
+  assert.deepStrictEqual(JSON.parse(JSON.stringify(t)), { leads: 2, entrevistas: 2, padrinos: 1, referidos: 1 });
+  const L = m.libro.Leads.filas, H = L[0], col = k => H.indexOf(k);
+  assert.strictEqual(L[1][col('asignado_a')], 'Gerente Uno'); assert(/llamar \[[\d/-]+ reasignado: Vendedor Carlos quedó inactivo\]/.test(L[2][col('notas')]));
+  assert.strictEqual(L[3][col('asignado_a')], 'Vendedor Carlos'); assert.strictEqual(L[4][col('asignado_a')], 'Vendedora Dana'); // descartado y leads de otros no se tocan
+  const A = m.libro['Hoja 1'].filas, HA = A[0];
+  assert.strictEqual(A[1][HA.indexOf('asesor')], 'Gerente Uno'); assert.strictEqual(A[2][HA.indexOf('asesor')], 'Vendedor Carlos'); assert.strictEqual(A[3][HA.indexOf('asesor')], 'Gerente Uno');
+  const d = m.pad(GER, { action: 'padrinos_datos' }); assert.strictEqual(d.padrinos[0].asesor, 'Gerente Uno'); assert.strictEqual(d.referidos.find(r => r.id === ref.id).asesor, 'Gerente Uno');
+  assert.deepStrictEqual(JSON.parse(JSON.stringify(m.api.reasignarInactivos_())), { leads: 0, entrevistas: 0, padrinos: 0, referidos: 0 }); // no repite
+});
+
 console.log(`\n${ok} bien, ${fail} con error`); process.exit(fail ? 1 : 0);

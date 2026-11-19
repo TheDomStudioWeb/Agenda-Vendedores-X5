@@ -312,7 +312,12 @@ function pintar(d) {
     $('bday').innerHTML = `<div class="bday"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><path d="M4 21h16M5 21v-7h14v7M12 14V9M12 6.5a1.5 1.5 0 0 0 0-3"/></svg><div><b>${faltan === 0 ? '¡Feliz cumpleaños!' : 'Es tu mes de cumpleaños'}</b>${faltan > 0 ? 'Faltan ' + faltan + ' días. ' : ''}Ese día te regalamos 50 puntos.</div></div>`;
   }
 
-  const msg = `¡Hola! Te recomiendo X5 Argentina: yo saqué mi plan con ellos y me fue muy bien. Si estás pensando en un auto, una moto o una camioneta, escribiles y deciles que vas de parte mía, con mi código *${p.codigo}*. Te atiende ${p.asesor || 'un asesor'}.\n\nwww.x5argentina.com`;
+  const tel = String(p.asesor_tel || ''), ase = String(p.asesor || '').trim(), asePila = ase.split(/\s+/)[0];
+  const telVer = tel.length === 10 ? (tel.indexOf('11') === 0 ? `11 ${tel.slice(2, 6)}-${tel.slice(6)}` : `${tel.slice(0, 3)} ${tel.slice(3, 6)}-${tel.slice(6)}`) : '';
+  const contacto = tel.length === 10 && ase
+    ? `Te atiende ${ase}, asesor/a de X5. Escribile directo desde acá y ya le llega mi código: https://wa.me/549${tel}?text=${encodeURIComponent(`Hola ${asePila}, vengo de parte de ${nombre} (código ${p.codigo}).`)}\n(WhatsApp de ${asePila}: ${telVer})`
+    : `Te atiende ${ase || 'un asesor de X5'}.`;
+  const msg = `¡Hola! Te recomiendo X5 Argentina: yo saqué mi plan con ellos y me fue muy bien. Si estás pensando en un auto, una moto o una camioneta, deciles que vas de parte mía, con mi código *${p.codigo}*.\n\n${contacto}\n\nwww.x5argentina.com`;
   $('recomendar').href = 'https://wa.me/?text=' + encodeURIComponent(msg);
 
   $('refs').innerHTML = c.refs.length ? c.refs.slice().sort((a, b) => String(b.alta).localeCompare(String(a.alta))).map(r => {

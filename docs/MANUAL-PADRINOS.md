@@ -83,3 +83,9 @@ Hojas nuevas, se crean solas con el Code.gs v2.7: **Padrinos** (id, codigo, nomb
 - **¿Cuándo se canjean?** A los 3 meses del lanzamiento; los premios se están definiendo.
 
 Desarrollado por The DOM Studio Web · WhatsApp 261-3431216 · thedomstudioweb@gmail.com
+
+## Teléfono del asesor en la recomendación (v2.13, 19/11/2026)
+- Cuando el padrino toca «Recomendar a un amigo», el mensaje incluye el nombre del asesor, su WhatsApp y un link directo que abre el chat con el asesor y el texto «Hola, vengo de parte de [padrino] (código X5-XXXXX)».
+- El teléfono sale de la columna `telefono` de la hoja «Personal». Siempre se usa el asesor actual del padrino: si el asesor se va y el padrino pasa a su jefe, los mensajes nuevos salen con el jefe.
+- Los mensajes que ya se mandaron antes del cambio conservan el número viejo: por eso conviene que las cuentas de WhatsApp sean de la empresa.
+- Si el amigo escribe directo al asesor, el asesor tiene que cargarlo como referido en el Hub (Padrinos → padrino → cargar referido) para que el padrino sume puntos.
