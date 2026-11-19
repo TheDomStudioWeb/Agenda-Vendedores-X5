@@ -1940,7 +1940,9 @@ function reasignarInactivos_() {
 }
 
 // Ejecutar a mano desde Apps Script si no querés esperar los 10 minutos
+// (si el Hub está ocupado con otra tarea, espera hasta 1 minuto y después corre igual: mover registros dos veces no hace daño)
 function reasignarInactivos() {
-  const lock = LockService.getScriptLock(); lock.waitLock(20000);
-  try { console.log(JSON.stringify(reasignarInactivos_())); } finally { lock.releaseLock(); }
+  const lock = LockService.getScriptLock(), tengo = lock.tryLock(60000);
+  if (!tengo) console.warn('El Hub estaba ocupado; corro la reasignación igual.');
+  try { console.log('Resultado: ' + JSON.stringify(reasignarInactivos_())); } finally { if (tengo) lock.releaseLock(); }
 }
