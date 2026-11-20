@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-20T17:48:50.874Z",
+ "actualizado": "2026-11-20T18:47:32.965Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-11"
@@ -11,9 +11,9 @@
    "ciudad": "Córdoba",
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
-   "autos": 82,
-   "revisado": "2026-11-20T17:48:50.874Z",
-   "actualizado": "2026-11-20T17:48:50.874Z"
+   "autos": 84,
+   "revisado": "2026-11-20T18:47:32.965Z",
+   "actualizado": "2026-11-20T18:47:32.965Z"
   },
   {
    "id": "autocity",
@@ -22,11 +22,161 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 256,
-   "revisado": "2026-11-20T17:48:50.874Z",
-   "actualizado": "2026-11-20T17:48:50.874Z"
+   "revisado": "2026-11-20T18:47:32.965Z",
+   "actualizado": "2026-11-20T18:47:32.965Z"
   }
  ],
  "autos": [
+  {
+   "id": "maipu-184342",
+   "tipo": "auto",
+   "marca": "Chevrolet",
+   "modelo": "S10",
+   "version": "Cd 2.8 Td 4X2 Wt",
+   "anio": 2025,
+   "km": 57590,
+   "combustible": "Diésel",
+   "caja": "Manual",
+   "color": "Gris",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": null,
+   "precio_sin_imp": null,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4606-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4607-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4609-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4610-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4605-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4608-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4604-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4603-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4599-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4595-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4596-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4597-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4598-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4602-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4600-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4601-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/11/20/s10/",
+   "publicado": "2026-11-20T15:31:58",
+   "modificado": "2026-11-20T15:37:52",
+   "agencia": "maipu",
+   "alta": "2026-11-20T18:47:32.965Z",
+   "guia": null
+  },
+  {
+   "id": "maipu-184318",
+   "tipo": "auto",
+   "marca": "Ford",
+   "modelo": "Fiesta",
+   "version": "1.6L Se",
+   "anio": 2016,
+   "km": 158030,
+   "combustible": "Nafta",
+   "caja": "Manual",
+   "color": "Rojo",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS",
+   "precio": 17000000,
+   "precio_sin_imp": 13430000,
+   "moneda": "ARS",
+   "fotos": [
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4589-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4590-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4592-1600x1200-2.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4594-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4588-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4591-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4587-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4585-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4581-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4577-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4578-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4579-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4586-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4580-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4584-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4582-1600x1200-1.jpg",
+    "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4583-1600x1200-1.jpg"
+   ],
+   "url": "https://maipuusados.com.ar/2026/11/20/fiesta-2/",
+   "publicado": "2026-11-20T15:22:54",
+   "modificado": "2026-11-20T15:29:13",
+   "agencia": "maipu",
+   "alta": "2026-11-20T18:47:32.965Z",
+   "guia": {
+    "min": 11007000,
+    "med": 12317000,
+    "max": 14208000,
+    "n": 14,
+    "mejor": {
+     "version": "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 SE PLUS 2013",
+     "valor": 12317000,
+     "coincidencias": 1,
+     "empate": 6
+    },
+    "versiones": [
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 S",
+      11007000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 4P 1,6 S 2013",
+      11342000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 S PLUS",
+      11659000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 4P 1,6 S PLUS 2013",
+      11677000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 SE",
+      12026000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 4P 1,6 SE PLUS 2013",
+      12290000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 SE POWERSHIFT",
+      12294000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 SE PLUS 2013",
+      12317000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 SE PLUS POWERSHIFT 2013",
+      12638000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 4P 1,6 SE PLUS POWERSHIFT 2013",
+      12817000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 4P 1,6 TITANIUM 2013",
+      13565000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 4P 1,6 TITANIUM POWERSHIFT 2013",
+      13906000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 TITANIUM 2013",
+      14174000
+     ],
+     [
+      "FIESTA KINETIC DESIGN ATTRACTION 5P 1,6 TITANIUM POWERSHIFT 2013",
+      14208000
+     ]
+    ]
+   }
+  },
   {
    "id": "maipu-184294",
    "tipo": "auto",
@@ -5844,7 +5994,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Pulse 2026 Automatica 6350 41000000 Precio sugerido al público 32390000 Precio sin impuestos nacionales + Precio a confirmar destacados Cruze 2024 Automatica 63380 31000000 Precio sugerido al público 24490000 Precio sin impuestos nacionales + Precio a confirmar destacados Spark 2026 Automatica 4165 36000000 Precio sugerido al público 29752000 Precio sin impuestos nacionales + Precio a confirmar unidades-test-drive Onix 2026 Automatica 30 35000000 Precio sugerido al público 27650000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Hilux 2022 Automatica 119210 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2024 Manual 111430 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Amarok 2017 Manual 161775 25000000 Precio sugerido al público 22375000 Precio sin impuestos nacionales + Precio a confirmar destacados Saveiro 2024 Manual 33465 27000000 Precio sugerido al público 24165000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 51400000,
    "precio_sin_imp": 42479340,
    "moneda": "ARS",
@@ -5916,7 +6066,7 @@
    "combustible": "Híbrido Enchufable",
    "caja": "Automática",
    "color": "Azul",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Pulse 2026 Automatica 6350 41000000 Precio sugerido al público 32390000 Precio sin impuestos nacionales + Precio a confirmar destacados Cruze 2024 Automatica 63380 31000000 Precio sugerido al público 24490000 Precio sin impuestos nacionales + Precio a confirmar destacados Spark 2026 Automatica 4165 36000000 Precio sugerido al público 29752000 Precio sin impuestos nacionales + Precio a confirmar unidades-test-drive Onix 2026 Automatica 30 35000000 Precio sugerido al público 27650000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Hilux 2022 Automatica 119210 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2024 Manual 111430 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Amarok 2017 Manual 161775 25000000 Precio sugerido al público 22375000 Precio sin impuestos nacionales + Precio a confirmar destacados Saveiro 2024 Manual 33465 27000000 Precio sugerido al público 24165000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 33000,
    "precio_sin_imp": 27272,
    "moneda": "USD",
@@ -6182,7 +6332,7 @@
    "combustible": "Nafta",
    "caja": "Automática",
    "color": "Blanco",
-   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Pulse 2026 Automatica 6350 41000000 Precio sugerido al público 32390000 Precio sin impuestos nacionales + Precio a confirmar destacados Cruze 2024 Automatica 63380 31000000 Precio sugerido al público 24490000 Precio sin impuestos nacionales + Precio a confirmar destacados Spark 2026 Automatica 4165 36000000 Precio sugerido al público 29752000 Precio sin impuestos nacionales + Precio a confirmar unidades-test-drive Onix 2026 Automatica 30 35000000 Precio sugerido al público 27650000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
+   "equipamiento": "AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS, Duplicado de llave COTIZÁ TU USADO FINANCIA TU AUTO VER MÁS FINANCIA TU AUTO VER MÁS DESTACADOS Precio a confirmar destacados Hilux 2022 Automatica 119210 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Ranger 2024 Manual 111430 Precio sugerido al público Precio sin impuestos nacionales + Precio a confirmar destacados Amarok 2017 Manual 161775 25000000 Precio sugerido al público 22375000 Precio sin impuestos nacionales + Precio a confirmar destacados Saveiro 2024 Manual 33465 27000000 Precio sugerido al público 24165000 Precio sin impuestos nacionales + .fwpl-layout, .fwpl-row { display: grid; } .fwpl-layout.el-rq8y7 { grid-template-columns: repeat(3, 1fr); grid-gap: 50px; } .fwpl-btn { text-decoration: none; } .fwpl-row.el-k23lv { grid-template-columns: 1fr; } .fwpl-row.el-3ozt4 { grid-template-columns: 1fr; } .fwpl-item.el-3n9ncf { text-align: center; font-size: 21px;",
    "precio": 62000,
    "precio_sin_imp": 51240,
    "moneda": "USD",

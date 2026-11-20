@@ -1,6 +1,22 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-20T18:47:32.965Z",
+   "tipo": "nuevo",
+   "id": "maipu-184342",
+   "auto": "Chevrolet S10 2025",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-20T18:47:32.965Z",
+   "tipo": "nuevo",
+   "id": "maipu-184318",
+   "auto": "Ford Fiesta 2016",
+   "precio": 17000000,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-11-20T17:48:50.874Z",
    "tipo": "nuevo",
    "id": "maipu-184294",
