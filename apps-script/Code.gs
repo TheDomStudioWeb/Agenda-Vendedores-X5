@@ -17,6 +17,9 @@
  * v2.14: Radar de usados con reservas compartidas (bloquean la unidad para todos los negociadores, vencen solas y avisan por
  *       Telegram con el botón para escribirle al proveedor), retoques de fotos, contactos de proveedores y stock propio.
  *       Lectura pública sin datos personales: ?action=radar_estado. Ver docs/MANUAL-RADAR-RESERVAS.md
+ * v2.15: rol «Director Comercial General» (observador del Hub como el Supervisor: solo lectura e informes en PDF; en el
+ *       Radar reserva y supervisa). Rol «Negociador» (en el CRM igual que un asesor). En el Radar reservan solo el Director,
+ *       el Gerente Comercial y los Negociadores (el Asesor/vendedor y el Jefe de Ventas ya no).
  *
  * v2.13: teléfono del asesor en la tarjeta del padrino (columna «telefono» de Personal) y reasignación automática:
  *       al pasar a alguien a inactivo, sus leads abiertos, entrevistas pendientes, padrinos y referidos en curso pasan
@@ -63,6 +66,11 @@ const ROLES_SUPERVISION = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
 const ROL_ARCHIVO = 'Gerente Comercial'; // único rol que archiva y restaura
 const ROL_CONTROL = 'Control';           // solo lectura: ve todo el gestor de contratos y nada más
 const ROL_SUPERVISOR = 'Supervisor';     // solo lectura en todo el Hub: ve el CRM completo y los contratos, no modifica nada
+// v2.15 · Director Comercial General: observador del Hub igual que el Supervisor (CRM, contratos, padrinos y asistencia
+// en solo lectura; informes en PDF sí). En el Radar de Usados además reserva y ve las reservas de todo el equipo.
+const ROL_DIRECTOR = 'Director Comercial General';
+// Radar de Usados: solo estos roles reservan unidades (el Asesor/vendedor y el Jefe de Ventas no)
+const ROLES_RESERVA = [ROL_DIRECTOR, 'Gerente Comercial', 'Negociador'];
 
 const HOJAS = {
   agenda: 'Hoja 1',
@@ -143,7 +151,7 @@ function doPost(e) {
     // Rol «Control»: únicamente mira el gestor de contratos (ver todo, sin modificar nada ni entrar al CRM)
     if (esControl_(usuario) && ['contratos_datos', 'contratos_precios'].indexOf(String(body.action)) < 0) return json_({ ok: false, error: 'sin_permiso' });
     // Rol «Supervisor»: mira todo (CRM completo y contratos) y nada más. Solo se aceptan pedidos de lectura; cualquier otra acción se rechaza acá, antes de tocar la planilla
-    if (esSupervisor_(usuario) && ['datos', 'contratos_datos', 'contratos_precios', 'asistencia_datos', 'padrinos_datos', 'radar_datos'].indexOf(String(body.action)) < 0) return json_({ ok: false, error: 'sin_permiso' });
+    if (esSupervisor_(usuario) && !(esDirector_(usuario) && String(body.action).indexOf('radar_') === 0) && ['datos', 'contratos_datos', 'contratos_precios', 'asistencia_datos', 'padrinos_datos', 'radar_datos'].indexOf(String(body.action)) < 0) return json_({ ok: false, error: 'sin_permiso' });
 
     // Lectura de datos y enlace de Telegram (la sesión viaja en el cuerpo, no en la dirección)
     if (body.action === 'datos') { if (!usuario) return json_({ ok: false, error: 'sesion_vencida' }); return json_(armarDatos_(usuario)); }
@@ -1034,7 +1042,8 @@ function hojaContratos_(nombre, cols) {
 }
 function esGerente_(u) { return u.rol === 'Gerente Comercial'; }
 function esControl_(u) { return u.rol === ROL_CONTROL; }
-function esSupervisor_(u) { return u.rol === ROL_SUPERVISOR; }
+function esSupervisor_(u) { return u.rol === ROL_SUPERVISOR || u.rol === ROL_DIRECTOR; } // observadores: solo lectura
+function esDirector_(u) { return u.rol === ROL_DIRECTOR; }
 function veTodoContratos_(u) { return esGerente_(u) || esControl_(u) || esSupervisor_(u); }
 // Personas a las que este usuario puede asignar o ver: él mismo y quienes le reportan (gerente: todos los activos)
 function ambitoContratos_(u, personal) {
@@ -1999,7 +2008,7 @@ function despacharRadar_(body, u) {
   const a = body.action;
   if (esControl_(u) || esPersonal_(u)) return { ok: false, error: 'sin_permiso' };
   if (a === 'radar_datos') return radarDatos_(u);
-  if (esSupervisor_(u)) return { ok: false, error: 'sin_permiso' }; // solo lectura
+  if (esSupervisor_(u) && !esDirector_(u)) return { ok: false, error: 'sin_permiso' }; // el Supervisor solo mira
   const lock = LockService.getScriptLock(); lock.waitLock(15000);
   const avisos = [];
   try {
@@ -2016,19 +2025,23 @@ function despacharRadar_(body, u) {
   }
 }
 
+// En el Radar supervisan (ven clientes de todas las reservas, liberan, extienden, avisan a la agencia y tapan fotos):
+// Gerente, Jefe de Ventas, Referente y el Director Comercial General
+function radarSupervisa_(u) { return esSupervision_(u) || esDirector_(u); }
+function puedeReservar_(u) { return ROLES_RESERVA.indexOf(u.rol) > -1; }
 function radarDatos_(u) {
-  const ahora = new Date(), sup = esSupervision_(u) || esSupervisor_(u), semana = ahora.getTime() - 7 * 864e5;
+  const ahora = new Date(), sup = radarSupervisa_(u) || esSupervisor_(u), semana = ahora.getTime() - 7 * 864e5;
   const reservas = radarLeer_(RADAR.reservas).filter(r => radarReservaActiva_(r, ahora) || (r.estado === 'Vendida' && new Date(r.cerrada).getTime() > semana))
     .map(r => {
       const mia = r.negociador === u.nombre, x = { id: r.id, auto_id: r.auto_id, auto: r.auto, estado: r.estado === RESERVA_ACTIVA ? 'Activa' : r.estado, negociador: r.negociador, vence: r.vence, creada: r.creada, mia,
-        proveedor_aviso: r.proveedor_aviso || '', puedeCerrar: mia || esSupervision_(u) };
+        proveedor_aviso: r.proveedor_aviso || '', puedeCerrar: mia || radarSupervisa_(u) };
       if (mia || sup) Object.assign(x, { cliente: r.cliente, telefono: String(r.telefono || '').replace(/^'/, ''), notas: r.notas, agencia: r.agencia, precio_x5: r.precio_x5, url: r.url, extendida: r.extendida });
       return x;
     });
   const retoques = {};
   radarLeer_(RADAR.retoques).forEach(r => { try { retoques[r.id] = JSON.parse(r.cajas || '[]'); } catch (e) {} });
   const proveedores = radarLeer_(RADAR.proveedores).map(p => sup ? { id: p.id, nombre: p.nombre, whatsapp: String(p.whatsapp || '').replace(/^'/, ''), contacto: p.contacto, web: p.web } : { id: p.id, nombre: p.nombre });
-  return { ok: true, usuario: { nombre: u.nombre, rol: u.rol }, supervisa: esSupervision_(u), gerente: esGerente_(u), horas: radarHoras_(), reservas, retoques, proveedores, propio: stockPropio_(), servidor: iso_(ahora) };
+  return { ok: true, usuario: { nombre: u.nombre, rol: u.rol }, supervisa: radarSupervisa_(u), gerente: esGerente_(u), reserva: puedeReservar_(u), horas: radarHoras_(), reservas, retoques, proveedores, propio: stockPropio_(), servidor: iso_(ahora) };
 }
 
 // Stock propio: misma planilla (pestaña StockPropio) u otra (STOCK_PROPIO_ID). Lee por encabezado, acepta nombres alternativos.
@@ -2056,6 +2069,7 @@ function stockPropio_() {
 }
 
 function radarReservar_(body, u, avisos) {
+  if (!puedeReservar_(u)) return { ok: false, error: 'sin_permiso_reserva' };
   const au = body.auto || {};
   if (!au.id) return { ok: false, error: 'falta_auto' };
   const cliente = String(body.cliente || '').trim();
@@ -2084,7 +2098,7 @@ function radarFila_(id) {
 function radarCerrar_(body, u, estado, avisos) {
   const f = radarFila_(body.id);
   if (!f) return { ok: false, error: 'no_encontrado' };
-  if (f.r.negociador !== u.nombre && !esSupervision_(u)) return { ok: false, error: 'sin_permiso' };
+  if (f.r.negociador !== u.nombre && !radarSupervisa_(u)) return { ok: false, error: 'sin_permiso' };
   if (f.r.estado !== RESERVA_ACTIVA) return { ok: false, error: 'no_activa' };
   Object.assign(f.r, { estado, cerrada: iso_(new Date()), cerrada_por: u.nombre });
   f.guardar();
@@ -2096,7 +2110,7 @@ function radarCerrar_(body, u, estado, avisos) {
 function radarExtender_(body, u) {
   const f = radarFila_(body.id);
   if (!f) return { ok: false, error: 'no_encontrado' };
-  const sup = esSupervision_(u);
+  const sup = radarSupervisa_(u);
   if (f.r.negociador !== u.nombre && !sup) return { ok: false, error: 'sin_permiso' };
   if (!radarReservaActiva_(f.r, new Date())) return { ok: false, error: 'no_activa' };
   if (f.r.extendida && !sup) return { ok: false, error: 'ya_extendida' };
@@ -2107,7 +2121,7 @@ function radarExtender_(body, u) {
 }
 
 function radarAvisoProveedor_(body, u) {
-  if (!esSupervision_(u)) return { ok: false, error: 'sin_permiso' };
+  if (!radarSupervisa_(u)) return { ok: false, error: 'sin_permiso' };
   const f = radarFila_(body.id);
   if (!f) return { ok: false, error: 'no_encontrado' };
   Object.assign(f.r, { proveedor_aviso: iso_(new Date()), proveedor_aviso_por: u.nombre });
@@ -2117,7 +2131,7 @@ function radarAvisoProveedor_(body, u) {
 
 // Retoques: cajas [x, y, ancho, alto] en proporción de la foto (0 a 1). id = dirección de la foto, o «prov:ID» para todas las fotos de un proveedor
 function radarRetoque_(body, u) {
-  if (!esSupervision_(u)) return { ok: false, error: 'sin_permiso' };
+  if (!radarSupervisa_(u)) return { ok: false, error: 'sin_permiso' };
   const id = String(body.foto || '');
   if (!id) return { ok: false, error: 'falta_foto' };
   const cajas = (Array.isArray(body.cajas) ? body.cajas : []).slice(0, 12)

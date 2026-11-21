@@ -428,9 +428,10 @@
 (() => {
 'use strict';
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
-const SUPERVISION = ['Gerente Comercial', 'Jefe de Ventas', 'Referente', 'Supervisor']; // Supervisor: ve todo, solo lectura
-const SOLO_LECTURA = () => !!user && user.rol === 'Supervisor';
-const VE_TODO = () => !!user && (user.rol === 'Gerente Comercial' || user.rol === 'Supervisor');
+const SUPERVISION = ['Gerente Comercial', 'Jefe de Ventas', 'Referente', 'Supervisor', 'Director Comercial General']; // Supervisor y Director: ven todo, solo lectura (informes en PDF sí)
+const OBSERVADORES = ['Supervisor', 'Director Comercial General'];
+const SOLO_LECTURA = () => !!user && OBSERVADORES.includes(user.rol);
+const VE_TODO = () => !!user && (user.rol === 'Gerente Comercial' || OBSERVADORES.includes(user.rol));
 const $ = (id) => document.getElementById(id);
 const esc = X5.esc;
 
@@ -622,7 +623,7 @@ function iniciarApp() {
   $('ag-fecha').value = X5.hoyISO();
   $('btn-avisos').classList.toggle('hidden', !token || SOLO_LECTURA());
   document.body.classList.toggle('ro', SOLO_LECTURA());
-  if (SOLO_LECTURA()) $('user-role').textContent = 'Supervisor · solo lectura';
+  if (SOLO_LECTURA()) $('user-role').textContent = user.rol + ' · solo lectura';
   render();
   aplicarEnlace();
   procesarCola();
@@ -632,6 +633,9 @@ function iniciarApp() {
    crm.html?tab=leads&ver=vencidos · ?tab=agenda · ?tab=dashboard */
 function aplicarEnlace() {
   const q = new URLSearchParams(location.search);
+  // ?volver=radar/index.html: después de ingresar, vuelve a la herramienta que pidió el login (solo rutas internas)
+  const volver = q.get('volver');
+  if (volver && /^[a-z0-9_\-]+(\/[a-z0-9_\-]+)*(\.html)?$/i.test(volver)) { location.replace(volver); return; }
   const tab = q.get('tab'), ver = q.get('ver');
   if ((tab === 'dashboard' || tab === 'resumen') && !SUPERVISION.includes(user.rol)) return;
   if (tab && document.getElementById('tab-' + tab)) cambiarTab(tab);
@@ -666,7 +670,7 @@ function puedeVer(nombre) {
 
 const VEH_PARTICULAR = 'Vehículo particular';
 function llenarDesplegables() {
-  const opts = (db.personal || []).filter(p => p.estado === 'Activo' && puedeVer(p.nombre))
+  const opts = (db.personal || []).filter(p => p.estado === 'Activo' && puedeVer(p.nombre) && !OBSERVADORES.includes(p.rol)) // a un observador no se le asignan leads
     .map(p => `<option value="${esc(p.nombre)}" ${p.nombre === user.nombre ? 'selected' : ''}>${esc(p.nombre)}</option>`).join('');
   $('ag-asesor').innerHTML = '<option value="">Asesor…</option>' + opts;
   $('ld-asignado').innerHTML = '<option value="">Asignar a…</option>' + opts;

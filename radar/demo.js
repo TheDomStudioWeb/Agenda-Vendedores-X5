@@ -50,10 +50,12 @@
 
   // ── Backend simulado ──
   const USUARIOS = {
-    lucia: { nombre: 'Lucía Demo', rol: 'Asesor' },
-    martin: { nombre: 'Martín Demo', rol: 'Asesor' },
+    lucia: { nombre: 'Lucía Demo', rol: 'Negociador' },
+    martin: { nombre: 'Martín Demo', rol: 'Negociador' },
+    beto: { nombre: 'Beto Demo', rol: 'Asesor' },
     carla: { nombre: 'Carla Demo', rol: 'Jefe de Ventas' },
     gerencia: { nombre: 'Gerencia Demo', rol: 'Gerente Comercial' },
+    direccion: { nombre: 'Dirección Demo', rol: 'Director Comercial General' },
   };
   let yo = 'lucia';
   try { yo = sessionStorage.getItem('radar-demo-yo') || yo; } catch (e) {}
@@ -84,11 +86,12 @@
       fotos: [foto('#b9bec4', 'AE 300 XX', 0, 'X5 ARGENTINA', 0), foto('#b9bec4', '', 0, 'X5 ARGENTINA', 1)], estado: 'Disponible', ubicacion: 'Salón X5 Mendoza (demo)', alta: iso(ahora - 864e5) },
   ];
 
-  const sup = (u) => ['Gerente Comercial', 'Jefe de Ventas', 'Referente'].includes(u.rol);
+  const sup = (u) => ['Gerente Comercial', 'Jefe de Ventas', 'Referente', 'Director Comercial General'].includes(u.rol);
+  const reserva = (u) => ['Director Comercial General', 'Gerente Comercial', 'Negociador'].includes(u.rol);
   const activa = (r) => r.estado === 'Activa' && Date.parse(r.vence) > Date.now();
   function datos() {
     const u = USUARIOS[yo], s = sup(u);
-    return { ok: true, usuario: u, supervisa: s, gerente: u.rol === 'Gerente Comercial', horas: HORAS,
+    return { ok: true, usuario: u, supervisa: s, gerente: u.rol === 'Gerente Comercial', reserva: reserva(u), horas: HORAS,
       reservas: B.reservas.filter(r => activa(r) || r.estado === 'Vendida').map(r => { const mia = r.negociador === u.nombre;
         const x = { id: r.id, auto_id: r.auto_id, auto: r.auto, estado: r.estado, negociador: r.negociador, vence: r.vence, creada: r.creada, mia, proveedor_aviso: r.proveedor_aviso, puedeCerrar: mia || s };
         if (mia || s) Object.assign(x, { cliente: r.cliente, telefono: r.telefono, notas: r.notas, agencia: r.agencia, url: r.url, extendida: r.extendida });
@@ -102,6 +105,7 @@
     switch (b.action) {
       case 'radar_datos': return datos();
       case 'radar_reservar': {
+        if (!reserva(u)) return { ok: false, error: 'sin_permiso_reserva' };
         if (!b.cliente) return { ok: false, error: 'falta_cliente' };
         const ex = B.reservas.find(x => x.auto_id === b.auto.id && (activa(x) || x.estado === 'Vendida'));
         if (ex) return { ok: false, error: ex.estado === 'Vendida' ? 'ya_vendido' : 'ya_reservado' };

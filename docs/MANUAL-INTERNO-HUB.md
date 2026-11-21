@@ -166,6 +166,25 @@ Cuenta para quien necesita **mirar todo el Hub sin poder cambiar nada** (por eje
 - **Importante:** sin el paso 1 el rol no se reconoce y la cuenta vería la app como un asesor sin datos. La baja funciona como siempre: poner `estado` distinto de Activo corta su sesión en un minuto.
 - **Diferencia con el rol Control:** «Control» ve solo el gestor de contratos y no entra al CRM. «Supervisor» ve todo.
 
+## Director Comercial General y Negociador (21/11/2026 · Code.gs v2.15)
+
+**Director Comercial General:** es el rol de Diego. En el Hub funciona igual que el Supervisor:
+- **CRM:** ve todo en solo lectura. Puede mirar Métricas y el Resumen por período y **descargar los informes en PDF**.
+- **Lo que no puede modificar:** leads, entrevistas, accesos, contratos, padrinos ni asistencia. El script lo rechaza aunque se intente por otra vía.
+- **Herramientas del Hub:** las usa todas (simulador, armador, validador de DNI, unificador, checklist, Radar). En el Armador puede calcular, pero no guardar leads.
+- **Radar de Usados:** reserva unidades y ve las reservas de todo el equipo, con el cliente. Puede liberar, extender, marcar vendida, avisar a la agencia y tapar fotos. No carga el WhatsApp de las agencias: eso sigue siendo del Gerente Comercial.
+- No se le asignan leads (no aparece en la lista de asesores).
+
+**Negociador:** en el CRM trabaja igual que un asesor (sus leads y su agenda). En el Radar puede reservar.
+
+**Quién reserva en el Radar:** Director Comercial General, Gerente Comercial y Negociador. El Asesor (vendedor) y el Jefe de Ventas ya no reservan. El Jefe sigue viendo las reservas de su equipo, avisando a las agencias y tapando fotos. El Supervisor solo mira.
+
+**Cómo se crea el usuario de Diego:**
+1. Publicar el `apps-script/Code.gs` v2.15 en Apps Script: Implementar → Gestionar implementaciones → Editar → **Nueva versión**.
+2. En la hoja **Personal** agregar una fila: `nombre` (lo que va a escribir al entrar), `rol` = **Director Comercial General** (exacto, con esas mayúsculas), `estado` = **Activo**, `reporta_a` vacío y una `clave`.
+
+Para los negociadores, el `rol` es **Negociador**.
+
 ## Limpiar / archivar descartados (19/10/2026)
 
 Botón **Limpiar / archivar** al lado de "Buscar duplicados", en las pestañas Agenda y Leads. Lo ve solo el **Gerente Comercial** (el script también lo exige: nadie más puede archivar ni restaurar).

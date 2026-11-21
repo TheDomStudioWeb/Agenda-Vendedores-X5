@@ -1,6 +1,6 @@
 # Radar de Usados · Reservas, fotos tapadas y stock propio
 
-Manual interno (también para Claudio). Versión del backend: Code.gs v2.14.
+Manual interno (también para Claudio). Versión del backend: Code.gs v2.15.
 
 > Cambio de criterio (20/11/2026): en un principio no se iba a poner ningún logo propio. Ahora las patentes pasan a la placa X5 y los carteles amarillos a cartel rojo X5. Los logos ajenos se siguen desenfocando.
 
@@ -14,15 +14,23 @@ El Radar lo usan los negociadores de X5 (no los clientes), muchas veces con el c
 
 ## Reservas
 
-### Quién puede qué
+### Ingreso
 
-| Rol | Ver reservas | Reservar | Extender | Liberar / Se vendió | Avisar a la agencia | Tapar fotos | Cargar WhatsApp de agencias |
+El Radar ya no es de acceso general: pide el usuario del Hub. Sin sesión aparece la pantalla «Ingresar con mi usuario», que lleva al login del Hub y después vuelve sola al Radar. Los roles Control y Personal no tienen acceso.
+
+El listado de autos de las agencias (`stock.json`) sigue siendo un archivo público de GitHub. Las reservas y los datos de clientes sí están protegidos, porque viven en la planilla y solo salen con usuario.
+
+### Quién puede qué (v2.15)
+
+| Rol | Ver reservas | Reservar | Extender | Liberar / Se vendió | Avisar a la agencia | Tapar fotos | WhatsApp de agencias |
 |---|---|---|---|---|---|---|---|
-| Asesor (negociador) | Sí (de los demás, solo el nombre del negociador) | Sí | Su reserva, una vez | Su reserva | No | No | No |
-| Jefe de Ventas / Referente | Sí, con cliente y teléfono | Sí | Cualquiera, sin límite | Cualquiera | Sí | Sí | No |
-| Gerente Comercial | Sí, con cliente y teléfono | Sí | Cualquiera, sin límite | Cualquiera | Sí | Sí | Sí |
-| Supervisor | Sí (solo lectura) | No | No | No | No | No | No |
-| Control / Personal | No | No | No | No | No | No | No |
+| Director Comercial General | Todas, con cliente | Sí | Cualquiera | Cualquiera | Sí | Sí | No |
+| Gerente Comercial | Todas, con cliente | Sí | Cualquiera | Cualquiera | Sí | Sí | Sí |
+| Negociador | Las suyas con cliente; de las demás, solo el nombre del negociador | Sí | La suya, una vez | La suya | No | No | No |
+| Jefe de Ventas / Referente | Todas, con cliente | **No** | Cualquiera | Cualquiera | Sí | Sí | No |
+| Asesor (vendedor) | Solo el nombre del negociador | **No** | No | No | No | No | No |
+| Supervisor | Todas (solo lectura) | No | No | No | No | No | No |
+| Control / Personal | Sin acceso al Radar | | | | | | |
 
 ### Cómo reserva el negociador
 

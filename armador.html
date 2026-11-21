@@ -483,7 +483,7 @@
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
   const lsJSON = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
   const sesion = () => { const x = lsJSON('x5_session', null); return x && x.user && x.token ? x : null; };
-  const SOLO_LECTURA = ['Supervisor', 'Control'];
+  const SOLO_LECTURA = ['Supervisor', 'Director Comercial General', 'Control'];
   const normTel = (t) => String(t || '').replace(/\D/g, '').slice(-10);
   const URG_TXT = { ya: 'Urgente', medio: '1 a 5 meses', tiempo: 'Tiene tiempo' };
   function pintarSesion() {

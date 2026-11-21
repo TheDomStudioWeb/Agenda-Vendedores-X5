@@ -262,7 +262,7 @@ const { R, PREMIOS, EST, EST_TXT } = window.Padrinos;
 const SUP = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
 
 let user = null, token = null, D = { padrinos: [], referidos: [], canjes: [], personal: [], sistemas: [] }, sel = null, vista = 'lista';
-const supervision = () => SUP.includes(user.rol), soloLectura = () => user.rol === 'Supervisor';
+const supervision = () => SUP.includes(user.rol), soloLectura = () => ['Supervisor', 'Director Comercial General'].includes(user.rol);
 
 const calcular = (p) => window.Padrinos.calcular(p, D.referidos, D.canjes);
 const CANJE_TXT_HUB = { pendiente: 'Pendiente de aprobación', aprobado: 'Aprobado · falta entregar', entregado: 'Entregado', rechazado: 'Rechazado' };
@@ -402,7 +402,7 @@ function pintarPremios() {
 
 /* ── Formularios ── */
 function dialogo(titulo, html) { dlg.innerHTML = `<div class="dx-h"><h2>${esc(titulo)}</h2><button type="button" class="btn btn-ghost btn-sm" id="dx-x" aria-label="Cerrar">✕</button></div><div class="dx-b">${html}</div>`; $('dx-x').onclick = () => dlg.close(); if (!dlg.open) dlg.showModal(); }
-const opcAsesores = (v) => D.personal.filter(x => x.rol !== 'Supervisor' && x.rol !== 'Control').map(x => `<option ${x.nombre === v ? 'selected' : ''}>${esc(x.nombre)}</option>`).join('');
+const opcAsesores = (v) => D.personal.filter(x => !['Supervisor', 'Director Comercial General', 'Control'].includes(x.rol)).map(x => `<option ${x.nombre === v ? 'selected' : ''}>${esc(x.nombre)}</option>`).join('');
 
 $('b-nuevo').onclick = () => formPadrino(null);
 $('p-edit').onclick = () => formPadrino(D.padrinos.find(x => String(x.id) === String(sel)));
