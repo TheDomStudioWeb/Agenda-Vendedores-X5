@@ -1,9 +1,11 @@
 // Pruebas del Radar: reservas compartidas, permisos, vencimiento, retoques, proveedores y lectura pública.
 const assert = require('assert'), { crear } = require('./mock');
 const GER = { nombre: 'Gerente Uno', rol: 'Gerente Comercial' }, JEF = { nombre: 'Jefe Ana', rol: 'Jefe de Ventas' }, SUPV = { nombre: 'Super Visor', rol: 'Supervisor' };
-const V1 = { nombre: 'Vendedor Carlos', rol: 'Asesor' }, V2 = { nombre: 'Vendedora Dana', rol: 'Asesor' };
+const V1 = { nombre: 'Vendedor Carlos', rol: 'Negociador' }, V2 = { nombre: 'Vendedora Dana', rol: 'Negociador' };
+const ASE = { nombre: 'Asesor Beto', rol: 'Asesor' }, DIR = { nombre: 'Diego Director', rol: 'Director Comercial General' };
 const personal = [['Gerente Uno', 'Gerente Comercial', 'Activo', '', 'x', '111'], ['Jefe Ana', 'Jefe de Ventas', 'Activo', 'Gerente Uno', 'x', '222'],
-  ['Vendedor Carlos', 'Asesor', 'Activo', 'Jefe Ana', 'x', '333'], ['Vendedora Dana', 'Asesor', 'Activo', 'Jefe Ana', 'x', '444'], ['Super Visor', 'Supervisor', 'Activo', '', 'x', '']];
+  ['Vendedor Carlos', 'Negociador', 'Activo', 'Jefe Ana', 'x', '333'], ['Vendedora Dana', 'Negociador', 'Activo', 'Jefe Ana', 'x', '444'], ['Super Visor', 'Supervisor', 'Activo', '', 'x', ''],
+  ['Asesor Beto', 'Asesor', 'Activo', 'Jefe Ana', 'x', '555'], ['Diego Director', 'Director Comercial General', 'Activo', '', 'x', '666']];
 let ok = 0, fail = 0;
 const T = (n, f) => { try { f(); ok++; console.log('  ✓ ' + n); } catch (e) { fail++; console.log('  ✗ ' + n + '\n    ' + (e.stack || e).split('\n').slice(0, 3).join('\n    ')); } };
 const AUTO = { id: 'maipu-1', desc: 'Toyota Hilux 2021 2.8 SRX', agencia: 'maipu', precio_x5: 42000000, url: 'https://ejemplo/hilux' };
@@ -15,6 +17,27 @@ T('un negociador reserva y la unidad queda bloqueada para los demás', () => {
   const r2 = reservar(m, V2, { cliente: 'Otro' }); assert.strictEqual(r2.error, 'ya_reservado'); assert.strictEqual(r2.por, 'Vendedor Carlos');
   const d = datos(m, V2); assert.strictEqual(d.reservas.length, 1); assert.strictEqual(d.reservas[0].mia, false); assert.strictEqual(d.reservas[0].cliente, undefined, 'otro negociador no ve el cliente');
   const d1 = datos(m, V1); assert.strictEqual(d1.reservas[0].cliente, 'Pérez Juan'); assert.strictEqual(d1.reservas[0].telefono, '2615551234');
+});
+T('reservan solo Director, Gerente y Negociador; el Asesor (vendedor), el Jefe de Ventas y el Supervisor no', () => {
+  const m = crear(personal);
+  assert.strictEqual(reservar(m, ASE).error, 'sin_permiso_reserva');
+  assert.strictEqual(reservar(m, JEF).error, 'sin_permiso_reserva');
+  assert.strictEqual(reservar(m, SUPV).error, 'sin_permiso');
+  assert.strictEqual(datos(m, ASE).reserva, false); assert.strictEqual(datos(m, JEF).reserva, false); assert.strictEqual(datos(m, V1).reserva, true);
+  assert(reservar(m, DIR).ok, 'el Director reserva');
+  const m2 = crear(personal); assert(reservar(m2, GER).ok, 'el Gerente reserva');
+});
+T('el Director supervisa en el Radar: ve el cliente de otros, libera y avisa a la agencia; no configura agencias', () => {
+  const m = crear(personal); const r = reservar(m, V1);
+  const d = datos(m, DIR); assert.strictEqual(d.supervisa, true); assert.strictEqual(d.reservas[0].cliente, 'Pérez Juan');
+  assert(m.radar(DIR, { action: 'radar_aviso_proveedor', id: r.reserva.id }).ok);
+  assert(m.radar(DIR, { action: 'radar_liberar', id: r.reserva.id }).ok);
+  assert.strictEqual(m.radar(DIR, { action: 'radar_proveedor_guardar', proveedor: { id: 'x', nombre: 'X' } }).error, 'sin_permiso');
+});
+T('el Director no modifica nada fuera del Radar (CRM, contratos, padrinos): pasa por el filtro general', () => {
+  const m = crear(personal), lg = m.post({ action: 'login', nombre: DIR.nombre, clave: 'x' }), tok = lg.token; assert(lg.ok, JSON.stringify(lg));
+  ['guardar', 'contratos_estado', 'padrinos_guardar', 'asistencia_marcar'].forEach(a => assert.strictEqual(m.post({ token: tok, action: a }).error, 'sin_permiso', a));
+  assert.notStrictEqual(m.post({ token: tok, action: 'radar_reservar', auto: AUTO, cliente: 'X' }).error, 'sin_permiso', 'en el Radar sí entra');
 });
 T('sin cliente no se puede reservar', () => { const m = crear(personal); assert.strictEqual(reservar(m, V1, { cliente: ' ' }).error, 'falta_cliente'); });
 T('al reservar se avisa por Telegram a gerencia y al jefe, con botón al WhatsApp del proveedor', () => {

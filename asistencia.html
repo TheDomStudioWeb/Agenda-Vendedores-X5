@@ -151,7 +151,7 @@ const DIAS = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', '
 let user = null, token = null, D = null, desde = null, quien = null, desfase = 0, tic = null;
 
 const post = async (b) => { const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(Object.assign({ token }, b)) }); return r.json(); };
-const gerente = () => user.rol === 'Gerente Comercial', veTodo = () => gerente() || user.rol === 'Supervisor';
+const gerente = () => user.rol === 'Gerente Comercial', veTodo = () => gerente() || ['Supervisor', 'Director Comercial General'].includes(user.rol);
 const hm = (min) => { min = Math.round(min || 0); return Math.floor(min / 60) + ':' + String(min % 60).padStart(2, '0'); };
 const hdec = (min) => (Math.round((min || 0) / 60 * 100) / 100).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const isoMas = (iso, n) => { const p = iso.split('-').map(Number); const d = new Date(Date.UTC(p[0], p[1] - 1, p[2] + n)); return d.toISOString().slice(0, 10); };
@@ -215,7 +215,7 @@ function pintarReloj() {
 }
 function pintar() {
   const propio = quien === user.nombre;
-  $('propio').hidden = !propio || user.rol === 'Supervisor';
+  $('propio').hidden = !propio || ['Supervisor', 'Director Comercial General'].includes(user.rol);
   const ab = D.abierto;
   $('est').classList.toggle('adentro', !!ab);
   $('est-t').textContent = ab ? 'Estás adentro' : 'Estás afuera';

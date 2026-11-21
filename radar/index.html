@@ -151,6 +151,12 @@
   @media (max-width: 360px) { .rx-hero { grid-template-columns: 1fr; } .rx-ring { justify-self: center; } }
   @media (prefers-reduced-motion: reduce) { .rx-hero, .rx-hero::after, .rx-sem, .grilla .auto, .lista .fila { animation: none; } .rx-ring .v { transition: none; } }
 
+  /* Ingreso obligatorio */
+  .gate { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 24px; background: var(--bg, #0f0f11); }
+  .gate[hidden] { display: none; }
+  .gate-box { max-width: 360px; text-align: center; display: grid; gap: 10px; }
+  .gate-box h1 { margin: 0; font-size: 1.25rem; } .gate-box p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.45; }
+  .gate-acc { display: grid; gap: 8px; margin-top: 8px; }
   /* Reservas, tapado de fotos y stock propio (v2.14) */
   .tapa { position: absolute; z-index: 1; border-radius: 6px; background: rgba(22,22,24,.58); backdrop-filter: blur(14px) saturate(.5); -webkit-backdrop-filter: blur(14px) saturate(.5); pointer-events: none; }
   /* Patente → placa blanca con el logo de X5; cartel amarillo → cartel rojo X5; logos ajenos → desenfocado */
@@ -201,6 +207,18 @@
 </style>
 </head>
 <body>
+<!-- Ingreso obligatorio: el Radar es solo para el equipo con usuario del Hub (v2.15) -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-t">
+  <div class="gate-box">
+    <img class="logo" src="../brand/x5-logo-blanco.png" alt="X5 Argentina" style="width:64px;margin:0 auto 6px">
+    <h1 id="gate-t">Radar de Usados</h1>
+    <p id="gate-msg">Verificando tu usuario…</p>
+    <div class="gate-acc" id="gate-acc" hidden>
+      <a class="btn btn-dom" id="gate-login" href="../crm.html?volver=radar/index.html">Ingresar con mi usuario</a>
+      <a class="btn btn-ghost" href="../index.html">Volver al Hub</a>
+    </div>
+  </div>
+</div>
 <header class="x5-top">
   <a class="x5-back" href="../index.html" aria-label="Volver al Hub"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a>
   <img class="logo logo-mini" src="../brand/x5-logo-blanco.png" alt="X5 Argentina">
@@ -321,10 +339,20 @@
     const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(Object.assign({ token: sesion && sesion.token }, b)) });
     return r.json();
   }
-  const puedeReservar = () => SV.ok && SV.yo && !['Supervisor', 'Control', 'Personal'].includes(SV.yo.rol);
+  // Reservan solo el Director Comercial General, el Gerente Comercial y los Negociadores (lo decide el servidor)
+  const ROLES_RESERVA = ['Director Comercial General', 'Gerente Comercial', 'Negociador'];
+  const puedeReservar = () => SV.ok && SV.yo && (SV.reserva !== undefined ? !!SV.reserva : ROLES_RESERVA.includes(SV.yo.rol));
+  // Puerta de ingreso: sin un usuario válido del Hub no se muestra el Radar
+  function puerta(msg, conBotones) {
+    const g = $('#gate'); if (!g) return;
+    if (msg === null) { g.hidden = true; return; }
+    g.hidden = false; $('#gate-msg').innerHTML = msg; $('#gate-acc').hidden = !conBotones;
+  }
+  if (DEMO) puerta(null);
+  else if (!(sesion && sesion.token)) puerta('Ingresá con tu usuario del Hub para ver el stock y reservar unidades.', true);
   const resDe = (id) => SV.res[id];
   const venceTxt = (iso) => new Date(iso).toLocaleString('es-AR', { weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false });
-  const ERRORES = { ya_reservado: 'Otro negociador la reservó recién', ya_vendido: 'La unidad ya se vendió', falta_cliente: 'Poné el nombre del cliente', sin_permiso: 'Tu usuario no puede hacer eso', ya_extendida: 'Ya la extendiste una vez: pedile a tu jefe', no_activa: 'La reserva ya no está activa', sesion_vencida: 'Tu sesión venció: volvé a ingresar al Hub' };
+  const ERRORES = { sin_permiso_reserva: 'Tu perfil no puede reservar unidades', ya_reservado: 'Otro negociador la reservó recién', ya_vendido: 'La unidad ya se vendió', falta_cliente: 'Poné el nombre del cliente', sin_permiso: 'Tu usuario no puede hacer eso', ya_extendida: 'Ya la extendiste una vez: pedile a tu jefe', no_activa: 'La reserva ya no está activa', sesion_vencida: 'Tu sesión venció: volvé a ingresar al Hub' };
   function pintarSesion() {
     const el = $('#sesion'); if (!el) return;
     let h = '';
@@ -347,14 +375,21 @@
     sincronizando = true;
     try {
       const r = await post({ action: 'radar_datos' });
-      if (!r.ok) { SV.error = r.error || 'error'; SV.ok = false; return; }
-      Object.assign(SV, { ok: true, error: null, yo: r.usuario, supervisa: !!r.supervisa, gerente: !!r.gerente, horas: r.horas || 48, ret: r.retoques || {} });
+      if (!r.ok) {
+        SV.error = r.error || 'error'; SV.ok = false;
+        if (r.error === 'sesion_vencida') { try { localStorage.removeItem('x5_session'); } catch (e) {} puerta('Tu sesión venció. Volvé a ingresar con tu usuario.', true); }
+        else if (r.error === 'sin_permiso') puerta('Tu usuario no tiene acceso al Radar de Usados.', true);
+        else if (r.error === 'accion_invalida') puerta(null); // Code.gs anterior: se deja usar sin reservas
+        return;
+      }
+      Object.assign(SV, { ok: true, error: null, yo: r.usuario, supervisa: !!r.supervisa, gerente: !!r.gerente, reserva: r.reserva, horas: r.horas || 48, ret: r.retoques || {} });
+      puerta(null);
       SV.res = {}; (r.reservas || []).forEach(x => SV.res[x.auto_id] = x);
       SV.provs = {}; (r.proveedores || []).forEach(p => SV.provs[p.id] = p);
       const fp = JSON.stringify(r.propio || []);
       if (fp !== SV.fp) { SV.fp = fp; SV.propio = (r.propio || []).map(a => Object.assign({}, a, { propio: true, agencia: 'propio' })); mezclarPropio(); }
       if (!$('#ficha').open && !$('#editor').open && !$('#provs').open) render(); else retaparTodo();
-    } catch (e) { SV.error = 'sin_conexion'; }
+    } catch (e) { SV.error = 'sin_conexion'; if (!SV.ok) puerta('No se pudo verificar tu usuario (sin conexión). Reintentando…', false); }
     finally { sincronizando = false; pintarSesion(); }
   }
   window.radarDemoResync = () => { SV.fp = ''; sincronizar(); };
@@ -566,7 +601,7 @@
     if (r && r.mia) return `<div class="reserva mia"><b>✅ Reservada para ${esc(r.cliente || 'tu cliente')}</b>
       <small>Vence el ${venceTxt(r.vence)}. ${r.proveedor_aviso ? 'La agencia ya fue avisada.' : 'Gerencia avisa a la agencia para frenar la venta.'}</small>
       <div class="botones"><button class="btn btn-dom btn-sm" data-r="vend">Se vendió</button><button class="btn btn-ghost btn-sm" data-r="ext"${r.extendida && !SV.supervisa ? ' disabled title="Ya se extendió una vez"' : ''}>Extender ${SV.horas} h</button><button class="btn btn-ghost btn-sm" data-r="lib">Liberar</button></div></div>`;
-    if (!puedeReservar()) return '';
+    if (!puedeReservar()) return vista === 'cliente' ? '' : '<div class="reserva"><small>Tu perfil no reserva unidades: la reserva la hace un negociador, el gerente o el director.</small></div>';
     return `<div class="reserva"><button class="btn btn-dom" data-r="abrir">🔒 Reservar para un cliente</button>
       <form data-r-form hidden>
         <input name="cliente" placeholder="Nombre del cliente" required autocomplete="off">
