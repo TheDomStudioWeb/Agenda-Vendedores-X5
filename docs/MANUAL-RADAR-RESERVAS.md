@@ -61,15 +61,15 @@ Gerencia además tiene el botón **Agencias** para cargar el WhatsApp y el conta
 Las fotos de las agencias traen patentes y carteles amarillos. Las agencias ya están informadas por el Director Comercial; si se suman agencias nuevas, se les informa en su momento.
 
 **Qué se ve:**
-- **Patentes:** quedan cubiertas por una placa blanca con el logo de X5 Argentina.
-- **Carteles amarillos** («VENDO» con teléfono): quedan cubiertos por un cartel rojo X5 con el logo en blanco.
+- **Patentes con logo** (las placas «MAIPU USADOS», amarillas o negras «PREMIUM», y «AUTOCITY»): quedan cubiertas por una placa blanca con el logo de X5 Argentina.
+- **Carteles amarillos** (la franja en diagonal del parabrisas con el año, o un cartel «VENDO»): quedan cubiertos por un cartel rojo X5 con el logo en blanco, recortado con la misma forma.
 - **Logos de otras agencias:** se desenfocan.
 
 Se aplica en las vistas Cliente e Interna, en la ficha y en los resultados del buscador de Compra que vienen del stock de las agencias. Las fotos de DeRuedas y Autocosmos todavía no se tapan.
 
 **Cómo funciona:** el lector del stock (GitHub Action, dos veces por día) descarga cada foto nueva y busca dos cosas:
-- **Patentes:** con un modelo de detección de patentes de código abierto. Corre gratis dentro de la Action.
-- **Carteles amarillos:** por color, con un rectángulo amarillo intenso y texto oscuro adentro.
+- **Patentes:** con un modelo de detección de patentes de código abierto que corre gratis dentro de la Action. Se descartan las pantallas y los paneles del interior, porque el modelo a veces los confunde.
+- **Carteles amarillos:** por color, con una forma amarilla intensa y maciza y texto oscuro adentro.
 
 Cada foto se analiza una sola vez y el resultado queda en `radar/data/cubrir.json`. El Radar lee las tapas de `stock.json` (campo `cubrir`).
 

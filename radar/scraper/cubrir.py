@@ -4,9 +4,9 @@
 Corre después de actualizar.mjs (GitHub Action). Para cada foto del stock busca:
   - patentes con logo (la placa de la agencia: «MAIPU USADOS» amarilla, «AUTOCITY» blanca, o la patente)
       → caja tipo 'pat' (el Radar la cubre con una placa con el logo de X5 Argentina)
-  - carteles amarillos (el triángulo del parabrisas con el año, o un cartel rectangular)
-      → caja 'cartel' (el Radar la cubre con un cartel rojo X5; si es triángulo, el 6.º dato dice
-        en qué esquina está el ángulo recto: 'tl', 'tr', 'bl' o 'br')
+  - carteles amarillos (la franja en diagonal del parabrisas con el año, o un cartel rectangular)
+      → caja 'cartel' (el Radar la cubre con un cartel rojo X5). Si no es rectangular, el 6.º dato es
+        la forma: 'poly:x y,x y,…' en % de la caja, y el Radar recorta el rojo con esa forma.
 Las cajas van en proporción de la foto [x, y, ancho, alto, tipo] y se guardan en stock.json → "cubrir".
 Cada foto se analiza una sola vez: el resultado queda en radar/data/cubrir.json (caché por URL).
 Si un jefe corrige una foto a mano en el Radar, lo manual reemplaza a lo automático.
@@ -21,7 +21,7 @@ import cv2, numpy as np, requests
 
 STOCK = pathlib.Path('radar/data/stock.json')
 CACHE = pathlib.Path('radar/data/cubrir.json')
-VERSION = 2                       # subirla si cambian los criterios: se vuelven a analizar todas las fotos
+VERSION = 3                       # subirla si cambian los criterios: se vuelven a analizar todas las fotos
 MAX_NUEVAS = int(os.environ.get('CUBRIR_MAX', '3000'))
 MUESTRAS = os.environ.get('CUBRIR_MUESTRAS')
 CONF_PATENTE = 0.30
@@ -63,7 +63,7 @@ def es_placa(im, b):
     hsv = cv2.cvtColor(im[int(b.y1):int(b.y2), int(b.x1):int(b.x2)], cv2.COLOR_BGR2HSV)
     blanco = (hsv[..., 1] < 60) & (hsv[..., 2] > 150)
     amarillo = (hsv[..., 0] >= 15) & (hsv[..., 0] <= 35) & (hsv[..., 1] > 100) & (hsv[..., 2] > 120)
-    if (blanco | amarillo).mean() < 0.35:
+    if (blanco | amarillo).mean() < 0.35 and amarillo.mean() < 0.1:   # la «PREMIUM» es negra con letras amarillas
         return 'color'
     return None
 
@@ -107,25 +107,26 @@ def carteles(im, evitar):
         if not (0.35 < cw / ch < 4):
             continue
         lleno = area / caja
-        esquina = None
-        if lleno < 0.55:                                         # ¿triángulo? (el del parabrisas con el año)
-            if lleno < 0.35 or not (0.5 < cw / ch < 2):
+        forma = None
+        if lleno < 0.55:                       # ¿franja o triángulo? (el del parabrisas con el año)
+            casco = cv2.convexHull(c)
+            if lleno < 0.2 or area / max(1, cv2.contourArea(casco)) < 0.8:   # tiene que ser una forma maciza
                 continue
-            sub = m[y:y + ch, x:x + cw] > 0
-            q = max(2, min(cw, ch) // 5)
-            dens = {'tl': sub[:q, :q].mean(), 'tr': sub[:q, -q:].mean(), 'bl': sub[-q:, :q].mean(), 'br': sub[-q:, -q:].mean()}
-            esquina = max(dens, key=dens.get)
-            opuesta = {'tl': 'br', 'tr': 'bl', 'bl': 'tr', 'br': 'tl'}[esquina]
-            if dens[esquina] < 0.7 or dens[opuesta] > 0.15:
+            pts = cv2.approxPolyDP(casco, 0.03 * cv2.arcLength(casco, True), True).reshape(-1, 2).astype(float)
+            if not 3 <= len(pts) <= 8:
                 continue
+            cx, cy = pts.mean(axis=0)
+            pts = (pts - (cx, cy)) * 1.12 + (cx, cy)          # un poco más grande, que no asome el amarillo
+            forma = pts
         # adentro debe haber texto oscuro (el teléfono / "VENDO"): descarta paragolpes o luces amarillas
         oscuro = (hsv[y:y + ch, x:x + cw, 2] < 90).mean()
         if oscuro < 0.02:
             continue
         p = 0.08
-        bx = [max(0, x / w - p * cw / w), max(0, y / h - p * ch / h), min(1, (cw / w) * (1 + 2 * p)), min(1, (ch / h) * (1 + 2 * p)), 'cartel']
-        if esquina:
-            bx.append(esquina)
+        x0, y0, x1, y1 = max(0, x - p * cw), max(0, y - p * ch), min(w, x + cw * (1 + p)), min(h, y + ch * (1 + p))
+        bx = [x0 / w, y0 / h, (x1 - x0) / w, (y1 - y0) / h, 'cartel']
+        if forma is not None:
+            bx.append('poly:' + ','.join(f'{max(0, min(100, (px - x0) / (x1 - x0) * 100)):.0f} {max(0, min(100, (py - y0) / (y1 - y0) * 100)):.0f}' for px, py in forma))
         if any(solapa(bx, e) > 0.3 for e in evitar):
             continue
         out.append(bx)
