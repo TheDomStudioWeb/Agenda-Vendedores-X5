@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-21T03:02:43.874Z",
+ "actualizado": "2026-11-21T03:10:11.914Z",
  "guia": {
   "fuente": "Guía Oficial de Precios CCA",
   "mes": "2026-11"
@@ -12,8 +12,8 @@
    "web": "https://maipuusados.com.ar/modelos/",
    "estado": "ok",
    "autos": 87,
-   "revisado": "2026-11-21T03:02:43.874Z",
-   "actualizado": "2026-11-21T03:02:43.874Z"
+   "revisado": "2026-11-21T03:10:11.914Z",
+   "actualizado": "2026-11-21T03:10:11.914Z"
   },
   {
    "id": "autocity",
@@ -22,8 +22,8 @@
    "web": "https://autocity.com.ar/catalogo/usados/",
    "estado": "ok",
    "autos": 256,
-   "revisado": "2026-11-21T03:02:43.874Z",
-   "actualizado": "2026-11-21T03:02:43.874Z"
+   "revisado": "2026-11-21T03:10:11.914Z",
+   "actualizado": "2026-11-21T03:10:11.914Z"
   }
  ],
  "autos": [
@@ -23720,6 +23720,14 @@
     0.204,
     0.147,
     "pat"
+   ],
+   [
+    0.348,
+    0.095,
+    0.113,
+    0.101,
+    "cartel",
+    "poly:98 6,3 97,23 11"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4656-1600x1200-1.jpg": [
@@ -23729,6 +23737,16 @@
     0.205,
     0.158,
     "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4659-1600x1200-1.jpg": [
+   [
+    0.424,
+    0.118,
+    0.071,
+    0.093,
+    "cartel",
+    "poly:0 3,95 19,91 97"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4653-1600x1200-1.jpg": [
@@ -23801,6 +23819,14 @@
     0.193,
     0.147,
     "pat"
+   ],
+   [
+    0.363,
+    0.089,
+    0.12,
+    0.098,
+    "cartel",
+    "poly:98 6,3 95,25 11"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4621-1600x1200-1.jpg": [
@@ -23828,6 +23854,26 @@
     0.215,
     0.163,
     "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4609-1600x1200-2.jpg": [
+   [
+    0.02,
+    0.592,
+    0.038,
+    0.116,
+    "cartel",
+    "poly:2 2,65 36,95 96,28 58"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4610-1600x1200-1.jpg": [
+   [
+    0.394,
+    0.08,
+    0.086,
+    0.103,
+    "cartel",
+    "poly:1 3,96 18,62 97"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4604-1600x1200-1.jpg": [
@@ -23875,6 +23921,16 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4580-1600x1200-1.jpg": [
+   [
+    0.245,
+    0.0,
+    0.161,
+    0.089,
+    "cartel",
+    "poly:99 0,11 96,4 71,24 0"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4572-1600x1200-1.jpg": [
    [
     0.417,
@@ -23891,6 +23947,24 @@
     0.205,
     0.143,
     "pat"
+   ],
+   [
+    0.349,
+    0.116,
+    0.12,
+    0.093,
+    "cartel",
+    "poly:98 6,3 97,27 9"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4576-1600x1200-1.jpg": [
+   [
+    0.435,
+    0.142,
+    0.074,
+    0.095,
+    "cartel",
+    "poly:0 3,88 16,93 97"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4570-1600x1200-1.jpg": [
@@ -23900,6 +23974,16 @@
     0.215,
     0.19,
     "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4563-1600x1200-1.jpg": [
+   [
+    0.291,
+    0.039,
+    0.097,
+    0.139,
+    "cartel",
+    "poly:97 22,2 98,47 3"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4554-1600x1200-1.jpg": [
@@ -23920,6 +24004,16 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4558-1600x1200-1.jpg": [
+   [
+    0.449,
+    0.155,
+    0.065,
+    0.072,
+    "cartel",
+    "poly:1 5,82 50,95 95"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4552-1600x1200-1.jpg": [
    [
     0.394,
@@ -23936,6 +24030,16 @@
     0.07,
     0.039,
     "cartel"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4550-1600x1200-1.jpg": [
+   [
+    0.529,
+    0.28,
+    0.081,
+    0.07,
+    "cartel",
+    "poly:1 6,96 21,77 96"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4538-1600x1200-1.jpg": [
@@ -23968,9 +24072,9 @@
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4530-1600x1200-1.jpg": [
    [
     0.958,
-    0,
-    0.045,
-    0.072,
+    0.0,
+    0.042,
+    0.067,
     "cartel"
    ]
   ],
@@ -23998,6 +24102,59 @@
     0.659,
     0.19,
     0.157,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4512-1600x1200-1.jpg": [
+   [
+    0.328,
+    0.029,
+    0.099,
+    0.16,
+    "cartel",
+    "poly:97 28,1 98,58 3"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4507-1600x1200-1.jpg": [
+   [
+    0.39,
+    0.727,
+    0.205,
+    0.14,
+    "pat"
+   ],
+   [
+    0.354,
+    0.093,
+    0.109,
+    0.101,
+    "cartel",
+    "poly:98 3,3 97,23 13"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4508-1600x1200-1.jpg": [
+   [
+    0.392,
+    0.732,
+    0.203,
+    0.148,
+    "pat"
+   ],
+   [
+    0.351,
+    0.098,
+    0.109,
+    0.101,
+    "cartel",
+    "poly:98 3,3 97,23 13"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4502-1600x1200-1.jpg": [
+   [
+    0.396,
+    0.495,
+    0.194,
+    0.165,
     "pat"
    ]
   ],
@@ -24062,6 +24219,14 @@
     0.194,
     0.138,
     "pat"
+   ],
+   [
+    0.349,
+    0.103,
+    0.122,
+    0.113,
+    "cartel",
+    "poly:98 3,3 98,23 12"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4453-1600x1200-1.jpg": [
@@ -24071,6 +24236,14 @@
     0.198,
     0.153,
     "pat"
+   ],
+   [
+    0.349,
+    0.103,
+    0.123,
+    0.111,
+    "cartel",
+    "poly:98 3,3 97,21 14"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4450-1600x1200-1.jpg": [
@@ -24088,6 +24261,59 @@
     0.754,
     0.129,
     0.093,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4435-1600x1200-1.jpg": [
+   [
+    0.395,
+    0.663,
+    0.204,
+    0.097,
+    "pat"
+   ],
+   [
+    0.335,
+    0.11,
+    0.102,
+    0.088,
+    "cartel",
+    "poly:98 6,3 97,22 17"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4436-1600x1200-1.jpg": [
+   [
+    0.398,
+    0.668,
+    0.202,
+    0.098,
+    "pat"
+   ],
+   [
+    0.335,
+    0.109,
+    0.103,
+    0.093,
+    "cartel",
+    "poly:98 6,3 94,22 16"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4439-1600x1200-1.jpg": [
+   [
+    0.376,
+    0.115,
+    0.074,
+    0.098,
+    "cartel",
+    "poly:0 8,95 13,89 92"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4433-1600x1200-1.jpg": [
+   [
+    0.405,
+    0.498,
+    0.202,
+    0.16,
     "pat"
    ]
   ],
@@ -24118,6 +24344,26 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4387-1600x1200-1.jpg": [
+   [
+    0.901,
+    0.0,
+    0.099,
+    0.106,
+    "cartel",
+    "poly:99 0,3 98,20 0"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4393-1600x1200-1.jpg": [
+   [
+    0.542,
+    0.488,
+    0.11,
+    0.124,
+    "cartel",
+    "poly:0 5,84 7,96 98"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4358-1600x1200-1.jpg": [
    [
     0.398,
@@ -24134,6 +24380,14 @@
     0.208,
     0.159,
     "pat"
+   ],
+   [
+    0.34,
+    0.118,
+    0.126,
+    0.096,
+    "cartel",
+    "poly:98 3,3 97,26 11"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4355-1600x1200-1.jpg": [
@@ -24197,6 +24451,14 @@
     0.192,
     0.142,
     "pat"
+   ],
+   [
+    0.362,
+    0.11,
+    0.109,
+    0.106,
+    "cartel",
+    "poly:98 3,3 97,23 15"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4319-1600x1200-1.jpg": [
@@ -24211,10 +24473,20 @@
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4312-1600x1200-1.jpg": [
    [
     0.969,
-    0,
-    0.033,
-    0.098,
+    0.0,
+    0.031,
+    0.091,
     "cartel"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4311-1600x1200-1.jpg": [
+   [
+    0.176,
+    0.0,
+    0.057,
+    0.067,
+    "cartel",
+    "poly:97 0,3 96,25 0"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4306-1600x1200-1.jpg": [
@@ -24224,6 +24496,14 @@
     0.19,
     0.125,
     "pat"
+   ],
+   [
+    0.357,
+    0.134,
+    0.116,
+    0.085,
+    "cartel",
+    "poly:98 6,3 97,27 6"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4307-1600x1200-1.jpg": [
@@ -24233,6 +24513,14 @@
     0.182,
     0.128,
     "pat"
+   ],
+   [
+    0.354,
+    0.15,
+    0.112,
+    0.082,
+    "cartel",
+    "poly:98 3,3 97,28 6"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4301-1600x1200-1.jpg": [
@@ -24251,6 +24539,14 @@
     0.199,
     0.14,
     "pat"
+   ],
+   [
+    0.342,
+    0.11,
+    0.12,
+    0.108,
+    "cartel",
+    "poly:98 6,3 97,26 10"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4290-1600x1200-1.jpg": [
@@ -24260,6 +24556,14 @@
     0.195,
     0.145,
     "pat"
+   ],
+   [
+    0.349,
+    0.117,
+    0.119,
+    0.108,
+    "cartel",
+    "poly:98 6,3 95,26 10"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4283-1600x1200-1.jpg": [
@@ -24395,7 +24699,7 @@
     0.041,
     0.116,
     "cartel",
-    "br"
+    "poly:75 2,96 96,2 58,2 45"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4103-1600x1200-1.jpg": [
@@ -24405,6 +24709,14 @@
     0.207,
     0.153,
     "pat"
+   ],
+   [
+    0.356,
+    0.125,
+    0.116,
+    0.093,
+    "cartel",
+    "poly:98 6,3 97,24 9"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4104-1600x1200-1.jpg": [
@@ -24414,6 +24726,14 @@
     0.208,
     0.167,
     "pat"
+   ],
+   [
+    0.35,
+    0.127,
+    0.116,
+    0.09,
+    "cartel",
+    "poly:98 3,3 97,24 12"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4101-1600x1200-1.jpg": [
@@ -24428,11 +24748,11 @@
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4094-1600x1200-1.jpg": [
    [
     0.275,
-    0,
+    0.0,
     0.125,
-    0.178,
+    0.174,
     "cartel",
-    "bl"
+    "poly:97 32,4 96,56 1"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4086-1600x1200-1.jpg": [
@@ -24496,6 +24816,14 @@
     0.209,
     0.167,
     "pat"
+   ],
+   [
+    0.331,
+    0.102,
+    0.123,
+    0.106,
+    "cartel",
+    "poly:98 6,3 95,26 6"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_4035-1600x1200-1.jpg": [
@@ -24532,6 +24860,14 @@
     0.194,
     0.128,
     "pat"
+   ],
+   [
+    0.359,
+    0.107,
+    0.109,
+    0.093,
+    "cartel",
+    "poly:98 3,3 97,20 22"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3998-1600x1200-1.jpg": [
@@ -24541,6 +24877,14 @@
     0.197,
     0.138,
     "pat"
+   ],
+   [
+    0.359,
+    0.107,
+    0.109,
+    0.093,
+    "cartel",
+    "poly:98 3,3 97,21 19"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3995-1600x1200-1.jpg": [
@@ -24559,6 +24903,14 @@
     0.191,
     0.14,
     "pat"
+   ],
+   [
+    0.341,
+    0.124,
+    0.126,
+    0.101,
+    "cartel",
+    "poly:98 6,3 97,27 8"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3978-1600x1200-1.jpg": [
@@ -24568,6 +24920,24 @@
     0.181,
     0.133,
     "pat"
+   ],
+   [
+    0.331,
+    0.117,
+    0.126,
+    0.106,
+    "cartel",
+    "poly:98 3,3 98,27 8"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3973-1600x1200-1.jpg": [
+   [
+    0.439,
+    0.172,
+    0.07,
+    0.088,
+    "cartel",
+    "poly:0 3,93 12,95 97"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3969-1600x1200-1.jpg": [
@@ -24588,6 +24958,16 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3962-1600x1200-1.jpg": [
+   [
+    0.24,
+    0.042,
+    0.109,
+    0.16,
+    "cartel",
+    "poly:98 12,2 98,35 5"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3954-1600x1200-1.jpg": [
    [
     0.398,
@@ -24604,6 +24984,14 @@
     0.205,
     0.147,
     "pat"
+   ],
+   [
+    0.355,
+    0.089,
+    0.11,
+    0.09,
+    "cartel",
+    "poly:98 3,3 97,21 20"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3952-1600x1200-1.jpg": [
@@ -24669,6 +25057,16 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3920-1600x1200-1.jpg": [
+   [
+    0.471,
+    0.182,
+    0.051,
+    0.067,
+    "cartel",
+    "poly:0 2,61 32,86 58,94 95"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3914-1600x1200-1.jpg": [
    [
     0.393,
@@ -24685,6 +25083,14 @@
     0.203,
     0.143,
     "pat"
+   ],
+   [
+    0.357,
+    0.108,
+    0.12,
+    0.082,
+    "cartel",
+    "poly:98 6,3 97,26 6"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3899-1600x1200-1.jpg": [
@@ -24694,6 +25100,14 @@
     0.205,
     0.153,
     "pat"
+   ],
+   [
+    0.357,
+    0.107,
+    0.122,
+    0.085,
+    "cartel",
+    "poly:98 6,3 97,26 6"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3896-1600x1200-1.jpg": [
@@ -24784,6 +25198,14 @@
     0.205,
     0.16,
     "pat"
+   ],
+   [
+    0.341,
+    0.095,
+    0.13,
+    0.111,
+    "cartel",
+    "poly:98 8,3 98,26 6"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3847-1600x1200-1.jpg": [
@@ -24793,6 +25215,26 @@
     0.205,
     0.165,
     "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3845-1600x1200-1.jpg": [
+   [
+    0.525,
+    0.06,
+    0.113,
+    0.095,
+    "cartel",
+    "poly:94 97,0 8,89 8"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3846-1600x1200-1.jpg": [
+   [
+    0.538,
+    0.208,
+    0.117,
+    0.103,
+    "cartel",
+    "poly:95 28,71 98,0 11,92 4"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3832-1600x1200-1.jpg": [
@@ -24852,10 +25294,20 @@
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3805-1600x1200-1.jpg": [
    [
     0.934,
-    0,
-    0.071,
-    0.098,
+    0.0,
+    0.066,
+    0.091,
     "cartel"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3804-1600x1200-1.jpg": [
+   [
+    0.246,
+    0.0,
+    0.091,
+    0.134,
+    "cartel",
+    "poly:95 20,91 36,0 97,62 0"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_0253-1600x1200-1.jpg": [
@@ -24901,6 +25353,24 @@
     0.185,
     0.133,
     "pat"
+   ],
+   [
+    0.355,
+    0.116,
+    0.115,
+    0.09,
+    "cartel",
+    "poly:98 9,3 97,28 6"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3728-1600x1200-1.jpg": [
+   [
+    0.413,
+    0.165,
+    0.077,
+    0.095,
+    "cartel",
+    "poly:92 97,0 6,90 8"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3722-1600x1200-1.jpg": [
@@ -24910,6 +25380,16 @@
     0.216,
     0.168,
     "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3721-1600x1200-1.jpg": [
+   [
+    0.535,
+    0.216,
+    0.109,
+    0.093,
+    "cartel",
+    "poly:0 6,84 14,95 41,77 97"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3709-1600x1200-1.jpg": [
@@ -24928,6 +25408,14 @@
     0.193,
     0.13,
     "pat"
+   ],
+   [
+    0.349,
+    0.117,
+    0.128,
+    0.103,
+    "cartel",
+    "poly:98 3,3 98,27 8"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3704-1600x1200-1.jpg": [
@@ -24939,6 +25427,16 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3696-1600x1200-1.jpg": [
+   [
+    0.181,
+    0.0,
+    0.075,
+    0.101,
+    "cartel",
+    "poly:89 0,92 21,1 98,31 0"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3668-1600x1200-1.jpg": [
    [
     0.4,
@@ -24946,6 +25444,14 @@
     0.199,
     0.132,
     "pat"
+   ],
+   [
+    0.345,
+    0.105,
+    0.126,
+    0.095,
+    "cartel",
+    "poly:98 6,3 97,29 6"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3669-1600x1200-1.jpg": [
@@ -24955,6 +25461,14 @@
     0.199,
     0.135,
     "pat"
+   ],
+   [
+    0.345,
+    0.105,
+    0.126,
+    0.093,
+    "cartel",
+    "poly:98 6,3 97,28 6"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3666-1600x1200-1.jpg": [
@@ -24973,6 +25487,14 @@
     0.203,
     0.168,
     "pat"
+   ],
+   [
+    0.344,
+    0.104,
+    0.112,
+    0.103,
+    "cartel",
+    "poly:98 3,3 97,25 13"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3635-1600x1200-1.jpg": [
@@ -24982,6 +25504,14 @@
     0.208,
     0.173,
     "pat"
+   ],
+   [
+    0.344,
+    0.104,
+    0.112,
+    0.103,
+    "cartel",
+    "poly:98 3,3 97,25 13"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3638-1600x1200-1.jpg": [
@@ -24991,7 +25521,7 @@
     0.074,
     0.106,
     "cartel",
-    "tr"
+    "poly:0 3,93 8,93 98"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3632-1600x1200-1.jpg": [
@@ -25003,6 +25533,16 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3631-1600x1200-1.jpg": [
+   [
+    0.562,
+    0.302,
+    0.083,
+    0.072,
+    "cartel",
+    "poly:96 14,69 96,1 3"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3618-1600x1200-1.jpg": [
    [
     0.406,
@@ -25010,6 +25550,14 @@
     0.192,
     0.142,
     "pat"
+   ],
+   [
+    0.339,
+    0.105,
+    0.11,
+    0.093,
+    "cartel",
+    "poly:98 3,3 97,26 14"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/11/APC_3621-1600x1200-1.jpg": [
@@ -25066,6 +25614,43 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3385-1600x1200-1.jpg": [
+   [
+    0.286,
+    0.023,
+    0.097,
+    0.152,
+    "cartel",
+    "poly:96 26,1 98,62 3"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3359-1600x1200-1.jpg": [
+   [
+    0.416,
+    0.762,
+    0.18,
+    0.097,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3360-1600x1200-1.jpg": [
+   [
+    0.415,
+    0.763,
+    0.184,
+    0.1,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3357-1600x1200-1.jpg": [
+   [
+    0.402,
+    0.607,
+    0.205,
+    0.15,
+    "pat"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3344-1600x1200-1.jpg": [
    [
     0.402,
@@ -25084,6 +25669,16 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3348-1600x1200-1.jpg": [
+   [
+    0.415,
+    0.167,
+    0.08,
+    0.085,
+    "cartel",
+    "poly:95 94,1 6,83 4"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3342-1600x1200-1.jpg": [
    [
     0.396,
@@ -25093,6 +25688,16 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3341-1600x1200-1.jpg": [
+   [
+    0.566,
+    0.27,
+    0.088,
+    0.075,
+    "cartel",
+    "poly:0 3,78 13,95 33,73 97"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3281-1600x1200-1.jpg": [
    [
     0.403,
@@ -25100,6 +25705,14 @@
     0.201,
     0.167,
     "pat"
+   ],
+   [
+    0.351,
+    0.12,
+    0.125,
+    0.093,
+    "cartel",
+    "poly:98 6,3 97,26 9"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3282-1600x1200-1.jpg": [
@@ -25109,6 +25722,14 @@
     0.2,
     0.14,
     "pat"
+   ],
+   [
+    0.35,
+    0.12,
+    0.126,
+    0.093,
+    "cartel",
+    "poly:98 6,3 97,28 6"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3279-1600x1200-1.jpg": [
@@ -25127,6 +25748,14 @@
     0.197,
     0.127,
     "pat"
+   ],
+   [
+    0.343,
+    0.102,
+    0.126,
+    0.103,
+    "cartel",
+    "poly:98 6,3 97,24 8"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3265-1600x1200-1.jpg": [
@@ -25136,6 +25765,14 @@
     0.199,
     0.127,
     "pat"
+   ],
+   [
+    0.344,
+    0.104,
+    0.126,
+    0.103,
+    "cartel",
+    "poly:98 3,3 98,24 8"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3262-1600x1200-1.jpg": [
@@ -25144,6 +25781,43 @@
     0.721,
     0.201,
     0.15,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3256-1600x1200-1.jpg": [
+   [
+    0.951,
+    0.0,
+    0.049,
+    0.134,
+    "cartel",
+    "poly:100 0,100 65,1 97,30 15"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3247-1600x1200-1.jpg": [
+   [
+    0.409,
+    0.754,
+    0.188,
+    0.11,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3248-1600x1200-1.jpg": [
+   [
+    0.408,
+    0.739,
+    0.19,
+    0.138,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3245-1600x1200-1.jpg": [
+   [
+    0.402,
+    0.5,
+    0.199,
+    0.145,
     "pat"
    ]
   ],
@@ -25181,6 +25855,14 @@
     0.208,
     0.145,
     "pat"
+   ],
+   [
+    0.344,
+    0.09,
+    0.122,
+    0.082,
+    "cartel",
+    "poly:98 6,3 97,28 6"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3126-1600x1200-1.jpg": [
@@ -25190,6 +25872,14 @@
     0.207,
     0.15,
     "pat"
+   ],
+   [
+    0.344,
+    0.092,
+    0.122,
+    0.08,
+    "cartel",
+    "poly:98 3,3 97,27 7"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3123-1600x1200-1.jpg": [
@@ -25201,6 +25891,16 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3116-1600x1200-1.jpg": [
+   [
+    0.243,
+    0.019,
+    0.113,
+    0.144,
+    "cartel",
+    "poly:97 27,2 97,56 3"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3051-1600x1200-1.jpg": [
    [
     0.408,
@@ -25208,6 +25908,14 @@
     0.191,
     0.143,
     "pat"
+   ],
+   [
+    0.365,
+    0.112,
+    0.109,
+    0.113,
+    "cartel",
+    "poly:98 3,3 95,20 12"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3052-1600x1200-1.jpg": [
@@ -25217,6 +25925,14 @@
     0.19,
     0.14,
     "pat"
+   ],
+   [
+    0.365,
+    0.112,
+    0.109,
+    0.113,
+    "cartel",
+    "poly:98 3,3 95,18 12"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_3049-1600x1200-1.jpg": [
@@ -25235,7 +25951,7 @@
     0.103,
     0.108,
     "cartel",
-    "tl"
+    "poly:1 12,97 19,61 97"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2926-1600x1200-1.jpg": [
@@ -25279,7 +25995,7 @@
     0.107,
     0.113,
     "cartel",
-    "br"
+    "poly:2 84,36 1,98 93"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2828-1600x1200-1.jpg": [
@@ -25296,7 +26012,7 @@
     0.107,
     0.113,
     "cartel",
-    "br"
+    "poly:2 84,35 1,98 93"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2825-1600x1200-1.jpg": [
@@ -25306,6 +26022,16 @@
     0.207,
     0.168,
     "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2823-1600x1200-1.jpg": [
+   [
+    0.535,
+    0.257,
+    0.103,
+    0.106,
+    "cartel",
+    "poly:97 5,61 90,1 94"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2810-1600x1200-1.jpg": [
@@ -25335,6 +26061,69 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2807-1600x1200-1.jpg": [
+   [
+    0.552,
+    0.234,
+    0.086,
+    0.08,
+    "cartel",
+    "poly:83 97,0 4,88 7,95 26"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2564-1600x1200-1.jpg": [
+   [
+    0.418,
+    0.713,
+    0.184,
+    0.11,
+    "pat"
+   ],
+   [
+    0.346,
+    0.097,
+    0.11,
+    0.103,
+    "cartel",
+    "poly:98 3,3 95,27 15"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2565-1600x1200-1.jpg": [
+   [
+    0.417,
+    0.713,
+    0.187,
+    0.122,
+    "pat"
+   ],
+   [
+    0.346,
+    0.098,
+    0.11,
+    0.101,
+    "cartel",
+    "poly:98 5,3 97,27 15"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2568-1600x1200-1.jpg": [
+   [
+    0.38,
+    0.142,
+    0.08,
+    0.103,
+    "cartel",
+    "poly:1 8,90 13,87 97"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2562-1600x1200-1.jpg": [
+   [
+    0.411,
+    0.716,
+    0.197,
+    0.142,
+    "pat"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2547-1600x1200-1.jpg": [
    [
     0.401,
@@ -25351,6 +26140,14 @@
     0.189,
     0.127,
     "pat"
+   ],
+   [
+    0.35,
+    0.093,
+    0.113,
+    0.098,
+    "cartel",
+    "poly:98 6,3 97,23 16"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2545-1600x1200-1.jpg": [
@@ -25369,6 +26166,14 @@
     0.204,
     0.167,
     "pat"
+   ],
+   [
+    0.337,
+    0.09,
+    0.117,
+    0.108,
+    "cartel",
+    "poly:98 3,3 97,24 12"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2305-1600x1200-1.jpg": [
@@ -25378,6 +26183,24 @@
     0.214,
     0.18,
     "pat"
+   ],
+   [
+    0.337,
+    0.09,
+    0.117,
+    0.108,
+    "cartel",
+    "poly:98 3,3 98,25 10"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2308-1600x1200-1.jpg": [
+   [
+    0.417,
+    0.121,
+    0.078,
+    0.113,
+    "cartel",
+    "poly:0 5,90 16,93 97"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2302-1600x1200-1.jpg": [
@@ -25387,6 +26210,16 @@
     0.21,
     0.188,
     "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2295-1600x1200-1.jpg": [
+   [
+    0.295,
+    0.0,
+    0.141,
+    0.192,
+    "cartel",
+    "poly:87 0,97 14,1 99,33 14"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2286-1600x1200-1.jpg": [
@@ -25405,6 +26238,14 @@
     0.178,
     0.152,
     "pat"
+   ],
+   [
+    0.36,
+    0.144,
+    0.102,
+    0.075,
+    "cartel",
+    "poly:98 3,3 97,25 10"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2283-1600x1200-1.jpg": [
@@ -25414,6 +26255,16 @@
     0.175,
     0.127,
     "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2277-1600x1200-1.jpg": [
+   [
+    0.183,
+    0.0,
+    0.123,
+    0.162,
+    "cartel",
+    "poly:97 18,2 98,46 1"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2232-1600x1200-1.jpg": [
@@ -25432,6 +26283,14 @@
     0.188,
     0.145,
     "pat"
+   ],
+   [
+    0.351,
+    0.116,
+    0.11,
+    0.085,
+    "cartel",
+    "poly:98 6,3 97,27 9"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2230-1600x1200-1.jpg": [
@@ -25459,6 +26318,14 @@
     0.192,
     0.152,
     "pat"
+   ],
+   [
+    0.356,
+    0.109,
+    0.116,
+    0.09,
+    "cartel",
+    "poly:98 6,3 97,24 11"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2141-1600x1200-1.jpg": [
@@ -25470,6 +26337,16 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2140-1600x1200-1.jpg": [
+   [
+    0.559,
+    0.254,
+    0.083,
+    0.062,
+    "cartel",
+    "poly:96 23,72 95,1 3"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2109-1600x1200-1.jpg": [
    [
     0.402,
@@ -25477,6 +26354,14 @@
     0.2,
     0.14,
     "pat"
+   ],
+   [
+    0.344,
+    0.109,
+    0.12,
+    0.093,
+    "cartel",
+    "poly:98 3,3 97,25 11"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2110-1600x1200-1.jpg": [
@@ -25486,6 +26371,14 @@
     0.201,
     0.145,
     "pat"
+   ],
+   [
+    0.348,
+    0.107,
+    0.122,
+    0.095,
+    "cartel",
+    "poly:98 6,3 97,26 11"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_2106-1600x1200-1.jpg": [
@@ -25524,6 +26417,16 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1937-1600x1200-1.jpg": [
+   [
+    0.243,
+    0.04,
+    0.099,
+    0.124,
+    "cartel",
+    "poly:97 36,50 78,2 96,42 1"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1895-1600x1200-1.jpg": [
    [
     0.397,
@@ -25542,14 +26445,32 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1898-1600x1200-2.jpg": [
+   [
+    0.066,
+    0.625,
+    0.026,
+    0.124,
+    "cartel",
+    "poly:2 2,72 36,93 97,13 50"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1899-1600x1200-1.jpg": [
+   [
+    0.889,
+    0.632,
+    0.048,
+    0.144,
+    "cartel",
+    "poly:96 2,78 54,2 97,17 43"
+   ],
    [
     0.408,
     0.124,
     0.086,
     0.101,
     "cartel",
-    "tr"
+    "poly:96 11,68 97,1 3"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1893-1600x1200-1.jpg": [
@@ -25561,6 +26482,26 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1891-1600x1200-1.jpg": [
+   [
+    0.545,
+    0.093,
+    0.075,
+    0.07,
+    "cartel",
+    "poly:95 93,0 7,86 4"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1892-1600x1200-1.jpg": [
+   [
+    0.545,
+    0.21,
+    0.112,
+    0.082,
+    "cartel",
+    "poly:1 6,97 24,63 96"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1876-1600x1200-1.jpg": [
    [
     0.407,
@@ -25568,6 +26509,14 @@
     0.195,
     0.143,
     "pat"
+   ],
+   [
+    0.347,
+    0.102,
+    0.12,
+    0.101,
+    "cartel",
+    "poly:98 6,3 97,28 8"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1877-1600x1200-1.jpg": [
@@ -25577,6 +26526,24 @@
     0.194,
     0.138,
     "pat"
+   ],
+   [
+    0.347,
+    0.102,
+    0.12,
+    0.101,
+    "cartel",
+    "poly:98 6,3 97,29 8"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1880-1600x1200-1.jpg": [
+   [
+    0.449,
+    0.127,
+    0.051,
+    0.093,
+    "cartel",
+    "poly:18 3,95 35,93 97,2 24"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1874-1600x1200-1.jpg": [
@@ -25586,6 +26553,16 @@
     0.208,
     0.152,
     "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1871-1600x1200-1.jpg": [
+   [
+    0.555,
+    0.257,
+    0.102,
+    0.08,
+    "cartel",
+    "poly:95 47,73 96,0 3,95 12"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_1592-1600x1200-1.jpg": [
@@ -25640,6 +26617,14 @@
     0.189,
     0.153,
     "pat"
+   ],
+   [
+    0.358,
+    0.118,
+    0.116,
+    0.098,
+    "cartel",
+    "poly:98 3,3 95,22 16"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1522-1600x1200-1.jpg": [
@@ -25678,6 +26663,26 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1430-1600x1200-1.jpg": [
+   [
+    0.945,
+    0.0,
+    0.055,
+    0.106,
+    "cartel",
+    "poly:100 0,100 48,4 97,36 0"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1429-1600x1200-1.jpg": [
+   [
+    0.302,
+    0.043,
+    0.116,
+    0.15,
+    "cartel",
+    "poly:96 24,2 98,51 4"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1298-1600x1200-1.jpg": [
    [
     0.401,
@@ -25685,6 +26690,14 @@
     0.19,
     0.138,
     "pat"
+   ],
+   [
+    0.348,
+    0.121,
+    0.107,
+    0.085,
+    "cartel",
+    "poly:98 6,3 97,29 12"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1299-1600x1200-1.jpg": [
@@ -25694,6 +26707,14 @@
     0.19,
     0.143,
     "pat"
+   ],
+   [
+    0.346,
+    0.121,
+    0.11,
+    0.088,
+    "cartel",
+    "poly:98 6,3 97,29 9"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1296-1600x1200-1.jpg": [
@@ -25757,6 +26778,14 @@
     0.194,
     0.137,
     "pat"
+   ],
+   [
+    0.361,
+    0.108,
+    0.115,
+    0.103,
+    "cartel",
+    "poly:98 5,3 97,20 15"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_1092-1600x1200-1.jpg": [
@@ -25795,6 +26824,26 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0594.jpg": [
+   [
+    0.594,
+    0.171,
+    0.086,
+    0.064,
+    "cartel",
+    "poly:96 7,68 96,1 3"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0590.jpg": [
+   [
+    0.19,
+    0.011,
+    0.086,
+    0.168,
+    "cartel",
+    "poly:65 2,96 41,1 97"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0257-1600x1200-1.jpg": [
    [
     0.402,
@@ -25802,6 +26851,14 @@
     0.193,
     0.137,
     "pat"
+   ],
+   [
+    0.348,
+    0.108,
+    0.113,
+    0.106,
+    "cartel",
+    "poly:98 3,3 97,24 13"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0258-1600x1200-1.jpg": [
@@ -25811,6 +26868,14 @@
     0.194,
     0.142,
     "pat"
+   ],
+   [
+    0.348,
+    0.108,
+    0.113,
+    0.106,
+    "cartel",
+    "poly:98 3,3 97,24 13"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_0255-1600x1200-1.jpg": [
@@ -25819,6 +26884,33 @@
     0.508,
     0.209,
     0.17,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4436-1600x1200-1.jpg": [
+   [
+    0.416,
+    0.679,
+    0.181,
+    0.108,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4437-1600x1200-1.jpg": [
+   [
+    0.413,
+    0.708,
+    0.185,
+    0.115,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4433-1600x1200-1.jpg": [
+   [
+    0.404,
+    0.497,
+    0.197,
+    0.15,
     "pat"
    ]
   ],
@@ -25840,6 +26932,16 @@
     "pat"
    ]
   ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4078-1600x1200-1.jpg": [
+   [
+    0.933,
+    0.614,
+    0.03,
+    0.113,
+    "cartel",
+    "poly:94 2,71 55,2 96,25 39"
+   ]
+  ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/09/APC_4072-1600x1200-1.jpg": [
    [
     0.422,
@@ -25856,6 +26958,14 @@
     0.211,
     0.16,
     "pat"
+   ],
+   [
+    0.334,
+    0.099,
+    0.141,
+    0.116,
+    "cartel",
+    "poly:98 3,2 96,30 8"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3373-1600x1200-1.jpg": [
@@ -25865,6 +26975,14 @@
     0.213,
     0.16,
     "pat"
+   ],
+   [
+    0.339,
+    0.099,
+    0.141,
+    0.116,
+    "cartel",
+    "poly:98 8,2 98,31 5"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3370-1600x1200-1.jpg": [
@@ -25873,6 +26991,87 @@
     0.714,
     0.219,
     0.165,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3319-1600x1200-1.jpg": [
+   [
+    0.386,
+    0.73,
+    0.204,
+    0.125,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3320-1600x1200-1.jpg": [
+   [
+    0.386,
+    0.731,
+    0.204,
+    0.128,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3317-1600x1200-1.jpg": [
+   [
+    0.382,
+    0.48,
+    0.236,
+    0.172,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3174-1600x1200-1.jpg": [
+   [
+    0.401,
+    0.696,
+    0.193,
+    0.108,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3175-1600x1200-1.jpg": [
+   [
+    0.401,
+    0.697,
+    0.194,
+    0.113,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_3172-1600x1200-1.jpg": [
+   [
+    0.385,
+    0.474,
+    0.219,
+    0.148,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_2607-1600x1200-1.jpg": [
+   [
+    0.406,
+    0.719,
+    0.193,
+    0.117,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_2608-1600x1200-1.jpg": [
+   [
+    0.406,
+    0.72,
+    0.195,
+    0.112,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/08/APC_2610-1600x1200-1.jpg": [
+   [
+    0.381,
+    0.497,
+    0.233,
+    0.173,
     "pat"
    ]
   ],
@@ -25919,6 +27118,16 @@
     0.183,
     0.138,
     "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6878-1600x1200-1.jpg": [
+   [
+    0.912,
+    0.543,
+    0.029,
+    0.116,
+    "cartel",
+    "poly:94 2,84 62,2 96,12 28"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/05/APC_6874-1600x1200-1.jpg": [
@@ -25982,6 +27191,14 @@
     0.172,
     0.143,
     "pat"
+   ],
+   [
+    0.363,
+    0.193,
+    0.1,
+    0.072,
+    "cartel",
+    "poly:98 3,2 97,30 7"
    ]
   ],
   "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/APC_6073-1600x1200-1.jpg": [
@@ -25990,6 +27207,60 @@
     0.698,
     0.167,
     0.132,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/delantera-con-patente.png": [
+   [
+    0.377,
+    0.669,
+    0.245,
+    0.158,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/delantera-con-patente-luces.png": [
+   [
+    0.376,
+    0.666,
+    0.248,
+    0.152,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2026/10/trasera-con-patente.png": [
+   [
+    0.363,
+    0.474,
+    0.275,
+    0.128,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2025/12/APC_7701-1600x1200-1.jpg": [
+   [
+    0.405,
+    0.759,
+    0.183,
+    0.13,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2025/12/APC_7702-1600x1200-1.jpg": [
+   [
+    0.405,
+    0.759,
+    0.184,
+    0.135,
+    "pat"
+   ]
+  ],
+  "https://maipuusados.com.ar/wp-content/uploads/sites/5/2025/12/APC_7698-1600x1200-1.jpg": [
+   [
+    0.41,
+    0.479,
+    0.17,
+    0.118,
     "pat"
    ]
   ],
