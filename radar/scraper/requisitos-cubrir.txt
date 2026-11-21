@@ -1,0 +1,4 @@
+open-image-models==0.6.0
+onnxruntime>=1.20,<2
+opencv-python-headless>=4.10
+requests>=2.31

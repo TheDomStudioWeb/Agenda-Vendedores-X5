@@ -150,6 +150,54 @@
   @keyframes rx-sheen { to { transform: translateX(100%); } }
   @media (max-width: 360px) { .rx-hero { grid-template-columns: 1fr; } .rx-ring { justify-self: center; } }
   @media (prefers-reduced-motion: reduce) { .rx-hero, .rx-hero::after, .rx-sem, .grilla .auto, .lista .fila { animation: none; } .rx-ring .v { transition: none; } }
+
+  /* Reservas, tapado de fotos y stock propio (v2.14) */
+  .tapa { position: absolute; z-index: 1; border-radius: 6px; background: rgba(22,22,24,.58); backdrop-filter: blur(14px) saturate(.5); -webkit-backdrop-filter: blur(14px) saturate(.5); pointer-events: none; }
+  /* Patente → placa blanca con el logo de X5; cartel amarillo → cartel rojo X5; logos ajenos → desenfocado */
+  .tapa.pat { background: #fff url("../brand/x5-logo-rojo.png") center / auto 82% no-repeat; backdrop-filter: none; -webkit-backdrop-filter: none; border-radius: 3px; box-shadow: 0 0 0 1px rgba(0,0,0,.35), inset 0 -2px 0 rgba(0,0,0,.08); }
+  .tapa.cartel { background: #E3182D url("../brand/x5-logo-blanco.png") center / auto 72% no-repeat; backdrop-filter: none; -webkit-backdrop-filter: none; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,.4); }
+  /* Cartel no rectangular (franja en diagonal del parabrisas): el rojo X5 se recorta con la forma detectada */
+  .tapa.cartel.poly { border-radius: 0; box-shadow: none; background-size: auto 42%; }
+  .gimg { position: relative; flex: 0 0 100%; overflow: hidden; scroll-snap-align: center; }
+  .gimg img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+  .auto { position: relative; }
+  .auto.res .foto img, .auto.res .info { opacity: .45; }
+  .cinta { position: absolute; z-index: 2; left: 10px; top: 10px; font: 800 .64rem var(--font); letter-spacing: .08em; text-transform: uppercase; padding: 5px 9px; border-radius: 999px; background: rgba(17,17,19,.85); color: #fff; border: 1px solid rgba(255,255,255,.2); }
+  .cinta.mia { background: var(--dom); color: var(--on-dom, #06130f); border-color: transparent; }
+  .cinta.vend { background: var(--x5, #E3182D); border-color: transparent; }
+  .tag-propio { display: inline-block; font-size: .58rem; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; color: var(--on-dom, #06130f); background: var(--dom); padding: 2px 7px; border-radius: 999px; margin-left: 6px; vertical-align: 2px; }
+  .tag-res { display: inline-block; font-size: .58rem; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; color: #fff; background: #3a3a40; padding: 2px 7px; border-radius: 999px; margin-left: 6px; vertical-align: 2px; }
+  .tag-res.mia { background: var(--dom); color: var(--on-dom, #06130f); } .tag-res.vend { background: var(--x5, #E3182D); }
+  .sesion { font-size: .74rem; color: var(--muted); margin: -6px 2px 12px; }
+  .sesion a { color: var(--dom); font-weight: 700; }
+  .reserva { border: 1px solid var(--line-strong); border-radius: 14px; padding: 12px 14px; display: grid; gap: 10px; background: var(--surface-2); font-size: .86rem; }
+  .reserva.mia { border-color: var(--dom); }
+  .reserva form { display: grid; gap: 8px; }
+  .reserva input, .rsv-cfg input { width: 100%; min-width: 0; font: 500 .88rem var(--font); color: var(--text); background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius-sm); padding: 10px 12px; }
+  .reserva small { color: var(--muted); font-size: .74rem; }
+  .reserva .botones { display: flex; flex-wrap: wrap; gap: 8px; }
+  .reserva .botones .btn { width: auto; flex: 1 1 auto; }
+  .rsv-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; margin-bottom: 14px; }
+  .rsv-panel h3 { margin: 0 0 8px; font-size: .9rem; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .rsv-it { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); font-size: .82rem; }
+  .rsv-it .s { color: var(--muted); font-size: .74rem; }
+  .rsv-it .acc { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+  @media (max-width: 640px) { .rsv-it { grid-template-columns: 1fr; } .rsv-it .acc { justify-content: flex-start; } }
+  .rsv-cfg { display: grid; gap: 10px; padding: 16px 18px 18px; }
+  .rsv-cfg label { display: grid; gap: 4px; font-size: .72rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+  .ed { padding: 14px 16px 16px; display: grid; gap: 10px; }
+  .ed-stage { position: relative; user-select: none; touch-action: none; background: #000; border-radius: 12px; overflow: hidden; cursor: crosshair; }
+  .ed-stage img { width: 100%; display: block; pointer-events: none; }
+  .ed-box { position: absolute; border: 2px solid var(--dom); background: rgba(0,0,0,.45); border-radius: 4px; }
+  .ed-box.prov { border-color: #f5c518; border-style: dashed; }
+  .ed-box.auto { border-color: #38bdf8; border-style: dashed; background: rgba(56,189,248,.18); }
+  .ed-box.t-pat:not(.auto) { background: rgba(255,255,255,.55); } .ed-box.t-cartel:not(.auto) { background: rgba(227,24,45,.55); }
+  .ed-box span { position: absolute; left: 0; bottom: 100%; font: 700 .6rem var(--font); color: #fff; background: rgba(0,0,0,.7); padding: 1px 5px; border-radius: 4px 4px 0 0; white-space: nowrap; pointer-events: none; }
+  .ed-box button { position: absolute; right: -10px; top: -10px; width: 22px; height: 22px; border-radius: 50%; border: 0; background: #E3182D; color: #fff; font: 700 .7rem var(--font); cursor: pointer; padding: 0; }
+  .ed-seg { display: flex; gap: 6px; flex-wrap: wrap; } .ed-seg button { min-width: 0; } .ed-seg button { flex: 1; font: 700 .76rem var(--font); padding: 8px; border-radius: 999px; border: 1px solid var(--line-strong); background: transparent; color: var(--muted); cursor: pointer; } .ed-seg button.active { background: var(--dom); color: var(--on-dom, #06130f); border-color: transparent; }
+  .ed-nav { display: flex; gap: 8px; align-items: center; justify-content: space-between; font-size: .8rem; color: var(--muted); }
+  .demo-banner { background: #f5c518; color: #161618; font: 700 .78rem var(--font); text-align: center; padding: 8px 12px; }
+  .demo-banner select { font: inherit; margin-left: 6px; width: auto !important; display: inline-block; padding: 3px 8px !important; min-height: 0 !important; border-radius: 8px; }
 </style>
 </head>
 <body>
@@ -161,6 +209,7 @@
 
 <main class="x5-wrap">
   <div class="estado" id="estado"></div>
+  <div class="sesion" id="sesion" hidden></div>
 
   <div class="barra">
     <div class="seg" role="tablist">
@@ -240,7 +289,10 @@
 </main>
 
 <dialog id="ficha"></dialog>
+<dialog id="editor"></dialog>
+<dialog id="provs"></dialog>
 
+<script>if (/[?&]demo=1/.test(location.search) && !window.RADAR_DEMO) document.write('<script src="demo.js"><\/script>');</script>
 <script>
 (function () {
   'use strict';
@@ -256,6 +308,75 @@
 
   let DATA = null, NOV = null, vista = leer('vista') || 'cliente';
   const AG = {};
+
+  // ── Reservas compartidas, retoques de fotos y stock propio (v2.14) ──────────────
+  // La sesión es la misma del Mini CRM (x5_session). Sin sesión, el Radar funciona igual pero no reserva.
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
+  const DEMO = !!window.RADAR_DEMO || /[?&]demo=1/.test(location.search);
+  const sesion = (() => { try { return JSON.parse(localStorage.getItem('x5_session')); } catch (e) { return null; } })();
+  const SV = { ok: false, yo: null, supervisa: false, gerente: false, horas: 48, res: {}, ret: {}, provs: {}, propio: [], error: null, fp: '' };
+  const AUTOC = {}; // cajas detectadas solas en la lectura del stock (stock.json → cubrir)
+  async function post(b) {
+    if (DEMO) return window.radarDemoPost(b);
+    const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(Object.assign({ token: sesion && sesion.token }, b)) });
+    return r.json();
+  }
+  const puedeReservar = () => SV.ok && SV.yo && !['Supervisor', 'Control', 'Personal'].includes(SV.yo.rol);
+  const resDe = (id) => SV.res[id];
+  const venceTxt = (iso) => new Date(iso).toLocaleString('es-AR', { weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false });
+  const ERRORES = { ya_reservado: 'Otro negociador la reservó recién', ya_vendido: 'La unidad ya se vendió', falta_cliente: 'Poné el nombre del cliente', sin_permiso: 'Tu usuario no puede hacer eso', ya_extendida: 'Ya la extendiste una vez: pedile a tu jefe', no_activa: 'La reserva ya no está activa', sesion_vencida: 'Tu sesión venció: volvé a ingresar al Hub' };
+  function pintarSesion() {
+    const el = $('#sesion'); if (!el) return;
+    let h = '';
+    if (DEMO) h = '';
+    else if (!(sesion && sesion.token)) h = '🔒 Para reservar unidades, <a href="../crm.html">ingresá al Hub</a> con tu usuario.';
+    else if (SV.error === 'accion_invalida' || SV.error === 'tabla_invalida') h = '⚠️ Las reservas necesitan el Code.gs v2.14 del Hub (Apps Script → Nueva versión).';
+    else if (SV.error === 'sesion_vencida') h = '🔒 Tu sesión venció. <a href="../crm.html">Volvé a ingresar al Hub</a> para reservar.';
+    else if (SV.error) h = '⚠️ No se pudieron leer las reservas (sin conexión). Reintentando…';
+    else if (SV.ok) { const n = Object.values(SV.res).filter(r => r.estado === 'Activa').length; h = `🔒 Reservas conectadas · ${esc(SV.yo.nombre)} · ${n} ${n === 1 ? 'reserva activa' : 'reservas activas'} · duran ${SV.horas} h`; }
+    el.innerHTML = h; el.hidden = !h || vista === 'cliente';
+  }
+  function mezclarPropio() {
+    if (!DATA) return;
+    DATA.autos = SV.propio.concat(DATA.autos.filter(a => !a.propio));
+    AG.propio = { id: 'propio', nombre: 'Stock propio X5', ciudad: 'Mendoza', estado: 'ok' };
+  }
+  let sincronizando = false;
+  async function sincronizar() {
+    if (sincronizando || (!DEMO && !(sesion && sesion.token))) { pintarSesion(); return; }
+    sincronizando = true;
+    try {
+      const r = await post({ action: 'radar_datos' });
+      if (!r.ok) { SV.error = r.error || 'error'; SV.ok = false; return; }
+      Object.assign(SV, { ok: true, error: null, yo: r.usuario, supervisa: !!r.supervisa, gerente: !!r.gerente, horas: r.horas || 48, ret: r.retoques || {} });
+      SV.res = {}; (r.reservas || []).forEach(x => SV.res[x.auto_id] = x);
+      SV.provs = {}; (r.proveedores || []).forEach(p => SV.provs[p.id] = p);
+      const fp = JSON.stringify(r.propio || []);
+      if (fp !== SV.fp) { SV.fp = fp; SV.propio = (r.propio || []).map(a => Object.assign({}, a, { propio: true, agencia: 'propio' })); mezclarPropio(); }
+      if (!$('#ficha').open && !$('#editor').open && !$('#provs').open) render(); else retaparTodo();
+    } catch (e) { SV.error = 'sin_conexion'; }
+    finally { sincronizando = false; pintarSesion(); }
+  }
+  window.radarDemoResync = () => { SV.fp = ''; sincronizar(); };
+  setInterval(() => { if (document.visibilityState === 'visible') sincronizar(); }, 60000);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') sincronizar(); });
+
+  // Tapado de patentes, carteles y logos: cajas [x, y, ancho, alto] en proporción de la foto.
+  // Se dibujan encima de la imagen (con desenfoque) respetando el recorte de object-fit: cover.
+  const cajasDe = (url, ag) => [].concat(SV.ret[url] !== undefined ? SV.ret[url] : AUTOC[url] || [], ag ? SV.ret['prov:' + ag] || [] : []);
+  window.radarTapar = function (im) {
+    const box = im.parentElement; if (!box) return;
+    box.querySelectorAll(':scope > .tapa').forEach(x => x.remove());
+    const cajas = cajasDe(im.dataset.src, im.dataset.ag);
+    const nw = im.naturalWidth, nh = im.naturalHeight, cw = im.clientWidth, ch = im.clientHeight;
+    if (!cajas.length || !nw || !cw) return;
+    const k = Math.max(cw / nw, ch / nh), ox = (cw - nw * k) / 2 + im.offsetLeft, oy = (ch - nh * k) / 2 + im.offsetTop;
+    cajas.forEach(([x, y, w, h, t, forma]) => { const d = document.createElement('i'); d.className = 'tapa' + (t === 'pat' || t === 'cartel' ? ' ' + t : '');
+      if (t === 'cartel' && /^poly:/.test(forma || '')) { d.classList.add('poly'); d.style.clipPath = 'polygon(' + forma.slice(5).split(',').map(p => p.trim().split(/\s+/).map(v => (+v || 0) + '%').join(' ')).join(', ') + ')'; }
+      Object.assign(d.style, { left: (ox + x * nw * k) + 'px', top: (oy + y * nh * k) + 'px', width: (w * nw * k) + 'px', height: (h * nh * k) + 'px' }); box.appendChild(d); });
+  };
+  function retaparTodo() { document.querySelectorAll('img[data-src]').forEach(i => { if (i.complete && i.naturalWidth) radarTapar(i); }); }
+  let tRes; addEventListener('resize', () => { clearTimeout(tRes); tRes = setTimeout(retaparTodo, 150); });
 
   const LS = (id) => id === 'regla' ? 'regla2' : id; // regla2: la regla "El mayor" pasa a ser la predeterminada
   ['regla', 'fijo', 'pct', 'corte', 'pbajo', 'palto', 'papeles', 'usd'].forEach(id => { const v = leer(LS(id)); if (v != null) $('#' + id).value = v; });
@@ -277,6 +398,10 @@
   }
 
   function calcular(a, p) {
+    if (a.propio) { // stock propio: el precio cargado es el precio X5
+      const v = a.precio == null ? null : (a.moneda === 'USD' ? a.precio * p.usd : a.precio);
+      return { costo: null, ref: null, x5: v, cero: false, base: 'propio', calle: v != null ? r100k(v * (1 + p.papeles)) : null, margen: null, vsGuia: null };
+    }
     const costo = a.precio == null ? null : (a.moneda === 'USD' ? a.precio * p.usd : a.precio);
     const ref = a.guia ? (a.guia.mejor?.valor ?? a.guia.med) : null;
     let x5 = null, base = null;
@@ -296,10 +421,10 @@
         && (!q || `${a.marca} ${a.modelo} ${a.version} ${a.anio} ${a.combustible} ${a.color}`.toLowerCase().includes(q)));
     const o = $('#orden').value;
     const key = { nuevo: x => -Date.parse(x.a.alta || x.a.publicado), barato: x => x.k.x5 ?? 1e15, caro: x => -(x.k.x5 ?? -1), anio: x => -x.a.anio * 1e7 + (x.a.km || 0), km: x => x.a.km ?? 1e9, guia: x => x.k.vsGuia ?? 1e9 }[o];
-    return L.sort((x, y) => key(x) - key(y));
+    return L.sort((x, y) => key(x) - key(y)).sort((x, y) => (y.a.propio ? 1 : 0) - (x.a.propio ? 1 : 0)); // el stock propio siempre arriba
   }
 
-  const img = (src, alt) => src ? `<img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="${esc(src)}" alt="${esc(alt)}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'sin',textContent:'Foto no disponible'}))">` : '<span class="sin">Sin foto</span>';
+  const img = (src, alt, ag) => src ? `<img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="${esc(src)}" data-src="${esc(src)}" data-ag="${esc(ag || '')}" onload="radarTapar(this)" alt="${esc(alt)}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'sin',textContent:'Foto no disponible'}))">` : '<span class="sin">Sin foto</span>';
 
   function render() {
     const p = P();
@@ -322,19 +447,22 @@
     document.querySelectorAll('#ordenar button').forEach(b => b.classList.toggle('active', b.dataset.o === $('#orden').value));
     $('#cfg-box').hidden = vista === 'cliente';
     $('#estado').hidden = vista === 'cliente';
+    if ($('#sesion')) $('#sesion').hidden = vista === 'cliente' || !$('#sesion').innerHTML;
     $('#r-hero').innerHTML = '';
     if (vista === 'compra') return prepararCompra();
     if (vista === 'guia') return prepararGuia();
     if (!DATA) return;
     if (vista === 'novedades') return renderNovedades();
-    const L = filtrados().filter(x => vista === 'interno' || x.k.x5 != null);
+    const L = filtrados().filter(x => (vista === 'interno' || x.k.x5 != null) && !(vista === 'cliente' && resDe(x.a.id)?.estado === 'Vendida')); // lo vendido no se muestra al cliente
     $('#cuenta').textContent = `${L.length} ${L.length === 1 ? 'unidad' : 'unidades'}${vista === 'cliente' ? ' disponibles' : ''}`;
     const lider = vista === 'interno' ? heroInterno(L) : null;
+    if (vista === 'interno' && (SV.ok || DEMO)) $('#r-hero').insertAdjacentHTML('afterbegin', panelReservas());
+    pintarSesion();
     if (!L.length) { $('#v-' + vista).innerHTML = '<div class="vacio">Ninguna unidad coincide con la búsqueda.</div>'; return; }
     if (vista === 'cliente') {
       $('#v-cliente').innerHTML = L.map(({ a, k }) => `
-        <button class="auto" data-id="${esc(a.id)}">
-          <div class="foto">${img(a.fotos[0], `${a.marca} ${a.modelo}`)}${a.fotos.length > 1 ? `<span class="n">${a.fotos.length} fotos</span>` : ''}</div>
+        <button class="auto${resDe(a.id) && !resDe(a.id).mia ? ' res' : ''}" data-id="${esc(a.id)}">
+          <div class="foto">${cinta(a)}${img(a.fotos[0], `${a.marca} ${a.modelo}`, a.agencia)}${a.fotos.length > 1 ? `<span class="n">${a.fotos.length} fotos</span>` : ''}</div>
           <div class="info">
             <h3>${esc(a.marca)} ${esc(a.modelo)}</h3>
             <div class="ver">${esc(a.version)}</div>
@@ -348,9 +476,9 @@
         const vs = k.vsGuia;
         const esL = lider && a.id === lider;
         return `<div class="fila${esL ? ' lead' : ''}" data-id="${esc(a.id)}" tabindex="0">
-          <div class="foto">${img(a.fotos[0], a.modelo)}</div>
-          <div><div class="t">${esc(a.marca)} ${esc(a.modelo)} ${a.anio}${esL ? '<span class="tag-lead">Mejor margen</span>' : ''}</div><div class="s">${esc(a.version)} · ${a.km != null ? nf.format(a.km) + ' km' : ''} · ${esc(a.caja)}<br>${esc(ag)}${a.sucursal ? ' · ' + esc(a.sucursal) : ''} · publicado ${fecha(a.alta || a.publicado).split(',')[0]}${a.oportunidad ? ' · <b style="color:var(--dom)">Oportunidad</b>' : ''}</div></div>
-          <div class="c-ag"><div class="k">Agencia</div><div class="v num">${a.precio == null ? 'A confirmar' : a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio) : mill(a.precio)}</div></div>
+          <div class="foto">${img(a.fotos[0], a.modelo, a.agencia)}</div>
+          <div><div class="t">${esc(a.marca)} ${esc(a.modelo)} ${a.anio}${a.propio ? '<span class="tag-propio">Propio</span>' : ''}${esL ? '<span class="tag-lead">Mejor margen</span>' : ''}${tagRes(a)}</div><div class="s">${esc(a.version)} · ${a.km != null ? nf.format(a.km) + ' km' : ''} · ${esc(a.caja)}<br>${esc(ag)}${a.sucursal ? ' · ' + esc(a.sucursal) : ''} · publicado ${fecha(a.alta || a.publicado).split(',')[0]}${a.oportunidad ? ' · <b style="color:var(--dom)">Oportunidad</b>' : ''}</div></div>
+          <div class="c-ag"><div class="k">${a.propio ? 'Precio cargado' : 'Agencia'}</div><div class="v num">${a.precio == null ? 'A confirmar' : a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio) : mill(a.precio)}</div></div>
           <div class="c-guia"><div class="k">Guía${a.guia?.mejor ? '' : ' (mediana)'}</div><div class="v num">${mill(k.ref)}</div></div>
           <div class="c-x5"><div class="k">Precio X5${k.base ? ` <span class="chip ${k.base === 'agencia' ? 'warn' : 'x5'}" title="Base que ganó en la regla El mayor">por ${k.base}</span>` : ''}</div><div class="v num">${mill(k.x5)}</div><div class="s num">${k.margen != null ? `<span class="${k.margen >= 0 ? 'pos' : 'neg'}">${k.margen >= 0 ? '+' : '−'}${mill(Math.abs(k.margen))}</span>` : ''}</div>
             ${a.precio == null && P().regla === 'fijo' ? '<span class="chip">sin precio</span>' : vs == null ? '<span class="chip">sin guía</span>' : `<span class="chip ${vs <= 0 ? 'ok' : vs <= .15 ? 'x5' : vs <= .3 ? 'warn' : 'bad'}">guía ${vs >= 0 ? '+' : '−'}${Math.abs(Math.round(vs * 100))}%</span>`}</div>
@@ -417,6 +545,146 @@
       <div class="rx-ley"><span><i class="b-nuevo"></i>${tot('nuevo')} nuevos</span><span><i class="b-precio"></i>${tot('precio')} cambios de precio</span><span><i class="b-baja"></i>${tot('baja')} salieron</span></div></section>`;
   }
 
+  // ── Reservas: marcas en tarjetas y filas, caja en la ficha, panel en el Interno ──
+  function cinta(a) {
+    const r = resDe(a.id); if (!r) return '';
+    if (r.estado === 'Vendida') return '<span class="cinta vend">Vendido</span>';
+    return r.mia ? '<span class="cinta mia">Tu reserva</span>' : '<span class="cinta">Reservado</span>';
+  }
+  function tagRes(a) {
+    const r = resDe(a.id); if (!r) return '';
+    if (r.estado === 'Vendida') return '<span class="tag-res vend">Vendido</span>';
+    return `<span class="tag-res${r.mia ? ' mia' : ''}">${r.mia ? 'Tu reserva' : 'Reservado · ' + esc(r.negociador || '')}</span>`;
+  }
+  const bloqueada = (a) => { const r = resDe(a.id); return r && (r.estado === 'Vendida' || !r.mia); };
+  function cajaReserva(a, k) {
+    const r = resDe(a.id), cli = vista === 'cliente';
+    if (!SV.ok && !DEMO) return sesion && sesion.token ? '' : '<div class="reserva"><small>🔒 Para reservar esta unidad, <a href="../crm.html">ingresá al Hub</a> con tu usuario.</small></div>';
+    if (r && r.estado === 'Vendida') return `<div class="reserva"><b>Unidad vendida</b><small>${cli ? 'Ya no está disponible.' : 'La vendió ' + esc(r.negociador || 'otro negociador') + '.'}</small></div>`;
+    if (r && !r.mia) return `<div class="reserva"><b>🔒 Reservada${cli ? '' : ' por ' + esc(r.negociador || 'otro negociador')}</b><small>${cli ? 'Por ahora no está disponible.' : 'Hasta el ' + venceTxt(r.vence) + '. No se puede ofrecer mientras dure la reserva.'}</small>
+      ${!cli && r.puedeCerrar ? `<div class="botones"><button class="btn btn-ghost btn-sm" data-r="lib">Liberar</button><button class="btn btn-ghost btn-sm" data-r="ext">Extender ${SV.horas} h</button></div>` : ''}</div>`;
+    if (r && r.mia) return `<div class="reserva mia"><b>✅ Reservada para ${esc(r.cliente || 'tu cliente')}</b>
+      <small>Vence el ${venceTxt(r.vence)}. ${r.proveedor_aviso ? 'La agencia ya fue avisada.' : 'Gerencia avisa a la agencia para frenar la venta.'}</small>
+      <div class="botones"><button class="btn btn-dom btn-sm" data-r="vend">Se vendió</button><button class="btn btn-ghost btn-sm" data-r="ext"${r.extendida && !SV.supervisa ? ' disabled title="Ya se extendió una vez"' : ''}>Extender ${SV.horas} h</button><button class="btn btn-ghost btn-sm" data-r="lib">Liberar</button></div></div>`;
+    if (!puedeReservar()) return '';
+    return `<div class="reserva"><button class="btn btn-dom" data-r="abrir">🔒 Reservar para un cliente</button>
+      <form data-r-form hidden>
+        <input name="cliente" placeholder="Nombre del cliente" required autocomplete="off">
+        <input name="telefono" placeholder="Teléfono (opcional)" inputmode="tel" autocomplete="off">
+        <input name="notas" placeholder="Seña, forma de pago, observaciones (opcional)" autocomplete="off">
+        <small>La reserva dura ${SV.horas} h: la unidad queda bloqueada para los demás negociadores y gerencia recibe el aviso para frenarla en la agencia.</small>
+        <div class="botones"><button class="btn btn-dom btn-sm" type="submit">Confirmar reserva</button><button class="btn btn-ghost btn-sm" type="button" data-r="cancelar">Cancelar</button></div>
+      </form></div>`;
+  }
+  async function accionReserva(a, k, que, form, boton) {
+    const r = resDe(a.id);
+    if (que === 'abrir') { boton.hidden = true; form.hidden = false; form.cliente.focus(); return; }
+    if (que === 'cancelar') { form.hidden = true; form.previousElementSibling.hidden = false; return; }
+    if ((que === 'vend' || que === 'lib') && !confirm(que === 'vend' ? '¿Confirmás que la unidad se vendió?' : '¿Liberar la reserva? La unidad vuelve a estar disponible para todos.')) return;
+    const b = que === 'reservar'
+      ? { action: 'radar_reservar', cliente: form.cliente.value.trim(), telefono: form.telefono.value.trim(), notas: form.notas.value.trim(),
+          auto: { id: a.id, desc: `${a.marca} ${a.modelo} ${a.version || ''} ${a.anio || ''}`.replace(/\s+/g, ' ').trim(), agencia: a.agencia, precio_x5: k.x5, url: a.url || '' } }
+      : { action: { ext: 'radar_extender', lib: 'radar_liberar', vend: 'radar_vendida' }[que], id: r.id };
+    if (boton) { boton.disabled = true; boton.textContent = 'Guardando…'; }
+    try {
+      const x = await post(b);
+      if (!x.ok) { alert(ERRORES[x.error] || (x.error === 'accion_invalida' ? 'El Hub todavía no tiene las reservas: hay que publicar el Code.gs v2.14.' : 'No se pudo: ' + x.error)); }
+      else if (navigator.vibrate) navigator.vibrate(30);
+    } catch (e) { alert('Sin conexión. Probá de nuevo.'); }
+    await sincronizar(); abrirFicha(a.id);
+  }
+  function panelReservas() {
+    const act = Object.values(SV.res).filter(r => r.estado === 'Activa').sort((x, y) => (y.mia - x.mia) || x.vence.localeCompare(y.vence));
+    const vend = Object.values(SV.res).filter(r => r.estado === 'Vendida');
+    const quien = SV.supervisa ? 'Reservas del equipo' : 'Reservas';
+    return `<section class="rsv-panel" aria-label="${quien}"><h3><span>🔒 ${quien} · ${act.length} ${act.length === 1 ? 'activa' : 'activas'}${vend.length ? ` · ${vend.length} ${vend.length === 1 ? 'vendida' : 'vendidas'} esta semana` : ''}</span>
+      <span>${SV.supervisa ? '<button class="btn btn-ghost btn-sm" data-rp="retocar">Tapar fotos</button> ' : ''}${SV.gerente ? '<button class="btn btn-ghost btn-sm" data-rp="provs">Agencias</button>' : ''}</span></h3>
+      ${act.length ? act.map(r => {
+        const p = SV.provs[r.agencia] || {}, wa = p.whatsapp ? waLink(p.whatsapp, mensajeProveedor(r)) : '';
+        return `<div class="rsv-it"><div><b>${esc(r.auto)}</b>${r.mia ? ' <span class="tag-res mia">Tuya</span>' : ''}
+          <div class="s">${esc(r.negociador)}${r.cliente ? ' · cliente ' + esc(r.cliente) : ''}${r.telefono ? ' · ' + esc(r.telefono) : ''} · vence ${venceTxt(r.vence)}${SV.supervisa ? (r.proveedor_aviso ? ' · <span style="color:var(--dom)">agencia avisada</span>' : ' · <b style="color:#f5c518">falta avisar a la agencia</b>') : ''}</div></div>
+          <div class="acc"><button class="btn btn-ghost btn-sm" data-id="${esc(r.auto_id)}">Ver</button>${SV.supervisa ? `${wa ? `<a class="btn btn-wsp btn-sm" href="${esc(wa)}" target="_blank" rel="noopener" data-avisar="${esc(r.id)}">Avisar por WhatsApp</a>` : r.url ? `<a class="btn btn-ghost btn-sm" href="${esc(r.url)}" target="_blank" rel="noopener">Abrir publicación</a>` : ''}${r.proveedor_aviso ? '' : `<button class="btn btn-ghost btn-sm" data-avisado="${esc(r.id)}">Marcar avisada</button>`}` : ''}</div></div>`;
+      }).join('') : '<div class="rsv-it"><div class="s">No hay reservas activas. Abrí una unidad y tocá «Reservar para un cliente».</div></div>'}</section>`;
+  }
+  const waLink = (n, txt) => { let d = String(n).replace(/\D/g, ''); if (d.length <= 10) d = '549' + d.replace(/^0/, ''); return `https://wa.me/${d}?text=${encodeURIComponent(txt)}`; };
+  const mensajeProveedor = (r) => `Hola, les escribimos de X5 Argentina. Tenemos un cliente interesado en el ${r.auto}${r.url ? ' (' + r.url + ')' : ''}. ¿Nos lo pueden reservar hasta el ${venceTxt(r.vence)}? Gracias.`;
+  document.addEventListener('click', async (e) => {
+    const av = e.target.closest('[data-avisado]'), wa = e.target.closest('[data-avisar]');
+    const id = (av || wa) && (av ? av.dataset.avisado : wa.dataset.avisar);
+    if (id && (av || confirm('¿Marcar que la agencia ya fue avisada?'))) { const x = await post({ action: 'radar_aviso_proveedor', id }); if (!x.ok) alert(ERRORES[x.error] || x.error); sincronizar(); }
+    const rp = e.target.closest('[data-rp]'); if (rp) rp.dataset.rp === 'provs' ? abrirProveedores() : abrirEditor();
+  });
+
+  // ── Agencias (proveedores): WhatsApp para el aviso de reserva. Solo gerencia. ──
+  function abrirProveedores() {
+    const d = $('#provs'), L = (DATA?.agencias || []).map(a => Object.assign({ id: a.id, nombre: a.nombre }, SV.provs[a.id] || {}));
+    d.innerHTML = `<div style="position:relative"><button class="btn btn-ghost btn-icon cerrar" aria-label="Cerrar" data-cerrar>✕</button>
+      <div class="rsv-cfg"><h2 style="margin:0">Agencias</h2><small style="color:var(--muted)">El WhatsApp de cada agencia arma el botón «Avisar por WhatsApp» con el pedido de reserva. Solo lo ven gerencia y jefes, nunca los negociadores ni el cliente.</small>
+      ${L.map(p => `<form data-prov="${esc(p.id)}" style="display:grid;gap:8px;border-top:1px solid var(--line);padding-top:10px"><b>${esc(p.nombre)}</b>
+        <label>WhatsApp<input name="whatsapp" value="${esc(p.whatsapp || '')}" placeholder="261 555 1234" inputmode="tel"></label>
+        <label>Contacto<input name="contacto" value="${esc(p.contacto || '')}" placeholder="Nombre de quien atiende"></label>
+        <button class="btn btn-dom btn-sm" type="submit">Guardar</button></form>`).join('')}</div></div>`;
+    d.onclick = (e) => { if (e.target === d || e.target.closest('[data-cerrar]')) d.close(); };
+    d.onsubmit = async (e) => { e.preventDefault(); const f = e.target, b = f.querySelector('button'); b.disabled = true; b.textContent = 'Guardando…';
+      const x = await post({ action: 'radar_proveedor_guardar', proveedor: { id: f.dataset.prov, nombre: AG[f.dataset.prov]?.nombre || f.dataset.prov, whatsapp: f.whatsapp.value, contacto: f.contacto.value, web: '' } });
+      b.disabled = false; b.textContent = x.ok ? 'Guardado ✓' : 'Error: ' + x.error; sincronizar(); };
+    d.showModal();
+  }
+
+  // ── Editor para tapar patentes, carteles y logos ajenos (jefes y gerencia) ──
+  // El lector del stock ya marca solo patentes y carteles amarillos (línea celeste, «auto»). Acá se corrige:
+  // si se toca una foto, lo que se guarda a mano reemplaza a lo automático de esa foto.
+  // «Toda la agencia» aplica la caja a todas las fotos de esa agencia (ej. un logo siempre en el mismo lugar).
+  const TIPOS = { pat: 'Patente → placa X5', cartel: 'Cartel → rojo X5', logo: 'Logo → desenfocar' };
+  function abrirEditor(autoId, iFoto) {
+    const L = autoId ? [DATA.autos.find(a => a.id === autoId)] : filtrados().map(x => x.a).filter(a => !a.propio && a.fotos.length);
+    if (!L.length || !L[0]) return;
+    let ia = 0, ifo = iFoto || 0, modo = 'foto', tipo = 'pat';
+    const d = $('#editor');
+    const deFoto = (src) => SV.ret[src] !== undefined ? { cajas: SV.ret[src], auto: false } : { cajas: AUTOC[src] || [], auto: !!(AUTOC[src] || []).length };
+    const pintar = () => {
+      const a = L[ia], src = a.fotos[ifo], ag = a.agencia;
+      const pf = deFoto(src), prov = SV.ret['prov:' + ag] || [];
+      d.innerHTML = `<div style="position:relative"><button class="btn btn-ghost btn-icon cerrar" aria-label="Cerrar" data-cerrar>✕</button><div class="ed">
+        <h2 style="margin:0;font-size:1rem">Tapar patentes, carteles y logos</h2>
+        <div class="ed-nav"><span>${esc(a.marca)} ${esc(a.modelo)} ${a.anio} · foto ${ifo + 1}/${a.fotos.length}${L.length > 1 ? ` · unidad ${ia + 1}/${L.length}` : ''}</span>
+          <span><button class="btn btn-ghost btn-sm" data-e="ant">‹</button> <button class="btn btn-ghost btn-sm" data-e="sig">›</button></span></div>
+        <div class="ed-seg" role="group" aria-label="Qué se tapa">${Object.entries(TIPOS).map(([k, v]) => `<button type="button" data-e="t-${k}" class="${tipo === k ? 'active' : ''}">${v}</button>`).join('')}</div>
+        <div class="ed-seg" role="group" aria-label="Dónde"><button type="button" data-e="m-foto" class="${modo === 'foto' ? 'active' : ''}">Esta foto</button><button type="button" data-e="m-prov" class="${modo === 'prov' ? 'active' : ''}">Toda la agencia (${esc(AG[ag]?.nombre || ag)})</button></div>
+        <div class="ed-stage" id="ed-stage"><img src="${esc(src)}" referrerpolicy="no-referrer" alt="">
+          ${pf.cajas.map((c, i) => caja(c, pf.auto ? 'auto' : 'foto', i)).join('')}${prov.map((c, i) => caja(c, 'prov', i)).join('')}</div>
+        <small style="color:var(--muted)">${pf.auto ? '<b>Celeste: lo marcó el sistema.</b> Si está bien, no hace falta tocar nada. ' : SV.ret[src] !== undefined ? 'Esta foto ya fue revisada a mano. ' : ''}Elegí qué vas a tapar y arrastrá sobre la foto. Las patentes llevan la placa con el logo de X5 y los carteles amarillos pasan a cartel rojo X5. Los logos de otras agencias se desenfocan.</small></div></div>`;
+      const st = $('#ed-stage'); let ini = null, nueva = null;
+      st.onpointerdown = (e) => { if (e.target.closest('button')) return; const r = st.getBoundingClientRect(); ini = [(e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height];
+        nueva = document.createElement('div'); nueva.className = 'ed-box t-' + tipo + (modo === 'prov' ? ' prov' : ''); st.appendChild(nueva); st.setPointerCapture(e.pointerId); };
+      st.onpointermove = (e) => { if (!ini) return; const r = st.getBoundingClientRect(), x = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), y = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+        Object.assign(nueva.style, { left: Math.min(x, ini[0]) * 100 + '%', top: Math.min(y, ini[1]) * 100 + '%', width: Math.abs(x - ini[0]) * 100 + '%', height: Math.abs(y - ini[1]) * 100 + '%' }); nueva.dataset.c = JSON.stringify([Math.min(x, ini[0]), Math.min(y, ini[1]), Math.abs(x - ini[0]), Math.abs(y - ini[1]), tipo]); };
+      st.onpointerup = async () => { if (!ini) return; ini = null; const c = nueva.dataset.c && JSON.parse(nueva.dataset.c); if (!c || c[2] < .01 || c[3] < .01) { nueva.remove(); return; }
+        const id = modo === 'prov' ? 'prov:' + ag : src, base = modo === 'prov' ? prov : pf.cajas; await guardarCajas(id, base.concat([c]), a); pintar(); };
+    };
+    // La foto del editor no tiene recorte (se ve entera), así que las cajas van en porcentaje directo.
+    const caja = (c, t, i) => `<div class="ed-box t-${c[4] || 'logo'}${t === 'prov' ? ' prov' : t === 'auto' ? ' auto' : ''}" style="left:${c[0] * 100}%;top:${c[1] * 100}%;width:${c[2] * 100}%;height:${c[3] * 100}%"><span>${t === 'auto' ? 'auto · ' : ''}${{ pat: 'patente', cartel: 'cartel' }[c[4]] || 'logo'}</span><button type="button" data-borrar="${t}:${i}" aria-label="Quitar">✕</button></div>`;
+    d.onclick = async (e) => {
+      if (e.target === d || e.target.closest('[data-cerrar]')) { d.close(); render(); return; }
+      const a = L[ia], b = e.target.closest('[data-e]'), del = e.target.closest('[data-borrar]');
+      if (del) { const [t, i] = del.dataset.borrar.split(':'), id = t === 'prov' ? 'prov:' + a.agencia : a.fotos[ifo], base = t === 'prov' ? SV.ret[id] || [] : deFoto(id).cajas;
+        await guardarCajas(id, base.filter((_, j) => j !== +i), a); return pintar(); }
+      if (!b) return;
+      const q = b.dataset.e;
+      if (q === 'm-foto' || q === 'm-prov') modo = q.slice(2);
+      if (q.startsWith('t-')) { tipo = q.slice(2); if (tipo === 'logo' && modo === 'foto') modo = 'prov'; if (tipo !== 'logo') modo = 'foto'; }
+      if (q === 'sig') { if (ifo < a.fotos.length - 1) ifo++; else if (ia < L.length - 1) { ia++; ifo = 0; } }
+      if (q === 'ant') { if (ifo > 0) ifo--; else if (ia > 0) { ia--; ifo = L[ia].fotos.length - 1; } }
+      pintar();
+    };
+    pintar(); d.showModal();
+  }
+  async function guardarCajas(id, cajas, a) {
+    SV.ret[id] = cajas; // se ve al instante; el servidor confirma
+    try { const x = await post({ action: 'radar_retoque', foto: id, cajas, auto_id: a.id, agencia: a.agencia }); if (!x.ok) alert(ERRORES[x.error] || x.error); else SV.ret[id] = x.cajas; }
+    catch (e) { alert('Sin conexión: la caja no se guardó.'); }
+  }
+
   function textoCliente(a, k) {
     return [`🚗 *${a.marca} ${a.modelo} ${a.anio}*`, a.version, `📍 ${a.km != null ? nf.format(a.km) + ' km' : ''} · ${a.caja}${a.combustible ? ' · ' + a.combustible : ''}${a.color ? ' · ' + a.color : ''}`,
       `💰 *${plata(k.x5)}* + papeles`, `Puesto en calle: ${plata(k.calle)}`, '', 'X5 Argentina · Región Cuyo'].filter(Boolean).join('\n');
@@ -428,9 +696,9 @@
     const d = $('#ficha');
     d.innerHTML = `<div style="position:relative">
       <button class="btn btn-ghost btn-icon cerrar" aria-label="Cerrar" data-cerrar>✕</button>
-      <div class="galeria">${a.fotos.map((f, i) => `<img src="${esc(f)}" referrerpolicy="no-referrer" loading="${i < 2 ? 'eager' : 'lazy'}" alt="${esc(a.modelo)} foto ${i + 1}">`).join('') || '<div class="foto" style="flex:1"><span class="sin">Sin fotos</span></div>'}</div>
+      <div class="galeria">${a.fotos.map((f, i) => `<div class="gimg">${cinta(a)}<img src="${esc(f)}" data-src="${esc(f)}" data-ag="${esc(a.agencia)}" onload="radarTapar(this)" referrerpolicy="no-referrer" loading="${i < 2 ? 'eager' : 'lazy'}" alt="${esc(a.modelo)} foto ${i + 1}"></div>`).join('') || '<div class="foto" style="flex:1"><span class="sin">Sin fotos</span></div>'}</div>
       <div class="ficha">
-        <div><h2>${esc(a.marca)} ${esc(a.modelo)} ${a.anio}</h2><div class="ver" style="color:var(--muted)">${esc(a.version)}</div></div>
+        <div><h2>${esc(a.marca)} ${esc(a.modelo)} ${a.anio}${a.propio && interno ? '<span class="tag-propio">Propio</span>' : ''}</h2><div class="ver" style="color:var(--muted)">${esc(a.version)}</div></div>
         <div class="precio num">${plata(k.x5)}<small>+ papeles · puesto en calle ${plata(k.calle)}</small></div>
         <div class="tabla">
           <div><span>Kilómetros</span>${a.km != null ? nf.format(a.km) : 's/d'}</div><div><span>Caja</span>${esc(a.caja) || 's/d'}</div>
@@ -441,15 +709,18 @@
           <div><b>${esc(AG[a.agencia]?.nombre || a.agencia)}</b> (${esc(a.sucursal || AG[a.agencia]?.ciudad || '')}) · precio publicado ${a.precio == null ? 'a confirmar' : a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio) : plata(a.precio)}${a.precio_sin_imp ? ` · sin impuestos ${a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio_sin_imp) : plata(a.precio_sin_imp)}` : ''}</div>
           <div>Guía ${esc(DATA.guia?.fuente || '')}: ${a.guia ? (a.guia.mejor ? `${esc(a.guia.mejor.version)} → <b>${plata(a.guia.mejor.valor)}</b>` : 'versión no identificada') + ` · rango ${mill(a.guia.min)} – ${mill(a.guia.max)} (${a.guia.n} versiones)` : 'sin coincidencia'}</div>
           <div>${k.base ? `Base del precio: <b>${k.base === 'agencia' ? 'agencia + ' + Math.round((k.costo < P().corte ? P().pbajo : P().palto) * 100) + '%' : 'guía + ' + Math.round(P().pct * 100) + '%'}</b> · ` : ''}Margen X5: <b>${k.margen != null ? plata(k.margen) : '—'}</b>${k.vsGuia != null ? ` · precio X5 a guía ${k.vsGuia >= 0 ? '+' : '−'}${Math.abs(Math.round(k.vsGuia * 100))}%` : ''}</div>
-          <div><a href="${esc(a.url)}" target="_blank" rel="noopener">Ver publicación original</a></div>
+          <div>${a.url ? `<a href="${esc(a.url)}" target="_blank" rel="noopener">Ver publicación original</a>` : a.propio ? 'Unidad de stock propio' + (a.ubicacion ? ' · ' + esc(a.ubicacion) : '') : ''}${SV.supervisa && !a.propio && a.fotos.length ? ' · <a href="#" data-retocar>Tapar patentes y logos</a>' : ''}</div>
         </div>` : ''}
-        <div class="acciones">
+        ${cajaReserva(a, k)}
+        <div class="acciones">${bloqueada(a) ? '<small style="color:var(--muted)">No se puede ofrecer: está reservada por otro negociador o ya se vendió.</small>' : `
           <button class="btn btn-ghost" data-copiar>Copiar datos</button>
-          <button class="btn btn-wsp" data-compartir>Enviar por WhatsApp</button>
+          <button class="btn btn-wsp" data-compartir>Enviar por WhatsApp</button>`}
         </div>
       </div></div>`;
     d.onclick = async (e) => {
       if (e.target === d || e.target.closest('[data-cerrar]')) return d.close();
+      if (e.target.closest('[data-retocar]')) { e.preventDefault(); d.close(); const g = d.querySelector('.galeria'); return abrirEditor(a.id, g ? Math.round(g.scrollLeft / g.clientWidth) : 0); }
+      const rb = e.target.closest('[data-r]'); if (rb) { const box = rb.closest('.reserva'); return accionReserva(a, k, rb.dataset.r, box.querySelector('form'), rb); }
       const txt = textoCliente(a, k);
       if (e.target.closest('[data-copiar]')) {
         try { await navigator.clipboard.writeText(txt); e.target.textContent = 'Copiado ✓'; } catch (err) { prompt('Copiá el texto:', txt); }
@@ -458,7 +729,8 @@
         window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
       }
     };
-    d.showModal();
+    d.onsubmit = (e) => { e.preventDefault(); const f = e.target; if (!f.cliente.value.trim()) return f.cliente.focus(); accionReserva(a, k, 'reservar', f, f.querySelector('[type=submit]')); };
+    if (!d.open) d.showModal();
   }
 
   document.addEventListener('click', (e) => {
@@ -616,8 +888,8 @@
       <div class="cuenta">${esc(titulo2)} · ordenado por margen para X5 (${p.regla === 'mayor' ? 'venta al mayor entre guía + ' + Math.round(p.pct * 100) + '% y agencia + %' : 'venta a guía + ' + Math.round(p.pct * 100) + '%'})</div>
       <div class="lista">${L.map(({ a, k }) => `
         <a class="fila" href="${esc(a.url)}" target="_blank" rel="noopener">
-          <div class="foto">${img(a.foto, a.modelo)}</div>
-          <div><div class="t">${esc(a.marca)} ${esc(a.modelo)} ${a.anio || ''}</div>
+          <div class="foto">${img(a.foto, a.modelo, a.fuente)}</div>
+          <div><div class="t">${esc(a.marca)} ${esc(a.modelo)} ${a.anio || ''}${a.id ? tagRes(a) : ''}</div>
             <div class="s">${esc(a.version)}${a.km != null ? ' · ' + nf.format(a.km) + ' km' : ''}<br>${esc([a.localidad, a.provincia].filter(Boolean).join(', '))} · ${esc(a.fuenteNombre || (a.fuente === 'deruedas' ? 'DeRuedas' : 'Autocosmos'))}${a.vendedor && a.vendedor !== a.fuenteNombre ? ' · ' + esc(a.vendedor) : ''}</div>
             <div class="s num" style="margin-top:3px"><b>${a.moneda === 'USD' ? 'U$S ' + nf.format(a.precio) + ' ≈ ' : ''}${mill(k.ars)}</b></div></div>
           <div class="c-ag"><div class="k">Publicado</div><div class="v num">${mill(k.ars)}</div></div>
@@ -634,10 +906,13 @@
   fetch('data/stock.json', { cache: 'no-store' }).then(r => r.json()).then(d => {
     DATA = d;
     d.agencias.forEach(a => AG[a.id] = a);
+    (d.cubrir ? Object.entries(d.cubrir) : []).forEach(([u, c]) => AUTOC[u] = c); // cajas automáticas, si el lector las detecta
+    if (SV.propio.length) mezclarPropio();
     $('#estado').innerHTML = d.agencias.map(a => `<span class="chip ${a.estado === 'ok' ? 'ok' : 'bad'}" title="${esc(a.detalle || '')}">${esc(a.nombre)} · ${a.autos} autos · ${a.estado === 'ok' ? 'leído ' + fecha(a.actualizado) : 'falló la lectura, se muestra el stock anterior'}</span>`).join('');
     const marcas = [...new Set(d.autos.map(a => a.marca).filter(Boolean))].sort();
     $('#marca').insertAdjacentHTML('beforeend', marcas.map(m => `<option>${esc(m)}</option>`).join(''));
     render();
+    sincronizar();
   }).catch(() => { $('#v-cliente').innerHTML = '<div class="vacio">No se pudo cargar el stock. Revisá la conexión y volvé a abrir la página.</div>'; });
 })();
 </script>

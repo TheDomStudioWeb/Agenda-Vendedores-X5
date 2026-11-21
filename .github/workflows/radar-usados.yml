@@ -5,9 +5,14 @@ on:
   schedule:
     - cron: '40 10,17 * * *'
   workflow_dispatch:
+    inputs:
+      muestras:
+        description: 'Fotos al azar para revisar la detección de patentes y carteles (0 = ninguna). Se publican en la rama radar-muestras.'
+        default: '0'
   push:
     branches: [main, radar-usados]
     paths: ['radar/scraper/**', '.github/workflows/radar-usados.yml']
+  # Para recalcular todas las tapas: subir VERSION en radar/scraper/cubrir.py
 permissions:
   contents: write
 concurrency: radar-usados
@@ -22,6 +27,29 @@ jobs:
         run: npm i --no-save --no-package-lock playwright@1.47.2 && npx playwright install --with-deps chromium
       - name: Leer agencias
         run: node radar/scraper/actualizar.mjs
+      # Patentes → placa X5 y carteles amarillos → cartel rojo X5 (cada foto se analiza una sola vez)
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12', cache: pip, cache-dependency-path: radar/scraper/requisitos-cubrir.txt }
+      - uses: actions/cache@v4
+        with: { path: ~/.cache/open-image-models, key: modelo-patentes-v1 }
+      - name: Detectar patentes y carteles
+        continue-on-error: true      # si falla, el stock se guarda igual (sin tapas nuevas)
+        timeout-minutes: 25
+        env: { CUBRIR_MUESTRAS: muestras-tapas, CUBRIR_REVISAR: "${{ inputs.muestras || '0' }}" }
+        run: |
+          pip install -q -r radar/scraper/requisitos-cubrir.txt
+          python radar/scraper/cubrir.py
+      - name: Muestras para revisar la detección
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with: { name: muestras-tapas, path: muestras-tapas, retention-days: 7, if-no-files-found: ignore }
+      - name: Publicar muestras en la rama radar-muestras
+        if: ${{ inputs.muestras && inputs.muestras != '0' }}
+        continue-on-error: true
+        run: |
+          cd muestras-tapas && git init -q -b radar-muestras && git add . && git -c user.name=radar-bot -c user.email=radar-bot@users.noreply.github.com commit -qm "Muestras de tapas"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" radar-muestras
       - name: Guardar stock
         if: always()
         run: |

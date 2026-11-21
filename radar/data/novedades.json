@@ -1,6 +1,30 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-21T02:49:46.415Z",
+   "tipo": "nuevo",
+   "id": "maipu-184411",
+   "auto": "Nissan Frontier 2021",
+   "precio": 34000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-21T02:49:46.415Z",
+   "tipo": "nuevo",
+   "id": "maipu-184389",
+   "auto": "Renault Kangoo 2023",
+   "precio": 23000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-21T02:49:46.415Z",
+   "tipo": "nuevo",
+   "id": "maipu-184365",
+   "auto": "Volkswagen Suran 2018",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-11-20T18:47:32.965Z",
    "tipo": "nuevo",
    "id": "maipu-184342",
