@@ -11,8 +11,9 @@ Si un jefe corrige una foto a mano en el Radar, lo manual reemplaza a lo automá
 Variables opcionales:
   CUBRIR_MAX=3000         fotos nuevas por corrida (el resto sigue en la próxima)
   CUBRIR_MUESTRAS=dir     guarda hasta 40 fotos con las cajas dibujadas (para calibrar)
+  CUBRIR_REVISAR=60       además vuelve a analizar 60 fotos al azar y las guarda dibujadas, con y sin detección (no toca la caché)
 """
-import concurrent.futures as cf, json, os, pathlib, sys, time
+import concurrent.futures as cf, json, os, pathlib, random, sys, time
 import cv2, numpy as np, requests
 
 STOCK = pathlib.Path('radar/data/stock.json')
@@ -100,6 +101,8 @@ def redondear(cajas):
 
 
 def dibujar(im, cajas, destino):
+    if max(im.shape[:2]) > 900:
+        k = 900 / max(im.shape[:2]); im = cv2.resize(im, (int(im.shape[1] * k), int(im.shape[0] * k)))
     H, W = im.shape[:2]
     for x, y, w, h, t in cajas:
         col = (45, 24, 227) if t == 'cartel' else (255, 160, 0)
@@ -145,6 +148,17 @@ def main():
     CACHE.write_text(json.dumps(cache, ensure_ascii=False, separators=(',', ':')), encoding='utf8')
     stock['cubrir'] = {u: v['c'] for u, v in cache.items() if u != '_v' and v.get('c')}
     STOCK.write_text(json.dumps(stock, ensure_ascii=False, indent=1), encoding='utf8')
+    revisar = int(os.environ.get('CUBRIR_REVISAR', '0'))
+    if revisar and MUESTRAS:
+        det = det or detector()
+        random.seed(len(urls))
+        for i, u in enumerate(random.sample(urls, min(revisar, len(urls)))):
+            im = bajar(u, ses)
+            if im is None:
+                continue
+            p = patentes(det, im)
+            cajas = redondear(p + carteles(im, p))
+            dibujar(im, cajas, pathlib.Path(MUESTRAS) / f'azar-{i:02d}-{"con" if cajas else "sin"}.jpg')
     con = sum(1 for u in urls if cache.get(u, {}).get('c'))
     print(f'Listo en {time.time() - t0:.0f}s · patentes nuevas: {n_pat} · carteles nuevos: {n_car} · sin poder bajar: {n_err} · fotos con tapas: {con}/{len(urls)}')
 

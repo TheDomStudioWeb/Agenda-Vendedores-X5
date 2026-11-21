@@ -5,6 +5,10 @@ on:
   schedule:
     - cron: '40 10,17 * * *'
   workflow_dispatch:
+    inputs:
+      muestras:
+        description: 'Fotos al azar para revisar la detección de patentes y carteles (0 = ninguna). Se publican en la rama radar-muestras.'
+        default: '0'
   push:
     branches: [main, radar-usados]
     paths: ['radar/scraper/**', '.github/workflows/radar-usados.yml']
@@ -31,7 +35,7 @@ jobs:
       - name: Detectar patentes y carteles
         continue-on-error: true      # si falla, el stock se guarda igual (sin tapas nuevas)
         timeout-minutes: 25
-        env: { CUBRIR_MUESTRAS: muestras-tapas }
+        env: { CUBRIR_MUESTRAS: muestras-tapas, CUBRIR_REVISAR: "${{ inputs.muestras || '0' }}" }
         run: |
           pip install -q -r radar/scraper/requisitos-cubrir.txt
           python radar/scraper/cubrir.py
@@ -40,6 +44,12 @@ jobs:
         continue-on-error: true
         uses: actions/upload-artifact@v4
         with: { name: muestras-tapas, path: muestras-tapas, retention-days: 7, if-no-files-found: ignore }
+      - name: Publicar muestras en la rama radar-muestras
+        if: ${{ inputs.muestras && inputs.muestras != '0' }}
+        continue-on-error: true
+        run: |
+          cd muestras-tapas && git init -q -b radar-muestras && git add . && git -c user.name=radar-bot -c user.email=radar-bot@users.noreply.github.com commit -qm "Muestras de tapas"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" radar-muestras
       - name: Guardar stock
         if: always()
         run: |
