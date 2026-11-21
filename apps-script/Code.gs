@@ -14,6 +14,10 @@
  *  - Respuestas con { ok: true/false } para que la app sepa si se guardó.
  *
  *
+ * v2.14: Radar de usados con reservas compartidas (bloquean la unidad para todos los negociadores, vencen solas y avisan por
+ *       Telegram con el botón para escribirle al proveedor), retoques de fotos, contactos de proveedores y stock propio.
+ *       Lectura pública sin datos personales: ?action=radar_estado. Ver docs/MANUAL-RADAR-RESERVAS.md
+ *
  * v2.13: teléfono del asesor en la tarjeta del padrino (columna «telefono» de Personal) y reasignación automática:
  *       al pasar a alguien a inactivo, sus leads abiertos, entrevistas pendientes, padrinos y referidos en curso pasan
  *       a su jefe inmediato (reporta_a; si no hay, a gerencia) con aviso por Telegram. Corre cada 10 minutos.
@@ -93,6 +97,8 @@ function doGet(e) {
     if (p.action === 'usuarios') return json_({ ok: true, usuarios: listarUsuarios_() });
     // Tarjeta del padrino para el cliente: solo con su código y su llave secreta, solo lectura
     if (p.action === 'pase') return json_(paseCliente_(p.c, p.k));
+    // Radar: qué autos están reservados o vendidos (sin datos personales), para otras plataformas
+    if (p.action === 'radar_estado') return json_(radarEstadoPublico_());
 
     // Clave de solo lectura para widgets (Propiedades del script > LAUNCHER_KEY)
     const launcherKey = PropertiesService.getScriptProperties().getProperty('LAUNCHER_KEY');
@@ -137,7 +143,7 @@ function doPost(e) {
     // Rol «Control»: únicamente mira el gestor de contratos (ver todo, sin modificar nada ni entrar al CRM)
     if (esControl_(usuario) && ['contratos_datos', 'contratos_precios'].indexOf(String(body.action)) < 0) return json_({ ok: false, error: 'sin_permiso' });
     // Rol «Supervisor»: mira todo (CRM completo y contratos) y nada más. Solo se aceptan pedidos de lectura; cualquier otra acción se rechaza acá, antes de tocar la planilla
-    if (esSupervisor_(usuario) && ['datos', 'contratos_datos', 'contratos_precios', 'asistencia_datos', 'padrinos_datos'].indexOf(String(body.action)) < 0) return json_({ ok: false, error: 'sin_permiso' });
+    if (esSupervisor_(usuario) && ['datos', 'contratos_datos', 'contratos_precios', 'asistencia_datos', 'padrinos_datos', 'radar_datos'].indexOf(String(body.action)) < 0) return json_({ ok: false, error: 'sin_permiso' });
 
     // Lectura de datos y enlace de Telegram (la sesión viaja en el cuerpo, no en la dirección)
     if (body.action === 'datos') { if (!usuario) return json_({ ok: false, error: 'sesion_vencida' }); return json_(armarDatos_(usuario)); }
@@ -148,6 +154,9 @@ function doPost(e) {
 
     // Padrinos X5: club de referidos
     if (/^(padrinos|referidos)_/.test(String(body.action))) return json_(despacharPadrinos_(body, usuario));
+
+    // Radar de usados: reservas, retoques de fotos, proveedores y stock propio
+    if (String(body.action).indexOf('radar_') === 0) return json_(despacharRadar_(body, usuario));
 
     // Control de contratos (solo números y estados; no guarda archivos)
     if (String(body.action).indexOf('contratos_') === 0) return json_(despacharContratos_(body, usuario));
@@ -739,6 +748,7 @@ function revisarTelegram() {
       revisarLeadsVencidos_();
       revisarVentasSinAviso_();
       revisarSeguimientosViejos_();
+      try { revisarReservas_(); } catch (e) { console.warn('revisarReservas: ' + e); }
     }
   } catch (e) {
     console.warn('revisarTelegram: ' + e);
@@ -1945,4 +1955,241 @@ function reasignarInactivos() {
   const lock = LockService.getScriptLock(), tengo = lock.tryLock(60000);
   if (!tengo) console.warn('El Hub estaba ocupado; corro la reasignación igual.');
   try { console.log('Resultado: ' + JSON.stringify(reasignarInactivos_())); } finally { if (tengo) lock.releaseLock(); }
+}
+
+// =====================================================================
+//  RADAR DE USADOS · v2.14
+//  Reservas compartidas entre negociadores, retoques de fotos (tapar
+//  patentes, carteles y logos), contactos de proveedores y stock propio.
+//  Hojas (se crean solas): «RadarReservas», «RadarRetoques», «RadarProveedores».
+//  Stock propio: hoja «StockPropio» de esta planilla, o de otra planilla
+//  indicando su ID en Propiedades del script → STOCK_PROPIO_ID
+//  (y opcionalmente STOCK_PROPIO_HOJA con el nombre de la pestaña).
+//  Ver docs/MANUAL-RADAR-RESERVAS.md
+// =====================================================================
+const RADAR = { reservas: 'RadarReservas', retoques: 'RadarRetoques', proveedores: 'RadarProveedores', propio: 'StockPropio' };
+const RADAR_COLS = {
+  RadarReservas: ['id', 'auto_id', 'auto', 'agencia', 'precio_x5', 'url', 'negociador', 'cliente', 'telefono', 'notas', 'estado', 'creada', 'vence', 'extendida',
+    'proveedor_aviso', 'proveedor_aviso_por', 'cerrada', 'cerrada_por', 'aviso_vence'],
+  RadarRetoques: ['id', 'auto_id', 'agencia', 'cajas', 'por', 'fecha'],
+  RadarProveedores: ['id', 'nombre', 'whatsapp', 'contacto', 'web'],
+  StockPropio: ['id', 'marca', 'modelo', 'version', 'anio', 'km', 'combustible', 'caja', 'color', 'precio', 'moneda', 'fotos', 'estado', 'ubicacion', 'notas', 'alta']
+};
+// Nombres alternativos de columnas de la planilla de stock propio (se aceptan sin tildes y en minúscula)
+const ALIAS_PROPIO = { 'año': 'anio', 'ano': 'anio', 'kilometros': 'km', 'kilómetros': 'km', 'kms': 'km', 'precio venta': 'precio', 'precio de venta': 'precio', 'transmision': 'caja', 'transmisión': 'caja',
+  'patente': 'patente', 'dominio': 'patente', 'imagenes': 'fotos', 'imágenes': 'fotos', 'fotos (urls)': 'fotos', 'versión': 'version', 'situacion': 'estado', 'situación': 'estado', 'observaciones': 'notas' };
+// Fechas con hora de las reservas: se leen completas (no solo el día)
+['creada', 'vence', 'cerrada', 'proveedor_aviso', 'aviso_vence', 'fecha'].forEach(c => { if (CAMPOS_MARCA_TIEMPO.indexOf(c) < 0) CAMPOS_MARCA_TIEMPO.push(c); });
+const RESERVA_HORAS_DEF = 48;
+const RESERVA_ACTIVA = 'Activa';
+
+const radarHoras_ = () => Number(PropertiesService.getScriptProperties().getProperty('RESERVA_HORAS')) || RESERVA_HORAS_DEF;
+function radarHoja_(n) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet(); let sh = ss.getSheetByName(n);
+  if (!sh) { sh = ss.insertSheet(n); sh.getRange(1, 1, 1, RADAR_COLS[n].length).setValues([RADAR_COLS[n]]); sh.setFrozenRows(1); }
+  asegurarColumnas_(sh, RADAR_COLS[n]); return sh;
+}
+function radarLeer_(n) { radarHoja_(n); return leerHoja_(n); }
+const radarReservaActiva_ = (r, ahora) => r.estado === RESERVA_ACTIVA && (!r.vence || new Date(r.vence) > ahora);
+const iso_ = (d) => (d instanceof Date ? d : new Date(d)).toISOString();
+const textoHora_ = (d) => Utilities.formatDate(new Date(d), Session.getScriptTimeZone(), 'dd/MM HH:mm');
+const waLink_ = (tel, texto) => { const n = String(tel || '').replace(/^'/, '').replace(/\D/g, ''); return n ? 'https://wa.me/' + (n.length <= 10 ? '549' + n : n) + '?text=' + encodeURIComponent(texto) : ''; };
+
+function despacharRadar_(body, u) {
+  const a = body.action;
+  if (esControl_(u) || esPersonal_(u)) return { ok: false, error: 'sin_permiso' };
+  if (a === 'radar_datos') return radarDatos_(u);
+  if (esSupervisor_(u)) return { ok: false, error: 'sin_permiso' }; // solo lectura
+  const lock = LockService.getScriptLock(); lock.waitLock(15000);
+  const avisos = [];
+  try {
+    if (a === 'radar_reservar') return radarReservar_(body, u, avisos);
+    if (a === 'radar_liberar' || a === 'radar_vendida') return radarCerrar_(body, u, a === 'radar_vendida' ? 'Vendida' : 'Liberada', avisos);
+    if (a === 'radar_extender') return radarExtender_(body, u);
+    if (a === 'radar_aviso_proveedor') return radarAvisoProveedor_(body, u);
+    if (a === 'radar_retoque') return radarRetoque_(body, u);
+    if (a === 'radar_proveedor_guardar') return radarProveedorGuardar_(body, u);
+    return { ok: false, error: 'accion_invalida' };
+  } finally {
+    lock.releaseLock();
+    avisos.forEach(fn => { try { fn(); } catch (e) { console.warn('Aviso no enviado: ' + e); } });
+  }
+}
+
+function radarDatos_(u) {
+  const ahora = new Date(), sup = esSupervision_(u) || esSupervisor_(u), semana = ahora.getTime() - 7 * 864e5;
+  const reservas = radarLeer_(RADAR.reservas).filter(r => radarReservaActiva_(r, ahora) || (r.estado === 'Vendida' && new Date(r.cerrada).getTime() > semana))
+    .map(r => {
+      const mia = r.negociador === u.nombre, x = { id: r.id, auto_id: r.auto_id, auto: r.auto, estado: r.estado === RESERVA_ACTIVA ? 'Activa' : r.estado, negociador: r.negociador, vence: r.vence, creada: r.creada, mia,
+        proveedor_aviso: r.proveedor_aviso || '', puedeCerrar: mia || esSupervision_(u) };
+      if (mia || sup) Object.assign(x, { cliente: r.cliente, telefono: String(r.telefono || '').replace(/^'/, ''), notas: r.notas, agencia: r.agencia, precio_x5: r.precio_x5, url: r.url, extendida: r.extendida });
+      return x;
+    });
+  const retoques = {};
+  radarLeer_(RADAR.retoques).forEach(r => { try { retoques[r.id] = JSON.parse(r.cajas || '[]'); } catch (e) {} });
+  const proveedores = radarLeer_(RADAR.proveedores).map(p => sup ? { id: p.id, nombre: p.nombre, whatsapp: String(p.whatsapp || '').replace(/^'/, ''), contacto: p.contacto, web: p.web } : { id: p.id, nombre: p.nombre });
+  return { ok: true, usuario: { nombre: u.nombre, rol: u.rol }, supervisa: esSupervision_(u), gerente: esGerente_(u), horas: radarHoras_(), reservas, retoques, proveedores, propio: stockPropio_(), servidor: iso_(ahora) };
+}
+
+// Stock propio: misma planilla (pestaña StockPropio) u otra (STOCK_PROPIO_ID). Lee por encabezado, acepta nombres alternativos.
+function stockPropio_() {
+  const props = PropertiesService.getScriptProperties();
+  let sheet = null;
+  try {
+    const idExt = props.getProperty('STOCK_PROPIO_ID');
+    if (idExt) { const libro = SpreadsheetApp.openById(idExt); const n = props.getProperty('STOCK_PROPIO_HOJA'); sheet = n ? libro.getSheetByName(n) : libro.getSheets()[0]; }
+    else sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(RADAR.propio);
+  } catch (e) { console.warn('Stock propio: ' + e); return []; }
+  if (!sheet) return [];
+  const data = sheet.getDataRange().getValues();
+  if (data.length < 2) return [];
+  const norm = (h) => { const k = String(h).trim().toLowerCase(); return ALIAS_PROPIO[k] || k.normalize('NFD').replace(/[̀-ͯ]/g, ''); };
+  const H = data[0].map(norm), tz = Session.getScriptTimeZone();
+  return data.slice(1).filter(f => f.some(c => c !== '' && c !== null)).map((f, i) => {
+    const o = {}; H.forEach((h, j) => o[h] = normalizar_(f[j], tz, h));
+    const fotos = String(o.fotos || '').split(/[\s|,;]+/).filter(x => /^https?:\/\//.test(x));
+    const precio = Number(String(o.precio || '').replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.')) || null;
+    return { id: 'propio-' + (o.id || (i + 1)), propio: true, agencia: 'propio', tipo: 'auto', marca: String(o.marca || ''), modelo: String(o.modelo || ''), version: String(o.version || ''),
+      anio: Number(o.anio) || null, km: o.km === '' || o.km == null ? null : Number(String(o.km).replace(/\D/g, '')), combustible: String(o.combustible || ''), caja: String(o.caja || ''), color: String(o.color || ''),
+      precio, moneda: /usd|u\$s|dolar/i.test(String(o.moneda)) ? 'USD' : 'ARS', fotos, estado: String(o.estado || 'Disponible'), ubicacion: String(o.ubicacion || ''), notas: String(o.notas || ''), alta: o.alta ? String(o.alta) : '' };
+  }).filter(a => a.marca && a.modelo && !/vendid|baja/i.test(a.estado));
+}
+
+function radarReservar_(body, u, avisos) {
+  const au = body.auto || {};
+  if (!au.id) return { ok: false, error: 'falta_auto' };
+  const cliente = String(body.cliente || '').trim();
+  if (!cliente) return { ok: false, error: 'falta_cliente' };
+  const sheet = radarHoja_(RADAR.reservas), ahora = new Date();
+  const existente = leerHoja_(RADAR.reservas).find(r => String(r.auto_id) === String(au.id) && (radarReservaActiva_(r, ahora) || r.estado === 'Vendida'));
+  if (existente) return { ok: false, error: existente.estado === 'Vendida' ? 'ya_vendido' : 'ya_reservado', por: existente.negociador, vence: existente.vence };
+  const headers = asegurarColumnas_(sheet, RADAR_COLS[RADAR.reservas]);
+  const vence = new Date(ahora.getTime() + radarHoras_() * 3600e3);
+  const r = { id: Utilities.getUuid(), auto_id: au.id, auto: String(au.desc || '').slice(0, 120), agencia: String(au.agencia || ''), precio_x5: Number(au.precio_x5) || '', url: String(au.url || ''),
+    negociador: u.nombre, cliente: cliente.slice(0, 80), telefono: String(body.telefono || '').replace(/[^\d+]/g, ''), notas: String(body.notas || '').slice(0, 300), estado: RESERVA_ACTIVA,
+    creada: iso_(ahora), vence: iso_(vence), extendida: '', proveedor_aviso: au.agencia === 'propio' ? 'propio' : '', proveedor_aviso_por: '', cerrada: '', cerrada_por: '', aviso_vence: '' };
+  sheet.appendRow(headers.map(h => valorParaCelda_(h === 'telefono' ? 'telefono' : h, r[h])));
+  avisos.push(() => avisarReserva_(r, 'nueva'));
+  return { ok: true, reserva: { id: r.id, auto_id: r.auto_id, vence: r.vence, estado: 'Activa', mia: true } };
+}
+
+function radarFila_(id) {
+  const sheet = radarHoja_(RADAR.reservas), headers = asegurarColumnas_(sheet, RADAR_COLS[RADAR.reservas]), n = buscarFila_(sheet, id);
+  if (n < 0) return null;
+  const rango = sheet.getRange(n, 1, 1, headers.length), fila = rango.getValues()[0], r = {};
+  headers.forEach((h, i) => r[h] = fila[i] instanceof Date ? iso_(fila[i]) : fila[i]);
+  return { r, guardar: () => rango.setValues([headers.map(h => valorParaCelda_(h, r[h]))]) };
+}
+
+function radarCerrar_(body, u, estado, avisos) {
+  const f = radarFila_(body.id);
+  if (!f) return { ok: false, error: 'no_encontrado' };
+  if (f.r.negociador !== u.nombre && !esSupervision_(u)) return { ok: false, error: 'sin_permiso' };
+  if (f.r.estado !== RESERVA_ACTIVA) return { ok: false, error: 'no_activa' };
+  Object.assign(f.r, { estado, cerrada: iso_(new Date()), cerrada_por: u.nombre });
+  f.guardar();
+  avisos.push(() => avisarReserva_(f.r, estado === 'Vendida' ? 'vendida' : 'liberada', u));
+  return { ok: true };
+}
+
+// El negociador puede extender una vez; supervisión, las veces que haga falta
+function radarExtender_(body, u) {
+  const f = radarFila_(body.id);
+  if (!f) return { ok: false, error: 'no_encontrado' };
+  const sup = esSupervision_(u);
+  if (f.r.negociador !== u.nombre && !sup) return { ok: false, error: 'sin_permiso' };
+  if (!radarReservaActiva_(f.r, new Date())) return { ok: false, error: 'no_activa' };
+  if (f.r.extendida && !sup) return { ok: false, error: 'ya_extendida' };
+  f.r.vence = iso_(new Date(new Date(f.r.vence).getTime() + radarHoras_() * 3600e3));
+  f.r.extendida = (Number(f.r.extendida) || 0) + 1; f.r.aviso_vence = '';
+  f.guardar();
+  return { ok: true, vence: f.r.vence };
+}
+
+function radarAvisoProveedor_(body, u) {
+  if (!esSupervision_(u)) return { ok: false, error: 'sin_permiso' };
+  const f = radarFila_(body.id);
+  if (!f) return { ok: false, error: 'no_encontrado' };
+  Object.assign(f.r, { proveedor_aviso: iso_(new Date()), proveedor_aviso_por: u.nombre });
+  f.guardar();
+  return { ok: true };
+}
+
+// Retoques: cajas [x, y, ancho, alto] en proporción de la foto (0 a 1). id = dirección de la foto, o «prov:ID» para todas las fotos de un proveedor
+function radarRetoque_(body, u) {
+  if (!esSupervision_(u)) return { ok: false, error: 'sin_permiso' };
+  const id = String(body.foto || '');
+  if (!id) return { ok: false, error: 'falta_foto' };
+  const cajas = (Array.isArray(body.cajas) ? body.cajas : []).slice(0, 12)
+    .map(c => c.slice(0, 4).map(v => Math.max(0, Math.min(1, Math.round(Number(v) * 1000) / 1000)))).filter(c => c[2] > 0.005 && c[3] > 0.005);
+  const sheet = radarHoja_(RADAR.retoques), headers = asegurarColumnas_(sheet, RADAR_COLS[RADAR.retoques]), n = buscarFila_(sheet, id);
+  const fila = headers.map(h => valorParaCelda_(h, { id, auto_id: body.auto_id || '', agencia: body.agencia || '', cajas: JSON.stringify(cajas), por: u.nombre, fecha: iso_(new Date()) }[h]));
+  if (n > 0) sheet.getRange(n, 1, 1, headers.length).setValues([fila]); else sheet.appendRow(fila);
+  return { ok: true, cajas };
+}
+
+function radarProveedorGuardar_(body, u) {
+  if (!esGerente_(u)) return { ok: false, error: 'sin_permiso' };
+  const p = body.proveedor || {};
+  if (!p.id) return { ok: false, error: 'falta_id' };
+  const sheet = radarHoja_(RADAR.proveedores), headers = asegurarColumnas_(sheet, RADAR_COLS[RADAR.proveedores]), n = buscarFila_(sheet, p.id);
+  const fila = headers.map(h => valorParaCelda_(h === 'whatsapp' ? 'telefono' : h, h === 'whatsapp' ? String(p.whatsapp || '').replace(/[^\d+]/g, '') : p[h]));
+  if (n > 0) sheet.getRange(n, 1, 1, headers.length).setValues([fila]); else sheet.appendRow(fila);
+  return { ok: true };
+}
+
+/** Lectura pública sin datos personales: qué autos están reservados o vendidos (para la página de stock propio y otras plataformas). */
+function radarEstadoPublico_() {
+  const ahora = new Date(), semana = ahora.getTime() - 7 * 864e5, L = radarLeer_(RADAR.reservas);
+  return { ok: true, reservados: L.filter(r => radarReservaActiva_(r, ahora)).map(r => String(r.auto_id)),
+    vendidos: L.filter(r => r.estado === 'Vendida' && new Date(r.cerrada).getTime() > semana).map(r => String(r.auto_id)), servidor: iso_(ahora) };
+}
+
+function mensajeProveedor_(r, tipo) {
+  const hasta = r.vence ? textoHora_(r.vence) : '';
+  if (tipo === 'liberada' || tipo === 'vencida') return `Hola, les escribimos de X5 Argentina. Liberamos la reserva de la unidad ${r.auto}${r.url ? ' (' + r.url + ')' : ''}. ¡Gracias!`;
+  if (tipo === 'vendida') return `Hola, les escribimos de X5 Argentina. Confirmamos la operación de la unidad ${r.auto}${r.url ? ' (' + r.url + ')' : ''}. Coordinamos los pasos para avanzar. ¡Gracias!`;
+  return `Hola, les escribimos de X5 Argentina. Queremos reservar la unidad ${r.auto}${r.url ? ' (' + r.url + ')' : ''} hasta el ${hasta}. ¿Nos confirman que queda separada? ¡Gracias!`;
+}
+
+/** Aviso por Telegram a gerencia y al jefe del negociador, con el botón para escribirle al proveedor por WhatsApp. */
+function avisarReserva_(r, tipo, quien) {
+  const titulo = { nueva: '🔒 <b>Reserva nueva</b>', liberada: '🔓 <b>Reserva liberada</b>', vendida: '🎉 <b>Unidad vendida</b>', vencida: '⌛ <b>Reserva vencida</b>' }[tipo];
+  const prov = r.agencia === 'propio' ? null : radarLeer_(RADAR.proveedores).find(p => String(p.id) === String(r.agencia));
+  const nomProv = r.agencia === 'propio' ? 'Stock propio' : (prov && prov.nombre) || r.agencia;
+  let html = `${titulo}\n\n🚗 <b>${esc_(r.auto)}</b>\n🏢 ${esc_(nomProv)}${r.precio_x5 ? '\n💰 Precio X5 ' + esc_(moneda_(r.precio_x5)) : ''}\n👤 ${esc_(r.negociador)} · cliente ${esc_(r.cliente)}`;
+  if (tipo === 'nueva') html += `\n⏰ Vence: <b>${esc_(textoHora_(r.vence))}</b>`;
+  if (quien && quien.nombre !== r.negociador) html += `\n<i>Por ${esc_(quien.nombre)}</i>`;
+  let boton = null, txtBoton = null;
+  if (r.agencia !== 'propio') {
+    const wa = prov && prov.whatsapp ? waLink_(prov.whatsapp, mensajeProveedor_(r, tipo)) : '';
+    if (wa) { boton = wa; txtBoton = tipo === 'nueva' ? '💬 Avisar al proveedor' : '💬 Escribir al proveedor'; }
+    else if (r.url) { boton = r.url; txtBoton = '🌐 Abrir la publicación'; html += '\n\n<i>Falta el WhatsApp de este proveedor (cargalo en el Radar → Proveedores).</i>'; }
+    if (tipo === 'nueva') html += '\n\nAvisá al proveedor y marcá «Proveedor avisado» en el Radar.';
+  }
+  const destino = gerentes_().concat(supervisoresDe_(r.negociador));
+  enviarA_(destino, html, boton || (HUB_URL + 'radar/index.html'), txtBoton || 'Abrir el Radar');
+  if (tipo === 'vencida') enviarA_([r.negociador], `⌛ <b>Venció tu reserva</b>\n\n🚗 ${esc_(r.auto)} · ${esc_(r.cliente)}\nSi el cliente sigue interesado, reservala de nuevo desde el Radar.`, HUB_URL + 'radar/index.html', 'Abrir el Radar');
+}
+
+/** Cada 10 minutos (desde revisarTelegram): avisa 2 h antes del vencimiento y marca las vencidas. */
+function revisarReservas_() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(RADAR.reservas);
+  if (!sheet || sheet.getLastRow() < 2) return;
+  const headers = asegurarColumnas_(sheet, RADAR_COLS[RADAR.reservas]), data = sheet.getDataRange().getValues(), ahora = new Date();
+  const c = (h) => headers.indexOf(h);
+  for (let i = 1; i < data.length; i++) {
+    const row = data[i];
+    if (String(row[c('estado')]) !== RESERVA_ACTIVA || !row[c('vence')]) continue;
+    const vence = new Date(row[c('vence')]);
+    const r = {}; headers.forEach((h, j) => r[h] = row[j] instanceof Date ? iso_(row[j]) : row[j]);
+    if (vence <= ahora) {
+      sheet.getRange(i + 1, c('estado') + 1).setValue('Vencida');
+      sheet.getRange(i + 1, c('cerrada') + 1).setValue(iso_(ahora));
+      try { avisarReserva_(r, 'vencida'); } catch (e) { console.warn('Reserva vencida: ' + e); }
+    } else if (!row[c('aviso_vence')] && vence - ahora <= 2 * 3600e3) {
+      sheet.getRange(i + 1, c('aviso_vence') + 1).setValue(iso_(ahora));
+      enviarA_([r.negociador], `⏰ <b>Tu reserva vence en menos de 2 horas</b>\n\n🚗 ${esc_(r.auto)} · ${esc_(r.cliente)}\nVence: ${esc_(textoHora_(r.vence))}. Podés extenderla una vez desde el Radar.`, HUB_URL + 'radar/index.html', 'Abrir el Radar');
+    }
+  }
 }

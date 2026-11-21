@@ -1,0 +1,2 @@
+id,marca,modelo,version,anio,km,combustible,caja,color,precio,moneda,fotos,estado,ubicacion,notas,alta
+1,Toyota,Hilux,2.8 SRX 4x4 AT,2021,58000,Diésel,Automática,Plata,39900000,ARS,https://ejemplo.com/foto1.jpg https://ejemplo.com/foto2.jpg,Disponible,Salón Mendoza,Ejemplo inventado: borrar esta fila,2026-11-20
