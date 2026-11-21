@@ -20,6 +20,8 @@ h = (R / 'index.html').read_text(encoding='utf8')
 h = h.replace('<link rel="stylesheet" href="../x5-theme.css">', '<style>\n' + css + '\n</style>')
 h = re.sub(r'<link rel="(manifest|icon)"[^>]*>\n', '', h)
 h = h.replace('src="../brand/x5-logo-blanco.png"', f'src="{data_uri("brand/x5-logo-blanco.png")}"')
+for logo in ('brand/x5-logo-blanco.png', 'brand/x5-logo-rojo.png'):   # placas y carteles X5 de las fotos
+    h = h.replace(f'url("../{logo}")', f'url("{data_uri(logo)}")')
 h = re.sub(r'<a class="x5-back"[^>]*>.*?</a>', '', h, flags=re.S)
 h = h.replace('<button data-v="compra">Compra</button>', '').replace('<button data-v="guia">Guía CCA</button>', '')
 loader = re.search(r'<script>if \(/\[\?&\]demo=1/.*?</script>\n', h).group(0)

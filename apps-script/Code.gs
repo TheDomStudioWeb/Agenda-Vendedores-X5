@@ -2121,7 +2121,8 @@ function radarRetoque_(body, u) {
   const id = String(body.foto || '');
   if (!id) return { ok: false, error: 'falta_foto' };
   const cajas = (Array.isArray(body.cajas) ? body.cajas : []).slice(0, 12)
-    .map(c => c.slice(0, 4).map(v => Math.max(0, Math.min(1, Math.round(Number(v) * 1000) / 1000)))).filter(c => c[2] > 0.005 && c[3] > 0.005);
+    .map(c => c.slice(0, 4).map(v => Math.max(0, Math.min(1, Math.round(Number(v) * 1000) / 1000))).concat(['pat', 'cartel', 'logo'].indexOf(c[4]) >= 0 ? [c[4]] : []))
+    .filter(c => c[2] > 0.005 && c[3] > 0.005); // tipo: pat → placa X5, cartel → cartel rojo X5, logo → desenfocado
   const sheet = radarHoja_(RADAR.retoques), headers = asegurarColumnas_(sheet, RADAR_COLS[RADAR.retoques]), n = buscarFila_(sheet, id);
   const fila = headers.map(h => valorParaCelda_(h, { id, auto_id: body.auto_id || '', agencia: body.agencia || '', cajas: JSON.stringify(cajas), por: u.nombre, fecha: iso_(new Date()) }[h]));
   if (n > 0) sheet.getRange(n, 1, 1, headers.length).setValues([fila]); else sheet.appendRow(fila);

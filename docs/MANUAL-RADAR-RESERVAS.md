@@ -2,12 +2,14 @@
 
 Manual interno (también para Claudio). Versión del backend: Code.gs v2.14.
 
+> Cambio de criterio (20/11/2026): en un principio no se iba a poner ningún logo propio. Ahora las patentes pasan a la placa X5 y los carteles amarillos a cartel rojo X5. Los logos ajenos se siguen desenfocando.
+
 ## Para qué sirve
 
 El Radar lo usan los negociadores de X5 (no los clientes), muchas veces con el cliente mirando la pantalla al lado. Esta versión suma tres cosas:
 
 1. **Reservas compartidas**: un negociador reserva una unidad para su cliente y esa unidad queda bloqueada para todos los demás.
-2. **Fotos tapadas**: las patentes, los carteles amarillos y los logos de las agencias se tapan con un recuadro desenfocado. El logo de X5 nunca se agrega ni se tapa.
+2. **Fotos tapadas**: el sistema detecta solo las patentes (las cubre con una placa X5) y los carteles amarillos (los cambia por un cartel rojo X5). Los logos de otras agencias se desenfocan.
 3. **Stock propio**: el Radar ya está preparado para mostrar los autos propios de X5 desde una planilla, primero en la lista y con su propio precio.
 
 ## Reservas
@@ -54,22 +56,31 @@ Arriba del resumen aparece el panel **Reservas** (para jefes y gerencia, **Reser
 
 Gerencia además tiene el botón **Agencias** para cargar el WhatsApp y el contacto de cada agencia.
 
-## Fotos tapadas
+## Fotos tapadas (automático)
 
-Según lo hablado con el Director Comercial, las fotos de las agencias solo traen patentes y carteles amarillos, y las agencias ya están informadas. Si se suman agencias nuevas, se les informa en su momento.
+Las fotos de las agencias traen patentes y carteles amarillos. Las agencias ya están informadas por el Director Comercial; si se suman agencias nuevas, se les informa en su momento.
 
-- El tapado se aplica en las vistas Cliente e Interna, en la ficha y en los resultados del buscador de Compra que vienen del stock de las agencias.
-- Las fotos de DeRuedas y Autocosmos que trae el buscador de Compra todavía no se tapan: son publicaciones de fuera del Radar y el editor trabaja sobre el stock de las agencias. Quedan para la detección automática.
-- No se agrega ningún logo de X5. Solo se tapan los ajenos.
+**Qué se ve:**
+- **Patentes:** quedan cubiertas por una placa blanca con el logo de X5 Argentina.
+- **Carteles amarillos** («VENDO» con teléfono): quedan cubiertos por un cartel rojo X5 con el logo en blanco.
+- **Logos de otras agencias:** se desenfocan.
 
-**Cómo tapar (jefes y gerencia):** en la vista Interna, toca **Tapar fotos** en el panel de reservas, o abre una unidad y toca **Tapar patentes y logos**. Después arrastra un rectángulo sobre la patente, el cartel o el logo.
-- **Esta foto** (línea verde): tapa solo esa imagen. Úsalo para patentes y carteles.
-- **Toda la agencia** (línea amarilla punteada): tapa ese lugar en todas las fotos de la agencia. Úsalo para un logo que la agencia pone siempre en la misma esquina.
-- La ✕ roja quita una caja. Las flechas ‹ › pasan de foto y de unidad.
+Se aplica en las vistas Cliente e Interna, en la ficha y en los resultados del buscador de Compra que vienen del stock de las agencias. Las fotos de DeRuedas y Autocosmos todavía no se tapan.
 
-Las cajas se guardan en proporción a la foto, así que se ven bien en cualquier tamaño de pantalla.
+**Cómo funciona:** el lector del stock (GitHub Action, dos veces por día) descarga cada foto nueva y busca dos cosas:
+- **Patentes:** con un modelo de detección de patentes de código abierto. Corre gratis dentro de la Action.
+- **Carteles amarillos:** por color, con un rectángulo amarillo intenso y texto oscuro adentro.
 
-**A futuro:** el lector del stock (GitHub Action) puede detectar solo las patentes y los carteles amarillos y guardar las cajas en `stock.json` (campo `cubrir`). El Radar ya las lee. Falta calibrar el detector con fotos reales.
+Cada foto se analiza una sola vez y el resultado queda en `radar/data/cubrir.json`. El Radar lee las tapas de `stock.json` (campo `cubrir`).
+
+**Revisión (jefes y gerencia):** en la vista Interna, toca **Tapar fotos** en el panel de reservas, o abre una unidad y toca **Tapar patentes y logos**.
+- Las cajas con línea celeste punteada («auto») las puso el sistema. Si están bien, no hace falta tocar nada.
+- Si falta una, elige **Patente → placa X5**, **Cartel → rojo X5** o **Logo → desenfocar** y arrastra un rectángulo sobre la foto.
+- Si sobra una, la quita la ✕ roja.
+- Cuando se toca una foto, lo guardado a mano reemplaza a lo automático de esa foto.
+- **Toda la agencia** aplica la caja a todas las fotos de esa agencia. Sirve para un logo que siempre está en la misma esquina.
+
+**Calibración:** cada corrida deja en GitHub → Actions → la corrida → «Artifacts» un paquete `muestras-tapas` con hasta 40 fotos que muestran lo que detectó. Si cambian los criterios, se sube `VERSION` en `radar/scraper/cubrir.py` y se vuelven a analizar todas las fotos.
 
 ## Stock propio
 
@@ -106,7 +117,7 @@ Mientras no se publique la v2.14, el Radar funciona igual que antes y muestra «
 - **En línea:** `radar/index.html?demo=1`. Usa agencias, autos, fotos, negociadores y clientes inventados. Nada se guarda en el Hub.
 - **Archivo descargable:** `python3 radar/armar-demo.py` genera `radar-demo.html`, que se abre sin conexión y no necesita instalar nada. Trae las vistas Cliente, Interna y Novedades.
 - Arriba hay un selector para probar como asesora, otro asesor, jefa de ventas o gerencia.
-- Para probar el editor de tapado, el Fiat Cronos y la Ford Ranger vienen sin tapar.
+- Las tapas de la demo simulan la detección automática. A propósito, a la Ford Ranger «se le escapó» la patente, para probar la corrección a mano.
 - Cuando se hace una reserva, un aviso explica qué mensaje de Telegram llegaría en el Hub real.
 
 ## Preguntas frecuentes

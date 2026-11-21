@@ -65,6 +65,13 @@ T('retoques: supervisión tapa patentes/carteles; el asesor no; las cajas se aco
   m.radar(JEF, { action: 'radar_retoque', foto: 'https://f/1.jpg', cajas: [[0.4, 0.4, 0.2, 0.1]] });
   const d = datos(m, V1); assert.deepStrictEqual(JSON.parse(JSON.stringify(d.retoques['https://f/1.jpg'])), [[0.4, 0.4, 0.2, 0.1]]); assert.strictEqual(m.libro.RadarRetoques.filas.length, 2, 'se reemplaza, no se duplica');
 });
+T('retoques: se guarda el tipo de tapa (patente, cartel, logo) y se descarta un tipo desconocido; una lista vacía anula lo automático', () => {
+  const m = crear(personal);
+  const r = m.radar(JEF, { action: 'radar_retoque', foto: 'https://f/2.jpg', cajas: [[0.4, 0.7, 0.2, 0.08, 'pat'], [0.5, 0.4, 0.1, 0.1, 'cartel'], [0.8, 0, 0.2, 0.1, 'virus']] });
+  assert.deepStrictEqual(JSON.parse(JSON.stringify(r.cajas)), [[0.4, 0.7, 0.2, 0.08, 'pat'], [0.5, 0.4, 0.1, 0.1, 'cartel'], [0.8, 0, 0.2, 0.1]]);
+  m.radar(JEF, { action: 'radar_retoque', foto: 'https://f/3.jpg', cajas: [] });
+  assert.deepStrictEqual(JSON.parse(JSON.stringify(datos(m, V1).retoques['https://f/3.jpg'])), []);
+});
 T('stock propio: lee la pestaña StockPropio con nombres de columna alternativos y omite los vendidos', () => {
   const m = crear(personal); m.libro.StockPropio = { nombre: 'StockPropio', filas: [['ID', 'Marca', 'Modelo', 'Año', 'Kilómetros', 'Precio venta', 'Fotos', 'Estado'],
     ['A1', 'Fiat', 'Cronos', 2022, '45.000', '$ 18.500.000', 'https://x/1.jpg | https://x/2.jpg', 'Disponible'], ['A2', 'VW', 'Gol', 2015, 120000, 6000000, '', 'Vendido']],

@@ -20,7 +20,7 @@
     return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
   }
   // Cajas de esas fotos (en proporción 0..1), igual que las guarda el editor
-  const C_PAT = [0.41, 0.66, 0.17, 0.08], C_CAR_F = [0.52, 0.43, 0.10, 0.09], C_CAR_L = [0.53, 0.39, 0.10, 0.09], C_LOGO = [0.75, 0.035, 0.22, 0.08];
+  const C_PAT = [0.412, 0.66, 0.176, 0.083], C_CAR_F = [0.518, 0.428, 0.107, 0.098], C_CAR_L = [0.53, 0.39, 0.11, 0.103], C_LOGO = [0.75, 0.035, 0.22, 0.08];
 
   const AGS = [
     { id: 'autosur', nombre: 'Autos del Sur (demo)', ciudad: 'Godoy Cruz', logo: 'AUTOS DEL SUR' },
@@ -69,11 +69,16 @@
     retoques: {},
     provs: { autosur: { id: 'autosur', nombre: 'Autos del Sur (demo)', whatsapp: '2615550199', contacto: 'Roberto (inventado)' }, cordillera: { id: 'cordillera', nombre: 'Cordillera Usados (demo)', whatsapp: '', contacto: '' } },
   };
-  // Tapas ya cargadas: logo de cada agencia (nivel agencia) y patente/cartel de casi todas las fotos.
-  // El Fiat Cronos y la Ford Ranger quedan sin tapar para probar el editor.
+  // Logos de las agencias: marcados a mano una vez, para todas sus fotos (se desenfocan).
   B.retoques['prov:autosur'] = [C_LOGO]; B.retoques['prov:cordillera'] = [C_LOGO];
-  autos.forEach((a, i) => { if (a.modelo === 'Cronos' || a.modelo === 'Ranger') return;
-    B.retoques[a.fotos[0]] = [C_PAT].concat(BASE[i][12] ? [C_CAR_F] : []); if (BASE[i][12]) B.retoques[a.fotos[1]] = [C_CAR_L]; });
+  // Patentes y carteles: los marca solo el lector del stock (stock.json → cubrir), igual que en el Radar real.
+  // A propósito, «se le escapó» la patente de la Ford Ranger, para probar la corrección a mano.
+  stock.cubrir = {};
+  autos.forEach((a, i) => {
+    const f = (a.modelo === 'Ranger' ? [] : [C_PAT.concat('pat')]).concat(BASE[i][12] ? [C_CAR_F.concat('cartel')] : []);
+    if (f.length) stock.cubrir[a.fotos[0]] = f;
+    if (BASE[i][12]) stock.cubrir[a.fotos[1]] = [C_CAR_L.concat('cartel')];
+  });
   const propio = [
     { id: 'propio-1', propio: true, agencia: 'propio', tipo: 'auto', marca: 'Toyota', modelo: 'Hilux', version: '2.8 SRX 4x4 AT', anio: 2021, km: 58000, combustible: 'Diésel', caja: 'Automática', color: 'Plata', precio: 39900000, moneda: 'ARS',
       fotos: [foto('#b9bec4', 'AE 300 XX', 0, 'X5 ARGENTINA', 0), foto('#b9bec4', '', 0, 'X5 ARGENTINA', 1)], estado: 'Disponible', ubicacion: 'Salón X5 Mendoza (demo)', alta: iso(ahora - 864e5) },

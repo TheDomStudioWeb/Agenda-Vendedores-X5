@@ -153,6 +153,9 @@
 
   /* Reservas, tapado de fotos y stock propio (v2.14) */
   .tapa { position: absolute; z-index: 1; border-radius: 6px; background: rgba(22,22,24,.58); backdrop-filter: blur(14px) saturate(.5); -webkit-backdrop-filter: blur(14px) saturate(.5); pointer-events: none; }
+  /* Patente → placa blanca con el logo de X5; cartel amarillo → cartel rojo X5; logos ajenos → desenfocado */
+  .tapa.pat { background: #fff url("../brand/x5-logo-rojo.png") center / auto 82% no-repeat; backdrop-filter: none; -webkit-backdrop-filter: none; border-radius: 3px; box-shadow: 0 0 0 1px rgba(0,0,0,.35), inset 0 -2px 0 rgba(0,0,0,.08); }
+  .tapa.cartel { background: #E3182D url("../brand/x5-logo-blanco.png") center / auto 72% no-repeat; backdrop-filter: none; -webkit-backdrop-filter: none; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,.4); }
   .gimg { position: relative; flex: 0 0 100%; overflow: hidden; scroll-snap-align: center; }
   .gimg img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
   .auto { position: relative; }
@@ -185,8 +188,11 @@
   .ed-stage img { width: 100%; display: block; pointer-events: none; }
   .ed-box { position: absolute; border: 2px solid var(--dom); background: rgba(0,0,0,.45); border-radius: 4px; }
   .ed-box.prov { border-color: #f5c518; border-style: dashed; }
+  .ed-box.auto { border-color: #38bdf8; border-style: dashed; background: rgba(56,189,248,.18); }
+  .ed-box.t-pat:not(.auto) { background: rgba(255,255,255,.55); } .ed-box.t-cartel:not(.auto) { background: rgba(227,24,45,.55); }
+  .ed-box span { position: absolute; left: 0; bottom: 100%; font: 700 .6rem var(--font); color: #fff; background: rgba(0,0,0,.7); padding: 1px 5px; border-radius: 4px 4px 0 0; white-space: nowrap; pointer-events: none; }
   .ed-box button { position: absolute; right: -10px; top: -10px; width: 22px; height: 22px; border-radius: 50%; border: 0; background: #E3182D; color: #fff; font: 700 .7rem var(--font); cursor: pointer; padding: 0; }
-  .ed-seg { display: flex; gap: 6px; } .ed-seg button { flex: 1; font: 700 .76rem var(--font); padding: 8px; border-radius: 999px; border: 1px solid var(--line-strong); background: transparent; color: var(--muted); cursor: pointer; } .ed-seg button.active { background: var(--dom); color: var(--on-dom, #06130f); border-color: transparent; }
+  .ed-seg { display: flex; gap: 6px; flex-wrap: wrap; } .ed-seg button { min-width: 0; } .ed-seg button { flex: 1; font: 700 .76rem var(--font); padding: 8px; border-radius: 999px; border: 1px solid var(--line-strong); background: transparent; color: var(--muted); cursor: pointer; } .ed-seg button.active { background: var(--dom); color: var(--on-dom, #06130f); border-color: transparent; }
   .ed-nav { display: flex; gap: 8px; align-items: center; justify-content: space-between; font-size: .8rem; color: var(--muted); }
   .demo-banner { background: #f5c518; color: #161618; font: 700 .78rem var(--font); text-align: center; padding: 8px 12px; }
   .demo-banner select { font: inherit; margin-left: 6px; width: auto !important; display: inline-block; padding: 3px 8px !important; min-height: 0 !important; border-radius: 8px; }
@@ -355,7 +361,7 @@
 
   // Tapado de patentes, carteles y logos: cajas [x, y, ancho, alto] en proporción de la foto.
   // Se dibujan encima de la imagen (con desenfoque) respetando el recorte de object-fit: cover.
-  const cajasDe = (url, ag) => [].concat(SV.ret[url] || [], ag ? SV.ret['prov:' + ag] || [] : [], AUTOC[url] || []);
+  const cajasDe = (url, ag) => [].concat(SV.ret[url] !== undefined ? SV.ret[url] : AUTOC[url] || [], ag ? SV.ret['prov:' + ag] || [] : []);
   window.radarTapar = function (im) {
     const box = im.parentElement; if (!box) return;
     box.querySelectorAll(':scope > .tapa').forEach(x => x.remove());
@@ -363,7 +369,7 @@
     const nw = im.naturalWidth, nh = im.naturalHeight, cw = im.clientWidth, ch = im.clientHeight;
     if (!cajas.length || !nw || !cw) return;
     const k = Math.max(cw / nw, ch / nh), ox = (cw - nw * k) / 2 + im.offsetLeft, oy = (ch - nh * k) / 2 + im.offsetTop;
-    cajas.forEach(([x, y, w, h]) => { const d = document.createElement('i'); d.className = 'tapa';
+    cajas.forEach(([x, y, w, h, t]) => { const d = document.createElement('i'); d.className = 'tapa' + (t === 'pat' || t === 'cartel' ? ' ' + t : '');
       Object.assign(d.style, { left: (ox + x * nw * k) + 'px', top: (oy + y * nh * k) + 'px', width: (w * nw * k) + 'px', height: (h * nh * k) + 'px' }); box.appendChild(d); });
   };
   function retaparTodo() { document.querySelectorAll('img[data-src]').forEach(i => { if (i.complete && i.naturalWidth) radarTapar(i); }); }
@@ -623,41 +629,47 @@
   }
 
   // ── Editor para tapar patentes, carteles y logos ajenos (jefes y gerencia) ──
-  // Se arrastra un rectángulo sobre la foto. «Esta foto» guarda la caja para esa imagen;
-  // «Toda la agencia» la aplica a todas las fotos de esa agencia (ej. un logo siempre en el mismo lugar).
+  // El lector del stock ya marca solo patentes y carteles amarillos (línea celeste, «auto»). Acá se corrige:
+  // si se toca una foto, lo que se guarda a mano reemplaza a lo automático de esa foto.
+  // «Toda la agencia» aplica la caja a todas las fotos de esa agencia (ej. un logo siempre en el mismo lugar).
+  const TIPOS = { pat: 'Patente → placa X5', cartel: 'Cartel → rojo X5', logo: 'Logo → desenfocar' };
   function abrirEditor(autoId, iFoto) {
     const L = autoId ? [DATA.autos.find(a => a.id === autoId)] : filtrados().map(x => x.a).filter(a => !a.propio && a.fotos.length);
     if (!L.length || !L[0]) return;
-    let ia = 0, ifo = iFoto || 0, modo = 'foto';
+    let ia = 0, ifo = iFoto || 0, modo = 'foto', tipo = 'pat';
     const d = $('#editor');
+    const deFoto = (src) => SV.ret[src] !== undefined ? { cajas: SV.ret[src], auto: false } : { cajas: AUTOC[src] || [], auto: !!(AUTOC[src] || []).length };
     const pintar = () => {
       const a = L[ia], src = a.fotos[ifo], ag = a.agencia;
-      const propias = SV.ret[src] || [], prov = SV.ret['prov:' + ag] || [];
+      const pf = deFoto(src), prov = SV.ret['prov:' + ag] || [];
       d.innerHTML = `<div style="position:relative"><button class="btn btn-ghost btn-icon cerrar" aria-label="Cerrar" data-cerrar>✕</button><div class="ed">
-        <h2 style="margin:0;font-size:1rem">Tapar patentes y logos</h2>
+        <h2 style="margin:0;font-size:1rem">Tapar patentes, carteles y logos</h2>
         <div class="ed-nav"><span>${esc(a.marca)} ${esc(a.modelo)} ${a.anio} · foto ${ifo + 1}/${a.fotos.length}${L.length > 1 ? ` · unidad ${ia + 1}/${L.length}` : ''}</span>
           <span><button class="btn btn-ghost btn-sm" data-e="ant">‹</button> <button class="btn btn-ghost btn-sm" data-e="sig">›</button></span></div>
-        <div class="ed-seg" role="group"><button type="button" data-e="m-foto" class="${modo === 'foto' ? 'active' : ''}">Esta foto</button><button type="button" data-e="m-prov" class="${modo === 'prov' ? 'active' : ''}">Toda la agencia (${esc(AG[ag]?.nombre || ag)})</button></div>
+        <div class="ed-seg" role="group" aria-label="Qué se tapa">${Object.entries(TIPOS).map(([k, v]) => `<button type="button" data-e="t-${k}" class="${tipo === k ? 'active' : ''}">${v}</button>`).join('')}</div>
+        <div class="ed-seg" role="group" aria-label="Dónde"><button type="button" data-e="m-foto" class="${modo === 'foto' ? 'active' : ''}">Esta foto</button><button type="button" data-e="m-prov" class="${modo === 'prov' ? 'active' : ''}">Toda la agencia (${esc(AG[ag]?.nombre || ag)})</button></div>
         <div class="ed-stage" id="ed-stage"><img src="${esc(src)}" referrerpolicy="no-referrer" alt="">
-          ${propias.map((c, i) => caja(c, 'foto', i)).join('')}${prov.map((c, i) => caja(c, 'prov', i)).join('')}</div>
-        <small style="color:var(--muted)">Arrastrá sobre la patente, el cartel amarillo o el logo de la agencia. Línea verde: solo esta foto. Línea amarilla punteada: todas las fotos de la agencia. No hace falta tapar el logo de X5.</small></div></div>`;
+          ${pf.cajas.map((c, i) => caja(c, pf.auto ? 'auto' : 'foto', i)).join('')}${prov.map((c, i) => caja(c, 'prov', i)).join('')}</div>
+        <small style="color:var(--muted)">${pf.auto ? '<b>Celeste: lo marcó el sistema.</b> Si está bien, no hace falta tocar nada. ' : SV.ret[src] !== undefined ? 'Esta foto ya fue revisada a mano. ' : ''}Elegí qué vas a tapar y arrastrá sobre la foto. Las patentes llevan la placa con el logo de X5 y los carteles amarillos pasan a cartel rojo X5. Los logos de otras agencias se desenfocan.</small></div></div>`;
       const st = $('#ed-stage'); let ini = null, nueva = null;
       st.onpointerdown = (e) => { if (e.target.closest('button')) return; const r = st.getBoundingClientRect(); ini = [(e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height];
-        nueva = document.createElement('div'); nueva.className = 'ed-box' + (modo === 'prov' ? ' prov' : ''); st.appendChild(nueva); st.setPointerCapture(e.pointerId); };
+        nueva = document.createElement('div'); nueva.className = 'ed-box t-' + tipo + (modo === 'prov' ? ' prov' : ''); st.appendChild(nueva); st.setPointerCapture(e.pointerId); };
       st.onpointermove = (e) => { if (!ini) return; const r = st.getBoundingClientRect(), x = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), y = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
-        Object.assign(nueva.style, { left: Math.min(x, ini[0]) * 100 + '%', top: Math.min(y, ini[1]) * 100 + '%', width: Math.abs(x - ini[0]) * 100 + '%', height: Math.abs(y - ini[1]) * 100 + '%' }); nueva.dataset.c = JSON.stringify([Math.min(x, ini[0]), Math.min(y, ini[1]), Math.abs(x - ini[0]), Math.abs(y - ini[1])]); };
+        Object.assign(nueva.style, { left: Math.min(x, ini[0]) * 100 + '%', top: Math.min(y, ini[1]) * 100 + '%', width: Math.abs(x - ini[0]) * 100 + '%', height: Math.abs(y - ini[1]) * 100 + '%' }); nueva.dataset.c = JSON.stringify([Math.min(x, ini[0]), Math.min(y, ini[1]), Math.abs(x - ini[0]), Math.abs(y - ini[1]), tipo]); };
       st.onpointerup = async () => { if (!ini) return; ini = null; const c = nueva.dataset.c && JSON.parse(nueva.dataset.c); if (!c || c[2] < .01 || c[3] < .01) { nueva.remove(); return; }
-        const id = modo === 'prov' ? 'prov:' + ag : src; await guardarCajas(id, (SV.ret[id] || []).concat([c]), a); pintar(); };
+        const id = modo === 'prov' ? 'prov:' + ag : src, base = modo === 'prov' ? prov : pf.cajas; await guardarCajas(id, base.concat([c]), a); pintar(); };
     };
     // La foto del editor no tiene recorte (se ve entera), así que las cajas van en porcentaje directo.
-    const caja = (c, t, i) => `<div class="ed-box${t === 'prov' ? ' prov' : ''}" style="left:${c[0] * 100}%;top:${c[1] * 100}%;width:${c[2] * 100}%;height:${c[3] * 100}%"><button type="button" data-borrar="${t}:${i}" aria-label="Quitar">✕</button></div>`;
+    const caja = (c, t, i) => `<div class="ed-box t-${c[4] || 'logo'}${t === 'prov' ? ' prov' : t === 'auto' ? ' auto' : ''}" style="left:${c[0] * 100}%;top:${c[1] * 100}%;width:${c[2] * 100}%;height:${c[3] * 100}%"><span>${t === 'auto' ? 'auto · ' : ''}${{ pat: 'patente', cartel: 'cartel' }[c[4]] || 'logo'}</span><button type="button" data-borrar="${t}:${i}" aria-label="Quitar">✕</button></div>`;
     d.onclick = async (e) => {
       if (e.target === d || e.target.closest('[data-cerrar]')) { d.close(); render(); return; }
       const a = L[ia], b = e.target.closest('[data-e]'), del = e.target.closest('[data-borrar]');
-      if (del) { const [t, i] = del.dataset.borrar.split(':'), id = t === 'prov' ? 'prov:' + a.agencia : a.fotos[ifo]; await guardarCajas(id, (SV.ret[id] || []).filter((_, j) => j !== +i), a); return pintar(); }
+      if (del) { const [t, i] = del.dataset.borrar.split(':'), id = t === 'prov' ? 'prov:' + a.agencia : a.fotos[ifo], base = t === 'prov' ? SV.ret[id] || [] : deFoto(id).cajas;
+        await guardarCajas(id, base.filter((_, j) => j !== +i), a); return pintar(); }
       if (!b) return;
       const q = b.dataset.e;
       if (q === 'm-foto' || q === 'm-prov') modo = q.slice(2);
+      if (q.startsWith('t-')) { tipo = q.slice(2); if (tipo === 'logo' && modo === 'foto') modo = 'prov'; if (tipo !== 'logo') modo = 'foto'; }
       if (q === 'sig') { if (ifo < a.fotos.length - 1) ifo++; else if (ia < L.length - 1) { ia++; ifo = 0; } }
       if (q === 'ant') { if (ifo > 0) ifo--; else if (ia > 0) { ia--; ifo = L[ia].fotos.length - 1; } }
       pintar();
