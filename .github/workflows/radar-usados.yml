@@ -28,11 +28,15 @@ jobs:
       - name: Leer agencias
         run: node radar/scraper/actualizar.mjs
       # Patentes → placa X5 y carteles amarillos → cartel rojo X5 (cada foto se analiza una sola vez)
+      # Las tapas corren aunque falle una agencia (su stock anterior se conserva y también necesita tapas)
       - uses: actions/setup-python@v5
+        if: ${{ !cancelled() }}
         with: { python-version: '3.12', cache: pip, cache-dependency-path: radar/scraper/requisitos-cubrir.txt }
       - uses: actions/cache@v4
+        if: ${{ !cancelled() }}
         with: { path: ~/.cache/open-image-models, key: modelo-patentes-v1 }
       - name: Detectar patentes y carteles
+        if: ${{ !cancelled() }}
         continue-on-error: true      # si falla, el stock se guarda igual (sin tapas nuevas)
         timeout-minutes: 25
         env: { CUBRIR_MUESTRAS: muestras-tapas, CUBRIR_REVISAR: "${{ inputs.muestras || '0' }}" }
