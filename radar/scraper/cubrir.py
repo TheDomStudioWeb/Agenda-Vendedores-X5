@@ -2,8 +2,11 @@
 """Radar de usados · detección automática de patentes y carteles amarillos.
 
 Corre después de actualizar.mjs (GitHub Action). Para cada foto del stock busca:
-  - patentes  → caja tipo 'pat'    (el Radar la cubre con una placa con el logo de X5 Argentina)
-  - carteles amarillos → caja 'cartel' (el Radar la cubre con un cartel rojo X5)
+  - patentes con logo (la placa de la agencia: «MAIPU USADOS» amarilla, «AUTOCITY» blanca, o la patente)
+      → caja tipo 'pat' (el Radar la cubre con una placa con el logo de X5 Argentina)
+  - carteles amarillos (el triángulo del parabrisas con el año, o un cartel rectangular)
+      → caja 'cartel' (el Radar la cubre con un cartel rojo X5; si es triángulo, el 6.º dato dice
+        en qué esquina está el ángulo recto: 'tl', 'tr', 'bl' o 'br')
 Las cajas van en proporción de la foto [x, y, ancho, alto, tipo] y se guardan en stock.json → "cubrir".
 Cada foto se analiza una sola vez: el resultado queda en radar/data/cubrir.json (caché por URL).
 Si un jefe corrige una foto a mano en el Radar, lo manual reemplaza a lo automático.
@@ -18,7 +21,7 @@ import cv2, numpy as np, requests
 
 STOCK = pathlib.Path('radar/data/stock.json')
 CACHE = pathlib.Path('radar/data/cubrir.json')
-VERSION = 1                       # subirla si cambian los criterios: se vuelven a analizar todas las fotos
+VERSION = 2                       # subirla si cambian los criterios: se vuelven a analizar todas las fotos
 MAX_NUEVAS = int(os.environ.get('CUBRIR_MAX', '3000'))
 MUESTRAS = os.environ.get('CUBRIR_MUESTRAS')
 CONF_PATENTE = 0.30
@@ -45,13 +48,38 @@ def bajar(url, ses):
     return None
 
 
+def es_placa(im, b):
+    """Descarta lo que el modelo confunde en el interior (pantallas, tableros, paneles de puerta).
+    Una placa es ancha (más del doble de ancho que de alto), está de la mitad de la foto para abajo
+    y su fondo es claro: blanco (patente, AUTOCITY) o amarillo (MAIPU USADOS)."""
+    H, W = im.shape[:2]
+    w, h = b.x2 - b.x1, b.y2 - b.y1
+    if w <= 0 or h <= 0 or w > W * 0.6:
+        return 'tamaño'
+    if w / h < 1.9:
+        return 'forma'
+    if (b.y1 + b.y2) / 2 < H * 0.4:
+        return 'altura'
+    hsv = cv2.cvtColor(im[int(b.y1):int(b.y2), int(b.x1):int(b.x2)], cv2.COLOR_BGR2HSV)
+    blanco = (hsv[..., 1] < 60) & (hsv[..., 2] > 150)
+    amarillo = (hsv[..., 0] >= 15) & (hsv[..., 0] <= 35) & (hsv[..., 1] > 100) & (hsv[..., 2] > 120)
+    if (blanco | amarillo).mean() < 0.35:
+        return 'color'
+    return None
+
+
+DESCARTES = []    # (foto, caja, motivo) para las muestras de calibración
+
+
 def patentes(det, im):
     H, W = im.shape[:2]
     out = []
     for r in det.predict(im):
         b = r.bounding_box
         w, h = b.x2 - b.x1, b.y2 - b.y1
-        if w <= 0 or h <= 0 or w > W * 0.6:
+        motivo = es_placa(im, b)
+        if motivo:
+            DESCARTES.append((id(im), [b.x1 / W, b.y1 / H, w / W, h / H, motivo]))
             continue
         mx, my = w * MARGEN_PATENTE, h * MARGEN_PATENTE * 2.5
         x1, y1 = max(0, b.x1 - mx), max(0, b.y1 - my)
@@ -76,14 +104,28 @@ def carteles(im, evitar):
         area, caja = cv2.contourArea(c), cw * ch
         if caja < w * h * 0.002 or caja > w * h * 0.12:       # ni un puntito ni medio auto amarillo
             continue
-        if area / caja < 0.55 or not (0.35 < cw / ch < 4):       # tiene que parecer un cartel
+        if not (0.35 < cw / ch < 4):
             continue
+        lleno = area / caja
+        esquina = None
+        if lleno < 0.55:                                         # ¿triángulo? (el del parabrisas con el año)
+            if lleno < 0.35 or not (0.5 < cw / ch < 2):
+                continue
+            sub = m[y:y + ch, x:x + cw] > 0
+            q = max(2, min(cw, ch) // 5)
+            dens = {'tl': sub[:q, :q].mean(), 'tr': sub[:q, -q:].mean(), 'bl': sub[-q:, :q].mean(), 'br': sub[-q:, -q:].mean()}
+            esquina = max(dens, key=dens.get)
+            opuesta = {'tl': 'br', 'tr': 'bl', 'bl': 'tr', 'br': 'tl'}[esquina]
+            if dens[esquina] < 0.7 or dens[opuesta] > 0.15:
+                continue
         # adentro debe haber texto oscuro (el teléfono / "VENDO"): descarta paragolpes o luces amarillas
         oscuro = (hsv[y:y + ch, x:x + cw, 2] < 90).mean()
         if oscuro < 0.02:
             continue
         p = 0.08
         bx = [max(0, x / w - p * cw / w), max(0, y / h - p * ch / h), min(1, (cw / w) * (1 + 2 * p)), min(1, (ch / h) * (1 + 2 * p)), 'cartel']
+        if esquina:
+            bx.append(esquina)
         if any(solapa(bx, e) > 0.3 for e in evitar):
             continue
         out.append(bx)
@@ -97,17 +139,18 @@ def solapa(a, b):
 
 
 def redondear(cajas):
-    return [[round(v, 3) for v in c[:4]] + [c[4]] for c in cajas]
+    return [[round(v, 3) for v in c[:4]] + c[4:] for c in cajas]
 
 
-def dibujar(im, cajas, destino):
+def dibujar(im, cajas, destino, descartes=()):
     if max(im.shape[:2]) > 900:
         k = 900 / max(im.shape[:2]); im = cv2.resize(im, (int(im.shape[1] * k), int(im.shape[0] * k)))
     H, W = im.shape[:2]
-    for x, y, w, h, t in cajas:
-        col = (45, 24, 227) if t == 'cartel' else (255, 160, 0)
-        cv2.rectangle(im, (int(x * W), int(y * H)), (int((x + w) * W), int((y + h) * H)), col, 4)
-        cv2.putText(im, t, (int(x * W), max(20, int(y * H) - 8)), cv2.FONT_HERSHEY_SIMPLEX, 0.9, col, 2)
+    for c in list(cajas) + [d[:4] + ['no:' + d[4]] for d in descartes]:
+        x, y, w, h, t = c[:5]
+        col = (45, 24, 227) if t == 'cartel' else (150, 150, 150) if t.startswith('no:') else (255, 160, 0)
+        cv2.rectangle(im, (int(x * W), int(y * H)), (int((x + w) * W), int((y + h) * H)), col, 2 if t.startswith('no:') else 4)
+        cv2.putText(im, t + (' ' + c[5] if len(c) > 5 else ''), (int(x * W), max(20, int(y * H) - 8)), cv2.FONT_HERSHEY_SIMPLEX, 0.8, col, 2)
     cv2.imwrite(str(destino), im, [cv2.IMWRITE_JPEG_QUALITY, 70])
 
 
@@ -135,6 +178,7 @@ def main():
                 cache[u] = {'c': [], 'error': 1, 'intentos': prev.get('intentos', 0) + 1}
                 n_err += 1
                 continue
+            DESCARTES.clear()
             p = patentes(det, im)
             c = carteles(im, p)
             cajas = redondear(p + c)
@@ -156,9 +200,10 @@ def main():
             im = bajar(u, ses)
             if im is None:
                 continue
+            DESCARTES.clear()
             p = patentes(det, im)
             cajas = redondear(p + carteles(im, p))
-            dibujar(im, cajas, pathlib.Path(MUESTRAS) / f'azar-{i:02d}-{"con" if cajas else "sin"}.jpg')
+            dibujar(im, cajas, pathlib.Path(MUESTRAS) / f'azar-{i:02d}-{"con" if cajas else "sin"}.jpg', [d[1] for d in DESCARTES])
     con = sum(1 for u in urls if cache.get(u, {}).get('c'))
     print(f'Listo en {time.time() - t0:.0f}s · patentes nuevas: {n_pat} · carteles nuevos: {n_car} · sin poder bajar: {n_err} · fotos con tapas: {con}/{len(urls)}')
 

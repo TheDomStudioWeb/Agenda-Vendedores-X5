@@ -156,6 +156,10 @@
   /* Patente → placa blanca con el logo de X5; cartel amarillo → cartel rojo X5; logos ajenos → desenfocado */
   .tapa.pat { background: #fff url("../brand/x5-logo-rojo.png") center / auto 82% no-repeat; backdrop-filter: none; -webkit-backdrop-filter: none; border-radius: 3px; box-shadow: 0 0 0 1px rgba(0,0,0,.35), inset 0 -2px 0 rgba(0,0,0,.08); }
   .tapa.cartel { background: #E3182D url("../brand/x5-logo-blanco.png") center / auto 72% no-repeat; backdrop-filter: none; -webkit-backdrop-filter: none; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,.4); }
+  /* Cartel triangular del parabrisas (año): triángulo rojo X5 con el ángulo recto en la misma esquina */
+  .tapa.cartel[class*="tri-"] { border-radius: 0; box-shadow: none; background-size: auto 38%; }
+  .tapa.tri-tl { clip-path: polygon(0 0, 100% 0, 0 100%); background-position: 18% 18%; } .tapa.tri-tr { clip-path: polygon(0 0, 100% 0, 100% 100%); background-position: 82% 18%; }
+  .tapa.tri-bl { clip-path: polygon(0 0, 0 100%, 100% 100%); background-position: 18% 82%; } .tapa.tri-br { clip-path: polygon(100% 0, 0 100%, 100% 100%); background-position: 82% 82%; }
   .gimg { position: relative; flex: 0 0 100%; overflow: hidden; scroll-snap-align: center; }
   .gimg img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
   .auto { position: relative; }
@@ -369,7 +373,7 @@
     const nw = im.naturalWidth, nh = im.naturalHeight, cw = im.clientWidth, ch = im.clientHeight;
     if (!cajas.length || !nw || !cw) return;
     const k = Math.max(cw / nw, ch / nh), ox = (cw - nw * k) / 2 + im.offsetLeft, oy = (ch - nh * k) / 2 + im.offsetTop;
-    cajas.forEach(([x, y, w, h, t]) => { const d = document.createElement('i'); d.className = 'tapa' + (t === 'pat' || t === 'cartel' ? ' ' + t : '');
+    cajas.forEach(([x, y, w, h, t, esq]) => { const d = document.createElement('i'); d.className = 'tapa' + (t === 'pat' || t === 'cartel' ? ' ' + t : '') + (t === 'cartel' && /^(tl|tr|bl|br)$/.test(esq || '') ? ' tri-' + esq : '');
       Object.assign(d.style, { left: (ox + x * nw * k) + 'px', top: (oy + y * nh * k) + 'px', width: (w * nw * k) + 'px', height: (h * nh * k) + 'px' }); box.appendChild(d); });
   };
   function retaparTodo() { document.querySelectorAll('img[data-src]').forEach(i => { if (i.complete && i.naturalWidth) radarTapar(i); }); }
