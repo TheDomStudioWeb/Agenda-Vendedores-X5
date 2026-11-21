@@ -305,6 +305,7 @@
       </div>
       <div class="fsum hidden" id="fs-agenda"></div>
       <div class="acc" style="margin-top:10px"><button type="button" class="btn btn-ghost btn-sm" data-dup="agenda" id="btn-dup-agenda">Buscar duplicados</button> <button type="button" class="btn btn-ghost btn-sm ger-only hidden" data-arch="1">Limpiar / archivar</button></div>
+      <div id="ruta-dia" class="hidden" style="margin-top:10px"></div>
       <div id="lista-agenda" style="margin-top:12px"></div>
     </div>
   </section>
@@ -844,7 +845,7 @@ function sincronizarPanel(t) {
 
 /* ── Render ────────────────────────────────────────────────── */
 function bloquearEdicion() { if (!SOLO_LECTURA()) return; document.querySelectorAll('[data-campo]').forEach(el => { el.disabled = true; }); }
-function render() { if (user) llenarPersona(); renderAgenda(); renderLeads(); resumen(); pintarDup(); pintarArch(); bloquearEdicion(); if (SUPERVISION.includes(user.rol) && $('tab-dashboard').classList.contains('active')) renderDashboard(); if (SUPERVISION.includes(user.rol) && $('tab-resumen').classList.contains('active')) renderResumen(); }
+function render() { if (user) { llenarPersona(); procesarLlegadas(); } renderAgenda(); renderLeads(); resumen(); pintarDup(); pintarArch(); bloquearEdicion(); if (SUPERVISION.includes(user.rol) && $('tab-dashboard').classList.contains('active')) renderDashboard(); if (SUPERVISION.includes(user.rol) && $('tab-resumen').classList.contains('active')) renderResumen(); }
 
 function resumen() {
   const hoy = X5.hoyISO();
@@ -886,12 +887,14 @@ function renderAgenda() {
   if (filtro.agenda === 'todo') data.reverse();
   pintarFiltros('agenda', data.length);
 
+  pintarRutaDia(ver, hoy);
   $('lista-agenda').innerHTML = data.length ? data.map(it => {
     const atrasada = it.estado === 'pendiente' && soloFecha(it.fecha) < hoy;
     const esVenta = it.resultado === 'venta';
     const lugar = it.lugar === 'Domicilio' ? `Domicilio${it.auto_usado ? ' · ' + esc(it.auto_usado) : ''}` : 'En agencia';
     const dest = mapsUrl(it.domicilio, it.lat, it.lng);
-    const dom = it.lugar === 'Domicilio' && (it.domicilio || dest) ? `<div class="meta"><span>📍 ${esc(it.domicilio || 'Ubicación marcada')}</span>${dest ? `<a href="${esc(dest)}" target="_blank" rel="noopener">Abrir en Google Maps</a>` : ''}</div>` : '';
+    const nav = rutaUrl([it]);
+    const dom = it.lugar === 'Domicilio' && (it.domicilio || dest) ? `<div class="meta"><span>📍 ${esc(it.domicilio || 'Ubicación marcada')}</span>${llegoA(it) ? `<span class="chip ok">Llegó ${esc(llegoA(it))}</span>` : ''}</div>${nav ? `<div class="actions" style="margin-top:6px"><a class="btn btn-sm" href="${esc(nav)}">🧭 Navegar</a> ${dest ? `<a class="btn btn-ghost btn-sm" href="${esc(dest)}" target="_blank" rel="noopener">Google Maps</a>` : ''}</div>` : ''}` : '';
     return `
     <article class="item ${esc(it.estado || 'pendiente')} ${atrasada ? 'vencido' : ''}" data-tabla="agenda" data-id="${esc(it.id)}">
       <div class="item-head">
@@ -917,6 +920,70 @@ function renderAgenda() {
       ${accionesItem('agenda', it)}
     </article>`;
   }).join('') : `<div class="empty">${filtrosActivos('agenda').length ? 'No hay entrevistas con estos filtros.' : filtro.agenda === 'hoy' ? 'Nada agendado para hoy.' : 'No hay entrevistas en esta vista.'}</div>`;
+}
+
+/* ── DOMino Ruta (navegación 3D) ─────────────────────────────
+   El botón «Navegar» abre https://thedomstudioweb.github.io/ruta/ con el domicilio,
+   el cliente y su teléfono (del lead vinculado). Al llegar, Ruta devuelve la hora
+   de llegada (?llegada=ID&hora=HH:MM, o la cola compartida «x5_llegadas») y el Hub
+   la anota en las observaciones de la entrevista. */
+const RUTA_URL = 'https://thedomstudioweb.github.io/ruta/';
+function telEntrevista(it) {
+  const lead = it.lead_id && (db.leads || []).find(l => String(l.id) === String(it.lead_id));
+  return lead ? String(lead.telefono || '') : '';
+}
+function rutaUrl(items) {
+  const lista = items.filter(it => it.lugar === 'Domicilio' && (it.domicilio || (it.lat && it.lng)));
+  if (!lista.length) return '';
+  const q = new URLSearchParams();
+  const asesor = lista.length === 1 ? lista[0].asesor : (user && user.nombre) || '';
+  if (asesor) q.set('asesor', String(asesor).split(' ')[0]);
+  q.set('marca', 'x5');
+  q.set('volver', location.origin + location.pathname);
+  if (lista.length === 1) {
+    const it = lista[0];
+    if (it.domicilio && !/^https?:\/\//i.test(it.domicilio)) q.set('destino', it.domicilio);
+    else if (it.domicilio) q.set('destino', it.domicilio);
+    if (it.lat && it.lng) { q.set('lat', it.lat); q.set('lng', it.lng); }
+    q.set('cliente', it.cliente || ''); q.set('id', it.id); q.set('hora', String(it.hora || '').slice(0, 5));
+    const tel = telEntrevista(it); if (tel) q.set('tel', tel);
+  } else {
+    const json = JSON.stringify(lista.map(it => ({ c: it.cliente || '', d: it.domicilio || '', lat: it.lat || '', lng: it.lng || '', id: it.id, t: telEntrevista(it), h: String(it.hora || '').slice(0, 5), ok: llegoA(it) ? 1 : 0 })));
+    q.set('paradas', btoa(unescape(encodeURIComponent(json))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''));
+  }
+  return RUTA_URL + '?' + q.toString();
+}
+function pintarRutaDia(ver, hoy) {
+  const box = $('ruta-dia'); if (!box) return;
+  const hoyDom = db.agenda.filter(a => ver(a.asesor) && soloFecha(a.fecha) === hoy && a.lugar === 'Domicilio' && (a.estado || 'pendiente') === 'pendiente' && (a.domicilio || (a.lat && a.lng)))
+    .sort((a, b) => String(a.hora || '').localeCompare(String(b.hora || '')));
+  if (!hoyDom.length) { box.classList.add('hidden'); box.innerHTML = ''; return; }
+  box.classList.remove('hidden');
+  box.innerHTML = `<a class="btn" href="${esc(rutaUrl(hoyDom))}">🧭 Ruta del día · ${hoyDom.length} ${hoyDom.length === 1 ? 'domicilio' : 'domicilios'}</a>`;
+}
+const llegoA = (it) => { const m = String(it.notas || '').match(/Llegó al domicilio (\d{1,2}:\d{2})/); return m ? m[1] : ''; };
+function procesarLlegadas() {
+  if (!user || SOLO_LECTURA() || !db || !Array.isArray(db.agenda)) return;
+  const pend = store.get('x5_llegadas', []);
+  const qs = new URLSearchParams(location.search);
+  if (qs.get('llegada')) {
+    pend.push({ id: qs.get('llegada'), hora: qs.get('hora') || '', dist: qs.get('dist') || '' });
+    qs.delete('llegada'); qs.delete('hora'); qs.delete('dist');
+    try { history.replaceState(null, '', location.pathname + (qs.toString() ? '?' + qs : '') + location.hash); } catch (e) {}
+  }
+  if (!pend.length) return;
+  const quedan = [];
+  let n = 0;
+  pend.forEach(l => {
+    const it = db.agenda.find(a => String(a.id) === String(l.id));
+    if (!it) { if (!l.intentos || l.intentos < 5) quedan.push({ ...l, intentos: (l.intentos || 0) + 1 }); return; }
+    const linea = `📍 Llegó al domicilio ${l.hora}${l.dist !== '' && l.dist != null && +l.dist > 60 ? ` (a ${l.dist} m)` : ''} · DOMino Ruta`;
+    if (String(it.notas || '').includes(`Llegó al domicilio ${l.hora}`)) return;
+    it.notas = (it.notas ? it.notas + '\n' : '') + linea;
+    encolar('update', 'Hoja 1', it); n++;
+  });
+  store.set('x5_llegadas', quedan);
+  if (n) { store.set('x5_db', db); X5.toast(n === 1 ? 'Llegada al domicilio registrada' : `${n} llegadas registradas`, 'ok', 3500); }
 }
 
 function telAR(t) {
