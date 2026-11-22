@@ -1,17 +1,11 @@
 {
- "actualizado": "2026-11-21T17:44:59.315Z",
+ "actualizado": "2026-11-22T17:10:06.050Z",
  "autos": [
   {
    "id": "maipu-182422",
    "auto": "BMW M235I 2015",
    "url": "https://maipuusados.com.ar/2026/10/28/m235i/",
    "texto": "2015 - 4965 M235I U$S 43.000 Precio sugerido al público U$S 35.540 Precio sin impuestos nacionales FORMULARIO WHATSAPP COMPARTIR Ficha Técnica Marca: BMW Kilometraje: 4965 Combustible: Nafta Transmisión: Automática Color: Blanco Incluye: AIR BAG, Aire acondicionado, Dirección de potencia, Espejos eléctricos, Frenos ABS Ver legales FINANCIACIONES BNA Financiá hasta $100 millones en hasta 72 meses. BANCOR Financiá hasta el 100% del valor del vehículo en 72 cuotas. BBVA Financiá hasta el 70% del va"
-  },
-  {
-   "id": "autocity-76459989-c6d4-4c93-a526-02c6b050c85a",
-   "auto": "Renault Sandero",
-   "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-sandero/1-6-8v-expression-pack-l15/",
-   "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
    "id": "autocity-cfce4569-8744-449d-9168-7a23509fa96a",
@@ -23,12 +17,6 @@
    "id": "autocity-8507b3cf-32a6-4377-b857-d681b079112e",
    "auto": "Renault Stepway",
    "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-stepway/1-6-intens-l19/",
-   "texto": "publicación incompleta (sin año o sin fotos)"
-  },
-  {
-   "id": "autocity-0e7e0219-e121-48d2-8ae0-150f0569f327",
-   "auto": "Fiat Cronos",
-   "url": "https://autocity.com.ar/catalogo/usados/m-fiat/m-cronos/1-3-gse-precision-cvt-l23-2/",
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
@@ -80,12 +68,6 @@
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
-   "id": "autocity-b439153c-12c1-491b-ab6b-fbbf57d09862",
-   "auto": "Toyota Yaris",
-   "url": "https://autocity.com.ar/catalogo/usados/m-toyota/m-yaris/1-5-xls-cvt-5p-l20/",
-   "texto": "publicación incompleta (sin año o sin fotos)"
-  },
-  {
    "id": "autocity-373e8e9c-891a-43ee-977d-b3b4e400f8f9",
    "auto": "Renault Koleos",
    "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-koleos/2-5-4x4-intens-cvt-l18/",
@@ -95,12 +77,6 @@
    "id": "autocity-184a1898-a044-49da-b041-ff52d4ac0e44",
    "auto": "Volkswagen Tera",
    "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-tera/1-6-msi-trendline-2/",
-   "texto": "publicación incompleta (sin año o sin fotos)"
-  },
-  {
-   "id": "autocity-ae3ced75-e837-4ab3-81e1-1ac719095e3c",
-   "auto": "Peugeot 208",
-   "url": "https://autocity.com.ar/catalogo/usados/m-peugeot/m-208/1-0-t200-allure-pack-at-l25-2/",
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
@@ -173,12 +149,6 @@
    "id": "autocity-6449a4ff-ff8d-4df9-90b3-721f7d5c3c02",
    "auto": "Toyota Corolla",
    "url": "https://autocity.com.ar/catalogo/usados/m-toyota/m-corolla/1-8-xei-cvt-hybrid-l20-2/",
-   "texto": "publicación incompleta (sin año o sin fotos)"
-  },
-  {
-   "id": "autocity-59111cd0-146a-4c15-aa9e-0f8ec941b7ef",
-   "auto": "Volkswagen Taos",
-   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-taos/1-4-250-tsi-comfortline-tiptronic-l24-2/",
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {

@@ -1,6 +1,140 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-22T17:10:06.050Z",
+   "tipo": "nuevo",
+   "id": "autocity-3456d02d-3e45-4913-bff3-87a858808c20",
+   "auto": "BYD Song Pro 2026",
+   "precio": 49200000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-22T17:10:06.050Z",
+   "tipo": "baja",
+   "id": "autocity-c4dd41d7-4dfe-43b5-9d99-abad24b9d2e3",
+   "auto": "Fiat Palio 2013",
+   "precio": 13249999,
+   "moneda": "ARS",
+   "dias": 8
+  },
+  {
+   "fecha": "2026-11-22T17:10:06.050Z",
+   "tipo": "baja",
+   "id": "autocity-49952391-f097-41e5-a5a1-915037746c6f",
+   "auto": "Peugeot 208 2017",
+   "precio": 17100000,
+   "moneda": "ARS",
+   "dias": 2
+  },
+  {
+   "fecha": "2026-11-22T17:10:06.050Z",
+   "tipo": "baja",
+   "id": "autocity-58863570-a160-42e0-a3b0-fa41c7679f45",
+   "auto": "Renault Logan 2021",
+   "precio": 19500000,
+   "moneda": "ARS",
+   "dias": 2
+  },
+  {
+   "fecha": "2026-11-22T17:10:06.050Z",
+   "tipo": "baja",
+   "id": "autocity-470e241b-a82b-4f5e-8aa6-ecac3b2d9684",
+   "auto": "Renault Captur 2018",
+   "precio": 23900000,
+   "moneda": "ARS",
+   "dias": 4
+  },
+  {
+   "fecha": "2026-11-22T17:10:06.050Z",
+   "tipo": "baja",
+   "id": "autocity-12ae42f4-c8a5-4da4-9d0d-730870a75bf4",
+   "auto": "Renault Captur 2019",
+   "precio": 24900000,
+   "moneda": "ARS",
+   "dias": 4
+  },
+  {
+   "fecha": "2026-11-22T17:10:06.050Z",
+   "tipo": "baja",
+   "id": "autocity-45a8d32d-c50b-4cb5-ab1d-2b025d142840",
+   "auto": "Peugeot 208 2022",
+   "precio": 25000000,
+   "moneda": "ARS",
+   "dias": 39
+  },
+  {
+   "fecha": "2026-11-22T17:10:06.050Z",
+   "tipo": "baja",
+   "id": "autocity-9c692179-d993-4adb-a8c6-28c9f82499ec",
+   "auto": "Peugeot 208 2024",
+   "precio": 25400000,
+   "moneda": "ARS",
+   "dias": 5
+  },
+  {
+   "fecha": "2026-11-22T17:10:06.050Z",
+   "tipo": "baja",
+   "id": "autocity-bdc0ec20-f594-454b-929e-3559eec1a934",
+   "auto": "Chevrolet Cruze 2021",
+   "precio": 27195000,
+   "moneda": "ARS",
+   "dias": 10
+  },
+  {
+   "fecha": "2026-11-22T17:10:06.050Z",
+   "tipo": "baja",
+   "id": "autocity-fb2508d5-7007-4c81-94e2-b77d58713cc7",
+   "auto": "Volkswagen Taos 2023",
+   "precio": 40900000,
+   "moneda": "ARS",
+   "dias": 10
+  },
+  {
+   "fecha": "2026-11-22T17:10:06.050Z",
+   "tipo": "baja",
+   "id": "autocity-3b66e30c-5f76-4d3a-b3f5-1612b05af070",
+   "auto": "Renault Alaskan 2023",
+   "precio": 40900000,
+   "moneda": "ARS",
+   "dias": 4
+  },
+  {
+   "fecha": "2026-11-22T17:10:06.050Z",
+   "tipo": "baja",
+   "id": "autocity-b2639886-f85b-44fd-bee8-517f40eee39c",
+   "auto": "Toyota Corolla Cross 2022",
+   "precio": 42900000,
+   "moneda": "ARS",
+   "dias": 3
+  },
+  {
+   "fecha": "2026-11-22T17:10:06.050Z",
+   "tipo": "baja",
+   "id": "autocity-c533db71-a8ee-47e4-a0a5-2e33d6de53e7",
+   "auto": "Peugeot 2008 2026",
+   "precio": 42900000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-11-22T17:10:06.050Z",
+   "tipo": "baja",
+   "id": "autocity-88be5181-d4f8-4341-9aeb-fdaa620934ce",
+   "auto": "Changan Cs55 Plus 2026",
+   "precio": 45300000,
+   "moneda": "ARS",
+   "dias": 39
+  },
+  {
+   "fecha": "2026-11-22T17:10:06.050Z",
+   "tipo": "baja",
+   "id": "autocity-a1f2f2b3-c411-4f08-8cc5-14117fbfb17e",
+   "auto": "Changan Cs55 Plus 2026",
+   "precio": 45800000,
+   "moneda": "ARS",
+   "dias": 9
+  },
+  {
    "fecha": "2026-11-21T16:48:05.498Z",
    "tipo": "nuevo",
    "id": "autocity-704985bb-8d7f-42dd-b0df-7a1e767bc5a4",
