@@ -1,6 +1,15 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-23T21:25:04.586Z",
+   "tipo": "baja",
+   "id": "autocity-79c65075-9dc5-4c78-ba32-63daa0fa32da",
+   "auto": "Citroen C4 Cactus 2020",
+   "precio": 22349999,
+   "moneda": "ARS",
+   "dias": 5
+  },
+  {
    "fecha": "2026-11-22T17:10:06.050Z",
    "tipo": "nuevo",
    "id": "autocity-3456d02d-3e45-4913-bff3-87a858808c20",

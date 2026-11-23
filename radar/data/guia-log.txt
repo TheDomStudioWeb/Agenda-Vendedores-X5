@@ -1,5 +1,5 @@
 Installing collected packages: pypdfium2, pycparser, Pillow, charset-normalizer, cffi, cryptography, pdfminer.six, pdfplumber
 
-Successfully installed Pillow-13.0.0 cffi-2.1.1 charset-normalizer-3.5.2 cryptography-50.0.2 pdfminer.six-20231228 pdfplumber-0.11.4 pycparser-3.12 pypdfium2-5.15.2
+Successfully installed Pillow-13.0.0 cffi-2.1.1 charset-normalizer-3.5.3 cryptography-50.0.2 pdfminer.six-20231228 pdfplumber-0.11.4 pycparser-3.12 pypdfium2-5.15.2
 Guía descargada: mes '2026-11'
 Guía 2026-11: 6076 versiones, 70 marcas
