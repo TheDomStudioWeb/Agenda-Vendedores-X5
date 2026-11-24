@@ -1,6 +1,14 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-24T20:50:35.638Z",
+   "tipo": "nuevo",
+   "id": "maipu-184491",
+   "auto": "Renault Kangoo 2021",
+   "precio": 24000000,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-11-24T20:10:30.839Z",
    "tipo": "nuevo",
    "id": "maipu-184466",
