@@ -50,6 +50,7 @@ Desarrollado por The DOM Studio Web · WhatsApp 261-3431216 · thedomstudioweb@g
 - Solo gerencia la carga: Hub → Control de contratos → "Lista de precios". Se puede pegar desde Excel o Word. Dos modos: **agregar o actualizar** solo los códigos pegados, o **reemplazar todo** (si hay un renglón con error, no cambia nada).
 - En el CRM, al cerrar una venta se piden **N.º de contrato y código del plan**, los dos obligatorios. Se muestra el vehículo, la cuota y el sellado a rendir.
 - El contrato guarda una copia del código, la cuota y el sellado del momento de la venta: si el listado cambia después, las ventas anteriores no se modifican.
+- **Corregir un sellado mal cargado:** si un valor de la lista estaba mal, corregilo en la lista y tocá **"Revisar sellado a rendir contra la lista"** (también se abre solo después de guardar la lista si hay diferencias). Muestra cada contrato en la calle (Completo, Cargado o Recibido) cuyo sellado o cuota no coincide, con el valor viejo tachado y el nuevo, y el total a rendir antes y después. Gerencia elige cuáles corregir. Los **Rendidos no se tocan** (quedan como se rindieron) y cada corrección queda en el log de contratos.
 - El vendedor ve en cada contrato el **sellado a rendir** y el total. Los jefes ven el total por vendedor.
 - Al rendir, el monto del sellado se toma del contrato; gerencia puede escribir otro monto si se pagó distinto.
 

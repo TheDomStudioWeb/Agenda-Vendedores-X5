@@ -205,4 +205,22 @@ T('seguimiento de más de 15 días: sin observaciones pasa solo a descartado; co
   m.reloj('2026-10-30T15:00:00-03:00'); m.api.revisarSeguimientosViejos_(); assert.strictEqual(m.enviados.length, 2, 'repite a los 3 días si no hubo movimiento');
 });
 
+T('revisar sellado a rendir: muestra diferencias con la lista vigente, corrige solo los que están en la calle y no toca los rendidos', () => {
+  const m = nuevo(); m.llamar(GER, { action: 'contratos_precios_cargar', modo: 'reemplazar', texto: LISTA }); m.llamar(GER, { action: 'contratos_cargar', numeros: '80-83' });
+  const ids = ['80', '81', '82', '83'].map(n => idDe(m, n)); m.llamar(GER, { action: 'contratos_asignar', ids, responsable: 'Vendedor Carlos' });
+  const vi = b => m.llamar(V1, Object.assign({ action: 'contratos_vincular' }, b)), est = n => datos(m, GER).contratos.find(c => c.numero === n);
+  vi({ numero: '80', cliente: 'Uno', codigo: 'PX64' }); vi({ numero: '81', cliente: 'Dos', codigo: 'PX64' }); vi({ numero: '82', cliente: 'Tres', codigo: 'PX71' }); vi({ numero: '83', cliente: 'Cuatro', codigo: 'PX64' });
+  m.llamar(V1, { action: 'contratos_estado', ids: [ids[3]], estado: 'Cargado' }); m.llamar(JEF, { action: 'contratos_estado', ids: [ids[3]], estado: 'Recibido' });
+  m.llamar(GER, { action: 'contratos_estado', ids: [ids[3]], estado: 'Rendido', sellado: { forma: 'Contado', referencia: 'Ana OK' } });
+  m.llamar(GER, { action: 'contratos_precios_cargar', texto: 'PX64;VW Polo;10;250000;35000' });          // el sellado de PX64 estaba mal: era 35.000
+  assert.strictEqual(m.llamar(JEF, { action: 'contratos_sellado_revisar' }).error, 'sin_permiso');
+  let r = m.llamar(GER, { action: 'contratos_sellado_revisar' });
+  assert(r.ok && r.diferencias.length === 2 && r.aplicados === 0, JSON.stringify(r)); assert(r.total_antes === 100000 && r.total_nuevo === 70000);
+  assert.strictEqual(est('80').sellado_debido, 50000, 'sin aplicar no cambia nada');
+  r = m.llamar(GER, { action: 'contratos_sellado_revisar', aplicar: true }); assert.strictEqual(r.aplicados, 2);
+  assert(est('80').sellado_debido === 35000 && est('81').sellado_debido === 35000 && est('82').sellado_debido === 100000);
+  assert.strictEqual(est('83').sellado_monto, 50000, 'el rendido queda como se rindió');
+  assert.strictEqual(m.llamar(GER, { action: 'contratos_sellado_revisar' }).diferencias.length, 0);
+});
+
 console.log(`\n${ok} bien, ${fail} con error`); process.exit(fail ? 1 : 0);

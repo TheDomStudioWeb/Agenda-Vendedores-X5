@@ -1103,6 +1103,7 @@ function despacharContratos_(body, u) {
     if (a === 'contratos_vincular') return contratosVincular_(body, u);
     if (a === 'contratos_precios_cargar') return contratosPreciosCargar_(body, u);
     if (a === 'contratos_eliminar') return contratosEliminar_(body, u);
+    if (a === 'contratos_sellado_revisar') return contratosSelladoRevisar_(body, u);
     return { ok: false, error: 'accion_invalida' };
   } finally { lock.releaseLock(); }
 }
@@ -1352,6 +1353,35 @@ function contratosPreciosCargar_(body, u) {
   }
   registrarLogContratos_([{ contrato: '(precios)', usuario: u.nombre, accion: 'precios', detalle: modo + ': ' + creados + ' nuevos, ' + actualizados + ' actualizados' }]);
   return { ok: true, modo: modo, creados: creados, actualizados: actualizados, errores: errores, total: leerPrecios_().length };
+}
+
+
+// Revisa el sellado (y la cuota) "a rendir" de los contratos en la calle contra la lista de precios vigente.
+// Sirve cuando la lista tenía un valor mal cargado: los contratos ya completados guardaron el valor viejo.
+// Sin "aplicar" solo muestra las diferencias; con "aplicar" las corrige y lo deja en el log. Nunca toca Rendido ni Anulado.
+function contratosSelladoRevisar_(body, u) {
+  if (!esGerente_(u)) return { ok: false, error: 'sin_permiso' };
+  const precios = {}; leerPrecios_().forEach(p => { precios[String(p.codigo).toUpperCase()] = p; });
+  const difs = [], sinPrecio = [];
+  leerContratos_().forEach(c => {
+    if (['Completo', 'Cargado', 'Recibido'].indexOf(String(c.estado)) < 0) return;
+    const cod = String(c.plan_codigo || '').toUpperCase(); if (!cod) return;
+    const p = precios[cod]; if (!p) { sinPrecio.push({ numero: c.numero, plan: cod, cliente: c.cliente || '' }); return; }
+    const sAntes = Number(c.sellado_debido) || 0, qAntes = Number(c.plan_cuota) || 0;
+    if (sAntes === p.sellado && qAntes === p.cuota) return;
+    difs.push({ id: String(c.id), numero: c.numero, cliente: c.cliente || '', responsable: c.responsable || '', estado: c.estado, plan: cod,
+      sellado_antes: sAntes, sellado_nuevo: p.sellado, cuota_antes: qAntes, cuota_nueva: p.cuota });
+  });
+  const total = l => l.reduce((a, d) => a + d, 0);
+  const res = { ok: true, diferencias: difs, sin_precio: sinPrecio, aplicados: 0,
+    total_antes: total(difs.map(d => d.sellado_antes)), total_nuevo: total(difs.map(d => d.sellado_nuevo)) };
+  if (body.aplicar && difs.length) {
+    const solo = (body.ids || []).map(String), elegidos = solo.length ? difs.filter(d => solo.indexOf(d.id) > -1) : difs;
+    actualizarContratos_(elegidos.map(d => ({ id: d.id, numero: d.numero, campos: { sellado_debido: d.sellado_nuevo || '', plan_cuota: d.cuota_nueva || '' }, d: d })), u, 'sellado_corregido',
+      cb => 'Plan ' + cb.d.plan + ': sellado ' + cb.d.sellado_antes + ' → ' + cb.d.sellado_nuevo + (cb.d.cuota_antes !== cb.d.cuota_nueva ? ' · cuota ' + cb.d.cuota_antes + ' → ' + cb.d.cuota_nueva : '') + ' (según lista de precios)');
+    res.aplicados = elegidos.length;
+  }
+  return res;
 }
 
 

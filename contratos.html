@@ -146,6 +146,8 @@
     <div class="opts"><label><input type="radio" name="pm" value="actualizar" checked> Agregar o actualizar solo estos códigos</label><label><input type="radio" name="pm" value="reemplazar"> Reemplazar todo el listado</label></div>
     <button class="btn" id="b-pre">Guardar lista de precios</button>
     <div id="r-pre"></div>
+    <p class="nota" style="margin-top:14px"><b>Sellado a rendir:</b> cada contrato guarda el sellado y la cuota de la lista al momento de la venta. Si corregiste un valor de la lista, revisá acá los contratos que todavía no se rindieron (los rendidos no se tocan).</p>
+    <button class="btn btn-ghost" id="b-rev">Revisar sellado a rendir contra la lista</button>
   </details>
 
   <details class="panel" id="p-res" hidden open>
@@ -422,7 +424,30 @@ $('b-pre').onclick = async (e) => {
   await cargar(false);
   $('r-pre').innerHTML = `<div class="okk">${r.creados} nuevo(s) · ${r.actualizados} actualizado(s). Hay ${r.total} planes.</div>` + (r.errores.length ? `<div class="err"><b>${r.errores.length} renglón(es) con problemas (no se cargaron):</b><ul style="margin:6px 0 0 18px;padding:0">${r.errores.slice(0, 30).map(x => `<li>Renglón ${x.linea}: ${esc(x.motivo)} — <code>${esc(x.texto)}</code></li>`).join('')}</ul></div>` : '');
   if (!r.errores.length) $('t-pre-in').value = '';
+  revisarSellado(true);
 };
+async function revisarSellado(silencioso) {
+  let r; try { r = await post({ action: 'contratos_sellado_revisar' }); } catch (x) { r = null; }
+  if (!r || !r.ok) { if (!silencioso) X5.toast(r ? (ERR[r.error] || 'No se pudo revisar') : 'No se pudo revisar. Revisá la conexión.', 'bad', 3500); return; }
+  const D2 = r.diferencias, S = r.sin_precio;
+  if (silencioso && !D2.length) return;
+  const filas = D2.map(d => `<tr><td><label><input type="checkbox" class="rv" value="${esc(d.id)}" checked> ${esc(d.numero)}</label></td><td style="text-align:left">${esc(d.cliente)}<br><small>${esc(d.responsable)} · ${esc(d.estado)}</small></td><td>${esc(d.plan)}</td><td><s>${X5.money(d.sellado_antes)}</s><br><b>${X5.money(d.sellado_nuevo)}</b></td><td>${d.cuota_antes !== d.cuota_nueva ? `<s>${X5.money(d.cuota_antes)}</s><br><b>${X5.money(d.cuota_nueva)}</b>` : X5.money(d.cuota_nueva)}</td></tr>`).join('');
+  dialogo('Sellado a rendir · revisión', (D2.length
+      ? `<p class="nota">${D2.length} contrato${D2.length === 1 ? '' : 's'} en la calle no coinciden con la lista de precios vigente. Total a rendir: <s>${X5.money(r.total_antes)}</s> → <b>${X5.money(r.total_nuevo)}</b>. Destildá los que no quieras corregir.</p>
+         <div style="overflow-x:auto"><table class="tabla"><tr><th>N.º</th><th>Cliente</th><th>Plan</th><th>Sellado</th><th>Cuota</th></tr>${filas}</table></div>
+         <button class="btn" id="rv-ok" style="margin-top:12px">Corregir con los valores de la lista</button><div id="rv-r"></div>`
+      : '<p class="okk">Todos los contratos en la calle tienen el sellado y la cuota de la lista vigente.</p>')
+    + (S.length ? `<p class="err" style="margin-top:12px"><b>${S.length} contrato${S.length === 1 ? '' : 's'} con un plan que ya no está en la lista</b> (no se pueden revisar): ${S.map(x => esc(x.numero) + ' (' + esc(x.plan) + ')').join(', ')}.</p>` : ''));
+  const ok = $('rv-ok'); if (!ok) return;
+  ok.onclick = async () => {
+    const ids = [...document.querySelectorAll('.rv:checked')].map(x => x.value); if (!ids.length) return X5.toast('No hay ninguno tildado', 'bad');
+    ok.disabled = true;
+    let a; try { a = await post({ action: 'contratos_sellado_revisar', aplicar: true, ids }); } catch (x) { a = null; }
+    if (!a || !a.ok) { ok.disabled = false; $('rv-r').innerHTML = '<div class="err">No se pudo corregir. Revisá la conexión.</div>'; return; }
+    await cargar(false); dlg.close(); X5.toast(a.aplicados + ' contrato' + (a.aplicados === 1 ? '' : 's') + ' corregido' + (a.aplicados === 1 ? '' : 's'), 'ok', 3500);
+  };
+}
+$('b-rev').onclick = () => revisarSellado(false);
 prepararLogin();
 })();
 </script>
