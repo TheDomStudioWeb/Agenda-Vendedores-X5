@@ -1,6 +1,111 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-24T20:10:30.839Z",
+   "tipo": "nuevo",
+   "id": "maipu-184466",
+   "auto": "Audi Q5 2019",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-24T20:10:30.839Z",
+   "tipo": "nuevo",
+   "id": "maipu-184441",
+   "auto": "Chevrolet S10 2026",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-24T20:10:30.839Z",
+   "tipo": "precio",
+   "id": "maipu-184294",
+   "auto": "Chevrolet Equinox 2023",
+   "antes": 38000000,
+   "precio": 39000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-24T20:10:30.839Z",
+   "tipo": "precio",
+   "id": "maipu-180507",
+   "auto": "Toyota Corolla 2021",
+   "antes": 32500000,
+   "precio": 33500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-24T20:10:30.839Z",
+   "tipo": "baja",
+   "id": "maipu-183607",
+   "auto": "Chevrolet Onix 2025",
+   "precio": 25000000,
+   "moneda": "ARS",
+   "dias": 11
+  },
+  {
+   "fecha": "2026-11-24T20:10:30.839Z",
+   "tipo": "baja",
+   "id": "maipu-183396",
+   "auto": "Chevrolet Cruze 2024",
+   "precio": 31000000,
+   "moneda": "ARS",
+   "dias": 18
+  },
+  {
+   "fecha": "2026-11-24T20:10:30.839Z",
+   "tipo": "nuevo",
+   "id": "autocity-9c692179-d993-4adb-a8c6-28c9f82499ec",
+   "auto": "Peugeot 208 2024",
+   "precio": 25400000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-24T20:10:30.839Z",
+   "tipo": "baja",
+   "id": "autocity-2331dbfa-b225-4727-80da-a8e6876a3121",
+   "auto": "Volkswagen Polo 2025",
+   "precio": 27500000,
+   "moneda": "ARS",
+   "dias": 7
+  },
+  {
+   "fecha": "2026-11-24T20:10:30.839Z",
+   "tipo": "baja",
+   "id": "autocity-3d0dcf49-083d-472a-af87-9120f2321dfe",
+   "auto": "Renault Kardian 2025",
+   "precio": 33200000,
+   "moneda": "ARS",
+   "dias": 19
+  },
+  {
+   "fecha": "2026-11-24T20:10:30.839Z",
+   "tipo": "baja",
+   "id": "autocity-9db87089-bcc7-4b7c-abbf-a7fbf26328b9",
+   "auto": "BYD Dolphin Mini 2026",
+   "precio": 34250000,
+   "moneda": "ARS",
+   "dias": 27
+  },
+  {
+   "fecha": "2026-11-24T20:10:30.839Z",
+   "tipo": "baja",
+   "id": "autocity-151760f0-d155-4585-a0d4-9b3cedf76354",
+   "auto": "Peugeot 2008 2025",
+   "precio": 38250000,
+   "moneda": "ARS",
+   "dias": 41
+  },
+  {
+   "fecha": "2026-11-24T20:10:30.839Z",
+   "tipo": "baja",
+   "id": "autocity-2822c8fd-16e1-4473-aed9-72e27cfedaca",
+   "auto": "Volkswagen Amarok 2023",
+   "precio": 54050000,
+   "moneda": "ARS",
+   "dias": 20
+  },
+  {
    "fecha": "2026-11-23T21:25:04.586Z",
    "tipo": "baja",
    "id": "autocity-79c65075-9dc5-4c78-ba32-63daa0fa32da",
