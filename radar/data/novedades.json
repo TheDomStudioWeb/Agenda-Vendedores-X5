@@ -1,6 +1,254 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "nuevo",
+   "id": "maipu-184518",
+   "auto": "Chevrolet Tracker 2025",
+   "precio": 38000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "maipu-183940",
+   "auto": "Ford Territory 2022",
+   "precio": 36500000,
+   "moneda": "ARS",
+   "dias": 8
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "maipu-183034",
+   "auto": "Renault Sandero 2020",
+   "precio": 19800000,
+   "moneda": "ARS",
+   "dias": 20
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "maipu-181919",
+   "auto": "Renault Logan 2017",
+   "precio": 15000000,
+   "moneda": "ARS",
+   "dias": 35
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "maipu-181468",
+   "auto": "Ford Ka 2018",
+   "precio": 13000000,
+   "moneda": "ARS",
+   "dias": 40
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "maipu-180409",
+   "auto": "Nissan Kicks 2023",
+   "precio": 32500000,
+   "moneda": "ARS",
+   "dias": 51
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "maipu-178328",
+   "auto": "Jeep Compass 2025",
+   "precio": 45000000,
+   "moneda": "ARS",
+   "dias": 70
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "maipu-165282",
+   "auto": "Chevrolet Tracker 2023",
+   "precio": 30000000,
+   "moneda": "ARS",
+   "dias": 194
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "nuevo",
+   "id": "autocity-364614aa-c2ac-4255-aece-dce9e9b094c3",
+   "auto": "Citroen C4 2013",
+   "precio": 12400000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "nuevo",
+   "id": "autocity-74384df6-017d-4739-a225-9473d98799a2",
+   "auto": "Peugeot 208 2023",
+   "precio": 20899999,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "nuevo",
+   "id": "autocity-46f0f119-b90d-45b3-bef3-5cb606c0f6d4",
+   "auto": "Fiat Argo 2025",
+   "precio": 25850000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-704985bb-8d7f-42dd-b0df-7a1e767bc5a4",
+   "auto": "Volkswagen Gol 2018",
+   "precio": 18250000,
+   "moneda": "ARS",
+   "dias": 4
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-8f97b989-d613-47a8-a54b-a3418ce9390c",
+   "auto": "Peugeot 208 2021",
+   "precio": 23600000,
+   "moneda": "ARS",
+   "dias": 6
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-808938ea-2caa-4e5b-b8c0-068c92e7b52f",
+   "auto": "Citroen C4 Cactus 2022",
+   "precio": 25750000,
+   "moneda": "ARS",
+   "dias": 42
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-67a861b1-4902-4625-af02-67ece197bb4c",
+   "auto": "Peugeot 208 2023",
+   "precio": 26150000,
+   "moneda": "ARS",
+   "dias": 42
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-516d8a19-0329-4b1e-8dc4-227f1fcc9e96",
+   "auto": "Peugeot 208 2023",
+   "precio": 26150000,
+   "moneda": "ARS",
+   "dias": 13
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-abd82e58-1d36-4c4d-b954-cdecd786119b",
+   "auto": "Peugeot 208 2023",
+   "precio": 26250000,
+   "moneda": "ARS",
+   "dias": 42
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-d0a09ccd-9b9d-44f5-aedb-522e5fb5f29f",
+   "auto": "Chevrolet Cruze 2023",
+   "precio": 28245000,
+   "moneda": "ARS",
+   "dias": 6
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-9fa48180-d251-44b6-a57d-5a5d53211918",
+   "auto": "Renault Duster 2022",
+   "precio": 29250000,
+   "moneda": "ARS",
+   "dias": 8
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-47f208af-9c65-46d2-b92e-34aee0c3898a",
+   "auto": "Volkswagen Amarok 2020",
+   "precio": 31500000,
+   "moneda": "ARS",
+   "dias": 5
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-cab5b063-7609-4116-99fe-7e243d686b2d",
+   "auto": "BYD Dolphin Mini 2026",
+   "precio": 34200000,
+   "moneda": "ARS",
+   "dias": 33
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-4a7ed8ab-8c85-4e77-9330-a16100189b72",
+   "auto": "Renault Kangoo 2024",
+   "precio": 35250000,
+   "moneda": "ARS",
+   "dias": 5
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-d2f83cdc-5303-4f62-a89c-6aae0ce31f9f",
+   "auto": "Ford Bronco 2021",
+   "precio": 44800000,
+   "moneda": "ARS",
+   "dias": 42
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-9f633e67-4e3b-4842-b7c8-e5122829cc4a",
+   "auto": "BYD Yuan Pro 2026",
+   "precio": 27900,
+   "moneda": "USD",
+   "dias": 12
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-2dc40f21-5589-4748-a543-31d89d456ac0",
+   "auto": "Jeep Commander 2022",
+   "precio": 47350000,
+   "moneda": "ARS",
+   "dias": 5
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-3954ff62-bc6f-4c8f-bb4d-9aeb78d1fe74",
+   "auto": "Nissan Frontier 2023",
+   "precio": 47900000,
+   "moneda": "ARS",
+   "dias": 19
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-33dbd6c5-e7b1-4bef-a8ff-99885e0e5e8e",
+   "auto": "Nissan Xtrail 2023",
+   "precio": 51100000,
+   "moneda": "ARS",
+   "dias": 7
+  },
+  {
+   "fecha": "2026-11-25T19:16:14.050Z",
+   "tipo": "baja",
+   "id": "autocity-302f572e-b3e1-4628-af86-fc075709ae55",
+   "auto": "Volkswagen Amarok 2022",
+   "precio": 51900000,
+   "moneda": "ARS",
+   "dias": 5
+  },
+  {
    "fecha": "2026-11-24T20:50:35.638Z",
    "tipo": "nuevo",
    "id": "maipu-184491",

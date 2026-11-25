@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-24T20:50:35.638Z",
+ "actualizado": "2026-11-25T19:16:14.050Z",
  "autos": [
   {
    "id": "maipu-182422",
@@ -71,12 +71,6 @@
    "id": "autocity-373e8e9c-891a-43ee-977d-b3b4e400f8f9",
    "auto": "Renault Koleos",
    "url": "https://autocity.com.ar/catalogo/usados/m-renault/m-koleos/2-5-4x4-intens-cvt-l18/",
-   "texto": "publicación incompleta (sin año o sin fotos)"
-  },
-  {
-   "id": "autocity-184a1898-a044-49da-b041-ff52d4ac0e44",
-   "auto": "Volkswagen Tera",
-   "url": "https://autocity.com.ar/catalogo/usados/m-volkswagen/m-tera/1-6-msi-trendline-2/",
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
@@ -160,7 +154,7 @@
   {
    "id": "autocity-9880d658-9e67-4a98-9bd0-3e1a1e9ceef4",
    "auto": "BYD Song Pro",
-   "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-song-pro/gl-6/",
+   "url": "https://autocity.com.ar/catalogo/usados/m-byd/m-song-pro/gl-3/",
    "texto": "publicación incompleta (sin año o sin fotos)"
   },
   {
