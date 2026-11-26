@@ -1,6 +1,14 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-26T19:47:41.948Z",
+   "tipo": "nuevo",
+   "id": "maipu-184571",
+   "auto": "Chevrolet Equinox 2019",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
    "fecha": "2026-11-26T19:00:42.026Z",
    "tipo": "baja",
    "id": "maipu-184441",
