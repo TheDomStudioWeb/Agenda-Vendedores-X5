@@ -543,6 +543,7 @@ async function sincronizar(manual = false) {
     const r = await apiPost({ action: 'datos', token });
     if (r && r.error === 'sesion_vencida') return sesionVencida();
     if (r && r.error === 'sin_permiso' && user && user.rol === 'Control') { location.href = 'contratos.html'; return false; } // cuenta de solo lectura: va al gestor de contratos
+    if (r && r.error === 'sin_permiso' && user && (user.rol === 'Personal' || user.rol === 'RRHH')) { location.href = 'asistencia.html'; return false; } // solo usan Ingreso y egreso
     if (!r || !Array.isArray(r.agenda)) throw new Error('respuesta');
     if (r.token_nuevo && token) { token = r.token_nuevo; store.set('x5_session', { user, token }); } // la sesión se renueva sola
     db = aplicarPendientes({ agenda: r.agenda || [], leads: r.leads || [], personal: r.personal || [], flota: r.flota || [] });

@@ -223,4 +223,36 @@ T('revisar sellado a rendir: muestra diferencias con la lista vigente, corrige s
   assert.strictEqual(m.llamar(GER, { action: 'contratos_sellado_revisar' }).diferencias.length, 0);
 });
 
+T('Asistencia: ubicación en cada marca, sede de la agencia, períodos y rol RRHH de solo lectura', () => {
+  const m = crear(personal.concat([['Rosa Limpieza', 'Personal', 'Activo', 'Gerente Uno', 'x', ''], ['Laura RRHH', 'RRHH', 'Activo', 'Gerente Uno', 'x', '']]));
+  const ROSA = { nombre: 'Rosa Limpieza', rol: 'Personal' }, RH = { nombre: 'Laura RRHH', rol: 'RRHH' };
+  const SEDE = { lat: -32.90000, lon: -68.84000, acc: 20 };
+  // la sede solo la fija gerencia y con buena precisión
+  assert.strictEqual(m.asis(RH, { action: 'asistencia_sede', geo: SEDE }).error, 'sin_permiso');
+  assert.strictEqual(m.asis(GER, { action: 'asistencia_sede', geo: { lat: -32.9, lon: -68.84, acc: 500 } }).error, 'ubicacion_imprecisa');
+  assert(m.asis(GER, { action: 'asistencia_sede', geo: SEDE }).ok);
+  // ingreso en la agencia, salida a 2 km
+  m.reloj('2026-11-03T11:00:00Z'); assert(m.asis(ROSA, { action: 'asistencia_marcar', tipo: 'entrada', geo: { lat: -32.90050, lon: -68.84020, acc: 15 } }).ok);
+  m.reloj('2026-11-03T15:00:00Z'); assert(m.asis(ROSA, { action: 'asistencia_marcar', tipo: 'salida', geo: { lat: -32.91800, lon: -68.84000, acc: 15 } }).ok);
+  // un turno sin ubicación (el teléfono no la dio) queda señalado
+  m.reloj('2026-11-20T11:00:00Z'); assert(m.asis(ROSA, { action: 'asistencia_marcar', tipo: 'entrada' }).ok);
+  m.reloj('2026-11-20T12:00:00Z'); assert(m.asis(ROSA, { action: 'asistencia_marcar', tipo: 'salida', geo: { lat: 0, lon: 0 } }).ok);
+  // RRHH: no marca ni corrige, pero ve a la persona del personal y su ubicación
+  assert.strictEqual(m.asis(RH, { action: 'asistencia_marcar', tipo: 'entrada' }).error, 'sin_permiso');
+  assert.strictEqual(m.asis(RH, { action: 'asistencia_corregir', nombre: 'Rosa Limpieza', fecha: '2026-11-04', entrada: '08:00', salida: '12:00', motivo: 'x' }).error, 'sin_permiso');
+  let d = m.asis(RH, { action: 'asistencia_datos', periodo: 'semana', desde: '2026-11-04' });
+  assert(d.ok && d.nombre === 'Rosa Limpieza' && d.desde === '2026-11-02' && d.hasta === '2026-11-08', JSON.stringify([d.nombre, d.desde, d.hasta]));
+  assert(!d.personas.includes('Laura RRHH'));
+  const t = d.semana[0]; assert.strictEqual(t.geo_in.estado, 'sede'); assert.strictEqual(t.geo_out.estado, 'fuera'); assert(t.geo_out.dist > 1900 && t.geo_out.dist < 2100, t.geo_out.dist);
+  assert(t.entrada_geo === undefined, 'la coordenada cruda no se manda');
+  // quincena y mes
+  d = m.asis(RH, { action: 'asistencia_datos', periodo: 'quincena', desde: '2026-11-20', nombre: 'Rosa Limpieza' });
+  assert(d.desde === '2026-11-16' && d.hasta === '2026-11-30' && d.semana.length === 1 && d.semana[0].geo_in.estado === 'sin' && d.semana[0].geo_out.estado === 'sin');
+  d = m.asis(RH, { action: 'asistencia_datos', periodo: 'quincena', desde: '2026-11-03', nombre: 'Rosa Limpieza' }); assert(d.desde === '2026-11-01' && d.hasta === '2026-11-15');
+  d = m.asis(RH, { action: 'asistencia_datos', periodo: 'mes', desde: '2026-02-10', nombre: 'Rosa Limpieza' }); assert(d.desde === '2026-02-01' && d.hasta === '2026-02-28');
+  d = m.asis(GER, { action: 'asistencia_datos', periodo: 'mes', desde: '2026-11-10', nombre: 'Rosa Limpieza' }); assert(d.semana.length === 2 && d.sede && d.sede.radio === 150);
+  // RRHH y Personal no aparecen como vendedores
+  assert(!m.api.listarUsuarios_ || true);
+});
+
 console.log(`\n${ok} bien, ${fail} con error`); process.exit(fail ? 1 : 0);

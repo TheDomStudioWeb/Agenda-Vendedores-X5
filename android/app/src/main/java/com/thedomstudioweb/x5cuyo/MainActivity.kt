@@ -18,6 +18,7 @@ import android.provider.MediaStore
 import android.util.Base64
 import android.view.View
 import android.webkit.JavascriptInterface
+import android.webkit.GeolocationPermissions
 import android.webkit.MimeTypeMap
 import android.webkit.URLUtil
 import android.webkit.ValueCallback
@@ -90,6 +91,17 @@ class MainActivity : AppCompatActivity() {
             cb.onReceiveValue(uris)
         }
 
+    // Ubicación para el ingreso y egreso georreferenciado (solo se pide cuando el Hub la necesita)
+    private var geoCallback: GeolocationPermissions.Callback? = null
+    private var geoOrigin: String? = null
+    private val askLocation =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { res ->
+            val ok = res[Manifest.permission.ACCESS_FINE_LOCATION] == true || res[Manifest.permission.ACCESS_COARSE_LOCATION] == true
+            geoCallback?.invoke(geoOrigin, ok, false)
+            geoCallback = null; geoOrigin = null
+            if (!ok) toast("Sin permiso de ubicación no se puede marcar el ingreso ni la salida.")
+        }
+
     // Permiso de almacenamiento (solo Android 9 o anterior)
     private val askStorage =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { ok ->
@@ -117,6 +129,7 @@ class MainActivity : AppCompatActivity() {
         with(webView.settings) {
             javaScriptEnabled = true
             domStorageEnabled = true
+            setGeolocationEnabled(true)
             loadWithOverviewMode = true
             useWideViewPort = true
             mediaPlaybackRequiresUserGesture = false
@@ -235,6 +248,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private inner class HubChromeClient : WebChromeClient() {
+        /** Ubicación para el Hub (ingreso y egreso): se pide el permiso del teléfono solo para el Hub. */
+        override fun onGeolocationPermissionsShowPrompt(origin: String?, callback: GeolocationPermissions.Callback?) {
+            if (origin == null || !origin.contains(HUB_HOST)) { callback?.invoke(origin, false, false); return }
+            val fino = ContextCompat.checkSelfPermission(this@MainActivity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+            val grueso = ContextCompat.checkSelfPermission(this@MainActivity, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+            if (fino || grueso) { callback?.invoke(origin, true, false); return }
+            geoCallback = callback; geoOrigin = origin
+            askLocation.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
+        }
+
         override fun onProgressChanged(view: WebView, newProgress: Int) {
             progress.progress = newProgress
             progress.visibility = if (newProgress < 100) View.VISIBLE else View.GONE

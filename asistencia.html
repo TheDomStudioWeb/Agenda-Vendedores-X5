@@ -59,10 +59,21 @@
   .dia-h span { font-variant-numeric: tabular-nums; font-weight: 700; }
   .turno { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 0 0; font-size: .86rem; color: var(--muted); font-variant-numeric: tabular-nums; }
   .turno .flecha { color: var(--faint); }
+  .turno > div:last-child { white-space: nowrap; flex: none; }
   .turno .ab { color: var(--ok); font-weight: 700; }
   .turno .nt { display: block; font-size: .7rem; color: var(--warn); }
   .turno button { background: none; border: 0; color: var(--x5-text); font: inherit; font-size: .76rem; font-weight: 700; cursor: pointer; padding: 4px 0 4px 8px; }
   .acciones { display: grid; gap: 8px; margin-top: 14px; }
+  .per { display: flex; gap: 4px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 3px; margin-bottom: 10px; }
+  .per button { flex: 1; border: 0; background: none; color: var(--muted); font: 700 .8rem var(--font); padding: 8px 4px; border-radius: 9px; cursor: pointer; }
+  .per button.on { background: var(--x5); color: #fff; }
+  .geo { display: inline-flex; align-items: center; gap: 3px; font-size: .68rem; font-weight: 700; border-radius: 6px; padding: 1px 6px; margin-left: 4px; text-decoration: none; white-space: nowrap; }
+  .geo.sede { color: var(--ok); background: rgba(47,209,138,.12); }
+  .geo.fuera { color: var(--warn); background: var(--warn-soft); }
+  .geo.sin { color: var(--bad); background: rgba(255,122,133,.12); }
+  .geo.ok { color: var(--muted); background: var(--surface-2); }
+  .sede-box { margin-top: 10px; display: flex; gap: 8px; align-items: center; justify-content: space-between; font-size: .76rem; color: var(--muted); }
+  .sede-box .btn { width: auto; }
   .ger { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; margin-top: 12px; }
   .ger select { width: 100%; }
   .adentro-l { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
@@ -109,6 +120,7 @@
     <label class="lbl" for="g-per">Ver el registro de</label>
     <select id="g-per"></select>
     <div class="adentro-l" id="g-adentro"></div>
+    <div class="sede-box" id="g-sede" hidden></div>
   </div>
 
   <section id="propio">
@@ -118,16 +130,19 @@
       <button class="marca in" id="b-in" disabled><svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg><b>Ingreso</b><small>Marcar llegada</small></button>
       <button class="marca out" id="b-out" disabled><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><b>Salida</b><small>Marcar retiro</small></button>
     </div>
-    <p class="nota center" style="margin-top:10px">La hora la registra el sistema, no el teléfono.</p>
+    <p class="nota center" style="margin-top:10px">La hora la registra el sistema, no el teléfono. Al marcar se guarda tu ubicación.</p>
   </section>
 
   <section class="sem">
-    <div class="sem-h">
-      <button class="btn btn-ghost btn-sm" id="s-ant" aria-label="Semana anterior">‹</button>
-      <div class="t"><b id="s-t">Esta semana</b><span id="s-r"></span></div>
-      <button class="btn btn-ghost btn-sm" id="s-sig" aria-label="Semana siguiente">›</button>
+    <div class="per" role="tablist" aria-label="Período del informe">
+      <button data-per="semana" class="on">Semanal</button><button data-per="quincena">Quincenal</button><button data-per="mes">Mensual</button>
     </div>
-    <div class="total"><div><b id="t-h">0:00</b><span>Horas de la semana</span></div><div><b id="t-d">0</b><span>Días trabajados</span></div></div>
+    <div class="sem-h">
+      <button class="btn btn-ghost btn-sm" id="s-ant" aria-label="Período anterior">‹</button>
+      <div class="t"><b id="s-t">Esta semana</b><span id="s-r"></span></div>
+      <button class="btn btn-ghost btn-sm" id="s-sig" aria-label="Período siguiente">›</button>
+    </div>
+    <div class="total"><div><b id="t-h">0:00</b><span id="t-hl">Horas de la semana</span></div><div><b id="t-d">0</b><span>Días trabajados</span></div></div>
     <div id="dias"></div>
     <div class="acciones">
       <button class="btn" id="b-pdf">Exportar semana en PDF</button>
@@ -146,12 +161,19 @@
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
 const $ = (id) => document.getElementById(id), esc = X5.esc, dlg = $('dlg');
 const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }, del(k) { try { localStorage.removeItem(k); } catch (e) {} } };
-const ERR = { ya_adentro: 'Ya figura un ingreso sin salida. Marcá la salida primero.', sin_entrada: 'No hay un ingreso abierto para cerrar.', sin_permiso: 'No tenés permiso para esa acción.', falta_motivo: 'Escribí el motivo de la corrección.', falta_entrada: 'Falta la hora de ingreso.', falta_salida: 'Falta la hora de salida.', falta_fecha: 'Falta la fecha.', persona_invalida: 'Elegí una persona.' };
+const ERR = { ya_adentro: 'Ya figura un ingreso sin salida. Marcá la salida primero.', sin_entrada: 'No hay un ingreso abierto para cerrar.', sin_permiso: 'No tenés permiso para esa acción.', falta_motivo: 'Escribí el motivo de la corrección.', falta_entrada: 'Falta la hora de ingreso.', falta_salida: 'Falta la hora de salida.', falta_fecha: 'Falta la fecha.', persona_invalida: 'Elegí una persona.', falta_ubicacion: 'No se pudo obtener la ubicación.', ubicacion_imprecisa: 'La ubicación es poco precisa. Salí cerca de una ventana o activá el GPS y probá de nuevo.' };
 const DIAS = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
 let user = null, token = null, D = null, desde = null, quien = null, desfase = 0, tic = null;
+let periodo = (() => { try { return ['semana', 'quincena', 'mes'].includes(localStorage.getItem('asist_periodo')) ? localStorage.getItem('asist_periodo') : 'semana'; } catch (e) { return 'semana'; } })();
+const NOM_PER = { semana: 'semana', quincena: 'quincena', mes: 'mes' };
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const diaSemana = (iso) => { const p = iso.split('-').map(Number); return DIAS[(new Date(Date.UTC(p[0], p[1] - 1, p[2])).getUTCDay() + 6) % 7]; };
+const diasDel = (a, b) => { const out = []; for (let f = a; f <= b; f = isoMas(f, 1)) out.push(f); return out; };
 
 const post = async (b) => { const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(Object.assign({ token }, b)) }); return r.json(); };
-const gerente = () => user.rol === 'Gerente Comercial', veTodo = () => gerente() || ['Supervisor', 'Director Comercial General'].includes(user.rol);
+const rrhh = () => user.rol === 'RRHH';
+const gerente = () => user.rol === 'Gerente Comercial', veTodo = () => gerente() || rrhh() || ['Supervisor', 'Director Comercial General'].includes(user.rol);
+const soloMira = () => rrhh() || ['Supervisor', 'Director Comercial General'].includes(user.rol); // no marca sus propias horas
 const hm = (min) => { min = Math.round(min || 0); return Math.floor(min / 60) + ':' + String(min % 60).padStart(2, '0'); };
 const hdec = (min) => (Math.round((min || 0) / 60 * 100) / 100).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const isoMas = (iso, n) => { const p = iso.split('-').map(Number); const d = new Date(Date.UTC(p[0], p[1] - 1, p[2] + n)); return d.toISOString().slice(0, 10); };
@@ -187,7 +209,7 @@ $('btn-act').onclick = () => cargar(true);
 
 async function entrar() {
   $('login').style.display = 'none'; $('top').hidden = false; $('app').hidden = false;
-  $('quien').textContent = user.nombre + (user.rol === 'Personal' ? '' : ' · ' + user.rol);
+  $('quien').textContent = user.nombre + (user.rol === 'Personal' ? '' : ' · ' + user.rol + (rrhh() ? ' · solo lectura' : ''));
   quien = user.nombre;
   $('b-man').hidden = !gerente();
   await cargar(false);
@@ -195,10 +217,10 @@ async function entrar() {
 }
 async function cargar(manual) {
   try {
-    const r = await post({ action: 'asistencia_datos', desde: desde || undefined, nombre: quien });
+    const r = await post({ action: 'asistencia_datos', periodo, desde: desde || undefined, nombre: quien });
     if (r.error === 'sesion_vencida') { store.del('x5_session'); X5.toast('La sesión venció. Ingresá de nuevo.', 'bad', 4000); return setTimeout(() => location.reload(), 1500); }
     if (!r.ok) throw new Error(r.error);
-    D = r; desde = r.desde; desfase = new Date(r.ahora).getTime() - Date.now();
+    D = r; desde = r.desde; quien = r.nombre; desfase = new Date(r.ahora).getTime() - Date.now();
     pintar(); if (manual) X5.toast('Actualizado', 'ok');
   } catch (e) { X5.toast(ERR[e.message] || 'No se pudo cargar. Revisá la conexión.', 'bad', 3500); }
 }
@@ -215,7 +237,7 @@ function pintarReloj() {
 }
 function pintar() {
   const propio = quien === user.nombre;
-  $('propio').hidden = !propio || ['Supervisor', 'Director Comercial General'].includes(user.rol);
+  $('propio').hidden = !propio || soloMira();
   const ab = D.abierto;
   $('est').classList.toggle('adentro', !!ab);
   $('est-t').textContent = ab ? 'Estás adentro' : 'Estás afuera';
@@ -227,28 +249,83 @@ function pintar() {
     const per = (D.personas || []).slice(); if (!per.includes(user.nombre)) per.unshift(user.nombre);
     $('g-per').innerHTML = per.map(n => `<option ${n === quien ? 'selected' : ''}>${esc(n)}</option>`).join('');
     $('g-adentro').innerHTML = (D.adentro || []).length ? (D.adentro.map(a => `<span class="chip ok">● ${esc(a.nombre)} · desde ${esc(a.desde)}</span>`).join('')) : '<span class="nota">Nadie marcó ingreso sin salida.</span>';
+    // Ubicación de la agencia: la fija gerencia; los demás solo ven si está fijada
+    const sb = $('g-sede'); sb.hidden = false;
+    sb.innerHTML = `<span>${D.sede ? '📍 Agencia fijada: las marcas a más de ' + D.sede.radio + ' m salen «fuera de la agencia».' : '📍 Todavía no se fijó la ubicación de la agencia.'}</span>`
+      + (gerente() ? `<button class="btn btn-ghost btn-sm" id="g-fijar">${D.sede ? 'Volver a fijar' : 'Fijar aquí'}</button>` : '');
+    if (gerente()) $('g-fijar').onclick = fijarSede;
   }
-  // semana
+  // período
+  document.querySelectorAll('.per button').forEach(b => b.classList.toggle('on', b.dataset.per === D.periodo));
   const hoy = D.hoy, esta = hoy >= D.desde && hoy <= D.hasta;
-  $('s-t').textContent = esta ? 'Esta semana' : (D.desde > hoy ? 'Semana próxima' : 'Semana del ' + ddmm(D.desde));
-  $('s-r').textContent = 'Lunes ' + ddmm(D.desde) + ' al domingo ' + ddmm(D.hasta) + (propio ? '' : ' · ' + D.nombre);
-  $('s-sig').disabled = esta;
+  $('s-t').textContent = tituloPeriodo(esta);
+  $('s-r').textContent = rangoPeriodo() + (propio ? '' : ' · ' + D.nombre);
+  $('t-hl').textContent = 'Horas de' + (D.periodo === 'mes' ? 'l mes' : ' la ' + NOM_PER[D.periodo]);
+  $('s-sig').disabled = esta || D.desde > hoy;
   const porDia = {}; D.semana.forEach(r => (porDia[r.fecha] = porDia[r.fecha] || []).push(r));
   let total = 0, dias = 0;
-  $('dias').innerHTML = DIAS.map((nom, i) => {
-    const f = isoMas(D.desde, i), ts = porDia[f] || [];
+  $('dias').innerHTML = diasDel(D.desde, D.hasta).map((f) => {
+    const nom = diaSemana(f), ts = porDia[f] || [];
     const min = ts.reduce((t, r) => t + (r.salida ? Number(r.minutos) || 0 : 0), 0); total += min; if (ts.length) dias++;
     return `<div class="dia ${f === hoy ? 'hoy' : ''} ${ts.length ? '' : 'vacio'}"><div class="dia-h"><b>${nom} ${ddmm(f)}</b><span>${ts.length ? hm(min) + ' h' : '—'}</span></div>
-      ${ts.map(r => `<div class="turno"><div>${esc(r.entrada)} <span class="flecha">→</span> ${r.salida ? esc(r.salida) : '<span class="ab">en curso</span>'}${r.nota ? `<span class="nt">${esc(r.nota)}</span>` : ''}</div>
+      ${ts.map(r => `<div class="turno"><div>${esc(r.entrada)}${geoChip(r.geo_in)} <span class="flecha">→</span> ${r.salida ? esc(r.salida) + geoChip(r.geo_out) : '<span class="ab">en curso</span>'}${r.nota ? `<span class="nt">${esc(r.nota)}</span>` : ''}</div>
         <div>${r.salida ? hm(r.minutos) + ' h' : ''}${gerente() ? ` <button data-ed="${esc(r.id)}">Corregir</button>` : ''}</div></div>`).join('')}</div>`;
   }).join('');
   $('t-h').textContent = hm(total); $('t-d').textContent = dias;
-  const fin = hoy > D.hasta || (esta && new Date().getDay() === 6) || (esta && new Date().getDay() === 0);
-  $('b-pdf').textContent = fin ? 'Exportar semana completa en PDF' : 'Exportar semana en PDF (hasta hoy)';
+  const que = D.periodo === 'mes' ? 'el mes' : 'la ' + NOM_PER[D.periodo];
+  $('b-pdf').textContent = hoy > D.hasta ? 'Exportar ' + que + (D.periodo === 'mes' ? ' completo' : ' completa') + ' en PDF' : 'Exportar ' + que + ' en PDF (hasta hoy)';
+}
+function tituloPeriodo(esta) {
+  if (D.periodo === 'mes') { const p = D.desde.split('-'); const t = MESES[Number(p[1]) - 1] + ' ' + p[0]; return esta ? 'Este mes · ' + t : t.charAt(0).toUpperCase() + t.slice(1); }
+  if (D.periodo === 'quincena') { const p = D.desde.split('-'); const t = (Number(p[2]) === 1 ? '1.ª' : '2.ª') + ' quincena de ' + MESES[Number(p[1]) - 1]; return esta ? 'Esta quincena · ' + t : t.charAt(0).toUpperCase() + t.slice(1); }
+  return esta ? 'Esta semana' : (D.desde > D.hoy ? 'Semana próxima' : 'Semana del ' + ddmm(D.desde));
+}
+function rangoPeriodo() { return D.periodo === 'semana' ? 'Lunes ' + ddmm(D.desde) + ' al domingo ' + ddmm(D.hasta) : 'Del ' + ddmm(D.desde) + ' al ' + ddmm(D.hasta); }
+// Etiqueta de la ubicación de una marca (con enlace al mapa)
+function geoTxt(g) {
+  if (!g) return '';
+  if (g.estado === 'sin') return 'Sin ubicación';
+  if (g.estado === 'sede') return 'En la agencia';
+  if (g.estado === 'fuera') return 'Fuera de la agencia · ' + (g.dist >= 1000 ? (g.dist / 1000).toLocaleString('es-AR', { maximumFractionDigits: 1 }) + ' km' : g.dist + ' m');
+  return 'Ubicación registrada';
+}
+function geoChip(g) {
+  if (!g) return '';
+  const t = geoTxt(g), cls = g.estado;
+  if (g.estado === 'sin') return ` <span class="geo sin" title="El teléfono no dio la ubicación">⚠ ${esc(t)}</span>`;
+  return ` <a class="geo ${cls}" href="https://www.google.com/maps?q=${g.lat},${g.lon}" target="_blank" rel="noopener" title="Ver en el mapa (precisión ${g.acc} m)">📍 ${esc(t)}</a>`;
 }
 $('g-per').onchange = () => { quien = $('g-per').value; cargar(false); };
-$('s-ant').onclick = () => { desde = isoMas(desde, -7); cargar(false); };
-$('s-sig').onclick = () => { desde = isoMas(desde, 7); cargar(false); };
+$('s-ant').onclick = () => { desde = isoMas(D.desde, -1); cargar(false); };
+$('s-sig').onclick = () => { desde = isoMas(D.hasta, 1); cargar(false); };
+document.querySelectorAll('.per button').forEach(b => b.onclick = () => {
+  periodo = b.dataset.per; try { localStorage.setItem('asist_periodo', periodo); } catch (e) {}
+  desde = D && D.hoy >= D.desde && D.hoy <= D.hasta ? D.hoy : (D ? D.desde : null); cargar(false);
+});
+
+/* ── Ubicación ── */
+// Devuelve { geo } o { error: 'denegado' | 'no_disponible' }. Si el teléfono no la da a tiempo, se marca igual y queda «Sin ubicación».
+function obtenerUbicacion(precisa) {
+  return new Promise((res) => {
+    if (!navigator.geolocation) return res({ error: 'no_disponible' });
+    navigator.geolocation.getCurrentPosition(
+      (p) => res({ geo: { lat: p.coords.latitude, lon: p.coords.longitude, acc: Math.round(p.coords.accuracy || 0) } }),
+      (e) => res({ error: e.code === 1 ? 'denegado' : 'no_disponible' }),
+      { enableHighAccuracy: true, timeout: precisa ? 20000 : 15000, maximumAge: 30000 });
+  });
+}
+const AVISO_PERMISO = 'Para marcar hace falta permitir la ubicación. En el teléfono: Ajustes › Aplicaciones › X5 Cuyo (o el navegador) › Permisos › Ubicación › Permitir. Después volvé a tocar el botón.';
+async function fijarSede() {
+  dialogo('Fijar la agencia', `<p>Parate <b>dentro de la agencia</b> y tocá «Fijar». Desde ahí se mide si cada marca se hizo en la agencia (hasta ${D.sede ? D.sede.radio : 150} m).</p><div class="grid2" style="margin-top:14px"><button class="btn btn-ghost" id="c-no">Cancelar</button><button class="btn" id="c-si">Fijar</button></div><div id="e-err"></div>`);
+  $('c-no').onclick = () => dlg.close();
+  $('c-si').onclick = async (ev) => {
+    ev.target.disabled = true; ev.target.textContent = 'Buscando ubicación…';
+    const u = await obtenerUbicacion(true);
+    if (u.error) { ev.target.disabled = false; ev.target.textContent = 'Fijar'; $('e-err').innerHTML = `<div class="err">${esc(u.error === 'denegado' ? AVISO_PERMISO : 'No se pudo obtener la ubicación. Probá de nuevo.')}</div>`; return; }
+    try { const r = await post({ action: 'asistencia_sede', geo: u.geo }); if (!r.ok) throw new Error(r.error); dlg.close(); X5.toast('Agencia fijada ✓ (precisión ' + u.geo.acc + ' m)', 'ok', 3500); cargar(false); }
+    catch (err) { ev.target.disabled = false; ev.target.textContent = 'Fijar'; $('e-err').innerHTML = `<div class="err">${esc(ERR[err.message] || 'No se pudo guardar.')}</div>`; }
+  };
+}
 
 /* ── Marcar ── */
 function onda(btn, e) { const r = btn.getBoundingClientRect(), s = document.createElement('span'); s.className = 'onda'; const t = Math.max(r.width, r.height); s.style.cssText = `width:${t}px;height:${t}px;left:${(e.clientX || r.left + r.width / 2) - r.left - t / 2}px;top:${(e.clientY || r.top + r.height / 2) - r.top - t / 2}px`; btn.appendChild(s); setTimeout(() => s.remove(), 700); }
@@ -259,14 +336,18 @@ function confirmar(tipo, e) {
     <div class="grid2" style="margin-top:14px"><button class="btn btn-ghost" id="c-no">Cancelar</button><button class="btn" id="c-si">Confirmar</button></div>`);
   $('c-no').onclick = () => dlg.close();
   $('c-si').onclick = async (ev) => {
-    ev.target.disabled = true; ev.target.textContent = 'Registrando…';
+    ev.target.disabled = true; ev.target.textContent = 'Buscando ubicación…';
+    const u = await obtenerUbicacion(false);
+    if (u.error === 'denegado') { dlg.close(); dialogo('Falta permitir la ubicación', `<p>${esc(AVISO_PERMISO)}</p><button class="btn" id="c-ok" style="margin-top:12px">Entendido</button>`); $('c-ok').onclick = () => dlg.close(); return; }
+    ev.target.textContent = 'Registrando…';
     try {
-      const r = await post({ action: 'asistencia_marcar', tipo });
+      const r = await post({ action: 'asistencia_marcar', tipo, geo: u.geo || null });
       if (!r.ok) throw new Error(r.error);
       dlg.close();
       if (navigator.vibrate) navigator.vibrate(60);
       X5.toast(tipo === 'entrada' ? '✓ Ingreso registrado a las ' + r.registro.entrada : '✓ Salida registrada a las ' + r.registro.salida + ' · ' + hm(r.registro.minutos) + ' h', 'ok', 4000);
       if (r.revisar) X5.toast('El turno quedó marcado para revisar (salida muy tarde).', 'bad', 5000);
+      if (!u.geo) X5.toast('No se pudo obtener la ubicación: la marca quedó registrada «sin ubicación».', 'bad', 5000);
       await cargar(false);
     } catch (err) { dlg.close(); X5.toast(err.message === 'Failed to fetch' ? 'Sin conexión: no se registró. Probá de nuevo.' : (ERR[err.message] || 'No se pudo registrar. Probá de nuevo.'), 'bad', 4500); cargar(false); }
   };
@@ -305,74 +386,105 @@ async function pdfSemana(firmas) {
   await cargarScript('libs/pdf-lib.min.js', 'PDFLib');
   const { PDFDocument, StandardFonts, rgb } = PDFLib;
   const doc = await PDFDocument.create();
-  const pg = doc.addPage([595.28, 841.89]); const W = 595.28, M = 42;
+  const W = 595.28, H = 841.89, M = 36;
   const f = await doc.embedFont(StandardFonts.Helvetica), fb = await doc.embedFont(StandardFonts.HelveticaBold);
   const ROJO = rgb(227 / 255, 24 / 255, 45 / 255), TINTA = rgb(.09, .09, .1), GRIS = rgb(.42, .44, .47), LINEA = rgb(.86, .87, .89), FONDO = rgb(.965, .965, .97);
-  const txt = (s, x, y, o = {}) => pg.drawText(String(s), { x, y, size: o.size || 10, font: o.bold ? fb : f, color: o.color || TINTA });
-  const derecha = (s, x, y, o = {}) => { const fo = o.bold ? fb : f; txt(s, x - fo.widthOfTextAtSize(String(s), o.size || 10), y, o); };
-  // Encabezado
-  pg.drawRectangle({ x: 0, y: 841.89 - 96, width: W, height: 96, color: rgb(.086, .086, .094) });
-  pg.drawRectangle({ x: 0, y: 841.89 - 100, width: W, height: 4, color: ROJO });
-  try { const png = await (await fetch('brand/x5-logo-blanco.png')).arrayBuffer(); const im = await doc.embedPng(png); const h = 44, w = im.width / im.height * h; pg.drawImage(im, { x: M, y: 841.89 - 72, width: w, height: h }); } catch (e) {}
-  derecha('REGISTRO DE ASISTENCIA', W - M, 841.89 - 46, { bold: true, size: 15, color: rgb(1, 1, 1) });
-  derecha('X5 Argentina · Mendoza', W - M, 841.89 - 64, { size: 9.5, color: rgb(.78, .79, .8) });
-  let y = 841.89 - 140;
-  txt('Persona', M, y, { size: 8.5, color: GRIS }); txt('Semana', 300, y, { size: 8.5, color: GRIS });
-  y -= 16; txt(D.nombre, M, y, { bold: true, size: 13 }); txt('Lunes ' + X5.fechaLarga(D.desde) + ' al domingo ' + X5.fechaLarga(D.hasta), 300, y, { bold: true, size: 11 });
-  y -= 30;
-  // Tabla
-  const cols = [M, M + 92, M + 160, M + 222, M + 284, M + 330];
-  pg.drawRectangle({ x: M, y: y - 6, width: W - 2 * M, height: 22, color: FONDO });
-  ['DÍA', 'FECHA', 'INGRESO', 'SALIDA', 'HORAS', 'OBSERVACIONES'].forEach((h, i) => txt(h, cols[i] + 6, y + 1, { bold: true, size: 8, color: GRIS }));
-  y -= 24;
-  const porDia = {}; D.semana.forEach(r => (porDia[r.fecha] = porDia[r.fecha] || []).push(r));
-  let total = 0, dias = 0, enCurso = 0;
+  const VERDE = rgb(.08, .55, .33), AMBAR = rgb(.72, .45, .02);
+  let logo = null; try { logo = await doc.embedPng(await (await fetch('brand/x5-logo-blanco.png')).arrayBuffer()); } catch (e) {}
+  const nombrePer = D.periodo === 'mes' ? 'Mes' : D.periodo === 'quincena' ? 'Quincena' : 'Semana';
+  const rango = D.periodo === 'semana' ? 'Lunes ' + X5.fechaLarga(D.desde) + ' al domingo ' + X5.fechaLarga(D.hasta) : 'Del ' + X5.fechaLarga(D.desde) + ' al ' + X5.fechaLarga(D.hasta);
+  let pg, y, nPag = 0;
+  const txt = (s, x, yy, o = {}) => pg.drawText(String(s), { x, y: yy, size: o.size || 10, font: o.bold ? fb : f, color: o.color || TINTA });
+  const derecha = (s, x, yy, o = {}) => { const fo = o.bold ? fb : f; txt(s, x - fo.widthOfTextAtSize(String(s), o.size || 10), yy, o); };
+  // Columnas: día, fecha, ingreso, salida, horas, ubicación, observaciones
+  const cols = [M, M + 66, M + 104, M + 148, M + 192, M + 232, M + 352];
+  const encabezadoTabla = () => {
+    pg.drawRectangle({ x: M, y: y - 6, width: W - 2 * M, height: 22, color: FONDO });
+    ['DÍA', 'FECHA', 'INGRESO', 'SALIDA', 'HORAS', 'UBICACIÓN', 'OBSERVACIONES'].forEach((h, i) => txt(h, cols[i] + 4, y + 1, { bold: true, size: 7.5, color: GRIS }));
+    y -= 22;
+  };
+  const nuevaPagina = (conTabla = true) => {
+    pg = doc.addPage([W, H]); nPag++;
+    pg.drawRectangle({ x: 0, y: H - 86, width: W, height: 86, color: rgb(.086, .086, .094) });
+    pg.drawRectangle({ x: 0, y: H - 90, width: W, height: 4, color: ROJO });
+    if (logo) { const h = 40, w = logo.width / logo.height * h; pg.drawImage(logo, { x: M, y: H - 64, width: w, height: h }); }
+    derecha('REGISTRO DE ASISTENCIA', W - M, H - 42, { bold: true, size: 15, color: rgb(1, 1, 1) });
+    derecha('X5 Argentina · Mendoza', W - M, H - 59, { size: 9.5, color: rgb(.78, .79, .8) });
+    y = H - 124;
+    txt('Persona', M, y, { size: 8.5, color: GRIS }); txt(nombrePer, 290, y, { size: 8.5, color: GRIS });
+    y -= 16; txt(D.nombre, M, y, { bold: true, size: 13 }); txt(rango, 290, y, { bold: true, size: 10.5 });
+    if (nPag > 1) derecha('(continuación)', W - M, y + 16, { size: 8, color: GRIS });
+    y -= 28; if (conTabla) encabezadoTabla();
+  };
   const cortar = (s, ancho, size) => { const pal = String(s).split(' '); const ls = []; let cur = ''; pal.forEach(p => { const t = cur ? cur + ' ' + p : p; if (f.widthOfTextAtSize(t, size) > ancho && cur) { ls.push(cur); cur = p; } else cur = t; }); if (cur) ls.push(cur); return ls; };
-  DIAS.forEach((nom, i) => {
-    const fch = isoMas(D.desde, i), ts = porDia[fch] || [];
-    const filas = ts.length ? ts : [null];
-    filas.forEach((r, j) => {
-      const notas = r && r.nota ? cortar(r.nota, W - M - cols[5] - 10, 7.5).slice(0, 3) : [];
-      const alto = Math.max(20, 12 + notas.length * 9);
-      if (j === 0) { txt(nom.charAt(0).toUpperCase() + nom.slice(1), cols[0] + 6, y, { bold: true, size: 9.5 }); txt(ddmm(fch), cols[1] + 6, y, { size: 9.5 }); }
+  // Ubicación en el PDF (sin emojis: la fuente del PDF no los tiene)
+  const geoPdf = (g) => {
+    if (!g) return null;
+    if (g.estado === 'sin') return { t: 'Sin ubicación', c: ROJO };
+    if (g.estado === 'sede') return { t: 'Agencia', c: VERDE };
+    if (g.estado === 'fuera') return { t: 'Fuera (' + (g.dist >= 1000 ? (g.dist / 1000).toLocaleString('es-AR', { maximumFractionDigits: 1 }) + ' km' : g.dist + ' m') + ')', c: AMBAR };
+    return { t: 'Registrada', c: GRIS };
+  };
+  nuevaPagina();
+  const porDia = {}; D.semana.forEach(r => (porDia[r.fecha] = porDia[r.fecha] || []).push(r));
+  let total = 0, dias = 0, enCurso = 0, sinUbic = 0, fuera = 0;
+  diasDel(D.desde, D.hasta).forEach((fch) => {
+    const nom = diaSemana(fch), ts = porDia[fch] || [];
+    (ts.length ? ts : [null]).forEach((r, j) => {
+      const notas = r && r.nota ? cortar(r.nota, W - M - cols[6] - 8, 7).slice(0, 3) : [];
+      const gi = r ? geoPdf(r.geo_in) : null, go = r && r.salida ? geoPdf(r.geo_out) : null;
+      const lineasGeo = (gi ? 1 : 0) + (go ? 1 : 0);
+      const alto = Math.max(18, 10 + Math.max(notas.length, lineasGeo) * 9);
+      if (y - alto < 70) { nuevaPagina(); }
+      if (j === 0) { txt(nom.charAt(0).toUpperCase() + nom.slice(1), cols[0] + 4, y, { bold: true, size: 9 }); txt(ddmm(fch), cols[1] + 4, y, { size: 9 }); }
       if (r) {
-        txt(r.entrada || '', cols[2] + 6, y, { size: 9.5 });
-        txt(r.salida || 'sin salida', cols[3] + 6, y, { size: 9.5, color: r.salida ? TINTA : ROJO });
-        if (r.salida) { txt(hm(r.minutos), cols[4] + 6, y, { bold: true, size: 9.5 }); total += Number(r.minutos) || 0; } else enCurso++;
-        notas.forEach((l, k) => txt(l, cols[5] + 6, y - k * 9, { size: 7.5, color: GRIS }));
-      } else txt('—', cols[2] + 6, y, { size: 9.5, color: GRIS });
+        txt(r.entrada || '', cols[2] + 4, y, { size: 9 });
+        txt(r.salida || 'sin salida', cols[3] + 4, y, { size: 9, color: r.salida ? TINTA : ROJO });
+        if (r.salida) { txt(hm(r.minutos), cols[4] + 4, y, { bold: true, size: 9 }); total += Number(r.minutos) || 0; } else enCurso++;
+        let k = 0;
+        [[gi, 'Ent.'], [go, 'Sal.']].forEach(([g, et]) => { if (!g) return; txt(et + ' ' + g.t, cols[5] + 4, y - k * 9, { size: 7, color: g.c }); k++; });
+        [r.geo_in, r.salida ? r.geo_out : null].forEach(g => { if (g && g.estado === 'sin') sinUbic++; if (g && g.estado === 'fuera') fuera++; });
+        notas.forEach((l, i) => txt(l, cols[6] + 4, y - i * 9, { size: 7, color: GRIS }));
+      } else txt('—', cols[2] + 4, y, { size: 9, color: GRIS });
       y -= alto;
-      pg.drawLine({ start: { x: M, y: y + 12 }, end: { x: W - M, y: y + 12 }, thickness: .6, color: LINEA });
+      pg.drawLine({ start: { x: M, y: y + 11 }, end: { x: W - M, y: y + 11 }, thickness: .5, color: LINEA });
     });
     if (ts.length) dias++;
   });
-  // Totales
+  // Totales, avisos y firmas: si no entran en la página, van a una nueva
+  if (y < 330) nuevaPagina(false); // totales, avisos y firmas tienen que entrar juntos en la misma hoja
   y -= 8;
   pg.drawRectangle({ x: M, y: y - 30, width: W - 2 * M, height: 44, color: FONDO, borderColor: ROJO, borderWidth: 1 });
-  txt('TOTAL DE LA SEMANA', M + 12, y - 4, { bold: true, size: 9, color: GRIS });
+  txt('TOTAL ' + (D.periodo === 'mes' ? 'DEL MES' : 'DE LA ' + nombrePer.toUpperCase()), M + 12, y - 4, { bold: true, size: 9, color: GRIS });
   txt(dias + ' día' + (dias === 1 ? '' : 's') + ' trabajado' + (dias === 1 ? '' : 's'), M + 12, y - 19, { size: 9.5 });
   derecha(hm(total) + ' h', W - M - 12, y - 6, { bold: true, size: 18 });
   derecha('(' + hdec(total) + ' horas)', W - M - 12, y - 22, { size: 9, color: GRIS });
-  y -= 52;
-  if (enCurso) { txt('Hay ' + enCurso + ' turno' + (enCurso === 1 ? '' : 's') + ' sin salida registrada: no suma' + (enCurso === 1 ? '' : 'n') + ' horas hasta que se corrija.', M, y, { size: 8.5, color: ROJO }); y -= 16; }
-  txt('Las horas de ingreso y salida las registró el servidor del Hub en el momento de marcar. Las correcciones indican quién las hizo y por qué.', M, y, { size: 7.5, color: GRIS });
+  y -= 50;
+  if (enCurso) { txt('Hay ' + enCurso + ' turno' + (enCurso === 1 ? '' : 's') + ' sin salida registrada: no suma' + (enCurso === 1 ? '' : 'n') + ' horas hasta que se corrija.', M, y, { size: 8.5, color: ROJO }); y -= 13; }
+  if (sinUbic) { txt(sinUbic + ' marca' + (sinUbic === 1 ? '' : 's') + ' sin ubicación (el teléfono no la pudo dar).', M, y, { size: 8.5, color: ROJO }); y -= 13; }
+  if (fuera) { txt(fuera + ' marca' + (fuera === 1 ? '' : 's') + ' hecha' + (fuera === 1 ? '' : 's') + ' fuera de la agencia.', M, y, { size: 8.5, color: AMBAR }); y -= 13; }
+  txt('Las horas de ingreso y salida las registró el servidor del Hub al marcar, junto con la ubicación del teléfono.', M, y, { size: 7.5, color: GRIS }); y -= 10;
+  txt('Las correcciones indican quién las hizo y por qué.', M, y, { size: 7.5, color: GRIS });
   // Firmas
-  const yf = 150;
-  const anchoF = W / 2 - M - 20;
+  const yf = Math.min(y - 80, 150), anchoF = W / 2 - M - 20;
   for (const [x, t, fi] of [[M, 'Firma de quien informa las horas', firmas.empleado], [W / 2 + 20, 'Firma del responsable', firmas.responsable]]) {
     if (fi && fi.png) {
-      try { const im = await doc.embedPng(fi.png); const h = Math.min(64, anchoF * .85 * im.height / im.width), w = im.width / im.height * h; pg.drawImage(im, { x: x + (anchoF - w) / 2, y: yf + 2, width: w, height: h }); } catch (e) {}
+      try { const im = await doc.embedPng(fi.png); const h = Math.min(60, anchoF * .85 * im.height / im.width), w = im.width / im.height * h; pg.drawImage(im, { x: x + (anchoF - w) / 2, y: yf + 2, width: w, height: h }); } catch (e) {}
     }
     pg.drawLine({ start: { x, y: yf }, end: { x: x + anchoF, y: yf }, thickness: .8, color: GRIS });
     txt(t, x, yf - 14, { size: 8.5, color: GRIS });
     if (fi && fi.nombre) txt(fi.nombre, x, yf - 27, { bold: true, size: 9.5 });
     if (fi && fi.png) txt('Firmado en el teléfono el ' + new Date().toLocaleString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }), x, yf - 39, { size: 7, color: GRIS });
   }
-  // Pie
+  // Pie en todas las páginas
   const gen = new Date().toLocaleString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-  txt('Generado el ' + gen + ' por ' + user.nombre + ' · Hub Comercial X5 Cuyo', M, 70, { size: 7.5, color: GRIS });
-  pg.drawLine({ start: { x: M, y: 56 }, end: { x: W - M, y: 56 }, thickness: .5, color: LINEA });
-  txt('Desarrollado por The DOM Studio Web · WhatsApp 261-3431216 · thedomstudioweb@gmail.com', M, 42, { size: 7.5, color: GRIS });
+  doc.getPages().forEach((p, i, todas) => {
+    pg = p;
+    txt('Generado el ' + gen + ' por ' + user.nombre + ' · Hub Comercial X5 Cuyo', M, 48, { size: 7.5, color: GRIS });
+    if (todas.length > 1) derecha('Página ' + (i + 1) + ' de ' + todas.length, W - M, 48, { size: 7.5, color: GRIS });
+    pg.drawLine({ start: { x: M, y: 40 }, end: { x: W - M, y: 40 }, thickness: .5, color: LINEA });
+    txt('Desarrollado por The DOM Studio Web · WhatsApp 261-3431216 · thedomstudioweb@gmail.com', M, 28, { size: 7.5, color: GRIS });
+  });
   const bytes = await doc.save();
   return new Blob([bytes], { type: 'application/pdf' });
 }
@@ -424,8 +536,8 @@ async function exportar(firmas) {
   const b = $('b-pdf'); b.disabled = true; const t = b.textContent; b.textContent = 'Armando PDF…';
   try {
     const blob = await pdfSemana(firmas);
-    const nombre = 'Asistencia ' + D.nombre + ' ' + D.desde + '.pdf';
-    await X5.compartirArchivo(blob, nombre, 'Registro de asistencia de ' + D.nombre + ', semana del ' + X5.fechaLarga(D.desde) + ' al ' + X5.fechaLarga(D.hasta));
+    const nombre = 'Asistencia ' + D.nombre + ' ' + D.periodo + ' ' + D.desde + '.pdf';
+    await X5.compartirArchivo(blob, nombre, 'Registro de asistencia de ' + D.nombre + ', del ' + X5.fechaLarga(D.desde) + ' al ' + X5.fechaLarga(D.hasta));
   } catch (e) { X5.toast('No se pudo armar el PDF.', 'bad'); console.error(e); }
   b.disabled = false; b.textContent = t;
 }

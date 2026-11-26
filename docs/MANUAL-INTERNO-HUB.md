@@ -333,3 +333,10 @@ El CRM marca solo la entrevista y la firma del referido; vencimiento de puntos a
 ## Leads y ventas por canal en Métricas (25/11/2026)
 
 En **Métricas** la tarjeta «Leads y ventas por canal» reemplaza a la dona «Origen de las ventas». Usa el mismo cálculo que la tarjeta «Origen de los leads» del Resumen: por cada canal, leads asignados en el mes elegido (o en todo el historial) y cuántos de ellos terminaron en venta, con el %; abajo el total y el canal de mejor conversión (con 3 leads o más). Respeta el filtro de asesor o equipo.
+
+## Ingreso y egreso: ubicación, períodos y rol RRHH (26/11/2026)
+- Cada marca de ingreso y salida guarda la ubicación del teléfono. Gerencia fija una vez la ubicación de la agencia; cada marca sale «En la agencia» (hasta 150 m), «Fuera de la agencia» con la distancia o «Sin ubicación».
+- Informes **semanal, quincenal o mensual**, en pantalla y en PDF (el mensual sale en varias hojas numeradas).
+- Rol nuevo **RRHH**: ve el registro de todo el personal y exporta el PDF; no marca, no corrige y no entra a ninguna otra herramienta.
+- La APK de Android pasa a la versión 2.2 (permiso de ubicación). Hay que compilarla y repartirla.
+- Detalle completo: `docs/MANUAL-ASISTENCIA.md`.

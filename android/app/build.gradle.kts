@@ -12,8 +12,8 @@ android {
         minSdk = 24          // Android 7.0 en adelante
         targetSdk = 34
         // Cada APK nueva que se reparta: subir versionCode en 1 (y versionName si querés)
-        versionCode = 2
-        versionName = "2.1"
+        versionCode = 3
+        versionName = "2.2"
     }
 
     buildTypes {

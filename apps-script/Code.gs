@@ -40,6 +40,7 @@
  * v2.7: Padrinos X5, club de referidos (hojas «Padrinos», «Referidos» y «PadrinosLog»; el referido entra como lead).
  *
  * v2.6: registro de ingreso y egreso del personal (hoja «Asistencia», rol «Personal»).
+ * v2.16: asistencia georreferenciada (ubicación en cada marca, sede de la agencia), informes semanal/quincenal/mensual y rol «RRHH» (solo ve y exporta).
  *
  * v2.4: claves protegidas en la planilla (huella con sal; protegerClaves() o primer ingreso) y sesión por POST, nunca en la dirección.
  *
@@ -148,6 +149,8 @@ function doPost(e) {
 
     // Rol «Personal» (cobra por horas): solo marca su ingreso y su salida
     if (esPersonal_(usuario) && String(body.action).indexOf('asistencia_') !== 0) return json_({ ok: false, error: 'sin_permiso' });
+    // Rol «RRHH»: solo ve los registros de horas y exporta el PDF. No marca, no corrige, no entra a nada más
+    if (esRRHH_(usuario) && String(body.action) !== 'asistencia_datos') return json_({ ok: false, error: 'sin_permiso' });
     // Rol «Control»: únicamente mira el gestor de contratos (ver todo, sin modificar nada ni entrar al CRM)
     if (esControl_(usuario) && ['contratos_datos', 'contratos_precios'].indexOf(String(body.action)) < 0) return json_({ ok: false, error: 'sin_permiso' });
     // Rol «Supervisor»: mira todo (CRM completo y contratos) y nada más. Solo se aceptan pedidos de lectura; cualquier otra acción se rechaza acá, antes de tocar la planilla
@@ -536,7 +539,7 @@ function firma_(texto) {
 
 // ── Armado de datos según quién pide ─────────────────────────────
 function armarDatos_(usuario) {
-  const personal = personalLimpio_().filter(p => p.rol !== 'Personal'); // el personal por horas no vende ni recibe leads
+  const personal = personalLimpio_().filter(p => !fueraDeVentas_(p.rol)); // el personal por horas y RRHH no venden ni reciben leads
   let agenda = leerHoja_(HOJAS.agenda);
   let leads = leerHoja_(HOJAS.leads);
   const flota = leerHoja_(HOJAS.flota);
@@ -1047,7 +1050,7 @@ function esDirector_(u) { return u.rol === ROL_DIRECTOR; }
 function veTodoContratos_(u) { return esGerente_(u) || esControl_(u) || esSupervisor_(u); }
 // Personas a las que este usuario puede asignar o ver: él mismo y quienes le reportan (gerente: todos los activos)
 function ambitoContratos_(u, personal) {
-  if (veTodoContratos_(u)) return personal.filter(p => String(p.estado) === 'Activo' && p.rol !== 'Personal').map(p => String(p.nombre));
+  if (veTodoContratos_(u)) return personal.filter(p => String(p.estado) === 'Activo' && !fueraDeVentas_(p.rol)).map(p => String(p.nombre));
   return [String(u.nombre)].concat(personal.filter(p => String(p.reporta_a) === String(u.nombre) && String(p.estado) === 'Activo').map(p => String(p.nombre)));
 }
 function nuevoIdContrato_() { return 'C' + Utilities.getUuid().replace(/-/g, '').slice(0, 10); }
@@ -1411,11 +1414,41 @@ function contratosEliminar_(body, u) {
 //  Rol «Personal»: solo entra a esta herramienta.
 // =====================================================================
 const HOJA_ASISTENCIA = 'Asistencia';
-const COL_ASISTENCIA = ['id', 'nombre', 'fecha', 'entrada', 'salida', 'minutos', 'entrada_ts', 'salida_ts', 'nota', 'editado_por', 'actualizado'];
+const COL_ASISTENCIA = ['id', 'nombre', 'fecha', 'entrada', 'salida', 'minutos', 'entrada_ts', 'salida_ts', 'nota', 'editado_por', 'actualizado', 'entrada_geo', 'salida_geo'];
 const ROL_PERSONAL = 'Personal';
+const ROL_RRHH = 'RRHH';           // Recursos Humanos: ve los registros de todos y exporta el PDF; no marca ni corrige
 const MAX_TURNO_HORAS = 16;   // una salida marcada más tarde que esto queda señalada para revisar
+const SEDE_RADIO_M = 150;     // a más de esto de la agencia, la marca queda «fuera de la agencia»
 function esPersonal_(u) { return u.rol === ROL_PERSONAL; }
-function veTodaAsistencia_(u) { return esGerente_(u) || esSupervisor_(u); }
+function esRRHH_(u) { return u.rol === ROL_RRHH; }
+function fueraDeVentas_(rol) { return rol === ROL_PERSONAL || rol === ROL_RRHH; }
+function veTodaAsistencia_(u) { return esGerente_(u) || esSupervisor_(u) || esRRHH_(u); }
+
+// Ubicación: «lat,lon,precisión» (precisión en metros). «sin_ubicacion» si el teléfono no la pudo dar.
+function geoTexto_(g) {
+  if (!g || typeof g !== 'object') return 'sin_ubicacion';
+  const lat = Number(g.lat), lon = Number(g.lon), acc = Math.round(Number(g.acc) || 0);
+  if (!isFinite(lat) || !isFinite(lon) || Math.abs(lat) > 90 || Math.abs(lon) > 180 || (lat === 0 && lon === 0)) return 'sin_ubicacion';
+  return lat.toFixed(6) + ',' + lon.toFixed(6) + ',' + acc;
+}
+function geoLeer_(t) { const p = String(t || '').split(',').map(Number); return p.length >= 2 && isFinite(p[0]) && isFinite(p[1]) ? { lat: p[0], lon: p[1], acc: p[2] || 0 } : null; }
+function metrosEntre_(a, b) {
+  const R = 6371000, r = (x) => x * Math.PI / 180;
+  const dLat = r(b.lat - a.lat), dLon = r(b.lon - a.lon);
+  const h = Math.pow(Math.sin(dLat / 2), 2) + Math.cos(r(a.lat)) * Math.cos(r(b.lat)) * Math.pow(Math.sin(dLon / 2), 2);
+  return Math.round(2 * R * Math.asin(Math.sqrt(h)));
+}
+// Sede de la agencia (la fija gerencia desde su teléfono, parado en la agencia)
+function sedeAsistencia_() { const t = PropertiesService.getScriptProperties().getProperty('ASIST_SEDE'); return t ? geoLeer_(t) : null; }
+// Resumen de la ubicación de una marca: dónde, a qué distancia de la agencia y si está dentro del radio
+function geoResumen_(t, sede) {
+  if (!t) return null;                                   // turno cargado a mano o anterior a la ubicación
+  if (t === 'sin_ubicacion') return { estado: 'sin' };
+  const g = geoLeer_(t); if (!g) return null;
+  const o = { estado: 'ok', lat: g.lat, lon: g.lon, acc: g.acc };
+  if (sede) { o.dist = metrosEntre_(sede, g); o.estado = o.dist <= SEDE_RADIO_M + Math.min(g.acc, 100) ? 'sede' : 'fuera'; }
+  return o;
+}
 
 function hojaAsistencia_() { return hojaContratos_(HOJA_ASISTENCIA, COL_ASISTENCIA); }
 function tzA_() { return Session.getScriptTimeZone(); }
@@ -1468,31 +1501,47 @@ function sumarDias_(iso, n) { const p = String(iso).split('-').map(Number); cons
 function despacharAsistencia_(body, u) {
   const a = body.action;
   if (a === 'asistencia_datos') return asistenciaDatos_(body, u);
-  if (esSupervisor_(u)) return { ok: false, error: 'sin_permiso' }; // solo lectura
+  if (esSupervisor_(u) || esRRHH_(u)) return { ok: false, error: 'sin_permiso' }; // solo lectura
   const lock = LockService.getScriptLock(); lock.waitLock(15000);
   try {
     if (a === 'asistencia_marcar') return asistenciaMarcar_(body, u);
     if (a === 'asistencia_corregir') return asistenciaCorregir_(body, u);
+    if (a === 'asistencia_sede') return asistenciaSede_(body, u);
     return { ok: false, error: 'accion_invalida' };
   } finally { lock.releaseLock(); }
 }
 
+// Período del informe que contiene la fecha «ref»: semana (lunes a domingo), quincena (1-15 y 16-fin de mes) o mes
+function periodoA_(tipo, ref) {
+  const p = ref.split('-').map(Number), finMes = new Date(Date.UTC(p[0], p[1], 0)).getUTCDate();
+  const iso = (d) => p[0] + '-' + String(p[1]).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+  if (tipo === 'mes') return { desde: iso(1), hasta: iso(finMes) };
+  if (tipo === 'quincena') return p[2] <= 15 ? { desde: iso(1), hasta: iso(15) } : { desde: iso(16), hasta: iso(finMes) };
+  const l = lunesDe_(ref); return { desde: l, hasta: sumarDias_(l, 6) };
+}
 function asistenciaDatos_(body, u) {
   const todos = leerAsistencia_();
   const hoy = diaA_(new Date());
-  const desde = /^\d{4}-\d{2}-\d{2}$/.test(body.desde || '') ? lunesDe_(body.desde) : lunesDe_(hoy);
-  const hasta = sumarDias_(desde, 6);
+  const periodo = ['semana', 'quincena', 'mes'].indexOf(body.periodo) > -1 ? body.periodo : 'semana';
+  const ref = /^\d{4}-\d{2}-\d{2}$/.test(body.desde || '') ? body.desde : hoy;
+  const rango = periodoA_(periodo, ref), desde = rango.desde, hasta = rango.hasta;
+  const sede = sedeAsistencia_();
+  const conGeo = (r) => { const o = publicoA_(r); o.geo_in = geoResumen_(r.entrada_geo, sede); o.geo_out = geoResumen_(r.salida_geo, sede); delete o.entrada_geo; delete o.salida_geo; return o; };
   let quien = String(u.nombre);
   if (veTodaAsistencia_(u) && body.nombre) quien = String(body.nombre);
+  if (esRRHH_(u) && quien === String(u.nombre)) { // RRHH no marca horas: arranca viendo a la primera persona del personal
+    const primero = personalLimpio_().filter(p => String(p.estado) === 'Activo' && p.rol === ROL_PERSONAL)[0];
+    if (primero) quien = String(primero.nombre);
+  }
   const mios = todos.filter(r => String(r.nombre) === quien);
   const abierto = mios.filter(r => r.entrada_ts && !r.salida_ts).pop() || null;
   const semana = mios.filter(r => r.fecha >= desde && r.fecha <= hasta).sort((x, y) => (x.fecha + x.entrada).localeCompare(y.fecha + y.entrada));
-  const out = { ok: true, ahora: new Date().toISOString(), hoy: hoy, desde: desde, hasta: hasta, nombre: quien, abierto: abierto ? publicoA_(abierto) : null, semana: semana.map(publicoA_) };
+  const out = { ok: true, ahora: new Date().toISOString(), hoy: hoy, periodo: periodo, desde: desde, hasta: hasta, nombre: quien, abierto: abierto ? conGeo(abierto) : null, semana: semana.map(conGeo), sede: sede ? { lat: sede.lat, lon: sede.lon, radio: SEDE_RADIO_M } : null };
   if (veTodaAsistencia_(u)) {
     const personal = personalLimpio_().filter(p => String(p.estado) === 'Activo');
     const conRegistros = {}; todos.forEach(r => { conRegistros[r.nombre] = 1; });
     out.personas = personal.filter(p => p.rol === ROL_PERSONAL || conRegistros[p.nombre]).map(p => p.nombre);
-    if (out.personas.indexOf(quien) < 0) out.personas.unshift(quien);
+    if (out.personas.indexOf(quien) < 0 && !esRRHH_(u)) out.personas.unshift(quien);
     // quién está adentro ahora
     out.adentro = todos.filter(r => r.entrada_ts && !r.salida_ts).map(r => ({ nombre: r.nombre, desde: r.entrada, fecha: r.fecha }));
   }
@@ -1508,7 +1557,7 @@ function asistenciaMarcar_(body, u) {
   const ahora = new Date();
   if (tipo === 'entrada') {
     if (abierto) return { ok: false, error: 'ya_adentro', abierto: publicoA_(abierto) };
-    const r = { id: 'A' + Utilities.getUuid().replace(/-/g, '').slice(0, 10), nombre: u.nombre, fecha: diaA_(ahora), entrada: horaA_(ahora), salida: '', minutos: '', entrada_ts: ahora, salida_ts: '', nota: '', editado_por: '', actualizado: ahora };
+    const r = { id: 'A' + Utilities.getUuid().replace(/-/g, '').slice(0, 10), nombre: u.nombre, fecha: diaA_(ahora), entrada: horaA_(ahora), salida: '', minutos: '', entrada_ts: ahora, salida_ts: '', nota: '', editado_por: '', actualizado: ahora, entrada_geo: geoTexto_(body.geo), salida_geo: '' };
     const h = asegurarColumnas_(sh, COL_ASISTENCIA);
     sh.appendRow(h.map(k => celdaA_(k, r[k])));
     return { ok: true, registro: { id: r.id, nombre: r.nombre, fecha: r.fecha, entrada: r.entrada, salida: '', minutos: 0, entrada_ts: ahora.toISOString() } };
@@ -1516,11 +1565,20 @@ function asistenciaMarcar_(body, u) {
   if (!abierto) return { ok: false, error: 'sin_entrada' };
   const ini = new Date(abierto.entrada_ts);
   const min = Math.max(0, Math.round((ahora - ini) / 60000));
-  const r = Object.assign({}, abierto, { salida: horaA_(ahora), salida_ts: ahora, minutos: min, actualizado: ahora, entrada_ts: ini });
+  const r = Object.assign({}, abierto, { salida: horaA_(ahora), salida_ts: ahora, minutos: min, actualizado: ahora, entrada_ts: ini, salida_geo: geoTexto_(body.geo) });
   if (min > MAX_TURNO_HORAS * 60) r.nota = (r.nota ? r.nota + ' · ' : '') + 'Revisar: la salida se marcó ' + Math.round(min / 60) + ' h después del ingreso';
   escribirFilaA_(sh, abierto._fila, r);
   const pub = publicoA_(r); pub.salida_ts = ahora.toISOString(); pub.entrada_ts = ini.toISOString();
   return { ok: true, registro: pub, revisar: min > MAX_TURNO_HORAS * 60 };
+}
+
+// Solo gerencia: fijar la ubicación de la agencia (parado en la agencia, desde el teléfono)
+function asistenciaSede_(body, u) {
+  if (!esGerente_(u)) return { ok: false, error: 'sin_permiso' };
+  const t = geoTexto_(body.geo); if (t === 'sin_ubicacion') return { ok: false, error: 'falta_ubicacion' };
+  if (geoLeer_(t).acc > 120) return { ok: false, error: 'ubicacion_imprecisa' };
+  PropertiesService.getScriptProperties().setProperty('ASIST_SEDE', t);
+  return { ok: true, sede: geoLeer_(t) };
 }
 
 // Solo gerencia: corregir un turno (olvido de marcar), cargar uno a mano o anularlo. Siempre con motivo.
@@ -1657,7 +1715,7 @@ function despacharPadrinos_(body, u) {
 }
 
 function padrinosDatos_(u) {
-  const personal = personalLimpio_().filter(p => p.rol !== 'Personal');
+  const personal = personalLimpio_().filter(p => !fueraDeVentas_(p.rol));
   const ve = visibilidad_(u, personal);
   const padrinos = leerP_(hojaPadrinos_(), COL_PADRINOS);
   const referidos = leerP_(hojaReferidos_(), COL_REFERIDOS);

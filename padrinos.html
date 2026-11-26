@@ -295,7 +295,7 @@ async function prepararLogin() {
   } catch (e) { $('login-loading').innerHTML = '<p>No hay conexión. Probá de nuevo en un momento.</p><button class="btn" onclick="location.reload()">Reintentar</button>'; }
 }
 async function entrar() {
-  if (user.rol === 'Personal' || user.rol === 'Control') { location.href = 'index.html'; return; }
+  if (user.rol === 'Personal' || user.rol === 'RRHH' || user.rol === 'Control') { location.href = 'index.html'; return; }
   $('login').style.display = 'none'; $('top').hidden = false; $('app').hidden = false;
   $('quien').textContent = user.nombre + ' · ' + user.rol;
   $('b-nuevo').hidden = soloLectura();
