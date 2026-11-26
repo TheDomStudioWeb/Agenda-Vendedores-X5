@@ -386,7 +386,7 @@
       <div class="kpi"><span>Respuesta prom.</span><b class="num" id="k-resp">–</b></div>
     </div>
     <div class="card"><div class="card-title">Facturación por asesor</div><div class="bars" id="ch-asesores"></div></div>
-    <div class="card"><div class="card-title">Origen de las ventas</div><div id="ch-origen"></div></div>
+    <div class="card"><div class="card-title">Leads y ventas por canal</div><div id="ch-origen"></div></div>
     <div class="card"><div class="card-title">Minutos promedio de atraso desde el vencimiento</div><div class="bars" id="ch-tiempos"></div></div>
     <div class="card"><div class="card-title">Ventas cerradas por auto de flota</div><div class="bars" id="ch-flota"></div></div>
   </section>
@@ -1667,13 +1667,10 @@ function renderDashboard() {
   const ventas = db.agenda.filter(a => a.resultado === 'venta' && ver(a.asesor) && enPer(a.fecha));
   const leads = db.leads.filter(l => ver(l.asignado_a) && enPer(l.fecha_asignacion));
 
-  let fact = 0; const porAsesor = {}, origen = {}, flota = {};
+  let fact = 0; const porAsesor = {}, flota = {};
   ventas.forEach(v => {
     const m = parseFloat(v.monto) || 0; fact += m;
     porAsesor[v.asesor] = (porAsesor[v.asesor] || 0) + m;
-    const lead = db.leads.find(l => String(l.cliente).trim().toLowerCase() === String(v.cliente).trim().toLowerCase());
-    const o = lead ? lead.origen : 'Salón / Espontáneo';
-    origen[o] = (origen[o] || 0) + 1;
     if (v.lugar === 'Domicilio' && v.auto_usado) flota[v.auto_usado] = (flota[v.auto_usado] || 0) + 1;
   });
 
@@ -1695,11 +1692,33 @@ function renderDashboard() {
   $('k-resp').textContent = promGlobal == null ? '–' : (promGlobal < 60 ? promGlobal + ' min' : (promGlobal / 60).toFixed(1).replace('.', ',') + ' h');
 
   barras($('ch-asesores'), porAsesor, X5.moneyShort, 'dom');
-  dona($('ch-origen'), origen);
+  $('ch-origen').innerHTML = origenCuerpo(calcOrigenes(leads), per === 'todo' ? '' : 'Leads asignados en el mes elegido; sus ventas se cuentan hasta hoy.');
   barras($('ch-tiempos'), tProm, v => v + ' min', 'warn', 'min');
   barras($('ch-flota'), flota, v => v);
 }
 
+
+/* ── Origen de los leads: recibidos y cuántos terminaron en venta (por lead vinculado o por nombre) ── */
+function calcOrigenes(L) {
+  const nom = (x) => String(x || '').trim().toLowerCase();
+  const vendido = (l) => db.agenda.some(a => a.resultado === 'venta' && a.estado !== 'cancelado' &&
+    (a.lead_id ? String(a.lead_id) === String(l.id) : nom(a.cliente) === nom(l.cliente)));
+  const og = {};
+  L.forEach(l => { const k = l.origen || 'Sin origen'; og[k] = og[k] || { k, leads: 0, ventas: 0 }; og[k].leads++; if (vendido(l)) og[k].ventas++; });
+  return Object.values(og).sort((x, y) => y.leads - x.leads || y.ventas - x.ventas || x.k.localeCompare(y.k, 'es'));
+}
+function origenCuerpo(origenes, nota) {
+  if (!origenes.length) return '<div class="empty">Sin leads en el período</div>';
+  const max = Math.max(1, ...origenes.map(o => o.leads));
+  const tl = origenes.reduce((a, o) => a + o.leads, 0), tv = origenes.reduce((a, o) => a + o.ventas, 0);
+  const mejor = origenes.filter(o => o.leads >= 3 && o.ventas).sort((x, y) => y.ventas / y.leads - x.ventas / x.leads)[0];
+  const filas = origenes.map(o => `<div class="org-row"><span class="name">${esc(o.k)}</span>
+    <div class="bar-track org-track"><div class="org-l" style="width:${Math.max(3, o.leads / max * 100)}%"></div><div class="org-v" style="width:${o.ventas ? Math.max(2, o.ventas / max * 100) : 0}%"></div></div>
+    <span class="val">${o.leads} · <b>${o.ventas}</b> <small>${o.ventas ? Math.round(o.ventas / o.leads * 100) + '%' : '0%'}</small></span></div>`).join('');
+  return `<div class="org-ley"><span><i class="org-l"></i>Leads recibidos</span><span><i class="org-v"></i>Terminaron en venta</span></div>
+    <div class="bars">${filas}</div>
+    <div style="margin-top:8px;color:var(--muted);font-size:.78rem">Total: ${tl} leads · ${tv} venta${tv === 1 ? '' : 's'} (${tl ? Math.round(tv / tl * 100) : 0}%). ${mejor ? `Mejor conversión: <b style="color:var(--text)">${esc(mejor.k)}</b> (${Math.round(mejor.ventas / mejor.leads * 100)}%, ${mejor.ventas} de ${mejor.leads}). ` : ''}${nota || ''}</div>`;
+}
 
 /* ── Resumen por período (semanal a anual) ───────────────────────────────────────── */
 const PERIODOS = {
@@ -1796,13 +1815,7 @@ function datosPeriodo(r) {
     ...A.filter(a => a.notas).map(a => ({ f: soloFecha(a.fecha), t: 'Entrevista', n: a.cliente, q: a.asesor, r: a.resultado, x: a.notas })),
     ...L.filter(l => l.notas).map(l => ({ f: soloFecha(l.fecha_asignacion), t: 'Lead', n: l.cliente, q: l.asignado_a, r: l.estado, x: l.notas }))
   ].sort((x, y) => x.f < y.f ? 1 : -1);
-  // origen de los leads: recibidos en el período y cuántos terminaron en venta (por lead vinculado o por nombre)
-  const nom = (x) => String(x || '').trim().toLowerCase();
-  const vendido = (l) => db.agenda.some(a => a.resultado === 'venta' && a.estado !== 'cancelado' &&
-    (a.lead_id ? String(a.lead_id) === String(l.id) : nom(a.cliente) === nom(l.cliente)));
-  const og = {};
-  L.forEach(l => { const k = l.origen || 'Sin origen'; og[k] = og[k] || { k, leads: 0, ventas: 0 }; og[k].leads++; if (vendido(l)) og[k].ventas++; });
-  const origenes = Object.values(og).sort((x, y) => y.leads - x.leads || y.ventas - x.ventas || x.k.localeCompare(y.k, 'es'));
+  const origenes = calcOrigenes(L);
   return { r, L, A, cont, prom, rapidos, nMins: mins.length, sinCont, canc, real, abiertas, res, ventas, fact, filas, obs, origenes };
 }
 
@@ -1846,19 +1859,7 @@ function reporteHtml(d, pdf) {
     return `<div class="donut-wrap"><svg viewBox="0 0 120 120" width="112" height="112" role="img" aria-label="Resultados de las entrevistas"><circle r="${R}" cx="60" cy="60" fill="none" stroke="var(--surface-3)" stroke-width="16"/>${segs}<text x="60" y="60" text-anchor="middle" fill="var(--text)" font-size="22" font-weight="800">${tot}</text><text x="60" y="76" text-anchor="middle" fill="var(--muted)" font-size="9">realizadas</text></svg>
       <div class="legend">${items.map(x => `<div><i style="background:${x[2]}"></i><span>${x[0]}</span><b>${x[1]}</b></div>`).join('')}</div></div>`;
   })();
-  const origenHtml = (() => {
-    if (!d.origenes.length) return '';
-    const max = Math.max(1, ...d.origenes.map(o => o.leads));
-    const conV = d.origenes.filter(o => o.leads >= 3 && o.ventas);
-    const mejor = conV.sort((x, y) => y.ventas / y.leads - x.ventas / x.leads)[0];
-    const filas = d.origenes.map(o => `<div class="org-row"><span class="name">${esc(o.k)}</span>
-      <div class="bar-track org-track"><div class="org-l" style="width:${Math.max(3, o.leads / max * 100)}%"></div><div class="org-v" style="width:${o.ventas ? Math.max(2, o.ventas / max * 100) : 0}%"></div></div>
-      <span class="val">${o.leads} · <b>${o.ventas}</b> <small>${o.ventas ? pct(o.ventas, o.leads) + '%' : '0%'}</small></span></div>`).join('');
-    return `<div class="card"><div class="card-title">Origen de los leads</div>
-      <div class="org-ley"><span><i class="org-l"></i>Leads recibidos</span><span><i class="org-v"></i>Terminaron en venta</span></div>
-      <div class="bars">${filas}</div>
-      <div style="margin-top:8px;color:var(--muted);font-size:.78rem">${mejor ? `Mejor conversión: <b style="color:var(--text)">${esc(mejor.k)}</b> (${pct(mejor.ventas, mejor.leads)}%, ${mejor.ventas} de ${mejor.leads}). ` : ''}Las ventas se cuentan hasta hoy: en períodos recientes todavía pueden sumar.</div></div>`;
-  })();
+  const origenHtml = d.origenes.length ? `<div class="card"><div class="card-title">Origen de los leads</div>${origenCuerpo(d.origenes, 'Las ventas se cuentan hasta hoy: en períodos recientes todavía pueden sumar.')}</div>` : '';
   const av = avisos(d);
   const obsMax = pdf ? 14 : 8; // en períodos largos se muestran las más recientes
   const obsHtml = d.obs.length ? d.obs.slice(0, obsMax).map(o => `<div><b>${esc(o.n)}</b> · ${esc(o.q)}<small>${o.t} · ${X5.fechaCorta(o.f)}${o.r ? ' · ' + esc(String(o.r).replace(/_/g, ' ')) : ''}</small>${esc(recorte(o.x, 220))}</div>`).join('') + (d.obs.length > obsMax ? `<small style="color:var(--muted)">y ${d.obs.length - obsMax} observaciones más</small>` : '') : `<div class="empty">No se cargaron observaciones ${PERIODOS[r.tipo].deste}</div>`;

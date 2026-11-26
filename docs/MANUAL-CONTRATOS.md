@@ -45,6 +45,10 @@ Desarrollado por The DOM Studio Web · WhatsApp 261-3431216 · thedomstudioweb@g
 - Si se corrige el número, el anterior vuelve a Vacío (solo si estaba Completo por esa misma venta) y avisa.
 - Sin señal, el cambio queda en cola y se aplica al reconectar.
 
+## Antigüedad sin rendir (solo gerencia y control, 25/11/2026)
+
+Debajo del texto «En la calle» aparece la tarjeta **Antigüedad sin rendir**. Cuenta los contratos ya vendidos que todavía no se rindieron (Completo, Cargado o Recibido) según los días que llevan en su estado actual: **0 a 7**, **8 a 15**, **16 a 30** y **más de 30**. Cada tramo muestra la cantidad y el sellado pendiente; de 8 a 15 se ve en amarillo y desde 16 en rojo. Al tocar un tramo, la lista de abajo muestra solo esos contratos (se vuelve a tocar para quitar el filtro). Se mide desde la fecha del último cambio de estado, así que marca dónde está trabado cada contrato. La ven Gerente Comercial, Control, Supervisor y Director Comercial General. No requiere cambios en el script.
+
 ## Lista de precios (planes) y sellado
 - Hoja `Precios`. Columnas: código (PX61…), vehículo, apertura de carpeta (cuota 5 o 10; solo informativo), **adelanto mensual (valor de cuota)**, **sellado**, pago 1 y 2 (solo informativo).
 - Solo gerencia la carga: Hub → Control de contratos → "Lista de precios". Se puede pegar desde Excel o Word. Dos modos: **agregar o actualizar** solo los códigos pegados, o **reemplazar todo** (si hay un renglón con error, no cambia nada).

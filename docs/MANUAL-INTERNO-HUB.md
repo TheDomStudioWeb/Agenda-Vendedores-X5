@@ -227,7 +227,7 @@ Cambio solo visual: no cambia ningún dato, permiso ni cálculo.
   - Los números (facturación, cierres, leads, conversión) suben contando desde el valor anterior. Solo se animan si el número cambió; las sincronizaciones automáticas no los repiten.
   - *Conversión de leads* tiene un medidor semicircular que se llena según el porcentaje.
   - En *Facturación por asesor* y *Ventas por auto de flota*, el primero se resalta en rojo con la etiqueta **MEJOR** y los demás quedan más tenues. En *Minutos hasta el primer contacto* se resalta el **MÁS RÁPIDO** (el menor tiempo), porque ahí menos es mejor.
-  - La dona de *Origen de las ventas* se dibuja por partes y las tarjetas entran con un desenfoque suave.
+  - Las tarjetas entran con un desenfoque suave. (La dona *Origen de las ventas* fue reemplazada el 25/11/2026 por *Leads y ventas por canal*.)
 - Si el teléfono tiene activado "reducir movimiento", todo se muestra sin animaciones.
 - La APK abre la web publicada, así que el cambio llega solo, sin recompilar (se subió la versión de caché a x5-os-v32).
 - Referencia de estilo: videos "Admin Dashboard V5" y "Glassy Navigation Tabs V5" guardados por Daniel.
@@ -328,3 +328,8 @@ El CRM marca solo la entrevista y la firma del referido; vencimiento de puntos a
 - Las ventas cerradas, los leads descartados y las entrevistas con venta **quedan a nombre de quien vendió** (para el historial y las comisiones).
 - Cada registro movido lleva una nota «[fecha reasignado: Nombre quedó inactivo]» y el jefe recibe un resumen por Telegram. Después el jefe reasigna desde el CRM a quien corresponda.
 - Para no esperar los 10 minutos: en Apps Script, ejecutar `reasignarInactivos`.
+
+
+## Leads y ventas por canal en Métricas (25/11/2026)
+
+En **Métricas** la tarjeta «Leads y ventas por canal» reemplaza a la dona «Origen de las ventas». Usa el mismo cálculo que la tarjeta «Origen de los leads» del Resumen: por cada canal, leads asignados en el mes elegido (o en todo el historial) y cuántos de ellos terminaron en venta, con el %; abajo el total y el canal de mejor conversión (con 3 leads o más). Respeta el filtro de asesor o equipo.

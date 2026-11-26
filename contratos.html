@@ -19,6 +19,17 @@
   .kp button[aria-pressed="true"] { border-color: var(--x5); background: var(--x5-soft); }
   .calle { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; font-size: .82rem; color: var(--muted); margin-bottom: 12px; }
   .calle b { color: var(--text); }
+  .ag { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px; margin-bottom: 12px; }
+  .ag h3 { margin: 0 0 2px; font-size: .78rem; letter-spacing: .6px; text-transform: uppercase; color: var(--muted); }
+  .ag .ag-s { font-size: .74rem; color: var(--muted); margin-bottom: 10px; }
+  .ag .ag-g { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .ag button { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 8px 4px; color: var(--text); font: inherit; cursor: pointer; text-align: center; }
+  .ag button b { display: block; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+  .ag button span { display: block; font-size: .66rem; color: var(--muted); }
+  .ag button small { display: block; font-size: .64rem; color: var(--muted); margin-top: 2px; }
+  .ag button[aria-pressed="true"] { border-color: var(--x5); background: var(--x5-soft); }
+  .ag button.a2 b { color: var(--warn); } .ag button.a3 b, .ag button.a4 b { color: var(--bad); }
+  .ag button:disabled { opacity: .45; cursor: default; }
   .filtros { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
   .filtros .full { grid-column: 1 / -1; }
   .ct { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 11px 12px; margin-bottom: 8px; cursor: pointer; }
@@ -123,6 +134,7 @@
 <main id="app" hidden style="padding:14px">
   <div class="kp" id="kp"></div>
   <div class="calle" id="calle"></div>
+  <div class="ag" id="aging" hidden></div>
 
   <details class="panel" id="p-ger" hidden>
     <summary>Cargar números · solo gerencia</summary>
@@ -186,7 +198,7 @@ const ERR = { sin_permiso: 'No tiene permiso para esa acción.', sesion_vencida:
   destino_fuera_de_alcance: 'Solo puede asignar a usted o a quienes le reportan.', falta_forma_sellado: 'Elija cómo se pagó el sellado.', falta_referencia_sellado: 'Falta el número de operación o quién dio el visto bueno.', estado_invalido: 'Estado no válido.', hay_errores: 'Hay renglones con errores. No se reemplazó nada.', sin_datos: 'No se encontraron planes válidos.' };
 const MOTIVO = { no_existe: 'no existe', no_es_de_su_equipo: 'no es de su equipo', ya_en_proceso: 'ya está en proceso (solo se reasignan los vacíos)', no_es_suyo: 'no es suyo', ya_rendido: 'ya está rendido', anulado: 'está anulado', solo_disponible_o_anulado: 'solo se quitan los de gerencia o anulados', primero_asignar: 'primero hay que asignarlo', transicion_no_permitida: 'solo puede avanzar al estado siguiente', debe_estar_completo_o_cargado: 'debe estar Completo o Cargado' };
 let user = null, token = null, D = { contratos: [], personal: [], ambito: [] };
-const F = { est: '', resp: '', q: '' }, sel = new Set(); let tope = 120;
+const F = { est: '', resp: '', q: '', age: '' }, sel = new Set(); let tope = 120;
 const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }, del(k) { try { localStorage.removeItem(k); } catch (e) {} } };
 const post = async (b) => { const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(Object.assign({ token }, b)) }); return r.json(); };
 const supervisa = () => SUP.includes(user.rol), gerente = () => user.rol === 'Gerente Comercial', control = () => ['Control', 'Supervisor', 'Director Comercial General'].includes(user.rol), veTodo = () => gerente() || control();
@@ -245,6 +257,19 @@ function armarFiltros() {
   $('f-resp').innerHTML = '<option value="">' + (veTodo() ? 'Todos los responsables' : 'Mi equipo') + '</option>' + (veTodo() ? '<option value="__gerencia">En gerencia (sin responsable)</option>' : '') + resps.map(r => `<option value="${esc(r)}" ${r === F.resp ? 'selected' : ''}>${esc(r)}</option>`).join('');
   $('f-est').innerHTML = '<option value="">Todos los estados</option>' + ESTADOS.filter(e => e !== 'Disponible' || veTodo()).map(e => `<option ${e === F.est ? 'selected' : ''}>${e}</option>`).join('');
 }
+// ── Antigüedad de contratos vendidos sin rendir (Completo, Cargado o Recibido), por días en el estado actual
+const TRAMOS = [{ k: 'a1', t: '0 a 7 días', d: 0, h: 7 }, { k: 'a2', t: '8 a 15 días', d: 8, h: 15 }, { k: 'a3', t: '16 a 30 días', d: 16, h: 30 }, { k: 'a4', t: 'más de 30', d: 31, h: 1e9 }];
+const sinRendir = (c) => ['Completo', 'Cargado', 'Recibido'].includes(c.estado);
+const diasEstado = (c) => { const f = String(c.fecha_estado || '').slice(0, 10); if (!/^\d{4}-\d{2}-\d{2}$/.test(f)) return null; return Math.max(0, Math.round((new Date(X5.hoyISO() + 'T12:00:00') - new Date(f + 'T12:00:00')) / 864e5)); };
+const tramo = (c) => { const d = diasEstado(c); if (d == null) return null; const t = TRAMOS.find(x => d >= x.d && d <= x.h); return t ? t.k : null; };
+function pintarAging() {
+  const el = $('aging'); el.hidden = !veTodo(); if (el.hidden) return;
+  const cs = D.contratos.filter(sinRendir), por = {}; TRAMOS.forEach(t => { por[t.k] = { n: 0, s: 0 }; });
+  cs.forEach(c => { const k = tramo(c); if (k) { por[k].n++; por[k].s += pendSellado(c); } });
+  const viejos = por.a3.n + por.a4.n;
+  el.innerHTML = `<h3>Antigüedad sin rendir</h3><div class="ag-s">${cs.length} contrato${cs.length === 1 ? '' : 's'} vendido${cs.length === 1 ? '' : 's'} sin rendir (completos, cargados o recibidos), por días en su estado actual.${viejos ? ' <b style="color:var(--bad)">' + viejos + ' con más de 15 días.</b>' : ''} Toque un tramo para ver cuáles son.</div>
+    <div class="ag-g">${TRAMOS.map(t => `<button type="button" class="${t.k}" data-age="${t.k}" aria-pressed="${F.age === t.k}" ${por[t.k].n ? '' : 'disabled'}><b>${por[t.k].n}</b><span>${t.t}</span><small>${por[t.k].s ? X5.moneyShort(por[t.k].s) : '–'}</small></button>`).join('')}</div>`;
+}
 function pintar() {
   const k = (e) => ({ n: cuenta(e), e });
   const tiles = veTodo() ? ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido', 'Anulado'] : ['Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido'];
@@ -262,6 +287,7 @@ function pintar() {
       ${sd ? `<div class="sd">Sellado a rendir: <b>${X5.money(sd)}</b></div>` : ''}</button>`;
     $('t-res').innerHTML = filas.length ? filas.map(n => { const p = por[n], tot = p.Vacío + p.Completo + p.Cargado + p.Recibido + p.Rendido; return tot ? tarj(n, p, tot, debido(n), F.resp === n) : ''; }).join('') : '<div class="nota">Todavía no hay contratos repartidos.</div>';
   }
+  pintarAging();
   if (gerente()) tablaPrecios();
   lista(); barra();
 }
@@ -271,7 +297,7 @@ function tablaPrecios() {
 }
 function filtrados() {
   const q = F.q.trim().toLowerCase();
-  return D.contratos.filter(c => (!F.est || c.estado === F.est)
+  return D.contratos.filter(c => (!F.est || c.estado === F.est) && (!F.age || (sinRendir(c) && tramo(c) === F.age))
     && (!F.resp || (F.resp === '__gerencia' ? !c.responsable : c.responsable === F.resp))
     && (!q || String(c.numero).toLowerCase().includes(q) || String(c.cliente || '').toLowerCase().includes(q) || String(c.responsable || '').toLowerCase().includes(q))).sort((a, b) => natural(a.numero, b.numero));
 }
@@ -309,11 +335,12 @@ function barra() {
 }
 
 /* ── Eventos ── */
-$('kp').onclick = (e) => { const b = e.target.closest('[data-e]'); if (!b) return; F.est = F.est === b.dataset.e ? '' : b.dataset.e; $('f-est').value = F.est; tope = 120; pintar(); };
+$('kp').onclick = (e) => { const b = e.target.closest('[data-e]'); if (!b) return; F.age = ''; F.est = F.est === b.dataset.e ? '' : b.dataset.e; $('f-est').value = F.est; tope = 120; pintar(); };
 $('f-est').onchange = () => { F.est = $('f-est').value; tope = 120; pintar(); };
 $('f-resp').onchange = () => { F.resp = $('f-resp').value; tope = 120; pintar(); };
 let tq; $('f-q').oninput = () => { clearTimeout(tq); tq = setTimeout(() => { F.q = $('f-q').value; tope = 120; lista(); }, 200); };
 $('b-mas').onclick = () => { tope += 200; lista(); };
+$('aging').onclick = (e) => { const b = e.target.closest('[data-age]'); if (!b || b.disabled) return; F.age = F.age === b.dataset.age ? '' : b.dataset.age; if (F.age) { F.est = ''; $('f-est').value = ''; } tope = 120; pintar(); if (F.age) window.scrollTo({ top: $('lista').offsetTop - 120, behavior: 'smooth' }); };
 $('t-res').onclick = (e) => { const r = e.target.closest('[data-r]'); if (!r) return; F.resp = F.resp === r.dataset.r ? '' : r.dataset.r; $('f-resp').value = F.resp; tope = 120; pintar(); window.scrollTo({ top: $('lista').offsetTop - 120, behavior: 'smooth' }); };
 document.querySelectorAll('[data-v]').forEach(b => b.onclick = () => { vista = b.dataset.v; store.set('x5_vista', vista); if (vista === 'lista') eleg = false; lista(); });
 $('b-eleg').onclick = () => { eleg = !eleg; if (!eleg) { sel.clear(); barra(); } lista(); };
