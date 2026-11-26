@@ -33,6 +33,14 @@
   .rep-head h2 { margin: 0; font-size: 1.15rem; }
   .rep-head small { color: var(--muted); display: block; margin-top: 2px; font-size: .78rem; }
   .rep-head .rep-brand { font-weight: 800; letter-spacing: 1px; font-size: .8rem; color: var(--dom); text-align: right; white-space: nowrap; }
+  .org-row { display: grid; grid-template-columns: minmax(90px, 30%) 1fr 84px; gap: 8px; align-items: center; margin: 7px 0; font-size: .82rem; }
+  .org-row .val { white-space: nowrap; color: var(--muted); text-align: right; } .org-row .val b { color: var(--text); }
+  .org-track { position: relative; height: 12px; }
+  .org-track .org-l, .org-track .org-v { position: absolute; left: 0; top: 0; height: 100%; border-radius: 6px; }
+  .org-l { background: color-mix(in srgb, var(--x5) 28%, var(--surface-3, #555)); }
+  .org-v { background: var(--x5); }
+  .org-ley { display: flex; gap: 14px; font-size: .74rem; color: var(--muted); margin-bottom: 4px; }
+  .org-ley i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
   .rep-lead { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--x5); border-radius: 12px; padding: 12px 14px; font-size: .92rem; line-height: 1.45; }
   .rep .kpis { margin: 0; grid-template-columns: repeat(4, 1fr); }
   .rep .kpi { padding: 10px; }
@@ -1788,7 +1796,14 @@ function datosPeriodo(r) {
     ...A.filter(a => a.notas).map(a => ({ f: soloFecha(a.fecha), t: 'Entrevista', n: a.cliente, q: a.asesor, r: a.resultado, x: a.notas })),
     ...L.filter(l => l.notas).map(l => ({ f: soloFecha(l.fecha_asignacion), t: 'Lead', n: l.cliente, q: l.asignado_a, r: l.estado, x: l.notas }))
   ].sort((x, y) => x.f < y.f ? 1 : -1);
-  return { r, L, A, cont, prom, rapidos, nMins: mins.length, sinCont, canc, real, abiertas, res, ventas, fact, filas, obs };
+  // origen de los leads: recibidos en el período y cuántos terminaron en venta (por lead vinculado o por nombre)
+  const nom = (x) => String(x || '').trim().toLowerCase();
+  const vendido = (l) => db.agenda.some(a => a.resultado === 'venta' && a.estado !== 'cancelado' &&
+    (a.lead_id ? String(a.lead_id) === String(l.id) : nom(a.cliente) === nom(l.cliente)));
+  const og = {};
+  L.forEach(l => { const k = l.origen || 'Sin origen'; og[k] = og[k] || { k, leads: 0, ventas: 0 }; og[k].leads++; if (vendido(l)) og[k].ventas++; });
+  const origenes = Object.values(og).sort((x, y) => y.leads - x.leads || y.ventas - x.ventas || x.k.localeCompare(y.k, 'es'));
+  return { r, L, A, cont, prom, rapidos, nMins: mins.length, sinCont, canc, real, abiertas, res, ventas, fact, filas, obs, origenes };
 }
 
 function frase(d) {
@@ -1831,6 +1846,19 @@ function reporteHtml(d, pdf) {
     return `<div class="donut-wrap"><svg viewBox="0 0 120 120" width="112" height="112" role="img" aria-label="Resultados de las entrevistas"><circle r="${R}" cx="60" cy="60" fill="none" stroke="var(--surface-3)" stroke-width="16"/>${segs}<text x="60" y="60" text-anchor="middle" fill="var(--text)" font-size="22" font-weight="800">${tot}</text><text x="60" y="76" text-anchor="middle" fill="var(--muted)" font-size="9">realizadas</text></svg>
       <div class="legend">${items.map(x => `<div><i style="background:${x[2]}"></i><span>${x[0]}</span><b>${x[1]}</b></div>`).join('')}</div></div>`;
   })();
+  const origenHtml = (() => {
+    if (!d.origenes.length) return '';
+    const max = Math.max(1, ...d.origenes.map(o => o.leads));
+    const conV = d.origenes.filter(o => o.leads >= 3 && o.ventas);
+    const mejor = conV.sort((x, y) => y.ventas / y.leads - x.ventas / x.leads)[0];
+    const filas = d.origenes.map(o => `<div class="org-row"><span class="name">${esc(o.k)}</span>
+      <div class="bar-track org-track"><div class="org-l" style="width:${Math.max(3, o.leads / max * 100)}%"></div><div class="org-v" style="width:${o.ventas ? Math.max(2, o.ventas / max * 100) : 0}%"></div></div>
+      <span class="val">${o.leads} · <b>${o.ventas}</b> <small>${o.ventas ? pct(o.ventas, o.leads) + '%' : '0%'}</small></span></div>`).join('');
+    return `<div class="card"><div class="card-title">Origen de los leads</div>
+      <div class="org-ley"><span><i class="org-l"></i>Leads recibidos</span><span><i class="org-v"></i>Terminaron en venta</span></div>
+      <div class="bars">${filas}</div>
+      <div style="margin-top:8px;color:var(--muted);font-size:.78rem">${mejor ? `Mejor conversión: <b style="color:var(--text)">${esc(mejor.k)}</b> (${pct(mejor.ventas, mejor.leads)}%, ${mejor.ventas} de ${mejor.leads}). ` : ''}Las ventas se cuentan hasta hoy: en períodos recientes todavía pueden sumar.</div></div>`;
+  })();
   const av = avisos(d);
   const obsMax = pdf ? 14 : 8; // en períodos largos se muestran las más recientes
   const obsHtml = d.obs.length ? d.obs.slice(0, obsMax).map(o => `<div><b>${esc(o.n)}</b> · ${esc(o.q)}<small>${o.t} · ${X5.fechaCorta(o.f)}${o.r ? ' · ' + esc(String(o.r).replace(/_/g, ' ')) : ''}</small>${esc(recorte(o.x, 220))}</div>`).join('') + (d.obs.length > obsMax ? `<small style="color:var(--muted)">y ${d.obs.length - obsMax} observaciones más</small>` : '') : `<div class="empty">No se cargaron observaciones ${PERIODOS[r.tipo].deste}</div>`;
@@ -1847,6 +1875,7 @@ function reporteHtml(d, pdf) {
     <div class="card"><div class="card-title">Respuesta a los leads</div><div class="bars">${barra('Recibidos', d.L.length, maxL)}${barra('Contactados', d.cont.length, maxL, 'dom')}${barra('Sin contactar', d.sinCont.length, maxL, 'warn')}</div></div>
     <div class="card"><div class="card-title">Resultado de las entrevistas</div>${dona2}<div style="margin-top:8px;color:var(--muted);font-size:.78rem">${d.A.length} programadas · ${d.real.length} realizadas · ${d.canc.length} canceladas${d.abiertas.length ? ' · ' + d.abiertas.length + ' sin cerrar' : ''}</div></div>
   </div>
+  ${origenHtml}
   <div class="card"><div class="card-title">Por asesor</div>
     <table class="rep-tabla"><thead><tr><th>Asesor</th><th>Leads</th><th>Contact.</th><th>Resp.</th><th>Entrev.</th><th>Ventas</th></tr></thead><tbody>
     ${d.filas.map(f => `<tr><td>${esc(f.n)}</td><td>${f.leads}</td><td class="${mal(f)}">${f.cont}/${f.leads}</td><td>${fmtMin(f.prom)}</td><td>${f.real}${f.canc ? ' <span style="color:var(--faint)">(-' + f.canc + ')</span>' : ''}</td><td><b>${f.ventas}</b></td></tr>`).join('')}

@@ -148,6 +148,7 @@ Pestaña **Resumen** en el menú inferior. Solo la ven Gerente Comercial, Jefe d
 - El selector "Asesor o equipo" filtra igual que en Métricas.
 - Arriba: una frase con el resumen y 4 números (leads, % contactados, respuesta promedio, ventas con monto).
 - Gráficos: respuesta a los leads (recibidos / contactados / sin contactar) y resultado de las entrevistas realizadas (venta, seguimiento, descartado, sin resultado).
+- **Origen de los leads** (25/11/2026): por cada canal (Meta Ads, Web X5, Referido, Redes Asesor, Salón / Espontáneo) muestra cuántos leads llegaron en el período y cuántos de esos terminaron en venta, con el porcentaje. Barra rosada = leads recibidos; barra roja = ventas. Debajo indica el canal con mejor conversión (solo canales con 3 leads o más). La venta se atribuye al lead por la entrevista generada desde el lead o, si no hay vínculo, por el nombre del cliente. Las ventas se cuentan hasta hoy, así que en períodos recientes el número todavía puede crecer.
 - **Por asesor**: leads, contactados, tiempo de respuesta, entrevistas realizadas (entre paréntesis las canceladas) y ventas.
 - **Para atender**: leads del período sin contactar, entrevistas pasadas sin marcar, asesor más rápido y más lento.
 - **Observaciones**: las notas cargadas en leads y entrevistas del período. En períodos largos se muestran las más recientes y se indica cuántas más hay.
