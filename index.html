@@ -120,6 +120,7 @@
   <footer class="foot">
     Core System v2.0 · Mendoza<br>
     Desarrollado por <span class="dom-sign">The DOM Studio Web</span>
+    <div id="app-ver" hidden style="margin-top:8px"></div>
   </footer>
 </main>
 
@@ -137,6 +138,20 @@
       document.querySelectorAll('.group').forEach(g => { if (g.id !== 'g-personal') g.hidden = true; });
       const gp = document.getElementById('g-personal'); gp.querySelector('h2').textContent = 'Hola, ' + String(ses.user.nombre).split(' ')[0];
       document.querySelector('main').insertBefore(gp, document.querySelector('.group'));
+    }
+  } catch (e) {}
+
+  // App Android: versión instalada y «Buscar actualización» (desde la 2.2 la app se actualiza sola desde GitHub)
+  try {
+    const m = navigator.userAgent.match(/X5CuyoApp\/([\d.]+)/);
+    const av = document.getElementById('app-ver');
+    if (m && av) {
+      const puede = window.X5Android && window.X5Android.buscarActualizacion;
+      av.hidden = false;
+      av.innerHTML = 'App X5 Cuyo ' + (puede ? String(window.X5Android.appVersion()).replace(/[<>&]/g, '') : m[1]) + ' · '
+        + (puede ? '<a href="#" id="app-upd" style="color:inherit;text-decoration:underline">Buscar actualización</a>'
+                 : '<b style="color:var(--warn)">versión vieja: pedí la 2.2 para que se actualice sola</b>');
+      if (puede) document.getElementById('app-upd').onclick = (e) => { e.preventDefault(); window.X5Android.buscarActualizacion(); };
     }
   } catch (e) {}
 

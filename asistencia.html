@@ -314,14 +314,16 @@ function obtenerUbicacion(precisa) {
       { enableHighAccuracy: true, timeout: precisa ? 20000 : 15000, maximumAge: 30000 });
   });
 }
-const AVISO_PERMISO = 'Para marcar hace falta permitir la ubicación. En el teléfono: Ajustes › Aplicaciones › X5 Cuyo (o el navegador) › Permisos › Ubicación › Permitir. Después volvé a tocar el botón.';
+const AVISO_PERMISO_TXT = 'Para marcar hace falta permitir la ubicación. En el teléfono: Ajustes › Aplicaciones › X5 Cuyo (o el navegador) › Permisos › Ubicación › Permitir. Después volvé a tocar el botón.';
+const AVISO_APP_VIEJA = 'Esta versión de la app X5 Cuyo no puede pedir la ubicación (por eso el permiso aparece en gris). Hay que instalar la versión 2.2. Mientras tanto, marcá desde Chrome: thedomstudioweb.github.io/Agenda-Vendedores-X5';
+const avisoPermiso = () => (X5.appVieja && X5.appVieja()) ? AVISO_APP_VIEJA : AVISO_PERMISO_TXT;
 async function fijarSede() {
   dialogo('Fijar la agencia', `<p>Parate <b>dentro de la agencia</b> y tocá «Fijar». Desde ahí se mide si cada marca se hizo en la agencia (hasta ${D.sede ? D.sede.radio : 150} m).</p><div class="grid2" style="margin-top:14px"><button class="btn btn-ghost" id="c-no">Cancelar</button><button class="btn" id="c-si">Fijar</button></div><div id="e-err"></div>`);
   $('c-no').onclick = () => dlg.close();
   $('c-si').onclick = async (ev) => {
     ev.target.disabled = true; ev.target.textContent = 'Buscando ubicación…';
     const u = await obtenerUbicacion(true);
-    if (u.error) { ev.target.disabled = false; ev.target.textContent = 'Fijar'; $('e-err').innerHTML = `<div class="err">${esc(u.error === 'denegado' ? AVISO_PERMISO : 'No se pudo obtener la ubicación. Probá de nuevo.')}</div>`; return; }
+    if (u.error) { ev.target.disabled = false; ev.target.textContent = 'Fijar'; $('e-err').innerHTML = `<div class="err">${esc(u.error === 'denegado' ? avisoPermiso() : 'No se pudo obtener la ubicación. Probá de nuevo.')}</div>`; return; }
     try { const r = await post({ action: 'asistencia_sede', geo: u.geo }); if (!r.ok) throw new Error(r.error); dlg.close(); X5.toast('Agencia fijada ✓ (precisión ' + u.geo.acc + ' m)', 'ok', 3500); cargar(false); }
     catch (err) { ev.target.disabled = false; ev.target.textContent = 'Fijar'; $('e-err').innerHTML = `<div class="err">${esc(ERR[err.message] || 'No se pudo guardar.')}</div>`; }
   };
@@ -338,7 +340,7 @@ function confirmar(tipo, e) {
   $('c-si').onclick = async (ev) => {
     ev.target.disabled = true; ev.target.textContent = 'Buscando ubicación…';
     const u = await obtenerUbicacion(false);
-    if (u.error === 'denegado') { dlg.close(); dialogo('Falta permitir la ubicación', `<p>${esc(AVISO_PERMISO)}</p><button class="btn" id="c-ok" style="margin-top:12px">Entendido</button>`); $('c-ok').onclick = () => dlg.close(); return; }
+    if (u.error === 'denegado') { dlg.close(); dialogo(X5.appVieja && X5.appVieja() ? 'Hay que actualizar la app' : 'Falta permitir la ubicación', `<p>${esc(avisoPermiso())}</p><button class="btn" id="c-ok" style="margin-top:12px">Entendido</button>`); $('c-ok').onclick = () => dlg.close(); return; }
     ev.target.textContent = 'Registrando…';
     try {
       const r = await post({ action: 'asistencia_marcar', tipo, geo: u.geo || null });

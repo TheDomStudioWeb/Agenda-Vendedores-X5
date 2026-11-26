@@ -54,11 +54,20 @@ La web detecta la app por `window.X5Android` (lo usa `x5-core.js`) y por el agre
 
 ## Publicar una actualización de la APK
 
-Solo hace falta cuando cambia algo de la parte Android.
+Solo hace falta cuando cambia algo de la parte Android. **Desde la versión 2.2 la app se actualiza sola:** cada 6 horas se fija en GitHub si hay una versión nueva, la ofrece, la descarga y abre el instalador. Las versiones anteriores (2.1 o menos) hay que pasarlas a mano una última vez.
 
-1. En `android/app/build.gradle.kts`, subí `versionCode` en 1 (por ejemplo, de 1 a 2). Si querés, cambiá también `versionName`.
-2. Repetí **Build → Generate Signed App Bundle or APK…** con la **misma llave**.
-3. Repartí la APK nueva. Se instala encima de la anterior y conserva la sesión y los datos.
+1. En `android/app/build.gradle.kts`, subí `versionCode` en 1 (por ejemplo, de 3 a 4). Si querés, cambiá también `versionName`.
+2. Repetí **Build → Generate Signed App Bundle or APK…** con la **misma llave**. Renombrá el archivo a `X5-Cuyo.apk`.
+3. **Publicala en GitHub** (desde el navegador, no hace falta subirla al código):
+   - Entrá a github.com/TheDomStudioWeb/Agenda-Vendedores-X5 → **Releases** (columna derecha) → **Draft a new release**.
+   - **Choose a tag** → escribí `apk-` más el `versionCode`, por ejemplo **`apk-4`** → **Create new tag**. Tiene que ser exactamente así: la app lee el número de esa etiqueta.
+   - **Release title**: algo corto, por ejemplo «X5 Cuyo 2.3 · cámara más rápida». En la descripción, una o dos líneas de qué cambia: la app las muestra en el aviso.
+   - Arrastrá `X5-Cuyo.apk` a **Attach binaries** y esperá que termine de subir.
+   - **Publish release** (dejá marcado «Set as the latest release»).
+4. Listo: en las próximas horas cada teléfono con la app ofrece «Hay una versión nueva de X5 Cuyo → Actualizar». También se puede forzar desde el inicio del Hub, abajo: **Buscar actualización**.
+5. La primera vez que alguien actualiza así, Android pide permitir que X5 Cuyo instale apps: la app lo explica y abre el ajuste. Se activa una sola vez.
+
+> La versión 2.2 (permiso de ubicación y actualización automática) hay que instalarla a mano una vez en cada teléfono. También conviene publicarla como release `apk-3`, así queda como base.
 
 ## Probar antes de repartir
 
@@ -71,6 +80,8 @@ Solo hace falta cuando cambia algo de la parte Android.
 - [ ] X5 Check: fotos, firma y **Generar DOCX**.
 - [ ] Auditoría: **Compartir imagen**.
 - [ ] El botón Atrás vuelve al inicio del Hub. En modo avión, una página nueva muestra "Sin conexión".
+- [ ] Ingreso y egreso: al marcar, el teléfono pide la ubicación y la marca sale «En la agencia».
+- [ ] Abajo del inicio dice «App X5 Cuyo 2.2 (3) · Buscar actualización», y al tocarlo dice «La app está al día» (o ofrece la nueva).
 
 ## Problemas frecuentes al compilar
 

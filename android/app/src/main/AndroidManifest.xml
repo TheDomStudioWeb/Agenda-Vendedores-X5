@@ -5,6 +5,8 @@
     <!-- Ubicación: ingreso y egreso georreferenciado del personal -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Actualización de la app: instalar la APK nueva descargada desde GitHub Releases -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <!-- Solo Android 9 o anterior necesita permiso para guardar en Descargas -->
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"

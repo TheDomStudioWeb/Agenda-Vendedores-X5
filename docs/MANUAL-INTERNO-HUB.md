@@ -340,3 +340,10 @@ En **Métricas** la tarjeta «Leads y ventas por canal» reemplaza a la dona «O
 - Rol nuevo **RRHH**: ve el registro de todo el personal y exporta el PDF; no marca, no corrige y no entra a ninguna otra herramienta.
 - La APK de Android pasa a la versión 2.2 (permiso de ubicación). Hay que compilarla y repartirla.
 - Detalle completo: `docs/MANUAL-ASISTENCIA.md`.
+
+## La app de Android se actualiza sola (26/11/2026)
+- Desde la versión 2.2, la app X5 Cuyo se fija cada 6 horas en GitHub Releases si hay una APK nueva (etiqueta `apk-<número de versión>` con el archivo .apk adjunto). Si la hay, ofrece «Actualizar», la descarga y abre el instalador.
+- En el inicio del Hub, abajo de todo, se ve la versión de la app y el enlace **Buscar actualización**. Si la app es vieja (2.1 o menos), lo avisa.
+- Cómo publicar una versión nueva: `docs/APK-ANDROID.md`, sección «Publicar una actualización».
+
+**Para responder por voz:** "¿Cómo actualizo la app?" → Abajo del inicio del Hub, tocá Buscar actualización. Si hay una nueva, tocá Actualizar y después Instalar.

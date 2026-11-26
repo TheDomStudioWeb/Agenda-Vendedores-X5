@@ -15,6 +15,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.os.Message
 import android.provider.MediaStore
+import android.provider.Settings
 import android.util.Base64
 import android.view.View
 import android.webkit.JavascriptInterface
@@ -39,6 +40,9 @@ import androidx.core.content.FileProvider
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import java.io.File
 import java.io.FileOutputStream
+import java.net.HttpURLConnection
+import java.net.URL
+import org.json.JSONObject
 
 /**
  * X5 Cuyo · Hub Comercial — app Android.
@@ -51,6 +55,9 @@ import java.io.FileOutputStream
  *  - Cámara y galería para el escáner, el DNI y las fotos del X5 Check.
  *  - WhatsApp, llamadas, Telegram y enlaces externos se abren en su app.
  *  - Botón Atrás del teléfono, pantalla de inicio y aviso sin conexión.
+ *  - Actualización de la app: busca en GitHub Releases una versión nueva
+ *    (etiqueta «apk-<versionCode>» con el archivo .apk adjunto), la descarga
+ *    y abre el instalador. Así los cambios de la parte Android llegan solos.
  */
 class MainActivity : AppCompatActivity() {
 
@@ -58,7 +65,13 @@ class MainActivity : AppCompatActivity() {
         const val HUB_URL = "https://thedomstudioweb.github.io/Agenda-Vendedores-X5/"
         private const val HUB_HOST = "thedomstudioweb.github.io"
         private const val HUB_PATH = "/agenda-vendedores-x5"
+        // Última versión publicada de la APK (GitHub Releases del repo, público)
+        private const val RELEASES_API = "https://api.github.com/repos/TheDomStudioWeb/Agenda-Vendedores-X5/releases/latest"
+        private const val CADA_HORAS = 6L   // cada cuánto se fija si hay una versión nueva
     }
+
+    private var apkPendiente: File? = null   // descargada, esperando el permiso para instalar
+    private var buscandoActualizacion = false
 
     private lateinit var webView: WebView
     private lateinit var progress: ProgressBar
@@ -176,6 +189,124 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         webView.onResume()
+        // Volvió de dar el permiso «instalar apps»: se sigue con la instalación
+        apkPendiente?.let { f -> if (puedeInstalar()) { apkPendiente = null; abrirInstalador(f) } }
+        buscarActualizacion(false)
+    }
+
+    // ── Actualización de la app (GitHub Releases) ───────────────────
+
+    private fun versionActual(): Long = BuildConfig.VERSION_CODE.toLong()
+
+    /** Se fija en GitHub si hay una APK más nueva. Sin forzar, como máximo cada CADA_HORAS. */
+    private fun buscarActualizacion(forzar: Boolean) {
+        if (buscandoActualizacion) return
+        val prefs = getSharedPreferences("actualizacion", MODE_PRIVATE)
+        val ahora = System.currentTimeMillis()
+        if (!forzar && ahora - prefs.getLong("ultima", 0L) < CADA_HORAS * 3_600_000L) return
+        buscandoActualizacion = true
+        Thread {
+            try {
+                val con = (URL(RELEASES_API).openConnection() as HttpURLConnection).apply {
+                    connectTimeout = 10_000; readTimeout = 10_000
+                    setRequestProperty("Accept", "application/vnd.github+json")
+                    setRequestProperty("User-Agent", "X5CuyoApp/${BuildConfig.VERSION_NAME}")
+                }
+                val codigo = con.responseCode
+                if (codigo == 404) { prefs.edit().putLong("ultima", ahora).apply(); if (forzar) runOnUiThread { toast("La app está al día.") }; return@Thread }
+                if (codigo != 200) return@Thread
+                val json = JSONObject(con.inputStream.bufferedReader().use { it.readText() })
+                prefs.edit().putLong("ultima", ahora).apply()
+                val tag = json.optString("tag_name")
+                val nueva = Regex("^apk-(\\d+)$").find(tag)?.groupValues?.get(1)?.toLongOrNull() ?: return@Thread
+                if (nueva <= versionActual()) { if (forzar) runOnUiThread { toast("La app está al día.") }; return@Thread }
+                val assets = json.optJSONArray("assets") ?: return@Thread
+                var url: String? = null
+                for (i in 0 until assets.length()) {
+                    val a = assets.getJSONObject(i)
+                    if (a.optString("name").endsWith(".apk", ignoreCase = true)) { url = a.optString("browser_download_url"); break }
+                }
+                if (url.isNullOrBlank()) return@Thread
+                val titulo = json.optString("name").ifBlank { "Versión nueva" }
+                val notas = json.optString("body").trim().take(400)
+                runOnUiThread { ofrecerActualizacion(titulo, notas, url, nueva) }
+            } catch (_: Exception) {
+                // sin conexión o GitHub no respondió: se vuelve a intentar más tarde
+            } finally {
+                buscandoActualizacion = false
+            }
+        }.start()
+    }
+
+    private fun ofrecerActualizacion(titulo: String, notas: String, url: String, version: Long) {
+        if (isFinishing) return
+        AlertDialog.Builder(this)
+            .setTitle("Hay una versión nueva de X5 Cuyo")
+            .setMessage(titulo + (if (notas.isNotEmpty()) "\n\n$notas" else "") + "\n\nSe descarga y se instala encima de la actual: no se pierde la sesión ni los datos.")
+            .setPositiveButton("Actualizar") { _, _ -> descargarApk(url, version) }
+            .setNegativeButton("Más tarde", null)
+            .show()
+    }
+
+    private fun descargarApk(url: String, version: Long) {
+        val barra = ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal).apply { max = 100; isIndeterminate = true }
+        val pad = (20 * resources.displayMetrics.density).toInt()
+        val caja = android.widget.FrameLayout(this).apply { setPadding(pad, pad / 2, pad, 0); addView(barra) }
+        val dialogo = AlertDialog.Builder(this).setTitle("Descargando la actualización…").setView(caja).setCancelable(false).show()
+        Thread {
+            try {
+                val dir = File(cacheDir, "actualizacion").apply { mkdirs(); listFiles()?.forEach { it.delete() } }
+                val destino = File(dir, "X5-Cuyo-$version.apk")
+                val con = (URL(url).openConnection() as HttpURLConnection).apply {
+                    connectTimeout = 15_000; readTimeout = 30_000; instanceFollowRedirects = true
+                    setRequestProperty("User-Agent", "X5CuyoApp/${BuildConfig.VERSION_NAME}")
+                }
+                if (con.responseCode != 200) throw IllegalStateException("http ${con.responseCode}")
+                val total = con.contentLengthLong
+                con.inputStream.use { entrada ->
+                    FileOutputStream(destino).use { salida ->
+                        val buf = ByteArray(64 * 1024); var leidos = 0L; var n = 0
+                        while (entrada.read(buf).also { n = it } > 0) {
+                            salida.write(buf, 0, n); leidos += n
+                            if (total > 0) { val p = (leidos * 100 / total).toInt(); runOnUiThread { barra.isIndeterminate = false; barra.progress = p } }
+                        }
+                    }
+                }
+                runOnUiThread { dialogo.dismiss(); instalarApk(destino) }
+            } catch (_: Exception) {
+                runOnUiThread { dialogo.dismiss(); toast("No se pudo descargar la actualización. Probá de nuevo con buena señal.") }
+            }
+        }.start()
+    }
+
+    private fun puedeInstalar(): Boolean {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) return packageManager.canRequestPackageInstalls()
+        return true
+    }
+
+    private fun instalarApk(apk: File) {
+        if (puedeInstalar()) { abrirInstalador(apk); return }
+        // Android 8+: la primera vez hay que permitir que X5 Cuyo instale apps
+        apkPendiente = apk
+        AlertDialog.Builder(this)
+            .setTitle("Falta un permiso")
+            .setMessage("Para actualizar, Android pide permitir que X5 Cuyo instale apps. En la pantalla que se abre, activá «Permitir de esta fuente» y volvé con Atrás.")
+            .setPositiveButton("Ir a permitir") { _, _ ->
+                try { startActivity(Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:$packageName"))) }
+                catch (_: ActivityNotFoundException) { toast("Abrí Ajustes › Aplicaciones › X5 Cuyo › Instalar apps desconocidas.") }
+            }
+            .setNegativeButton("Cancelar") { _, _ -> apkPendiente = null }
+            .show()
+    }
+
+    private fun abrirInstalador(apk: File) {
+        try {
+            val uri = FileProvider.getUriForFile(this, "$packageName.fileprovider", apk)
+            startActivity(Intent(Intent.ACTION_VIEW).apply {
+                setDataAndType(uri, "application/vnd.android.package-archive")
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK)
+            })
+        } catch (_: Exception) { toast("No se pudo abrir el instalador.") }
     }
 
     override fun onPause() {
@@ -359,6 +490,14 @@ class MainActivity : AppCompatActivity() {
     // ── Puente con la web: window.X5Android ─────────────────────────
 
     inner class X5Bridge {
+        /** Versión de la app instalada (la muestra el Hub) */
+        @JavascriptInterface
+        fun appVersion(): String = BuildConfig.VERSION_NAME + " (" + BuildConfig.VERSION_CODE + ")"
+
+        /** «Buscar actualización» desde el Hub */
+        @JavascriptInterface
+        fun buscarActualizacion() { runOnUiThread { buscarActualizacion(true) } }
+
         @JavascriptInterface
         fun saveFile(base64: String, nombre: String, mime: String) {
             val bytes = decodificar(base64) ?: return

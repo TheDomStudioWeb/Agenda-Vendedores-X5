@@ -62,6 +62,13 @@
   });
 
   X5.esApp = () => !!(window.X5Android && window.X5Android.saveFile);
+  // Versión de la app Android instalada (desde la 2.2 la da el puente; antes, solo el user agent)
+  X5.appVersion = () => {
+    try { if (window.X5Android && window.X5Android.appVersion) return String(window.X5Android.appVersion()); } catch (e) {}
+    const m = navigator.userAgent.match(/X5CuyoApp\/([\d.]+)/); return m ? m[1] : null;
+  };
+  // ¿La app instalada es anterior a la 2.2? (no puede pedir la ubicación ni actualizarse sola)
+  X5.appVieja = () => { const v = X5.appVersion(); if (!v) return false; const p = v.split(/[ .(]/).map(Number); return p[0] < 2 || (p[0] === 2 && (p[1] || 0) < 2); };
 
   X5.guardarArchivo = async (blob, nombre) => {
     const mime = blob.type || 'application/octet-stream';
