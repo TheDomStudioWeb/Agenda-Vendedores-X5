@@ -1,6 +1,544 @@
 {
  "eventos": [
   {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "maipu-184666",
+   "auto": "Fiat Palio 2016",
+   "precio": 14000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "maipu-184642",
+   "auto": "Fiat Fastback 2024",
+   "precio": 29500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "maipu-184618",
+   "auto": "Chevrolet Sonic 2026",
+   "precio": 37900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "maipu-184595",
+   "auto": "Renault Kardian 2024",
+   "precio": null,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "precio",
+   "id": "autocity-364614aa-c2ac-4255-aece-dce9e9b094c3",
+   "auto": "Citroen C4 2013",
+   "antes": 12400000,
+   "precio": 11700000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-c4dd41d7-4dfe-43b5-9d99-abad24b9d2e3",
+   "auto": "Fiat Palio 2013",
+   "precio": 13249999,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-704985bb-8d7f-42dd-b0df-7a1e767bc5a4",
+   "auto": "Volkswagen Gol 2018",
+   "precio": 18250000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "precio",
+   "id": "autocity-91417ff2-15b0-4cd3-838b-2f084a2e9208",
+   "auto": "Ford Eco Sport 2019",
+   "antes": 21950000,
+   "precio": 20950000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-c59e9a46-11bb-41c3-9a50-9f6ce1d340e1",
+   "auto": "Renault Kwid 2025",
+   "precio": 21000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-ee0e46e3-cad0-4f43-adf9-29cf3626d3b9",
+   "auto": "Peugeot 308 2020",
+   "precio": 21750000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-e336d5c6-98ad-4935-8992-26e64e2935b4",
+   "auto": "Volkswagen Virtus 2018",
+   "precio": 21900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-4e4e1664-c3fe-4f0f-92df-de0f42250bf6",
+   "auto": "Peugeot 208 2022",
+   "precio": 24250000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-0d87882c-39c4-49a7-bdd6-f980a549618a",
+   "auto": "Peugeot 208 2024",
+   "precio": 24500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-22976fda-4623-4785-849a-5a607c96c137",
+   "auto": "Renault Captur 2021",
+   "precio": 24900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-02479069-afcc-4f29-b8b3-d306a0fedff2",
+   "auto": "Fiat Strada 2022",
+   "precio": 24900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-066c0c23-4073-4bf6-93ed-de7577774730",
+   "auto": "Fiat Cronos 2024",
+   "precio": 24900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-4fafa500-28ed-4492-9642-52bb0eb62565",
+   "auto": "Nissan Kicks 2018",
+   "precio": 25500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-f81b1125-a1ad-4bec-9ff1-c0e09952b143",
+   "auto": "Renault Stepway 2023",
+   "precio": 26500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-814c6424-b9b5-4707-bee8-0177766db77c",
+   "auto": "Peugeot 208 2024",
+   "precio": 27200000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-a317b28a-e065-4811-a7fb-98e4c4bd1ca3",
+   "auto": "Fiat Cronos 2025",
+   "precio": 29400000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-4d688f69-bdf6-49eb-bb33-7b1f8546f8f6",
+   "auto": "Peugeot 208 2025",
+   "precio": 30500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-ba6eb5d9-2e4a-4994-80f8-6c4afd69d195",
+   "auto": "Chevrolet Cruze 2023",
+   "precio": 30700000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "precio",
+   "id": "autocity-104adb29-8ff3-4804-9974-26c048de3dd6",
+   "auto": "Volkswagen Virtus 2024",
+   "antes": 34750000,
+   "precio": 33000000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-b8ee0074-4c38-44fc-9d35-e23567c0d004",
+   "auto": "Nissan Kicks 2022",
+   "precio": 33200000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-d84698bc-5ff7-4e55-b541-53bb14a2a1bf",
+   "auto": "Kia Sportage 2018",
+   "precio": 33900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "precio",
+   "id": "autocity-4a5966f1-904b-41ec-be0a-dc8e2669eb9a",
+   "auto": "Fiat Fastback 2024",
+   "antes": 33900000,
+   "precio": 34125000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-47a7b71a-0057-471c-8e99-4c47974ff3ea",
+   "auto": "Peugeot 2008 2024",
+   "precio": 34500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "precio",
+   "id": "autocity-e6bbf488-c048-41a7-9c40-10ebb8222de9",
+   "auto": "Fiat Fastback 2024",
+   "antes": 35800000,
+   "precio": 34545000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "precio",
+   "id": "autocity-d08b3eac-d99a-4b17-8f5d-1cf35cfb617b",
+   "auto": "Fiat Fastback 2024",
+   "antes": 35700000,
+   "precio": 34860000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-ebec4a27-008d-4e30-a481-147dd66d3212",
+   "auto": "Ford Territory 2022",
+   "precio": 34900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-4c34d5f9-730f-49f6-849f-ec0bf815d636",
+   "auto": "Citroen C3 Aircross 2025",
+   "precio": 34900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-9c25ca8f-fba0-4908-81f4-bb4e9c6b2ebf",
+   "auto": "Volkswagen T-cross 2024",
+   "precio": 35900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "precio",
+   "id": "autocity-88b32374-2be4-4cc6-8326-0a9b00c1d7e4",
+   "auto": "Fiat Fastback 2025",
+   "antes": 37900000,
+   "precio": 36645000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-5439f790-8d50-455c-9953-e533c824b35e",
+   "auto": "Chevrolet Tracker 2024",
+   "precio": 37500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-f7a9c54c-85aa-4f71-80ba-db0d7452300e",
+   "auto": "Nissan Versa 2023",
+   "precio": 37700000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "precio",
+   "id": "autocity-a5f23160-ce7b-4104-b2cf-19d2637d10e1",
+   "auto": "Toyota Corolla Cross 2021",
+   "antes": 39900000,
+   "precio": 38850000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-e0dc5101-e4e9-4f08-be52-09711db24f5b",
+   "auto": "DS Automobiles Ds7 2020",
+   "precio": 38900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "precio",
+   "id": "autocity-08e03b2a-72b0-493f-99b6-87d580cdced4",
+   "auto": "Fiat Fastback 2025",
+   "antes": 40500000,
+   "precio": 39795000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "precio",
+   "id": "autocity-20ddf5f1-a7df-45ea-906e-bd7d4bbbb83e",
+   "auto": "Toyota Corolla Cross 2022",
+   "antes": 42500000,
+   "precio": 40950000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-5858f631-d5ec-442f-8187-d740459b5c42",
+   "auto": "Toyota Corolla Cross 2022",
+   "precio": 41700000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-e09d4a89-7c26-4cf1-be06-2a113ae6b9d4",
+   "auto": "Volkswagen Taos 2022",
+   "precio": 41750000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "precio",
+   "id": "autocity-4a8a09bc-4eb6-42bf-b38f-e16f7dc969c9",
+   "auto": "Toyota Corolla Cross 2023",
+   "antes": 44250000,
+   "precio": 42525000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-5ab0f2c7-39d8-4a02-8992-a16f8426007a",
+   "auto": "Volkswagen Taos 2023",
+   "precio": 43550000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "precio",
+   "id": "autocity-35f8bd6e-954b-44f2-92fe-12624978ed2f",
+   "auto": "Toyota Corolla Cross 2025",
+   "antes": 46900000,
+   "precio": 44100000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "precio",
+   "id": "autocity-4570af13-bd7d-4b44-8ba5-ae3c152a4684",
+   "auto": "Toyota Corolla Cross 2023",
+   "antes": 46200000,
+   "precio": 44625000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-16305b3d-d841-4237-8b04-4beadf8854a0",
+   "auto": "Volkswagen Taos 2025",
+   "precio": 45500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-95a2c645-cb4f-44a6-ac3b-6a0a99afb259",
+   "auto": "Nissan Frontier 2022",
+   "precio": 46900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-3bae4cf8-f1cc-478d-aaf8-069ee2715e95",
+   "auto": "Volkswagen T-cross 2025",
+   "precio": 47500000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-3954ff62-bc6f-4c8f-bb4d-9aeb78d1fe74",
+   "auto": "Nissan Frontier 2023",
+   "precio": 47900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-33dbd6c5-e7b1-4bef-a8ff-99885e0e5e8e",
+   "auto": "Nissan Xtrail 2023",
+   "precio": 51100000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "nuevo",
+   "id": "autocity-2b3d835c-335f-49f7-9edf-ec4b351440b6",
+   "auto": "Ford Maverick 2025",
+   "precio": 65900000,
+   "moneda": "ARS"
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "baja",
+   "id": "autocity-89a65b2d-ee8e-4f77-abfb-1578378fe7fd",
+   "auto": "Toyota Etios 2013",
+   "precio": 16499999,
+   "moneda": "ARS",
+   "dias": 8
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "baja",
+   "id": "autocity-1bbc5d9e-288f-4e2d-9e9f-dee44a48fcd7",
+   "auto": "Ford Eco Sport 2018",
+   "precio": 22150000,
+   "moneda": "ARS",
+   "dias": 20
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "baja",
+   "id": "autocity-9f71ec7f-ad2b-49e9-9fbf-0cf600fef0b1",
+   "auto": "Renault Stepway 2020",
+   "precio": 23350000,
+   "moneda": "ARS",
+   "dias": 44
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "baja",
+   "id": "autocity-a448d7ee-62b1-4c0d-b6bd-37b01979d5d0",
+   "auto": "Fiat Cronos 2022",
+   "precio": 23900000,
+   "moneda": "ARS",
+   "dias": 10
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "baja",
+   "id": "autocity-9860049a-a681-4e33-818c-0a47cc3f388f",
+   "auto": "Jmev Easy 2026",
+   "precio": 24100000,
+   "moneda": "ARS",
+   "dias": 13
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "baja",
+   "id": "autocity-457bfa56-6a42-435c-9afe-7c36c3f7221b",
+   "auto": "Renault Sandero 2022",
+   "precio": 24600000,
+   "moneda": "ARS",
+   "dias": 1
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "baja",
+   "id": "autocity-9c692179-d993-4adb-a8c6-28c9f82499ec",
+   "auto": "Peugeot 208 2024",
+   "precio": 25400000,
+   "moneda": "ARS",
+   "dias": 3
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "baja",
+   "id": "autocity-fbc1eede-cbc1-46f5-8f91-bed472d82528",
+   "auto": "Chevrolet Cruze 2022",
+   "precio": 27195000,
+   "moneda": "ARS",
+   "dias": 21
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "baja",
+   "id": "autocity-31678664-0d28-4828-a7eb-b34e1fbd5df9",
+   "auto": "Nissan Kicks 2018",
+   "precio": 27450000,
+   "moneda": "ARS",
+   "dias": 43
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "baja",
+   "id": "autocity-739e5e88-1259-49ba-ba1b-81173d35ed5c",
+   "auto": "Jeep Renegade 2025",
+   "precio": 46800000,
+   "moneda": "ARS",
+   "dias": 44
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "baja",
+   "id": "autocity-30a497c7-2d83-4a30-9bc0-1bb3f738a1f0",
+   "auto": "Nissan Frontier 2024",
+   "precio": 46850000,
+   "moneda": "ARS",
+   "dias": 36
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "baja",
+   "id": "autocity-84115463-bc0a-4f4d-b4bb-27ae964ce9aa",
+   "auto": "Renault Koleos 2025",
+   "precio": 46907000,
+   "moneda": "ARS",
+   "dias": 28
+  },
+  {
+   "fecha": "2026-11-27T18:59:34.592Z",
+   "tipo": "baja",
+   "id": "autocity-f4cbf761-cda2-4972-9739-dc2daa731f1a",
+   "auto": "BYD Song Pro 2026",
+   "precio": 49060000,
+   "moneda": "ARS",
+   "dias": 44
+  },
+  {
    "fecha": "2026-11-26T19:47:41.948Z",
    "tipo": "nuevo",
    "id": "maipu-184571",
