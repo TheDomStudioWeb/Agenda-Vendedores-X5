@@ -40,6 +40,7 @@
  * v2.7: Padrinos X5, club de referidos (hojas «Padrinos», «Referidos» y «PadrinosLog»; el referido entra como lead).
  *
  * v2.6: registro de ingreso y egreso del personal (hoja «Asistencia», rol «Personal»).
+ * v2.18: contratos: estado «Enviado a casa central» (después de Rendido, solo gerencia).
  * v2.17: informe de asistencia por días elegidos (desde/hasta), además de semanal, quincenal y mensual.
  * v2.16: asistencia georreferenciada (ubicación en cada marca, sede de la agencia), informes semanal/quincenal/mensual y rol «RRHH» (solo ve y exporta).
  *
@@ -1033,7 +1034,8 @@ const COL_CONTRATOS = ['id', 'numero', 'estado', 'responsable', 'fecha_asignacio
 const COL_CONTRATOS_LOG = ['fecha', 'contrato', 'usuario', 'accion', 'detalle'];
 const HOJA_PRECIOS = 'Precios';
 const COL_PRECIOS = ['codigo', 'vehiculo', 'apertura', 'cuota', 'sellado', 'pago_1_y_2', 'actualizado'];
-const ESTADOS_CONTRATO = ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido', 'Anulado'];
+const ESTADO_ENVIADO = 'Enviado a casa central'; // último paso: gerencia ya mandó el contrato rendido a casa central
+const ESTADOS_CONTRATO = ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido', ESTADO_ENVIADO, 'Anulado'];
 const FORMAS_SELLADO = ['Transferencia', 'Contado'];
 const MAX_CONTRATOS_LOTE = 2000;
 
@@ -1177,7 +1179,7 @@ function contratosAsignar_(body, u) {
 }
 
 const SUPERVISION_CONTRATOS_ = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
-const SIGUIENTE_CONTRATO_ = { 'Vacío': 'Completo', 'Completo': 'Cargado', 'Cargado': 'Recibido', 'Recibido': 'Rendido' };
+const SIGUIENTE_CONTRATO_ = { 'Vacío': 'Completo', 'Completo': 'Cargado', 'Cargado': 'Recibido', 'Recibido': 'Rendido', 'Rendido': ESTADO_ENVIADO };
 
 // Cambio de estado. El responsable avanza Vacío → Completo → Cargado. Rendido, retrocesos y anulación son de supervisión
 // (Rendido pide el sellado: forma y referencia). Anulado solo gerencia.
@@ -1187,12 +1189,15 @@ function contratosEstado_(body, u) {
   const personal = personalLimpio_(), ambito = ambitoContratos_(u, personal), supervisa = SUPERVISION_CONTRATOS_.indexOf(u.rol) > -1;
   const ids = (body.ids || []).map(String), todos = leerContratos_(), mapa = {}; todos.forEach(c => { mapa[String(c.id)] = c; });
   const s = body.sellado || {};
-  if (nuevo === 'Rendido') {
+  // Volver de «Enviado a casa central» a Rendido (corrección de gerencia): conserva el sellado ya cargado
+  const desdeEnviado = nuevo === 'Rendido' && ids.length > 0 && ids.every(id => mapa[id] && String(mapa[id].estado) === ESTADO_ENVIADO);
+  if (nuevo === 'Rendido' && !desdeEnviado) {
     if (!esGerente_(u)) return { ok: false, error: 'sin_permiso' };
     if (FORMAS_SELLADO.indexOf(String(s.forma)) < 0) return { ok: false, error: 'falta_forma_sellado' };
     if (String(s.referencia || '').trim().length < 3) return { ok: false, error: 'falta_referencia_sellado' };
   }
-  if (nuevo === 'Anulado' && !esGerente_(u)) return { ok: false, error: 'sin_permiso' };
+  if (nuevo === 'Rendido' && desdeEnviado && !esGerente_(u)) return { ok: false, error: 'sin_permiso' };
+  if ((nuevo === 'Anulado' || nuevo === ESTADO_ENVIADO) && !esGerente_(u)) return { ok: false, error: 'sin_permiso' };
   if (nuevo === 'Recibido' && !supervisa) return { ok: false, error: 'sin_permiso' };
   const cambios = [], omitidos = [], hoy = hoyContrato_();
   ids.forEach(id => {
@@ -1201,6 +1206,8 @@ function contratosEstado_(body, u) {
     if (!(esGerente_(u) || (supervisa && delEquipo) || mio)) { omitidos.push({ numero: c.numero, motivo: 'no_es_suyo' }); return; }
     const actual = String(c.estado);
     if (actual === 'Rendido' && !esGerente_(u)) { omitidos.push({ numero: c.numero, motivo: 'ya_rendido' }); return; }
+    if (actual === ESTADO_ENVIADO && !esGerente_(u)) { omitidos.push({ numero: c.numero, motivo: 'ya_enviado' }); return; }
+    if (nuevo === ESTADO_ENVIADO && actual !== 'Rendido') { omitidos.push({ numero: c.numero, motivo: 'debe_estar_rendido' }); return; }
     if (actual === 'Anulado' && !esGerente_(u)) { omitidos.push({ numero: c.numero, motivo: 'anulado' }); return; }
     if (actual === 'Disponible' && nuevo !== 'Anulado') { omitidos.push({ numero: c.numero, motivo: 'primero_asignar' }); return; }
     const avanza = SIGUIENTE_CONTRATO_[actual] === nuevo;
@@ -1210,11 +1217,11 @@ function contratosEstado_(body, u) {
     const campos = { estado: nuevo, fecha_estado: hoy };
     if (body.cliente !== undefined && ids.length === 1) campos.cliente = String(body.cliente).slice(0, 80);
     if (body.notas !== undefined && ids.length === 1) campos.notas = String(body.notas).slice(0, 200);
-    if (nuevo === 'Rendido') { campos.sellado_forma = s.forma; campos.sellado_ref = String(s.referencia).trim().slice(0, 80); campos.sellado_monto = s.monto === '' || s.monto == null ? (Number(c.sellado_debido) || '') : Number(String(s.monto).replace(/[^\d.,-]/g, '').replace(/\./g, '').replace(',', '.')) || ''; }
+    if (nuevo === 'Rendido' && actual !== ESTADO_ENVIADO) { campos.sellado_forma = s.forma; campos.sellado_ref = String(s.referencia).trim().slice(0, 80); campos.sellado_monto = s.monto === '' || s.monto == null ? (Number(c.sellado_debido) || '') : Number(String(s.monto).replace(/[^\d.,-]/g, '').replace(/\./g, '').replace(',', '.')) || ''; }
     if (nuevo === 'Vacío') { campos.sellado_forma = ''; campos.sellado_ref = ''; campos.sellado_monto = ''; }
     cambios.push({ id: id, numero: c.numero, campos: campos, desde: actual });
   });
-  actualizarContratos_(cambios, u, 'estado', cb => cb.desde + ' → ' + nuevo + (nuevo === 'Rendido' ? ' · sellado ' + s.forma + ' ' + String(s.referencia).trim() : ''));
+  actualizarContratos_(cambios, u, 'estado', cb => cb.desde + ' → ' + nuevo + (nuevo === 'Rendido' && !desdeEnviado ? ' · sellado ' + s.forma + ' ' + String(s.referencia).trim() : ''));
   return { ok: true, cambiados: cambios.length, omitidos: omitidos };
 }
 

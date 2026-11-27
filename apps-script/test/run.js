@@ -40,6 +40,25 @@ T('el vendedor avanza Vacío → Completo → Cargado, pero no salta ni rinde', 
   const c = datos(m, V1).contratos[0]; assert.strictEqual(c.estado, 'Cargado'); assert.strictEqual(c.cliente, 'Pérez Juan');
   assert.strictEqual(m.llamar(V2, { action: 'contratos_estado', ids: [id], estado: 'Completo' }).omitidos[0].motivo, 'no_es_suyo');
 });
+T('Enviado a casa central: solo gerencia, solo desde Rendido; después queda bloqueado y gerencia puede volverlo a Rendido sin perder el sellado', () => {
+  const m = nuevo(); m.llamar(GER, { action: 'contratos_cargar', numeros: '900\n901' });
+  const ids = [idDe(m, '900'), idDe(m, '901')];
+  m.llamar(GER, { action: 'contratos_asignar', ids, responsable: 'Vendedor Carlos' });
+  m.llamar(V1, { action: 'contratos_estado', ids: [ids[0], ids[1]], estado: 'Completo' });
+  const sel = { forma: 'Transferencia', referencia: 'Op 777' };
+  assert(m.llamar(GER, { action: 'contratos_estado', ids: [ids[0]], estado: 'Rendido', sellado: sel }).ok);
+  const E = 'Enviado a casa central';
+  assert.strictEqual(m.llamar(JEF, { action: 'contratos_estado', ids: [ids[0]], estado: E }).error, 'sin_permiso');
+  let r = m.llamar(GER, { action: 'contratos_estado', ids: [ids[0], ids[1]], estado: E });
+  assert(r.ok && r.cambiados === 1 && r.omitidos[0].motivo === 'debe_estar_rendido', JSON.stringify(r));
+  const c0 = () => datos(m, GER).contratos.find(c => c.id === ids[0]);
+  assert.strictEqual(c0().estado, E); assert.strictEqual(c0().sellado_ref, 'Op 777');
+  r = m.llamar(JEF, { action: 'contratos_estado', ids: [ids[0]], estado: 'Cargado' }); assert(r.cambiados === 0 && r.omitidos[0].motivo === 'ya_enviado', JSON.stringify(r));
+  assert.strictEqual(m.llamar(JEF, { action: 'contratos_estado', ids: [ids[0]], estado: 'Rendido' }).error, 'sin_permiso');
+  assert(m.llamar(GER, { action: 'contratos_estado', ids: [ids[0]], estado: 'Rendido' }).ok);
+  assert.strictEqual(c0().estado, 'Rendido'); assert.strictEqual(c0().sellado_ref, 'Op 777'); assert.strictEqual(c0().sellado_forma, 'Transferencia');
+});
+
 T('el jefe marca Recibido; Rendido solo gerencia, con forma y referencia del sellado; queda registrado', () => {
   const m = nuevo(); m.llamar(GER, { action: 'contratos_cargar', numeros: '8' }); const id = idDe(m, '8'); m.llamar(GER, { action: 'contratos_asignar', ids: [id], responsable: 'Vendedor Carlos' });
   m.llamar(V1, { action: 'contratos_estado', ids: [id], estado: 'Completo' }); m.llamar(V1, { action: 'contratos_estado', ids: [id], estado: 'Cargado' });

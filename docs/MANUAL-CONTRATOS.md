@@ -9,11 +9,12 @@ Pantalla: **Hub → Ventas → Control de contratos** (`contratos.html`). Es sol
 - **Cargado**: cargado en el sistema.
 - **Recibido**: el jefe lo recibió del vendedor y lo tiene para rendir a gerencia.
 - **Rendido**: rendido a gerencia; se registra el pago del sellado (el monto es libre, varía según el contrato).
+- **Enviado a casa central**: gerencia ya mandó el contrato rendido a casa central. Es el último paso: el contrato queda cerrado y nadie más lo puede cambiar (solo gerencia, si se marcó por error, con «Volver a Rendido»). En los cuadros figura como «En casa central».
 - **Anulado**: extraviado, dañado o dado de baja (solo gerencia).
 - **En la calle** = Vacío + Completo + Cargado + Recibido (todavía no rendidos a gerencia).
 
 ## Quién hace qué
-- **Gerente Comercial**: carga números, ve todo, asigna, es el único que marca **Rendido**, corrige estados y anula.
+- **Gerente Comercial**: carga números, ve todo, asigna, es el único que marca **Rendido** y **Enviado a casa central**, corrige estados y anula.
 - **Jefe de Ventas / Referente**: ve lo suyo y lo de su equipo (según Personal.reporta_a); reparte a su equipo, marca **Recibido** (no Rendido) y corrige.
 - **Asesor**: ve sus contratos; marca Completo y Cargado.
 
@@ -27,6 +28,7 @@ Pantalla: **Hub → Ventas → Control de contratos** (`contratos.html`). Es sol
 3. El vendedor marca Completo y Cargado.
 4. El jefe marca Recibido cuando el vendedor le entrega el contrato.
 5. Gerencia rinde: se registra forma del sellado (Transferencia con N.º de operación, o Contado con el nombre de quien dio el visto bueno) y monto opcional.
+6. Gerencia marca **Enviado a casa central** cuando manda el contrato a casa central: desde el detalle del contrato (botón «Marcar enviado a casa central») o varios juntos (tildar los Rendidos → «Marcar enviado a casa central»). Solo se puede desde Rendido. El sellado registrado se conserva.
 
 ## Carga inicial de lo ya repartido (solo gerencia)
 Panel "Cargar números", segundo cuadro: un contrato por renglón `número;responsable;estado;cliente` (cliente opcional). El responsable debe existir en la hoja Personal. Si el contrato ya existe se actualiza. Los renglones con error se informan y no se cargan.

@@ -44,6 +44,7 @@
   .e-Recibido { background: rgba(255,190,80,.16); color: var(--warn); }
   .e-Rendido { background: var(--ok-soft); color: var(--ok); }
   .e-Recibido { background: rgba(199,125,255,.16); color: #d9a8ff; }
+  .e-Enviado { background: rgba(60,190,200,.15); color: #6fd8e0; }
   .e-Anulado { background: var(--surface-3); color: var(--faint); text-decoration: line-through; }
   .barra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--surface); border-top: 1px solid var(--line-strong); padding: 10px 14px calc(10px + var(--safe-bottom)); display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
   .barra .cuenta { font-weight: 700; font-size: .85rem; flex: 1 1 100%; }
@@ -87,7 +88,7 @@
   .tj .h b { font-size: .95rem; } .tj .h span { font-size: .75rem; color: var(--muted); }
   .barp { display: flex; height: 10px; border-radius: 6px; overflow: hidden; background: var(--surface-3); margin: 9px 0 7px; }
   .barp i { display: block; height: 100%; }
-  .s-Vacío { background: #e0a030; } .s-Completo { background: #E3182D; } .s-Cargado { background: #6f95ff; } .s-Recibido { background: #c77dff; } .s-Rendido { background: #2fb36b; }
+  .s-Vacío { background: #e0a030; } .s-Completo { background: #E3182D; } .s-Cargado { background: #6f95ff; } .s-Recibido { background: #c77dff; } .s-Rendido { background: #2fb36b; } .s-Enviado { background: #2bb3c0; }
   .tj .l { font-size: .72rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 3px 10px; }
   .tj .sd { margin-top: 6px; font-size: .8rem; }
   @media (prefers-color-scheme: light) {
@@ -95,12 +96,14 @@
     :root:not([data-theme="dark"]) .e-Cargado { color: #2a4bb0; background: rgba(60,100,230,.13); }
     :root:not([data-theme="dark"]) .e-Recibido { color: #6b2aa3; background: rgba(150,70,220,.14); }
     :root:not([data-theme="dark"]) .e-Rendido { color: #14683a; background: rgba(47,179,107,.18); }
+    :root:not([data-theme="dark"]) .e-Enviado { color: #0b6a73; background: rgba(30,160,175,.16); }
     :root:not([data-theme="dark"]) .e-Completo { color: #b3121f; }
   }
   :root[data-theme="light"] .e-Vacío { color: #7a5200; background: rgba(224,160,48,.2); }
   :root[data-theme="light"] .e-Cargado { color: #2a4bb0; background: rgba(60,100,230,.13); }
   :root[data-theme="light"] .e-Recibido { color: #6b2aa3; background: rgba(150,70,220,.14); }
   :root[data-theme="light"] .e-Rendido { color: #14683a; background: rgba(47,179,107,.18); }
+  :root[data-theme="light"] .e-Enviado { color: #0b6a73; background: rgba(30,160,175,.16); }
   :root[data-theme="light"] .e-Completo { color: #b3121f; }
   .foot { text-align: center; color: var(--faint); font-size: .72rem; margin: 24px 0 6px; }
   .mas { width: 100%; margin-top: 6px; }
@@ -192,8 +195,9 @@
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
 const $ = (id) => document.getElementById(id), esc = X5.esc;
 const SUP = ['Gerente Comercial', 'Jefe de Ventas', 'Referente'];
-const ESTADOS = ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido', 'Anulado'];
-const SIGUIENTE = { 'Vacío': 'Completo', 'Completo': 'Cargado', 'Cargado': 'Recibido', 'Recibido': 'Rendido' };
+const ENVIADO = 'Enviado a casa central';
+const ESTADOS = ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido', ENVIADO, 'Anulado'];
+const SIGUIENTE = { 'Vacío': 'Completo', 'Completo': 'Cargado', 'Cargado': 'Recibido', 'Recibido': 'Rendido', 'Rendido': ENVIADO };
 const ERR = { sin_permiso: 'No tiene permiso para esa acción.', sesion_vencida: 'La sesión venció. Ingrese de nuevo.', sin_numeros: 'No se encontró ningún número válido.', demasiados: 'Son demasiados por vez (máximo 2000).',
   destino_fuera_de_alcance: 'Solo puede asignar a usted o a quienes le reportan.', falta_forma_sellado: 'Elija cómo se pagó el sellado.', falta_referencia_sellado: 'Falta el número de operación o quién dio el visto bueno.', estado_invalido: 'Estado no válido.', hay_errores: 'Hay renglones con errores. No se reemplazó nada.', sin_datos: 'No se encontraron planes válidos.' };
 const MOTIVO = { no_existe: 'no existe', no_es_de_su_equipo: 'no es de su equipo', ya_en_proceso: 'ya está en proceso (solo se reasignan los vacíos)', no_es_suyo: 'no es suyo', ya_rendido: 'ya está rendido', anulado: 'está anulado', solo_disponible_o_anulado: 'solo se quitan los de gerencia o anulados', primero_asignar: 'primero hay que asignarlo', transicion_no_permitida: 'solo puede avanzar al estado siguiente', debe_estar_completo_o_cargado: 'debe estar Completo o Cargado' };
@@ -250,7 +254,7 @@ async function cargar(manual) {
 
 /* ── Resúmenes y lista ── */
 const cuenta = (est) => D.contratos.filter(c => c.estado === est).length;
-const pendSellado = (c) => !['Rendido', 'Anulado', 'Disponible'].includes(c.estado) ? (Number(c.sellado_debido) || 0) : 0;
+const pendSellado = (c) => !['Rendido', ENVIADO, 'Anulado', 'Disponible'].includes(c.estado) ? (Number(c.sellado_debido) || 0) : 0;
 const debido = (resp) => D.contratos.filter(c => !resp || c.responsable === resp).reduce((t, c) => t + pendSellado(c), 0);
 function armarFiltros() {
   const resps = [...new Set(D.contratos.map(c => c.responsable).filter(Boolean))].sort(natural);
@@ -272,14 +276,14 @@ function pintarAging() {
 }
 function pintar() {
   const k = (e) => ({ n: cuenta(e), e });
-  const tiles = veTodo() ? ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido', 'Anulado'] : ['Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido'];
-  const nom = { Disponible: 'En gerencia', Vacío: 'Vacíos', Completo: 'Completos', Cargado: 'Cargados', Recibido: 'Recibidos', Rendido: 'Rendidos', Anulado: 'Anulados' };
+  const tiles = veTodo() ? ['Disponible', 'Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido', ENVIADO, 'Anulado'] : ['Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido', ENVIADO];
+  const nom = { Disponible: 'En gerencia', Vacío: 'Vacíos', Completo: 'Completos', Cargado: 'Cargados', Recibido: 'Recibidos', Rendido: 'Rendidos', [ENVIADO]: 'En casa central', Anulado: 'Anulados' };
   $('kp').style.gridTemplateColumns = 'repeat(' + (tiles.length > 5 ? 4 : 3) + ',1fr)';
   $('kp').innerHTML = tiles.map(e => `<button type="button" data-e="${e}" aria-pressed="${F.est === e}"><b>${cuenta(e)}</b><span>${nom[e]}</span></button>`).join('');
   const calle = cuenta('Vacío') + cuenta('Completo') + cuenta('Cargado') + cuenta('Recibido');
   $('calle').innerHTML = `<b>En la calle: ${calle}</b> contrato${calle === 1 ? '' : 's'} con vendedores o jefes que todavía no se rindieron (${cuenta('Vacío')} vacíos · ${cuenta('Completo')} completos · ${cuenta('Cargado')} cargados · ${cuenta('Recibido')} recibidos por jefes, a rendir a gerencia).` + (veTodo() ? ` <b>En gerencia: ${cuenta('Disponible')}</b> sin repartir.` : '') + (debido() ? ` <b>Sellado a rendir: ${X5.money(debido())}</b>.` : '');
   if (supervisa() || control()) {
-    const por = {}; D.contratos.filter(c => c.responsable && !['Anulado'].includes(c.estado)).forEach(c => { const p = por[c.responsable] = por[c.responsable] || { Vacío: 0, Completo: 0, Cargado: 0, Recibido: 0, Rendido: 0 }; if (p[c.estado] !== undefined) p[c.estado]++; });
+    const por = {}; D.contratos.filter(c => c.responsable && !['Anulado'].includes(c.estado)).forEach(c => { const p = por[c.responsable] = por[c.responsable] || { Vacío: 0, Completo: 0, Cargado: 0, Recibido: 0, Rendido: 0 }; const e = c.estado === ENVIADO ? 'Rendido' : c.estado; if (p[e] !== undefined) p[e]++; }); // enviado a casa central cuenta como rendido en el avance de cada vendedor
     const filas = Object.keys(por).sort(natural), rol = {}; (D.personal || []).forEach(x => { rol[x.nombre] = x.rol; });
     const tarj = (n, p, tot, sd, act) => `<button type="button" class="tj" data-r="${esc(n)}" aria-pressed="${act}"><div class="h"><b>${esc(n)}</b><span>${rol[n] ? esc(rol[n]) + ' · ' : ''}${tot} contrato${tot === 1 ? '' : 's'}</span></div>
       <div class="barp" role="img" aria-label="Avance">${['Vacío', 'Completo', 'Cargado', 'Recibido', 'Rendido'].map(e => p[e] ? `<i class="s-${e}" style="width:${p[e] / tot * 100}%"></i>` : '').join('')}</div>
@@ -304,7 +308,7 @@ function filtrados() {
 function puedeActuar(c) { return gerente() || (supervisa() && D.ambito.includes(c.responsable)) || c.responsable === user.nombre; }
 let vista = store.get('x5_vista') || 'rejilla', eleg = false;
 const iniciales = (n) => { const w = String(n || '').replace(/([a-záéíóúñ])([A-ZÁÉÍÓÚÑ])/g, '$1 $2').trim().split(/\s+/).filter(Boolean); return w.length ? (w[0][0] + (w.length > 1 ? w[w.length - 1][0] : '')).toUpperCase() : '·'; };
-const elegible = (c) => (puedeActuar(c) && !['Rendido', 'Anulado'].includes(c.estado)) || (gerente() && c.estado !== 'Anulado');
+const elegible = (c) => (puedeActuar(c) && !['Rendido', ENVIADO, 'Anulado'].includes(c.estado)) || (gerente() && c.estado !== 'Anulado');
 function lista() {
   const l = filtrados(), tp = vista === 'rejilla' ? Math.max(tope, 800) : tope, ver = l.slice(0, tp);
   $('cuenta-lista').textContent = l.length + ' contrato' + (l.length === 1 ? '' : 's') + (F.est || F.resp || F.q ? ' con estos filtros' : '');
@@ -327,7 +331,7 @@ function barra() {
   const cs = ids.map(id => D.contratos.find(c => c.id === id)).filter(Boolean), estados = [...new Set(cs.map(c => c.estado))];
   let h = `<div class="cuenta">${ids.length} elegido${ids.length === 1 ? '' : 's'}</div>`;
   if (supervisa()) h += '<button class="btn" data-a="asignar">Asignar a…</button>';
-  if (estados.length === 1 && SIGUIENTE[estados[0]]) { const s = SIGUIENTE[estados[0]]; h += s === 'Rendido' ? (gerente() ? '<button class="btn" data-a="rendir">Rendir…</button>' : '') : (s === 'Recibido' && !supervisa() ? '' : `<button class="btn" data-a="avanzar" data-s="${s}">Marcar ${s}</button>`); }
+  if (estados.length === 1 && SIGUIENTE[estados[0]]) { const s = SIGUIENTE[estados[0]]; h += s === 'Rendido' ? (gerente() ? '<button class="btn" data-a="rendir">Rendir…</button>' : '') : s === ENVIADO ? (gerente() ? `<button class="btn" data-a="avanzar" data-s="${ENVIADO}">Marcar enviado a casa central</button>` : '') : (s === 'Recibido' && !supervisa() ? '' : `<button class="btn" data-a="avanzar" data-s="${s}">Marcar ${s}</button>`); }
   if (gerente()) h += '<button class="btn btn-danger" data-a="anular">Anular</button>';
   if (gerente() && cs.every(c => !c.responsable && ['Disponible', 'Anulado'].includes(c.estado))) h += '<button class="btn btn-danger" data-a="eliminar">Quitar del listado</button>';
   h += '<button class="btn btn-ghost" data-a="limpiar">Cancelar</button>';
@@ -412,13 +416,15 @@ function detalle(id) {
   if (c.estado === 'Completo' && (mio || sup)) acc += '<button class="btn" data-d="Cargado">Marcar Cargado</button>';
   if (c.estado === 'Cargado' && sup) acc += '<button class="btn" data-d="Recibido">Marcar Recibido (lo recibí del vendedor)</button>';
   if (['Completo', 'Cargado', 'Recibido'].includes(c.estado) && gerente()) acc += '<button class="btn" data-d="rendir">Rendir…</button>';
+  if (c.estado === 'Rendido' && gerente()) acc += `<button class="btn" data-d="${ENVIADO}">Marcar enviado a casa central</button>`;
+  if (c.estado === ENVIADO && gerente()) acc += '<button class="btn btn-ghost" data-d="retro" data-e="Rendido">Volver a Rendido (no se envió)</button>';
   if (['Vacío'].includes(c.estado) && sup) acc += '<button class="btn btn-ghost" data-d="asignar">Reasignar o devolver…</button>';
   if (gerente() && !c.responsable && ['Disponible', 'Anulado'].includes(c.estado)) acc += '<button class="btn btn-ghost" data-d="eliminar">Quitar del listado (cargado por error)</button>';
   if (gerente() && !['Anulado'].includes(c.estado)) acc += '<button class="btn btn-danger" data-d="anular">Anular</button>';
   if ((gerente() || sup) && ['Completo', 'Cargado', 'Recibido', 'Rendido'].includes(c.estado)) acc += '<div class="nota" style="margin-top:10px">Corrección: volver a un estado anterior</div>' + ['Vacío', 'Completo', 'Cargado', 'Recibido'].filter(e => ESTADOS.indexOf(e) < ESTADOS.indexOf(c.estado)).map(e => `<button class="btn btn-ghost" data-d="retro" data-e="${e}" style="margin-top:6px">Volver a ${e}</button>`).join('');
   dialogo('Contrato N.º ' + c.numero, `<div style="margin-bottom:10px"><span class="chip e-${esc(c.estado)}">${esc(c.estado)}</span></div>
     ${fila('Responsable', c.responsable || 'En gerencia')}${fila('Cliente', c.cliente)}${fila('Plan', c.plan_codigo ? ((D.precios || []).find(p => p.codigo === c.plan_codigo) || {}).vehiculo ? c.plan_codigo + ' · ' + (D.precios.find(p => p.codigo === c.plan_codigo).vehiculo) : c.plan_codigo : '')}${fila('Cuota', c.plan_cuota ? X5.money(c.plan_cuota) : '')}${fila('Sellado a rendir', c.sellado_debido && c.estado !== 'Rendido' ? X5.money(c.sellado_debido) : '')}${fila('Asignado', c.fecha_asignacion ? fch(c.fecha_asignacion) + (c.asignado_por ? ' por ' + c.asignado_por : '') : '')}${fila('Estado desde', fch(c.fecha_estado))}
-    ${c.estado === 'Rendido' ? fila('Sellado', [c.sellado_forma, c.sellado_ref].filter(Boolean).join(' · ')) + fila('Monto del sellado', c.sellado_monto ? X5.money(c.sellado_monto) : '') : ''}${fila('Notas', c.notas)}
+    ${['Rendido', ENVIADO].includes(c.estado) ? fila('Sellado', [c.sellado_forma, c.sellado_ref].filter(Boolean).join(' · ')) + fila('Monto del sellado', c.sellado_monto ? X5.money(c.sellado_monto) : '') : ''}${fila('Notas', c.notas)}
     <div class="opts" style="margin-top:12px">${control() ? '<div class="nota">Cuenta de solo lectura: se puede mirar, no modificar.</div>' : acc}</div><div id="d-r"></div>`);
   dlg.querySelectorAll('[data-d]').forEach(b => b.onclick = () => { const a = b.dataset.d;
     if (a === 'asignar') return dAsignar([id]); if (a === 'rendir') return dRendir([id]); if (a === 'anular') return dAnular([id]); if (a === 'eliminar') return dEliminar([id]);

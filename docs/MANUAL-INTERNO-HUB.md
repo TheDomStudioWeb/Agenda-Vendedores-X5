@@ -350,3 +350,9 @@ En **Métricas** la tarjeta «Leads y ventas por canal» reemplaza a la dona «O
 
 ## Ingreso y egreso: elegir días (27/11/2026)
 Además de Semanal, Quincenal y Mensual, el informe se puede sacar **de un día a otro** («Elegir días»: Desde y Hasta, hasta 3 meses). La pantalla y el PDF muestran solo esos días. Sirve cuando el pago va, por ejemplo, de viernes a miércoles, y evita repetir días ya pagados.
+
+## Contratos: estado «Enviado a casa central» (v2.18, 27/11/2026)
+- Estado nuevo después de **Rendido**: gerencia lo marca cuando manda el contrato a casa central. Uno por uno desde el detalle o varios juntos tildando los Rendidos.
+- Solo gerencia, y solo desde Rendido. Después queda cerrado: jefes y vendedores no lo pueden cambiar. Si se marcó por error, gerencia toca «Volver a Rendido (no se envió)»; el sellado no se pierde.
+- En los cuadros aparece como «En casa central» y en el resumen por persona cuenta como rendido. Requiere cargar el Code.gs v2.18.
+- **Para responder por voz:** «¿Cómo marco que un contrato ya se mandó a casa central?» → Control de contratos, abrí el contrato rendido y tocá «Marcar enviado a casa central». Para varios, tildalos y usá el mismo botón de abajo.
