@@ -347,3 +347,6 @@ En **Métricas** la tarjeta «Leads y ventas por canal» reemplaza a la dona «O
 - Cómo publicar una versión nueva: `docs/APK-ANDROID.md`, sección «Publicar una actualización».
 
 **Para responder por voz:** "¿Cómo actualizo la app?" → Abajo del inicio del Hub, tocá Buscar actualización. Si hay una nueva, tocá Actualizar y después Instalar.
+
+## Ingreso y egreso: elegir días (27/11/2026)
+Además de Semanal, Quincenal y Mensual, el informe se puede sacar **de un día a otro** («Elegir días»: Desde y Hasta, hasta 3 meses). La pantalla y el PDF muestran solo esos días. Sirve cuando el pago va, por ejemplo, de viernes a miércoles, y evita repetir días ya pagados.

@@ -67,6 +67,13 @@
   .per { display: flex; gap: 4px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 3px; margin-bottom: 10px; }
   .per button { flex: 1; border: 0; background: none; color: var(--muted); font: 700 .8rem var(--font); padding: 8px 4px; border-radius: 9px; cursor: pointer; }
   .per button.on { background: var(--x5); color: #fff; }
+  .rango { display: grid; grid-template-columns: 1fr 1fr auto; gap: 6px; align-items: end; margin-bottom: 10px; }
+  .rango label { display: grid; gap: 3px; font-size: .68rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+  .rango input { min-width: 0; padding: 9px 8px; font-size: .85rem; }
+  .rango .btn { width: auto; padding: 10px 14px; }
+  .rango-t { display: flex; justify-content: space-between; align-items: center; font-size: .72rem; color: var(--muted); margin: -4px 0 8px; }
+  .rango-t button { background: none; border: 0; color: var(--x5-text); font: 700 .74rem var(--font); cursor: pointer; padding: 2px 0; }
+  .per button.rg { flex: 0 0 auto; padding: 8px 10px; }
   .geo { display: inline-flex; align-items: center; gap: 3px; font-size: .68rem; font-weight: 700; border-radius: 6px; padding: 1px 6px; margin-left: 4px; text-decoration: none; white-space: nowrap; }
   .geo.sede { color: var(--ok); background: rgba(47,209,138,.12); }
   .geo.fuera { color: var(--warn); background: var(--warn-soft); }
@@ -137,6 +144,12 @@
     <div class="per" role="tablist" aria-label="Período del informe">
       <button data-per="semana" class="on">Semanal</button><button data-per="quincena">Quincenal</button><button data-per="mes">Mensual</button>
     </div>
+    <div class="rango-t"><span>¿Necesitás otros días?</span><button id="r-abrir">Elegir días ▾</button></div>
+    <div class="rango" id="rango" hidden>
+      <label>Desde<input type="date" id="r-desde"></label>
+      <label>Hasta<input type="date" id="r-hasta"></label>
+      <button class="btn btn-sm" id="r-ver">Ver</button>
+    </div>
     <div class="sem-h">
       <button class="btn btn-ghost btn-sm" id="s-ant" aria-label="Período anterior">‹</button>
       <div class="t"><b id="s-t">Esta semana</b><span id="s-r"></span></div>
@@ -161,11 +174,11 @@
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd9HUXBTCrmuZKglXS7cvPa56RHW3LcQQuXz-OgaMzYVQvcTnUZDA-QOukvf0bWqTu/exec';
 const $ = (id) => document.getElementById(id), esc = X5.esc, dlg = $('dlg');
 const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }, del(k) { try { localStorage.removeItem(k); } catch (e) {} } };
-const ERR = { ya_adentro: 'Ya figura un ingreso sin salida. Marcá la salida primero.', sin_entrada: 'No hay un ingreso abierto para cerrar.', sin_permiso: 'No tenés permiso para esa acción.', falta_motivo: 'Escribí el motivo de la corrección.', falta_entrada: 'Falta la hora de ingreso.', falta_salida: 'Falta la hora de salida.', falta_fecha: 'Falta la fecha.', persona_invalida: 'Elegí una persona.', falta_ubicacion: 'No se pudo obtener la ubicación.', ubicacion_imprecisa: 'La ubicación es poco precisa. Salí cerca de una ventana o activá el GPS y probá de nuevo.' };
+const ERR = { ya_adentro: 'Ya figura un ingreso sin salida. Marcá la salida primero.', sin_entrada: 'No hay un ingreso abierto para cerrar.', sin_permiso: 'No tenés permiso para esa acción.', falta_motivo: 'Escribí el motivo de la corrección.', falta_entrada: 'Falta la hora de ingreso.', falta_salida: 'Falta la hora de salida.', falta_fecha: 'Falta la fecha.', persona_invalida: 'Elegí una persona.', falta_ubicacion: 'No se pudo obtener la ubicación.', rango_invalido: 'Revisá las fechas: «Desde» tiene que ser anterior o igual a «Hasta».', rango_largo: 'Elegí como máximo 3 meses.', ubicacion_imprecisa: 'La ubicación es poco precisa. Salí cerca de una ventana o activá el GPS y probá de nuevo.' };
 const DIAS = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
-let user = null, token = null, D = null, desde = null, quien = null, desfase = 0, tic = null;
+let user = null, token = null, D = null, desde = null, hastaR = null, quien = null, desfase = 0, tic = null;
 let periodo = (() => { try { return ['semana', 'quincena', 'mes'].includes(localStorage.getItem('asist_periodo')) ? localStorage.getItem('asist_periodo') : 'semana'; } catch (e) { return 'semana'; } })();
-const NOM_PER = { semana: 'semana', quincena: 'quincena', mes: 'mes' };
+const NOM_PER = { semana: 'semana', quincena: 'quincena', mes: 'mes', rango: 'días elegidos' };
 const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 const diaSemana = (iso) => { const p = iso.split('-').map(Number); return DIAS[(new Date(Date.UTC(p[0], p[1] - 1, p[2])).getUTCDay() + 6) % 7]; };
 const diasDel = (a, b) => { const out = []; for (let f = a; f <= b; f = isoMas(f, 1)) out.push(f); return out; };
@@ -217,7 +230,7 @@ async function entrar() {
 }
 async function cargar(manual) {
   try {
-    const r = await post({ action: 'asistencia_datos', periodo, desde: desde || undefined, nombre: quien });
+    const r = await post({ action: 'asistencia_datos', periodo, desde: desde || undefined, hasta: periodo === 'rango' ? hastaR : undefined, nombre: quien });
     if (r.error === 'sesion_vencida') { store.del('x5_session'); X5.toast('La sesión venció. Ingresá de nuevo.', 'bad', 4000); return setTimeout(() => location.reload(), 1500); }
     if (!r.ok) throw new Error(r.error);
     D = r; desde = r.desde; quien = r.nombre; desfase = new Date(r.ahora).getTime() - Date.now();
@@ -257,10 +270,15 @@ function pintar() {
   }
   // período
   document.querySelectorAll('.per button').forEach(b => b.classList.toggle('on', b.dataset.per === D.periodo));
+  const esRango = D.periodo === 'rango';
+  $('s-ant').style.visibility = $('s-sig').style.visibility = esRango ? 'hidden' : '';
+  $('r-abrir').textContent = esRango ? 'Quitar días elegidos ✕' : ($('rango').hidden ? 'Elegir días ▾' : 'Cerrar ▴');
+  if (esRango) $('rango').hidden = false;
+  if (!$('r-desde').value || !esRango) { $('r-desde').value = D.desde; $('r-hasta').value = D.hasta < D.hoy ? D.hasta : D.hoy; }
   const hoy = D.hoy, esta = hoy >= D.desde && hoy <= D.hasta;
   $('s-t').textContent = tituloPeriodo(esta);
   $('s-r').textContent = rangoPeriodo() + (propio ? '' : ' · ' + D.nombre);
-  $('t-hl').textContent = 'Horas de' + (D.periodo === 'mes' ? 'l mes' : ' la ' + NOM_PER[D.periodo]);
+  $('t-hl').textContent = esRango ? 'Horas de esos días' : 'Horas de' + (D.periodo === 'mes' ? 'l mes' : ' la ' + NOM_PER[D.periodo]);
   $('s-sig').disabled = esta || D.desde > hoy;
   const porDia = {}; D.semana.forEach(r => (porDia[r.fecha] = porDia[r.fecha] || []).push(r));
   let total = 0, dias = 0;
@@ -273,9 +291,11 @@ function pintar() {
   }).join('');
   $('t-h').textContent = hm(total); $('t-d').textContent = dias;
   const que = D.periodo === 'mes' ? 'el mes' : 'la ' + NOM_PER[D.periodo];
-  $('b-pdf').textContent = hoy > D.hasta ? 'Exportar ' + que + (D.periodo === 'mes' ? ' completo' : ' completa') + ' en PDF' : 'Exportar ' + que + ' en PDF (hasta hoy)';
+  $('b-pdf').textContent = esRango ? 'Exportar del ' + ddmm(D.desde) + ' al ' + ddmm(D.hasta) + ' en PDF'
+    : hoy > D.hasta ? 'Exportar ' + que + (D.periodo === 'mes' ? ' completo' : ' completa') + ' en PDF' : 'Exportar ' + que + ' en PDF (hasta hoy)';
 }
 function tituloPeriodo(esta) {
+  if (D.periodo === 'rango') { const n = diasDel(D.desde, D.hasta).length; return 'Días elegidos · ' + n + ' día' + (n === 1 ? '' : 's'); }
   if (D.periodo === 'mes') { const p = D.desde.split('-'); const t = MESES[Number(p[1]) - 1] + ' ' + p[0]; return esta ? 'Este mes · ' + t : t.charAt(0).toUpperCase() + t.slice(1); }
   if (D.periodo === 'quincena') { const p = D.desde.split('-'); const t = (Number(p[2]) === 1 ? '1.ª' : '2.ª') + ' quincena de ' + MESES[Number(p[1]) - 1]; return esta ? 'Esta quincena · ' + t : t.charAt(0).toUpperCase() + t.slice(1); }
   return esta ? 'Esta semana' : (D.desde > D.hoy ? 'Semana próxima' : 'Semana del ' + ddmm(D.desde));
@@ -299,9 +319,25 @@ $('g-per').onchange = () => { quien = $('g-per').value; cargar(false); };
 $('s-ant').onclick = () => { desde = isoMas(D.desde, -1); cargar(false); };
 $('s-sig').onclick = () => { desde = isoMas(D.hasta, 1); cargar(false); };
 document.querySelectorAll('.per button').forEach(b => b.onclick = () => {
+  const venia = D ? D.periodo : null;
   periodo = b.dataset.per; try { localStorage.setItem('asist_periodo', periodo); } catch (e) {}
-  desde = D && D.hoy >= D.desde && D.hoy <= D.hasta ? D.hoy : (D ? D.desde : null); cargar(false);
+  desde = !D || venia === 'rango' ? null : (D.hoy >= D.desde && D.hoy <= D.hasta ? D.hoy : D.desde); hastaR = null;
+  $('rango').hidden = true; cargar(false);
 });
+// Días elegidos a mano: exactamente de «Desde» a «Hasta»
+$('r-abrir').onclick = () => {
+  if (D && D.periodo === 'rango') { // quitar: vuelve al último período fijo
+    periodo = (() => { try { return localStorage.getItem('asist_periodo') || 'semana'; } catch (e) { return 'semana'; } })();
+    desde = null; hastaR = null; $('rango').hidden = true; cargar(false); return;
+  }
+  $('rango').hidden = !$('rango').hidden; $('r-abrir').textContent = $('rango').hidden ? 'Elegir días ▾' : 'Cerrar ▴';
+};
+$('r-ver').onclick = () => {
+  const a = $('r-desde').value, b = $('r-hasta').value;
+  if (!a || !b) return X5.toast('Elegí las dos fechas', 'bad');
+  if (a > b) return X5.toast(ERR.rango_invalido, 'bad');
+  periodo = 'rango'; desde = a; hastaR = b; cargar(false);
+};
 
 /* ── Ubicación ── */
 // Devuelve { geo } o { error: 'denegado' | 'no_disponible' }. Si el teléfono no la da a tiempo, se marca igual y queda «Sin ubicación».
@@ -393,7 +429,7 @@ async function pdfSemana(firmas) {
   const ROJO = rgb(227 / 255, 24 / 255, 45 / 255), TINTA = rgb(.09, .09, .1), GRIS = rgb(.42, .44, .47), LINEA = rgb(.86, .87, .89), FONDO = rgb(.965, .965, .97);
   const VERDE = rgb(.08, .55, .33), AMBAR = rgb(.72, .45, .02);
   let logo = null; try { logo = await doc.embedPng(await (await fetch('brand/x5-logo-blanco.png')).arrayBuffer()); } catch (e) {}
-  const nombrePer = D.periodo === 'mes' ? 'Mes' : D.periodo === 'quincena' ? 'Quincena' : 'Semana';
+  const nombrePer = D.periodo === 'mes' ? 'Mes' : D.periodo === 'quincena' ? 'Quincena' : D.periodo === 'rango' ? 'Período' : 'Semana';
   const rango = D.periodo === 'semana' ? 'Lunes ' + X5.fechaLarga(D.desde) + ' al domingo ' + X5.fechaLarga(D.hasta) : 'Del ' + X5.fechaLarga(D.desde) + ' al ' + X5.fechaLarga(D.hasta);
   let pg, y, nPag = 0;
   const txt = (s, x, yy, o = {}) => pg.drawText(String(s), { x, y: yy, size: o.size || 10, font: o.bold ? fb : f, color: o.color || TINTA });
@@ -457,7 +493,7 @@ async function pdfSemana(firmas) {
   if (y < 330) nuevaPagina(false); // totales, avisos y firmas tienen que entrar juntos en la misma hoja
   y -= 8;
   pg.drawRectangle({ x: M, y: y - 30, width: W - 2 * M, height: 44, color: FONDO, borderColor: ROJO, borderWidth: 1 });
-  txt('TOTAL ' + (D.periodo === 'mes' ? 'DEL MES' : 'DE LA ' + nombrePer.toUpperCase()), M + 12, y - 4, { bold: true, size: 9, color: GRIS });
+  txt('TOTAL ' + (D.periodo === 'mes' ? 'DEL MES' : D.periodo === 'rango' ? 'DEL PERÍODO' : 'DE LA ' + nombrePer.toUpperCase()), M + 12, y - 4, { bold: true, size: 9, color: GRIS });
   txt(dias + ' día' + (dias === 1 ? '' : 's') + ' trabajado' + (dias === 1 ? '' : 's'), M + 12, y - 19, { size: 9.5 });
   derecha(hm(total) + ' h', W - M - 12, y - 6, { bold: true, size: 18 });
   derecha('(' + hdec(total) + ' horas)', W - M - 12, y - 22, { size: 9, color: GRIS });
@@ -538,7 +574,7 @@ async function exportar(firmas) {
   const b = $('b-pdf'); b.disabled = true; const t = b.textContent; b.textContent = 'Armando PDF…';
   try {
     const blob = await pdfSemana(firmas);
-    const nombre = 'Asistencia ' + D.nombre + ' ' + D.periodo + ' ' + D.desde + '.pdf';
+    const nombre = 'Asistencia ' + D.nombre + ' ' + (D.periodo === 'rango' ? D.desde + ' al ' + D.hasta : D.periodo + ' ' + D.desde) + '.pdf';
     await X5.compartirArchivo(blob, nombre, 'Registro de asistencia de ' + D.nombre + ', del ' + X5.fechaLarga(D.desde) + ' al ' + X5.fechaLarga(D.hasta));
   } catch (e) { X5.toast('No se pudo armar el PDF.', 'bad'); console.error(e); }
   b.disabled = false; b.textContent = t;

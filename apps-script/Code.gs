@@ -40,6 +40,7 @@
  * v2.7: Padrinos X5, club de referidos (hojas «Padrinos», «Referidos» y «PadrinosLog»; el referido entra como lead).
  *
  * v2.6: registro de ingreso y egreso del personal (hoja «Asistencia», rol «Personal»).
+ * v2.17: informe de asistencia por días elegidos (desde/hasta), además de semanal, quincenal y mensual.
  * v2.16: asistencia georreferenciada (ubicación en cada marca, sede de la agencia), informes semanal/quincenal/mensual y rol «RRHH» (solo ve y exporta).
  *
  * v2.4: claves protegidas en la planilla (huella con sal; protegerClaves() o primer ingreso) y sesión por POST, nunca en la dirección.
@@ -1522,9 +1523,16 @@ function periodoA_(tipo, ref) {
 function asistenciaDatos_(body, u) {
   const todos = leerAsistencia_();
   const hoy = diaA_(new Date());
-  const periodo = ['semana', 'quincena', 'mes'].indexOf(body.periodo) > -1 ? body.periodo : 'semana';
-  const ref = /^\d{4}-\d{2}-\d{2}$/.test(body.desde || '') ? body.desde : hoy;
-  const rango = periodoA_(periodo, ref), desde = rango.desde, hasta = rango.hasta;
+  const esFecha = (x) => /^\d{4}-\d{2}-\d{2}$/.test(x || '');
+  const periodo = ['semana', 'quincena', 'mes', 'rango'].indexOf(body.periodo) > -1 ? body.periodo : 'semana';
+  const ref = esFecha(body.desde) ? body.desde : hoy;
+  let desde, hasta;
+  if (periodo === 'rango') {
+    // Días elegidos a mano (por ejemplo, del 15 al 20): exactamente esos días, hasta 93 días
+    if (!esFecha(body.desde) || !esFecha(body.hasta) || body.desde > body.hasta) return { ok: false, error: 'rango_invalido' };
+    if (body.hasta > sumarDias_(body.desde, 92)) return { ok: false, error: 'rango_largo' };
+    desde = body.desde; hasta = body.hasta;
+  } else { const rango = periodoA_(periodo, ref); desde = rango.desde; hasta = rango.hasta; }
   const sede = sedeAsistencia_();
   const conGeo = (r) => { const o = publicoA_(r); o.geo_in = geoResumen_(r.entrada_geo, sede); o.geo_out = geoResumen_(r.salida_geo, sede); delete o.entrada_geo; delete o.salida_geo; return o; };
   let quien = String(u.nombre);

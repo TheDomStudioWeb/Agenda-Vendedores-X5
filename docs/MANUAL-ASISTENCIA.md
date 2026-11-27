@@ -10,6 +10,7 @@ Manual interno (también para Claudio). Herramienta del Hub para el personal que
 - **Ubicación de la agencia:** gerencia la fija una vez, parada dentro de la agencia (botón «Fijar aquí»). Desde ahí, cada marca sale como «En la agencia» (hasta 150 m) o «Fuera de la agencia · 2,2 km». Tocando la etiqueta se abre el punto en Google Maps.
 - Se pueden marcar varios turnos en el mismo día (por ejemplo, mañana y tarde).
 - Abajo se elige el período: **Semanal** (lunes a domingo), **Quincenal** (1 al 15 y 16 a fin de mes) o **Mensual**. Se ve cada día con sus turnos, la ubicación de cada marca, las horas, el total del período y los días trabajados. Con las flechas se ven períodos anteriores. El teléfono recuerda el último período elegido.
+- **Elegir días:** debajo de Semanal, Quincenal y Mensual está «Elegir días». Se pone **Desde** y **Hasta** (por ejemplo, del 15 al 20) y se toca **Ver**: el informe y el PDF muestran exactamente esos días, ni uno más. Sirve cuando el pago no coincide con la semana o la quincena (por ejemplo, de viernes a miércoles) y para no repetir días ya pagados. Hasta 3 meses por vez. «Quitar días elegidos» vuelve al período de siempre.
 - **Exportar en PDF** (del período elegido): primero aparecen dos recuadros para **firmar con el dedo en el teléfono**: la persona que informa las horas y el responsable (con su nombre y aclaración). Las firmas pasan al PDF con la fecha y hora en que se firmaron. Si alguien no está, se deja vacío y queda la línea para firmar en papel. El PDF es A4 con la marca X5 (el mensual ocupa dos hojas, numeradas), día por día (ingreso, salida, horas, ubicación de cada marca y observaciones), con la cantidad de marcas sin ubicación o fuera de la agencia, total en horas y minutos y en horas con decimales (por ejemplo «22:33 h (22,55 horas)»). En el teléfono se abre «Compartir» para mandarlo por WhatsApp o mail.
 
 ## Quién ve qué
@@ -40,6 +41,7 @@ Manual interno (también para Claudio). Herramienta del Hub para el personal que
 ## Frases para Claudio
 - «Para marcar la llegada: Hub → Ingreso y egreso → Ingreso → Confirmar.»
 - «Para mandar las horas: Ingreso y egreso → elegí Semanal, Quincenal o Mensual → Exportar en PDF → firman los dos en el teléfono → Armar PDF → elegí WhatsApp.»
+- «Si el pago va de un día cualquiera a otro (por ejemplo, de viernes a miércoles): tocá Elegir días, poné Desde y Hasta, tocá Ver y exportá. Salen solo esos días.»
 - «Cada marca guarda dónde estaba el teléfono. Si dice Fuera de la agencia, se marcó a más de 150 metros; si dice Sin ubicación, el teléfono no la pudo dar.»
 - «RRHH solo mira y exporta: no puede marcar ni corregir horarios.»
 - «Si se olvidó de marcar la salida, gerencia la corrige desde Ingreso y egreso: tocá Corregir en el turno y escribí el motivo.»

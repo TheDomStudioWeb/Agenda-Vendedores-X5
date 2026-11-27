@@ -251,6 +251,13 @@ T('Asistencia: ubicación en cada marca, sede de la agencia, períodos y rol RRH
   d = m.asis(RH, { action: 'asistencia_datos', periodo: 'quincena', desde: '2026-11-03', nombre: 'Rosa Limpieza' }); assert(d.desde === '2026-11-01' && d.hasta === '2026-11-15');
   d = m.asis(RH, { action: 'asistencia_datos', periodo: 'mes', desde: '2026-02-10', nombre: 'Rosa Limpieza' }); assert(d.desde === '2026-02-01' && d.hasta === '2026-02-28');
   d = m.asis(GER, { action: 'asistencia_datos', periodo: 'mes', desde: '2026-11-10', nombre: 'Rosa Limpieza' }); assert(d.semana.length === 2 && d.sede && d.sede.radio === 150);
+  // días elegidos: exactamente esos días
+  d = m.asis(RH, { action: 'asistencia_datos', periodo: 'rango', desde: '2026-11-03', hasta: '2026-11-19', nombre: 'Rosa Limpieza' });
+  assert(d.ok && d.periodo === 'rango' && d.desde === '2026-11-03' && d.hasta === '2026-11-19' && d.semana.length === 1, JSON.stringify([d.desde, d.hasta, d.semana.length]));
+  d = m.asis(RH, { action: 'asistencia_datos', periodo: 'rango', desde: '2026-11-04', hasta: '2026-11-20', nombre: 'Rosa Limpieza' });
+  assert(d.semana.length === 1 && d.semana[0].fecha === '2026-11-20');
+  assert.strictEqual(m.asis(RH, { action: 'asistencia_datos', periodo: 'rango', desde: '2026-11-20', hasta: '2026-11-15' }).error, 'rango_invalido');
+  assert.strictEqual(m.asis(RH, { action: 'asistencia_datos', periodo: 'rango', desde: '2026-01-01', hasta: '2026-11-15' }).error, 'rango_largo');
   // RRHH y Personal no aparecen como vendedores
   assert(!m.api.listarUsuarios_ || true);
 });
