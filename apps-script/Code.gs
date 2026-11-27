@@ -41,6 +41,7 @@
  *
  * v2.6: registro de ingreso y egreso del personal (hoja «Asistencia», rol «Personal»).
  * v2.18: contratos: estado «Enviado a casa central» (después de Rendido, solo gerencia).
+ * v2.19: carga masiva de leads desde Excel (gerencia y jefes; sin duplicados por teléfono; un solo aviso por asesor).
  * v2.17: informe de asistencia por días elegidos (desde/hasta), además de semanal, quincenal y mensual.
  * v2.16: asistencia georreferenciada (ubicación en cada marca, sede de la agencia), informes semanal/quincenal/mensual y rol «RRHH» (solo ve y exporta).
  *
@@ -185,6 +186,14 @@ function doPost(e) {
         if (body.action === 'restaurar') return json_(restaurarArchivo_(body.items || []));
         return json_(listarArchivo_());
       } finally { lk.releaseLock(); }
+    }
+
+    // Carga masiva de leads desde un Excel (gerencia y jefes)
+    if (body.action === 'leads_importar') {
+      const avisos = [], lk = LockService.getScriptLock(); lk.waitLock(30000); let r;
+      try { r = leadsImportar_(body, usuario, avisos); } finally { lk.releaseLock(); }
+      avisos.forEach(fn => { try { fn(); } catch (e) { console.warn('Aviso no enviado: ' + e); } });
+      return json_(r);
     }
 
     const nombreHoja = body.tabla || HOJAS.agenda;
@@ -855,6 +864,52 @@ function avisarLeadAsignado_(lead, quienAsigna) {
     (lead.notas ? `\n📝 ${esc_(lead.notas)}` : '') +
     (quienAsigna ? `\n\n<i>Asignado por ${esc_(quienAsigna.nombre)}</i>` : '');
   enviarA_([lead.asignado_a], html, HUB_URL + 'crm.html?tab=leads', 'Abrir mis leads');
+}
+
+// ── Carga masiva de leads ─────────────────────────────────────────
+const IMPORTAR_MAX = 500; // filas por envío (la pantalla manda en tandas)
+// Últimos 8 dígitos del número normalizado (sin 54, 9, 0 ni 15): la misma regla de duplicados que usa el CRM en el teléfono
+function telClave_(v) { const d = telP_(v); return d.length >= 8 ? d.slice(-8) : ''; }
+function leadsImportar_(body, u, avisos) {
+  if (!esSupervision_(u)) return { ok: false, error: 'sin_permiso' };
+  const filas = Array.isArray(body.leads) ? body.leads : [];
+  if (!filas.length) return { ok: false, error: 'sin_filas' };
+  if (filas.length > IMPORTAR_MAX) return { ok: false, error: 'demasiadas_filas', max: IMPORTAR_MAX };
+  const personal = personalLimpio_().filter(p => !fueraDeVentas_(p.rol) && String(p.estado) === 'Activo');
+  const puedeVer = visibilidad_(u, personal), validos = {};
+  personal.forEach(p => { if (puedeVer(p.nombre)) validos[p.nombre] = true; });
+  const fecha = /^\d{4}-\d{2}-\d{2}$/.test(String(body.fecha_asignacion || '')) ? String(body.fecha_asignacion) : hoyP_();
+  const hora = /^\d{1,2}:\d{2}$/.test(String(body.hora_limite || '')) ? String(body.hora_limite).padStart(5, '0') : '';
+  const sh = obtenerHoja_(HOJAS.leads), headers = asegurarColumnas_(sh, COLUMNAS[HOJAS.leads]);
+  const existentes = {};
+  leerHoja_(HOJAS.leads).forEach(l => { const k = telClave_(l.telefono); if (k && !existentes[k]) existentes[k] = l; });
+  const nuevas = [], creados = [], duplicados = [], errores = [], porAsesor = {}, base = Date.now();
+  filas.forEach((f, i) => {
+    const fila = f && f.fila != null ? f.fila : i + 1;
+    const cliente = txtP_(f && f.cliente).slice(0, 80), tel = txtP_(f && f.telefono).replace(/[^\d+ ()-]/g, '').trim().slice(0, 25), k = telClave_(tel);
+    const asesor = txtP_(f && f.asignado_a);
+    if (!cliente) return errores.push({ fila, motivo: 'falta_nombre' });
+    if (!k) return errores.push({ fila, cliente, motivo: 'falta_telefono' });
+    if (!validos[asesor]) return errores.push({ fila, cliente, motivo: 'asesor_invalido', asesor });
+    if (existentes[k]) return duplicados.push({ fila, cliente, telefono: tel, ya: existentes[k].cliente || '', de: existentes[k].asignado_a || '' });
+    const lead = { id: String(base + nuevas.length), cliente, telefono: tel, interes: txtP_(f.interes).slice(0, 60), origen: txtP_(f.origen).slice(0, 40) || 'Base Excel',
+      asignado_a: asesor, fecha_asignacion: fecha, hora_limite: hora, estado: 'pendiente', resultado: '', hora_contacto: '', notas: txtP_(f.notas).slice(0, 500) };
+    existentes[k] = lead; // dos filas con el mismo teléfono en el mismo Excel: entra la primera
+    nuevas.push(headers.map(h => valorParaCelda_(h, h === 'actualizado' ? new Date() : lead[h])));
+    creados.push(lead.id);
+    (porAsesor[asesor] = porAsesor[asesor] || []).push(lead);
+  });
+  if (nuevas.length) sh.getRange(sh.getLastRow() + 1, 1, nuevas.length, headers.length).setValues(nuevas);
+  if (body.avisar !== false) Object.keys(porAsesor).forEach(a => { if (a !== u.nombre) avisos.push(() => avisarLeadsImportados_(a, porAsesor[a], u, fecha, hora)); });
+  return { ok: true, creados: creados.length, ids: creados, duplicados, errores, por_asesor: Object.keys(porAsesor).map(a => ({ asesor: a, cantidad: porAsesor[a].length })) };
+}
+function avisarLeadsImportados_(asesor, lista, quien, fecha, hora) {
+  const origenes = Array.from(new Set(lista.map(l => l.origen))).join(', ');
+  const muestra = lista.slice(0, 5).map(l => '• ' + esc_(l.cliente) + (l.interes ? ' · ' + esc_(l.interes) : '')).join('\n');
+  const html = `📥 <b>Te asignaron ${lista.length} lead${lista.length === 1 ? '' : 's'} nuevo${lista.length === 1 ? '' : 's'}</b>\n🗂 ${esc_(origenes)}` +
+    (hora ? `\n⏰ Contactar antes de: <b>${esc_(hora)} · ${esc_(fechaCorta_(fecha))}</b>` : '') + `\n\n${muestra}` + (lista.length > 5 ? `\n… y ${lista.length - 5} más` : '') +
+    `\n\n<i>Asignados por ${esc_(quien.nombre)}</i>`;
+  enviarA_([asesor], html, HUB_URL + 'crm.html?tab=leads', 'Abrir mis leads');
 }
 
 function avisarVenta_(v) {

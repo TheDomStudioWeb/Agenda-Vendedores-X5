@@ -356,3 +356,14 @@ Además de Semanal, Quincenal y Mensual, el informe se puede sacar **de un día 
 - Solo gerencia, y solo desde Rendido. Después queda cerrado: jefes y vendedores no lo pueden cambiar. Si se marcó por error, gerencia toca «Volver a Rendido (no se envió)»; el sellado no se pierde.
 - En los cuadros aparece como «En casa central» y en el resumen por persona cuenta como rendido. Requiere cargar el Code.gs v2.18.
 - **Para responder por voz:** «¿Cómo marco que un contrato ya se mandó a casa central?» → Control de contratos, abrí el contrato rendido y tocá «Marcar enviado a casa central». Para varios, tildalos y usá el mismo botón de abajo.
+
+## Carga masiva de leads desde Excel (v2.19, 27/11/2026)
+- **Dónde:** Mini CRM → Leads → botón **«Carga masiva desde Excel»** (debajo de «Asignar nuevo lead»). Lo ven gerencia, jefes de ventas y referentes. Asesores, Supervisor y Director no.
+- **Archivo:** Excel (.xlsx o .xls), .csv u .ods. Se lee la primera hoja; la primera fila con títulos es el encabezado (si arriba hay un título suelto, se saltea). Hasta 3000 filas por archivo. Sirve directo el Excel que exporta Meta de los formularios de Facebook e Instagram (full_name, phone_number, etc.).
+- **Paso 1, columnas:** el Hub reconoce solo qué columna es nombre, apellido, teléfono, interés, origen, observaciones y asesor; se puede corregir con los desplegables. Obligatorios: nombre y teléfono.
+- **Paso 2, a quién:** todos a un asesor, repartir parejo entre los que se tilden (uno y uno, en orden), o según la columna «Asesor» del Excel (acepta el nombre completo o una parte que sea de una sola persona, por ejemplo «Carlos»). Un jefe solo puede asignar a su equipo.
+- **Paso 3, datos para todos:** origen (por defecto «Base Excel», o el que traiga cada fila), fecha y hora de «Contactar antes de» (sin hora, no vencen), sumar las demás columnas a Observaciones (mail, preguntas del formulario) y aviso por Telegram.
+- **Paso 4, revisión:** antes de cargar muestra cuántos entran, cuántos son duplicados y cuántos tienen error, con la fila del Excel y el motivo. **Duplicado** = mismo teléfono que un lead que ya está en el Hub o repetido en el mismo Excel (se reconoce aunque esté escrito distinto: con 54 9, con 0 y 15, con guiones). Los duplicados no se cargan.
+- **Al cargar:** el servidor vuelve a revisar duplicados y permisos, crea los leads como «Pendiente» y le manda **un solo aviso por Telegram a cada asesor** con cuántos le tocaron. Si se corta la señal en el medio, se vuelve a subir el mismo archivo: lo ya cargado sale como duplicado.
+- Requiere cargar el Code.gs v2.19.
+- **Para responder por voz:** «¿Cómo subo una lista de leads?» → Mini CRM, pestaña Leads, «Carga masiva desde Excel». Elegí el archivo, revisá qué columna es cada dato, elegí a quién se asignan y tocá Cargar. Los teléfonos que ya están en el Hub no se repiten.

@@ -281,4 +281,30 @@ T('Asistencia: ubicación en cada marca, sede de la agencia, períodos y rol RRH
   assert(!m.api.listarUsuarios_ || true);
 });
 
+T('carga masiva de leads: gerencia y jefes, sin duplicados por teléfono, respeta el equipo y avisa una vez por asesor', () => {
+  const m = nuevo(); m.libro.Personal.filas[4][5] = '111'; // Carlos tiene Telegram
+  const tg = m.post({ action: 'login', nombre: 'Gerente Uno', clave: 'x' }).token, tj = m.post({ action: 'login', nombre: 'Jefe Ana', clave: 'x' }).token, tv = m.post({ action: 'login', nombre: 'Vendedor Carlos', clave: 'x' }).token;
+  assert(m.post({ action: 'add', token: tg, tabla: 'Leads', data: { id: 'L1', cliente: 'Ya Estaba', telefono: '2614112233', asignado_a: 'Vendedor Eli', estado: 'pendiente' } }).ok);
+  const leads = [
+    { fila: 2, cliente: 'Ana Gómez', telefono: '+54 9 261 555-0001', interes: 'Onix', origen: 'Meta Ads', asignado_a: 'Vendedor Carlos', notas: 'mail: a@b.com' },
+    { fila: 3, cliente: 'Bruno', telefono: '0261 15 4112233', asignado_a: 'Vendedor Carlos' },  // mismo número que L1
+    { fila: 4, cliente: 'Ceci', telefono: '261 5550001', asignado_a: 'Vendedora Dana' },          // repetido dentro del Excel
+    { fila: 5, cliente: '', telefono: '2615550009', asignado_a: 'Vendedora Dana' },
+    { fila: 6, cliente: 'Dani', telefono: '12', asignado_a: 'Vendedora Dana' },
+    { fila: 7, cliente: 'Eva', telefono: '2615550010', asignado_a: 'Vendedor Eli' },             // otro equipo para Jefe Ana
+    { fila: 8, cliente: 'Fede', telefono: '2615550011', asignado_a: 'Vendedora Dana' } ];
+  assert.strictEqual(m.post({ action: 'leads_importar', token: tv, leads }).error, 'sin_permiso');
+  m.enviados.length = 0;
+  const r = m.post({ action: 'leads_importar', token: tj, leads, fecha_asignacion: '2026-10-27', hora_limite: '9:30' });
+  assert(r.ok && r.creados === 2, JSON.stringify(r));
+  assert.deepStrictEqual(r.duplicados.map(d => d.fila), [3, 4]); assert.strictEqual(r.duplicados[0].ya, 'Ya Estaba');
+  assert.deepStrictEqual(r.errores.map(e => e.fila + ':' + e.motivo), ['5:falta_nombre', '6:falta_telefono', '7:asesor_invalido']);
+  const d = m.post({ action: 'datos', token: tg }).leads; assert.strictEqual(d.length, 3);
+  const ana = d.find(l => l.cliente === 'Ana Gómez'); assert(ana.estado === 'pendiente' && ana.origen === 'Meta Ads' && ana.hora_limite === '09:30' && String(ana.fecha_asignacion).slice(0, 10) === '2026-10-27' && ana.notas === 'mail: a@b.com', JSON.stringify(ana));
+  assert.strictEqual(d.find(l => l.cliente === 'Fede').origen, 'Base Excel');
+  assert.strictEqual(m.enviados.length, 1, JSON.stringify(m.enviados)); assert(/Te asignaron 1 lead nuevo/.test(m.enviados[0].text));
+  // Repetir el mismo Excel no duplica nada
+  const r2 = m.post({ action: 'leads_importar', token: tg, leads, avisar: false }); assert.strictEqual(r2.creados, 1, JSON.stringify(r2)); // solo Eva (el gerente sí puede asignarle)
+});
+
 console.log(`\n${ok} bien, ${fail} con error`); process.exit(fail ? 1 : 0);

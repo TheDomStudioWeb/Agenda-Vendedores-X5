@@ -184,6 +184,21 @@
   .legend i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
   .legend span { flex: 1; color: var(--muted); }
   #dlg-x { border: 1px solid var(--line); border-radius: 18px; background: var(--surface); color: var(--text); padding: 0; width: min(520px, calc(100vw - 24px)); max-height: 88vh; }
+  .imp-wrap { margin-top: 10px; } .imp-wrap .btn { width: 100%; }
+  #dlg-x.ancho { width: min(760px, calc(100vw - 24px)); }
+  .imp-map { display: grid; grid-template-columns: 1fr 1.4fr; gap: 6px 10px; align-items: center; margin: 6px 0 12px; }
+  .imp-map label { font-size: .86rem; color: var(--muted); } .imp-map label b { color: var(--bad); }
+  .imp-sec { font-weight: 700; margin: 14px 0 6px; font-size: .95rem; }
+  .imp-opc { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 4px 0 8px; } .imp-opc label { display: flex; gap: 6px; align-items: center; font-size: .9rem; }
+  .imp-opc input, .imp-ases input { appearance: auto; -webkit-appearance: auto; width: 18px; height: 18px; min-height: 0; padding: 0; margin: 0; flex: none; border: 0; background: none; box-shadow: none; accent-color: var(--x5, #e30613); }
+  .imp-opc.col { flex-direction: column; }
+  .imp-ases { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 4px 10px; margin: 4px 0 8px; } .imp-ases label { display: flex; gap: 6px; align-items: center; font-size: .88rem; }
+  .imp-cnt { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; } .imp-cnt span { border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; font-size: .86rem; }
+  .imp-cnt .ok { border-color: var(--ok); } .imp-cnt .wa { border-color: #d9a400; } .imp-cnt .bad { border-color: var(--bad); }
+  .imp-tab { width: 100%; border-collapse: collapse; font-size: .82rem; } .imp-tab th, .imp-tab td { text-align: left; padding: 5px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .imp-tab th { color: var(--muted); font-weight: 600; } .imp-scroll { overflow-x: auto; }
+  .imp-det summary { cursor: pointer; margin: 8px 0 4px; font-size: .9rem; }
+  .imp-ayuda { font-size: .86rem; color: var(--muted); line-height: 1.45; }
   #dlg-x::backdrop { background: rgba(0,0,0,.55); }
   .dx-h { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
   .dx-h h2 { margin: 0; font-size: 1.05rem; }
@@ -337,6 +352,7 @@
           <button class="btn" type="submit" id="btn-lead">Asignar lead</button>
         </form>
       </details>
+      <div class="sup-only imp-wrap"><button type="button" class="btn btn-ghost" id="btn-importar">Carga masiva desde Excel</button></div>
     </div>
 
     <div class="card">
@@ -1397,7 +1413,199 @@ function eliminarRegistro(tabla, id) {
 }
 /* Duplicados: mismo teléfono (leads); mismo nombre en el mismo día y hora o con el mismo vehículo (entrevistas) */
 const normTxt = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
-const normTel = (t) => { const d = String(t || '').replace(/\D/g, ''); return d.length >= 8 ? d.slice(-8) : ''; };
+/* ── Carga masiva de leads desde Excel (gerencia y jefes) ───── */
+const IMP_ORIGEN = 'Base Excel';
+const IMP_CAMPOS = [['cliente', 'Nombre', 1], ['apellido', 'Apellido (si viene aparte)'], ['telefono', 'Teléfono', 1], ['interes', 'Interés / vehículo'], ['origen', 'Origen'], ['notas', 'Observaciones'], ['asesor', 'Asesor']];
+const IMP_BUSCAR = {
+  telefono: [/^(telefono|tel|celular|cel|movil|whatsapp|phone|phone number|numero)$/, /(telef|celular|movil|whats|phone|^tel|^cel)/],
+  apellido: [/^(apellido|apellidos|last name)$/],
+  cliente: [/^(nombre|nombres|nombre y apellido|apellido y nombre|nombre completo|full name|name|cliente|prospecto|contacto)$/, /(nombre|name|cliente|prospecto)/],
+  interes: [/^(interes|vehiculo|modelo|producto)$/, /(interes|vehiculo|modelo|producto|busca|unidad)/],
+  origen: [/^(origen|fuente|source|canal)$/, /(origen|fuente|source|canal)/],
+  notas: [/^(observaciones|notas|nota|comentarios|comentario|mensaje)$/, /(observ|nota|coment|mensaje|detalle)/],
+  asesor: [/^(asesor|vendedor|vendedora|asignado|asignado a|responsable)$/, /(asesor|vendedor|asignad)/]
+};
+const IMP = { nombre: '', cab: [], filas: [], map: {}, modo: 'uno', uno: '', varios: [], origen: IMP_ORIGEN, fecha: '', hora: '', extras: true, avisar: true, prev: null };
+let xlsxCarga = null;
+function cargarXLSX() {
+  if (window.XLSX) return Promise.resolve();
+  return xlsxCarga = xlsxCarga || new Promise((ok, mal) => { const sc = document.createElement('script'); sc.src = 'libs/xlsx.full.min.js'; sc.onload = ok; sc.onerror = () => { xlsxCarga = null; mal(new Error('No se pudo abrir el lector de Excel. Revisá la conexión.')); }; document.head.appendChild(sc); });
+}
+/* Celda a texto: los números largos (teléfonos) sin notación científica; las fechas, como día */
+function impTexto(v) {
+  if (v == null) return '';
+  if (v instanceof Date) return isNaN(v) ? '' : v.toISOString().slice(0, 10);
+  if (typeof v === 'number') return Number.isInteger(v) ? v.toLocaleString('fullwide', { useGrouping: false }) : String(v);
+  return String(v).replace(/\s+/g, ' ').trim();
+}
+const impAsesores = () => (db.personal || []).filter(p => p.estado === 'Activo' && puedeVer(p.nombre) && !OBSERVADORES.includes(p.rol)).map(p => p.nombre);
+/* Nombre de asesor escrito en el Excel → nombre del Hub (exacto, o si una sola persona lo contiene) */
+function impAsesor(txt) {
+  const n = normTxt(txt); if (!n) return '';
+  const l = impAsesores(), ex = l.find(x => normTxt(x) === n); if (ex) return ex;
+  const parc = l.filter(x => (' ' + normTxt(x) + ' ').includes(' ' + n + ' ') || normTxt(x).startsWith(n));
+  return parc.length === 1 ? parc[0] : '';
+}
+function dImportar() {
+  if (SOLO_LECTURA() || !SUPERVISION.includes(user.rol)) return;
+  dlgX.classList.add('ancho');
+  dialogo('Carga masiva de leads', `<p class="imp-ayuda">Elegí un Excel (.xlsx o .xls) o un .csv. Se lee la <b>primera hoja</b>: la primera fila con títulos es el encabezado y cada fila de abajo es un lead. Hacen falta al menos <b>nombre</b> y <b>teléfono</b>; también puede traer interés, origen, observaciones y asesor. Sirve el Excel que exporta Meta (formularios de Facebook e Instagram).</p>
+    <div class="field"><input type="file" id="imp-archivo" accept=".xlsx,.xls,.csv,.ods,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv"></div>
+    <p class="note-state" id="imp-msg"></p>`);
+}
+async function impLeerArchivo(f) {
+  const msg = $('imp-msg'); msg.style.color = ''; msg.textContent = 'Leyendo el archivo…';
+  try {
+    await cargarXLSX();
+    const wb = XLSX.read(await f.arrayBuffer(), { type: 'array', cellDates: true });
+    const ws = wb.Sheets[wb.SheetNames[0]];
+    const filas = XLSX.utils.sheet_to_json(ws, { header: 1, raw: true, defval: '', blankrows: true }).map(r => r.map(impTexto));
+    const iCab = filas.findIndex(r => r.filter(Boolean).length >= 2);
+    if (iCab < 0) throw new Error('No encontré una fila de títulos con al menos dos columnas.');
+    const cab = filas[iCab].map((h, i) => h || 'Columna ' + (i + 1));
+    const datos = filas.slice(iCab + 1).map((r, i) => ({ n: iCab + i + 2, c: r })).filter(r => r.c.some(Boolean));
+    if (!datos.length) throw new Error('El archivo tiene títulos pero ninguna fila con datos.');
+    if (datos.length > 3000) throw new Error(`Tiene ${datos.length} filas. Cargá de a 3000 como máximo (dividí el archivo).`);
+    Object.assign(IMP, { nombre: f.name, cab, filas: datos, map: {}, prev: null });
+    const usadas = new Set(), cn = cab.map(normTxt);
+    ['telefono', 'apellido', 'cliente', 'interes', 'origen', 'notas', 'asesor'].forEach(k => {
+      for (const re of IMP_BUSCAR[k]) { const i = cn.findIndex((h, j) => !usadas.has(j) && re.test(h)); if (i > -1) { IMP.map[k] = i; usadas.add(i); break; } }
+    });
+    const ases = impAsesores();
+    if (!IMP.uno || !ases.includes(IMP.uno)) IMP.uno = '';
+    IMP.varios = IMP.varios.filter(x => ases.includes(x));
+    if (!IMP.varios.length) IMP.varios = (db.personal || []).filter(p => ases.includes(p.nombre) && p.rol === 'Asesor').map(p => p.nombre);
+    IMP.modo = IMP.map.asesor != null ? 'columna' : (IMP.modo === 'columna' ? 'uno' : IMP.modo);
+    IMP.fecha = X5.hoyISO();
+    impPaso2();
+  } catch (e) { msg.style.color = 'var(--bad)'; msg.textContent = (e && e.message) || 'No se pudo leer el archivo. Probá guardarlo como .xlsx.'; }
+}
+function impPaso2() {
+  const opc = (sel) => '<option value="">— no viene —</option>' + IMP.cab.map((h, i) => `<option value="${i}" ${sel === i ? 'selected' : ''}>${esc(h)}</option>`).join('');
+  const ases = impAsesores();
+  const mapHtml = IMP_CAMPOS.map(([k, et, req]) => `<label for="imp-c-${k}">${esc(et)}${req ? ' <b>*</b>' : ''}</label><select id="imp-c-${k}" data-imp-col="${k}">${opc(IMP.map[k])}</select>`).join('');
+  const origenes = [IMP_ORIGEN].concat(ORIGENES);
+  dialogo('Carga masiva de leads', `<p class="imp-ayuda">📄 <b>${esc(IMP.nombre)}</b> · ${IMP.filas.length} fila${IMP.filas.length === 1 ? '' : 's'} con datos</p>
+    <div class="imp-sec">1. Qué columna es cada dato</div>
+    <div class="imp-map">${mapHtml}</div>
+    <div class="imp-sec">2. A quién se asignan</div>
+    <div class="imp-opc col">
+      <label><input type="radio" name="imp-modo" value="uno" ${IMP.modo === 'uno' ? 'checked' : ''}> Todos a un asesor</label>
+      <label><input type="radio" name="imp-modo" value="parejo" ${IMP.modo === 'parejo' ? 'checked' : ''}> Repartir parejo</label>
+      <label><input type="radio" name="imp-modo" value="columna" ${IMP.modo === 'columna' ? 'checked' : ''} ${IMP.map.asesor == null ? 'disabled' : ''}> Según la columna «Asesor»</label>
+    </div>
+    <div id="imp-m-uno" class="field ${IMP.modo === 'uno' ? '' : 'hidden'}"><select id="imp-uno"><option value="">Elegí el asesor…</option>${opcionesTxt(ases, IMP.uno)}</select></div>
+    <div id="imp-m-parejo" class="${IMP.modo === 'parejo' ? '' : 'hidden'}"><div class="imp-ases">${ases.map(a => `<label><input type="checkbox" data-imp-ases value="${esc(a)}" ${IMP.varios.includes(a) ? 'checked' : ''}> ${esc(a)}</label>`).join('')}</div></div>
+    <div class="imp-sec">3. Datos para todos</div>
+    <div class="row field"><div><label for="imp-origen">Origen (si la fila no trae)</label><select id="imp-origen">${opcionesTxt(origenes, IMP.origen)}</select></div></div>
+    <div class="field"><label>Contactar antes de</label><div class="row"><input type="date" id="imp-fecha" value="${esc(IMP.fecha)}"><input type="time" id="imp-hora" value="${esc(IMP.hora)}"></div><p class="imp-ayuda">Sin hora, los leads no vencen.</p></div>
+    <div class="imp-opc col">
+      <label><input type="checkbox" id="imp-extras" ${IMP.extras ? 'checked' : ''}> Sumar a Observaciones las demás columnas (mail, preguntas del formulario…)</label>
+      <label><input type="checkbox" id="imp-avisar" ${IMP.avisar ? 'checked' : ''}> Avisar a cada asesor por Telegram (un solo mensaje)</label>
+    </div>
+    <div class="imp-sec">4. Revisión</div>
+    <div id="imp-prev"></div>
+    <p class="note-state" id="imp-msg"></p>
+    <div class="row"><button type="button" class="btn btn-ghost" data-imp="otro">Elegir otro archivo</button><button type="button" class="btn" id="imp-cargar" data-imp="cargar">Cargar</button></div>`);
+  impRevisar();
+}
+function impLeerForm() {
+  document.querySelectorAll('[data-imp-col]').forEach(sel => { const v = sel.value; if (v === '') delete IMP.map[sel.dataset.impCol]; else IMP.map[sel.dataset.impCol] = +v; });
+  const m = document.querySelector('input[name="imp-modo"]:checked'); IMP.modo = m ? m.value : 'uno';
+  const col = document.querySelector('input[name="imp-modo"][value="columna"]');
+  if (col) { col.disabled = IMP.map.asesor == null; if (col.disabled && IMP.modo === 'columna') { IMP.modo = 'uno'; document.querySelector('input[name="imp-modo"][value="uno"]').checked = true; } }
+  IMP.uno = $('imp-uno').value; IMP.varios = [...document.querySelectorAll('[data-imp-ases]:checked')].map(c => c.value);
+  IMP.origen = $('imp-origen').value; IMP.fecha = $('imp-fecha').value || X5.hoyISO(); IMP.hora = $('imp-hora').value;
+  IMP.extras = $('imp-extras').checked; IMP.avisar = $('imp-avisar').checked;
+  $('imp-m-uno').classList.toggle('hidden', IMP.modo !== 'uno'); $('imp-m-parejo').classList.toggle('hidden', IMP.modo !== 'parejo');
+}
+/* Arma los leads como quedarían, con la misma regla de duplicados del CRM (teléfono) */
+function impArmar() {
+  const M = IMP.map, val = (r, k) => M[k] != null ? (r.c[M[k]] || '') : '';
+  const usadas = new Set(Object.values(M));
+  const enHub = {}; (db.leads || []).forEach(l => { const k = normTel(l.telefono); if (k && !enHub[k]) enHub[k] = l; });
+  const listos = [], dup = [], err = [], vistos = {};
+  let rr = 0;
+  IMP.filas.forEach(r => {
+    const cliente = [val(r, 'cliente'), val(r, 'apellido')].filter(Boolean).join(' ').trim();
+    const telefono = val(r, 'telefono').replace(/^p:/i, '').trim(), k = normTel(telefono);
+    if (!cliente) return err.push({ n: r.n, cliente: '', motivo: 'Falta el nombre' });
+    if (!k) return err.push({ n: r.n, cliente, motivo: telefono ? `Teléfono incompleto (${telefono})` : 'Falta el teléfono' });
+    if (enHub[k]) return dup.push({ n: r.n, cliente, telefono, motivo: `Ya está en el Hub: ${enHub[k].cliente || ''} · ${enHub[k].asignado_a || ''}` });
+    if (vistos[k]) return dup.push({ n: r.n, cliente, telefono, motivo: `Repetido en el Excel (fila ${vistos[k]})` });
+    let asesor = '';
+    if (IMP.modo === 'uno') asesor = IMP.uno;
+    else if (IMP.modo === 'parejo') asesor = IMP.varios.length ? IMP.varios[rr++ % IMP.varios.length] : '';
+    else { const t = val(r, 'asesor'); asesor = impAsesor(t); if (!asesor) return err.push({ n: r.n, cliente, motivo: t ? `Asesor «${t}» no encontrado en tu equipo` : 'Falta el asesor' }); }
+    vistos[k] = r.n;
+    let notas = val(r, 'notas');
+    if (IMP.extras) { const ex = IMP.cab.map((h, i) => !usadas.has(i) && r.c[i] ? `${h}: ${r.c[i]}` : '').filter(Boolean).join(' · '); if (ex) notas = [notas, ex].filter(Boolean).join(' · '); }
+    listos.push({ fila: r.n, cliente, telefono, interes: val(r, 'interes'), origen: val(r, 'origen') || IMP.origen, asignado_a: asesor, notas: notas.slice(0, 500) });
+  });
+  return { listos, dup, err };
+}
+function impRevisar() {
+  impLeerForm();
+  const p = IMP.prev = impArmar(), b = $('imp-cargar');
+  const falta = !('cliente' in IMP.map) || !('telefono' in IMP.map) ? 'Elegí qué columna es el nombre y cuál el teléfono.'
+    : IMP.modo === 'uno' && !IMP.uno ? 'Elegí a qué asesor se asignan.' : IMP.modo === 'parejo' && !IMP.varios.length ? 'Tildá entre quiénes se reparten.' : '';
+  const porA = {}; p.listos.forEach(l => { porA[l.asignado_a] = (porA[l.asignado_a] || 0) + 1; });
+  const lista = (arr) => `<div class="imp-scroll"><table class="imp-tab"><tr><th>Fila</th><th>Nombre</th><th>Motivo</th></tr>${arr.slice(0, 200).map(x => `<tr><td>${x.n}</td><td>${esc(x.cliente || '—')}</td><td>${esc(x.motivo)}</td></tr>`).join('')}</table>${arr.length > 200 ? `<p class="imp-ayuda">… y ${arr.length - 200} más</p>` : ''}</div>`;
+  $('imp-prev').innerHTML = falta ? `<p class="imp-ayuda">${falta}</p>` : `
+    <div class="imp-cnt"><span class="ok">✔ ${p.listos.length} para cargar</span>${p.dup.length ? `<span class="wa">${p.dup.length} duplicado${p.dup.length === 1 ? '' : 's'} (no se cargan)</span>` : ''}${p.err.length ? `<span class="bad">${p.err.length} con error</span>` : ''}</div>
+    ${Object.keys(porA).length ? `<p class="imp-ayuda">${Object.entries(porA).map(([a, n]) => `${esc(a)}: <b>${n}</b>`).join(' · ')}</p>` : ''}
+    ${p.listos.length ? `<div class="imp-scroll"><table class="imp-tab"><tr><th>Nombre</th><th>Teléfono</th><th>Interés</th><th>Origen</th><th>Asesor</th></tr>${p.listos.slice(0, 6).map(l => `<tr><td>${esc(l.cliente)}</td><td>${esc(l.telefono)}</td><td>${esc(l.interes)}</td><td>${esc(l.origen)}</td><td>${esc(l.asignado_a)}</td></tr>`).join('')}</table>${p.listos.length > 6 ? `<p class="imp-ayuda">… y ${p.listos.length - 6} más</p>` : ''}</div>` : ''}
+    ${p.dup.length ? `<details class="imp-det"><summary>Ver duplicados</summary>${lista(p.dup)}</details>` : ''}
+    ${p.err.length ? `<details class="imp-det"><summary>Ver filas con error</summary>${lista(p.err)}</details>` : ''}`;
+  b.disabled = !!falta || !p.listos.length;
+  b.textContent = p.listos.length && !falta ? `Cargar ${p.listos.length} lead${p.listos.length === 1 ? '' : 's'}` : 'Cargar';
+}
+async function impCargar() {
+  impRevisar();
+  const p = IMP.prev, b = $('imp-cargar'), msg = $('imp-msg');
+  if (!p || !p.listos.length || b.disabled) return;
+  if (!navigator.onLine) { msg.style.color = 'var(--bad)'; msg.textContent = 'Sin conexión: la carga masiva necesita señal.'; return; }
+  b.disabled = true; msg.style.color = '';
+  const res = { creados: 0, duplicados: [], errores: [], por: {} }, TANDA = 200;
+  try {
+    for (let i = 0; i < p.listos.length; i += TANDA) {
+      msg.textContent = `Cargando ${Math.min(i + TANDA, p.listos.length)} de ${p.listos.length}…`;
+      const r = await apiPost({ action: 'leads_importar', token, leads: p.listos.slice(i, i + TANDA), fecha_asignacion: IMP.fecha, hora_limite: IMP.hora, avisar: IMP.avisar });
+      if (r && r.error === 'sesion_vencida') return sesionVencida();
+      if (!respOk(r)) throw new Error(r && r.error === 'sin_permiso' ? 'Tu usuario no puede hacer cargas masivas.' : 'El servidor no aceptó la carga' + (r && r.error ? ' (' + r.error + ')' : '') + '. ¿Está publicado el Code.gs nuevo?');
+      res.creados += r.creados; res.duplicados.push(...(r.duplicados || [])); res.errores.push(...(r.errores || []));
+      (r.por_asesor || []).forEach(x => { res.por[x.asesor] = (res.por[x.asesor] || 0) + x.cantidad; });
+    }
+  } catch (e) {
+    msg.style.color = 'var(--bad)'; msg.textContent = (res.creados ? `Se cargaron ${res.creados} y se cortó: ` : '') + ((e && e.message) || 'Error de conexión') + (res.creados ? ' Volvé a cargar el mismo archivo: los ya cargados salen como duplicados.' : '');
+    b.disabled = false; if (res.creados) sincronizar(); return;
+  }
+  await sincronizar();
+  const MOT = { falta_nombre: 'Falta el nombre', falta_telefono: 'Teléfono incompleto', asesor_invalido: 'Asesor fuera de tu equipo' };
+  const otros = res.duplicados.map(d => ({ n: d.fila, cliente: d.cliente, motivo: `Ya estaba: ${d.ya} · ${d.de}` })).concat(res.errores.map(e => ({ n: e.fila, cliente: e.cliente, motivo: MOT[e.motivo] || e.motivo })));
+  dialogo('Carga masiva de leads', `<div class="imp-cnt"><span class="ok">✔ ${res.creados} lead${res.creados === 1 ? '' : 's'} cargado${res.creados === 1 ? '' : 's'}</span>${otros.length ? `<span class="wa">${otros.length} sin cargar</span>` : ''}</div>
+    <p class="imp-ayuda">${Object.entries(res.por).map(([a, n]) => `${esc(a)}: <b>${n}</b>`).join(' · ')}</p>
+    ${IMP.avisar && res.creados ? '<p class="imp-ayuda">Cada asesor recibe un aviso por Telegram con sus leads nuevos (si tiene Telegram activado).</p>' : ''}
+    ${otros.length ? `<details class="imp-det" open><summary>No se cargaron (los revisó el servidor)</summary><div class="imp-scroll"><table class="imp-tab"><tr><th>Fila</th><th>Nombre</th><th>Motivo</th></tr>${otros.map(x => `<tr><td>${x.n}</td><td>${esc(x.cliente || '—')}</td><td>${esc(x.motivo)}</td></tr>`).join('')}</table></div></details>` : ''}
+    <button type="button" class="btn" data-dx="cerrar">Listo</button>`);
+  X5.toast(`${res.creados} leads cargados`, 'ok');
+}
+$('btn-importar').addEventListener('click', dImportar);
+dlgX.addEventListener('close', () => dlgX.classList.remove('ancho'));
+dlgX.addEventListener('change', (e) => {
+  if (e.target.id === 'imp-archivo' && e.target.files[0]) return impLeerArchivo(e.target.files[0]);
+  if (e.target.closest('#imp-prev')) return;
+  if (IMP.prev !== null && $('imp-prev')) impRevisar();
+});
+dlgX.addEventListener('click', (e) => {
+  const a = e.target.closest('[data-imp]'); if (!a) return;
+  if (a.dataset.imp === 'otro') dImportar();
+  if (a.dataset.imp === 'cargar') impCargar();
+});
+
+/* Últimos 8 dígitos del número sin 54, 9, 0 ni 15 (igual que el servidor): «0261 15 411-2233» y «2614112233» son el mismo */
+const telLimpio = (t) => { let d = String(t || '').replace(/\D/g, ''); if (d.startsWith('54') && d.length > 10) { d = d.slice(2); if (d[0] === '9') d = d.slice(1); } if (d[0] === '0') d = d.slice(1); if (d.length === 12) d = d.replace(/^(\d{2,4})15(\d{6,8})$/, '$1$2'); return d; };
+const normTel = (t) => { const d = telLimpio(t); return d.length >= 8 ? d.slice(-8) : ''; };
 function gruposDuplicados(tabla) {
   const arr = db[tabla], par = arr.map((_, i) => i), idx = {};
   const find = (i) => par[i] === i ? i : (par[i] = find(par[i]));
